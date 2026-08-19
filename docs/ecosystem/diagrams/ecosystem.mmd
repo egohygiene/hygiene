@@ -1,0 +1,99 @@
+flowchart TB
+  classDef control fill:#261447,stroke:#c084fc,color:#ffffff,stroke-width:2px
+  classDef platform fill:#083344,stroke:#22d3ee,color:#ffffff,stroke-width:2px
+  classDef flow fill:#3f1d0b,stroke:#fb923c,color:#ffffff,stroke-width:2px
+  classDef knowledge fill:#102a1d,stroke:#4ade80,color:#ffffff,stroke-width:2px
+  classDef experience fill:#3b1024,stroke:#fb7185,color:#ffffff,stroke-width:2px
+  classDef proposed fill:#1f2937,stroke:#94a3b8,color:#ffffff,stroke-width:2px,stroke-dasharray:6 4
+
+  subgraph C["Architecture & Control Plane"]
+    direction LR
+    HYG["hygiene<br/>architecture · registry · policy"]
+    DOT[".github<br/>organization-facing defaults"]
+    AET["aether<br/>AI specs · skills · agents"]
+    HOL["holon<br/>create repositories"]
+    PAC["pace<br/>converge repository fleet"]
+    OBS["observatory<br/>observe maturity · evidence"]
+  end
+
+  subgraph D["Developer & Runtime Platform"]
+    direction LR
+    REA["realm<br/>OCI · Dev Containers · Nix · hosts"]
+    MAN["mantle<br/>portable shell runtime"]
+    REL["relay<br/>reusable CI · release workflows"]
+    EGL["egolint<br/>quality policy · reports"]
+    EMP["empathy<br/>golden consumer · integration"]
+  end
+
+  subgraph F["Content Transformation & Publishing"]
+    direction LR
+    FLO["flow<br/>cross-holon orchestration"]
+    ANI["aniflow<br/>temporal video engine"]
+    OPT["optiflow<br/>safe collection optimization"]
+    REN["renderflow<br/>spec-driven derivatives"]
+    BEA["beacon<br/>package · publish · distribute"]
+  end
+
+  subgraph K["Knowledge & Research"]
+    direction LR
+    MNC["mindcap<br/>capture · verify · archive"]
+    MNG["mindgarden<br/>semantic knowledge system"]
+    AKA["akashic<br/>curated public knowledge"]
+    ATH["athena<br/>raw assets · references · archives"]
+    REF["reflector<br/>recursive-engineering research"]
+  end
+
+  subgraph X["Identity, Product & Experience"]
+    direction LR
+    IDN["identity<br/>tokens · voice · brand assets"]
+    EGO["egohygiene<br/>private Flutter product"]
+    WEB["egohygiene.io<br/>site · docs · playground"]
+    STO["store<br/>provider-neutral commerce"]
+  end
+
+  FIR["firmament (proposed)<br/>local & multi-cloud infrastructure"]
+
+  HYG -->|"architecture release"| HOL
+  HYG -->|"registry & policy"| PAC
+  HYG -->|"maturity model"| OBS
+  HYG -->|"public defaults"| DOT
+  AET -->|"AI artifact projections"| HOL
+  AET -->|"agent upgrades"| PAC
+  HOL -->|"bootstrap"| EMP
+  PAC -->|"upgrade PRs"| EMP
+
+  MAN -->|"pinned release"| REA
+  REA -->|"environment artifacts"| EMP
+  EGL -->|"CLI · profiles"| REL
+  REL -->|"reusable workflows"| EMP
+  REL -->|"run evidence"| OBS
+  EGL -->|"quality evidence"| OBS
+
+  FLO -->|"versioned contract"| ANI
+  FLO -->|"versioned contract"| OPT
+  FLO -->|"versioned contract"| REN
+  FLO -->|"artifact manifest"| BEA
+  REN -->|"derivatives"| BEA
+
+  ATH -->|"preserved sources"| MNC
+  MNC -->|"capture manifest"| MNG
+  MNG -->|"curated export"| AKA
+  REF -->|"research evidence"| OBS
+
+  IDN -->|"brand packages"| EGO
+  IDN -->|"brand packages"| WEB
+  IDN -->|"brand packages"| STO
+  IDN -->|"publication identity"| BEA
+  MNG -.->|"knowledge capability"| EGO
+  BEA -->|"published artifacts"| WEB
+  STO -->|"route & deployment contract"| WEB
+
+  REA -.->|"runtime images"| FIR
+  BEA -.->|"deployable artifacts"| FIR
+
+  class HYG,DOT,AET,HOL,PAC,OBS control
+  class REA,MAN,REL,EGL,EMP platform
+  class FLO,ANI,OPT,REN,BEA flow
+  class MNC,MNG,AKA,ATH,REF knowledge
+  class IDN,EGO,WEB,STO experience
+  class FIR proposed

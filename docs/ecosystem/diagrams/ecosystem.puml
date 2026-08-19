@@ -1,0 +1,93 @@
+@startuml Ego Hygiene Ecosystem
+!theme cyborg
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam ArrowColor #CBD5E1
+skinparam defaultTextAlignment center
+top to bottom direction
+
+title Ego Hygiene Ecosystem Architecture — accepted v0.1
+caption Arrows represent versioned artifacts, contracts, or control flow — not copied source.
+
+package "Architecture & Control Plane" #261447 {
+  component "hygiene\narchitecture · registry · policy" as HYG
+  component ".github\norganization-facing defaults" as DOT
+  component "aether\nAI specs · skills · agents" as AET
+  component "holon\ncreate repositories" as HOL
+  component "pace\nconverge repository fleet" as PAC
+  component "observatory\nobserve maturity · evidence" as OBS
+}
+
+package "Developer & Runtime Platform" #083344 {
+  component "realm\nOCI · Dev Containers · Nix · hosts" as REA
+  component "mantle\nportable shell runtime" as MAN
+  component "relay\nreusable CI · release workflows" as REL
+  component "egolint\nquality policy · reports" as EGL
+  component "empathy\ngolden consumer · integration" as EMP
+}
+
+package "Content Transformation & Publishing" #3F1D0B {
+  component "flow\ncross-holon orchestration" as FLO
+  component "aniflow\ntemporal video engine" as ANI
+  component "optiflow\nsafe collection optimization" as OPT
+  component "renderflow\nspec-driven derivatives" as REN
+  component "beacon\npackage · publish · distribute" as BEA
+}
+
+package "Knowledge & Research" #102A1D {
+  component "mindcap\ncapture · verify · archive" as MNC
+  component "mindgarden\nsemantic knowledge system" as MNG
+  component "akashic\ncurated public knowledge" as AKA
+  component "athena\nraw assets · references · archives" as ATH
+  component "reflector\nrecursive-engineering research" as REF
+}
+
+package "Identity, Product & Experience" #3B1024 {
+  component "identity\ntokens · voice · brand assets" as IDN
+  component "egohygiene\nprivate Flutter product" as EGO
+  component "egohygiene.io\nsite · docs · playground" as WEB
+  component "store\nprovider-neutral commerce" as STO
+}
+
+component "firmament (proposed)\nlocal & multi-cloud infrastructure" as FIR #1F2937
+
+HYG --> HOL : architecture release
+HYG --> PAC : registry & policy
+HYG --> OBS : maturity model
+HYG --> DOT : public defaults
+AET --> HOL : AI projections
+AET --> PAC : agent upgrades
+HOL --> EMP : bootstrap fixture
+PAC --> EMP : upgrade PRs
+
+MAN --> REA : pinned release
+REA --> EMP : environment artifacts
+EGL --> REL : CLI & profiles
+REL --> EMP : reusable workflows
+REL --> OBS : run evidence
+EGL --> OBS : quality evidence
+
+FLO --> ANI : versioned contract
+FLO --> OPT : versioned contract
+FLO --> REN : versioned contract
+FLO --> BEA : artifact manifest
+REN --> BEA : derivatives
+
+ATH --> MNC : preserved sources
+MNC --> MNG : capture manifest
+MNG --> AKA : curated export
+REF --> OBS : research evidence
+
+IDN --> EGO : brand packages
+IDN --> WEB : brand packages
+IDN --> STO : brand packages
+IDN --> BEA : publication identity
+MNG ..> EGO : knowledge capability
+BEA --> WEB : published artifacts
+STO --> WEB : route & deployment contract
+
+REA ..> FIR : runtime images
+BEA ..> FIR : deployable artifacts
+
+@enduml
