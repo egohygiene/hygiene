@@ -1,0 +1,14 @@
+schema_version: "1.0.0"
+release: architecture-v0.1.0
+status: accepted
+accepted_at: "2026-08-18"
+canonical_repository: egohygiene/hygiene
+canonical_paths:
+  architecture: docs/ecosystem/ARCHITECTURE.md
+  repository_catalog: catalog/repositories.yaml
+  decisions: docs/decisions
+  diagrams: docs/ecosystem/diagrams
+acceptance_decision: docs/decisions/ADR-0001-holistic-architecture-v0.1.md
+catalog_contract_issue: https://github.com/egohygiene/hygiene/issues/2
+deferred_boundaries:
+  - firmament
