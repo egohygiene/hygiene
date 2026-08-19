@@ -15,6 +15,9 @@ implementations of every policy or product capability.
 - [Agent context](docs/ecosystem/AGENT_CONTEXT.md)
 - [Diagram sources](docs/ecosystem/diagrams/README.md)
 - [Architecture acceptance decision](docs/decisions/ADR-0001-holistic-architecture-v0.1.md)
+- [Machine-readable repository catalog](catalog/repositories.yaml)
+- [Repository catalog schema](schemas/repository-catalog.v1.schema.json)
+- [Generated repository catalog](docs/generated/REPOSITORIES.md)
 
 The accepted written architecture and versioned machine-readable catalog are
 authoritative. Rendered diagrams, local repository context, and future
@@ -30,3 +33,14 @@ the repository catalog, and cross-repository ADRs.
 See [issue #1](https://github.com/egohygiene/hygiene/issues/1) for the initial
 architecture import and [issue #2](https://github.com/egohygiene/hygiene/issues/2)
 for the validated catalog contract.
+
+Validate the catalog and its generated view with:
+
+```bash
+python3 tools/catalog.py --catalog catalog/repositories.yaml validate
+python3 tools/catalog.py \
+  --catalog catalog/repositories.yaml \
+  check-generated \
+  --output docs/generated/REPOSITORIES.md
+python3 -m unittest discover --start-directory tests --pattern "test_*.py"
+```

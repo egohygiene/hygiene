@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/repository-catalog.v1.schema.json",
+  "title": "Ego Hygiene repository catalog v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "architecture_release",
+    "observed_at",
+    "organization",
+    "canonical_repository",
+    "repositories",
+    "proposed_repositories",
+    "planes",
+    "repository_count"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "architecture_release": { "type": "string", "pattern": "^architecture-v[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "observed_at": { "type": "string", "format": "date" },
+    "organization": { "const": "egohygiene" },
+    "canonical_repository": { "type": "string", "minLength": 1 },
+    "repository_count": { "type": "integer", "minimum": 1 },
+    "planes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/plane" }
+    },
+    "repositories": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/repository" }
+    },
+    "proposed_repositories": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/proposedRepository" }
+    }
+  },
+  "$defs": {
+    "name": {
+      "type": "string",
+      "pattern": "^(\\.github|[a-z0-9][a-z0-9.-]*)$"
+    },
+    "nonEmptyUniqueStrings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "uniqueStrings": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "plane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title"],
+      "properties": {
+        "id": {
+          "enum": [
+            "architecture-control",
+            "developer-runtime",
+            "content-publishing",
+            "knowledge-research",
+            "identity-product-experience"
+          ]
+        },
+        "title": { "type": "string", "minLength": 1 }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "full_name",
+        "visibility",
+        "plane",
+        "lifecycle",
+        "maturity",
+        "owns",
+        "excludes",
+        "consumes",
+        "outputs",
+        "domains",
+        "source_url"
+      ],
+      "properties": {
+        "name": { "$ref": "#/$defs/name" },
+        "target_name": { "$ref": "#/$defs/name" },
+        "full_name": { "type": "string", "pattern": "^egohygiene/" },
+        "visibility": { "enum": ["public", "private"] },
+        "plane": { "type": "string" },
+        "lifecycle": { "enum": ["seed", "incubating", "active", "transition", "architecture-first"] },
+        "maturity": { "type": "string", "minLength": 1 },
+        "owns": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "excludes": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "consumes": { "$ref": "#/$defs/uniqueStrings" },
+        "outputs": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "domains": { "$ref": "#/$defs/uniqueStrings" },
+        "source_url": { "type": "string", "format": "uri" }
+      }
+    },
+    "proposedRepository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "target_full_name",
+        "plane",
+        "status",
+        "create_after",
+        "owns",
+        "excludes",
+        "consumes",
+        "outputs",
+        "domains"
+      ],
+      "properties": {
+        "name": { "$ref": "#/$defs/name" },
+        "target_full_name": { "type": "string", "pattern": "^egohygiene/" },
+        "plane": { "const": "infrastructure-deployment" },
+        "status": { "const": "deferred" },
+        "create_after": { "type": "string", "minLength": 1 },
+        "owns": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "excludes": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "consumes": { "$ref": "#/$defs/uniqueStrings" },
+        "outputs": { "$ref": "#/$defs/uniqueStrings" },
+        "domains": { "$ref": "#/$defs/uniqueStrings" }
+      }
+    }
+  }
+}
