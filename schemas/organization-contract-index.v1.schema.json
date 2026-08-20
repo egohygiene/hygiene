@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/organization-contract-index.v1.schema.json",
+  "title": "Ego Hygiene organization contract index v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "organization",
+    "canonical_repository",
+    "updated",
+    "contracts"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "status": { "enum": ["proposed", "active", "deprecated"] },
+    "organization": { "const": "egohygiene" },
+    "canonical_repository": { "const": "egohygiene/hygiene" },
+    "updated": { "type": "string", "format": "date" },
+    "contracts": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/contract" }
+    }
+  },
+  "$defs": {
+    "contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "owner",
+        "source",
+        "status",
+        "visibility"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^egohygiene\\.[a-z0-9][a-z0-9.-]*/v[0-9]+$"
+        },
+        "title": { "type": "string", "minLength": 1 },
+        "owner": {
+          "type": "string",
+          "pattern": "^egohygiene/(\\.github|[a-z0-9][a-z0-9.-]*)$"
+        },
+        "source": {
+          "type": "string",
+          "pattern": "^(catalog|schemas)/[A-Za-z0-9._/-]+$"
+        },
+        "status": { "enum": ["proposed", "active", "deprecated", "superseded"] },
+        "visibility": { "enum": ["public", "internal", "private"] }
+      }
+    }
+  }
+}
