@@ -19,6 +19,9 @@ capability.
 - [Machine-readable repository catalog](catalog/repositories.yaml)
 - [Repository catalog schema](schemas/repository-catalog.v1.schema.json)
 - [Generated repository catalog](docs/generated/REPOSITORIES.md)
+- [Repository-local context contract](docs/ecosystem/REPOSITORY_CONTEXT.md)
+- [Repository context policy](catalog/repository-context.json)
+- [Repository context schema](schemas/repository-context.v1.schema.json)
 
 The accepted written architecture and versioned machine-readable catalog are
 authoritative. Rendered diagrams, local repository context, and future landscape
@@ -57,6 +60,7 @@ python3 tools/catalog.py \
   --catalog catalog/repositories.yaml \
   check-generated \
   --output docs/generated/REPOSITORIES.md
+python3 tools/context.py validate
 python3 -m unittest discover --start-directory tests --pattern "test_*.py"
 ```
 

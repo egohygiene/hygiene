@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0.0",
+  "context_version": "1.0.0",
+  "architecture_release": "architecture-v0.1.0",
+  "generator": {
+    "id": "egohygiene/hygiene:repository-context",
+    "version": "1.0.0"
+  },
+  "source_catalog": "catalog/repositories.yaml",
+  "required_sections": [
+    "identity",
+    "ownership",
+    "dependencies",
+    "neighbors",
+    "constraints",
+    "links",
+    "upgrade"
+  ],
+  "global_constraints": [
+    "Integrate sibling capabilities through released, immutable artifacts instead of copied source.",
+    "Preserve repository-owned content and generated-file provenance.",
+    "Do not place credentials, private identity data, or secret material in repository projections.",
+    "Treat this context as a generated projection; change ecosystem ownership in Hygiene instead."
+  ],
+  "dependency_sources": {
+    "aether projections": ["egohygiene/aether"],
+    "aniflow contract": ["egohygiene/aniflow"],
+    "commerce provider API": [],
+    "egolint CLI and profiles": ["egohygiene/egolint"],
+    "egolint profiles": ["egohygiene/egolint"],
+    "egolint reports": ["egohygiene/egolint"],
+    "hygiene architecture release": ["egohygiene/hygiene"],
+    "hygiene registry": ["egohygiene/hygiene"],
+    "holon blueprints": ["egohygiene/holon"],
+    "identity packages": ["egohygiene/identity"],
+    "mantle release": ["egohygiene/mantle"],
+    "mantle runtime": ["egohygiene/mantle"],
+    "mindcap capture manifest": ["egohygiene/mindcap"],
+    "optiflow contract": ["egohygiene/optiflow"],
+    "realm environment": ["egohygiene/realm"],
+    "realm environments": ["egohygiene/realm"],
+    "relay evidence": ["egohygiene/relay"],
+    "relay workflows": ["egohygiene/relay"],
+    "renderflow contract": ["egohygiene/renderflow"],
+    "renderflow or flow artifact manifests": [
+      "egohygiene/flow",
+      "egohygiene/renderflow"
+    ],
+    "store route and deployment contract": ["egohygiene/store"]
+  },
+  "canonical_links": {
+    "architecture": "docs/ecosystem/ARCHITECTURE.md",
+    "agent_context": "docs/ecosystem/AGENT_CONTEXT.md",
+    "catalog": "catalog/repositories.yaml",
+    "decisions": "docs/decisions/README.md",
+    "migration": "docs/ecosystem/MIGRATION_PLAN.md"
+  },
+  "stale_behavior": {
+    "comparison_key": "architecture_release",
+    "on_mismatch": "fail",
+    "upgrade_owner": "egohygiene/pace",
+    "upgrade_action": "Regenerate from the pinned Hygiene release and review the resulting pull request."
+  }
+}
