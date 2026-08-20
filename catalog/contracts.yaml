@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "status": "proposed",
+  "organization": "egohygiene",
+  "canonical_repository": "egohygiene/hygiene",
+  "updated": "2026-08-20",
+  "contracts": [
+    {
+      "id": "egohygiene.architecture-decision/v1",
+      "title": "Architecture decision front matter",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/architecture-decision.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.organization-contract-index/v1",
+      "title": "Organization contract index",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/organization-contract-index.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    }
+  ]
+}
