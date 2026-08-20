@@ -9,7 +9,7 @@ visibility: public
 owners:
   - egohygiene/hygiene
 issue: null
-pull_request: null
+pull_request: https://github.com/egohygiene/hygiene/pull/10
 related:
   - ADR-0001
 supersedes: []
@@ -21,6 +21,9 @@ affected_contracts:
   - egohygiene.organization-contract-index/v1
 implementation_status: not_started
 evidence:
+  - type: pull_request
+    url: https://github.com/egohygiene/hygiene/pull/10
+    description: Review surface for this proposed decision and its canonical contracts.
   - type: documentation
     url: https://github.com/egohygiene/hygiene/blob/main/docs/ecosystem/ARCHITECTURE.md
     description: Accepted ecosystem ownership and generated-context boundaries.
@@ -126,9 +129,8 @@ Current evidence is limited to the audited repository state and the existing
 Relay intelligence action linked in front matter. No implementation or
 validation run is claimed.
 
-The pull request for this proposal must be added to `pull_request` after it is
-opened. Human approval, if granted, must be recorded separately in `approval`
-before the status changes.
+The pull request for this proposal is linked in front matter. Human approval, if
+granted, must be recorded separately in `approval` before the status changes.
 
 ## Replacement or exit strategy
 
