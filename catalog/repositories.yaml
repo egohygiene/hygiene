@@ -175,6 +175,37 @@
       "domains": []
     },
     {
+      "name": "sanctuary",
+      "plane": "architecture-control",
+      "owns": [
+        "bounded incubation of unfinished or ownerless public work",
+        "incubation provenance and lifecycle evidence",
+        "graduation, archival, and rejection proposals"
+      ],
+      "excludes": [
+        "canonical repository templates",
+        "organization-wide policy and canonical lifecycle semantics",
+        "durable specialist implementations after ownership decisions",
+        "stable repository dependencies",
+        "credentials, private data, production state, and generic artifact archives"
+      ],
+      "consumes": [
+        "hygiene architecture release",
+        "organization issue intake"
+      ],
+      "outputs": [
+        "provisional incubation manifests",
+        "provenance and lifecycle records",
+        "reviewed ownership-decision evidence"
+      ],
+      "full_name": "egohygiene/sanctuary",
+      "visibility": "public",
+      "lifecycle": "incubating",
+      "maturity": "provisional-contract",
+      "source_url": "https://github.com/egohygiene/sanctuary",
+      "domains": []
+    },
+    {
       "name": "egolint",
       "plane": "developer-runtime",
       "owns": [
@@ -209,11 +240,12 @@
         "golden consumer",
         "integration testbed",
         "humane repository reference",
-        "bounded incubation"
+        "strict baseline composition"
       ],
       "excludes": [
         "permanent sibling component source",
-        "untracked staging"
+        "untracked staging",
+        "general incubation"
       ],
       "consumes": [
         "realm environments",
@@ -806,5 +838,5 @@
       "title": "Identity, product, and experience"
     }
   ],
-  "repository_count": 26
+  "repository_count": 27
 }

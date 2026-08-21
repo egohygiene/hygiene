@@ -1,7 +1,7 @@
 # Repository Catalog
 
 Observed on GitHub: **2026-08-21**
-Inventory: **26 repositories**
+Inventory: **27 repositories**
 Status labels describe the observed implementation state, not product quality.
 
 ## Architecture and control plane
@@ -14,6 +14,7 @@ Status labels describe the observed implementation state, not product quality.
 | `holon` | Versioned blueprints and bootstrap engine for new repos/orgs | Ongoing synchronization of existing repos | Seed | Define one repository-class schema and generate a disposable fixture |
 | `pace` | Fleet adoption, migration, reconciliation, synchronization, PR generation | Product CI primitives or direct unreviewed mutation of default branches | Seed | Read Hygiene catalog and produce a dry-run projection diff |
 | `observatory` | Inventory, maturity, dependency visibility, conformance evidence, telemetry | Policy definition or silent remediation | Seed | Ingest the repository catalog and Relay/Egolint evidence |
+| `sanctuary` | Bounded incubation, provenance, lifecycle evidence, and reviewed ownership-decision proposals for unfinished or ownerless public work | Canonical templates/policy, stable dependencies, permanent specialist source, secrets/private data, generic artifact archives | Provisional local contract | Prove one real incubation without broadening the local lifecycle into organization policy |
 
 ## Developer and runtime platform
 
@@ -23,7 +24,7 @@ Status labels describe the observed implementation state, not product quality.
 | `mantle` | Portable shell framework, startup integration, environment management, tool installers, cross-platform shell tests | OS image lifecycle, Dev Container metadata, cloud infrastructure | Active implementation | Reconcile Empathy copy, prove standalone install matrix, tag release |
 | `relay` | Reusable workflows, composite actions, CI/release orchestration | Lint policy, repo architecture, product release semantics | Seed | Extract one reusable test workflow and one release primitive |
 | `egolint` | Universal lint CLI/profiles, rules, MegaLinter integration, report normalization, safe autofix policy | Workflow fleet distribution or unrelated repository templates | Early implementation | Make the CLI standalone and invoke it from Relay |
-| `empathy` | Golden consumer, integration testbed, humane repository reference, bounded incubator | Permanent source of Mantle/Realm/Holon/etc.; untracked staging | Transition monorepo | Add migration ledger; consume released Mantle and Realm artifacts |
+| `empathy` | Strict golden baseline, golden consumer, integration testbed, humane repository reference | Permanent source of Mantle/Realm/Holon/etc.; untracked staging; general incubation | Transition monorepo | Add migration ledger; consume released Mantle and Realm artifacts |
 
 ## Infrastructure and deployment
 
@@ -81,6 +82,8 @@ The following relationships are intentional and should be contract-tested:
 | Identity | products, site, store, Beacon | tokens, assets, voice and metadata packages |
 | Store | `egohygiene.io` | route/deployment/analytics contract, not source inclusion |
 | Filament | infrastructure consumers | versioned modules, stack contracts, schemas, provider adapters, validation evidence |
+| `.github` | Sanctuary | routed ownerless-work intake and ownership questions |
+| Sanctuary | durable capability owners | immutable graduation provenance and reviewed ownership-decision evidence |
 
 ## Deferred repository
 

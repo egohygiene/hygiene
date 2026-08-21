@@ -19,11 +19,14 @@ This document is designed to be referenced by every Ego Hygiene repository agent
 6. **Respect infrastructure boundaries.** Filament publishes reusable IaC
    contracts; consuming repositories own deployment intent, credentials,
    budgets, approvals, and state. Firmament remains deferred.
-7. **Preserve provenance.** A staged or imported artifact needs its origin, license, destination owner, migration PR, validation evidence, and removal state.
-8. **No secret state.** Images, Nix modules, templates, fixtures, diagrams, and agent context contain no credentials or personal data.
-9. **Prefer reversible PRs.** Fleet changes are proposed as small pull requests with generated diffs and explicit rollback.
-10. **Do not redefine siblings.** A repository may describe an external capability only by linking to its owned contract and pinning a compatible version.
-11. **Update the map.** Architecture-changing work updates Hygiene's catalog/ADRs first or in the same reviewed change set.
+7. **Respect incubation boundaries.** Sanctuary may hold unfinished or
+   ownerless public work with provenance and exit criteria; stable repositories
+   depend only on a graduated owner's versioned contract.
+8. **Preserve provenance.** A staged or imported artifact needs its origin, license, destination owner, migration PR, validation evidence, and removal state.
+9. **No secret state.** Images, Nix modules, templates, fixtures, diagrams, and agent context contain no credentials or personal data.
+10. **Prefer reversible PRs.** Fleet changes are proposed as small pull requests with generated diffs and explicit rollback.
+11. **Do not redefine siblings.** A repository may describe an external capability only by linking to its owned contract and pinning a compatible version.
+12. **Update the map.** Architecture-changing work updates Hygiene's catalog/ADRs first or in the same reviewed change set.
 
 ## Local projection shape
 
@@ -68,6 +71,7 @@ When uncertain, classify the work before coding:
 - new-repo generation → Holon;
 - existing-repo sync/migration → Pace;
 - telemetry/maturity → Observatory;
+- unfinished or ownerless public experiments → Sanctuary;
 - environment/image/workstation projection → Realm;
 - reusable infrastructure modules, stacks, schemas, or provider adapters → Filament;
 - deployment intent, credentials, budgets, approvals, and state → the consuming repository;

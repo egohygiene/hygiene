@@ -2,7 +2,7 @@
 
 Status: **accepted v0.1**  
 Architecture date: **2026-08-18**  
-Scope: the 26 repositories currently visible in the `egohygiene` GitHub organization, plus one explicitly deferred infrastructure boundary.
+Scope: the 27 repositories currently visible in the `egohygiene` GitHub organization, plus one explicitly deferred infrastructure boundary.
 
 This package defines the target repository architecture before any new infographic is produced. It reconciles the live repositories, the current Flow orchestration proposal, the contents staged in `empathy`, and the earlier ecosystem diagrams.
 
@@ -23,7 +23,7 @@ This package defines the target repository architecture before any new infograph
 
 `hygiene` becomes the canonical ecosystem architecture and platform-control repository. Other repositories receive a small, generated local context document that states their own boundary and pins an architecture release. They do **not** receive independent copies of the entire ecosystem specification. `pace` will eventually reconcile those projections through pull requests.
 
-This prevents 26 copies of the architecture from drifting while still giving every human and agent enough local context to work safely.
+This prevents 27 copies of the architecture from drifting while still giving every human and agent enough local context to work safely.
 
 ## What this package does not do
 

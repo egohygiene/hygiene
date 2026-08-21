@@ -4,7 +4,7 @@
 
 - Architecture release: `architecture-v0.1.0`
 - Governing decision: `ADR-0001`
-- Relationships: `18`
+- Relationships: `20`
 - Active exceptions: `0`
 
 ## Rules
@@ -18,6 +18,7 @@
 | `BOUNDARY-005` | error | Realm images use explicit capability profiles and must not become an unbounded universal image containing every optional tool or service. |
 | `BOUNDARY-006` | error | Repositories, images, templates, fixtures, diagrams, and generated context must not contain credentials, signing material, or private identity data. |
 | `BOUNDARY-007` | error | Holon creates, Pace proposes convergence, and Observatory observes; none silently mutates an existing default branch. |
+| `BOUNDARY-008` | error | Stable repositories must not depend on mutable Sanctuary source; graduated work moves to a durable owner and is consumed through that owner's versioned contract. |
 
 ## Allowed relationships
 
@@ -41,6 +42,8 @@
 | `RELATIONSHIP-016` | `egohygiene/identity` | `egohygiene/beacon`, `egohygiene/egohygiene`, `egohygiene/store`, `egohygiene/website` | design tokens, brand assets, voice, and metadata packages | `package`, `schema` | _required_ | `versioned` |
 | `RELATIONSHIP-017` | `egohygiene/store` | `egohygiene/website` | route, deployment, analytics, and commerce integration | `api`, `schema` | _required_ | `versioned` |
 | `RELATIONSHIP-018` | `egohygiene/filament` | `egohygiene/*` | reusable infrastructure modules, stack contracts, provider adapters, and validation evidence | `package`, `schema` | _required_ | `immutable-or-versioned` |
+| `RELATIONSHIP-019` | `egohygiene/.github` | `egohygiene/sanctuary` | routed ownerless-work intake and ownership questions | `schema` | _required_ | `versioned` |
+| `RELATIONSHIP-020` | `egohygiene/sanctuary` | `egohygiene/*` | reviewed graduation provenance and ownership-decision evidence | `schema`, `generated-projection` | _required_ | `immutable` |
 
 ## Forbidden direct dependencies
 

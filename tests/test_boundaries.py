@@ -31,7 +31,7 @@ class DependencyBoundaryContractTests(unittest.TestCase):
                 self.register, self.catalog, self.contract_index
             ),
         )
-        self.assertEqual(18, len(self.register["relationships"]))
+        self.assertEqual(20, len(self.register["relationships"]))
 
     def test_duplicate_rule_is_rejected(self) -> None:
         candidate = copy.deepcopy(self.register)
@@ -119,7 +119,7 @@ class DependencyBoundaryContractTests(unittest.TestCase):
         second = boundaries.render_markdown(copy.deepcopy(self.register))
         self.assertEqual(first, second)
         self.assertIn("BOUNDARY-001", first)
-        self.assertIn("RELATIONSHIP-018", first)
+        self.assertIn("RELATIONSHIP-020", first)
 
 
 class DependencyBoundaryScanTests(unittest.TestCase):

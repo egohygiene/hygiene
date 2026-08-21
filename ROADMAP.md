@@ -50,8 +50,10 @@ Hygiene defines what should exist. Repository audits define current state and v1
 
 - The architecture corpus is accepted and internally linked.
 - The live repository inventory is reconciled with the canonical catalog.
-- Empathy's strict-baseline role is reflected in organization architecture.
-- Sanctuary is defined as an incubation boundary without becoming canonical.
+- Empathy's strict-baseline role is reflected in organization architecture and
+  no longer includes general incubation.
+- Sanctuary is registered as the bounded incubation owner while its local
+  lifecycle schema remains provisional rather than organization-wide canonical.
 - Filament is routed as the reusable infrastructure-as-code contract owner and
   reconciled with the live repository catalog.
 - Firmament remains a separate, explicitly deferred deployment boundary until
@@ -120,8 +122,9 @@ Hygiene defines what should exist. Repository audits define current state and v1
 ## Phase 8: Resolve large and special cases
 
 **Scope:** the private egohygiene product, final `.github` reconciliation,
-Sanctuary, Filament's first bounded infrastructure contract, Firmament only if
-its gates pass, and any ownerless capability discovered by earlier audits.
+Sanctuary's first real bounded incubation, Filament's first bounded
+infrastructure contract, Firmament only if its gates pass, and any ownerless
+capability discovered by earlier audits.
 
 ## Per-repository planning completion contract
 

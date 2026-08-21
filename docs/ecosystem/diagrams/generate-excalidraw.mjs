@@ -98,6 +98,7 @@ const planes = [
       ["holon", "create repositories"],
       ["pace", "converge the fleet"],
       ["observatory", "maturity · evidence · telemetry"],
+      ["sanctuary", "bounded incubation · provenance"],
     ],
   },
   {
@@ -176,7 +177,7 @@ const elements = [];
 const centers = new Map();
 
 elements.push(textElement("title", "EGO HYGIENE ECOSYSTEM ARCHITECTURE", 80, 35, 2040, 55, "#f8fafc", 34));
-elements.push(textElement("subtitle", "26 independently useful repositories · one owner per capability · versioned artifacts and contracts", 80, 95, 2040, 34, "#cbd5e1", 18));
+elements.push(textElement("subtitle", "27 independently useful repositories · one owner per capability · versioned artifacts and contracts", 80, 95, 2040, 34, "#cbd5e1", 18));
 
 for (const plane of planes) {
   elements.push(rectangle(`group-${plane.id}`, 55, plane.y, 2090, 230, plane.color, plane.fill, 42));
@@ -184,9 +185,10 @@ for (const plane of planes) {
   elements.push(textElement(`group-${plane.id}-sub`, plane.subtitle, 85, plane.y + 72, 300, 58, "#cbd5e1", 15));
 
   plane.nodes.forEach(([name, role], index) => {
-    const x = 420 + index * 285;
+    const compact = plane.nodes.length > 6;
+    const x = 420 + index * (compact ? 240 : 285);
     const y = plane.y + 68;
-    const width = 255;
+    const width = compact ? 210 : 255;
     const height = 115;
     const id = `node-${name.replaceAll(".", "-")}`;
     elements.push(rectangle(id, x, y, width, height, plane.color, "#111827", 100));
@@ -204,6 +206,7 @@ centers.set("firmament", { x: 690, y: 1877 });
 
 const relationships = [
   ["hygiene", "holon"], ["hygiene", "pace"], ["hygiene", "observatory"], ["hygiene", ".github"],
+  ["hygiene", "sanctuary"], [".github", "sanctuary"],
   ["aether", "holon"], ["aether", "pace"], ["holon", "empathy"], ["pace", "empathy"],
   ["mantle", "realm"], ["realm", "empathy"], ["egolint", "relay"], ["relay", "empathy"],
   ["relay", "observatory"], ["egolint", "observatory"],
