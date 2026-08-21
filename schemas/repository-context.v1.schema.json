@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/repository-context.v1.schema.json",
+  "title": "Ego Hygiene repository-local ecosystem context v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "context_version",
+    "architecture_release",
+    "repository",
+    "source",
+    "identity",
+    "ownership",
+    "dependencies",
+    "neighbors",
+    "constraints",
+    "links",
+    "upgrade"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "context_version": { "const": "1.0.0" },
+    "architecture_release": {
+      "type": "string",
+      "pattern": "^architecture-v[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "repository": { "type": "string", "pattern": "^egohygiene/" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "revision", "catalog", "generator"],
+      "properties": {
+        "repository": { "const": "egohygiene/hygiene" },
+        "revision": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "catalog": { "const": "catalog/repositories.yaml" },
+        "generator": { "type": "string", "minLength": 1 }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["plane", "visibility", "lifecycle", "maturity", "domains"],
+      "properties": {
+        "plane": { "type": "string", "minLength": 1 },
+        "visibility": { "enum": ["public", "private"] },
+        "lifecycle": { "type": "string", "minLength": 1 },
+        "maturity": { "type": "string", "minLength": 1 },
+        "domains": { "$ref": "#/$defs/uniqueStrings" }
+      }
+    },
+    "ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owns", "does_not_own", "publishes"],
+      "properties": {
+        "owns": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "does_not_own": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+        "publishes": { "$ref": "#/$defs/nonEmptyUniqueStrings" }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repositories", "inputs", "external_inputs"],
+      "properties": {
+        "repositories": { "$ref": "#/$defs/uniqueStrings" },
+        "inputs": { "$ref": "#/$defs/uniqueStrings" },
+        "external_inputs": { "$ref": "#/$defs/uniqueStrings" }
+      }
+    },
+    "neighbors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["upstream", "downstream"],
+      "properties": {
+        "upstream": { "$ref": "#/$defs/uniqueStrings" },
+        "downstream": { "$ref": "#/$defs/uniqueStrings" }
+      }
+    },
+    "constraints": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
+    "links": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "format": "uri" },
+      "required": ["repository", "architecture", "agent_context", "catalog", "decisions", "migration"]
+    },
+    "upgrade": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["comparison_key", "on_mismatch", "owner", "action"],
+      "properties": {
+        "comparison_key": { "const": "architecture_release" },
+        "on_mismatch": { "const": "fail" },
+        "owner": { "const": "egohygiene/pace" },
+        "action": { "type": "string", "minLength": 1 }
+      }
+    }
+  },
+  "$defs": {
+    "uniqueStrings": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "nonEmptyUniqueStrings": {
+      "allOf": [
+        { "$ref": "#/$defs/uniqueStrings" },
+        { "minItems": 1 }
+      ]
+    }
+  }
+}
