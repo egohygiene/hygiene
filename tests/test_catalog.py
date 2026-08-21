@@ -20,7 +20,7 @@ class CatalogContractTests(unittest.TestCase):
 
     def test_current_catalog_is_valid(self) -> None:
         self.assertEqual([], catalog.validate_catalog(self.source))
-        self.assertEqual(25, len(self.source["repositories"]))
+        self.assertEqual(26, len(self.source["repositories"]))
 
     def test_duplicate_repository_is_rejected(self) -> None:
         candidate = copy.deepcopy(self.source)

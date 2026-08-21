@@ -18,7 +18,7 @@ The target system optimizes for one person moving very quickly without turning t
 - automation that proposes pull requests and preserves reviewable provenance;
 - incubation is allowed, but every staged artifact has an owner, state, and exit condition.
 
-## 2. The five planes
+## 2. The six planes
 
 ### 2.1 Architecture and control plane
 
@@ -79,6 +79,20 @@ This plane exposes the ecosystem to people.
 - **store** — provider-neutral storefront and commerce adapter deployed at `egohygiene.io/store`.
 
 Identity publishes versioned brand artifacts that products consume. The website and store retain separate release boundaries even when they share a domain. The Ego Hygiene app is a product, not the platform-control repository.
+
+### 2.6 Infrastructure and deployment plane
+
+This plane publishes reusable infrastructure definitions without taking
+ownership of every environment built from them.
+
+- **filament** — reusable infrastructure-as-code modules, stack contracts,
+  schemas, provider and engine adapters, examples, tests, and validation
+  semantics.
+
+Filament consumers retain deployment intent, credentials, budgets, approvals,
+environment-specific topology, and production state. Relay may execute
+Filament validation and release workflows, while Realm supplies development
+environments and tools; neither owns Filament's infrastructure semantics.
 
 ## 3. Foundational document architecture
 
@@ -163,9 +177,19 @@ Realm may additionally publish:
 
 Nix, Dev Containers, and OCI are peer projections of the same capability model. Nix should not be forced to “consume a Docker image” when a native host module is the correct artifact.
 
-### 5.4 Future infrastructure boundary
+### 5.4 Infrastructure definitions and future operation boundary
 
-Multi-cloud and local infrastructure provisioning is a separate concern from the developer environment. A future repository—working name **firmament**—may own OpenTofu/Pulumi stacks, cloud accounts, networking, clusters, and deployment environments while consuming Realm images and Beacon/Flow artifacts. It is proposed, not part of the current 25-repository inventory, and should be created only after Realm's artifact contract is stable.
+Reusable multi-cloud and local infrastructure definitions are separate from
+the developer environment. Filament owns those versioned modules, stack
+contracts, provider adapters, and validation semantics without owning consumer
+credentials or state.
+
+The working-name **firmament** remains a separate deferred possibility for
+organization-operated infrastructure compositions, networking, clusters,
+deployment environments, and operational state. It is not part of the current
+26-repository inventory. It must not duplicate Filament modules and should be
+created only after Realm and Filament artifact contracts are stable and a
+separate decision proves a durable operational need.
 
 ## 6. Repository context distribution
 
@@ -216,7 +240,7 @@ These are capability flows, not a requirement that every repository imports ever
 
 The architecture is operating—not merely documented—when:
 
-- all 25 repositories have one explicit owner boundary and generated local context;
+- all 26 repositories have one explicit owner boundary and generated local context;
 - no production component exists only under `empathy/.staging`;
 - Mantle is independently tested across its supported shells/platforms;
 - Realm publishes a tested base image, at least one profile, and `full` with SBOM/provenance;

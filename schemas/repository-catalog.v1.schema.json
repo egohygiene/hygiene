@@ -63,6 +63,7 @@
           "enum": [
             "architecture-control",
             "developer-runtime",
+            "infrastructure-deployment",
             "content-publishing",
             "knowledge-research",
             "identity-product-experience"

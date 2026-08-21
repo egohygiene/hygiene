@@ -4,6 +4,7 @@ flowchart TB
   classDef flow fill:#3f1d0b,stroke:#fb923c,color:#ffffff,stroke-width:2px
   classDef knowledge fill:#102a1d,stroke:#4ade80,color:#ffffff,stroke-width:2px
   classDef experience fill:#3b1024,stroke:#fb7185,color:#ffffff,stroke-width:2px
+  classDef infrastructure fill:#172554,stroke:#60a5fa,color:#ffffff,stroke-width:2px
   classDef proposed fill:#1f2937,stroke:#94a3b8,color:#ffffff,stroke-width:2px,stroke-dasharray:6 4
 
   subgraph C["Architecture & Control Plane"]
@@ -51,7 +52,12 @@ flowchart TB
     STO["store<br/>provider-neutral commerce"]
   end
 
-  FIR["firmament (proposed)<br/>local & multi-cloud infrastructure"]
+  subgraph I["Infrastructure & Deployment"]
+    direction LR
+    FIL["filament<br/>reusable IaC contracts"]
+  end
+
+  FIR["firmament (proposed)<br/>operated infrastructure & state"]
 
   HYG -->|"architecture release"| HOL
   HYG -->|"registry & policy"| PAC
@@ -88,6 +94,10 @@ flowchart TB
   BEA -->|"published artifacts"| WEB
   STO -->|"route & deployment contract"| WEB
 
+  HYG -->|"policy & ownership"| FIL
+  REA -.->|"development environment"| FIL
+  REL -.->|"workflow mechanics"| FIL
+  FIL -.->|"versioned modules & stacks"| FIR
   REA -.->|"runtime images"| FIR
   BEA -.->|"deployable artifacts"| FIR
 
@@ -96,4 +106,5 @@ flowchart TB
   class FLO,ANI,OPT,REN,BEA flow
   class MNC,MNG,AKA,ATH,REF knowledge
   class IDN,EGO,WEB,STO experience
+  class FIL infrastructure
   class FIR proposed
