@@ -33,3 +33,24 @@ python3 tools/catalog.py \
 The generated view is a projection. Ownership changes must be made in the
 catalog and accompanied by an architecture decision when they cross repository
 boundaries.
+
+## Dependency boundaries
+
+`dependency-boundaries.yaml` is the canonical machine-readable register for
+allowed producer-to-consumer direction, stable interface requirements,
+forbidden couplings, and expiring exceptions. It is validated against this
+repository catalog so boundary entries cannot silently reference an unknown
+repository.
+
+```bash
+python3 tools/boundaries.py validate
+python3 tools/boundaries.py \
+  check-generated \
+  --output docs/generated/DEPENDENCY_BOUNDARIES.md
+python3 tools/boundaries.py scan \
+  --repository-root . \
+  --repository egohygiene/hygiene
+```
+
+See the [dependency-boundary guide](../docs/ecosystem/DEPENDENCY_BOUNDARIES.md)
+for rule semantics, scanner scope, and the exception process.
