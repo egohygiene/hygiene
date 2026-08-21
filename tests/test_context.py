@@ -126,6 +126,28 @@ class RepositoryContextContractTests(unittest.TestCase):
         self.assertFalse(contract["provisional"])
         self.assertTrue((ROOT / contract["source"]["path"]).is_file())
 
+    def test_generated_sanctuary_projection_is_current(self) -> None:
+        contract = tomllib.loads(
+            (ROOT / "contracts" / "repository-context.toml").read_text(
+                encoding="utf-8"
+            )
+        )
+        source_revision = contract["source"]["revision"]
+        expected = context.render_markdown(
+            context.build_context(
+                self.catalog,
+                self.policy,
+                "egohygiene/sanctuary",
+                source_revision,
+            )
+        )
+        self.assertEqual(
+            expected,
+            (ROOT / "docs" / "generated" / "contexts" / "sanctuary.md").read_text(
+                encoding="utf-8"
+            ),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -55,6 +55,12 @@
       "title": "Reviewable control-plane authority",
       "severity": "error",
       "statement": "Holon creates, Pace proposes convergence, and Observatory observes; none silently mutates an existing default branch."
+    },
+    {
+      "id": "BOUNDARY-008",
+      "title": "No stable dependency on incubation",
+      "severity": "error",
+      "statement": "Stable repositories must not depend on mutable Sanctuary source; graduated work moves to a durable owner and is consumed through that owner's versioned contract."
     }
   ],
   "relationships": [
@@ -333,6 +339,35 @@
       "contract": null,
       "contract_status": "required",
       "pinning": "immutable-or-versioned"
+    },
+    {
+      "id": "RELATIONSHIP-019",
+      "producer": "egohygiene/.github",
+      "consumers": [
+        "egohygiene/sanctuary"
+      ],
+      "capability": "routed ownerless-work intake and ownership questions",
+      "interfaces": [
+        "schema"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "versioned"
+    },
+    {
+      "id": "RELATIONSHIP-020",
+      "producer": "egohygiene/sanctuary",
+      "consumers": [
+        "egohygiene/*"
+      ],
+      "capability": "reviewed graduation provenance and ownership-decision evidence",
+      "interfaces": [
+        "schema",
+        "generated-projection"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "immutable"
     }
   ],
   "forbidden_dependencies": [

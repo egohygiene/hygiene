@@ -15,6 +15,7 @@ flowchart TB
     HOL["holon<br/>create repositories"]
     PAC["pace<br/>converge repository fleet"]
     OBS["observatory<br/>observe maturity · evidence"]
+    SAN["sanctuary<br/>bounded incubation · provenance"]
   end
 
   subgraph D["Developer & Runtime Platform"]
@@ -63,6 +64,8 @@ flowchart TB
   HYG -->|"registry & policy"| PAC
   HYG -->|"maturity model"| OBS
   HYG -->|"public defaults"| DOT
+  HYG -->|"incubation policy"| SAN
+  DOT -->|"routed intake"| SAN
   AET -->|"AI artifact projections"| HOL
   AET -->|"agent upgrades"| PAC
   HOL -->|"bootstrap"| EMP
@@ -101,7 +104,7 @@ flowchart TB
   REA -.->|"runtime images"| FIR
   BEA -.->|"deployable artifacts"| FIR
 
-  class HYG,DOT,AET,HOL,PAC,OBS control
+  class HYG,DOT,AET,HOL,PAC,OBS,SAN control
   class REA,MAN,REL,EGL,EMP platform
   class FLO,ANI,OPT,REN,BEA flow
   class MNC,MNG,AKA,ATH,REF knowledge

@@ -4,7 +4,7 @@
 
 - Architecture release: `architecture-v0.1.0`
 - Observed: `2026-08-21`
-- Current repositories: `26`
+- Current repositories: `27`
 
 ## Architecture and control
 
@@ -16,13 +16,14 @@
 | [`hygiene`](https://github.com/egohygiene/hygiene) | seed | seed | ecosystem architecture, repository registry, platform policy, cross-repository ADRs, maturity model, migration ledger | tool implementations, reusable workflows, product domain logic | architecture releases, repository context projections, policy schemas |
 | [`observatory`](https://github.com/egohygiene/observatory) | seed | seed | portfolio inventory, maturity tracking, dependency visibility, conformance evidence, telemetry | policy definition, silent remediation | dashboards, maturity reports, dependency maps |
 | [`pace`](https://github.com/egohygiene/pace) | seed | seed | fleet adoption, migrations, reconciliation, synchronization, pull request generation | new repository bootstrap, direct default-branch mutation, CI primitives | projection diffs, upgrade pull requests, migration evidence |
+| [`sanctuary`](https://github.com/egohygiene/sanctuary) | incubating | provisional-contract | bounded incubation of unfinished or ownerless public work, incubation provenance and lifecycle evidence, graduation, archival, and rejection proposals | canonical repository templates, organization-wide policy and canonical lifecycle semantics, durable specialist implementations after ownership decisions, stable repository dependencies, credentials, private data, production state, and generic artifact archives | provisional incubation manifests, provenance and lifecycle records, reviewed ownership-decision evidence |
 
 ## Developer and runtime platform
 
 | Repository | Lifecycle | Maturity | Owns | Does not own | Outputs |
 | --- | --- | --- | --- | --- | --- |
 | [`egolint`](https://github.com/egohygiene/egolint) | incubating | early-implementation | lint CLI, lint profiles, rules, MegaLinter integration, report normalization, safe autofix policy | workflow fleet distribution, unrelated project templates | quality reports, SARIF, bounded autofix patches |
-| [`empathy`](https://github.com/egohygiene/empathy) | transition | transition | golden consumer, integration testbed, humane repository reference, bounded incubation | permanent sibling component source, untracked staging | integration evidence, reference-consumer feedback |
+| [`empathy`](https://github.com/egohygiene/empathy) | transition | transition | golden consumer, integration testbed, humane repository reference, strict baseline composition | permanent sibling component source, untracked staging, general incubation | integration evidence, reference-consumer feedback |
 | [`mantle`](https://github.com/egohygiene/mantle) | active | active | portable shell framework, startup integration, environment management, tool installers, shell compatibility tests | OS image lifecycle, Dev Container metadata, cloud infrastructure | checksummed release bundle, installer, compatibility evidence |
 | [`realm`](https://github.com/egohygiene/realm) | seed | seed-with-staged-source | OCI image family, Dev Container templates and features, Nix modules and profiles, workstation projections, optional local runtime profiles | shell semantics, CI workflows, cloud resource provisioning | OCI images, SBOMs, provenance, Nix flake, Dev Container artifacts, capability manifest |
 | [`relay`](https://github.com/egohygiene/relay) | seed | seed | reusable GitHub workflows, composite actions, CI and release mechanics | lint semantics, ecosystem architecture, product release policy | reusable workflow contracts, run evidence |

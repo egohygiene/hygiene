@@ -17,6 +17,7 @@ package "Architecture & Control Plane" #261447 {
   component "holon\ncreate repositories" as HOL
   component "pace\nconverge repository fleet" as PAC
   component "observatory\nobserve maturity · evidence" as OBS
+  component "sanctuary\nbounded incubation · provenance" as SAN
 }
 
 package "Developer & Runtime Platform" #083344 {
@@ -60,6 +61,8 @@ HYG --> HOL : architecture release
 HYG --> PAC : registry & policy
 HYG --> OBS : maturity model
 HYG --> DOT : public defaults
+HYG --> SAN : incubation policy
+DOT --> SAN : routed intake
 AET --> HOL : AI projections
 AET --> PAC : agent upgrades
 HOL --> EMP : bootstrap fixture

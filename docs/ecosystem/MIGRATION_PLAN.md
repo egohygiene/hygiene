@@ -59,7 +59,7 @@ Owner target: Hygiene.
 4. Rename `website` to `egohygiene.io` and record redirects/link repair as a tracked migration.
 5. Add generated local context to seed repositories first, then active repositories.
 
-Exit gate: all 26 repos are cataloged and the architecture release is tagged.
+Exit gate: all 27 repos are cataloged and the architecture release is tagged.
 
 ### Workstream B — Mantle standalone
 

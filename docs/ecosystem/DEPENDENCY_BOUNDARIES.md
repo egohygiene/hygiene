@@ -49,6 +49,7 @@ workflows, container definitions, and machine configuration are scanned.
 | `BOUNDARY-005` | Keep Realm images bounded by explicit capability profiles. |
 | `BOUNDARY-006` | Keep secrets and private identity data out of source and artifacts. |
 | `BOUNDARY-007` | Preserve review boundaries between Holon, Pace, and Observatory. |
+| `BOUNDARY-008` | Keep stable repositories from depending on mutable Sanctuary source. |
 
 ## Media-suite boundary
 
@@ -59,6 +60,17 @@ versioned CLI, library, or JSON contracts.
 
 This prohibition does not prevent documentation links, shared test vocabulary,
 or Flow-owned compatibility fixtures that consume released interfaces.
+
+## Incubation boundary
+
+Sanctuary may preserve unfinished source while its owner and value are being
+evaluated, but physical presence does not create a durable dependency surface.
+Stable repositories must not import or execute mutable Sanctuary source.
+
+Graduation transfers or reconstructs the implementation at one durable owner,
+preserves immutable provenance and decision evidence, and gives consumers that
+owner's versioned contract. A link to an immutable Sanctuary record may provide
+history; it is not the runtime or build dependency.
 
 ## Validation and scanning
 

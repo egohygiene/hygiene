@@ -3,13 +3,13 @@
 schema-version: "1.0.0"
 context-version: "1.0.0"
 architecture-release: "architecture-v0.1.0"
-repository: "egohygiene/hygiene"
+repository: "egohygiene/sanctuary"
 source-repository: "egohygiene/hygiene"
 source-revision: "e44856439ebb9bf8df7a6b3afce473574f4fbfad"
 generated-by: "egohygiene/hygiene:repository-context@1.0.0"
 ---
 
-# Ecosystem context for `egohygiene/hygiene`
+# Ecosystem context for `egohygiene/sanctuary`
 
 > Generated from the pinned Hygiene catalog. Do not edit this projection by hand.
 
@@ -17,55 +17,53 @@ generated-by: "egohygiene/hygiene:repository-context@1.0.0"
 
 - Plane: `architecture-control`
 - Visibility: `public`
-- Lifecycle: `seed`
-- Maturity: `seed`
+- Lifecycle: `incubating`
+- Maturity: `provisional-contract`
 
 ## Ownership
 
 ### Owns
 
-- ecosystem architecture
-- repository registry
-- platform policy
-- cross-repository ADRs
-- maturity model
-- migration ledger
+- bounded incubation of unfinished or ownerless public work
+- incubation provenance and lifecycle evidence
+- graduation, archival, and rejection proposals
 
 ### Does not own
 
-- tool implementations
-- reusable workflows
-- product domain logic
+- canonical repository templates
+- organization-wide policy and canonical lifecycle semantics
+- durable specialist implementations after ownership decisions
+- stable repository dependencies
+- credentials, private data, production state, and generic artifact archives
 
 ### Publishes
 
-- architecture releases
-- repository context projections
-- policy schemas
+- provisional incubation manifests
+- provenance and lifecycle records
+- reviewed ownership-decision evidence
 
 ## Dependencies
 
 ### Repository inputs
 
-- None declared.
+- egohygiene/.github
+- egohygiene/hygiene
 
 ### Consumed contracts and artifacts
 
-- None declared.
+- hygiene architecture release
+- organization issue intake
 
 ## Neighbors
 
 ### Upstream
 
-- None declared.
+- egohygiene/.github
+- egohygiene/hygiene
 
 ### Downstream
 
-- egohygiene/filament
-- egohygiene/holon
-- egohygiene/observatory
-- egohygiene/pace
-- egohygiene/sanctuary
+- None declared.
 
 ## Constraints
 
@@ -73,9 +71,11 @@ generated-by: "egohygiene/hygiene:repository-context@1.0.0"
 - Preserve repository-owned content and generated-file provenance.
 - Do not place credentials, private identity data, or secret material in repository projections.
 - Treat this context as a generated projection; change ecosystem ownership in Hygiene instead.
-- Do not absorb or claim ownership of tool implementations.
-- Do not absorb or claim ownership of reusable workflows.
-- Do not absorb or claim ownership of product domain logic.
+- Do not absorb or claim ownership of canonical repository templates.
+- Do not absorb or claim ownership of organization-wide policy and canonical lifecycle semantics.
+- Do not absorb or claim ownership of durable specialist implementations after ownership decisions.
+- Do not absorb or claim ownership of stable repository dependencies.
+- Do not absorb or claim ownership of credentials, private data, production state, and generic artifact archives.
 
 ## Canonical links
 
@@ -84,7 +84,7 @@ generated-by: "egohygiene/hygiene:repository-context@1.0.0"
 - [Catalog](https://github.com/egohygiene/hygiene/blob/e44856439ebb9bf8df7a6b3afce473574f4fbfad/catalog/repositories.yaml)
 - [Decisions](https://github.com/egohygiene/hygiene/blob/e44856439ebb9bf8df7a6b3afce473574f4fbfad/docs/decisions/README.md)
 - [Migration](https://github.com/egohygiene/hygiene/blob/e44856439ebb9bf8df7a6b3afce473574f4fbfad/docs/ecosystem/MIGRATION_PLAN.md)
-- [Repository](https://github.com/egohygiene/hygiene)
+- [Repository](https://github.com/egohygiene/sanctuary)
 
 ## Upgrade and stale-context behavior
 

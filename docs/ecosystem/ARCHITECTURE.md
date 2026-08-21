@@ -30,8 +30,16 @@ This plane defines the ecosystem, creates and evolves repositories, distributes 
 - **holon** — architecture-driven bootstrapper that creates new organizations and repositories from versioned blueprints.
 - **pace** — fleet reconciler for adoption, migrations, and synchronization; it proposes bounded pull requests to existing repositories.
 - **observatory** — read-oriented portfolio inventory, maturity tracking, dependency visibility, conformance evidence, and platform telemetry.
+- **sanctuary** — bounded incubation workspace for unfinished or ownerless
+  public work, with provisional manifests, provenance, lifecycle evidence, and
+  reviewed graduation proposals.
 
 The distinction between Holon and Pace is deliberate: **Holon creates; Pace converges**. Observatory reports; it does not silently remediate. Hygiene defines policy; it does not contain the implementations of every policy.
+
+Sanctuary incubates; it does not own a capability after graduation. Its local
+lifecycle schema remains provisional until a separate Hygiene decision makes
+those semantics organization-wide canonical. Stable repositories must consume
+graduated work from its durable owner rather than depend on Sanctuary source.
 
 ### 2.2 Developer and runtime platform
 
@@ -41,7 +49,9 @@ This plane makes every repository reproducible on a workstation, in a Dev Contai
 - **mantle** — portable shell runtime and developer-tooling framework for Bash, Zsh, Fish, Linux, macOS, and Windows compatibility environments.
 - **relay** — reusable GitHub Actions, composite actions, and release/CI workflow orchestration.
 - **egolint** — lint policy, profiles, CLI behavior, report normalization, autofix boundaries, and quality evidence.
-- **empathy** — golden consumer and integration testbed for the complete repository foundation; temporary incubator while extraction is in progress.
+- **empathy** — strict golden baseline, golden consumer, and integration testbed
+  for the complete repository foundation; historical staging is migration
+  evidence, not ongoing general incubation.
 
 Realm consumes a released Mantle artifact. Relay invokes Egolint. Empathy proves that the assembled platform works without becoming the canonical source for its components.
 
@@ -240,7 +250,7 @@ These are capability flows, not a requirement that every repository imports ever
 
 The architecture is operating—not merely documented—when:
 
-- all 26 repositories have one explicit owner boundary and generated local context;
+- all 27 repositories have one explicit owner boundary and generated local context;
 - no production component exists only under `empathy/.staging`;
 - Mantle is independently tested across its supported shells/platforms;
 - Realm publishes a tested base image, at least one profile, and `full` with SBOM/provenance;

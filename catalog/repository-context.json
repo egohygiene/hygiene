@@ -37,6 +37,7 @@
     "mantle runtime": ["egohygiene/mantle"],
     "mindcap capture manifest": ["egohygiene/mindcap"],
     "optiflow contract": ["egohygiene/optiflow"],
+    "organization issue intake": ["egohygiene/.github"],
     "realm environment": ["egohygiene/realm"],
     "realm environments": ["egohygiene/realm"],
     "relay evidence": ["egohygiene/relay"],
