@@ -83,3 +83,6 @@ model.
 - Mermaid, PlantUML, and Excalidraw sources describe the same five planes and
   repository topology.
 - Regenerating `ecosystem.excalidraw` from its source script produces no diff.
+- The versioned dependency-boundary register and local reference validator make
+  the accepted integration direction, forbidden media-engine couplings,
+  immutable pinning policy, and expiring exception requirements executable.

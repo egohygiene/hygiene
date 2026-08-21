@@ -20,6 +20,22 @@
       "source": "schemas/organization-contract-index.v1.schema.json",
       "status": "proposed",
       "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-context/v1",
+      "title": "Repository-local ecosystem context",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-context.v1.schema.json",
+      "status": "active",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.dependency-boundary-register/v1",
+      "title": "Cross-repository dependency-boundary register",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/dependency-boundary-register.v1.schema.json",
+      "status": "active",
+      "visibility": "public"
     }
   ]
 }

@@ -3,12 +3,12 @@ schema: aether.architecture-document/v1
 id: hygiene-architecture
 title: Hygiene Architecture
 kind: architecture-document
-version: 0.1.0
+version: 0.2.0
 status: provisional
 owners:
   - egohygiene
 created: 2026-08-19
-updated: 2026-08-19
+updated: 2026-08-20
 governed_by:
   - architecture-architecture
 depends_on:
@@ -74,6 +74,12 @@ The diagram is conceptual. [SYSTEM.md](SYSTEM.md) remains authoritative for resp
 
 ## Dependency rules
 
+- The machine-readable
+  [dependency-boundary register](catalog/dependency-boundaries.yaml) is the
+  canonical implementation of the accepted cross-repository direction and
+  exception rules. Its
+  [human guide](docs/ecosystem/DEPENDENCY_BOUNDARIES.md) defines validation and
+  scanner scope.
 - Sibling domain capabilities integrate through versioned public contracts, not direct access to internals.
 - Generated artifacts never become the canonical source unless an accepted decision explicitly changes ownership.
 - Provider and platform adapters depend on application ports; core behavior does not depend on a provider implementation.

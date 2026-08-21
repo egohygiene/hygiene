@@ -14,7 +14,10 @@ This package defines the target repository architecture before any new infograph
 4. Follow [`MIGRATION_PLAN.md`](MIGRATION_PLAN.md) to extract staged work without losing provenance.
 5. Give [`AGENT_CONTEXT.md`](AGENT_CONTEXT.md) to every repository agent.
 6. Use the canonical `catalog/repositories.yaml` introduced by [issue #2](https://github.com/egohygiene/hygiene/issues/2) as the machine-readable source for generated context and automation.
-7. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
+7. Use [`DEPENDENCY_BOUNDARIES.md`](DEPENDENCY_BOUNDARIES.md) and
+   `catalog/dependency-boundaries.yaml` for cross-repository integration
+   direction, interface requirements, and exceptions.
+8. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
 
 ## Architectural decision
 

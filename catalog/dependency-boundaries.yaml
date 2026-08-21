@@ -1,0 +1,362 @@
+{
+  "schema_version": "1.0.0",
+  "architecture_release": "architecture-v0.1.0",
+  "organization": "egohygiene",
+  "canonical_repository": "egohygiene/hygiene",
+  "governed_by": [
+    "ADR-0001"
+  ],
+  "default_policy": {
+    "integration": "versioned-public-contract",
+    "pinning": "immutable-or-versioned",
+    "copied_sibling_source": "forbidden",
+    "mutable_default_branch": "forbidden",
+    "unknown_dependency": "deny"
+  },
+  "rules": [
+    {
+      "id": "BOUNDARY-001",
+      "title": "Producer-owned source",
+      "severity": "error",
+      "statement": "A consumer must not copy, vendor, or directly import source owned by a sibling repository."
+    },
+    {
+      "id": "BOUNDARY-002",
+      "title": "Immutable cross-repository references",
+      "severity": "error",
+      "statement": "A cross-repository dependency must use an immutable commit or a versioned release and must not track a mutable default branch."
+    },
+    {
+      "id": "BOUNDARY-003",
+      "title": "Stable public interfaces",
+      "severity": "error",
+      "statement": "Sibling capabilities integrate only through producer-owned schemas, packages, binaries, images, reusable workflows, APIs, or generated projections."
+    },
+    {
+      "id": "BOUNDARY-004",
+      "title": "Independent media engines",
+      "severity": "error",
+      "statement": "Aniflow, Optiflow, and Renderflow remain standalone and integrate through Flow rather than depending directly on one another."
+    },
+    {
+      "id": "BOUNDARY-005",
+      "title": "Bounded runtime images",
+      "severity": "error",
+      "statement": "Realm images use explicit capability profiles and must not become an unbounded universal image containing every optional tool or service."
+    },
+    {
+      "id": "BOUNDARY-006",
+      "title": "No secret material",
+      "severity": "error",
+      "statement": "Repositories, images, templates, fixtures, diagrams, and generated context must not contain credentials, signing material, or private identity data."
+    },
+    {
+      "id": "BOUNDARY-007",
+      "title": "Reviewable control-plane authority",
+      "severity": "error",
+      "statement": "Holon creates, Pace proposes convergence, and Observatory observes; none silently mutates an existing default branch."
+    }
+  ],
+  "relationships": [
+    {
+      "id": "RELATIONSHIP-001",
+      "producer": "egohygiene/hygiene",
+      "consumers": [
+        "egohygiene/*"
+      ],
+      "capability": "architecture releases, repository registry, policy, and local context projections",
+      "interfaces": [
+        "schema",
+        "generated-projection"
+      ],
+      "contract": "egohygiene.repository-context/v1",
+      "contract_status": "active",
+      "pinning": "versioned"
+    },
+    {
+      "id": "RELATIONSHIP-002",
+      "producer": "egohygiene/aether",
+      "consumers": [
+        "egohygiene/*"
+      ],
+      "capability": "versioned AI specifications, skills, agents, and provenance catalogs",
+      "interfaces": [
+        "package",
+        "generated-projection"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "versioned"
+    },
+    {
+      "id": "RELATIONSHIP-003",
+      "producer": "egohygiene/holon",
+      "consumers": [
+        "egohygiene/*"
+      ],
+      "capability": "generated repository trees and bootstrap provenance",
+      "interfaces": [
+        "generated-projection",
+        "schema"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "versioned"
+    },
+    {
+      "id": "RELATIONSHIP-004",
+      "producer": "egohygiene/pace",
+      "consumers": [
+        "egohygiene/*"
+      ],
+      "capability": "reviewable migration plans, diffs, and pull-request projections",
+      "interfaces": [
+        "generated-projection",
+        "schema"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "versioned"
+    },
+    {
+      "id": "RELATIONSHIP-005",
+      "producer": "egohygiene/realm",
+      "consumers": [
+        "egohygiene/*"
+      ],
+      "capability": "development environments and runtime profiles",
+      "interfaces": [
+        "oci-image",
+        "package"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "immutable-or-versioned"
+    },
+    {
+      "id": "RELATIONSHIP-006",
+      "producer": "egohygiene/mantle",
+      "consumers": [
+        "egohygiene/realm"
+      ],
+      "capability": "portable shell installer and runtime bundle",
+      "interfaces": [
+        "binary",
+        "package"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "immutable-or-versioned"
+    },
+    {
+      "id": "RELATIONSHIP-007",
+      "producer": "egohygiene/relay",
+      "consumers": [
+        "egohygiene/*"
+      ],
+      "capability": "reusable CI, release, and publication automation",
+      "interfaces": [
+        "reusable-workflow"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "immutable"
+    },
+    {
+      "id": "RELATIONSHIP-008",
+      "producer": "egohygiene/egolint",
+      "consumers": [
+        "egohygiene/relay"
+      ],
+      "capability": "lint rules, profiles, CLI, and normalized reports",
+      "interfaces": [
+        "binary",
+        "package",
+        "schema"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "immutable-or-versioned"
+    },
+    {
+      "id": "RELATIONSHIP-009",
+      "producer": "egohygiene/relay",
+      "consumers": [
+        "egohygiene/observatory"
+      ],
+      "capability": "workflow and conformance evidence",
+      "interfaces": [
+        "schema",
+        "generated-projection"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "versioned"
+    },
+    {
+      "id": "RELATIONSHIP-010",
+      "producer": "egohygiene/egolint",
+      "consumers": [
+        "egohygiene/observatory"
+      ],
+      "capability": "quality and SARIF evidence",
+      "interfaces": [
+        "schema",
+        "generated-projection"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "versioned"
+    },
+    {
+      "id": "RELATIONSHIP-011",
+      "producer": "egohygiene/aniflow",
+      "consumers": [
+        "egohygiene/flow"
+      ],
+      "capability": "temporal video decomposition and reconstruction",
+      "interfaces": [
+        "binary",
+        "package",
+        "schema"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "immutable-or-versioned"
+    },
+    {
+      "id": "RELATIONSHIP-012",
+      "producer": "egohygiene/optiflow",
+      "consumers": [
+        "egohygiene/flow"
+      ],
+      "capability": "evidence-backed collection analysis and immutable plans",
+      "interfaces": [
+        "binary",
+        "package",
+        "schema"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "immutable-or-versioned"
+    },
+    {
+      "id": "RELATIONSHIP-013",
+      "producer": "egohygiene/renderflow",
+      "consumers": [
+        "egohygiene/flow"
+      ],
+      "capability": "publication-ready transform graphs and derivatives",
+      "interfaces": [
+        "binary",
+        "package",
+        "schema"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "immutable-or-versioned"
+    },
+    {
+      "id": "RELATIONSHIP-014",
+      "producer": "egohygiene/flow",
+      "consumers": [
+        "egohygiene/beacon"
+      ],
+      "capability": "validated artifact manifests and composed derivatives",
+      "interfaces": [
+        "schema",
+        "generated-projection"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "versioned"
+    },
+    {
+      "id": "RELATIONSHIP-015",
+      "producer": "egohygiene/mindcap",
+      "consumers": [
+        "egohygiene/mindgarden"
+      ],
+      "capability": "verified capture and archive manifests with provenance",
+      "interfaces": [
+        "schema",
+        "generated-projection"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "versioned"
+    },
+    {
+      "id": "RELATIONSHIP-016",
+      "producer": "egohygiene/identity",
+      "consumers": [
+        "egohygiene/beacon",
+        "egohygiene/egohygiene",
+        "egohygiene/store",
+        "egohygiene/website"
+      ],
+      "capability": "design tokens, brand assets, voice, and metadata packages",
+      "interfaces": [
+        "package",
+        "schema"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "versioned"
+    },
+    {
+      "id": "RELATIONSHIP-017",
+      "producer": "egohygiene/store",
+      "consumers": [
+        "egohygiene/website"
+      ],
+      "capability": "route, deployment, analytics, and commerce integration",
+      "interfaces": [
+        "api",
+        "schema"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "versioned"
+    }
+  ],
+  "forbidden_dependencies": [
+    {
+      "source": "egohygiene/aniflow",
+      "target": "egohygiene/optiflow",
+      "rule": "BOUNDARY-004",
+      "reason": "Flow owns suite composition."
+    },
+    {
+      "source": "egohygiene/aniflow",
+      "target": "egohygiene/renderflow",
+      "rule": "BOUNDARY-004",
+      "reason": "Flow owns suite composition."
+    },
+    {
+      "source": "egohygiene/optiflow",
+      "target": "egohygiene/aniflow",
+      "rule": "BOUNDARY-004",
+      "reason": "Flow owns suite composition."
+    },
+    {
+      "source": "egohygiene/optiflow",
+      "target": "egohygiene/renderflow",
+      "rule": "BOUNDARY-004",
+      "reason": "Flow owns suite composition."
+    },
+    {
+      "source": "egohygiene/renderflow",
+      "target": "egohygiene/aniflow",
+      "rule": "BOUNDARY-004",
+      "reason": "Flow owns suite composition."
+    },
+    {
+      "source": "egohygiene/renderflow",
+      "target": "egohygiene/optiflow",
+      "rule": "BOUNDARY-004",
+      "reason": "Flow owns suite composition."
+    }
+  ],
+  "exceptions": []
+}

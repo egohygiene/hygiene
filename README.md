@@ -22,6 +22,10 @@ capability.
 - [Repository-local context contract](docs/ecosystem/REPOSITORY_CONTEXT.md)
 - [Repository context policy](catalog/repository-context.json)
 - [Repository context schema](schemas/repository-context.v1.schema.json)
+- [Dependency-boundary register](catalog/dependency-boundaries.yaml)
+- [Dependency-boundary schema](schemas/dependency-boundary-register.v1.schema.json)
+- [Generated dependency-boundary view](docs/generated/DEPENDENCY_BOUNDARIES.md)
+- [Dependency-boundary guide](docs/ecosystem/DEPENDENCY_BOUNDARIES.md)
 
 The accepted written architecture and versioned machine-readable catalog are
 authoritative. Rendered diagrams, local repository context, and future landscape
@@ -61,6 +65,13 @@ python3 tools/catalog.py \
   check-generated \
   --output docs/generated/REPOSITORIES.md
 python3 tools/context.py validate
+python3 tools/boundaries.py validate
+python3 tools/boundaries.py \
+  check-generated \
+  --output docs/generated/DEPENDENCY_BOUNDARIES.md
+python3 tools/boundaries.py scan \
+  --repository-root . \
+  --repository egohygiene/hygiene
 python3 -m unittest discover --start-directory tests --pattern "test_*.py"
 ```
 
