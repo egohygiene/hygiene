@@ -5,7 +5,7 @@ context-version: "1.0.0"
 architecture-release: "architecture-v0.1.0"
 repository: "egohygiene/hygiene"
 source-repository: "egohygiene/hygiene"
-source-revision: "8e057bd2f9febd31b09f6dd5fd870b47d66cc411"
+source-revision: "f8303f1522e220bbc9b41191c635b0f236b1bf00"
 generated-by: "egohygiene/hygiene:repository-context@1.0.0"
 ---
 
@@ -61,6 +61,7 @@ generated-by: "egohygiene/hygiene:repository-context@1.0.0"
 
 ### Downstream
 
+- egohygiene/filament
 - egohygiene/holon
 - egohygiene/observatory
 - egohygiene/pace
@@ -77,11 +78,11 @@ generated-by: "egohygiene/hygiene:repository-context@1.0.0"
 
 ## Canonical links
 
-- [Agent Context](https://github.com/egohygiene/hygiene/blob/8e057bd2f9febd31b09f6dd5fd870b47d66cc411/docs/ecosystem/AGENT_CONTEXT.md)
-- [Architecture](https://github.com/egohygiene/hygiene/blob/8e057bd2f9febd31b09f6dd5fd870b47d66cc411/docs/ecosystem/ARCHITECTURE.md)
-- [Catalog](https://github.com/egohygiene/hygiene/blob/8e057bd2f9febd31b09f6dd5fd870b47d66cc411/catalog/repositories.yaml)
-- [Decisions](https://github.com/egohygiene/hygiene/blob/8e057bd2f9febd31b09f6dd5fd870b47d66cc411/docs/decisions/README.md)
-- [Migration](https://github.com/egohygiene/hygiene/blob/8e057bd2f9febd31b09f6dd5fd870b47d66cc411/docs/ecosystem/MIGRATION_PLAN.md)
+- [Agent Context](https://github.com/egohygiene/hygiene/blob/f8303f1522e220bbc9b41191c635b0f236b1bf00/docs/ecosystem/AGENT_CONTEXT.md)
+- [Architecture](https://github.com/egohygiene/hygiene/blob/f8303f1522e220bbc9b41191c635b0f236b1bf00/docs/ecosystem/ARCHITECTURE.md)
+- [Catalog](https://github.com/egohygiene/hygiene/blob/f8303f1522e220bbc9b41191c635b0f236b1bf00/catalog/repositories.yaml)
+- [Decisions](https://github.com/egohygiene/hygiene/blob/f8303f1522e220bbc9b41191c635b0f236b1bf00/docs/decisions/README.md)
+- [Migration](https://github.com/egohygiene/hygiene/blob/f8303f1522e220bbc9b41191c635b0f236b1bf00/docs/ecosystem/MIGRATION_PLAN.md)
 - [Repository](https://github.com/egohygiene/hygiene)
 
 ## Upgrade and stale-context behavior
