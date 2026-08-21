@@ -50,7 +50,11 @@ package "Identity, Product & Experience" #3B1024 {
   component "store\nprovider-neutral commerce" as STO
 }
 
-component "firmament (proposed)\nlocal & multi-cloud infrastructure" as FIR #1F2937
+package "Infrastructure & Deployment" #172554 {
+  component "filament\nreusable IaC contracts" as FIL
+}
+
+component "firmament (proposed)\noperated infrastructure & state" as FIR #1F2937
 
 HYG --> HOL : architecture release
 HYG --> PAC : registry & policy
@@ -87,6 +91,10 @@ MNG ..> EGO : knowledge capability
 BEA --> WEB : published artifacts
 STO --> WEB : route & deployment contract
 
+HYG --> FIL : policy & ownership
+REA ..> FIL : development environment
+REL ..> FIL : workflow mechanics
+FIL ..> FIR : versioned modules & stacks
 REA ..> FIR : runtime images
 BEA ..> FIR : deployable artifacts
 

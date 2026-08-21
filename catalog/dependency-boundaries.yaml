@@ -318,6 +318,21 @@
       "contract": null,
       "contract_status": "required",
       "pinning": "versioned"
+    },
+    {
+      "id": "RELATIONSHIP-018",
+      "producer": "egohygiene/filament",
+      "consumers": [
+        "egohygiene/*"
+      ],
+      "capability": "reusable infrastructure modules, stack contracts, provider adapters, and validation evidence",
+      "interfaces": [
+        "package",
+        "schema"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "immutable-or-versioned"
     }
   ],
   "forbidden_dependencies": [

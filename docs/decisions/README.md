@@ -24,6 +24,7 @@ are not implemented by this directory.
 | --- | --- | --- | --- |
 | [ADR-0001](ADR-0001-holistic-architecture-v0.1.md) | Adopt the holistic ecosystem architecture v0.1 | Accepted | 2026-08-18 |
 | [ADR-002](ADR-002-organization-adr-and-delivery-history.md) | Establish an organization ADR and delivery-history contract | Proposed | 2026-08-20 |
+| [ADR-003](ADR-003-route-filament-infrastructure-contracts.md) | Route reusable infrastructure contracts to Filament | Proposed | 2026-08-21 |
 
 ADR-0001 predates the proposed three-digit filename convention. Its four-digit
 identity and original body remain unchanged for provenance. If the new policy is

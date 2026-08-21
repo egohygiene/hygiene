@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "architecture_release": "architecture-v0.1.0",
-  "observed_at": "2026-08-18",
+  "observed_at": "2026-08-21",
   "organization": "egohygiene",
   "canonical_repository": "hygiene",
   "repositories": [
@@ -318,6 +318,42 @@
       "lifecycle": "seed",
       "maturity": "seed",
       "source_url": "https://github.com/egohygiene/relay",
+      "domains": []
+    },
+    {
+      "name": "filament",
+      "plane": "infrastructure-deployment",
+      "owns": [
+        "reusable infrastructure-as-code modules",
+        "reusable infrastructure stack contracts",
+        "infrastructure module metadata and schemas",
+        "provider and engine adapters",
+        "infrastructure validation semantics and examples"
+      ],
+      "excludes": [
+        "product-specific deployment intent",
+        "credentials and secret custody",
+        "deployment approvals and budgets",
+        "production state backends",
+        "developer environment projections",
+        "CI and release workflow orchestration"
+      ],
+      "consumes": [
+        "hygiene architecture release",
+        "realm environments",
+        "relay workflows"
+      ],
+      "outputs": [
+        "versioned infrastructure modules",
+        "stack contracts",
+        "provider adapters",
+        "validation and compatibility evidence"
+      ],
+      "full_name": "egohygiene/filament",
+      "visibility": "public",
+      "lifecycle": "architecture-first",
+      "maturity": "provisional-architecture",
+      "source_url": "https://github.com/egohygiene/filament",
       "domains": []
     },
     {
@@ -719,20 +755,23 @@
       "name": "firmament",
       "plane": "infrastructure-deployment",
       "status": "deferred",
-      "create_after": "realm-artifact-contract-stable",
+      "create_after": "realm-and-filament-artifact-contracts-stable",
       "owns": [
-        "OpenTofu or Pulumi stacks",
-        "cloud and local infrastructure",
+        "organization-operated infrastructure compositions",
+        "cloud and local deployment topology",
         "networking",
         "clusters",
-        "deployment environments"
+        "deployment environments",
+        "operational infrastructure state and lifecycle"
       ],
       "excludes": [
+        "reusable infrastructure modules and provider adapters",
         "developer image construction",
         "shell configuration",
         "repository fleet automation"
       ],
       "consumes": [
+        "filament modules and stack contracts",
         "realm images",
         "application and publication artifacts"
       ],
@@ -751,6 +790,10 @@
       "title": "Developer and runtime platform"
     },
     {
+      "id": "infrastructure-deployment",
+      "title": "Infrastructure and deployment"
+    },
+    {
       "id": "content-publishing",
       "title": "Content transformation and publishing"
     },
@@ -763,5 +806,5 @@
       "title": "Identity, product, and experience"
     }
   ],
-  "repository_count": 25
+  "repository_count": 26
 }

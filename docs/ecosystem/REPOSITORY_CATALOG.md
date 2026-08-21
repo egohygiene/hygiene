@@ -1,7 +1,7 @@
 # Repository Catalog
 
-Observed on GitHub: **2026-08-17**  
-Inventory: **25 repositories**  
+Observed on GitHub: **2026-08-21**
+Inventory: **26 repositories**
 Status labels describe the observed implementation state, not product quality.
 
 ## Architecture and control plane
@@ -24,6 +24,12 @@ Status labels describe the observed implementation state, not product quality.
 | `relay` | Reusable workflows, composite actions, CI/release orchestration | Lint policy, repo architecture, product release semantics | Seed | Extract one reusable test workflow and one release primitive |
 | `egolint` | Universal lint CLI/profiles, rules, MegaLinter integration, report normalization, safe autofix policy | Workflow fleet distribution or unrelated repository templates | Early implementation | Make the CLI standalone and invoke it from Relay |
 | `empathy` | Golden consumer, integration testbed, humane repository reference, bounded incubator | Permanent source of Mantle/Realm/Holon/etc.; untracked staging | Transition monorepo | Add migration ledger; consume released Mantle and Realm artifacts |
+
+## Infrastructure and deployment
+
+| Repository | Target ownership | Explicitly does not own | Observed state | First gate |
+| --- | --- | --- | --- | --- |
+| `filament` | Reusable IaC modules, stack contracts, schemas, provider/engine adapters, examples, tests, and validation semantics | Consumer deployment intent, credentials, budgets, approvals, production state, developer environments, CI orchestration | Provisional architecture | Select one bounded vertical slice and publish a stable contract with a disposable consumer fixture |
 
 ## Content transformation and publishing
 
@@ -74,7 +80,13 @@ The following relationships are intentional and should be contract-tested:
 | Mindcap | Mindgarden | capture/archive manifest with provenance |
 | Identity | products, site, store, Beacon | tokens, assets, voice and metadata packages |
 | Store | `egohygiene.io` | route/deployment/analytics contract, not source inclusion |
+| Filament | infrastructure consumers | versioned modules, stack contracts, schemas, provider adapters, validation evidence |
 
 ## Deferred repository
 
-`firmament` is a proposed future boundary for local/cloud infrastructure as code. It is not in the current inventory and should not be created until Realm's published environment contract is stable.
+`firmament` remains a proposed future boundary for organization-operated
+infrastructure compositions, networking, clusters, deployment environments,
+and operational state. It is not in the current inventory and must not duplicate
+Filament's reusable IaC contracts. It should not be created until Realm and
+Filament publish stable artifact contracts and a separate decision proves a
+non-overlapping operational need.

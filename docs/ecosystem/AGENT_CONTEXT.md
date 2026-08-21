@@ -16,11 +16,14 @@ This document is designed to be referenced by every Ego Hygiene repository agent
 3. **Integrate through releases.** Use pinned packages, binaries, OCI images, reusable workflows, or versioned contracts—never copied sibling source.
 4. **Respect control-plane boundaries.** Hygiene defines; Holon creates; Pace converges; Observatory observes.
 5. **Respect developer-platform boundaries.** Realm provisions environments; Mantle configures the shell; Relay runs automation; Egolint defines lint behavior; Empathy proves integration.
-6. **Preserve provenance.** A staged or imported artifact needs its origin, license, destination owner, migration PR, validation evidence, and removal state.
-7. **No secret state.** Images, Nix modules, templates, fixtures, diagrams, and agent context contain no credentials or personal data.
-8. **Prefer reversible PRs.** Fleet changes are proposed as small pull requests with generated diffs and explicit rollback.
-9. **Do not redefine siblings.** A repository may describe an external capability only by linking to its owned contract and pinning a compatible version.
-10. **Update the map.** Architecture-changing work updates Hygiene's catalog/ADRs first or in the same reviewed change set.
+6. **Respect infrastructure boundaries.** Filament publishes reusable IaC
+   contracts; consuming repositories own deployment intent, credentials,
+   budgets, approvals, and state. Firmament remains deferred.
+7. **Preserve provenance.** A staged or imported artifact needs its origin, license, destination owner, migration PR, validation evidence, and removal state.
+8. **No secret state.** Images, Nix modules, templates, fixtures, diagrams, and agent context contain no credentials or personal data.
+9. **Prefer reversible PRs.** Fleet changes are proposed as small pull requests with generated diffs and explicit rollback.
+10. **Do not redefine siblings.** A repository may describe an external capability only by linking to its owned contract and pinning a compatible version.
+11. **Update the map.** Architecture-changing work updates Hygiene's catalog/ADRs first or in the same reviewed change set.
 
 ## Local projection shape
 
@@ -66,6 +69,8 @@ When uncertain, classify the work before coding:
 - existing-repo sync/migration → Pace;
 - telemetry/maturity → Observatory;
 - environment/image/workstation projection → Realm;
+- reusable infrastructure modules, stacks, schemas, or provider adapters → Filament;
+- deployment intent, credentials, budgets, approvals, and state → the consuming repository;
 - shell behavior/installers → Mantle;
 - GitHub workflow mechanics → Relay;
 - lint semantics/reports → Egolint;

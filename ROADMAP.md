@@ -3,12 +3,12 @@ schema: aether.architecture-document/v1
 id: hygiene-roadmap
 title: Hygiene Roadmap
 kind: architecture-document
-version: 0.2.0
+version: 0.3.0
 status: provisional
 owners:
   - egohygiene
 created: 2026-08-19
-updated: 2026-08-19
+updated: 2026-08-21
 governed_by:
   - architecture-roadmap
 depends_on:
@@ -52,8 +52,11 @@ Hygiene defines what should exist. Repository audits define current state and v1
 - The live repository inventory is reconciled with the canonical catalog.
 - Empathy's strict-baseline role is reflected in organization architecture.
 - Sanctuary is defined as an incubation boundary without becoming canonical.
-- Filament is investigated before repository creation.
-- Firmament remains explicitly deferred until its gates pass.
+- Filament is routed as the reusable infrastructure-as-code contract owner and
+  reconciled with the live repository catalog.
+- Firmament remains a separate, explicitly deferred deployment boundary until
+  Realm and Filament artifact contracts are stable and a non-overlapping need
+  is approved.
 
 ## Phase 2: Stabilize the repository catalog and audit contract
 
@@ -116,7 +119,9 @@ Hygiene defines what should exist. Repository audits define current state and v1
 
 ## Phase 8: Resolve large and special cases
 
-**Scope:** the private egohygiene product, final `.github` reconciliation, Sanctuary, Filament or its resolved owner, Firmament only if its gates pass, and any ownerless capability discovered by earlier audits.
+**Scope:** the private egohygiene product, final `.github` reconciliation,
+Sanctuary, Filament's first bounded infrastructure contract, Firmament only if
+its gates pass, and any ownerless capability discovered by earlier audits.
 
 ## Per-repository planning completion contract
 

@@ -159,13 +159,24 @@ const planes = [
       ["store", "provider-neutral commerce"],
     ],
   },
+  {
+    id: "infrastructure",
+    title: "INFRASTRUCTURE & DEPLOYMENT",
+    subtitle: "Reusable definitions · consumer-owned deployment",
+    y: 1520,
+    color: "#60a5fa",
+    fill: "#172554",
+    nodes: [
+      ["filament", "reusable IaC contracts"],
+    ],
+  },
 ];
 
 const elements = [];
 const centers = new Map();
 
 elements.push(textElement("title", "EGO HYGIENE ECOSYSTEM ARCHITECTURE", 80, 35, 2040, 55, "#f8fafc", 34));
-elements.push(textElement("subtitle", "25 independently useful repositories · one owner per capability · versioned artifacts and contracts", 80, 95, 2040, 34, "#cbd5e1", 18));
+elements.push(textElement("subtitle", "26 independently useful repositories · one owner per capability · versioned artifacts and contracts", 80, 95, 2040, 34, "#cbd5e1", 18));
 
 for (const plane of planes) {
   elements.push(rectangle(`group-${plane.id}`, 55, plane.y, 2090, 230, plane.color, plane.fill, 42));
@@ -184,12 +195,12 @@ for (const plane of planes) {
   });
 }
 
-elements.push(rectangle("group-future", 55, 1530, 2090, 175, "#94a3b8", "#1f2937", 45, true));
-elements.push(textElement("future-title", "PROPOSED FUTURE BOUNDARY", 85, 1560, 300, 42, "#cbd5e1", 21));
-elements.push(textElement("future-sub", "Create only after Realm's artifact contract is stable", 85, 1605, 300, 55, "#94a3b8", 15));
-elements.push(rectangle("node-firmament", 420, 1560, 540, 95, "#94a3b8", "#111827", 100, true));
-elements.push(textElement("node-firmament-text", "firmament (proposed)\nOpenTofu/Pulumi · local and multi-cloud infrastructure", 440, 1570, 500, 75, "#f8fafc", 17));
-centers.set("firmament", { x: 690, y: 1607 });
+elements.push(rectangle("group-future", 55, 1800, 2090, 175, "#94a3b8", "#1f2937", 45, true));
+elements.push(textElement("future-title", "PROPOSED FUTURE BOUNDARY", 85, 1830, 300, 42, "#cbd5e1", 21));
+elements.push(textElement("future-sub", "Create only after Realm and Filament contracts are stable", 85, 1875, 300, 55, "#94a3b8", 15));
+elements.push(rectangle("node-firmament", 420, 1830, 540, 95, "#94a3b8", "#111827", 100, true));
+elements.push(textElement("node-firmament-text", "firmament (proposed)\noperated infrastructure · environments · state", 440, 1840, 500, 75, "#f8fafc", 17));
+centers.set("firmament", { x: 690, y: 1877 });
 
 const relationships = [
   ["hygiene", "holon"], ["hygiene", "pace"], ["hygiene", "observatory"], ["hygiene", ".github"],
@@ -200,7 +211,8 @@ const relationships = [
   ["athena", "mindcap"], ["mindcap", "mindgarden"], ["mindgarden", "akashic"], ["reflector", "observatory"],
   ["identity", "egohygiene"], ["identity", "egohygiene.io"], ["identity", "store"], ["identity", "beacon"],
   ["mindgarden", "egohygiene"], ["beacon", "egohygiene.io"], ["store", "egohygiene.io"],
-  ["realm", "firmament"], ["beacon", "firmament"],
+  ["hygiene", "filament"], ["realm", "filament"], ["relay", "filament"],
+  ["filament", "firmament"], ["realm", "firmament"], ["beacon", "firmament"],
 ];
 
 relationships.forEach(([from, to], index) => {
@@ -213,7 +225,7 @@ elements.push(textElement(
   "legend",
   "Arrows show versioned artifacts, contracts, or control flow—not copied source. Canonical semantics live in ARCHITECTURE.md and catalog/repositories.yaml.",
   1010,
-  1570,
+  1840,
   1060,
   70,
   "#cbd5e1",

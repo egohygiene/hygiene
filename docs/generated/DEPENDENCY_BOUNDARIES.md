@@ -4,7 +4,7 @@
 
 - Architecture release: `architecture-v0.1.0`
 - Governing decision: `ADR-0001`
-- Relationships: `17`
+- Relationships: `18`
 - Active exceptions: `0`
 
 ## Rules
@@ -40,6 +40,7 @@
 | `RELATIONSHIP-015` | `egohygiene/mindcap` | `egohygiene/mindgarden` | verified capture and archive manifests with provenance | `schema`, `generated-projection` | _required_ | `versioned` |
 | `RELATIONSHIP-016` | `egohygiene/identity` | `egohygiene/beacon`, `egohygiene/egohygiene`, `egohygiene/store`, `egohygiene/website` | design tokens, brand assets, voice, and metadata packages | `package`, `schema` | _required_ | `versioned` |
 | `RELATIONSHIP-017` | `egohygiene/store` | `egohygiene/website` | route, deployment, analytics, and commerce integration | `api`, `schema` | _required_ | `versioned` |
+| `RELATIONSHIP-018` | `egohygiene/filament` | `egohygiene/*` | reusable infrastructure modules, stack contracts, provider adapters, and validation evidence | `package`, `schema` | _required_ | `immutable-or-versioned` |
 
 ## Forbidden direct dependencies
 

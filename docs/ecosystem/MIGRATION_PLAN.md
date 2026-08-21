@@ -30,7 +30,7 @@ The GitHub scan found these major staged groups.
 
 | Empathy source | Observed scale | Primary destination | Treatment |
 | --- | ---: | --- | --- |
-| `.staging/devenvironment` | 487 files | Realm, Mantle; later Firmament where necessary | Split by capability; do not import as one directory |
+| `.staging/devenvironment` | 487 files | Realm, Mantle, and Filament; Firmament only after a separate future decision | Split environment, shell, reusable IaC, and possible operated-infrastructure material by capability; do not import as one directory |
 | `.staging/devenvironment/.devcontainer` | 7 files | Realm | Convert to tested features/templates; remove project-specific assumptions |
 | `.staging/devenvironment/workstation` | 248 files | Realm plus Mantle shell subset | Express as declarative host profiles; separate personal/private overlays |
 | `.staging/devenvironment/containers` | 215 files | Realm optional runtime profiles; archive/reject obsolete experiments | Keep service images out of Realm `base` and `full` unless capability policy requires them |
@@ -54,12 +54,12 @@ The GitHub scan found these major staged groups.
 Owner target: Hygiene.
 
 1. Import this draft and open the architecture decision.
-2. Accept the five planes, ownership table, and one-owner rule.
+2. Accept the six planes, ownership table, and one-owner rule.
 3. Add repository catalog schema and migration-ledger schema.
 4. Rename `website` to `egohygiene.io` and record redirects/link repair as a tracked migration.
 5. Add generated local context to seed repositories first, then active repositories.
 
-Exit gate: all 25 repos are cataloged and the architecture release is tagged.
+Exit gate: all 26 repos are cataloged and the architecture release is tagged.
 
 ### Workstream B — Mantle standalone
 
