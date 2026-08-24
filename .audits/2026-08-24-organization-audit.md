@@ -283,9 +283,10 @@ dist/roadmap/
   assets/
   roadmap.manifest.json
   roadmap.evidence.json
-  roadmap.issue-plan.json
   provenance.json
 ```
+
+The duplicate-aware `roadmap.issue-plan.json` is emitted separately as an access-controlled workflow artifact. It is never copied into the public site bundle.
 
 The public page must provide:
 
