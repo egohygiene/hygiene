@@ -250,7 +250,7 @@ The first composed consumers should reuse the proven Repository Intelligence com
 
 The first action is always a dry run:
 
-1. Parse steps whose status is `ready` or `planned` and whose issue list is empty.
+1. Parse `ready` steps whose issue list is empty. A `planned` step is preview-only unless a reviewer explicitly sets `issue_policy: propose`.
 2. Propose issue titles, bodies, acceptance criteria, labels, dependency links, and roadmap IDs.
 3. Reconcile proposals against existing issues to prevent duplicates.
 4. Emit `roadmap.issue-plan.json` and a human-readable summary.
