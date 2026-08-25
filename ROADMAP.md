@@ -8,7 +8,7 @@ status: provisional
 owners:
   - egohygiene
 created: 2026-08-19
-updated: 2026-08-21
+updated: 2026-08-25
 governed_by:
   - architecture-roadmap
 depends_on:
@@ -33,7 +33,7 @@ repository: egohygiene/hygiene
 visibility: public
 publication: central
 route: /roadmap/hygiene/
-updated: 2026-08-24
+updated: 2026-08-25
 -->
 ## 2026-08-24 execution snapshot
 
@@ -146,7 +146,7 @@ issues: []
 id: HYG-Q05
 status: planned
 depends_on: [HYG-Q03, HYG-Q04]
-issues: []
+issues: [19]
 -->
 #### HYG-Q05 — Version and integrate the organization contract
 
@@ -162,7 +162,8 @@ issues: []
 
 **Current evidence:**
 
-- Cross-tool ownership is proposed but no versioned integration proof was observed.
+- Issue #19 owns the proposed Repository Intelligence schema, vocabulary, and
+  complete delivery-chain fixture. Cross-tool integration remains unproven.
 
 <!-- roadmap-step
 id: HYG-Q06

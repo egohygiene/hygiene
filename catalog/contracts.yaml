@@ -3,7 +3,7 @@
   "status": "proposed",
   "organization": "egohygiene",
   "canonical_repository": "egohygiene/hygiene",
-  "updated": "2026-08-20",
+  "updated": "2026-08-25",
   "contracts": [
     {
       "id": "egohygiene.architecture-decision/v1",
@@ -18,6 +18,22 @@
       "title": "Organization contract index",
       "owner": "egohygiene/hygiene",
       "source": "schemas/organization-contract-index.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-intelligence/v1",
+      "title": "Repository Intelligence graph projection",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-intelligence.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-intelligence-vocabulary/v1",
+      "title": "Repository Intelligence relationship vocabulary",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-intelligence-vocabulary.v1.schema.json",
       "status": "proposed",
       "visibility": "public"
     },

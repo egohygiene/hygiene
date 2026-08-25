@@ -17,7 +17,10 @@ This package defines the target repository architecture before any new infograph
 7. Use [`DEPENDENCY_BOUNDARIES.md`](DEPENDENCY_BOUNDARIES.md) and
    `catalog/dependency-boundaries.yaml` for cross-repository integration
    direction, interface requirements, and exceptions.
-8. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
+8. Review [`REPOSITORY_INTELLIGENCE.md`](REPOSITORY_INTELLIGENCE.md) for the
+   proposed graph, event, provenance, linkage, privacy, and compatibility
+   contract used by repository intelligence projections.
+9. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
 
 ## Architectural decision
 

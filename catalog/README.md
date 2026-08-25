@@ -54,3 +54,20 @@ python3 tools/boundaries.py scan \
 
 See the [dependency-boundary guide](../docs/ecosystem/DEPENDENCY_BOUNDARIES.md)
 for rule semantics, scanner scope, and the exception process.
+
+## Repository Intelligence vocabulary
+
+`repository-intelligence-vocabulary.json` is the proposed machine-readable
+definition of directed graph relationships used by Repository Intelligence.
+Its source/target kinds, inverse display labels, cardinality, and transitivity
+rules are owned by Hygiene and validated with the complete-quest fixture.
+
+```bash
+python3 tools/intelligence.py validate \
+  --snapshot fixtures/repository-intelligence/complete-quest.json \
+  --vocabulary catalog/repository-intelligence-vocabulary.json
+```
+
+See the
+[Repository Intelligence contract](../docs/ecosystem/REPOSITORY_INTELLIGENCE.md)
+for identifier, provenance, event, privacy, extension, and compatibility rules.
