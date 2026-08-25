@@ -20,13 +20,16 @@ implementation_status: not_started
 evidence: []
 exceptions: []
 approval: null
+extensions: {}
 ---
 
 # ADR-000: Replace with a concise decision title
 
 > Copy this normative reference into
 > `docs/decisions/ADR-NNN-short-slug.md`. New records always begin as
-> `proposed`. Remove this note from the copied record.
+> `proposed`. Keep `extensions: {}` unless the repository policy reference
+> registers a namespaced extension contract. Remove this note from the copied
+> record.
 
 ## Context
 

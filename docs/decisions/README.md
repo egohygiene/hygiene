@@ -11,12 +11,16 @@ local ADRs.
 - [Normative ADR reference template](ADR-TEMPLATE.md)
 - [Onboarding and migration](MIGRATION.md)
 - [Acceptance and validation plan](VALIDATION.md)
+- [ADR-002 ratification record](RATIFICATION.md)
 - [ADR front matter schema](../../schemas/architecture-decision.v1.schema.json)
+- [Repository policy-reference schema](../../schemas/architecture-decision-policy-reference.v1.schema.json)
+- [Compatibility fixtures](../../fixtures/architecture-decisions)
 - [Organization contract index](../../catalog/contracts.yaml)
 
 These foundation artifacts remain proposals until ADR-002 receives explicit
-human approval. Reusable agent packaging, validation, generation, and dashboards
-are not implemented by this directory.
+human approval. Aether has a draft pinned agent hook and Hygiene has reference
+contract checks; fleet linting, generation, and dashboards are not implemented
+by this directory.
 
 ## Decision index
 
@@ -33,6 +37,6 @@ identity and original body remain unchanged for provenance. If the new policy is
 accepted, migration metadata will be added in a separate reviewed change rather
 than rewriting its history in this proposal.
 
-Accepted decisions remain discoverable when superseded. A replacement links the
-record it supersedes, and the old record links back after the replacement is
-accepted.
+Rejected, deprecated, accepted, and superseded decisions remain discoverable.
+A replacement links the record it supersedes, and the old record links back
+after the replacement is accepted.

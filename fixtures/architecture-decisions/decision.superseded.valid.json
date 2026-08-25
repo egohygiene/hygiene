@@ -1,0 +1,31 @@
+{
+  "schema": "egohygiene.architecture-decision/v1",
+  "id": "ADR-006",
+  "title": "Use an order-dependent repository projection",
+  "status": "superseded",
+  "date": "2026-08-01",
+  "decision_scope": "repository",
+  "visibility": "public",
+  "owners": ["egohygiene/relay"],
+  "issue": "https://github.com/egohygiene/relay/issues/6",
+  "pull_request": "https://github.com/egohygiene/relay/pull/6",
+  "related": [],
+  "supersedes": [],
+  "superseded_by": ["ADR-007"],
+  "affected_repositories": ["egohygiene/relay"],
+  "affected_contracts": ["egohygiene.architecture-decision/v1"],
+  "implementation_status": "implemented",
+  "evidence": [
+    {
+      "type": "approval",
+      "url": "https://github.com/egohygiene/relay/pull/8#pullrequestreview-1",
+      "description": "Maintainer approved ADR-007 as the replacement."
+    }
+  ],
+  "exceptions": [],
+  "approval": {
+    "date": "2026-08-25",
+    "by": "egohygiene maintainer",
+    "evidence": "https://github.com/egohygiene/relay/pull/8#pullrequestreview-1"
+  }
+}

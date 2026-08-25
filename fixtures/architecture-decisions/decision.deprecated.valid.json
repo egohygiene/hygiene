@@ -1,0 +1,31 @@
+{
+  "schema": "egohygiene.architecture-decision/v1",
+  "id": "ADR-011",
+  "title": "Publish an experimental projection format",
+  "status": "deprecated",
+  "date": "2026-08-25",
+  "decision_scope": "repository",
+  "visibility": "public",
+  "owners": ["egohygiene/relay"],
+  "issue": "https://github.com/egohygiene/relay/issues/11",
+  "pull_request": "https://github.com/egohygiene/relay/pull/12",
+  "related": ["ADR-007"],
+  "supersedes": [],
+  "superseded_by": [],
+  "affected_repositories": ["egohygiene/relay"],
+  "affected_contracts": [],
+  "implementation_status": "not_applicable",
+  "evidence": [
+    {
+      "type": "approval",
+      "url": "https://github.com/egohygiene/relay/pull/12#pullrequestreview-3",
+      "description": "Maintainer disposition retiring the experiment without a replacement."
+    }
+  ],
+  "exceptions": [],
+  "approval": {
+    "date": "2026-08-25",
+    "by": "egohygiene maintainer",
+    "evidence": "https://github.com/egohygiene/relay/pull/12#pullrequestreview-3"
+  }
+}

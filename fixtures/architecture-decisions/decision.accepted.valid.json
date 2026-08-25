@@ -1,0 +1,31 @@
+{
+  "schema": "egohygiene.architecture-decision/v1",
+  "id": "ADR-007",
+  "title": "Adopt a deterministic repository projection",
+  "status": "accepted",
+  "date": "2026-08-25",
+  "decision_scope": "repository",
+  "visibility": "public",
+  "owners": ["egohygiene/relay"],
+  "issue": "https://github.com/egohygiene/relay/issues/7",
+  "pull_request": "https://github.com/egohygiene/relay/pull/8",
+  "related": ["egohygiene/hygiene#ADR-002"],
+  "supersedes": ["ADR-006"],
+  "superseded_by": [],
+  "affected_repositories": ["egohygiene/relay"],
+  "affected_contracts": ["egohygiene.architecture-decision/v1"],
+  "implementation_status": "not_started",
+  "evidence": [
+    {
+      "type": "approval",
+      "url": "https://github.com/egohygiene/relay/pull/8#pullrequestreview-1",
+      "description": "Maintainer approval of the decision contract."
+    }
+  ],
+  "exceptions": [],
+  "approval": {
+    "date": "2026-08-25",
+    "by": "egohygiene maintainer",
+    "evidence": "https://github.com/egohygiene/relay/pull/8#pullrequestreview-1"
+  }
+}

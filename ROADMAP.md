@@ -40,7 +40,8 @@ updated: 2026-08-25
 > This evidence-reconciled snapshot is the issue-generation and visual-roadmap handoff. The longer-horizon strategy below remains canonical context; generated HTML, JSON, progress, issue plans, and commit lists are projections.
 
 **Lifecycle:** seed, architecture-first control plane  
-**Current gate:** Accept ADR #15 and add CI before treating the repository catalog and contracts as authoritative.  
+**Current gate:** Ratify ADR-002 through issue #15 and add CI before treating proposed organization contracts as active.
+
 **North-star outcome:** The canonical, machine-readable definition of the organization, its repositories, boundaries, and lifecycle contracts.
 
 ### Visual roadmap publication
@@ -82,21 +83,24 @@ status: active
 depends_on: [HYG-Q01]
 issues: [15]
 -->
-#### HYG-Q02 — Accept the canonical ownership ADR
+#### HYG-Q02 — Ratify the organization ADR standard
 
 **State:** `active`  
 **Depends on:** `HYG-Q01`
 
-**Outcome:** ADR #15 defines what Hygiene owns and how other repositories consume its contracts.
+**Outcome:** ADR-002, tracked by issue #15, defines what Hygiene owns and how repositories inherit its versioned ADR contract without copying policy.
 
 **Exit criteria:**
 
-- [ ] ADR #15 is accepted with named owners.
-- [ ] Conflicting catalog or policy sources are deprecated.
+- [ ] ADR-002 is explicitly accepted with named human authority and durable evidence.
+- [ ] The front matter and repository policy-reference contracts are activated.
+- [ ] Conflicting local policy sources are deprecated or clearly marked non-canonical.
 
 **Current evidence:**
 
-- ADR #15 is the current acceptance gate.
+- PR #10 merged the proposed foundation; this quest hardens its inheritance and extension contract.
+- Aether PR #50 provides a draft pinned consumer without claiming policy authority.
+- Explicit maintainer ratification remains the current acceptance gate.
 
 <!-- roadmap-step
 id: HYG-Q03
@@ -162,8 +166,9 @@ issues: [19]
 
 **Current evidence:**
 
-- Issue #19 owns the proposed Repository Intelligence schema, vocabulary, and
-  complete delivery-chain fixture. Cross-tool integration remains unproven.
+- PR #20 merged the proposed Repository Intelligence schema, vocabulary,
+  complete delivery-chain fixture, and reference validator. Cross-tool
+  integration remains unproven.
 
 <!-- roadmap-step
 id: HYG-Q06

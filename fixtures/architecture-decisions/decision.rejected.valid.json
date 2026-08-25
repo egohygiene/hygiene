@@ -1,0 +1,31 @@
+{
+  "schema": "egohygiene.architecture-decision/v1",
+  "id": "ADR-008",
+  "title": "Make generated indexes canonical",
+  "status": "rejected",
+  "date": "2026-08-25",
+  "decision_scope": "repository",
+  "visibility": "public",
+  "owners": ["egohygiene/relay"],
+  "issue": "https://github.com/egohygiene/relay/issues/9",
+  "pull_request": "https://github.com/egohygiene/relay/pull/10",
+  "related": ["ADR-007"],
+  "supersedes": [],
+  "superseded_by": [],
+  "affected_repositories": ["egohygiene/relay"],
+  "affected_contracts": [],
+  "implementation_status": "not_applicable",
+  "evidence": [
+    {
+      "type": "approval",
+      "url": "https://github.com/egohygiene/relay/pull/10#pullrequestreview-2",
+      "description": "Maintainer disposition rejecting generated files as canonical source."
+    }
+  ],
+  "exceptions": [],
+  "approval": {
+    "date": "2026-08-25",
+    "by": "egohygiene maintainer",
+    "evidence": "https://github.com/egohygiene/relay/pull/10#pullrequestreview-2"
+  }
+}

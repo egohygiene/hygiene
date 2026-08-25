@@ -14,6 +14,14 @@
       "visibility": "public"
     },
     {
+      "id": "egohygiene.architecture-decision-policy-reference/v1",
+      "title": "Repository ADR policy inheritance reference",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/architecture-decision-policy-reference.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
       "id": "egohygiene.organization-contract-index/v1",
       "title": "Organization contract index",
       "owner": "egohygiene/hygiene",
