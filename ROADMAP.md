@@ -26,6 +26,176 @@ supersedes: []
 
 # Hygiene Roadmap
 
+<!-- BEGIN ROADMAP EXECUTION SNAPSHOT -->
+<!-- roadmap-manifest
+schema: hygiene.roadmap/v1alpha1
+repository: egohygiene/hygiene
+visibility: public
+publication: central
+route: /roadmap/hygiene/
+updated: 2026-08-24
+-->
+## 2026-08-24 execution snapshot
+
+> This evidence-reconciled snapshot is the issue-generation and visual-roadmap handoff. The longer-horizon strategy below remains canonical context; generated HTML, JSON, progress, issue plans, and commit lists are projections.
+
+**Lifecycle:** seed, architecture-first control plane  
+**Current gate:** Accept ADR #15 and add CI before treating the repository catalog and contracts as authoritative.  
+**North-star outcome:** The canonical, machine-readable definition of the organization, its repositories, boundaries, and lifecycle contracts.
+
+### Visual roadmap publication
+
+**Mode:** `central`  
+**Route:** `/roadmap/hygiene/`  
+**Current publication evidence:** Machine-readable source catalog; no CI or Pages publication observed.
+
+Publish the public-safe projection through egohygiene.io at /roadmap/hygiene/. This repository owns intent and acceptance evidence; it does not add a second site deployment.
+
+### Quest line
+
+<!-- roadmap-step
+id: HYG-Q01
+status: complete
+depends_on: []
+issues: []
+-->
+#### HYG-Q01 — Establish schemas and governance tools
+
+**State:** `complete`  
+**Depends on:** None
+
+**Outcome:** Initial schemas, tools, tests, and incubation boundaries exist.
+
+**Exit criteria:**
+
+- [x] Core schemas and tools are present with test coverage.
+- [x] The Sanctuary registration boundary is represented.
+
+**Current evidence:**
+
+- The audit found 5 schemas, 3 tools, and 3 tests.
+- PR #12 merged at 3452af8cd24b and PR #14 at 51edefe29f8e.
+
+<!-- roadmap-step
+id: HYG-Q02
+status: active
+depends_on: [HYG-Q01]
+issues: [15]
+-->
+#### HYG-Q02 — Accept the canonical ownership ADR
+
+**State:** `active`  
+**Depends on:** `HYG-Q01`
+
+**Outcome:** ADR #15 defines what Hygiene owns and how other repositories consume its contracts.
+
+**Exit criteria:**
+
+- [ ] ADR #15 is accepted with named owners.
+- [ ] Conflicting catalog or policy sources are deprecated.
+
+**Current evidence:**
+
+- ADR #15 is the current acceptance gate.
+
+<!-- roadmap-step
+id: HYG-Q03
+status: blocked
+depends_on: [HYG-Q02]
+issues: []
+-->
+#### HYG-Q03 — Activate contract validation
+
+**State:** `blocked`  
+**Depends on:** `HYG-Q02`
+
+**Outcome:** Every catalog and schema change is validated before merge.
+
+**Exit criteria:**
+
+- [ ] Schema, tool, and fixture tests run in CI.
+- [ ] An invalid catalog fixture is rejected.
+
+**Current evidence:**
+
+- No CI workflow was observed.
+
+<!-- roadmap-step
+id: HYG-Q04
+status: ready
+depends_on: [HYG-Q02]
+issues: []
+-->
+#### HYG-Q04 — Refresh the 28-repository catalog
+
+**State:** `ready`  
+**Depends on:** `HYG-Q02`
+
+**Outcome:** The catalog accurately represents the live organization and publication names.
+
+**Exit criteria:**
+
+- [ ] All 28 audited repositories, including Civics, are represented.
+- [ ] The website rename and lifecycle fields are reconciled.
+
+**Current evidence:**
+
+- The current catalog lists 27 repositories, omits Civics, and has a pending website rename.
+
+<!-- roadmap-step
+id: HYG-Q05
+status: planned
+depends_on: [HYG-Q03, HYG-Q04]
+issues: []
+-->
+#### HYG-Q05 — Version and integrate the organization contract
+
+**State:** `planned`  
+**Depends on:** `HYG-Q03`, `HYG-Q04`
+
+**Outcome:** Egolint validates, Observatory reads, Holon renders, and Pace rolls out one versioned contract.
+
+**Exit criteria:**
+
+- [ ] A tagged schema release is consumed by the four control-plane tools.
+- [ ] Compatibility and migration rules are documented.
+
+**Current evidence:**
+
+- Cross-tool ownership is proposed but no versioned integration proof was observed.
+
+<!-- roadmap-step
+id: HYG-Q06
+status: planned
+depends_on: [HYG-Q05]
+issues: []
+-->
+#### HYG-Q06 — Publish the roadmap contract
+
+**State:** `planned`  
+**Depends on:** `HYG-Q05`
+
+**Outcome:** Hygiene publishes hygiene.roadmap/v1alpha1 as the canonical contract for stable quest IDs, states, dependencies, evidence, visibility, and supersession.
+
+**Exit criteria:**
+
+- [ ] The schema, compatibility rules, public/private policy, and fixtures are versioned and validated in CI.
+- [ ] The contract explicitly keeps ROADMAP.md canonical and generated issue/site data derivative.
+
+**Current evidence:**
+
+- The contract is specified in the 2026-08-24 visual-roadmap design but is not yet released.
+
+### Roadmap-to-issue handoff
+
+- A step is complete only when its exit criteria and required evidence are satisfied; commit count never determines progress.
+- Ready steps without an issue are candidates for the private, duplicate-aware roadmap.issue-plan.json dry run. Planned steps remain preview-only unless a reviewer explicitly opts them in with issue_policy: propose.
+- Issue creation or reconciliation requires human approval or an explicitly authorized Pace operation and returns issue references through a reviewable roadmap pull request.
+- Pull requests and commits should include Roadmap-Step: <ID>; historical evidence may be linked through existing issue and pull-request relationships.
+- Public rendering uses only allowlisted build-time evidence and never places a GitHub token or private issue plan in the browser artifact.
+
+<!-- END ROADMAP EXECUTION SNAPSHOT -->
+
 ## Strategic context
 
 Hygiene is the organization control-plane source for architecture, ownership, lifecycle, repository catalog, policy vocabulary, and cross-repository decisions. This roadmap describes capability evolution rather than promised dates.
