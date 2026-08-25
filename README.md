@@ -26,6 +26,10 @@ capability.
 - [Dependency-boundary schema](schemas/dependency-boundary-register.v1.schema.json)
 - [Generated dependency-boundary view](docs/generated/DEPENDENCY_BOUNDARIES.md)
 - [Dependency-boundary guide](docs/ecosystem/DEPENDENCY_BOUNDARIES.md)
+- [Proposed Repository Intelligence contract](docs/ecosystem/REPOSITORY_INTELLIGENCE.md)
+- [Repository Intelligence schema](schemas/repository-intelligence.v1.schema.json)
+- [Repository Intelligence vocabulary](catalog/repository-intelligence-vocabulary.json)
+- [Complete quest fixture](fixtures/repository-intelligence/complete-quest.json)
 
 The accepted written architecture and versioned machine-readable catalog are
 authoritative. Rendered diagrams, local repository context, and future landscape
@@ -35,6 +39,7 @@ sites are projections of those sources.
 
 - [ADR policy](docs/decisions/POLICY.md)
 - [Proposed governing decision](docs/decisions/ADR-002-organization-adr-and-delivery-history.md)
+- [Proposed Repository Intelligence decision](docs/decisions/ADR-005-unify-repository-intelligence-projection.md)
 - [ADR reference template](docs/decisions/ADR-TEMPLATE.md)
 - [ADR migration guide](docs/decisions/MIGRATION.md)
 - [ADR validation plan](docs/decisions/VALIDATION.md)
@@ -72,8 +77,12 @@ python3 tools/boundaries.py \
 python3 tools/boundaries.py scan \
   --repository-root . \
   --repository egohygiene/hygiene
+python3 tools/intelligence.py validate \
+  --snapshot fixtures/repository-intelligence/complete-quest.json \
+  --vocabulary catalog/repository-intelligence-vocabulary.json
 python3 -m unittest discover --start-directory tests --pattern "test_*.py"
 ```
 
-The proposed ADR schemas are reviewed structurally in this phase; executable
-validation belongs to the later Relay implementation.
+The dependency-free Repository Intelligence validator is a contract reference,
+not fleet enforcement. Production lint semantics belong to Egolint and reusable
+collection, generation, and publication workflows belong to Relay.
