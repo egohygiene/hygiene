@@ -23,8 +23,10 @@ instructions, or an intelligence/site integration.
 
 Use when no durable local decision log exists.
 
-1. Add `docs/decisions/README.md` as a local index.
-2. Add the pinned policy reference and an empty decision list.
+1. Add `docs/decisions/README.md` as the canonical local index.
+2. Add `docs/decisions/policy-reference.json`, pinning an approved Hygiene
+   policy version and full commit through
+   `egohygiene.architecture-decision-policy-reference/v1`.
 3. Add a proposed ADR only when the scoped change requires one.
 4. Do not reconstruct historical decisions without contemporaneous evidence.
 
@@ -47,8 +49,9 @@ never overwritten by a managed projection.
   detailed. The collision must be resolved by human review before migration.
 - Several repositories contain compact reconstructed records described as
   accepted without durable human-approval evidence.
-- Aether contains a draft decision specification and reusable template that
-  predate Hygiene's canonical policy ownership.
+- Aether retains a legacy draft decision specification and now also contains a
+  draft decision-impact hook pinned to a proposed Hygiene revision. The pinned
+  consumer demonstrates the intended boundary but does not activate policy.
 
 These are migration inputs, not authorization to renumber records, change their
 meaning, or retroactively accept them.
@@ -73,6 +76,30 @@ meaning, or retroactively accept them.
    and require human selection of the canonical identity before generation.
 8. **Keep proposals proposed.** Migration mechanics do not supply missing
    acceptance or implementation evidence.
+9. **Pin before projecting.** A repository policy reference names an exact
+   supported policy version and full Hygiene commit. Moving branch references
+   and copied policy prose are invalid.
+10. **Register extensions.** Preserve local fields under a versioned,
+    repository-owned extension contract. Do not reinterpret a legacy local
+    status or approval field as a global override.
+
+## Policy-version upgrades
+
+Treat a policy pin update as a reviewed migration, not a dependency refresh:
+
+1. read the target policy changelog and migration guidance;
+2. validate the repository's reference, ADR metadata, indexes, extensions, and
+   lineage against the target revision;
+3. record any incompatibility as a proposed exception or a blocking migration
+   issue rather than weakening validation;
+4. update the semantic version and full commit pin together; and
+5. retain the prior pin in Git history and attach the validation result to the
+   upgrade pull request.
+
+Patch releases may require only deterministic revalidation. Minor releases may
+introduce optional features or new lifecycle values that consumers must support
+before use. A major contract upgrade requires an explicit repository migration
+plan; unsupported versions fail closed.
 
 ## Per-repository rollout classification
 
@@ -88,23 +115,25 @@ after Phase 2 defines provenance markers and migration-safe ownership rules.
 
 ## Rollout sequence
 
-1. Approve and merge the canonical Hygiene policy and schema.
-2. Replace Aether's competing policy text with a pinned reusable instruction
-   module and reference template.
-3. Define Holon scaffold/managed/validate artifacts and provenance markers.
-4. Implement Relay validators and generators with fixtures for every legacy
-   pattern above.
+1. Explicitly ratify ADR-002 and record its durable human approval evidence.
+2. Release Aether's pinned reusable instruction module; retain its legacy policy
+   text only as clearly non-canonical migration evidence.
+3. Define Holon scaffold/validate artifacts and provenance markers.
+4. Implement Egolint semantic rules and Relay CI/generation mechanics with
+   fixtures for every legacy pattern above.
 5. Pilot Identity with an explicit migration map and no mechanical history
    rewrite.
 6. Implement Observatory aggregation only after repository contracts are
    stable.
-7. Roll out grouped repository pull requests, stopping for review after each
-   group.
+7. Use Pace to roll out grouped repository pull requests, stopping for review
+   after each group.
 
 ## Migration completion evidence
 
 A repository is migrated only when:
 
+- `docs/decisions/policy-reference.json` resolves an approved, supported Hygiene
+  policy version at the pinned full commit;
 - local IDs are unique or every unresolved collision blocks generation;
 - every canonical detailed record has schema-valid front matter or a documented
   migration exception;

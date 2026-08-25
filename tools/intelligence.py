@@ -65,7 +65,13 @@ ENTITY_STATES = {
         "deferred",
         "cancelled",
     },
-    "architecture_decision": {"proposed", "accepted", "superseded", "deprecated"},
+    "architecture_decision": {
+        "proposed",
+        "accepted",
+        "rejected",
+        "superseded",
+        "deprecated",
+    },
     "issue": {"open", "closed"},
     "pull_request": {"open", "merged", "closed"},
 }
@@ -86,6 +92,7 @@ EVENT_TYPES = {
     "roadmap_step.status_changed",
     "architecture_decision.proposed",
     "architecture_decision.accepted",
+    "architecture_decision.rejected",
     "architecture_decision.deprecated",
     "architecture_decision.superseded",
     "issue.opened",

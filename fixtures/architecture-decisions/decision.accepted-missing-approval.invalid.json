@@ -1,0 +1,21 @@
+{
+  "schema": "egohygiene.architecture-decision/v1",
+  "id": "ADR-009",
+  "title": "Claim acceptance without authority",
+  "status": "accepted",
+  "date": "2026-08-25",
+  "decision_scope": "repository",
+  "visibility": "public",
+  "owners": ["egohygiene/relay"],
+  "issue": null,
+  "pull_request": null,
+  "related": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "affected_repositories": ["egohygiene/relay"],
+  "affected_contracts": [],
+  "implementation_status": "not_started",
+  "evidence": [],
+  "exceptions": [],
+  "approval": null
+}

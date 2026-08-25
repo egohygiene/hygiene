@@ -379,7 +379,7 @@
               "state": {
                 "properties": {
                   "value": {
-                    "enum": ["proposed", "accepted", "superseded", "deprecated"]
+                    "enum": ["proposed", "accepted", "rejected", "superseded", "deprecated"]
                   }
                 }
               },
@@ -739,6 +739,7 @@
             "roadmap_step.status_changed",
             "architecture_decision.proposed",
             "architecture_decision.accepted",
+            "architecture_decision.rejected",
             "architecture_decision.deprecated",
             "architecture_decision.superseded",
             "issue.opened",

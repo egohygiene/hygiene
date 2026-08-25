@@ -30,7 +30,7 @@
     "id": { "type": "string", "pattern": "^ADR-[0-9]{3,4}$" },
     "title": { "type": "string", "minLength": 1, "maxLength": 160 },
     "status": {
-      "enum": ["proposed", "accepted", "superseded", "deprecated"]
+      "enum": ["proposed", "accepted", "rejected", "superseded", "deprecated"]
     },
     "date": { "type": "string", "format": "date" },
     "decision_scope": { "enum": ["repository", "organization"] },
@@ -76,6 +76,15 @@
       "type": "array",
       "items": { "$ref": "#/$defs/exception" }
     },
+    "extensions": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^egohygiene\\.[a-z0-9][a-z0-9.-]*/v[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
     "approval": {
       "oneOf": [
         { "type": "null" },
@@ -99,7 +108,7 @@
     {
       "if": {
         "properties": {
-          "status": { "enum": ["accepted", "superseded"] }
+          "status": { "enum": ["accepted", "rejected", "superseded", "deprecated"] }
         },
         "required": ["status"]
       },
@@ -117,6 +126,19 @@
       "then": {
         "properties": {
           "superseded_by": { "minItems": 1 }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": { "enum": ["rejected", "deprecated"] }
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "superseded_by": { "maxItems": 0 }
         }
       }
     },
@@ -176,7 +198,11 @@
             "external"
           ]
         },
-        "url": { "type": "string", "format": "uri" },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://"
+        },
         "description": { "type": "string", "minLength": 1, "maxLength": 240 }
       }
     },
@@ -187,7 +213,11 @@
       "properties": {
         "date": { "type": "string", "format": "date" },
         "by": { "type": "string", "minLength": 1 },
-        "evidence": { "type": "string", "format": "uri" }
+        "evidence": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://"
+        }
       }
     },
     "exception": {
@@ -209,7 +239,11 @@
         "approval_evidence": {
           "oneOf": [
             { "type": "null" },
-            { "type": "string", "format": "uri" }
+            {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https?://"
+            }
           ]
         },
         "expires": {
@@ -227,7 +261,11 @@
           },
           "then": {
             "properties": {
-              "approval_evidence": { "type": "string", "format": "uri" }
+              "approval_evidence": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https?://"
+              }
             }
           }
         }

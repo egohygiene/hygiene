@@ -43,7 +43,10 @@ sites are projections of those sources.
 - [ADR reference template](docs/decisions/ADR-TEMPLATE.md)
 - [ADR migration guide](docs/decisions/MIGRATION.md)
 - [ADR validation plan](docs/decisions/VALIDATION.md)
+- [ADR-002 ratification gate](docs/decisions/RATIFICATION.md)
 - [ADR front matter schema](schemas/architecture-decision.v1.schema.json)
+- [Repository ADR policy-reference schema](schemas/architecture-decision-policy-reference.v1.schema.json)
+- [ADR compatibility fixtures](fixtures/architecture-decisions)
 - [Organization contract index](catalog/contracts.yaml)
 
 These artifacts are proposals pending human review. This repository does not yet
@@ -80,9 +83,17 @@ python3 tools/boundaries.py scan \
 python3 tools/intelligence.py validate \
   --snapshot fixtures/repository-intelligence/complete-quest.json \
   --vocabulary catalog/repository-intelligence-vocabulary.json
+python3 tools/decisions.py decision \
+  --input fixtures/architecture-decisions/decision.proposed.valid.json
+python3 tools/decisions.py decision-set \
+  --input fixtures/architecture-decisions/decision.superseded.valid.json \
+  --input fixtures/architecture-decisions/decision.accepted.valid.json
+python3 tools/decisions.py policy-reference \
+  --input fixtures/architecture-decisions/policy-reference.valid.json
 python3 -m unittest discover --start-directory tests --pattern "test_*.py"
 ```
 
-The dependency-free Repository Intelligence validator is a contract reference,
-not fleet enforcement. Production lint semantics belong to Egolint and reusable
-collection, generation, and publication workflows belong to Relay.
+The dependency-free Repository Intelligence and decoded ADR checkers are
+contract references, not fleet enforcement or full Markdown parsers. Production
+lint semantics belong to Egolint and reusable collection, generation, and
+publication workflows belong to Relay.

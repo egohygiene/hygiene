@@ -52,6 +52,10 @@ class RepositoryIntelligenceContractTests(unittest.TestCase):
             [], intelligence.validate_snapshot(self.snapshot, self.vocabulary)
         )
 
+    def test_decision_projection_supports_rejected_history(self) -> None:
+        self.assertIn("rejected", intelligence.ENTITY_STATES["architecture_decision"])
+        self.assertIn("architecture_decision.rejected", intelligence.EVENT_TYPES)
+
     def test_complete_quest_covers_intent_through_deployment(self) -> None:
         kinds = {entity["kind"] for entity in self.snapshot["entities"]}
         self.assertEqual(set(intelligence.ENTITY_KIND_TO_ID), kinds)

@@ -8,7 +8,7 @@ decision_scope: organization
 visibility: public
 owners:
   - egohygiene/hygiene
-issue: null
+issue: https://github.com/egohygiene/hygiene/issues/15
 pull_request: https://github.com/egohygiene/hygiene/pull/10
 related:
   - ADR-0001
@@ -18,18 +18,25 @@ affected_repositories:
   - egohygiene/*
 affected_contracts:
   - egohygiene.architecture-decision/v1
+  - egohygiene.architecture-decision-policy-reference/v1
   - egohygiene.organization-contract-index/v1
-implementation_status: not_started
+implementation_status: in_progress
 evidence:
+  - type: issue
+    url: https://github.com/egohygiene/hygiene/issues/15
+    description: Ratification scope and acceptance criteria for the organization ADR contract.
   - type: pull_request
     url: https://github.com/egohygiene/hygiene/pull/10
-    description: Review surface for this proposed decision and its canonical contracts.
+    description: Merged foundation for this proposed decision and its first canonical contracts.
   - type: documentation
     url: https://github.com/egohygiene/hygiene/blob/main/docs/ecosystem/ARCHITECTURE.md
     description: Accepted ecosystem ownership and generated-context boundaries.
   - type: documentation
     url: https://github.com/egohygiene/aether/blob/main/library/organization/specs/architecture/governance/decisions.spec.md
-    description: Existing draft decision specification requiring ownership reconciliation.
+    description: Legacy Aether draft retained as migration evidence rather than canonical policy.
+  - type: implementation
+    url: https://github.com/egohygiene/aether/pull/50
+    description: Draft decision-impact agent hook pinned to the proposed Hygiene policy boundary.
   - type: implementation
     url: https://github.com/egohygiene/relay/tree/main/actions/repository-intelligence
     description: Existing reusable static intelligence action and public projection boundary.
@@ -59,23 +66,28 @@ view without copying protected GitHub content into public output.
 
 ## Decision
 
-Propose a Hygiene-owned organization ADR policy and versioned front matter
-schema. New local ADRs use `docs/decisions/ADR-NNN-short-slug.md`, begin as
-`proposed`, retain local ownership, and link approval, implementation evidence,
-affected contracts, affected repositories, and supersession lineage.
+Propose a Hygiene-owned organization ADR policy, versioned front matter schema,
+and repository inheritance-reference schema. New local ADRs use
+`docs/decisions/ADR-NNN-short-slug.md`, begin as `proposed`, retain local
+ownership, and link human disposition, implementation evidence, affected
+contracts, affected repositories, and supersession lineage. Repository-local
+policy pins the Hygiene version and commit instead of copying global prose.
 
 Decision status and implementation status remain independent. Only explicit
-human approval evidence may transition a proposal to `accepted`.
+human approval evidence may assign a non-proposed lifecycle disposition.
+Repository-specific metadata is permitted only through registered namespaced
+extension contracts; global lifecycle, identity, ownership, and privacy rules
+cannot be overridden locally.
 
-Relay will later validate ADRs and generate deterministic repository
-`decisions.json` and privacy-safe `activity.json` contracts. Observatory will
-later aggregate those contracts. Repository sites retain final static-site
-composition and deployment authority under `/intelligence`, with `/adr`
-redirecting to `/intelligence/decisions`.
+Egolint will later own ADR lint semantics. Relay will orchestrate those checks
+and generate deterministic repository `decisions.json` and privacy-safe
+`activity.json` contracts. Observatory will later aggregate those contracts.
+Repository sites retain final static-site composition and deployment authority
+under `/intelligence`, with `/adr` redirecting to `/intelligence/decisions`.
 
-This proposal defines contracts and migration rules only. It does not claim the
-validator, generators, routes, redirect, dashboard views, or aggregation are
-implemented.
+This proposal defines contracts, compatibility fixtures, reference contract
+checks, and migration rules. It does not claim fleet validation, generators,
+routes, redirect, dashboard views, or aggregation are implemented.
 
 ## Alternatives considered and rejected
 
@@ -114,9 +126,10 @@ resolves it.
 - Approval, implementation, and verification can no longer be conflated.
 - Existing repositories require different validate-first or scaffold-first
   migrations rather than one bulk replacement.
-- Aether's current draft specification and default-accepted template require a
-  migration after this policy is approved.
-- Relay and Observatory gain explicit boundaries, but their schemas and
+- Aether's decision-impact hook now demonstrates a pinned draft consumer, but
+  it cannot become an active organization instruction until this policy is
+  approved and released.
+- Egolint, Relay, and Observatory gain explicit boundaries, but their fleet
   implementations remain follow-up work.
 - Front matter and lineage add authoring overhead only for consequential
   decisions; routine implementation remains outside the ADR requirement.
@@ -125,9 +138,11 @@ resolves it.
 
 ## Implementation and evidence links
 
-Current evidence is limited to the audited repository state and the existing
-Relay intelligence action linked in front matter. No implementation or
-validation run is claimed.
+Current evidence includes the audited repository state, canonical Hygiene
+schemas and fixtures, Aether's draft pinned decision-impact hook, and the
+existing Relay intelligence action linked in front matter. These demonstrate
+contract feasibility; they do not claim fleet rollout or organization-wide
+validation.
 
 The pull request for this proposal is linked in front matter. Human approval, if
 granted, must be recorded separately in `approval` before the status changes.
@@ -146,10 +161,13 @@ Markdown remains portable even if Relay or Observatory is replaced.
 
 ## Follow-up work
 
-1. After human approval and merge, update Aether and Holon with pinned reusable
-   guidance and managed/scaffold/validate artifacts.
-2. Implement Relay validators and deterministic `decisions.json` and
-   `activity.json` generation with privacy and legacy fixtures.
-3. Implement Observatory aggregation and the first organization dashboard.
-4. Pilot Identity with a provenance-preserving migration map.
-5. Roll out grouped, reviewable repository pull requests.
+1. Obtain explicit maintainer ratification for this exact policy and record its
+   durable evidence before changing `status` or `approval`.
+2. Release Aether's pinned instruction module and define Holon's
+   scaffold/validate artifacts.
+3. Implement Egolint ADR rules and Relay CI orchestration plus deterministic
+   `decisions.json` and `activity.json` generation with privacy and legacy
+   fixtures.
+4. Implement Observatory aggregation and the first organization dashboard.
+5. Pilot Identity with a provenance-preserving migration map.
+6. Use Pace to roll out grouped, reviewable repository pull requests.
