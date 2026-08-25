@@ -9,7 +9,7 @@ visibility: public
 owners:
   - egohygiene/hygiene
 issue: https://github.com/egohygiene/hygiene/issues/19
-pull_request: null
+pull_request: https://github.com/egohygiene/hygiene/pull/20
 related:
   - ADR-002
 supersedes: []
@@ -24,6 +24,9 @@ evidence:
   - type: issue
     url: https://github.com/egohygiene/hygiene/issues/19
     description: Approved implementation scope for the proposed Repository Intelligence contract.
+  - type: pull_request
+    url: https://github.com/egohygiene/hygiene/pull/20
+    description: Review surface for the proposed contract, vocabulary, fixture, validator, and tests.
   - type: documentation
     url: https://github.com/egohygiene/hygiene/blob/main/docs/ecosystem/visual-roadmap-system.md
     description: Reviewed visual-roadmap ownership, evidence, privacy, and publication design.
