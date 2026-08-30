@@ -368,6 +368,26 @@
       "contract": null,
       "contract_status": "required",
       "pinning": "immutable"
+    },
+    {
+      "id": "RELATIONSHIP-021",
+      "producer": "egohygiene/hygiene",
+      "consumers": [
+        "egohygiene/egolint",
+        "egohygiene/holon",
+        "egohygiene/identity",
+        "egohygiene/observatory",
+        "egohygiene/pace",
+        "egohygiene/relay"
+      ],
+      "capability": "repository presentation policy, applicability, evidence states, and badge claim limits",
+      "interfaces": [
+        "schema",
+        "generated-projection"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "versioned"
     }
   ],
   "forbidden_dependencies": [

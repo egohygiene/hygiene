@@ -206,6 +206,8 @@ separate decision proves a durable operational need.
 Hygiene will publish an architecture release containing:
 
 - `catalog/repositories.yaml` — machine-readable repository registry;
+- `catalog/repository-presentation-profile.json` — repository presentation,
+  applicability, evidence-state, and badge-claim policy after approval;
 - this ecosystem architecture;
 - cross-repository ADRs and contract indexes;
 - diagram sources and approved rendered diagrams;
@@ -220,6 +222,12 @@ Each repository should contain a generated `docs/ecosystem/CONTEXT.md` with:
 - links to canonical diagrams and decisions.
 
 Each repository's `AGENTS.md` should require agents to read that local context before architecture-changing work. Pace later opens update PRs when the canonical architecture changes. Repository-local docs may add detail but may not silently redefine cross-repository ownership.
+
+Repository presentation follows the same control-plane separation. Hygiene
+defines the semantic profile; Identity publishes approved visual assets; Holon
+composes new repositories; Egolint evaluates conformance; Relay transports
+evidence; Pace proposes existing-repository changes; Observatory reports; and
+each repository retains its facts and final review.
 
 ## 7. Control loops
 

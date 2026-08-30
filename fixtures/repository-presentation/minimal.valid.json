@@ -1,0 +1,137 @@
+{
+  "schema": "egohygiene.repository-presentation-evidence/v1",
+  "profile": {
+    "id": "egohygiene.repository-presentation-profile/v1",
+    "version": "1.0.0-alpha.1",
+    "status": "proposed",
+    "source": "catalog/repository-presentation-profile.json"
+  },
+  "repository": {
+    "name": "egohygiene/example-publication",
+    "type": "publication",
+    "visibility": "public",
+    "lifecycle": "archived",
+    "represented_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "assessment": {
+    "state": "passing",
+    "observed_at": "2026-08-30T00:00:00Z",
+    "assessor": "hygiene-reference-validator",
+    "assessor_version": "1.0.0-alpha.1"
+  },
+  "slots": [
+    {
+      "id": "architecture",
+      "requirement": "recommended",
+      "state": "passing",
+      "evidence": [{ "kind": "documentation", "location": "README.md#architecture", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "canonical_navigation",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "local_file", "location": "README.md", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "contributing",
+      "requirement": "not_applicable",
+      "state": "not_applicable",
+      "evidence": [],
+      "reason": "The synthetic publication fixture is archived and does not accept changes."
+    },
+    {
+      "id": "development",
+      "requirement": "not_applicable",
+      "state": "not_applicable",
+      "evidence": [],
+      "reason": "The synthetic publication fixture is archived and has no development workflow."
+    },
+    {
+      "id": "documentation",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "documentation", "location": "README.md", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "evidence_badges",
+      "requirement": "recommended",
+      "state": "passing",
+      "evidence": [{ "kind": "manifest", "location": "evidence/repository-presentation.json", "assertion": "derived", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "generated_ownership",
+      "requirement": "optional",
+      "state": "unknown",
+      "evidence": [],
+      "reason": "The fixture does not claim generated README regions."
+    },
+    {
+      "id": "identity_banner",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "manifest", "location": "assets/identity/manifest.json", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "installation",
+      "requirement": "not_applicable",
+      "state": "not_applicable",
+      "evidence": [],
+      "reason": "Readers access this archived publication directly; there is no installable output."
+    },
+    {
+      "id": "license",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "local_file", "location": "LICENSE", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "maturity_status",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "documentation", "location": "README.md#status", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "purpose",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "documentation", "location": "README.md#purpose", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "security",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "documentation", "location": "README.md#security", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "support_boundary",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "documentation", "location": "README.md#support", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "validation",
+      "requirement": "not_applicable",
+      "state": "not_applicable",
+      "evidence": [],
+      "reason": "The archived synthetic publication exposes fixed artifacts rather than an active validation pipeline."
+    }
+  ],
+  "badge": {
+    "label": "Hygienic",
+    "message": "repository profile passing",
+    "state": "passing",
+    "profile_version": "1.0.0-alpha.1",
+    "represented_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "evidence_url": "evidence/repository-presentation.json"
+  }
+}

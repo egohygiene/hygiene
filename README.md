@@ -30,6 +30,11 @@ capability.
 - [Repository Intelligence schema](schemas/repository-intelligence.v1.schema.json)
 - [Repository Intelligence vocabulary](catalog/repository-intelligence-vocabulary.json)
 - [Complete quest fixture](fixtures/repository-intelligence/complete-quest.json)
+- [Proposed repository presentation profile](docs/ecosystem/REPOSITORY_PRESENTATION.md)
+- [Repository presentation profile source](catalog/repository-presentation-profile.json)
+- [Repository presentation profile schema](schemas/repository-presentation-profile.v1.schema.json)
+- [Repository presentation evidence schema](schemas/repository-presentation-evidence.v1.schema.json)
+- [Repository presentation fixtures](fixtures/repository-presentation)
 
 The accepted written architecture and versioned machine-readable catalog are
 authoritative. Rendered diagrams, local repository context, and future landscape
@@ -83,6 +88,11 @@ python3 tools/boundaries.py scan \
 python3 tools/intelligence.py validate \
   --snapshot fixtures/repository-intelligence/complete-quest.json \
   --vocabulary catalog/repository-intelligence-vocabulary.json
+python3 tools/presentation.py validate-profile
+python3 tools/presentation.py validate-evidence \
+  --evidence fixtures/repository-presentation/minimal.valid.json
+python3 tools/presentation.py validate-evidence \
+  --evidence fixtures/repository-presentation/rich.valid.json
 python3 tools/decisions.py decision \
   --input fixtures/architecture-decisions/decision.proposed.valid.json
 python3 tools/decisions.py decision-set \

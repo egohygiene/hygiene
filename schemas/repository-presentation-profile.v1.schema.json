@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/repository-presentation-profile.v1.schema.json",
+  "title": "Ego Hygiene repository presentation profile v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "status",
+    "owner",
+    "updated",
+    "purpose",
+    "claim_policy",
+    "requirements",
+    "evidence_states",
+    "repository_types",
+    "visibilities",
+    "lifecycles",
+    "slots",
+    "type_overrides",
+    "visibility_overrides",
+    "lifecycle_overrides",
+    "composition",
+    "ownership"
+  ],
+  "properties": {
+    "schema": { "const": "egohygiene.repository-presentation-profile/v1" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-alpha\\.[0-9]+)?$" },
+    "status": { "enum": ["proposed", "active", "deprecated", "superseded"] },
+    "owner": { "const": "egohygiene/hygiene" },
+    "updated": { "type": "string", "format": "date" },
+    "purpose": { "type": "string", "minLength": 1 },
+    "claim_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "badge_label",
+        "state_messages",
+        "prohibited_claim_terms",
+        "represented_commit_required",
+        "evidence_url_required",
+        "unknown_fails_closed"
+      ],
+      "properties": {
+        "badge_label": { "const": "Hygienic" },
+        "state_messages": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "unknown",
+            "evaluating",
+            "advisory",
+            "passing",
+            "failing",
+            "partial",
+            "stale",
+            "exempt",
+            "not_applicable",
+            "blocked"
+          ],
+          "properties": {
+            "unknown": { "$ref": "#/$defs/text" },
+            "evaluating": { "$ref": "#/$defs/text" },
+            "advisory": { "$ref": "#/$defs/text" },
+            "passing": { "$ref": "#/$defs/text" },
+            "failing": { "$ref": "#/$defs/text" },
+            "partial": { "$ref": "#/$defs/text" },
+            "stale": { "$ref": "#/$defs/text" },
+            "exempt": { "$ref": "#/$defs/text" },
+            "not_applicable": { "$ref": "#/$defs/text" },
+            "blocked": { "$ref": "#/$defs/text" }
+          }
+        },
+        "prohibited_claim_terms": { "$ref": "#/$defs/uniqueStrings" },
+        "represented_commit_required": { "const": true },
+        "evidence_url_required": { "const": true },
+        "unknown_fails_closed": { "const": true }
+      }
+    },
+    "requirements": {
+      "type": "array",
+      "const": ["required", "recommended", "optional", "not_applicable"]
+    },
+    "evidence_states": {
+      "type": "array",
+      "const": [
+        "unknown",
+        "evaluating",
+        "advisory",
+        "passing",
+        "failing",
+        "partial",
+        "stale",
+        "exempt",
+        "not_applicable",
+        "blocked"
+      ]
+    },
+    "repository_types": { "$ref": "#/$defs/uniqueStrings" },
+    "visibilities": {
+      "type": "array",
+      "const": ["public", "internal", "private"]
+    },
+    "lifecycles": {
+      "type": "array",
+      "const": ["active", "incubating", "archived"]
+    },
+    "slots": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/slot" }
+    },
+    "type_overrides": { "$ref": "#/$defs/overrideMap" },
+    "visibility_overrides": { "$ref": "#/$defs/overrideMap" },
+    "lifecycle_overrides": { "$ref": "#/$defs/overrideMap" },
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "override_order",
+        "generated_regions_only",
+        "preserve_repository_authored_prose",
+        "full_file_replacement_forbidden"
+      ],
+      "properties": {
+        "override_order": {
+          "const": ["default", "repository_type", "visibility", "lifecycle"]
+        },
+        "generated_regions_only": { "const": true },
+        "preserve_repository_authored_prose": { "const": true },
+        "full_file_replacement_forbidden": { "const": true }
+      }
+    },
+    "ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hygiene",
+        "identity",
+        "holon",
+        "egolint",
+        "relay",
+        "pace",
+        "observatory",
+        "repository"
+      ],
+      "properties": {
+        "hygiene": { "$ref": "#/$defs/text" },
+        "identity": { "$ref": "#/$defs/text" },
+        "holon": { "$ref": "#/$defs/text" },
+        "egolint": { "$ref": "#/$defs/text" },
+        "relay": { "$ref": "#/$defs/text" },
+        "pace": { "$ref": "#/$defs/text" },
+        "observatory": { "$ref": "#/$defs/text" },
+        "repository": { "$ref": "#/$defs/text" }
+      }
+    }
+  },
+  "$defs": {
+    "text": { "type": "string", "minLength": 1 },
+    "uniqueStrings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/text" }
+    },
+    "requirement": {
+      "enum": ["required", "recommended", "optional", "not_applicable"]
+    },
+    "slot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "default_requirement",
+        "authority",
+        "description",
+        "checks"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "title": { "$ref": "#/$defs/text" },
+        "default_requirement": { "$ref": "#/$defs/requirement" },
+        "authority": {
+          "type": "string",
+          "pattern": "^(repository|egohygiene/[a-z0-9.-]+)$"
+        },
+        "description": { "$ref": "#/$defs/text" },
+        "checks": { "$ref": "#/$defs/uniqueStrings" }
+      }
+    },
+    "overrideMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": { "$ref": "#/$defs/requirement" }
+      }
+    }
+  }
+}
