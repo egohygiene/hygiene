@@ -4,7 +4,7 @@
 
 - Architecture release: `architecture-v0.1.0`
 - Governing decision: `ADR-0001`
-- Relationships: `20`
+- Relationships: `21`
 - Active exceptions: `0`
 
 ## Rules
@@ -44,6 +44,7 @@
 | `RELATIONSHIP-018` | `egohygiene/filament` | `egohygiene/*` | reusable infrastructure modules, stack contracts, provider adapters, and validation evidence | `package`, `schema` | _required_ | `immutable-or-versioned` |
 | `RELATIONSHIP-019` | `egohygiene/.github` | `egohygiene/sanctuary` | routed ownerless-work intake and ownership questions | `schema` | _required_ | `versioned` |
 | `RELATIONSHIP-020` | `egohygiene/sanctuary` | `egohygiene/*` | reviewed graduation provenance and ownership-decision evidence | `schema`, `generated-projection` | _required_ | `immutable` |
+| `RELATIONSHIP-021` | `egohygiene/hygiene` | `egohygiene/egolint`, `egohygiene/holon`, `egohygiene/identity`, `egohygiene/observatory`, `egohygiene/pace`, `egohygiene/relay` | repository presentation policy, applicability, evidence states, and badge claim limits | `schema`, `generated-projection` | _required_ | `versioned` |
 
 ## Forbidden direct dependencies
 

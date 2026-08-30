@@ -8,7 +8,7 @@ status: provisional
 owners:
   - egohygiene
 created: 2026-08-19
-updated: 2026-08-25
+updated: 2026-08-30
 governed_by:
   - architecture-roadmap
 depends_on:
@@ -150,7 +150,7 @@ issues: []
 id: HYG-Q05
 status: planned
 depends_on: [HYG-Q03, HYG-Q04]
-issues: [19]
+issues: [19, 22]
 -->
 #### HYG-Q05 — Version and integrate the organization contract
 
@@ -169,6 +169,8 @@ issues: [19]
 - PR #20 merged the proposed Repository Intelligence schema, vocabulary,
   complete delivery-chain fixture, and reference validator. Cross-tool
   integration remains unproven.
+- Issue #22 defines the proposed repository-presentation profile and evidence
+  boundary before Identity, Holon, Egolint, and Pace implementations.
 
 <!-- roadmap-step
 id: HYG-Q06

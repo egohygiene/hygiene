@@ -71,3 +71,23 @@ python3 tools/intelligence.py validate \
 See the
 [Repository Intelligence contract](../docs/ecosystem/REPOSITORY_INTELLIGENCE.md)
 for identifier, provenance, event, privacy, extension, and compatibility rules.
+
+## Repository presentation profile
+
+`repository-presentation-profile.json` is the proposed semantic baseline for
+repository banners, purpose/status, navigation, evidence badges, applicable
+setup and policy links, and generated-region ownership. It defines type,
+visibility, and lifecycle overrides without generating repository facts.
+
+```bash
+python3 tools/presentation.py validate-profile
+python3 tools/presentation.py validate-evidence \
+  --evidence fixtures/repository-presentation/minimal.valid.json
+python3 tools/presentation.py validate-evidence \
+  --evidence fixtures/repository-presentation/rich.valid.json
+```
+
+See the
+[repository presentation guide](../docs/ecosystem/REPOSITORY_PRESENTATION.md)
+for applicability, badge-state derivation, evidence, composition, ownership,
+and rollout boundaries.

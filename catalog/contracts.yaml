@@ -3,7 +3,7 @@
   "status": "proposed",
   "organization": "egohygiene",
   "canonical_repository": "egohygiene/hygiene",
-  "updated": "2026-08-25",
+  "updated": "2026-08-30",
   "contracts": [
     {
       "id": "egohygiene.architecture-decision/v1",
@@ -51,6 +51,22 @@
       "owner": "egohygiene/hygiene",
       "source": "schemas/repository-context.v1.schema.json",
       "status": "active",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-presentation-profile/v1",
+      "title": "Repository presentation policy profile",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-presentation-profile.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-presentation-evidence/v1",
+      "title": "Repository presentation conformance evidence",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-presentation-evidence.v1.schema.json",
+      "status": "proposed",
       "visibility": "public"
     },
     {

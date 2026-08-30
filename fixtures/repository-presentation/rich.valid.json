@@ -1,0 +1,137 @@
+{
+  "schema": "egohygiene.repository-presentation-evidence/v1",
+  "profile": {
+    "id": "egohygiene.repository-presentation-profile/v1",
+    "version": "1.0.0-alpha.1",
+    "status": "proposed",
+    "source": "catalog/repository-presentation-profile.json"
+  },
+  "repository": {
+    "name": "egohygiene/example-tool",
+    "type": "tool",
+    "visibility": "public",
+    "lifecycle": "active",
+    "represented_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "assessment": {
+    "state": "passing",
+    "observed_at": "2026-08-30T00:00:00Z",
+    "assessor": "hygiene-reference-validator",
+    "assessor_version": "1.0.0-alpha.1"
+  },
+  "slots": [
+    {
+      "id": "architecture",
+      "requirement": "recommended",
+      "state": "passing",
+      "evidence": [{ "kind": "documentation", "location": "ARCHITECTURE.md", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "canonical_navigation",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "local_file", "location": "README.md", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "contributing",
+      "requirement": "recommended",
+      "state": "passing",
+      "evidence": [{ "kind": "local_file", "location": "CONTRIBUTING.md", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "development",
+      "requirement": "recommended",
+      "state": "passing",
+      "evidence": [{ "kind": "documentation", "location": "README.md#development", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "documentation",
+      "requirement": "recommended",
+      "state": "passing",
+      "evidence": [{ "kind": "documentation", "location": "docs/README.md", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "evidence_badges",
+      "requirement": "recommended",
+      "state": "passing",
+      "evidence": [{ "kind": "workflow", "location": ".github/workflows/ci.yml", "assertion": "derived", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "generated_ownership",
+      "requirement": "optional",
+      "state": "passing",
+      "evidence": [{ "kind": "manifest", "location": ".holon/readme-projection.json", "assertion": "derived", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "identity_banner",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "manifest", "location": "assets/identity/manifest.json", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "installation",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "documentation", "location": "README.md#installation", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "license",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "local_file", "location": "LICENSE", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "maturity_status",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "documentation", "location": "README.md#status", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "purpose",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "documentation", "location": "README.md#purpose", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "security",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "local_file", "location": "SECURITY.md", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "support_boundary",
+      "requirement": "required",
+      "state": "passing",
+      "evidence": [{ "kind": "local_file", "location": "SUPPORT.md", "assertion": "authoritative", "freshness": "current" }],
+      "reason": null
+    },
+    {
+      "id": "validation",
+      "requirement": "recommended",
+      "state": "passing",
+      "evidence": [{ "kind": "workflow", "location": ".github/workflows/ci.yml", "assertion": "derived", "freshness": "current" }],
+      "reason": null
+    }
+  ],
+  "badge": {
+    "label": "Hygienic",
+    "message": "repository profile passing",
+    "state": "passing",
+    "profile_version": "1.0.0-alpha.1",
+    "represented_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "evidence_url": "evidence/repository-presentation.json"
+  }
+}

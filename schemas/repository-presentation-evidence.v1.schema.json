@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/repository-presentation-evidence.v1.schema.json",
+  "title": "Ego Hygiene repository presentation evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "profile",
+    "repository",
+    "assessment",
+    "slots",
+    "badge"
+  ],
+  "properties": {
+    "schema": { "const": "egohygiene.repository-presentation-evidence/v1" },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "status", "source"],
+      "properties": {
+        "id": { "const": "egohygiene.repository-presentation-profile/v1" },
+        "version": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["proposed", "active", "deprecated", "superseded"] },
+        "source": { "type": "string", "minLength": 1 }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "type", "visibility", "lifecycle", "represented_commit"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^egohygiene/(?:\\.github|[a-z0-9][a-z0-9.-]*)$"
+        },
+        "type": { "type": "string", "minLength": 1 },
+        "visibility": { "enum": ["public", "internal", "private"] },
+        "lifecycle": { "enum": ["active", "incubating", "archived"] },
+        "represented_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+      }
+    },
+    "assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "observed_at", "assessor", "assessor_version"],
+      "properties": {
+        "state": { "$ref": "#/$defs/state" },
+        "observed_at": { "type": "string", "format": "date-time" },
+        "assessor": { "type": "string", "minLength": 1 },
+        "assessor_version": { "type": "string", "minLength": 1 }
+      }
+    },
+    "slots": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/slotEvidence" }
+    },
+    "badge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "message",
+        "state",
+        "profile_version",
+        "represented_commit",
+        "evidence_url"
+      ],
+      "properties": {
+        "label": { "const": "Hygienic" },
+        "message": { "type": "string", "minLength": 1 },
+        "state": { "$ref": "#/$defs/state" },
+        "profile_version": { "type": "string", "minLength": 1 },
+        "represented_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "evidence_url": { "type": "string", "format": "uri-reference", "minLength": 1 }
+      }
+    }
+  },
+  "$defs": {
+    "state": {
+      "enum": [
+        "unknown",
+        "evaluating",
+        "advisory",
+        "passing",
+        "failing",
+        "partial",
+        "stale",
+        "exempt",
+        "not_applicable",
+        "blocked"
+      ]
+    },
+    "slotEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "requirement", "state", "evidence", "reason"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "requirement": {
+          "enum": ["required", "recommended", "optional", "not_applicable"]
+        },
+        "state": { "$ref": "#/$defs/state" },
+        "evidence": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/evidenceRecord" }
+        },
+        "reason": { "type": ["string", "null"], "minLength": 1 }
+      }
+    },
+    "evidenceRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "location", "assertion", "freshness"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "approval",
+            "documentation",
+            "local_file",
+            "manifest",
+            "release",
+            "workflow"
+          ]
+        },
+        "location": { "type": "string", "minLength": 1 },
+        "assertion": { "enum": ["authoritative", "derived", "unknown"] },
+        "freshness": { "enum": ["current", "stale", "unknown", "not_applicable"] }
+      }
+    }
+  }
+}

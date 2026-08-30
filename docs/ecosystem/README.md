@@ -20,7 +20,10 @@ This package defines the target repository architecture before any new infograph
 8. Review [`REPOSITORY_INTELLIGENCE.md`](REPOSITORY_INTELLIGENCE.md) for the
    proposed graph, event, provenance, linkage, privacy, and compatibility
    contract used by repository intelligence projections.
-9. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
+9. Review [`REPOSITORY_PRESENTATION.md`](REPOSITORY_PRESENTATION.md) for the
+   proposed README slots, applicability, evidence-badge states, generated
+   boundaries, and rollout ownership.
+10. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
 
 ## Architectural decision
 

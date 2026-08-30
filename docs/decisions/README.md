@@ -31,6 +31,7 @@ by this directory.
 | [ADR-003](ADR-003-route-filament-infrastructure-contracts.md) | Route reusable infrastructure contracts to Filament | Proposed | 2026-08-21 |
 | [ADR-004](ADR-004-register-sanctuary-incubation-boundary.md) | Register Sanctuary as the bounded incubation owner | Proposed | 2026-08-21 |
 | [ADR-005](ADR-005-unify-repository-intelligence-projection.md) | Unify repository intelligence as a provenance-aware graph projection | Proposed | 2026-08-25 |
+| [ADR-006](ADR-006-repository-presentation-profile.md) | Define an evidence-backed repository presentation profile | Proposed | 2026-08-30 |
 
 ADR-0001 predates the proposed three-digit filename convention. Its four-digit
 identity and original body remain unchanged for provenance. If the new policy is
