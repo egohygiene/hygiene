@@ -9,7 +9,7 @@ visibility: public
 owners:
   - egohygiene/hygiene
 issue: https://github.com/egohygiene/hygiene/issues/22
-pull_request: null
+pull_request: https://github.com/egohygiene/hygiene/pull/24
 related:
   - ADR-0001
 supersedes: []
@@ -24,6 +24,9 @@ evidence:
   - type: issue
     url: https://github.com/egohygiene/hygiene/issues/22
     description: Approved implementation scope and downstream ownership graph.
+  - type: pull_request
+    url: https://github.com/egohygiene/hygiene/pull/24
+    description: Review surface for the profile, schemas, fixtures, validator, documentation, and tests.
 exceptions: []
 approval: null
 ---
