@@ -388,6 +388,39 @@
       "contract": null,
       "contract_status": "required",
       "pinning": "versioned"
+    },
+    {
+      "id": "RELATIONSHIP-022",
+      "producer": "egohygiene/aether",
+      "consumers": [
+        "egohygiene/hygiene"
+      ],
+      "capability": "repository release declaration, authoring guidance, and provider-neutral protocol",
+      "interfaces": [
+        "schema",
+        "generated-projection"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "immutable"
+    },
+    {
+      "id": "RELATIONSHIP-023",
+      "producer": "egohygiene/hygiene",
+      "consumers": [
+        "egohygiene/egolint",
+        "egohygiene/holon",
+        "egohygiene/pace",
+        "egohygiene/relay"
+      ],
+      "capability": "repository release applicability, migration, exception, and ownership baseline",
+      "interfaces": [
+        "schema",
+        "generated-projection"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "versioned"
     }
   ],
   "forbidden_dependencies": [

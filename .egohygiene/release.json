@@ -1,0 +1,66 @@
+{
+  "$schema": "https://egohygiene.io/schemas/aether/repository-release/v1.json",
+  "schema_version": "egohygiene.repository-release/v1",
+  "repository": {
+    "id": "egohygiene/hygiene",
+    "lifecycle": "active",
+    "release_profile": "contract"
+  },
+  "release": {
+    "state": "unreleased",
+    "tag_prefix": "v",
+    "immutable_tags": true,
+    "major_alias": "optional"
+  },
+  "changelog": {
+    "path": "CHANGELOG.md",
+    "format": "keep-a-changelog/1.1",
+    "unreleased_heading": "Unreleased"
+  },
+  "components": [
+    {
+      "id": "release-policy",
+      "kind": "catalog",
+      "version_authority": {
+        "kind": "catalog-record",
+        "path": "catalog/repository-release-policy.json",
+        "selector": "version"
+      }
+    }
+  ],
+  "delivery": {
+    "channels": [
+      {
+        "kind": "github-release",
+        "state": "planned",
+        "relay_profile": "unavailable",
+        "notes": "Hygiene publishes policy evidence after reviewed release mechanics are available; no provider result is inferred from this declaration."
+      }
+    ]
+  },
+  "evidence": {
+    "source": "required",
+    "change": "required",
+    "provenance": "required",
+    "sbom": "not-applicable",
+    "signature": "unavailable",
+    "rollback": {
+      "strategy": "revert-and-successor-tag",
+      "instructions": "Revert the faulty policy change and publish a corrected successor tag. Never replace an immutable tag, release asset, or historical changelog entry."
+    }
+  },
+  "automation": {
+    "taskfile_path": "Taskfile.yml",
+    "tasks": {
+      "plan": "release:plan",
+      "prepare": "release:prepare",
+      "verify": "release:verify",
+      "publish": "release:publish"
+    },
+    "github": {
+      "manual_dispatch_required": true,
+      "workflow_path": ".github/workflows/release-policy.yml",
+      "state": "configured"
+    }
+  }
+}

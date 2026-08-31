@@ -70,6 +70,14 @@
       "visibility": "public"
     },
     {
+      "id": "egohygiene.repository-release-policy/v1",
+      "title": "Repository release-convention baseline policy",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-release-policy.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
       "id": "egohygiene.dependency-boundary-register/v1",
       "title": "Cross-repository dependency-boundary register",
       "owner": "egohygiene/hygiene",

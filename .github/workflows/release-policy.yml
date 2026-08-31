@@ -1,0 +1,32 @@
+name: Release Hygiene policy
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Exact immutable vMAJOR.MINOR.PATCH tag prepared in a reviewed release PR"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  validate-handoff:
+    name: Validate reviewed policy release handoff
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out reviewed default-branch revision
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Validate the local baseline declaration
+        run: python3 "tools/releases.py" validate-declaration --repository "." --format "json"
+      - name: Confirm manual handoff
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          set -euo pipefail
+          if [[ ! "${RELEASE_TAG}" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+            echo "release_tag must match exact vMAJOR.MINOR.PATCH" >&2
+            exit 1
+          fi
+          echo "Validated ${RELEASE_TAG}; create or verify the immutable tag and repository-owned release evidence in the reviewed publication step."

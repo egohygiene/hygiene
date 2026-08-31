@@ -1,0 +1,36 @@
+version: "3"
+
+tasks:
+  release:plan:
+    desc: Validate Hygiene's release baseline and print a read-only plan
+    cmds:
+      - python3 "tools/releases.py" validate-declaration --repository "." --format "json"
+
+  release:prepare:
+    desc: Preflight a reviewed Hygiene policy release candidate without mutation
+    requires:
+      vars:
+        - RELEASE_VERSION
+    cmds:
+      - python3 "tools/releases.py" validate-declaration --repository "."
+      - echo "Prepare {{.RELEASE_VERSION}} in a reviewed release PR by promoting CHANGELOG.md Unreleased content and updating the declared catalog authority."
+
+  release:verify:
+    desc: Verify the reviewed Hygiene policy release candidate before manual publication
+    requires:
+      vars:
+        - RELEASE_VERSION
+    cmds:
+      - python3 "tools/releases.py" validate-declaration --repository "." --format "json"
+      - echo "Verify that {{.RELEASE_VERSION}} matches catalog/repository-release-policy.json and the reviewed changelog entry."
+
+  release:publish:
+    desc: Print the explicit manual release handoff after verification
+    requires:
+      vars:
+        - RELEASE_VERSION
+    cmds:
+      - task: release:verify
+        vars:
+          RELEASE_VERSION: "{{.RELEASE_VERSION}}"
+      - echo "Handoff only: create immutable {{.RELEASE_VERSION}} from reviewed default-branch history, then manually dispatch .github/workflows/release-policy.yml."
