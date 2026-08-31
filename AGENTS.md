@@ -17,3 +17,15 @@ Relay, Egolint, Flow, or product repositories.
 
 Generated repository-local context and diagrams are projections. Do not edit a
 projection to silently redefine canonical ownership.
+
+## Repository release baseline
+
+Before changing versioning, changelog, tag, workflow, or publication behavior,
+read [the repository release baseline](docs/ecosystem/REPOSITORY_RELEASE.md)
+and [the local declaration](.egohygiene/release.json). The policy composes the
+immutable Aether contract; do not copy or weaken that protocol here.
+
+Use `release:plan`, `release:prepare`, and `release:verify` for a reviewable
+candidate. `release:publish` is a manual handoff only. It does not authorize a
+tag, release, deployment, registry operation, credential use, or immutable
+artifact overwrite without a separate user-approved publication action.

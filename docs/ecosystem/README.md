@@ -23,7 +23,10 @@ This package defines the target repository architecture before any new infograph
 9. Review [`REPOSITORY_PRESENTATION.md`](REPOSITORY_PRESENTATION.md) for the
    proposed README slots, applicability, evidence-badge states, generated
    boundaries, and rollout ownership.
-10. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
+10. Review [`REPOSITORY_RELEASE.md`](REPOSITORY_RELEASE.md) for the proposed
+    release-convention baseline, immutable Aether pin, migration states, and
+    repository-owned release boundary.
+11. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
 
 ## Architectural decision
 

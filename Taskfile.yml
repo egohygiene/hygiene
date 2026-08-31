@@ -1,0 +1,8 @@
+version: "3"
+
+# Task is a local orchestration layer only. Release publication remains a
+# reviewed, explicit repository-owned handoff.
+includes:
+  release:
+    taskfile: "./.tasks/release.yml"
+    flatten: true

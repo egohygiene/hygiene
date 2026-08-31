@@ -208,6 +208,9 @@ Hygiene will publish an architecture release containing:
 - `catalog/repositories.yaml` — machine-readable repository registry;
 - `catalog/repository-presentation-profile.json` — repository presentation,
   applicability, evidence-state, and badge-claim policy after approval;
+- `catalog/repository-release-policy.json` — repository release applicability,
+  migration, exception, and ownership policy composed from Aether's immutable
+  release declaration contract;
 - this ecosystem architecture;
 - cross-repository ADRs and contract indexes;
 - diagram sources and approved rendered diagrams;
@@ -228,6 +231,12 @@ defines the semantic profile; Identity publishes approved visual assets; Holon
 composes new repositories; Egolint evaluates conformance; Relay transports
 evidence; Pace proposes existing-repository changes; Observatory reports; and
 each repository retains its facts and final review.
+
+Repository release conventions follow that separation as well. Aether owns the
+release declaration and authoring guidance; Hygiene defines applicability and
+migration; Relay owns reusable execution; Egolint owns diagnostics; Pace
+proposes adoption; and repositories own their version authority, delivery
+adapters, credentials, release decisions, and final publication review.
 
 ## 7. Control loops
 
