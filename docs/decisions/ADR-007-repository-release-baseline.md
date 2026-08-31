@@ -9,7 +9,7 @@ visibility: public
 owners:
   - egohygiene/hygiene
 issue: https://github.com/egohygiene/hygiene/issues/27
-pull_request: null
+pull_request: https://github.com/egohygiene/hygiene/pull/28
 related:
   - ADR-0001
 supersedes: []
@@ -26,6 +26,9 @@ evidence:
   - type: external
     url: https://github.com/egohygiene/aether/pull/62
     description: Merged immutable Aether release-declaration contract consumed by this policy without copying its protocol.
+  - type: pull_request
+    url: https://github.com/egohygiene/hygiene/pull/28
+    description: Review surface for the release baseline profile, Hygiene dogfood declaration, migration guidance, and validators.
 exceptions: []
 approval: null
 ---
