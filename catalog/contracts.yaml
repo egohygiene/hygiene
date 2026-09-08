@@ -3,7 +3,7 @@
   "status": "proposed",
   "organization": "egohygiene",
   "canonical_repository": "egohygiene/hygiene",
-  "updated": "2026-08-30",
+  "updated": "2026-09-08",
   "contracts": [
     {
       "id": "egohygiene.architecture-decision/v1",
@@ -50,7 +50,23 @@
       "title": "Repository-local ecosystem context",
       "owner": "egohygiene/hygiene",
       "source": "schemas/repository-context.v1.schema.json",
-      "status": "active",
+      "status": "deprecated",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-context/v2",
+      "title": "Repository-local ecosystem context with continuity composition",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-context.v2.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-continuity-policy/v1",
+      "title": "Organization repository continuity policy",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-continuity-policy.v1.schema.json",
+      "status": "proposed",
       "visibility": "public"
     },
     {

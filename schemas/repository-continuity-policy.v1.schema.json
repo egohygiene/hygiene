@@ -1,0 +1,398 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/repository-continuity-policy.v1.schema.json",
+  "title": "Ego Hygiene repository continuity policy v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "status",
+    "owner",
+    "updated",
+    "purpose",
+    "upstream",
+    "required_files",
+    "source_precedence",
+    "conflict_policy",
+    "applicability",
+    "rollout",
+    "exceptions",
+    "information_safety",
+    "compatibility",
+    "downstream",
+    "ownership"
+  ],
+  "properties": {
+    "schema": { "const": "egohygiene.repository-continuity-policy/v1" },
+    "version": { "const": "1.0.0-alpha.1" },
+    "status": { "enum": ["proposed", "active", "deprecated", "superseded"] },
+    "owner": { "const": "egohygiene/hygiene" },
+    "updated": { "type": "string", "format": "date" },
+    "purpose": { "$ref": "#/$defs/text" },
+    "upstream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contract_id",
+        "contract_version",
+        "repository",
+        "revision",
+        "revision_kind",
+        "lifecycle",
+        "release_included",
+        "evidence",
+        "artifacts",
+        "activation_gate"
+      ],
+      "properties": {
+        "contract_id": { "const": "aether.repository-continuity/v1" },
+        "contract_version": { "const": "1.0.0" },
+        "repository": { "const": "egohygiene/aether" },
+        "revision": { "$ref": "#/$defs/commit" },
+        "revision_kind": { "const": "git-commit" },
+        "lifecycle": { "enum": ["draft", "stable", "deprecated"] },
+        "release_included": { "type": "boolean" },
+        "evidence": { "$ref": "#/$defs/uris" },
+        "artifacts": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/upstreamArtifact" }
+        },
+        "activation_gate": { "$ref": "#/$defs/text" }
+      }
+    },
+    "required_files": {
+      "type": "array",
+      "minItems": 3,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/requiredFile" }
+    },
+    "source_precedence": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/token" }
+    },
+    "conflict_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "live_verification_required",
+        "stale_checkpoint_action",
+        "silent_override_forbidden",
+        "unavailable_evidence_action"
+      ],
+      "properties": {
+        "live_verification_required": { "const": true },
+        "stale_checkpoint_action": { "const": "repair-or-mark-stale" },
+        "silent_override_forbidden": { "const": true },
+        "unavailable_evidence_action": { "const": "report-limitation-and-do-not-infer" }
+      }
+    },
+    "applicability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolution_order",
+        "lifecycles",
+        "repository_kinds",
+        "visibilities",
+        "initial_scope"
+      ],
+      "properties": {
+        "resolution_order": { "$ref": "#/$defs/tokens" },
+        "lifecycles": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["active", "dormant", "archived"],
+          "properties": {
+            "active": { "$ref": "#/$defs/requirement" },
+            "dormant": { "$ref": "#/$defs/requirement" },
+            "archived": { "$ref": "#/$defs/requirement" }
+          }
+        },
+        "repository_kinds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["standard", "mirror", "generated-only", "template"],
+          "properties": {
+            "standard": { "$ref": "#/$defs/requirement" },
+            "mirror": { "$ref": "#/$defs/requirement" },
+            "generated-only": { "$ref": "#/$defs/requirement" },
+            "template": { "$ref": "#/$defs/requirement" }
+          }
+        },
+        "visibilities": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["public", "private", "internal"],
+          "properties": {
+            "public": { "const": "no-override" },
+            "private": { "const": "no-override" },
+            "internal": { "const": "no-override" }
+          }
+        },
+        "initial_scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "observed_at",
+            "source",
+            "active_repository_count",
+            "default_requirement",
+            "repositories",
+            "catalog_reconciliation"
+          ],
+          "properties": {
+            "observed_at": { "type": "string", "format": "date" },
+            "source": { "type": "string", "format": "uri" },
+            "active_repository_count": { "type": "integer", "minimum": 1 },
+            "default_requirement": { "$ref": "#/$defs/requirement" },
+            "repositories": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "#/$defs/repository" }
+            },
+            "catalog_reconciliation": { "$ref": "#/$defs/text" }
+          }
+        }
+      }
+    },
+    "rollout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["current_stage", "stages"],
+      "properties": {
+        "current_stage": { "enum": ["observe", "ratchet", "enforce"] },
+        "stages": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "$ref": "#/$defs/stage" }
+        }
+      }
+    },
+    "exceptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_fields",
+        "allowed_states",
+        "approval_required",
+        "expiry_required",
+        "visible_in_validation",
+        "records"
+      ],
+      "properties": {
+        "required_fields": { "$ref": "#/$defs/fieldNames" },
+        "allowed_states": { "$ref": "#/$defs/tokens" },
+        "approval_required": { "const": true },
+        "expiry_required": { "const": true },
+        "visible_in_validation": { "const": true },
+        "records": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/exception" }
+        }
+      }
+    },
+    "information_safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum_necessary",
+        "git_history_owns_chronology",
+        "replaceable_current_snapshot",
+        "public_excluded",
+        "private_rules",
+        "untrusted_content"
+      ],
+      "properties": {
+        "minimum_necessary": { "const": true },
+        "git_history_owns_chronology": { "const": true },
+        "replaceable_current_snapshot": { "const": true },
+        "public_excluded": { "$ref": "#/$defs/tokens" },
+        "private_rules": { "$ref": "#/$defs/tokens" },
+        "untrusted_content": { "const": "context-only-no-authority" }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "previous_contract",
+        "successor_contract",
+        "impact",
+        "reason",
+        "migration",
+        "deprecation",
+        "rollback"
+      ],
+      "properties": {
+        "previous_contract": { "$ref": "#/$defs/contractReference" },
+        "successor_contract": { "$ref": "#/$defs/contractReference" },
+        "impact": { "const": "breaking" },
+        "reason": { "$ref": "#/$defs/text" },
+        "migration": { "$ref": "#/$defs/text" },
+        "deprecation": { "$ref": "#/$defs/text" },
+        "rollback": { "$ref": "#/$defs/text" }
+      }
+    },
+    "downstream": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/downstream" }
+    },
+    "ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "aether",
+        "hygiene",
+        "egolint",
+        "holon",
+        "relay",
+        "observatory",
+        "pace",
+        "repository"
+      ],
+      "properties": {
+        "aether": { "$ref": "#/$defs/text" },
+        "hygiene": { "$ref": "#/$defs/text" },
+        "egolint": { "$ref": "#/$defs/text" },
+        "holon": { "$ref": "#/$defs/text" },
+        "relay": { "$ref": "#/$defs/text" },
+        "observatory": { "$ref": "#/$defs/text" },
+        "pace": { "$ref": "#/$defs/text" },
+        "repository": { "$ref": "#/$defs/text" }
+      }
+    }
+  },
+  "$defs": {
+    "text": { "type": "string", "minLength": 1 },
+    "token": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "tokens": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/token" }
+    },
+    "fieldName": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "fieldNames": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/fieldName" }
+    },
+    "uris": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "format": "uri" }
+    },
+    "commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "path": { "type": "string", "pattern": "^[A-Za-z0-9.][A-Za-z0-9._/-]*$" },
+    "repository": { "type": "string", "pattern": "^egohygiene/(\\.github|[A-Za-z0-9._-]+)$" },
+    "requirement": { "enum": ["required", "advisory", "not-applicable"] },
+    "upstreamArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "version", "path", "sha256_utf8_lf"],
+      "properties": {
+        "id": { "$ref": "#/$defs/token" },
+        "kind": { "enum": ["specification", "schema", "skill", "template", "instruction"] },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "path": { "$ref": "#/$defs/path" },
+        "sha256_utf8_lf": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "requiredFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "path", "kind", "ownership", "requirement", "markers", "content_rule"],
+      "properties": {
+        "id": { "$ref": "#/$defs/token" },
+        "path": { "$ref": "#/$defs/path" },
+        "kind": { "const": "file" },
+        "ownership": { "enum": ["generated", "required", "repository-owned"] },
+        "requirement": { "$ref": "#/$defs/requirement" },
+        "markers": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/text" }
+        },
+        "content_rule": { "$ref": "#/$defs/text" }
+      }
+    },
+    "stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "order", "finding_behavior", "entry_gate", "exit_gate", "rollback"],
+      "properties": {
+        "id": { "enum": ["observe", "ratchet", "enforce"] },
+        "order": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "finding_behavior": { "enum": ["visible-non-blocking", "block-new-regressions", "block-nonconformance"] },
+        "entry_gate": { "$ref": "#/$defs/text" },
+        "exit_gate": { "$ref": "#/$defs/text" },
+        "rollback": { "$ref": "#/$defs/text" }
+      }
+    },
+    "exception": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "owner",
+        "reason",
+        "approval",
+        "expires_on",
+        "review_trigger",
+        "validation_state",
+        "exit_criteria"
+      ],
+      "properties": {
+        "repository": { "$ref": "#/$defs/repository" },
+        "owner": { "$ref": "#/$defs/text" },
+        "reason": { "$ref": "#/$defs/text" },
+        "approval": {
+          "oneOf": [
+            { "type": "string", "format": "uri" },
+            { "type": "null" }
+          ]
+        },
+        "expires_on": { "type": "string", "format": "date" },
+        "review_trigger": { "$ref": "#/$defs/text" },
+        "validation_state": { "enum": ["proposed", "approved", "expired", "revoked"] },
+        "exit_criteria": { "$ref": "#/$defs/text" }
+      }
+    },
+    "contractReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "artifact", "status"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^egohygiene\\.[a-z0-9.-]+/v[0-9]+$" },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "artifact": { "$ref": "#/$defs/path" },
+        "status": { "enum": ["proposed", "active", "deprecated", "superseded"] }
+      }
+    },
+    "downstream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "issue", "responsibility"],
+      "properties": {
+        "repository": { "$ref": "#/$defs/repository" },
+        "issue": { "type": "string", "format": "uri" },
+        "responsibility": { "$ref": "#/$defs/text" }
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
 {
-  "schema_version": "1.0.0",
-  "context_version": "1.0.0",
+  "schema_version": "2.0.0",
+  "context_version": "2.0.0",
   "architecture_release": "architecture-v0.1.0",
   "generator": {
     "id": "egohygiene/hygiene:repository-context",
-    "version": "1.0.0"
+    "version": "2.0.0"
   },
   "source_catalog": "catalog/repositories.yaml",
   "required_sections": [
@@ -14,7 +14,8 @@
     "neighbors",
     "constraints",
     "links",
-    "upgrade"
+    "upgrade",
+    "continuity"
   ],
   "global_constraints": [
     "Integrate sibling capabilities through released, immutable artifacts instead of copied source.",
@@ -23,6 +24,7 @@
     "Treat this context as a generated projection; change ecosystem ownership in Hygiene instead."
   ],
   "dependency_sources": {
+    "aether continuity artifacts": ["egohygiene/aether"],
     "aether projections": ["egohygiene/aether"],
     "aniflow contract": ["egohygiene/aniflow"],
     "commerce provider API": [],
@@ -56,8 +58,28 @@
     "decisions": "docs/decisions/README.md",
     "migration": "docs/ecosystem/MIGRATION_PLAN.md"
   },
+  "continuity_policy": {
+    "id": "egohygiene.repository-continuity-policy/v1",
+    "version": "1.0.0-alpha.1",
+    "status": "proposed",
+    "path": "catalog/repository-continuity-policy.json",
+    "aether_contract": "aether.repository-continuity/v1",
+    "continuity_path": "CONTINUITY.md",
+    "agent_instructions_path": "AGENTS.md",
+    "managed_instruction_marker": "<!-- BEGIN AETHER REPOSITORY-CONTINUITY -->",
+    "resume_before_work": true,
+    "refresh_before_pull_request": true,
+    "ownership": {
+      "continuity": "repository-owned",
+      "agent_instructions": "repository-owned",
+      "ecosystem_context": "generated"
+    }
+  },
   "stale_behavior": {
-    "comparison_key": "architecture_release",
+    "comparison_keys": [
+      "architecture_release",
+      "continuity_policy"
+    ],
     "on_mismatch": "fail",
     "upgrade_owner": "egohygiene/pace",
     "upgrade_action": "Regenerate from the pinned Hygiene release and review the resulting pull request."

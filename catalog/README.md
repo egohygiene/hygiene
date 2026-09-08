@@ -91,3 +91,22 @@ See the
 [repository presentation guide](../docs/ecosystem/REPOSITORY_PRESENTATION.md)
 for applicability, badge-state derivation, evidence, composition, ownership,
 and rollout boundaries.
+
+## Repository continuity policy
+
+`repository-continuity-policy.json` composes an immutable Aether continuity
+revision into Hygiene-owned applicability, exact required files, source
+precedence, information safety, observe/ratchet/enforce rollout, exceptions,
+and v1-to-v2 migration. Its upstream artifact paths and SHA-256 digests are
+provenance records, not copied protocol implementations.
+
+```bash
+python3 tools/continuity.py validate-profile
+python3 tools/continuity.py validate-repository --repository .
+```
+
+The profile explicitly records all 29 repositories observed by issue #45. The
+older repository architecture catalog remains a visible reconciliation input;
+its stale count does not reduce the continuity scope. See the
+[repository continuity guide](../docs/ecosystem/REPOSITORY_CONTINUITY.md) for
+lifecycle truth, privacy, rollout, exception, downstream, and rollback rules.

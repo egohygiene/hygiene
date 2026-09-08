@@ -4,7 +4,7 @@
 
 - Architecture release: `architecture-v0.1.0`
 - Governing decision: `ADR-0001`
-- Relationships: `23`
+- Relationships: `25`
 - Active exceptions: `0`
 
 ## Rules
@@ -24,7 +24,7 @@
 
 | ID | Producer | Consumers | Capability | Interfaces | Contract | Pinning |
 | --- | --- | --- | --- | --- | --- | --- |
-| `RELATIONSHIP-001` | `egohygiene/hygiene` | `egohygiene/*` | architecture releases, repository registry, policy, and local context projections | `schema`, `generated-projection` | `egohygiene.repository-context/v1` | `versioned` |
+| `RELATIONSHIP-001` | `egohygiene/hygiene` | `egohygiene/*` | architecture releases, repository registry, policy, and versioned local context projections | `schema`, `generated-projection` | _required_ | `versioned` |
 | `RELATIONSHIP-002` | `egohygiene/aether` | `egohygiene/*` | versioned AI specifications, skills, agents, and provenance catalogs | `package`, `generated-projection` | _required_ | `versioned` |
 | `RELATIONSHIP-003` | `egohygiene/holon` | `egohygiene/*` | generated repository trees and bootstrap provenance | `generated-projection`, `schema` | _required_ | `versioned` |
 | `RELATIONSHIP-004` | `egohygiene/pace` | `egohygiene/*` | reviewable migration plans, diffs, and pull-request projections | `generated-projection`, `schema` | _required_ | `versioned` |
@@ -47,6 +47,8 @@
 | `RELATIONSHIP-021` | `egohygiene/hygiene` | `egohygiene/egolint`, `egohygiene/holon`, `egohygiene/identity`, `egohygiene/observatory`, `egohygiene/pace`, `egohygiene/relay` | repository presentation policy, applicability, evidence states, and badge claim limits | `schema`, `generated-projection` | _required_ | `versioned` |
 | `RELATIONSHIP-022` | `egohygiene/aether` | `egohygiene/hygiene` | repository release declaration, authoring guidance, and provider-neutral protocol | `schema`, `generated-projection` | _required_ | `immutable` |
 | `RELATIONSHIP-023` | `egohygiene/hygiene` | `egohygiene/egolint`, `egohygiene/holon`, `egohygiene/pace`, `egohygiene/relay` | repository release applicability, migration, exception, and ownership baseline | `schema`, `generated-projection` | _required_ | `versioned` |
+| `RELATIONSHIP-024` | `egohygiene/aether` | `egohygiene/hygiene` | portable repository continuity specification, schema, template, skill, and managed instruction projection | `schema`, `generated-projection` | _required_ | `immutable` |
+| `RELATIONSHIP-025` | `egohygiene/hygiene` | `egohygiene/egolint`, `egohygiene/holon`, `egohygiene/observatory`, `egohygiene/pace`, `egohygiene/relay` | repository continuity applicability, required-file composition, rollout, migration, and exception policy | `schema`, `generated-projection` | _required_ | `versioned` |
 
 ## Forbidden direct dependencies
 

@@ -24,9 +24,9 @@ The target system optimizes for one person moving very quickly without turning t
 
 This plane defines the ecosystem, creates and evolves repositories, distributes reusable AI artifacts, reconciles the fleet, and makes maturity visible.
 
-- **hygiene** — canonical ecosystem architecture, repository registry, platform policies, cross-repository decisions, adoption model, and staging ledger.
+- **hygiene** — canonical ecosystem architecture, repository registry, platform policies, cross-repository decisions, adoption and continuity applicability models, and staging ledger.
 - **.github** — organization profile, public defaults, funding, and default community-health files.
-- **aether** — canonical first-party AI specifications, skills, agents, catalogs, validators, and release projections.
+- **aether** — canonical first-party AI specifications, skills, agents, catalogs, validators, release projections, and the portable repository-continuity protocol.
 - **holon** — architecture-driven bootstrapper that creates new organizations and repositories from versioned blueprints.
 - **pace** — fleet reconciler for adoption, migrations, and synchronization; it proposes bounded pull requests to existing repositories.
 - **observatory** — read-oriented portfolio inventory, maturity tracking, dependency visibility, conformance evidence, and platform telemetry.
@@ -211,6 +211,10 @@ Hygiene will publish an architecture release containing:
 - `catalog/repository-release-policy.json` — repository release applicability,
   migration, exception, and ownership policy composed from Aether's immutable
   release declaration contract;
+- `catalog/repository-continuity-policy.json` — repository-continuity
+  applicability, required-file composition, staged rollout, exception,
+  migration, and privacy policy composed from Aether's immutable portable
+  contract;
 - this ecosystem architecture;
 - cross-repository ADRs and contract indexes;
 - diagram sources and approved rendered diagrams;
@@ -224,7 +228,14 @@ Each repository should contain a generated `docs/ecosystem/CONTEXT.md` with:
 - local maturity and immediate migration gate;
 - links to canonical diagrams and decisions.
 
-Each repository's `AGENTS.md` should require agents to read that local context before architecture-changing work. Pace later opens update PRs when the canonical architecture changes. Repository-local docs may add detail but may not silently redefine cross-repository ownership.
+Each active repository has a repository-owned root `AGENTS.md` that preserves
+local instructions and contains exactly one managed Aether continuity pointer.
+Applicable sessions read and reconcile the repository-owned root
+`CONTINUITY.md` before selecting work, then refresh it after validation and
+before pull-request presentation. Static instructions do not install an
+automatic hook. Pace later opens update PRs when canonical projections or
+policy pins change. Repository-local docs may add detail but may not silently
+redefine cross-repository ownership.
 
 Repository presentation follows the same control-plane separation. Hygiene
 defines the semantic profile; Identity publishes approved visual assets; Holon
@@ -237,6 +248,13 @@ release declaration and authoring guidance; Hygiene defines applicability and
 migration; Relay owns reusable execution; Egolint owns diagnostics; Pace
 proposes adoption; and repositories own their version authority, delivery
 adapters, credentials, release decisions, and final publication review.
+
+Repository continuity follows the same separation. Aether owns the portable
+schema, template, skill, and managed instruction projection; Hygiene owns
+organization applicability and migration; Holon materializes new repositories;
+Egolint reports deterministic conformance; Relay executes reusable preflight;
+Observatory records privacy-safe metadata; Pace proposes existing-repository
+adoption; and each repository owns its current-state wording and review.
 
 ## 7. Control loops
 

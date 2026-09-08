@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import sys
 import tomllib
@@ -71,8 +72,24 @@ class RepositoryContextContractTests(unittest.TestCase):
         self.assertIn('architecture-release: "architecture-v0.1.0"', rendered)
         self.assertIn(f'source-revision: "{SOURCE_REVISION}"', rendered)
         self.assertIn(
-            'generated-by: "egohygiene/hygiene:repository-context@1.0.0"', rendered
+            'generated-by: "egohygiene/hygiene:repository-context@2.0.0"', rendered
         )
+        self.assertIn(
+            'continuity-policy: "egohygiene.repository-continuity-policy/v1@1.0.0-alpha.1"',
+            rendered,
+        )
+
+    def test_projection_composes_continuity_without_copying_checkpoint_state(self) -> None:
+        projection = context.build_context(
+            self.catalog, self.policy, "hygiene", SOURCE_REVISION
+        )
+        continuity = projection["continuity"]
+        self.assertEqual("CONTINUITY.md", continuity["path"])
+        self.assertEqual("repository-owned", continuity["ownership"])
+        self.assertEqual("AGENTS.md", continuity["agent_instructions_path"])
+        self.assertTrue(continuity["resume_before_work"])
+        self.assertTrue(continuity["refresh_before_pull_request"])
+        self.assertNotIn("objective", continuity)
 
     def test_invalid_revision_and_stale_policy_fail_closed(self) -> None:
         with self.assertRaisesRegex(ValueError, "40-character"):
@@ -87,21 +104,22 @@ class RepositoryContextContractTests(unittest.TestCase):
     def test_egolint_contract_is_canonical_and_immutable(self) -> None:
         rendered = context.render_egolint_contract(self.policy, SOURCE_REVISION)
         self.assertIn('id = "hygiene-repository-context"', rendered)
-        self.assertIn("provisional = false", rendered)
+        self.assertIn("provisional = true", rendered)
         self.assertIn('revision-kind = "git-commit"', rendered)
         self.assertIn(f'revision = "{SOURCE_REVISION}"', rendered)
         self.assertIn(context.MARKER, rendered)
 
     def test_context_schema_is_valid_json(self) -> None:
         schema = json.loads(
-            (ROOT / "schemas" / "repository-context.v1.schema.json").read_text(
+            (ROOT / "schemas" / "repository-context.v2.schema.json").read_text(
                 encoding="utf-8"
             )
         )
         self.assertEqual(
             "https://json-schema.org/draft/2020-12/schema", schema["$schema"]
         )
-        self.assertEqual("1.0.0", schema["properties"]["schema_version"]["const"])
+        self.assertEqual("2.0.0", schema["properties"]["schema_version"]["const"])
+        self.assertIn("continuity", schema["required"])
 
     def test_checked_in_hygiene_projection_and_egolint_contract_are_current(self) -> None:
         contract_path = ROOT / "contracts" / "repository-context.toml"
@@ -123,8 +141,23 @@ class RepositoryContextContractTests(unittest.TestCase):
             context.render_egolint_contract(self.policy, source_revision),
             contract_path.read_text(encoding="utf-8"),
         )
-        self.assertFalse(contract["provisional"])
+        self.assertTrue(contract["provisional"])
         self.assertTrue((ROOT / contract["source"]["path"]).is_file())
+
+    def test_deprecated_v1_contract_remains_available_for_pinned_consumers(self) -> None:
+        legacy_path = ROOT / "contracts" / "repository-context.v1.toml"
+        legacy_bytes = legacy_path.read_bytes()
+        legacy = tomllib.loads(legacy_bytes.decode("utf-8"))
+        self.assertEqual("1.0.0", legacy["version"])
+        self.assertFalse(legacy["provisional"])
+        self.assertEqual(
+            ["agent-instructions", "ecosystem-context"],
+            [item["id"] for item in legacy["requirements"]],
+        )
+        self.assertEqual(
+            "85d670c094b5e72360de684bfa5b9d5332caa2868565285ddc8216f80e489cf8",
+            hashlib.sha256(legacy_bytes).hexdigest(),
+        )
 
     def test_generated_sanctuary_projection_is_current(self) -> None:
         contract = tomllib.loads(

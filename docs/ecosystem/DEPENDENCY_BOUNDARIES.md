@@ -140,6 +140,19 @@ capability away from its canonical owner.
 - Observatory may report conformance evidence but must not silently remediate.
 - Each producer owns and versions its actual integration contract.
 
+Repository continuity preserves that split: Aether owns the portable
+specification, schema, template, skill, and managed instruction projection;
+Hygiene consumes an immutable revision and owns organization applicability,
+required-file composition, rollout, migration, and exceptions. Egolint, Holon,
+Relay, Observatory, and Pace consume the proposed Hygiene policy through their
+linked follow-up issues rather than placing their implementations here.
+
+The continuity relationships remain `required` instead of `active` while the
+Aether artifacts are draft and the Hygiene profile is proposed. This is a
+lifecycle statement, not permission to use a mutable default-branch dependency.
+See [`REPOSITORY_CONTINUITY.md`](REPOSITORY_CONTINUITY.md) for the immutable pin
+and promotion gates.
+
 Changes to dependency direction, ownership, allowed interface types, or a
 forbidden relationship require an architecture review. Routine additions of a
 new released version under an existing relationship do not redefine this

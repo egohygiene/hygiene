@@ -13,10 +13,15 @@ from typing import Any
 import catalog as repository_catalog
 
 
-SCHEMA_VERSION = "1.0.0"
+SCHEMA_VERSION = "2.0.0"
 SOURCE_REPOSITORY = "egohygiene/hygiene"
 REVISION_PATTERN = re.compile(r"^[0-9a-f]{40}$")
-MARKER = "<!-- egohygiene-context: repository-context/v1 -->"
+MARKER = "<!-- egohygiene-context: repository-context/v2 -->"
+CONTINUITY_POLICY_ID = "egohygiene.repository-continuity-policy/v1"
+CONTINUITY_POLICY_VERSION = "1.0.0-alpha.1"
+CONTINUITY_CONTRACT_ID = "aether.repository-continuity/v1"
+CONTINUITY_MARKER = "<!-- BEGIN AETHER REPOSITORY-CONTINUITY -->"
+CONTINUITY_END_MARKER = "<!-- END AETHER REPOSITORY-CONTINUITY -->"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -62,7 +67,7 @@ def validate_policy(catalog: dict[str, Any], policy: dict[str, Any]) -> list[str
         "id": "egohygiene/hygiene:repository-context",
         "version": SCHEMA_VERSION,
     }:
-        errors.append("generator identity must be the version-1 Hygiene context generator")
+        errors.append("generator identity must be the version-2 Hygiene context generator")
 
     required_sections = policy.get("required_sections")
     errors.extend(_unique_strings(required_sections, "required_sections", allow_empty=False))
@@ -74,9 +79,10 @@ def validate_policy(catalog: dict[str, Any], policy: dict[str, Any]) -> list[str
         "constraints",
         "links",
         "upgrade",
+        "continuity",
     }
     if isinstance(required_sections, list) and set(required_sections) != expected_sections:
-        errors.append("required_sections must declare every version-1 context section")
+        errors.append("required_sections must declare every version-2 context section")
     errors.extend(
         _unique_strings(policy.get("global_constraints"), "global_constraints", allow_empty=False)
     )
@@ -111,7 +117,7 @@ def validate_policy(catalog: dict[str, Any], policy: dict[str, Any]) -> list[str
     links = policy.get("canonical_links")
     expected_links = {"architecture", "agent_context", "catalog", "decisions", "migration"}
     if not isinstance(links, dict) or set(links) != expected_links:
-        errors.append("canonical_links must declare the five version-1 Hygiene links")
+        errors.append("canonical_links must declare the five version-2 Hygiene links")
     elif any(
         not isinstance(path, str) or not path or path.startswith("/") or ".." in Path(path).parts
         for path in links.values()
@@ -120,7 +126,7 @@ def validate_policy(catalog: dict[str, Any], policy: dict[str, Any]) -> list[str
 
     stale = policy.get("stale_behavior")
     if stale != {
-        "comparison_key": "architecture_release",
+        "comparison_keys": ["architecture_release", "continuity_policy"],
         "on_mismatch": "fail",
         "upgrade_owner": "egohygiene/pace",
         "upgrade_action": (
@@ -128,6 +134,28 @@ def validate_policy(catalog: dict[str, Any], policy: dict[str, Any]) -> list[str
         ),
     }:
         errors.append("stale_behavior must fail closed and route upgrades through Pace")
+
+    continuity = policy.get("continuity_policy")
+    if continuity != {
+        "id": CONTINUITY_POLICY_ID,
+        "version": CONTINUITY_POLICY_VERSION,
+        "status": "proposed",
+        "path": "catalog/repository-continuity-policy.json",
+        "aether_contract": CONTINUITY_CONTRACT_ID,
+        "continuity_path": "CONTINUITY.md",
+        "agent_instructions_path": "AGENTS.md",
+        "managed_instruction_marker": CONTINUITY_MARKER,
+        "resume_before_work": True,
+        "refresh_before_pull_request": True,
+        "ownership": {
+            "continuity": "repository-owned",
+            "agent_instructions": "repository-owned",
+            "ecosystem_context": "generated",
+        },
+    }:
+        errors.append(
+            "continuity_policy must compose the proposed Hygiene profile and Aether v1 pointer"
+        )
     return sorted(set(errors))
 
 
@@ -149,7 +177,9 @@ def build_context(
     if not REVISION_PATTERN.fullmatch(source_revision):
         raise ValueError("source revision must be a 40-character lowercase Git commit")
     full_name = (
-        repository_name if "/" in repository_name else f"{catalog['organization']}/{repository_name}"
+        repository_name
+        if "/" in repository_name
+        else f"{catalog['organization']}/{repository_name}"
     )
     repositories = _repository_index(catalog)
     if full_name not in repositories:
@@ -223,10 +253,28 @@ def build_context(
             },
         },
         "upgrade": {
-            "comparison_key": policy["stale_behavior"]["comparison_key"],
+            "comparison_keys": policy["stale_behavior"]["comparison_keys"],
             "on_mismatch": policy["stale_behavior"]["on_mismatch"],
             "owner": policy["stale_behavior"]["upgrade_owner"],
             "action": policy["stale_behavior"]["upgrade_action"],
+        },
+        "continuity": {
+            "policy_id": policy["continuity_policy"]["id"],
+            "policy_version": policy["continuity_policy"]["version"],
+            "policy_status": policy["continuity_policy"]["status"],
+            "aether_contract": policy["continuity_policy"]["aether_contract"],
+            "path": policy["continuity_policy"]["continuity_path"],
+            "ownership": policy["continuity_policy"]["ownership"]["continuity"],
+            "agent_instructions_path": policy["continuity_policy"][
+                "agent_instructions_path"
+            ],
+            "managed_instruction_marker": policy["continuity_policy"][
+                "managed_instruction_marker"
+            ],
+            "resume_before_work": policy["continuity_policy"]["resume_before_work"],
+            "refresh_before_pull_request": policy["continuity_policy"][
+                "refresh_before_pull_request"
+            ],
         },
     }
 
@@ -243,6 +291,7 @@ def render_markdown(context: dict[str, Any]) -> str:
     ownership = context["ownership"]
     dependencies = context["dependencies"]
     neighbors = context["neighbors"]
+    continuity = context["continuity"]
     lines = [
         MARKER,
         "---",
@@ -253,6 +302,7 @@ def render_markdown(context: dict[str, Any]) -> str:
         f'source-repository: "{source["repository"]}"',
         f'source-revision: "{source["revision"]}"',
         f'generated-by: "{source["generator"]}"',
+        f'continuity-policy: "{continuity["policy_id"]}@{continuity["policy_version"]}"',
         "---",
         "",
         f'# Ecosystem context for `{context["repository"]}`',
@@ -304,6 +354,18 @@ def render_markdown(context: dict[str, Any]) -> str:
         "",
         *_list(context["constraints"]),
         "",
+        "## Repository continuity",
+        "",
+        f'- Policy: `{continuity["policy_id"]}@{continuity["policy_version"]}` '
+        f'(`{continuity["policy_status"]}`).',
+        f'- Portable contract: `{continuity["aether_contract"]}`.',
+        f'- Repository-owned checkpoint: `{continuity["path"]}`.',
+        f'- Repository-owned instructions: `{continuity["agent_instructions_path"]}` '
+        "with exactly one managed Aether pointer block.",
+        "- Resume: read and reconcile the checkpoint before selecting work.",
+        "- Handoff: refresh it after validation and before pull-request presentation.",
+        "- Static instructions do not install an automatic pre-pull-request hook.",
+        "",
         "## Canonical links",
         "",
         *[
@@ -313,7 +375,8 @@ def render_markdown(context: dict[str, Any]) -> str:
         "",
         "## Upgrade and stale-context behavior",
         "",
-        f'- Compare `{context["upgrade"]["comparison_key"]}` with the selected Hygiene release.',
+        "- Compare `architecture_release` and `continuity_policy` with the "
+        "selected Hygiene release.",
         f'- On mismatch: `{context["upgrade"]["on_mismatch"]}`.',
         f'- Upgrade owner: `{context["upgrade"]["owner"]}`.',
         f'- Action: {context["upgrade"]["action"]}',
@@ -328,24 +391,49 @@ def render_egolint_contract(policy: dict[str, Any], source_revision: str) -> str
     if not REVISION_PATTERN.fullmatch(source_revision):
         raise ValueError("source revision must be a 40-character lowercase Git commit")
     generator = policy["generator"]
+    continuity = policy["continuity_policy"]
+    provisional = "true" if continuity["status"] != "active" else "false"
+    instruction_metadata = (
+        '<!-- aether-instruction {"contract":"aether.repository-continuity/v1",'
+        '"continuity_path":"CONTINUITY.md","id":"repository-continuity",'
+        '"skill":"maintain-repository-continuity","status":"draft",'
+        '"version":"1.0.0"} -->'
+    )
     return f'''schema-version = 1
 id = "hygiene-repository-context"
 version = "{policy["context_version"]}"
 profile = "hygiene/repository-context"
-provisional = false
+provisional = {provisional}
 
 [source]
 repository = "egohygiene/hygiene"
 revision = "{source_revision}"
 revision-kind = "git-commit"
 path = "catalog/repository-context.json"
-decision = "https://github.com/egohygiene/hygiene/issues/6"
+decision = "https://github.com/egohygiene/hygiene/issues/45"
 
 [[requirements]]
 id = "agent-instructions"
 path = "AGENTS.md"
 kind = "file"
-ownership = "required"
+ownership = "repository-owned"
+markers = [
+  "{CONTINUITY_MARKER}",
+  "{instruction_metadata.replace('"', '\\"')}",
+  "{CONTINUITY_END_MARKER}",
+]
+
+[[requirements]]
+id = "continuity-checkpoint"
+path = "CONTINUITY.md"
+kind = "file"
+ownership = "repository-owned"
+markers = [
+  "schema_version: {CONTINUITY_CONTRACT_ID}",
+  "continuity_path: CONTINUITY.md",
+  "## Current objective and success conditions",
+  "## Next dependency-ready work",
+]
 
 [[requirements]]
 id = "ecosystem-context"
@@ -356,6 +444,7 @@ markers = [
   "{MARKER}",
   "architecture-release: \\"{policy["architecture_release"]}\\"",
   "generated-by: \\"{generator["id"]}@{generator["version"]}\\"",
+  "continuity-policy: \\"{continuity["id"]}@{continuity["version"]}\\"",
 ]
 '''
 

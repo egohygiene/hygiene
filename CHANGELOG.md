@@ -12,6 +12,10 @@ compatibility promise applies.
 
 ### Added
 
+- Proposed the repository continuity policy, immutable Aether provenance,
+  explicit 29-repository scope, staged rollout, v2 required-file successor,
+  deterministic validator, and Hygiene dogfood checkpoint
+  ([#45](https://github.com/egohygiene/hygiene/issues/45)).
 - Proposed the versioned repository release baseline, immutable Aether
   reference, migration rules, deterministic validator, and Hygiene dogfood
   release declaration ([#27](https://github.com/egohygiene/hygiene/issues/27)).
