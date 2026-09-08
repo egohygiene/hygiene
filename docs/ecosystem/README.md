@@ -2,7 +2,10 @@
 
 Status: **accepted v0.1**  
 Architecture date: **2026-08-18**  
-Scope: the 27 repositories currently visible in the `egohygiene` GitHub organization, plus one explicitly deferred infrastructure boundary.
+Scope: the 27-entry architecture catalog observed on 2026-08-21, plus one
+explicitly deferred infrastructure boundary. The continuity policy separately
+pins the 29 active repositories observed by issue #45 on 2026-09-08 while the
+catalog-refresh quest remains open.
 
 This package defines the target repository architecture before any new infographic is produced. It reconciles the live repositories, the current Flow orchestration proposal, the contents staged in `empathy`, and the earlier ecosystem diagrams.
 
@@ -26,7 +29,10 @@ This package defines the target repository architecture before any new infograph
 10. Review [`REPOSITORY_RELEASE.md`](REPOSITORY_RELEASE.md) for the proposed
     release-convention baseline, immutable Aether pin, migration states, and
     repository-owned release boundary.
-11. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
+11. Review [`REPOSITORY_CONTINUITY.md`](REPOSITORY_CONTINUITY.md) for the
+    proposed root checkpoint requirement, immutable Aether pin, source
+    precedence, privacy, staged rollout, exceptions, and v2 migration.
+12. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
 
 ## Architectural decision
 

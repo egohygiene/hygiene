@@ -3,12 +3,12 @@ schema: aether.architecture-document/v1
 id: hygiene-roadmap
 title: Hygiene Roadmap
 kind: architecture-document
-version: 0.3.0
+version: 0.4.0
 status: provisional
 owners:
   - egohygiene
 created: 2026-08-19
-updated: 2026-08-30
+updated: 2026-09-08
 governed_by:
   - architecture-roadmap
 depends_on:
@@ -150,7 +150,7 @@ issues: []
 id: HYG-Q05
 status: planned
 depends_on: [HYG-Q03, HYG-Q04]
-issues: [19, 22]
+issues: [19, 22, 45]
 -->
 #### HYG-Q05 — Version and integrate the organization contract
 
@@ -171,6 +171,10 @@ issues: [19, 22]
   integration remains unproven.
 - Issue #22 defines the proposed repository-presentation profile and evidence
   boundary before Identity, Holon, Egolint, and Pace implementations.
+- Issue #45 defines the proposed repository-continuity applicability profile,
+  breaking repository-context v2 transition, and observe-first downstream
+  boundary. Stable Aether release evidence and ADR-008 acceptance remain gates
+  before ratchet or enforcement.
 
 <!-- roadmap-step
 id: HYG-Q06

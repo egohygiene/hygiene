@@ -8,6 +8,10 @@ platform policy, adoption model, organization contract index, and migration
 context. It does not own the implementations of every policy or product
 capability.
 
+Current work is handed off through the repository-owned
+[`CONTINUITY.md`](CONTINUITY.md). Reconcile it against live Git and GitHub
+evidence; it is not a substitute for the canonical sources below.
+
 ## Ecosystem architecture
 
 - [Holistic architecture](docs/ecosystem/ARCHITECTURE.md)
@@ -21,7 +25,11 @@ capability.
 - [Generated repository catalog](docs/generated/REPOSITORIES.md)
 - [Repository-local context contract](docs/ecosystem/REPOSITORY_CONTEXT.md)
 - [Repository context policy](catalog/repository-context.json)
-- [Repository context schema](schemas/repository-context.v1.schema.json)
+- [Deprecated repository context v1 schema](schemas/repository-context.v1.schema.json)
+- [Proposed repository continuity policy](docs/ecosystem/REPOSITORY_CONTINUITY.md)
+- [Repository continuity policy source](catalog/repository-continuity-policy.json)
+- [Repository continuity policy schema](schemas/repository-continuity-policy.v1.schema.json)
+- [Repository context v2 schema](schemas/repository-context.v2.schema.json)
 - [Dependency-boundary register](catalog/dependency-boundaries.yaml)
 - [Dependency-boundary schema](schemas/dependency-boundary-register.v1.schema.json)
 - [Generated dependency-boundary view](docs/generated/DEPENDENCY_BOUNDARIES.md)
@@ -78,6 +86,8 @@ python3 tools/catalog.py \
   check-generated \
   --output docs/generated/REPOSITORIES.md
 python3 tools/context.py validate
+python3 tools/continuity.py validate-profile
+python3 tools/continuity.py validate-repository --repository .
 python3 tools/boundaries.py validate
 python3 tools/boundaries.py \
   check-generated \

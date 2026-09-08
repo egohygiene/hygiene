@@ -31,7 +31,7 @@ class DependencyBoundaryContractTests(unittest.TestCase):
                 self.register, self.catalog, self.contract_index
             ),
         )
-        self.assertEqual(23, len(self.register["relationships"]))
+        self.assertEqual(25, len(self.register["relationships"]))
 
     def test_duplicate_rule_is_rejected(self) -> None:
         candidate = copy.deepcopy(self.register)
@@ -64,6 +64,7 @@ class DependencyBoundaryContractTests(unittest.TestCase):
 
     def test_active_contract_requires_an_identifier(self) -> None:
         candidate = copy.deepcopy(self.register)
+        candidate["relationships"][0]["contract_status"] = "active"
         candidate["relationships"][0]["contract"] = None
         errors = boundaries.validate_register(
             candidate, self.catalog, self.contract_index
@@ -105,6 +106,7 @@ class DependencyBoundaryContractTests(unittest.TestCase):
 
     def test_active_relationship_contract_must_resolve(self) -> None:
         candidate = copy.deepcopy(self.register)
+        candidate["relationships"][0]["contract_status"] = "active"
         candidate["relationships"][0]["contract"] = "egohygiene.unknown/v1"
         errors = boundaries.validate_register(
             candidate, self.catalog, self.contract_index
@@ -119,7 +121,7 @@ class DependencyBoundaryContractTests(unittest.TestCase):
         second = boundaries.render_markdown(copy.deepcopy(self.register))
         self.assertEqual(first, second)
         self.assertIn("BOUNDARY-001", first)
-        self.assertIn("RELATIONSHIP-021", first)
+        self.assertIn("RELATIONSHIP-025", first)
 
 
 class DependencyBoundaryScanTests(unittest.TestCase):

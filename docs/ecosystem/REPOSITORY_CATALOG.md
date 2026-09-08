@@ -8,9 +8,9 @@ Status labels describe the observed implementation state, not product quality.
 
 | Repository | Target ownership | Explicitly does not own | Observed state | First gate |
 | --- | --- | --- | --- | --- |
-| `hygiene` | Canonical ecosystem architecture, repo registry, platform policy, cross-repo ADRs, maturity model, migration ledger | Tool implementations, reusable workflows, product domain logic | Seed | Import and approve this architecture package |
+| `hygiene` | Canonical ecosystem architecture, repo registry, platform policy, cross-repo ADRs, maturity model, migration ledger, repository-continuity applicability and migration | Tool implementations, reusable workflows, product domain logic, portable continuity semantics | Seed | Import and approve this architecture package |
 | `.github` | Organization profile, funding, public defaults, default community-health files | Reusable CI/release workflow implementations | Light foundation | Reduce to org-facing defaults; delegate automation to Relay |
-| `aether` | First-party AI specs, skills, agents, catalog/provenance schemas, validators, release projections | General repository policy, environments, CI, linting, release orchestration | Active | Curate staged AI assets with provenance and lifecycle state |
+| `aether` | First-party AI specs, skills, agents, catalog/provenance schemas, validators, release projections, portable repository-continuity semantics | General repository policy, organization applicability, environments, CI, linting, release orchestration | Active | Curate staged AI assets with provenance and lifecycle state |
 | `holon` | Versioned blueprints and bootstrap engine for new repos/orgs | Ongoing synchronization of existing repos | Seed | Define one repository-class schema and generate a disposable fixture |
 | `pace` | Fleet adoption, migration, reconciliation, synchronization, PR generation | Product CI primitives or direct unreviewed mutation of default branches | Seed | Read Hygiene catalog and produce a dry-run projection diff |
 | `observatory` | Inventory, maturity, dependency visibility, conformance evidence, telemetry | Policy definition or silent remediation | Seed | Ingest the repository catalog and Relay/Egolint evidence |

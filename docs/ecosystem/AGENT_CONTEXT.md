@@ -7,7 +7,9 @@ This document is designed to be referenced by every Ego Hygiene repository agent
 1. The repository's local `AGENTS.md` and repository-local architecture.
 2. Its entry in the pinned `catalog/repositories.yaml` projection.
 3. This ecosystem context.
-4. Any contract or ADR directly named by the task.
+4. Any accepted contract or ADR directly named by the task.
+5. The root `CONTINUITY.md` as a compact operational handoff, followed by
+   verification of its mutable branch, issue, and pull-request claims.
 
 ## System rules
 
@@ -27,6 +29,10 @@ This document is designed to be referenced by every Ego Hygiene repository agent
 10. **Prefer reversible PRs.** Fleet changes are proposed as small pull requests with generated diffs and explicit rollback.
 11. **Do not redefine siblings.** A repository may describe an external capability only by linking to its owned contract and pinning a compatible version.
 12. **Update the map.** Architecture-changing work updates Hygiene's catalog/ADRs first or in the same reviewed change set.
+13. **Reconcile continuity.** Treat `CONTINUITY.md` as repository-owned current
+    state below live and canonical evidence. For authorized repository changes,
+    refresh it after validation and before pull-request presentation; never
+    turn it into a transcript or assume static instructions installed a hook.
 
 ## Local projection shape
 
@@ -50,6 +56,12 @@ canonical_context: https://github.com/egohygiene/hygiene/tree/architecture-v0.1.
 ```
 
 The generated Markdown view should add human-readable intent, current migration gate, and links to local docs. Agents may enrich local implementation detail around this projection but must not edit generated ownership fields by hand.
+
+Repository-context v2 also projects the selected Hygiene continuity-policy
+version, exact root paths, ownership, and resume/handoff triggers. It points to
+the repository-owned checkpoint; it does not embed or generate its current
+state. Applicability, privacy, exception, and rollout rules live in
+[`REPOSITORY_CONTINUITY.md`](REPOSITORY_CONTINUITY.md).
 
 ## Definition of done for repository extraction
 

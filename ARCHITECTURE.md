@@ -3,12 +3,12 @@ schema: aether.architecture-document/v1
 id: hygiene-architecture
 title: Hygiene Architecture
 kind: architecture-document
-version: 0.2.0
+version: 0.3.0
 status: provisional
 owners:
   - egohygiene
 created: 2026-08-19
-updated: 2026-08-20
+updated: 2026-09-08
 governed_by:
   - architecture-architecture
 depends_on:
@@ -85,6 +85,10 @@ The diagram is conceptual. [SYSTEM.md](SYSTEM.md) remains authoritative for resp
 - Provider and platform adapters depend on application ports; core behavior does not depend on a provider implementation.
 - Read, plan, apply, verify, publish, and recover remain separate authority boundaries when consequential.
 - Cross-repository references use releases, immutable commits, schemas, packages, or documented APIs rather than mutable default-branch assumptions.
+- Aether owns portable repository-continuity semantics; Hygiene owns only the
+  organization applicability, required-file, migration, stage, and exception
+  composition. Root `CONTINUITY.md` is repository-owned operational state, not
+  an architecture layer or generated ecosystem projection.
 
 ## Ecosystem interfaces
 
@@ -93,6 +97,7 @@ The diagram is conceptual. [SYSTEM.md](SYSTEM.md) remains authoritative for resp
 - Pace conformance
 - Observatory metrics
 - .github public coordination
+- Aether continuity contracts and repository-owned handoffs
 
 ## Deployment and portability
 
