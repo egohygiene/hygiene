@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: "2026-09-08T13:58:13Z"
+  updated_at: "2026-09-08T14:48:06Z"
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -61,25 +61,42 @@ state:
     branch: codex/repository-continuity-policy
     revision: null
     pull_request: null
-    handoff_state: in-progress
+    handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: "2026-09-08T13:58:13Z"
+    observed_at: "2026-09-08T14:45:56Z"
     default_branch_revision: 28f9d6c7519d820644572634ba4476614f418d83
     issue_state: open
     pull_request_state: not-applicable
-    notes: GitHub issue 45 was open, main matched the fresh checkout, Aether issues 79 and 80 were closed, and no competing Hygiene pull request was observed; recheck before continuing.
+    notes: GitHub issue 45 remained open, fetched origin/main still matched the verified base, Aether issues 79 and 80 were closed, and no open Hygiene pull request was observed; recheck before continuing.
   parallel_changes: []
 review:
-  status: not-run
-  reviewed_at: null
-  reviewed_by: null
+  status: passed
+  reviewed_at: "2026-09-08T14:48:06Z"
+  reviewed_by: Codex
   evidence:
     - command: python3 -m unittest discover --start-directory tests --pattern "test_*.py"
-      outcome: not-run
-      observed_at: "2026-09-08T13:58:13Z"
-      notes: Full validation is pending completion of the candidate implementation.
-  environment_limitations: []
+      outcome: passed
+      observed_at: "2026-09-08T14:44:54Z"
+      notes: All 95 tests passed.
+    - command: python3 tools/continuity.py validate-profile && python3 tools/continuity.py validate-repository --repository .
+      outcome: passed
+      observed_at: "2026-09-08T14:44:54Z"
+      notes: The organization profile and Hygiene dogfood composition passed.
+    - command: python3 tools/context.py check --repository egohygiene/hygiene --source-revision 1c720954283b91134c18a7cfa28e5c2dda505d46 --output docs/ecosystem/CONTEXT.md && python3 tools/context.py check-contract --source-revision 1c720954283b91134c18a7cfa28e5c2dda505d46 --output contracts/repository-context.toml
+      outcome: passed
+      observed_at: "2026-09-08T14:44:54Z"
+      notes: The v2 local projection and offline required-file contract matched the immutable Hygiene source anchor.
+    - command: python3 tools/boundaries.py validate && python3 tools/boundaries.py check-generated --output docs/generated/DEPENDENCY_BOUNDARIES.md && python3 tools/boundaries.py scan --repository-root . --repository egohygiene/hygiene
+      outcome: passed
+      observed_at: "2026-09-08T14:44:54Z"
+      notes: The 25-relationship register, generated view, and local boundary scan passed.
+    - command: Pinned Aether and local JSON Schema inspections using jsonschema, PyYAML, and the published EgoLint repository-contract schema
+      outcome: passed
+      observed_at: "2026-09-08T14:48:06Z"
+      notes: CONTINUITY.md, both Hygiene profiles, contract indexes, and repository-context.toml decoded against their owning schemas.
+  environment_limitations:
+    - No automatic pull-request CI was run; Hygiene currently exposes only a manually dispatched release-policy workflow.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -122,9 +139,11 @@ not fleet enforcement or a copied Aether implementation.
 
 - Verified base: `28f9d6c7519d820644572634ba4476614f418d83` on `main`, observed at
   `2026-09-08T13:58:13Z`.
-- Candidate: `codex/repository-continuity-policy`; implementation is in progress
-  and no pull request or self-referential candidate revision is claimed.
-- Live: issue #45 was open; Aether #79/#80 were complete; recheck mutable state.
+- Candidate: `codex/repository-continuity-policy`; source anchor `1c720954...`
+  contains the implementation, the final pin/handoff update is ready for
+  review, and no self-referential candidate revision is claimed.
+- Live: issue #45 remained open, `origin/main` was unchanged, Aether #79/#80
+  were complete, and no open Hygiene pull request was observed.
 
 ## Completed and material changes
 
@@ -136,16 +155,19 @@ not fleet enforcement or a copied Aether implementation.
 
 ## Validation and review evidence
 
-- Full repository validation has not run yet; the exact planned command is in
-  front matter and must be replaced with observed results before PR review.
+- All 95 unit tests, canonical generators/checkers, the dependency scan, local
+  JSON Schemas, pinned Aether schema, managed instruction comparison, and
+  EgoLint repository-contract schema passed. Exact commands and limitations are
+  recorded in front matter.
 
 ## Blockers, risks, unknowns, and deferred work
 
 - Blockers: none for a proposed observe-stage Hygiene contract.
 - Risks: Aether's merged artifacts remain draft and unreleased; promotion past
   observe is gated on stable upstream and human ADR acceptance.
-- Unknowns: the older 27-entry architecture catalog still needs its separate
-  live-inventory reconciliation.
+- Unknowns: no additional implementation unknowns were observed; the older
+  27-entry architecture catalog and live fleet must be re-observed before
+  ratchet.
 - Deferred: downstream implementation stays in EgoLint #55, Holon #42, Relay
   #60, Observatory #18, and Pace #26.
 
