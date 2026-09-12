@@ -2,7 +2,8 @@
 
 This document maps Hygiene issue
 [#15](https://github.com/egohygiene/hygiene/issues/15) to reviewable contract
-evidence and keeps contract completion separate from human policy authority.
+evidence and records the human authority that accepted ADR-002 and policy
+v1.1.0.
 
 ## Acceptance evidence
 
@@ -18,31 +19,37 @@ evidence and keeps contract completion separate from human policy authority.
 | Relay/Egolint validation requirements | [`VALIDATION.md`](VALIDATION.md) and [`tools/decisions.py`](../../tools/decisions.py) |
 | Existing-repository migration | [`MIGRATION.md`](MIGRATION.md) |
 
-The matrix establishes that the proposal is complete enough to decide. It does
-not make ADR-002 accepted.
+The matrix established that the proposal was complete enough to decide. The
+ratification evidence below supplies the separate human disposition.
 
-## Human activation gate
+## Ratification evidence
 
-A maintainer ratifying ADR-002 must review one exact commit and leave durable
-GitHub evidence that names both the decision and policy version. Recommended
-approval text:
+- **Decision:** `egohygiene/hygiene#ADR-002`
+- **Policy:** Organization Architecture Decision Record Policy v1.1.0
+- **Reviewed implementation:** `f598ed659a43dd759d4ede41c27f9e5daf991aa7`
+- **Approved by:** [`szmyty`](https://github.com/szmyty)
+- **Date:** 2026-09-12
+- **Durable evidence:** [Hygiene #15 approval comment](https://github.com/egohygiene/hygiene/issues/15#issuecomment-5647398908)
+- **Validation evidence:** [Hygiene #15 ratification packet](https://github.com/egohygiene/hygiene/issues/15#issuecomment-5647360172)
+- **Activation review:** [Hygiene PR #48](https://github.com/egohygiene/hygiene/pull/48)
+
+The approval states:
 
 ```text
 I approve egohygiene/hygiene ADR-002 and the Organization Architecture
-Decision Record Policy v1.1.0 at commit <full-commit-sha> for organization use.
+Decision Record Policy v1.1.0 at commit
+f598ed659a43dd759d4ede41c27f9e5daf991aa7 for organization use.
 ```
 
-After that statement exists, a ratification commit may:
+## Activation recorded by this change
 
-1. set ADR-002 `status: accepted`;
-2. populate `approval.date`, `approval.by`, and the exact evidence URL;
-3. add the ratification review or comment to `evidence`;
-4. set the policy document status to `accepted`;
-5. activate the ADR and inheritance contracts in `catalog/contracts.yaml`;
-6. update the decision index and roadmap gate; and
-7. rerun all contract and generated-file checks.
+- [x] ADR-002 is `accepted` with the named authority and exact evidence URL.
+- [x] The policy document is `accepted`.
+- [x] The ADR and policy-reference contracts are active in the organization
+      contract index.
+- [x] The decision indexes and roadmap gate reflect ratification.
+- [x] Contract, fixture, repository, and generated-file checks were rerun.
 
-An agent may prepare or validate that commit after approval is visible. It must
-not create the approval statement, infer approval from assignment, or treat a
-merge as ratification. Issue #15 remains open until the ratification commit is
-merged with resolvable approval evidence.
+This record does not convert implementation, merge, CI success, or agent output
+into human authority. Future disposition changes require their own explicit,
+durable approval evidence.

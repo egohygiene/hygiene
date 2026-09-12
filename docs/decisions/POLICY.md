@@ -4,11 +4,11 @@ id: hygiene-architecture-decision-policy
 title: Organization Architecture Decision Record Policy
 kind: policy
 version: 1.1.0
-status: proposed
+status: accepted
 owners:
   - egohygiene/hygiene
 created: 2026-08-20
-updated: 2026-08-25
+updated: 2026-09-12
 governed_by:
   - ADR-002
 related:
@@ -18,9 +18,10 @@ supersedes: []
 
 # Organization Architecture Decision Record Policy
 
-> **Proposal status:** This policy has no organization-wide authority until a
-> human maintainer explicitly approves its governing ADR. The schema, template,
-> fixtures, and conventions are review material until then.
+> **Accepted:** Maintainer `szmyty` ratified ADR-002 and this policy at the
+> pinned v1.1.0 implementation commit on 2026-09-12. See the
+> [ratification record](RATIFICATION.md) for durable approval and validation
+> evidence.
 
 ## 1. Purpose
 
@@ -341,10 +342,10 @@ Before proposing an architecture change, agents must:
    and verified; and
 6. avoid duplicates when an existing record can be amended or superseded.
 
-Aether's draft decision-impact hook packages this behavior as concise reusable
-agent guidance pinned to a Hygiene revision. It remains a draft consumer while
-ADR-002 is proposed. Repository `AGENTS.md` and Copilot instructions should
-reference a pinned released module rather than copying this policy.
+Aether's decision-impact hook packages this behavior as concise reusable agent
+guidance pinned to a Hygiene revision. Repository `AGENTS.md` and Copilot
+instructions should reference a pinned released module rather than copying this
+policy. Promotion and fleet adoption remain reviewed downstream work.
 
 ## 15. Versioning, compatibility, and adoption
 
@@ -379,8 +380,9 @@ See [`MIGRATION.md`](MIGRATION.md) for the rollout procedure,
 
 ## 16. Revision history
 
-- `1.1.0` (proposed) adds the repository inheritance contract, namespaced
-  extension rules, the rejected lifecycle disposition, compatibility fixtures,
-  and explicit Egolint/Relay/Pace responsibilities.
-- `1.0.0` (proposed) established the initial Hygiene-owned front matter,
-  lifecycle, migration, privacy, and projection boundaries in pull request #10.
+- `1.1.0` (accepted 2026-09-12) adds the repository inheritance contract,
+  namespaced extension rules, the rejected lifecycle disposition,
+  compatibility fixtures, and explicit Egolint/Relay/Pace responsibilities.
+- `1.0.0` (proposed predecessor) established the initial Hygiene-owned front
+  matter, lifecycle, migration, privacy, and projection boundaries in pull
+  request #10.

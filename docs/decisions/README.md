@@ -5,29 +5,29 @@ cross-repository ownership, dependency direction, platform policy, or the shape
 of the Ego Hygiene ecosystem. Product and tool repositories retain their own
 local ADRs.
 
-## Proposed ADR foundation
+## Accepted ADR foundation
 
 - [Organization ADR policy](POLICY.md)
 - [Normative ADR reference template](ADR-TEMPLATE.md)
 - [Onboarding and migration](MIGRATION.md)
 - [Acceptance and validation plan](VALIDATION.md)
-- [ADR-002 ratification record](RATIFICATION.md)
+- [ADR-002 ratification evidence](RATIFICATION.md)
 - [ADR front matter schema](../../schemas/architecture-decision.v1.schema.json)
 - [Repository policy-reference schema](../../schemas/architecture-decision-policy-reference.v1.schema.json)
 - [Compatibility fixtures](../../fixtures/architecture-decisions)
 - [Organization contract index](../../catalog/contracts.yaml)
 
-These foundation artifacts remain proposals until ADR-002 receives explicit
-human approval. Aether has a draft pinned agent hook and Hygiene has reference
-contract checks; fleet linting, generation, and dashboards are not implemented
-by this directory.
+ADR-002 and policy v1.1.0 are accepted through explicit maintainer approval.
+Hygiene provides the canonical contracts and reference checks; reusable agent
+promotion, fleet adoption, CI orchestration, generation, and publication remain
+owned downstream and are not implemented by this directory.
 
 ## Decision index
 
 | ID | Decision | Status | Date |
 | --- | --- | --- | --- |
 | [ADR-0001](ADR-0001-holistic-architecture-v0.1.md) | Adopt the holistic ecosystem architecture v0.1 | Accepted | 2026-08-18 |
-| [ADR-002](ADR-002-organization-adr-and-delivery-history.md) | Establish an organization ADR and delivery-history contract | Proposed | 2026-08-20 |
+| [ADR-002](ADR-002-organization-adr-and-delivery-history.md) | Establish an organization ADR and delivery-history contract | Accepted | 2026-08-20 |
 | [ADR-003](ADR-003-route-filament-infrastructure-contracts.md) | Route reusable infrastructure contracts to Filament | Proposed | 2026-08-21 |
 | [ADR-004](ADR-004-register-sanctuary-incubation-boundary.md) | Register Sanctuary as the bounded incubation owner | Proposed | 2026-08-21 |
 | [ADR-005](ADR-005-unify-repository-intelligence-projection.md) | Unify repository intelligence as a provenance-aware graph projection | Proposed | 2026-08-25 |

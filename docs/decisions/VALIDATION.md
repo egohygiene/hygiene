@@ -25,24 +25,24 @@ repository-local CI remains unchanged.
 
 ## Phase 1 review gates
 
-- [ ] Hygiene is the unambiguous policy and schema owner.
-- [ ] Aether, Holon, Relay, Observatory, repositories, and `.github` retain their
+- [x] Hygiene is the unambiguous policy and schema owner.
+- [x] Aether, Holon, Relay, Observatory, repositories, and `.github` retain their
       stated responsibility boundaries.
-- [ ] New ADRs begin as `proposed` and cannot become `accepted` without durable
+- [x] New ADRs begin as `proposed` and cannot become `accepted` without durable
       human approval evidence.
-- [ ] The schema contains every required front matter field.
-- [ ] The inheritance schema requires the canonical owner, semantic version,
+- [x] The schema contains every required front matter field.
+- [x] The inheritance schema requires the canonical owner, semantic version,
       and full source commit.
-- [ ] Local extensions are namespaced and cannot override global semantics.
-- [ ] Decision status remains independent from implementation status.
-- [ ] Supersession is bidirectional and cycle-free by policy.
-- [ ] Exceptions are explicit, scoped, owned, and approval-gated.
-- [ ] Legacy IDs and rationale can be preserved without making them validate as
+- [x] Local extensions are namespaced and cannot override global semantics.
+- [x] Decision status remains independent from implementation status.
+- [x] Supersession is bidirectional and cycle-free by policy.
+- [x] Exceptions are explicit, scoped, owned, and approval-gated.
+- [x] Legacy IDs and rationale can be preserved without making them validate as
       new records.
-- [ ] Public projections fail closed for private or unknown visibility.
-- [ ] The dashboard plan extends Relay and Observatory instead of adding a new
+- [x] Public projections fail closed for private or unknown visibility.
+- [x] The dashboard plan extends Relay and Observatory instead of adding a new
       framework to every repository.
-- [ ] No current CI, release, dashboard, or implementation capability is
+- [x] No current CI, release, dashboard, or implementation capability is
       represented as complete when it is only planned.
 
 ## Egolint and Relay consumer contract

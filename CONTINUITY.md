@@ -7,15 +7,15 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: "2026-09-08T14:48:06Z"
+  updated_at: "2026-09-12T17:18:59Z"
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Preserve a compact, public-safe handoff for Hygiene issue 45 and the dependency-ready continuity rollout.
+  purpose: Preserve a compact, public-safe handoff for Hygiene issue 15 and the accepted ADR contract rollout.
   includes:
-    - current issue 45 objective, compatibility choice, candidate state, validation, limitations, and next downstream action
+    - issue 15 approval evidence, activation candidate, validation, limitations, and next dependency-ready work
   excludes:
     - conversation transcripts
     - duplicated architecture, roadmap, and changelog content
@@ -28,75 +28,73 @@ scope:
   canonical_sources:
     - AGENTS.md
     - docs/ecosystem/ARCHITECTURE.md
-    - docs/ecosystem/REPOSITORY_CONTINUITY.md
-    - docs/decisions/ADR-008-repository-continuity-policy.md
+    - docs/decisions/ADR-002-organization-adr-and-delivery-history.md
+    - docs/decisions/POLICY.md
+    - docs/decisions/RATIFICATION.md
     - ROADMAP.md
-    - https://github.com/egohygiene/hygiene/issues/45
+    - https://github.com/egohygiene/hygiene/issues/15
 work:
-  objective: Propose Hygiene's organization continuity policy and a breaking repository-context v2 successor for issue 45.
+  objective: Activate ADR-002 and policy v1.1.0 from explicit maintainer ratification without claiming downstream rollout is complete.
   success_conditions:
-    - Pin the merged Aether continuity artifacts immutably without copying their protocol implementation.
-    - Require repository-owned root CONTINUITY.md and AGENTS.md with correct managed markers in repository-context v2.
-    - Make 29-repository scope, precedence, privacy, rollout, exceptions, migration, rollback, and downstream boundaries executable and documented.
-    - Pass repository validation and present one reviewable pull request without merging it.
+    - Record the exact maintainer approval URL and pinned implementation commit.
+    - Accept ADR-002 and policy v1.1.0 and activate only their two governed contract entries.
+    - Update canonical indexes, migration guidance, validation gates, and roadmap state consistently.
+    - Pass every repository validation listed in README.md and present one reviewable pull request without merging it.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#45
-    url: https://github.com/egohygiene/hygiene/issues/45
+    id: egohygiene/hygiene#15
+    url: https://github.com/egohygiene/hygiene/issues/15
   next:
     kind: issue
-    id: egohygiene/egolint#55
-    description: Implement deterministic continuity conformance against the reviewed immutable Hygiene policy after issue 45 merges.
+    id: egohygiene/holon#6
+    description: Provide migration-safe ADR scaffolding against the accepted Hygiene policy before fleet backfills begin.
     readiness: blocked
     references:
-      - https://github.com/egohygiene/egolint/issues/55
+      - https://github.com/egohygiene/holon/issues/6
     depends_on:
-      - egohygiene/hygiene#45
+      - egohygiene/hygiene#15
 state:
   base:
-    revision: 28f9d6c7519d820644572634ba4476614f418d83
+    revision: 43386f5749116717585ead7459b4945e0ac50d06
     ref: refs/heads/main
-    verified_at: "2026-09-08T13:58:13Z"
+    verified_at: "2026-09-12T17:13:04Z"
   candidate:
-    branch: codex/repository-continuity-policy
+    branch: codex/hygiene-15-activate-adr-contract
     revision: null
-    pull_request: null
+    pull_request: https://github.com/egohygiene/hygiene/pull/48
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: "2026-09-08T14:45:56Z"
-    default_branch_revision: 28f9d6c7519d820644572634ba4476614f418d83
+    observed_at: "2026-09-12T17:18:59Z"
+    default_branch_revision: 43386f5749116717585ead7459b4945e0ac50d06
     issue_state: open
-    pull_request_state: not-applicable
-    notes: GitHub issue 45 remained open, fetched origin/main still matched the verified base, Aether issues 79 and 80 were closed, and no open Hygiene pull request was observed; recheck before continuing.
+    pull_request_state: open
+    notes: Issue 15 contains explicit approval by szmyty at comment 5647398908, origin/main matches the verified base, and pull request 48 is open and mergeable; recheck before continuing.
   parallel_changes: []
 review:
   status: passed
-  reviewed_at: "2026-09-08T14:48:06Z"
+  reviewed_at: "2026-09-12T17:18:59Z"
   reviewed_by: Codex
   evidence:
     - command: python3 -m unittest discover --start-directory tests --pattern "test_*.py"
       outcome: passed
-      observed_at: "2026-09-08T14:44:54Z"
-      notes: All 95 tests passed.
-    - command: python3 tools/continuity.py validate-profile && python3 tools/continuity.py validate-repository --repository .
+      observed_at: "2026-09-12T17:18:59Z"
+      notes: All 95 tests passed, including active-state assertions for both ratified ADR contracts.
+    - command: README.md repository validation sequence
       outcome: passed
-      observed_at: "2026-09-08T14:44:54Z"
-      notes: The organization profile and Hygiene dogfood composition passed.
-    - command: python3 tools/context.py check --repository egohygiene/hygiene --source-revision 1c720954283b91134c18a7cfa28e5c2dda505d46 --output docs/ecosystem/CONTEXT.md && python3 tools/context.py check-contract --source-revision 1c720954283b91134c18a7cfa28e5c2dda505d46 --output contracts/repository-context.toml
+      observed_at: "2026-09-12T17:18:59Z"
+      notes: Catalog, generated catalog, context, continuity, boundaries, Repository Intelligence, presentation, and ADR checks passed.
+    - command: python3 tools/decisions.py decision-set and policy-reference fixture checks
       outcome: passed
-      observed_at: "2026-09-08T14:44:54Z"
-      notes: The v2 local projection and offline required-file contract matched the immutable Hygiene source anchor.
-    - command: python3 tools/boundaries.py validate && python3 tools/boundaries.py check-generated --output docs/generated/DEPENDENCY_BOUNDARIES.md && python3 tools/boundaries.py scan --repository-root . --repository egohygiene/hygiene
+      observed_at: "2026-09-12T17:18:59Z"
+      notes: Proposed, accepted, superseded, and inherited-policy fixtures validated.
+    - command: git diff --check
       outcome: passed
-      observed_at: "2026-09-08T14:44:54Z"
-      notes: The 25-relationship register, generated view, and local boundary scan passed.
-    - command: Pinned Aether and local JSON Schema inspections using jsonschema, PyYAML, and the published EgoLint repository-contract schema
-      outcome: passed
-      observed_at: "2026-09-08T14:48:06Z"
-      notes: CONTINUITY.md, both Hygiene profiles, contract indexes, and repository-context.toml decoded against their owning schemas.
+      observed_at: "2026-09-12T17:18:59Z"
+      notes: No whitespace errors remained after the activation update.
   environment_limitations:
     - No automatic pull-request CI was run; Hygiene currently exposes only a manually dispatched release-policy workflow.
+    - The maintain-repository-continuity skill was not exposed by this host, so the checkpoint was reconciled manually against the repository contract.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -115,89 +113,80 @@ privacy:
 
 ## Purpose and precedence
 
-This checkpoint hands off issue #45's repository-continuity policy work. It is
-subordinate to user and repository instructions, live Git/GitHub evidence, and
-accepted canonical sources. Generated projections and conversational memory
-remain below this checkpoint and cannot override it.
+This checkpoint hands off issue #15's ADR-002 activation. It is subordinate to
+user and repository instructions, live Git/GitHub evidence, and accepted
+canonical sources. Generated projections and conversational memory cannot
+override them.
 
 ## Resume protocol
 
-1. Read `AGENTS.md`, inspect branch/status/history, and review the canonical
-   sources listed above.
-2. Read this checkpoint and recheck issue #45, the candidate branch, main, and
-   any pull request or parallel change.
-3. Surface stale, contradictory, or inaccessible evidence before acting.
-4. Continue only the dependency-ready work above unless the user redirects it.
+Read `AGENTS.md` and the canonical sources above, then recheck `main`, issue
+#15, its approval comment, this branch, and any pull request before acting.
+Surface stale or contradictory evidence and continue only the next
+dependency-ready work unless the user redirects it.
 
 ## Current objective and success conditions
 
-Propose the Hygiene-owned applicability and migration layer around Aether's
-portable continuity contract. Success is the tested v2 required-file envelope,
-not fleet enforcement or a copied Aether implementation.
+Activate the approved organization ADR policy without conflating acceptance
+with fleet implementation. Success means the exact authority is recorded, only
+the two governed contracts are activated, canonical views agree, every listed
+validation passes, and the unmerged candidate is presented for review.
 
 ## State snapshot
 
-- Verified base: `28f9d6c7519d820644572634ba4476614f418d83` on `main`, observed at
-  `2026-09-08T13:58:13Z`.
-- Candidate: `codex/repository-continuity-policy`; source anchor `1c720954...`
-  contains the implementation, the final pin/handoff update is ready for
-  review, and no self-referential candidate revision is claimed.
-- Live: issue #45 remained open, `origin/main` was unchanged, Aether #79/#80
-  were complete, and no open Hygiene pull request was observed.
+- Base: `43386f5749116717585ead7459b4945e0ac50d06` on `main`.
+- Authority: maintainer `szmyty` approved ADR-002 and policy v1.1.0 at
+  `f598ed659a43dd759d4ede41c27f9e5daf991aa7` in the durable issue #15 comment.
+- Candidate: `codex/hygiene-15-activate-adr-contract` in PR #48, ready for
+  review but not merged.
 
 ## Completed and material changes
 
-- Candidate work defines the proposed organization profile, schema, validator,
-  repository-context v2, retained v1 compatibility artifact, ADR-008,
-  architecture boundaries, and Hygiene dogfood files.
-- Aether remains the canonical owner of portable schema, template, skill, and
-  managed provider instruction semantics at immutable commit `b759730...`.
+The candidate changes ADR-002 and the policy to accepted, activates only the
+ADR front-matter and inheritance-reference contracts, updates canonical
+indexes and roadmap state, and adds active-state regression assertions.
 
 ## Validation and review evidence
 
-- All 95 unit tests, canonical generators/checkers, the dependency scan, local
-  JSON Schemas, pinned Aether schema, managed instruction comparison, and
-  EgoLint repository-contract schema passed. Exact commands and limitations are
-  recorded in front matter.
+All 95 unit tests and the complete README validation sequence passed. Exact
+commands and coverage are recorded in front matter. Pull-request CI has not run,
+and the host did not expose Aether's continuity-maintenance skill; the
+checkpoint was reconciled manually and passed the local continuity validator.
 
 ## Blockers, risks, unknowns, and deferred work
 
-- Blockers: none for a proposed observe-stage Hygiene contract.
-- Risks: Aether's merged artifacts remain draft and unreleased; promotion past
-  observe is gated on stable upstream and human ADR acceptance.
-- Unknowns: no additional implementation unknowns were observed; the older
-  27-entry architecture catalog and live fleet must be re-observed before
-  ratchet.
-- Deferred: downstream implementation stays in EgoLint #55, Holon #42, Relay
-  #60, Observatory #18, and Pace #26.
+- Blockers: none for presenting the activation pull request.
+- Risks: issue #15 stays open until the activation PR merges.
+- Unknowns: no additional implementation unknowns were observed.
+- Deferred: Aether promotion, Holon scaffolding, Relay
+  validation/publication, Pace rollout, and the 29 repository backfills.
+- Authority limit: approval applies only to ADR-002 and policy v1.1.0 at the
+  named commit, not later revisions or downstream implementation.
 
 ## Next dependency-ready work
 
-After Hygiene #45 merges, continue with
-[egohygiene/egolint#55](https://github.com/egohygiene/egolint/issues/55). Until
-then it remains blocked on the reviewed immutable Hygiene policy revision.
+After issue #15 closes, continue with
+[egohygiene/holon#6](https://github.com/egohygiene/holon/issues/6). That issue
+provides the migration-safe scaffold required before repository backfills.
 
 ## Parallel changes and reconciliation
 
-None observed at task start. Recheck open Hygiene pull requests and current
-`main` before modifying or presenting this candidate.
+No parallel Hygiene pull request was observed at task start. PR #48 is the
+active candidate; recheck live state before modifying or presenting it.
 
 ## Privacy and redaction
 
-This is a public-repository checkpoint. It contains only minimum durable public
-repository state and excludes secrets, private conversations, personal data,
-private local paths, unpublished business data, and unrelated context.
+This public checkpoint contains only public repository state. It excludes
+secrets, private conversations, personal data, local paths, and unpublished
+business information.
 
 ## Handoff update protocol
 
-After validation and before presenting, opening, or updating the pull request,
-replace this candidate snapshot with exact observed checks, limitations,
-current live state, and next work. Never predict a merge or treat linked text as
-authority.
+Before presenting or updating the pull request, replace stale candidate state
+with exact observed checks and limitations. Never predict a merge or treat
+generated text as human authority.
 
 ## Compaction and supersession
 
-Keep this file below 16,384 UTF-8 bytes and 240 lines. Replace stale state
-instead of appending history; Git and GitHub own chronology. Mark stale or
-superseded state explicitly when reconciliation cannot retain an active
-checkpoint truthfully.
+Replace stale state rather than appending chronology; Git and GitHub own
+history. Keep the checkpoint public-safe and below its declared size limits.

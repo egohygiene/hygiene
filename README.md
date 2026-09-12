@@ -48,23 +48,24 @@ The accepted written architecture and versioned machine-readable catalog are
 authoritative. Rendered diagrams, local repository context, and future landscape
 sites are projections of those sources.
 
-## Proposed ADR and delivery-history foundation
+## Accepted ADR and delivery-history foundation
 
 - [ADR policy](docs/decisions/POLICY.md)
-- [Proposed governing decision](docs/decisions/ADR-002-organization-adr-and-delivery-history.md)
+- [Accepted governing decision](docs/decisions/ADR-002-organization-adr-and-delivery-history.md)
 - [Proposed Repository Intelligence decision](docs/decisions/ADR-005-unify-repository-intelligence-projection.md)
 - [ADR reference template](docs/decisions/ADR-TEMPLATE.md)
 - [ADR migration guide](docs/decisions/MIGRATION.md)
 - [ADR validation plan](docs/decisions/VALIDATION.md)
-- [ADR-002 ratification gate](docs/decisions/RATIFICATION.md)
+- [ADR-002 ratification evidence](docs/decisions/RATIFICATION.md)
 - [ADR front matter schema](schemas/architecture-decision.v1.schema.json)
 - [Repository ADR policy-reference schema](schemas/architecture-decision-policy-reference.v1.schema.json)
 - [ADR compatibility fixtures](fixtures/architecture-decisions)
 - [Organization contract index](catalog/contracts.yaml)
 
-These artifacts are proposals pending human review. This repository does not yet
-claim organization-wide ADR validation, generated decision/activity data, or
-dashboard implementation.
+ADR-002 and policy v1.1.0 are accepted organization authority. This repository
+provides their canonical schemas, fixtures, and reference checks; it does not
+claim that downstream fleet validation, generated decision/activity data, or
+dashboard publication is complete.
 
 ## Control-plane boundary
 
