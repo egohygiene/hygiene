@@ -115,7 +115,8 @@ after Phase 2 defines provenance markers and migration-safe ownership rules.
 
 ## Rollout sequence
 
-1. Explicitly ratify ADR-002 and record its durable human approval evidence.
+1. Pin the accepted ADR-002 policy revision and its durable human approval
+   evidence.
 2. Release Aether's pinned reusable instruction module; retain its legacy policy
    text only as clearly non-canonical migration evidence.
 3. Define Holon scaffold/validate artifacts and provenance markers.

@@ -3,12 +3,12 @@ schema: aether.architecture-document/v1
 id: hygiene-decisions
 title: Hygiene Decisions
 kind: architecture-document
-version: 0.2.0
+version: 0.3.0
 status: provisional
 owners:
   - egohygiene
 created: 2026-08-19
-updated: 2026-08-20
+updated: 2026-09-12
 governed_by:
   - architecture-decisions
 depends_on:
@@ -40,16 +40,17 @@ it does not duplicate full rationale.
 | ID | Decision | Status | Record |
 | --- | --- | --- | --- |
 | ADR-0001 | Accept holistic organization architecture v0.1 | Accepted | [Detailed record](docs/decisions/ADR-0001-holistic-architecture-v0.1.md) |
-| ADR-002 | Establish an organization ADR and delivery-history contract | Proposed | [Detailed record](docs/decisions/ADR-002-organization-adr-and-delivery-history.md) |
+| ADR-002 | Establish an organization ADR and delivery-history contract | Accepted | [Detailed record](docs/decisions/ADR-002-organization-adr-and-delivery-history.md) |
 
-## Proposed governance contract
+## Accepted governance contract
 
-ADR-002 introduces a proposed organization
+ADR-002 establishes the accepted organization
 [ADR policy](docs/decisions/POLICY.md),
 [front matter schema](schemas/architecture-decision.v1.schema.json),
 [migration guide](docs/decisions/MIGRATION.md), and
-[validation plan](docs/decisions/VALIDATION.md). None is organization-wide
-authority until explicit human approval is recorded in ADR-002.
+[validation plan](docs/decisions/VALIDATION.md). Its explicit maintainer
+authority and pinned implementation revision are recorded in the
+[ratification evidence](docs/decisions/RATIFICATION.md).
 
 New significant organization decisions receive a stable identifier, explicit
 status, evidence, alternatives, consequences, review triggers, and a detailed
@@ -71,13 +72,16 @@ later understanding.
 
 - **Observed:** ADR-0001 and the ecosystem architecture are present on the
   default branch.
-- **Proposed:** ADR-002 and its policy/schema package are under review and have
-  no accepted or implemented status.
-- **Open question:** Which review evidence will authorize ADR-002, if approved?
+- **Accepted:** ADR-002 and policy v1.1.0 were approved by maintainer `szmyty`
+  on 2026-09-12 at the pinned implementation revision.
+- **Open question:** Downstream rollout and repository-local migration remain
+  separately reviewed implementation work.
 
 ## Validation
 
 The index must resolve every detailed record, use each decision identifier once,
 and remain consistent with the repository catalog and holistic architecture.
-Automated ADR validation is planned in Relay and is not currently claimed by
-Hygiene.
+Hygiene provides reference contract checks. EgoLint owns semantic validation
+and Relay owns reusable CI orchestration and projections; this index does not
+claim those downstream systems are complete merely because the policy is
+accepted.

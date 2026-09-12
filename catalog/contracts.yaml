@@ -3,14 +3,14 @@
   "status": "proposed",
   "organization": "egohygiene",
   "canonical_repository": "egohygiene/hygiene",
-  "updated": "2026-09-08",
+  "updated": "2026-09-12",
   "contracts": [
     {
       "id": "egohygiene.architecture-decision/v1",
       "title": "Architecture decision front matter",
       "owner": "egohygiene/hygiene",
       "source": "schemas/architecture-decision.v1.schema.json",
-      "status": "proposed",
+      "status": "active",
       "visibility": "public"
     },
     {
@@ -18,7 +18,7 @@
       "title": "Repository ADR policy inheritance reference",
       "owner": "egohygiene/hygiene",
       "source": "schemas/architecture-decision-policy-reference.v1.schema.json",
-      "status": "proposed",
+      "status": "active",
       "visibility": "public"
     },
     {

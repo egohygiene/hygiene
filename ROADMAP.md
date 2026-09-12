@@ -3,12 +3,12 @@ schema: aether.architecture-document/v1
 id: hygiene-roadmap
 title: Hygiene Roadmap
 kind: architecture-document
-version: 0.4.0
+version: 0.5.0
 status: provisional
 owners:
   - egohygiene
 created: 2026-08-19
-updated: 2026-09-08
+updated: 2026-09-12
 governed_by:
   - architecture-roadmap
 depends_on:
@@ -40,7 +40,7 @@ updated: 2026-08-25
 > This evidence-reconciled snapshot is the issue-generation and visual-roadmap handoff. The longer-horizon strategy below remains canonical context; generated HTML, JSON, progress, issue plans, and commit lists are projections.
 
 **Lifecycle:** seed, architecture-first control plane  
-**Current gate:** Ratify ADR-002 through issue #15 and add CI before treating proposed organization contracts as active.
+**Current gate:** Merge the ADR-002 activation change, then add CI against the accepted organization contracts.
 
 **North-star outcome:** The canonical, machine-readable definition of the organization, its repositories, boundaries, and lifecycle contracts.
 
@@ -62,7 +62,7 @@ issues: []
 -->
 #### HYG-Q01 — Establish schemas and governance tools
 
-**State:** `complete`  
+**State:** `complete`
 **Depends on:** None
 
 **Outcome:** Initial schemas, tools, tests, and incubation boundaries exist.
@@ -79,38 +79,39 @@ issues: []
 
 <!-- roadmap-step
 id: HYG-Q02
-status: active
+status: complete
 depends_on: [HYG-Q01]
 issues: [15]
 -->
 #### HYG-Q02 — Ratify the organization ADR standard
 
-**State:** `active`  
+**State:** `complete`
 **Depends on:** `HYG-Q01`
 
 **Outcome:** ADR-002, tracked by issue #15, defines what Hygiene owns and how repositories inherit its versioned ADR contract without copying policy.
 
 **Exit criteria:**
 
-- [ ] ADR-002 is explicitly accepted with named human authority and durable evidence.
-- [ ] The front matter and repository policy-reference contracts are activated.
-- [ ] Conflicting local policy sources are deprecated or clearly marked non-canonical.
+- [x] ADR-002 is explicitly accepted with named human authority and durable evidence.
+- [x] The front matter and repository policy-reference contracts are activated.
+- [x] Conflicting local policy sources are deprecated or clearly marked non-canonical.
 
 **Current evidence:**
 
-- PR #10 merged the proposed foundation; this quest hardens its inheritance and extension contract.
-- Aether PR #50 provides a draft pinned consumer without claiming policy authority.
-- Explicit maintainer ratification remains the current acceptance gate.
+- PR #10 merged the proposed foundation and PR #21 hardened its inheritance and extension contract.
+- Aether PR #50 provides a pinned consumer without claiming policy authority.
+- Maintainer `szmyty` explicitly approved ADR-002 and policy v1.1.0 at
+  `f598ed659a43dd759d4ede41c27f9e5daf991aa7` in issue #15 on 2026-09-12.
 
 <!-- roadmap-step
 id: HYG-Q03
-status: blocked
+status: ready
 depends_on: [HYG-Q02]
 issues: []
 -->
 #### HYG-Q03 — Activate contract validation
 
-**State:** `blocked`  
+**State:** `ready`
 **Depends on:** `HYG-Q02`
 
 **Outcome:** Every catalog and schema change is validated before merge.

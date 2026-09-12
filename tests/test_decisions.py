@@ -152,6 +152,13 @@ class DecisionContractTests(unittest.TestCase):
         ids = [contract["id"] for contract in catalog["contracts"]]
         self.assertIn(decisions.DECISION_SCHEMA, ids)
         self.assertIn(decisions.POLICY_REFERENCE_SCHEMA, ids)
+        contracts = {
+            contract["id"]: contract for contract in catalog["contracts"]
+        }
+        self.assertEqual("active", contracts[decisions.DECISION_SCHEMA]["status"])
+        self.assertEqual(
+            "active", contracts[decisions.POLICY_REFERENCE_SCHEMA]["status"]
+        )
 
 
 if __name__ == "__main__":
