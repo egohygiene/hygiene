@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: "2026-09-12T17:13:04Z"
+  updated_at: "2026-09-12T17:18:59Z"
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -61,36 +61,36 @@ state:
   candidate:
     branch: codex/hygiene-15-activate-adr-contract
     revision: null
-    pull_request: null
+    pull_request: https://github.com/egohygiene/hygiene/pull/48
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: "2026-09-12T17:13:04Z"
+    observed_at: "2026-09-12T17:18:59Z"
     default_branch_revision: 43386f5749116717585ead7459b4945e0ac50d06
     issue_state: open
-    pull_request_state: not-applicable
-    notes: Issue 15 contains explicit approval by szmyty at comment 5647398908, origin/main matches the verified base, and no open Hygiene pull request was observed; recheck before continuing.
+    pull_request_state: open
+    notes: Issue 15 contains explicit approval by szmyty at comment 5647398908, origin/main matches the verified base, and pull request 48 is open and mergeable; recheck before continuing.
   parallel_changes: []
 review:
   status: passed
-  reviewed_at: "2026-09-12T17:13:04Z"
+  reviewed_at: "2026-09-12T17:18:59Z"
   reviewed_by: Codex
   evidence:
     - command: python3 -m unittest discover --start-directory tests --pattern "test_*.py"
       outcome: passed
-      observed_at: "2026-09-12T17:13:04Z"
+      observed_at: "2026-09-12T17:18:59Z"
       notes: All 95 tests passed, including active-state assertions for both ratified ADR contracts.
     - command: README.md repository validation sequence
       outcome: passed
-      observed_at: "2026-09-12T17:13:04Z"
+      observed_at: "2026-09-12T17:18:59Z"
       notes: Catalog, generated catalog, context, continuity, boundaries, Repository Intelligence, presentation, and ADR checks passed.
     - command: python3 tools/decisions.py decision-set and policy-reference fixture checks
       outcome: passed
-      observed_at: "2026-09-12T17:13:04Z"
+      observed_at: "2026-09-12T17:18:59Z"
       notes: Proposed, accepted, superseded, and inherited-policy fixtures validated.
     - command: git diff --check
       outcome: passed
-      observed_at: "2026-09-12T17:13:04Z"
+      observed_at: "2026-09-12T17:18:59Z"
       notes: No whitespace errors remained after the activation update.
   environment_limitations:
     - No automatic pull-request CI was run; Hygiene currently exposes only a manually dispatched release-policy workflow.
@@ -137,8 +137,8 @@ validation passes, and the unmerged candidate is presented for review.
 - Base: `43386f5749116717585ead7459b4945e0ac50d06` on `main`.
 - Authority: maintainer `szmyty` approved ADR-002 and policy v1.1.0 at
   `f598ed659a43dd759d4ede41c27f9e5daf991aa7` in the durable issue #15 comment.
-- Candidate: `codex/hygiene-15-activate-adr-contract`, ready for review but not
-  merged.
+- Candidate: `codex/hygiene-15-activate-adr-contract` in PR #48, ready for
+  review but not merged.
 
 ## Completed and material changes
 
@@ -171,8 +171,8 @@ provides the migration-safe scaffold required before repository backfills.
 
 ## Parallel changes and reconciliation
 
-No open Hygiene pull request was observed at task start. Recheck live state
-before modifying or presenting the candidate.
+No parallel Hygiene pull request was observed at task start. PR #48 is the
+active candidate; recheck live state before modifying or presenting it.
 
 ## Privacy and redaction
 

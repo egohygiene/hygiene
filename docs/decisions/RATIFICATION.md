@@ -31,6 +31,7 @@ ratification evidence below supplies the separate human disposition.
 - **Date:** 2026-09-12
 - **Durable evidence:** [Hygiene #15 approval comment](https://github.com/egohygiene/hygiene/issues/15#issuecomment-5647398908)
 - **Validation evidence:** [Hygiene #15 ratification packet](https://github.com/egohygiene/hygiene/issues/15#issuecomment-5647360172)
+- **Activation review:** [Hygiene PR #48](https://github.com/egohygiene/hygiene/pull/48)
 
 The approval states:
 

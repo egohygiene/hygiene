@@ -46,6 +46,9 @@ evidence:
   - type: approval
     url: https://github.com/egohygiene/hygiene/issues/15#issuecomment-5647398908
     description: Explicit maintainer approval of ADR-002 and policy v1.1.0 at the pinned implementation commit.
+  - type: pull_request
+    url: https://github.com/egohygiene/hygiene/pull/48
+    description: Reviewable activation change that records ratification and activates the governed contracts.
 exceptions: []
 approval:
   date: 2026-09-12
