@@ -466,7 +466,7 @@
         "egohygiene/store",
         "egohygiene/observatory"
       ],
-      "capability": "Agent-Ready Web vocabulary, discovery and efficient-representation catalog, source-equivalence and negotiation rules, maturity and evidence shape, compatibility, extension, and ownership policy",
+      "capability": "Agent-Ready Web vocabulary, discovery and efficient-representation catalog, guarded browser-capability envelope, descriptive commerce and advertising policy, source-equivalence and negotiation rules, maturity and evidence shape, compatibility, extension, and ownership policy",
       "interfaces": [
         "schema",
         "generated-projection"

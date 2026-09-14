@@ -216,8 +216,10 @@ Hygiene will publish an architecture release containing:
   migration, and privacy policy composed from Aether's immutable portable
   contract;
 - `catalog/agent-ready-web-profile.json` — proposed human-first and
-  machine-readable web publication vocabulary, site classes, maturity,
-  reference/evidence shape, compatibility, extensions, and ownership policy;
+  machine-readable web publication vocabulary, site classes, discovery and
+  representation policy, guarded browser-capability envelope, descriptive
+  commerce and advertising boundaries, maturity, reference/evidence shape,
+  compatibility, extensions, and ownership policy;
 - this ecosystem architecture;
 - cross-repository ADRs and contract indexes;
 - diagram sources and approved rendered diagrams;
@@ -261,10 +263,11 @@ adoption; and each repository owns its current-state wording and review.
 
 Agent-Ready Web publication also preserves control-plane separation. Hygiene
 defines the versioned profile, discovery catalog, representation-integrity
-rules, and reference semantics; Holon may materialize accepted policy for new
+rules, guarded capability envelope, descriptive commerce and advertising
+policy, and reference semantics; Holon may materialize accepted policy for new
 sites; Relay owns reusable validation and evidence transport; Pace proposes
-reviewable existing-site convergence; Store owns guarded commerce-domain
-contracts; Observatory reports privacy-safe evidence; and each site retains
+reviewable existing-site convergence; Store owns every guarded commerce-domain
+contract; Observatory reports privacy-safe evidence; and each site retains
 its facts, credentials, consent decisions, and final publication authority.
 The proposed profile does not implement those downstream responsibilities.
 

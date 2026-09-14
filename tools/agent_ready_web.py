@@ -20,7 +20,7 @@ from typing import Any
 
 
 PROFILE_SCHEMA = "egohygiene.agent-ready-web-profile/v1"
-PROFILE_VERSION = "1.0.0-alpha.2"
+PROFILE_VERSION = "1.0.0-alpha.3"
 PROFILE_OWNER = "egohygiene/hygiene"
 FIXTURE_SCHEMA = "egohygiene.agent-ready-web-mechanism-fixture/v1"
 CONCERNS = ["readability", "capability", "efficiency", "commerce"]
@@ -61,6 +61,7 @@ EVIDENCE_KINDS = [
 ]
 OWNERS = {"hygiene", "holon", "relay", "pace", "store", "observatory"}
 ARTIFACT_KINDS = [
+    "browser-capability",
     "crawler-guidance",
     "origin-file",
     "page-alternate",
@@ -70,19 +71,49 @@ ARTIFACT_KINDS = [
 ]
 VALIDATION_SEVERITIES = ["advisory", "error"]
 SCOPED_MECHANISM_IDS = [
+    "ads-txt",
     "ai-crawler-guidance",
     "ai-oriented-hints",
+    "app-ads-txt",
     "canonical-metadata",
     "cats-txt",
+    "commerce-product-offer-jsonld",
     "entitymap-html",
     "entitymap-json",
     "llms-full-txt",
     "llms-txt",
     "markdown-alternate",
+    "mcp-b-runtime",
     "robots-txt",
     "sitemap-xml",
     "structured-discovery-jsonld",
+    "webmcp-tools",
 ]
+CAPABILITY_CLASSES = ["read-only", "state-changing"]
+CAPABILITY_PROTOCOLS = ["mcp-b", "webmcp"]
+CAPABILITY_PROTOCOL_BINDINGS = {
+    "mcp-b": {
+        "protocol_revision": "package-release-or-immutable-repository-revision",
+        "discovery_surface": "mcp-b-runtime-or-bridge-tool-list",
+    },
+    "webmcp": {
+        "protocol_revision": "2026-09-10-community-group-draft",
+        "discovery_surface": "document.modelContext-active-document-tool-list",
+    },
+}
+COMMERCE_ROLES = [
+    "advertising-authorization-declaration",
+    "descriptive-product-offer",
+]
+COMMERCE_ROLE_IDENTITY_SOURCES = {
+    "advertising-authorization-declaration": {
+        "publisher-and-advertising-system-contract-evidence",
+        "verified-app-store-developer-domain-and-advertising-system-contract-evidence",
+    },
+    "descriptive-product-offer": {
+        "canonical-human-facing-product-and-offer-source",
+    },
+}
 RESOLUTION_POLICY = {
     "applicability_precedes_strength": True,
     "inapplicable_absence": "valid",
@@ -121,6 +152,102 @@ ALTERNATE_DISCOVERY_POLICY = {
     "html_or_http_link": "required",
     "canonical_backlink": "human-facing-canonical-url-required",
 }
+CAPABILITY_POLICY = {
+    "scope": "browser-agent-tool-exposure",
+    "protocol_status": {
+        "webmcp": "draft-community-group-report-not-a-web-standard",
+        "mcp_b": "experimental-implementation-not-webmcp-or-mcp-authority",
+    },
+    "declaration_contract": {
+        "identity": "stable-origin-bound-capability-id",
+        "protocol_revision": "exact-version-or-immutable-revision-required",
+        "discovery": "protocol-native-active-authorized-context-plus-origin-bound-contract-evidence",
+        "input_contract": "versioned-json-schema-and-runtime-validation-required",
+        "output_contract": "versioned-json-schema-and-runtime-validation-required",
+        "compatibility": "breaking-input-output-effect-or-permission-change-requires-new-capability-major",
+        "unknown_fields": "fail-closed",
+    },
+    "classification": {
+        "classes": CAPABILITY_CLASSES,
+        "unclassified": "treat-as-state-changing-and-deny",
+        "read_only": {
+            "state_effects": "prohibited",
+            "sensitive_data": "explicit-permission-and-consent-required",
+            "confirmation": "required-before-sensitive-disclosure",
+        },
+        "state_changing": {
+            "effects": "declare-completely-before-consent",
+            "permission": "explicit-operation-scoped",
+            "confirmation": "fresh-human-confirmation-before-consequential-or-irreversible-effect",
+            "retry": "no-automatic-retry-without-idempotency-or-new-confirmation",
+        },
+    },
+    "security": {
+        "permission": "explicit-operation-scoped-and-revocable",
+        "consent": "informed-specific-and-obtained-before-invocation",
+        "least_privilege": "minimum-data-scope-and-duration",
+        "origin_binding": "secure-exact-origin-and-current-document",
+        "authentication": "required-when-human-ui-requires-authentication",
+        "authorization": "server-revalidated-for-every-invocation",
+        "credential_handling": "no-token-passthrough-or-secret-in-schema-description-output",
+        "data_minimization": "request-and-return-only-necessary-data",
+        "annotations": "untrusted-hints-never-authority",
+        "prompt_injection": "tool-metadata-input-and-output-treated-as-untrusted",
+    },
+    "execution_evidence": {
+        "provenance": "record-capability-id-version-origin-actor-and-contract-digests",
+        "audit": "tamper-evident-invocation-decision-result-and-confirmation-record",
+        "observability": "correlation-id-status-latency-and-redacted-error",
+        "revocation": "effective-before-next-invocation",
+        "expiry": "permissions-consent-and-handles-expire-explicitly",
+        "replay_protection": "nonce-or-idempotency-key-bound-to-actor-origin-action-and-expiry",
+        "rate_limits": "declared-and-enforced-per-actor-origin-and-capability",
+    },
+    "failure_policy": {
+        "default": "deny-and-perform-no-state-change",
+        "partial_failure": "report-observed-effects-and-do-not-claim-rollback",
+        "recovery": "human-visible-resume-or-compensating-path-required",
+        "timeouts": "bounded-and-cancelable",
+        "unknown_or_stale_contract": "deny",
+    },
+    "publication_gate": "experimental-capability-absence-is-non-blocking-and-present-exposure-must-pass-all-guards",
+}
+COMMERCE_POLICY = {
+    "scope": "descriptive-commerce-and-advertising-boundaries",
+    "descriptive_metadata": {
+        "media_type": "application/ld+json",
+        "vocabulary": ["https://schema.org/Offer", "https://schema.org/Product"],
+        "visible_fact_parity": "required",
+        "seller_identity": "evidence-backed-explicit-or-omitted",
+        "availability_price_currency": "current-visible-and-source-backed",
+        "potential_action": "descriptive-only-no-execution-authority",
+    },
+    "guarded_actions": {
+        "owner": "egohygiene/store",
+        "capability_class": "state-changing",
+        "contract": "versioned-store-owned-contract-required",
+        "metadata_authority": "none",
+        "missing_contract": "do-not-expose-or-invoke",
+        "confirmation": "agent-ready-web-capability-policy-required",
+        "recovery": "store-contract-plus-agent-ready-web-failure-policy-required",
+    },
+    "advertising": {
+        "ads_txt_applicability": "actual-web-programmatic-inventory-authorization-or-explicit-iab-no-seller-declaration",
+        "app_ads_txt_applicability": "distributed-app-programmatic-inventory-linked-to-developer-domain-or-explicit-iab-no-seller-declaration",
+        "relationship_evidence": "current-publisher-and-ad-system-account-evidence-required",
+        "direct_or_reseller": "must-match-real-contractual-account-relationship",
+        "owner_manager_and_partner_domains": "must-match-current-documented-relationship",
+        "no_relationships": "artifact-absent-with-explicit-not-applicable-evidence-or-exact-iab-no-seller-placeholder",
+        "placeholder": "iab-reserved-sentinel-only-never-a-seller-relationship",
+        "invented_relationships": "prohibited",
+        "absence": "valid-when-inapplicable",
+    },
+    "separation": {
+        "metadata_to_capability_inference": "forbidden",
+        "advertising_to_commerce_action": "forbidden",
+        "offer_to_purchase_authority": "forbidden",
+    },
+}
 PROFILE_FIELDS = {
     "schema",
     "version",
@@ -136,6 +263,8 @@ PROFILE_FIELDS = {
     "mechanism_contract",
     "resolution_policy",
     "representation_policy",
+    "capability_policy",
+    "commerce_policy",
     "mechanisms",
     "compatibility",
     "extensions",
@@ -159,6 +288,25 @@ MECHANISM_POLICY_FIELDS = {
     "validation_rules",
 }
 MECHANISM_FIELDS = MECHANISM_BASE_FIELDS | MECHANISM_POLICY_FIELDS
+CAPABILITY_BINDING_FIELD = "capability"
+COMMERCE_BINDING_FIELD = "commerce"
+CAPABILITY_BINDING_FIELDS = {
+    "protocol",
+    "protocol_revision",
+    "implementation_pin",
+    "identity",
+    "discovery_surface",
+    "classes",
+    "input_contract",
+    "output_contract",
+    "compatibility",
+}
+COMMERCE_BINDING_FIELDS = {
+    "role",
+    "identity_source",
+    "executable_authority",
+    "transaction_contract",
+}
 IDENTIFIER_PATTERN = r"^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*$"
 EXTENSION_IDENTIFIER_PATTERN = (
     r"^egohygiene\.[a-z0-9][a-z0-9.-]*\.agent-ready-web\."
@@ -422,6 +570,57 @@ def _validate_validation_rules(value: Any, path: str) -> list[str]:
     return errors
 
 
+def _validate_capability_binding(value: Any, path: str) -> list[str]:
+    if not isinstance(value, dict):
+        return [f"{path} must be an object"]
+    errors: list[str] = []
+    if set(value) != CAPABILITY_BINDING_FIELDS:
+        errors.append(f"{path} fields must exactly match the v1 contract")
+    protocol = value.get("protocol")
+    if protocol not in CAPABILITY_PROTOCOLS:
+        errors.append(f"{path}.protocol is invalid")
+    elif isinstance(protocol, str):
+        for field, expected_value in CAPABILITY_PROTOCOL_BINDINGS[protocol].items():
+            if value.get(field) != expected_value:
+                errors.append(f"{path}.{field} is invalid for {protocol}")
+    expected = {
+        "implementation_pin": "exact-version-or-immutable-revision",
+        "identity": "stable-origin-bound-capability-id",
+        "input_contract": "versioned-json-schema-and-runtime-validation-required",
+        "output_contract": "versioned-json-schema-and-runtime-validation-required",
+        "compatibility": "breaking-change-requires-new-capability-major",
+    }
+    for field, expected_value in expected.items():
+        if value.get(field) != expected_value:
+            errors.append(f"{path}.{field} is invalid")
+    if value.get("classes") != CAPABILITY_CLASSES:
+        errors.append(f"{path}.classes must preserve read-only/state-changing order")
+    return errors
+
+
+def _validate_commerce_binding(value: Any, path: str) -> list[str]:
+    if not isinstance(value, dict):
+        return [f"{path} must be an object"]
+    errors: list[str] = []
+    if set(value) != COMMERCE_BINDING_FIELDS:
+        errors.append(f"{path} fields must exactly match the v1 contract")
+    role = value.get("role")
+    if role not in COMMERCE_ROLES:
+        errors.append(f"{path}.role is invalid")
+    elif isinstance(role, str) and value.get("identity_source") not in (
+        COMMERCE_ROLE_IDENTITY_SOURCES[role]
+    ):
+        errors.append(f"{path}.identity_source is invalid for {role}")
+    if value.get("executable_authority") != "none":
+        errors.append(f"{path}.executable_authority must be none")
+    if (
+        value.get("transaction_contract")
+        != "store-owned-versioned-contract-required-for-actions"
+    ):
+        errors.append(f"{path}.transaction_contract is invalid")
+    return errors
+
+
 def _validate_maturity(value: Any, path: str) -> list[str]:
     if not isinstance(value, dict):
         return [f"{path} must be an object"]
@@ -529,7 +728,13 @@ def validate_mechanism(value: Any, *, path: str = "mechanism") -> list[str]:
         return [f"{path} must be an object"]
     errors: list[str] = []
     fields = set(value)
-    if fields != MECHANISM_BASE_FIELDS and fields != MECHANISM_FIELDS:
+    accepted_fields = {
+        frozenset(MECHANISM_BASE_FIELDS),
+        frozenset(MECHANISM_FIELDS),
+        frozenset(MECHANISM_FIELDS | {CAPABILITY_BINDING_FIELD}),
+        frozenset(MECHANISM_FIELDS | {COMMERCE_BINDING_FIELD}),
+    }
+    if frozenset(fields) not in accepted_fields:
         errors.append(f"{path} fields must exactly match the v1 contract")
     errors.extend(_identifier(value.get("id"), f"{path}.id"))
     for field in ("title", "description"):
@@ -563,6 +768,34 @@ def validate_mechanism(value: Any, *, path: str = "mechanism") -> list[str]:
                 f"{path}.validation_rules",
             )
         )
+        if concern == "capability":
+            if CAPABILITY_BINDING_FIELD not in fields:
+                errors.append(
+                    f"{path}.capability is required for a capability mechanism"
+                )
+            else:
+                errors.extend(
+                    _validate_capability_binding(
+                        value.get("capability"),
+                        f"{path}.capability",
+                    )
+                )
+        elif CAPABILITY_BINDING_FIELD in fields:
+            errors.append(
+                f"{path}.capability is allowed only for a capability mechanism"
+            )
+        if concern == "commerce":
+            if COMMERCE_BINDING_FIELD not in fields:
+                errors.append(f"{path}.commerce is required for a commerce mechanism")
+            else:
+                errors.extend(
+                    _validate_commerce_binding(
+                        value.get("commerce"),
+                        f"{path}.commerce",
+                    )
+                )
+        elif COMMERCE_BINDING_FIELD in fields:
+            errors.append(f"{path}.commerce is allowed only for a commerce mechanism")
     errors.extend(_validate_maturity(value.get("maturity"), f"{path}.maturity"))
     maturity = value.get("maturity")
     requirements = value.get("requirements")
@@ -657,6 +890,40 @@ def _validate_representation_policy(value: Any, path: str) -> list[str]:
     return errors
 
 
+def _validate_capability_policy(value: Any, path: str) -> list[str]:
+    if not isinstance(value, dict):
+        return [f"{path} must be an object"]
+    errors: list[str] = []
+    policy_without_references = {
+        key: item for key, item in value.items() if key != "authoritative_references"
+    }
+    if policy_without_references != CAPABILITY_POLICY:
+        errors.append(f"{path} must preserve the fail-closed capability contract")
+    reference_errors, _ = _validate_references(
+        value.get("authoritative_references"),
+        f"{path}.authoritative_references",
+    )
+    errors.extend(reference_errors)
+    return errors
+
+
+def _validate_commerce_policy(value: Any, path: str) -> list[str]:
+    if not isinstance(value, dict):
+        return [f"{path} must be an object"]
+    errors: list[str] = []
+    policy_without_references = {
+        key: item for key, item in value.items() if key != "authoritative_references"
+    }
+    if policy_without_references != COMMERCE_POLICY:
+        errors.append(f"{path} must preserve truthful non-executable commerce policy")
+    reference_errors, _ = _validate_references(
+        value.get("authoritative_references"),
+        f"{path}.authoritative_references",
+    )
+    errors.extend(reference_errors)
+    return errors
+
+
 def validate_profile(profile: Mapping[str, Any]) -> list[str]:
     """Return deterministic errors for the canonical profile foundation."""
 
@@ -733,6 +1000,7 @@ def validate_profile(profile: Mapping[str, Any]) -> list[str]:
         "site_conformance_evidence": "deferred",
         "required_primary_references": 1,
         "required_registration_evidence": 1,
+        "concern_specific_bindings": ["capability", "commerce"],
     }
     if profile.get("mechanism_contract") != expected_mechanism_contract:
         errors.append("profile.mechanism_contract must exactly match the v1 foundation")
@@ -745,6 +1013,18 @@ def validate_profile(profile: Mapping[str, Any]) -> list[str]:
         _validate_representation_policy(
             profile.get("representation_policy"),
             "profile.representation_policy",
+        )
+    )
+    errors.extend(
+        _validate_capability_policy(
+            profile.get("capability_policy"),
+            "profile.capability_policy",
+        )
+    )
+    errors.extend(
+        _validate_commerce_policy(
+            profile.get("commerce_policy"),
+            "profile.commerce_policy",
         )
     )
 
@@ -763,7 +1043,12 @@ def validate_profile(profile: Mapping[str, Any]) -> list[str]:
             if isinstance(mechanism, dict) and isinstance(mechanism.get("id"), str):
                 mechanism_ids.append(mechanism["id"])
                 mechanism_path = f"profile.mechanisms[{index}]"
-                if set(mechanism) != MECHANISM_FIELDS:
+                expected_fields = set(MECHANISM_FIELDS)
+                if mechanism.get("concern") == "capability":
+                    expected_fields.add(CAPABILITY_BINDING_FIELD)
+                if mechanism.get("concern") == "commerce":
+                    expected_fields.add(COMMERCE_BINDING_FIELD)
+                if set(mechanism) != expected_fields:
                     errors.append(
                         f"{mechanism_path} must include the complete catalog policy"
                     )
@@ -799,17 +1084,13 @@ def validate_profile(profile: Mapping[str, Any]) -> list[str]:
                             f"{mechanism_path} emerging or experimental mechanisms "
                             "must remain non-blocking by default"
                         )
-                if mechanism.get("concern") not in {"readability", "efficiency"}:
-                    errors.append(
-                        f"{mechanism_path}.concern exceeds checkpoint 2 scope"
-                    )
         if len(mechanism_ids) != len(set(mechanism_ids)):
             errors.append("profile.mechanisms must use unique ids")
         if mechanism_ids != sorted(mechanism_ids):
             errors.append("profile.mechanisms must use stable id order")
         if mechanism_ids != SCOPED_MECHANISM_IDS:
             errors.append(
-                "profile.mechanisms must exactly match the checkpoint 2 catalog"
+                "profile.mechanisms must exactly match the checkpoint 3 catalog"
             )
 
     compatibility = profile.get("compatibility")

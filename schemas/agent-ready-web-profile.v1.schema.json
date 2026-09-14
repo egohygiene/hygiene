@@ -152,6 +152,12 @@
         },
         "required_registration_evidence": {
           "const": 1
+        },
+        "concern_specific_bindings": {
+          "const": [
+            "capability",
+            "commerce"
+          ]
         }
       }
     },
@@ -160,6 +166,12 @@
     },
     "representation_policy": {
       "$ref": "#/$defs/representationPolicy"
+    },
+    "capability_policy": {
+      "$ref": "#/$defs/capabilityPolicy"
+    },
+    "commerce_policy": {
+      "$ref": "#/$defs/commercePolicy"
     },
     "mechanisms": {
       "type": "array",
@@ -289,6 +301,39 @@
           "representation_policy"
         ],
         "properties": {
+          "mechanisms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/catalogMechanism"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "const": "1.0.0-alpha.3"
+          }
+        },
+        "required": [
+          "version"
+        ]
+      },
+      "then": {
+        "required": [
+          "resolution_policy",
+          "representation_policy",
+          "capability_policy",
+          "commerce_policy"
+        ],
+        "properties": {
+          "mechanism_contract": {
+            "required": [
+              "concern_specific_bindings"
+            ]
+          },
           "mechanisms": {
             "type": "array",
             "items": {
@@ -499,6 +544,341 @@
         }
       }
     },
+    "capabilityPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "protocol_status",
+        "declaration_contract",
+        "classification",
+        "security",
+        "execution_evidence",
+        "failure_policy",
+        "publication_gate",
+        "authoritative_references"
+      ],
+      "properties": {
+        "scope": {
+          "const": "browser-agent-tool-exposure"
+        },
+        "protocol_status": {
+          "const": {
+            "webmcp": "draft-community-group-report-not-a-web-standard",
+            "mcp_b": "experimental-implementation-not-webmcp-or-mcp-authority"
+          }
+        },
+        "declaration_contract": {
+          "const": {
+            "identity": "stable-origin-bound-capability-id",
+            "protocol_revision": "exact-version-or-immutable-revision-required",
+            "discovery": "protocol-native-active-authorized-context-plus-origin-bound-contract-evidence",
+            "input_contract": "versioned-json-schema-and-runtime-validation-required",
+            "output_contract": "versioned-json-schema-and-runtime-validation-required",
+            "compatibility": "breaking-input-output-effect-or-permission-change-requires-new-capability-major",
+            "unknown_fields": "fail-closed"
+          }
+        },
+        "classification": {
+          "const": {
+            "classes": [
+              "read-only",
+              "state-changing"
+            ],
+            "unclassified": "treat-as-state-changing-and-deny",
+            "read_only": {
+              "state_effects": "prohibited",
+              "sensitive_data": "explicit-permission-and-consent-required",
+              "confirmation": "required-before-sensitive-disclosure"
+            },
+            "state_changing": {
+              "effects": "declare-completely-before-consent",
+              "permission": "explicit-operation-scoped",
+              "confirmation": "fresh-human-confirmation-before-consequential-or-irreversible-effect",
+              "retry": "no-automatic-retry-without-idempotency-or-new-confirmation"
+            }
+          }
+        },
+        "security": {
+          "const": {
+            "permission": "explicit-operation-scoped-and-revocable",
+            "consent": "informed-specific-and-obtained-before-invocation",
+            "least_privilege": "minimum-data-scope-and-duration",
+            "origin_binding": "secure-exact-origin-and-current-document",
+            "authentication": "required-when-human-ui-requires-authentication",
+            "authorization": "server-revalidated-for-every-invocation",
+            "credential_handling": "no-token-passthrough-or-secret-in-schema-description-output",
+            "data_minimization": "request-and-return-only-necessary-data",
+            "annotations": "untrusted-hints-never-authority",
+            "prompt_injection": "tool-metadata-input-and-output-treated-as-untrusted"
+          }
+        },
+        "execution_evidence": {
+          "const": {
+            "provenance": "record-capability-id-version-origin-actor-and-contract-digests",
+            "audit": "tamper-evident-invocation-decision-result-and-confirmation-record",
+            "observability": "correlation-id-status-latency-and-redacted-error",
+            "revocation": "effective-before-next-invocation",
+            "expiry": "permissions-consent-and-handles-expire-explicitly",
+            "replay_protection": "nonce-or-idempotency-key-bound-to-actor-origin-action-and-expiry",
+            "rate_limits": "declared-and-enforced-per-actor-origin-and-capability"
+          }
+        },
+        "failure_policy": {
+          "const": {
+            "default": "deny-and-perform-no-state-change",
+            "partial_failure": "report-observed-effects-and-do-not-claim-rollback",
+            "recovery": "human-visible-resume-or-compensating-path-required",
+            "timeouts": "bounded-and-cancelable",
+            "unknown_or_stale_contract": "deny"
+          }
+        },
+        "publication_gate": {
+          "const": "experimental-capability-absence-is-non-blocking-and-present-exposure-must-pass-all-guards"
+        },
+        "authoritative_references": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/authoritativeReference"
+          }
+        }
+      }
+    },
+    "commercePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "descriptive_metadata",
+        "guarded_actions",
+        "advertising",
+        "separation",
+        "authoritative_references"
+      ],
+      "properties": {
+        "scope": {
+          "const": "descriptive-commerce-and-advertising-boundaries"
+        },
+        "descriptive_metadata": {
+          "const": {
+            "media_type": "application/ld+json",
+            "vocabulary": [
+              "https://schema.org/Offer",
+              "https://schema.org/Product"
+            ],
+            "visible_fact_parity": "required",
+            "seller_identity": "evidence-backed-explicit-or-omitted",
+            "availability_price_currency": "current-visible-and-source-backed",
+            "potential_action": "descriptive-only-no-execution-authority"
+          }
+        },
+        "guarded_actions": {
+          "const": {
+            "owner": "egohygiene/store",
+            "capability_class": "state-changing",
+            "contract": "versioned-store-owned-contract-required",
+            "metadata_authority": "none",
+            "missing_contract": "do-not-expose-or-invoke",
+            "confirmation": "agent-ready-web-capability-policy-required",
+            "recovery": "store-contract-plus-agent-ready-web-failure-policy-required"
+          }
+        },
+        "advertising": {
+          "const": {
+            "ads_txt_applicability": "actual-web-programmatic-inventory-authorization-or-explicit-iab-no-seller-declaration",
+            "app_ads_txt_applicability": "distributed-app-programmatic-inventory-linked-to-developer-domain-or-explicit-iab-no-seller-declaration",
+            "relationship_evidence": "current-publisher-and-ad-system-account-evidence-required",
+            "direct_or_reseller": "must-match-real-contractual-account-relationship",
+            "owner_manager_and_partner_domains": "must-match-current-documented-relationship",
+            "no_relationships": "artifact-absent-with-explicit-not-applicable-evidence-or-exact-iab-no-seller-placeholder",
+            "placeholder": "iab-reserved-sentinel-only-never-a-seller-relationship",
+            "invented_relationships": "prohibited",
+            "absence": "valid-when-inapplicable"
+          }
+        },
+        "separation": {
+          "const": {
+            "metadata_to_capability_inference": "forbidden",
+            "advertising_to_commerce_action": "forbidden",
+            "offer_to_purchase_authority": "forbidden"
+          }
+        },
+        "authoritative_references": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/authoritativeReference"
+          }
+        }
+      }
+    },
+    "capabilityBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "protocol": {
+                "const": "mcp-b"
+              }
+            },
+            "required": [
+              "protocol"
+            ]
+          },
+          "then": {
+            "properties": {
+              "protocol_revision": {
+                "const": "package-release-or-immutable-repository-revision"
+              },
+              "discovery_surface": {
+                "const": "mcp-b-runtime-or-bridge-tool-list"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "protocol": {
+                "const": "webmcp"
+              }
+            },
+            "required": [
+              "protocol"
+            ]
+          },
+          "then": {
+            "properties": {
+              "protocol_revision": {
+                "const": "2026-09-10-community-group-draft"
+              },
+              "discovery_surface": {
+                "const": "document.modelContext-active-document-tool-list"
+              }
+            }
+          }
+        }
+      ],
+      "required": [
+        "protocol",
+        "protocol_revision",
+        "implementation_pin",
+        "identity",
+        "discovery_surface",
+        "classes",
+        "input_contract",
+        "output_contract",
+        "compatibility"
+      ],
+      "properties": {
+        "protocol": {
+          "enum": [
+            "mcp-b",
+            "webmcp"
+          ]
+        },
+        "protocol_revision": {
+          "$ref": "#/$defs/text"
+        },
+        "implementation_pin": {
+          "const": "exact-version-or-immutable-revision"
+        },
+        "identity": {
+          "const": "stable-origin-bound-capability-id"
+        },
+        "discovery_surface": {
+          "$ref": "#/$defs/text"
+        },
+        "classes": {
+          "const": [
+            "read-only",
+            "state-changing"
+          ]
+        },
+        "input_contract": {
+          "const": "versioned-json-schema-and-runtime-validation-required"
+        },
+        "output_contract": {
+          "const": "versioned-json-schema-and-runtime-validation-required"
+        },
+        "compatibility": {
+          "const": "breaking-change-requires-new-capability-major"
+        }
+      }
+    },
+    "commerceBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "advertising-authorization-declaration"
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "identity_source": {
+                "enum": [
+                  "publisher-and-advertising-system-contract-evidence",
+                  "verified-app-store-developer-domain-and-advertising-system-contract-evidence"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "descriptive-product-offer"
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "identity_source": {
+                "const": "canonical-human-facing-product-and-offer-source"
+              }
+            }
+          }
+        }
+      ],
+      "required": [
+        "role",
+        "identity_source",
+        "executable_authority",
+        "transaction_contract"
+      ],
+      "properties": {
+        "role": {
+          "enum": [
+            "advertising-authorization-declaration",
+            "descriptive-product-offer"
+          ]
+        },
+        "identity_source": {
+          "$ref": "#/$defs/text"
+        },
+        "executable_authority": {
+          "const": "none"
+        },
+        "transaction_contract": {
+          "const": "store-owned-versioned-contract-required-for-actions"
+        }
+      }
+    },
     "artifact": {
       "type": "object",
       "additionalProperties": false,
@@ -510,6 +890,7 @@
       "properties": {
         "kind": {
           "enum": [
+            "browser-capability",
             "crawler-guidance",
             "origin-file",
             "page-alternate",
@@ -1019,6 +1400,69 @@
     "catalogMechanism": {
       "type": "object",
       "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "concern": {
+                "const": "capability"
+              }
+            },
+            "required": [
+              "concern"
+            ]
+          },
+          "then": {
+            "required": [
+              "capability"
+            ],
+            "properties": {
+              "commerce": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "concern": {
+                "const": "commerce"
+              }
+            },
+            "required": [
+              "concern"
+            ]
+          },
+          "then": {
+            "required": [
+              "commerce"
+            ],
+            "properties": {
+              "capability": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "concern": {
+                "enum": [
+                  "readability",
+                  "efficiency"
+                ]
+              }
+            },
+            "required": [
+              "concern"
+            ]
+          },
+          "then": {
+            "properties": {
+              "capability": false,
+              "commerce": false
+            }
+          }
+        }
+      ],
       "required": [
         "id",
         "title",
@@ -1084,6 +1528,12 @@
           "items": {
             "$ref": "#/$defs/validationRule"
           }
+        },
+        "capability": {
+          "$ref": "#/$defs/capabilityBinding"
+        },
+        "commerce": {
+          "$ref": "#/$defs/commerceBinding"
         },
         "maturity": {
           "$ref": "#/$defs/maturityAssessment"

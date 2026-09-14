@@ -1,0 +1,86 @@
+{
+  "schema": "egohygiene.agent-ready-web-mechanism-fixture/v1",
+  "name": "synthetic-descriptive-commerce",
+  "expected": "valid",
+  "synthetic": true,
+  "mechanism": {
+    "id": "fixture-descriptive-commerce",
+    "title": "Synthetic descriptive commerce metadata",
+    "description": "A synthetic mechanism that exercises the non-executable commerce binding without registering a real offer.",
+    "concern": "commerce",
+    "artifact": {
+      "kind": "page-metadata",
+      "locations": [
+        "fixture-product-page"
+      ],
+      "media_types": [
+        "application/ld+json"
+      ]
+    },
+    "applicability": {
+      "condition": {
+        "id": "visible-fixture-offer",
+        "description": "A synthetic test page visibly presents a source-backed offer."
+      },
+      "evaluation": "before-requirement-strength",
+      "inapplicable_result": "valid-absent"
+    },
+    "requirements": {
+      "default": {
+        "strength": "optional",
+        "condition": null
+      },
+      "site_class_overrides": []
+    },
+    "content_rules": [
+      {
+        "id": "descriptive-only",
+        "strength": "required",
+        "description": "The synthetic offer describes visible facts and grants no action authority."
+      }
+    ],
+    "validation_rules": [
+      {
+        "id": "no-executable-authority",
+        "severity": "error",
+        "description": "Reject any claim that the synthetic metadata authorizes an action."
+      }
+    ],
+    "commerce": {
+      "role": "descriptive-product-offer",
+      "identity_source": "canonical-human-facing-product-and-offer-source",
+      "executable_authority": "none",
+      "transaction_contract": "store-owned-versioned-contract-required-for-actions"
+    },
+    "maturity": {
+      "level": "established",
+      "assessed_on": "2026-09-14",
+      "rationale": "Synthetic maturity data exercises an established descriptive commerce mechanism.",
+      "reference_ids": [
+        "fixture-commerce-specification"
+      ]
+    },
+    "authoritative_references": [
+      {
+        "id": "fixture-commerce-specification",
+        "title": "Synthetic descriptive commerce specification",
+        "publisher": "Example Standards Publisher",
+        "type": "maintainer-source",
+        "authority": "primary",
+        "location": "https://example.com/specifications/descriptive-commerce",
+        "retrieved_on": "2026-09-14"
+      }
+    ],
+    "registration_evidence": [
+      {
+        "id": "fixture-commerce-publication",
+        "kind": "specification-publication",
+        "location": "https://example.com/specifications/descriptive-commerce",
+        "description": "Synthetic publication evidence for the commerce binding.",
+        "observed_on": "2026-09-14"
+      }
+    ],
+    "extensions": {}
+  },
+  "expected_errors": []
+}

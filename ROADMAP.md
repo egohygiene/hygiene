@@ -178,11 +178,13 @@ issues: [16, 19, 22, 45]
   before ratchet or enforcement.
 - Issue #16 splits the proposed Agent-Ready Web publication profile into four
   ordered checkpoints. PR #54 merged checkpoint #50's versioned vocabulary,
-  compatibility, mechanism-registration, and ownership foundation. Checkpoint
-  #51 now proposes the bounded discovery and efficient-representation catalog,
-  deterministic representation semantics, and truthful-absence policy;
-  capability checkpoint #52 and integration checkpoint #53 remain dependent on
-  the reviewed merge sequence.
+  compatibility, mechanism-registration, and ownership foundation, and PR #55
+  merged checkpoint #51's bounded discovery and efficient-representation
+  catalog, deterministic representation semantics, and truthful-absence
+  policy. Checkpoint #52 now proposes the guarded WebMCP/MCP-B capability
+  envelope, descriptive Product and Offer boundary, truthful ads.txt and
+  app-ads.txt applicability, and Store-owned action boundary. Integration
+  checkpoint #53 remains dependent on the reviewed merge sequence.
 
 <!-- roadmap-step
 id: HYG-Q06

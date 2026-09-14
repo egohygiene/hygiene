@@ -1,0 +1,96 @@
+{
+  "schema": "egohygiene.agent-ready-web-mechanism-fixture/v1",
+  "name": "synthetic-unpinned-browser-capability",
+  "expected": "invalid",
+  "synthetic": true,
+  "mechanism": {
+    "id": "fixture-unpinned-capability",
+    "title": "Synthetic unpinned browser capability",
+    "description": "An invalid synthetic capability whose implementation floats instead of pinning a revision.",
+    "concern": "capability",
+    "artifact": {
+      "kind": "browser-capability",
+      "locations": [
+        "document.modelContext"
+      ],
+      "media_types": [
+        "application/schema+json"
+      ]
+    },
+    "applicability": {
+      "condition": {
+        "id": "explicit-fixture-tool",
+        "description": "A synthetic test site deliberately exposes the fixture tool."
+      },
+      "evaluation": "before-requirement-strength",
+      "inapplicable_result": "valid-absent"
+    },
+    "requirements": {
+      "default": {
+        "strength": "optional",
+        "condition": null
+      },
+      "site_class_overrides": []
+    },
+    "content_rules": [
+      {
+        "id": "guarded-contract",
+        "strength": "required",
+        "description": "The synthetic capability otherwise declares a guarded contract."
+      }
+    ],
+    "validation_rules": [
+      {
+        "id": "fail-closed",
+        "severity": "error",
+        "description": "Reject the synthetic capability when its implementation is not pinned."
+      }
+    ],
+    "capability": {
+      "protocol": "webmcp",
+      "protocol_revision": "2026-09-10-community-group-draft",
+      "implementation_pin": "floating-latest",
+      "identity": "stable-origin-bound-capability-id",
+      "discovery_surface": "document.modelContext-active-document-tool-list",
+      "classes": [
+        "read-only",
+        "state-changing"
+      ],
+      "input_contract": "versioned-json-schema-and-runtime-validation-required",
+      "output_contract": "versioned-json-schema-and-runtime-validation-required",
+      "compatibility": "breaking-change-requires-new-capability-major"
+    },
+    "maturity": {
+      "level": "experimental",
+      "assessed_on": "2026-09-14",
+      "rationale": "Synthetic maturity data keeps the fixture focused on implementation pinning.",
+      "reference_ids": [
+        "fixture-capability-specification"
+      ]
+    },
+    "authoritative_references": [
+      {
+        "id": "fixture-capability-specification",
+        "title": "Synthetic capability specification",
+        "publisher": "Example Standards Publisher",
+        "type": "maintainer-source",
+        "authority": "primary",
+        "location": "https://example.com/specifications/browser-capability",
+        "retrieved_on": "2026-09-14"
+      }
+    ],
+    "registration_evidence": [
+      {
+        "id": "fixture-capability-publication",
+        "kind": "specification-publication",
+        "location": "https://example.com/specifications/browser-capability",
+        "description": "Synthetic publication evidence keeps the fixture focused on pinning.",
+        "observed_on": "2026-09-14"
+      }
+    ],
+    "extensions": {}
+  },
+  "expected_errors": [
+    "mechanism.capability.implementation_pin is invalid"
+  ]
+}
