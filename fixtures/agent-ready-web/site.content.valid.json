@@ -1,0 +1,87 @@
+{
+  "schema": "egohygiene.agent-ready-web-conformance-fixture/v1",
+  "name": "whole-profile-content",
+  "expected": "valid",
+  "synthetic": true,
+  "site_class": "content",
+  "conformance": {
+    "schema": "egohygiene.agent-ready-web-conformance/v1",
+    "synthetic": true,
+    "profile": {
+      "schema": "egohygiene.agent-ready-web-profile/v1",
+      "version": "1.0.0-alpha.4",
+      "status": "proposed",
+      "repository": "egohygiene/hygiene",
+      "path": "catalog/agent-ready-web-profile.json",
+      "pin": {
+        "kind": "immutable-revision",
+        "value": "1111111111111111111111111111111111111111",
+        "resolved_revision": "1111111111111111111111111111111111111111",
+        "sha256": "sha256:723c96a287534b477e437a03507cc4af2a7091639e960812c7c06f87ad9d19b5"
+      }
+    },
+    "subject": {
+      "id": "synthetic-content",
+      "site_class": "content",
+      "origin": "https://content.example.invalid",
+      "represented_revision": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    },
+    "assessment": {
+      "assessed_at": "2026-09-14T16:00:00Z",
+      "assessor": {"id": "hygiene-agent-ready-web-validator", "version": "1.0.0"}
+    },
+    "authority_assertions": {
+      "discovery_grants_capability": false,
+      "structured_metadata_grants_capability": false,
+      "advertising_grants_capability": false,
+      "maturity_grants_capability": false,
+      "surface_grants_consent": false,
+      "surface_grants_authorization": false,
+      "surface_grants_transaction_authority": false
+    },
+    "evidence": [
+      {"id":"applicability-review","kind":"human-review","location":"fixtures/agent-ready-web/site.content.valid.json","observed_at":"2026-09-14T16:00:00Z","subject_revision":"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee","description":"Synthetic site-class and applicability decisions for compatibility testing only.","sha256":null},
+      {"id":"artifact-snapshot","kind":"source-manifest","location":"fixtures/agent-ready-web/site.content.valid.json","observed_at":"2026-09-14T16:00:00Z","subject_revision":"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee","description":"Synthetic present-mechanism snapshot for compatibility testing only.","sha256":"sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"}
+    ],
+    "mechanisms": [
+      {"id":"ads-txt","applicability":"not-applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"required","requirement_condition":null,"resolved_strength":"inapplicable","presence":"absent","validation":"not-run","evidence_ids":[],"exemption":null},
+      {"id":"ai-crawler-guidance","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"optional","requirement_condition":null,"resolved_strength":"optional","presence":"absent","validation":"not-run","evidence_ids":[],"exemption":null},
+      {"id":"ai-oriented-hints","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"optional","requirement_condition":null,"resolved_strength":"optional","presence":"absent","validation":"not-run","evidence_ids":[],"exemption":null},
+      {"id":"app-ads-txt","applicability":"not-applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"required","requirement_condition":null,"resolved_strength":"inapplicable","presence":"absent","validation":"not-run","evidence_ids":[],"exemption":null},
+      {"id":"canonical-metadata","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"required","requirement_condition":null,"resolved_strength":"required","presence":"present","validation":"passed","evidence_ids":["artifact-snapshot"],"exemption":null},
+      {"id":"cats-txt","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"optional","requirement_condition":null,"resolved_strength":"optional","presence":"absent","validation":"not-run","evidence_ids":[],"exemption":null},
+      {"id":"commerce-product-offer-jsonld","applicability":"not-applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"optional","requirement_condition":null,"resolved_strength":"inapplicable","presence":"absent","validation":"not-run","evidence_ids":[],"exemption":null},
+      {"id":"entitymap-html","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"required","requirement_condition":null,"resolved_strength":"required","presence":"present","validation":"passed","evidence_ids":["artifact-snapshot"],"exemption":null},
+      {"id":"entitymap-json","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"optional","requirement_condition":null,"resolved_strength":"optional","presence":"present","validation":"passed","evidence_ids":["artifact-snapshot"],"exemption":null},
+      {"id":"llms-full-txt","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"optional","requirement_condition":null,"resolved_strength":"optional","presence":"absent","validation":"not-run","evidence_ids":[],"exemption":null},
+      {"id":"llms-txt","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"recommended","requirement_condition":null,"resolved_strength":"recommended","presence":"absent","validation":"not-run","evidence_ids":[],"exemption":null},
+      {"id":"markdown-alternate","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"recommended","requirement_condition":null,"resolved_strength":"recommended","presence":"present","validation":"passed","evidence_ids":["artifact-snapshot"],"exemption":null},
+      {"id":"mcp-b-runtime","applicability":"not-applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"optional","requirement_condition":null,"resolved_strength":"inapplicable","presence":"absent","validation":"not-run","evidence_ids":[],"exemption":null},
+      {"id":"robots-txt","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"required","requirement_condition":null,"resolved_strength":"required","presence":"present","validation":"passed","evidence_ids":["artifact-snapshot"],"exemption":null},
+      {"id":"sitemap-xml","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"required","requirement_condition":null,"resolved_strength":"required","presence":"present","validation":"passed","evidence_ids":["artifact-snapshot"],"exemption":null},
+      {"id":"structured-discovery-jsonld","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"recommended","requirement_condition":null,"resolved_strength":"recommended","presence":"present","validation":"passed","evidence_ids":["artifact-snapshot"],"exemption":null},
+      {"id":"webmcp-tools","applicability":"not-applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"optional","requirement_condition":null,"resolved_strength":"inapplicable","presence":"absent","validation":"not-run","evidence_ids":[],"exemption":null}
+    ],
+    "summary": {
+      "level": "baseline",
+      "errors": 0,
+      "advisories": 1,
+      "informationals": 0,
+      "exemptions": 0,
+      "applicable": 12,
+      "inapplicable": 5,
+      "experimental_present": 0,
+      "claim": "assessment-only-no-certification-adoption-publication-or-authority"
+    },
+    "diagnostics": [
+      {
+        "code": "ARW-REC-001",
+        "severity": "advisory",
+        "mechanism_id": "llms-txt",
+        "path": "mechanisms[10].presence",
+        "message": "Applicable recommended mechanism is absent."
+      }
+    ]
+  },
+  "expected_errors": []
+}

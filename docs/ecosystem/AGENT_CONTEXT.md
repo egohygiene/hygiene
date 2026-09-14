@@ -18,8 +18,11 @@ This document is designed to be referenced by every Ego Hygiene repository agent
 3. **Integrate through releases.** Use pinned packages, binaries, OCI images, reusable workflows, or versioned contracts—never copied sibling source.
 4. **Respect control-plane boundaries.** Hygiene defines; Holon creates; Pace
    converges; Observatory observes. For Agent-Ready Web work, Store owns
-   transaction-domain contracts and each site retains facts, credentials,
-   consent interaction, and publication authority.
+   transaction-domain contracts; Relay owns reusable validation and publication
+   workflows; and each site retains facts, site class, credentials, consent
+   interaction, configuration, represented revision, and publication authority.
+   Discovery, structured metadata, advertising, and maturity do not grant
+   capability, consent, authorization, or transaction authority.
 5. **Respect developer-platform boundaries.** Realm provisions environments; Mantle configures the shell; Relay runs automation; Egolint defines lint behavior; Empathy proves integration.
 6. **Respect infrastructure boundaries.** Filament publishes reusable IaC
    contracts; consuming repositories own deployment intent, credentials,

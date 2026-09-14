@@ -95,9 +95,17 @@
     },
     {
       "id": "egohygiene.agent-ready-web-profile/v1",
-      "title": "Agent-Ready Web discovery, capability, and commerce publication profile",
+      "title": "Agent-Ready Web integrated publication and conformance profile",
       "owner": "egohygiene/hygiene",
       "source": "schemas/agent-ready-web-profile.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.agent-ready-web-conformance/v1",
+      "title": "Agent-Ready Web site conformance evidence",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/agent-ready-web-conformance.v1.schema.json",
       "status": "proposed",
       "visibility": "public"
     },

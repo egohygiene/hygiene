@@ -30,9 +30,10 @@ evidence; it is not a substitute for the canonical sources below.
 - [Repository continuity policy source](catalog/repository-continuity-policy.json)
 - [Repository continuity policy schema](schemas/repository-continuity-policy.v1.schema.json)
 - [Repository context v2 schema](schemas/repository-context.v2.schema.json)
-- [Proposed Agent-Ready Web guarded capability and commerce profile](docs/ecosystem/AGENT_READY_WEB.md)
+- [Proposed Agent-Ready Web integrated profile and conformance contract](docs/ecosystem/AGENT_READY_WEB.md)
 - [Agent-Ready Web profile source](catalog/agent-ready-web-profile.json)
 - [Agent-Ready Web profile schema](schemas/agent-ready-web-profile.v1.schema.json)
+- [Agent-Ready Web conformance evidence schema](schemas/agent-ready-web-conformance.v1.schema.json)
 - [Agent-Ready Web compatibility fixtures](fixtures/agent-ready-web)
 - [Dependency-boundary register](catalog/dependency-boundaries.yaml)
 - [Dependency-boundary schema](schemas/dependency-boundary-register.v1.schema.json)
@@ -60,6 +61,7 @@ sites are projections of those sources.
 - [Proposed Agent-Ready Web foundation decision](docs/decisions/ADR-009-agent-ready-web-profile-foundation.md)
 - [Proposed Agent-Ready Web discovery decision](docs/decisions/ADR-010-agent-ready-web-discovery-representations.md)
 - [Proposed Agent-Ready Web capability and commerce decision](docs/decisions/ADR-011-agent-ready-web-guarded-capability-commerce.md)
+- [Proposed Agent-Ready Web integration and conformance decision](docs/decisions/ADR-012-agent-ready-web-integration-conformance.md)
 - [ADR reference template](docs/decisions/ADR-TEMPLATE.md)
 - [ADR migration guide](docs/decisions/MIGRATION.md)
 - [ADR validation plan](docs/decisions/VALIDATION.md)
@@ -122,6 +124,10 @@ python3 tools/decisions.py policy-reference \
   --input fixtures/architecture-decisions/policy-reference.valid.json
 python3 -m unittest discover --start-directory tests --pattern "test_*.py"
 ```
+
+The Agent-Ready Web fixture command validates both mechanism compatibility and
+the five synthetic whole-profile conformance records. It does not assess or
+publish a live site.
 
 The dependency-free Repository Intelligence and decoded ADR checkers are
 contract references, not fleet enforcement or full Markdown parsers. Production

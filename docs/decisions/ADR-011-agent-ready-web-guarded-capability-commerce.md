@@ -195,9 +195,10 @@ reference validator, and focused unit tests.
 
 The canonical records link the primary WebMCP, Model Context Protocol, MCP-B,
 JSON-LD, Schema.org, ads.txt, and app-ads.txt sources used to assess maturity
-and boundaries. Issue #52 is the review authority. The focused change is under
-review in [PR #56](https://github.com/egohygiene/hygiene/pull/56); no
-automatic pull-request CI evidence currently exists.
+and boundaries. Issue #52 is the review authority. The focused change is
+[PR #56](https://github.com/egohygiene/hygiene/pull/56), which merged on
+2026-09-14; no automatic pull-request CI evidence was recorded. The decision
+lifecycle remains proposed.
 
 ## Replacement or exit strategy
 
@@ -211,9 +212,8 @@ exposure can be removed without fabricating a substitute.
 
 ## Follow-up work
 
-[Issue #53](https://github.com/egohygiene/hygiene/issues/53) remains blocked
-until this checkpoint is reviewed and merged. It owns integration guidance and
-must not be started by this decision. Parent issue #16 remains open. Browser
-tools, transaction contracts, generators, reusable workflows, fleet rollout,
-publication, dashboards, release activity, and downstream adoption are not
-part of this checkpoint.
+[Issue #53](https://github.com/egohygiene/hygiene/issues/53) and ADR-012 now own
+the final integration and conformance contract. Parent #16 remains open until
+that final checkpoint merges. Browser tools, transaction contracts, generators,
+reusable workflows, fleet rollout, publication, dashboards, release activity,
+and downstream adoption remain outside this decision.

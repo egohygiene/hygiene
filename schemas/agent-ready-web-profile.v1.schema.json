@@ -145,7 +145,10 @@
           "const": "mechanism-registration-only"
         },
         "site_conformance_evidence": {
-          "const": "deferred"
+          "enum": [
+            "deferred",
+            "egohygiene.agent-ready-web-conformance/v1"
+          ]
         },
         "required_primary_references": {
           "const": 1
@@ -172,6 +175,15 @@
     },
     "commerce_policy": {
       "$ref": "#/$defs/commercePolicy"
+    },
+    "integration_policy": {
+      "$ref": "#/$defs/integrationPolicy"
+    },
+    "conformance_policy": {
+      "$ref": "#/$defs/conformancePolicy"
+    },
+    "reference_review": {
+      "$ref": "#/$defs/referenceReview"
     },
     "mechanisms": {
       "type": "array",
@@ -216,6 +228,9 @@
         },
         "unknown_extensions": {
           "const": "preserve-uninterpreted-and-exclude-from-core-conformance"
+        },
+        "consumer_resolution": {
+          "$ref": "#/$defs/consumerResolution"
         }
       }
     },
@@ -279,6 +294,9 @@
         },
         "observatory": {
           "$ref": "#/$defs/ownershipBoundary"
+        },
+        "sites": {
+          "$ref": "#/$defs/ownershipBoundary"
         }
       }
     }
@@ -339,6 +357,57 @@
             "items": {
               "$ref": "#/$defs/catalogMechanism"
             }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "const": "1.0.0-alpha.4"
+          }
+        },
+        "required": [
+          "version"
+        ]
+      },
+      "then": {
+        "required": [
+          "resolution_policy",
+          "representation_policy",
+          "capability_policy",
+          "commerce_policy",
+          "integration_policy",
+          "conformance_policy",
+          "reference_review"
+        ],
+        "properties": {
+          "mechanism_contract": {
+            "required": [
+              "concern_specific_bindings"
+            ],
+            "properties": {
+              "site_conformance_evidence": {
+                "const": "egohygiene.agent-ready-web-conformance/v1"
+              }
+            }
+          },
+          "mechanisms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/catalogMechanism"
+            }
+          },
+          "compatibility": {
+            "required": [
+              "consumer_resolution"
+            ]
+          },
+          "ownership": {
+            "required": [
+              "sites"
+            ]
           }
         }
       }
@@ -710,6 +779,215 @@
           "items": {
             "$ref": "#/$defs/authoritativeReference"
           }
+        }
+      }
+    },
+    "integrationPolicy": {
+      "const": {
+        "composition": {
+          "concerns": [
+            "readability",
+            "capability",
+            "efficiency",
+            "commerce"
+          ],
+          "evaluation": "resolve-each-mechanism-within-primary-concern-then-aggregate",
+          "cross_concern_substitution": "prohibited",
+          "boundary_preservation": "required"
+        },
+        "cross_layer_invariants": {
+          "non_authoritative_inputs": [
+            "discovery",
+            "structured-metadata",
+            "advertising-declaration",
+            "maturity-classification"
+          ],
+          "cannot_grant": [
+            "capability",
+            "consent",
+            "authorization",
+            "transaction-authority"
+          ],
+          "capability_source": "explicit-versioned-origin-bound-capability-contract-only",
+          "consent_source": "fresh-explicit-human-interaction-only",
+          "authorization_source": "server-revalidated-per-invocation-only",
+          "transaction_source": "store-owned-contract-plus-fresh-confirmation-and-server-authorization-only"
+        }
+      }
+    },
+    "conformancePolicy": {
+      "const": {
+        "schema": "egohygiene.agent-ready-web-conformance/v1",
+        "profile_applicability": {
+          "scope": "public-human-facing-https-site",
+          "not_applicable": "explicit-reason-and-current-evidence-required",
+          "unknown": "error"
+        },
+        "resolution": {
+          "order": [
+            "verify-profile-pin",
+            "select-site-class",
+            "evaluate-applicability",
+            "resolve-conditional-rule",
+            "apply-strength",
+            "validate-present-mechanism",
+            "apply-narrow-exemption",
+            "derive-diagnostics",
+            "derive-level"
+          ],
+          "declared_strengths": [
+            "required",
+            "recommended",
+            "optional",
+            "conditional",
+            "prohibited"
+          ],
+          "resolved_strengths": [
+            "required",
+            "recommended",
+            "optional",
+            "prohibited",
+            "inapplicable",
+            "unresolved"
+          ],
+          "applicability_states": [
+            "applicable",
+            "not-applicable",
+            "unknown"
+          ],
+          "conditional": {
+            "met": "required",
+            "not_met": "inapplicable",
+            "unknown": "unresolved-error"
+          },
+          "experimental": {
+            "absent": "non-blocking",
+            "present": "full-present-mechanism-validation-required",
+            "authority": "none"
+          }
+        },
+        "levels": [
+          {
+            "id": "nonconformant",
+            "definition": "One or more error diagnostics remain after deterministic resolution."
+          },
+          {
+            "id": "exempt",
+            "definition": "No unexempted error remains and at least one narrow approved exemption is active; this is not passing."
+          },
+          {
+            "id": "baseline",
+            "definition": "No error or exemption remains, but at least one advisory remains."
+          },
+          {
+            "id": "recommended",
+            "definition": "No error, advisory, or exemption remains; optional or experimental absence is still allowed."
+          }
+        ],
+        "level_precedence": [
+          "nonconformant",
+          "exempt",
+          "baseline",
+          "recommended"
+        ],
+        "diagnostics": {
+          "shape": "stable-code-severity-mechanism-path-message",
+          "severities": [
+            "error",
+            "advisory",
+            "information"
+          ],
+          "ordering": "profile-mechanism-order-then-severity-code-and-path",
+          "unknown_state": "error",
+          "claim_limit": "assessment-only-no-certification-adoption-publication-or-authority"
+        },
+        "evidence": {
+          "profile_pin": "exact-version-plus-resolved-immutable-revision-and-sha256",
+          "subject_revision": "immutable-revision",
+          "mechanism_cardinality": "exactly-once-in-profile-order",
+          "current_evidence": "subject-revision-bound-observed-no-later-than-assessment-and-required-for-applicability-and-present-mechanisms",
+          "privacy": "allowlisted-minimized-no-secrets-personal-data-or-credentials",
+          "authority_assertions": "must-match-cross-layer-invariants"
+        },
+        "exemptions": {
+          "scope": "single-required-absence-only",
+          "requirements": "named-owner-reason-approval-evidence-and-future-expiry",
+          "non_exemptable": [
+            "profile-pin",
+            "unknown-applicability",
+            "prohibited-presence",
+            "present-mechanism-validation",
+            "privacy-security-consent-authorization-transaction-and-cross-layer-invariants"
+          ],
+          "effect": "distinct-exempt-level-never-passing-or-recommended"
+        }
+      }
+    },
+    "consumerResolution": {
+      "const": {
+        "canonical_repository": "egohygiene/hygiene",
+        "canonical_path": "catalog/agent-ready-web-profile.json",
+        "supported_pins": [
+          "exact-released-version-with-resolved-revision-and-sha256",
+          "immutable-repository-revision-with-sha256"
+        ],
+        "digest": "sha256-of-canonical-json-utf8",
+        "proposed_profile_use": "review-and-compatibility-testing-only",
+        "production_eligibility": "active-lifecycle-plus-eligible-immutable-pin-required",
+        "policy_copying": "prohibited",
+        "unsupported_version": "fail-closed-with-upgrade-diagnostic",
+        "upgrade": "explicit-reviewed-pin-change-full-revalidation-and-fixture-replay",
+        "downgrade": "explicit-reviewed-pin-change-and-no-newer-semantics-assumed"
+      }
+    },
+    "referenceReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reviewed_on",
+        "scope",
+        "mechanism_ids",
+        "checks",
+        "outcome"
+      ],
+      "properties": {
+        "reviewed_on": {
+          "$ref": "#/$defs/date"
+        },
+        "scope": {
+          "const": "all-registered-mechanisms-and-cross-cutting-policies"
+        },
+        "mechanism_ids": {
+          "const": [
+            "ads-txt",
+            "ai-crawler-guidance",
+            "ai-oriented-hints",
+            "app-ads-txt",
+            "canonical-metadata",
+            "cats-txt",
+            "commerce-product-offer-jsonld",
+            "entitymap-html",
+            "entitymap-json",
+            "llms-full-txt",
+            "llms-txt",
+            "markdown-alternate",
+            "mcp-b-runtime",
+            "robots-txt",
+            "sitemap-xml",
+            "structured-discovery-jsonld",
+            "webmcp-tools"
+          ]
+        },
+        "checks": {
+          "const": [
+            "primary-authority-present-and-resolvable",
+            "maturity-rationale-supported-by-primary-source",
+            "standards-status-not-overstated",
+            "living-and-draft-sources-rechecked-at-upgrade"
+          ]
+        },
+        "outcome": {
+          "const": "coverage-complete-maturity-classifications-retained"
         }
       }
     },

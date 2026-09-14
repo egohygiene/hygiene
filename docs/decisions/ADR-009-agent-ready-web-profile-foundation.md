@@ -138,7 +138,8 @@ its [JSON Schema](../../schemas/agent-ready-web-profile.v1.schema.json), the
 [human policy](../ecosystem/AGENT_READY_WEB.md), synthetic
 [compatibility fixtures](../../fixtures/agent-ready-web), a dependency-free
 reference validator, and focused tests. Issue #50 is the review authority for
-this bounded checkpoint; the parent issue remains open.
+this bounded checkpoint; [PR #54](https://github.com/egohygiene/hygiene/pull/54)
+merged its implementation. The decision lifecycle remains proposed.
 
 ## Replacement or exit strategy
 
@@ -155,9 +156,8 @@ because this checkpoint authorizes neither.
 
 ## Follow-up work
 
-1. Obtain review of this proposed foundation without activating it implicitly.
-2. After merge, implement issue #51's discovery and efficient-representation
-   catalog against the merged version.
-3. Keep browser-agent capability and commerce semantics in issue #52.
-4. Defer integration, conformance evidence, and downstream adoption gates to
-   issue #53.
+PR #54, PR #55, and PR #56 merged the first three ordered implementation
+checkpoints without activating the proposed profile. ADR-012 and issue #53 own
+final integration and conformance evidence. Lifecycle promotion, releases, and
+all downstream implementation or adoption remain separate work requiring their
+own authority.

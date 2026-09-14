@@ -1,40 +1,45 @@
-# Agent-Ready Web guarded capability and commerce profile
+# Agent-Ready Web integrated profile and conformance contract
 
-Status: **proposed `1.0.0-alpha.3`**
+Status: **proposed `1.0.0-alpha.4`**
 
 Policy owner: `egohygiene/hygiene`
 
-Tracked by: [hygiene#52](https://github.com/egohygiene/hygiene/issues/52),
-checkpoint 3 of [hygiene#16](https://github.com/egohygiene/hygiene/issues/16)
+Tracked by: [hygiene#53](https://github.com/egohygiene/hygiene/issues/53),
+checkpoint 4 of [hygiene#16](https://github.com/egohygiene/hygiene/issues/16)
 
 ## Purpose and authority
 
 The Agent-Ready Web profile defines how an Ego Hygiene website can remain an
 excellent human-facing experience while exposing explicit, efficient, and safe
-machine-readable surfaces. Checkpoint 1 established the vocabulary and
-ownership boundary, and checkpoint 2 registered discovery and efficient
-representations. This checkpoint adds guarded browser-capability publication,
+machine-readable surfaces. Checkpoints 1–3 established the vocabulary,
+discovery and representation records, guarded browser-capability publication,
 descriptive Product and Offer metadata, and truthful advertising declarations.
-It does not implement a browser tool or a transaction contract.
+This final checkpoint composes those independent layers into one deterministic
+conformance and compatibility contract without allowing one layer to satisfy
+or authorize another. It does not implement a consumer, browser tool, or
+transaction contract.
 
 The canonical machine source is
 [`catalog/agent-ready-web-profile.json`](../../catalog/agent-ready-web-profile.json),
 validated against
 [`schemas/agent-ready-web-profile.v1.schema.json`](../../schemas/agent-ready-web-profile.v1.schema.json).
+Site-owned assessment evidence uses
+[`schemas/agent-ready-web-conformance.v1.schema.json`](../../schemas/agent-ready-web-conformance.v1.schema.json).
 This guide explains that policy but does not override it. The profile remains
-proposed: registration supports review and pinned experimentation, not
-acceptance, publication, rollout, or a downstream conformance claim.
+proposed: “consumer-ready” means the schema, fixtures, pinning rules, and
+handoffs are reviewable. It does not mean accepted, released, deployed,
+adopted, published, or actively enforced.
 
 ## Contract identity
 
 | Field | Value |
 | --- | --- |
 | Contract | `egohygiene.agent-ready-web-profile/v1` |
-| Profile version | `1.0.0-alpha.3` |
+| Profile version | `1.0.0-alpha.4` |
 | Status | `proposed` |
 | Canonical owner | `egohygiene/hygiene` |
 | Consumer pin | Exact semantic version or immutable repository revision |
-| Catalog scope | Discovery, representations, guarded capability publication, and non-executable commerce descriptions |
+| Catalog scope | Discovery, representations, guarded capability publication, non-executable commerce descriptions, and deterministic conformance evidence |
 
 The four independent concerns, five stable site classes, five requirement
 strengths, and four maturity levels defined by checkpoint 1 remain unchanged.
@@ -43,32 +48,109 @@ not transfer authority across boundaries: discovery metadata cannot authorize
 a capability, commerce metadata cannot authorize a purchase, and advertising
 declarations cannot authorize a commerce action.
 
+## Integrated boundary invariants
+
+The profile is coherent because all four concerns use one version, one site
+classification, one applicability pass, one evidence envelope, and one
+deterministic aggregate. Their meanings remain separate. The evaluator
+resolves each mechanism within its single primary concern and only then
+aggregates diagnostics; a mechanism from one concern cannot substitute for a
+mechanism in another.
+
+The profile schema and conformance evidence schema enforce these negative
+authority assertions:
+
+| Surface or hint | It can describe | It can never grant |
+| --- | --- | --- |
+| Discovery | Public locations and representations | Capability, consent, authorization, or transaction authority |
+| Structured metadata | Visible public facts and descriptive actions | Capability, consent, authorization, or transaction authority |
+| Advertising declaration | A current seller relationship or exact IAB no-seller sentinel | Capability, consent, authorization, or transaction authority |
+| Maturity label | The reviewed stability of a mechanism | Capability, consent, authorization, or transaction authority |
+
+A capability exists only through an explicit, versioned, origin-bound
+capability contract. Consent comes only from fresh explicit human interaction;
+authorization is revalidated by the server for each invocation. A transaction
+also needs a Store-owned contract, fresh confirmation, and server-side
+authorization. A conformance record must state every corresponding authority
+assertion as `false`; changing one to `true` invalidates the record rather than
+changing profile meaning.
+
 ## Resolution and truthful absence
 
 Applicability is resolved before requirement strength. A validator first asks
 whether the mechanism's explicit condition is true for the site and only then
 applies the site-class rule.
 
-| Resolved state | Result |
+| Input state | Deterministic resolution |
 | --- | --- |
-| Not applicable and absent | Valid |
-| Optional and absent | Valid |
-| Recommended and absent | Advisory |
-| Conditional and condition false | Valid |
-| Required and absent | Error |
-| Prohibited and present | Error |
-| Emerging or experimental and absent | Non-blocking by default |
-| Fabricated placeholder | Prohibited |
+| Applicability unknown | `unresolved`, error `ARW-APP-001` |
+| Not applicable and absent | `inapplicable`, no requirement diagnostic |
+| Not applicable and present | `inapplicable`, error `ARW-APP-002` |
+| Required and absent | `required`, error `ARW-REQ-001` |
+| Recommended and absent | `recommended`, advisory `ARW-REC-001` |
+| Optional and absent | `optional`, no diagnostic |
+| Conditional and condition met | `required` |
+| Conditional and condition not met | `inapplicable` |
+| Conditional and condition unknown | `unresolved`, error `ARW-CND-001` |
+| Prohibited and present | `prohibited`, error `ARW-PRO-001` |
+| Present without evidence | error `ARW-EVD-001` |
+| Present without complete validation | error `ARW-VAL-001` |
+| Experimental and absent | Non-blocking |
+| Experimental and present | Full validation plus information `ARW-EXP-001`; no authority |
+| Valid narrow exemption | information `ARW-EXM-001` and distinct `exempt` level; never passing |
 
 An inapplicable or unsupported artifact must be absent. Empty files, invented
 entities, placeholder links, permissive claims, and stale generated output do
 not satisfy a requirement. Evidence can explain why a recommendation was not
-implemented, but it cannot turn a required omission into a pass.
+implemented. A narrowly approved required-absence exemption can produce only
+the distinct `exempt` level; it cannot turn the omission into a pass.
 
 Every catalog record declares an applicability condition, a default strength,
 and an explicit override for all five site classes. That makes resolution
 deterministic and prevents a consumer from treating a missing override as an
 implicit requirement.
+
+### Conformance levels and precedence
+
+Levels are derived, never asserted by a consumer:
+
+1. `nonconformant`: one or more errors remain.
+2. `exempt`: no unexempted error remains and at least one valid exemption is
+   active. This is not a passing level.
+3. `baseline`: no error or exemption remains, but one or more advisories remain.
+4. `recommended`: no error, advisory, or exemption remains. Optional and
+   experimental absence is still allowed.
+
+The order above is strict precedence. Information diagnostics do not lower a
+level. An exemption applies to one required absence only and needs a named
+owner, reason, approving party, approval evidence, approval date, and future
+expiry. Profile pins, unknown applicability, prohibited presence, validation
+of present mechanisms, and privacy, security, consent, authorization,
+transaction, or cross-layer rules are never exemptable.
+
+### Evidence envelope
+
+Every assessment binds to the exact profile schema and version, canonical
+repository path, resolved full revision, and SHA-256 digest. It also binds to
+one HTTPS origin, one site class, and the immutable revision represented by the
+site evidence. The assessment covers every profile mechanism exactly once in
+profile order. Each mechanism records applicability evidence, declared and
+resolved strength, presence, validation result, implementation evidence, and
+an optional narrow exemption. Evidence IDs are unique and stable; observations
+record time, subject revision, type, location, description, and optional
+digest.
+
+The profile digest is SHA-256 over UTF-8 canonical JSON with object keys sorted,
+no insignificant whitespace, and non-ASCII characters retained. The reference
+validator derives that digest from the loaded profile and rejects a mismatch;
+the resolved revision identifies where the consumer obtained those verified
+bytes.
+
+Evidence must be allowlisted and minimized. It contains no secret, credential,
+personal data, fabricated implementation result, or inferred relationship.
+Diagnostics have stable code, severity, mechanism ID, path, and message fields
+in profile order. The fixed claim string says the record is an assessment only,
+not certification, adoption, publication, or authority.
 
 ## Mechanism catalog
 
@@ -177,6 +259,23 @@ override the registration rules in
 
 Experimental entries are always optional in this profile and never satisfy an
 established discovery requirement.
+
+### Authoritative-reference and maturity review
+
+The `reference_review` record binds the 2026-09-14 review to every registered
+mechanism in catalog order. Each mechanism retains at least one resolvable
+primary authority, and each maturity rationale cites a primary source. The
+review retained the classifications rather than promoting them: WebMCP remains
+a 2026-09-10 Community Group draft and experimental; MCP-B remains an
+experimental implementation; EntityMap v1.0 remains a published industry
+specification; llms.txt, `/llms-full.txt`, Markdown alternates, and AI crawler
+guidance remain emerging; and cats.txt and AI-oriented hints remain
+experimental. The established entries remain anchored in the cited RFC, W3C,
+Sitemaps, Schema.org, or IAB primary material.
+
+Living, community-draft, and implementation sources must be checked again on
+every profile-pin upgrade. A changed source does not silently change the
+meaning of an immutable pin.
 
 ## Guarded browser capabilities
 
@@ -323,50 +422,98 @@ Alpha.3 preserves that group and adds an exact `capability` binding to
 capability records and an exact `commerce` binding to commerce records. A
 binding on another concern, a missing binding, a floating implementation,
 unversioned contract, or executable authority inferred from commerce metadata
-fails closed. Canonical entries supply explicit rules for every site class.
+fails closed. Alpha.4 adds the integrated boundary policy, conformance evidence
+schema, deterministic resolver and diagnostics, reference review, and precise
+consumer-resolution rules. Canonical entries still supply explicit rules for
+every site class.
 
-Consumers pin the exact profile version or an immutable repository revision.
-Unknown core values fail closed. Unknown namespaced extensions may be
-preserved, but they do not affect core conformance or grant authority.
+Consumers resolve policy directly from `egohygiene/hygiene` at
+`catalog/agent-ready-web-profile.json`; they do not copy or reinterpret Hygiene
+policy. A supported pin is either an exact released semantic version with its
+resolved immutable revision and canonical-JSON SHA-256 digest, or an immutable
+repository revision with that digest. An unknown version, digest mismatch, missing
+revision, floating branch, or unknown core value fails closed with an upgrade
+diagnostic. Unknown namespaced extensions may be preserved, but they do not
+affect core conformance or grant authority.
+
+An upgrade is an explicit reviewed pin change followed by full profile
+validation, replay of the compatibility fixtures, and full revalidation of the
+site evidence. A downgrade is also explicit and reviewed, and the consumer
+must not assume semantics introduced by the newer pin. Because this profile is
+`proposed`, its pins are eligible only for review and compatibility testing.
+Production generation or enforcement requires an `active` lifecycle and an
+otherwise eligible immutable pin; this document supplies neither.
 
 Validate the canonical source and synthetic compatibility fixtures with:
 
 ```bash
 python3 tools/agent_ready_web.py validate-profile
 python3 tools/agent_ready_web.py validate-fixtures
+python3 tools/agent_ready_web.py validate-conformance --input <site-evidence.json>
 python3 -m unittest tests.test_agent_ready_web
 ```
 
 Fixtures cover the checkpoint-1 base shape, a complete checkpoint-2 policy
 record, complete checkpoint-3 capability and commerce bindings, and focused
-invalid pinning and authority cases. Reserved `example.com` locations are
-synthetic test data, not claimed standards or implementations.
+invalid pinning and authority cases. Five whole-profile fixtures cover
+application, commerce, content, documentation, and hybrid sites. Their
+`.invalid` origins, placeholder revisions, digests, observations, and outcomes
+are explicitly synthetic compatibility data—not evidence about any real site,
+standard implementation, adoption, publication, or downstream state.
 
 ## Ownership boundary
 
-Hygiene owns the profile, catalog meaning, schema, references, and reference
-validation. Holon may later generate artifacts for new sites from an accepted
-immutable pin. Relay may later provide reusable validation and publication
-workflow execution. Pace may later propose reversible existing-site adoption.
-Observatory may later report privacy-safe evidence. Store continues to own
-separately reviewed transaction-domain semantics. Each site retains its facts,
-credentials, consent interaction, and final publication decision. None of
-those downstream responsibilities moves into this checkpoint, and this
-repository does not claim their adoption.
+| Consumer | Exact handoff | Explicitly retained boundary |
+| --- | --- | --- |
+| Hygiene | Own the profile, lifecycle, schema, conformance semantics, compatibility, and reference review | No generation, workflow execution, rollout, transaction contract, metrics dashboard, credentials, or publication |
+| Holon | Deterministically scaffold and generate for new sites from an eligible immutable profile pin | No profile semantics or lifecycle, existing-site adoption, site facts, credentials, consent, reusable publication workflow, or final publication authority |
+| Relay | Provide reusable validation and publication workflows and transport privacy-safe evidence for eligible pins | No profile semantics or lifecycle, site-class decision, adoption policy, transaction semantics, credentials, or final publication decision |
+| Pace | Plan reviewed adoption, preview rollout, open reversible migration pull requests, and drive convergence after eligibility | No direct default-branch mutation, profile policy or lifecycle, generator or workflow implementation, or automatic adoption claim |
+| Store | Define separately reviewed transaction-domain capability semantics and versioned guarded action contracts | No core-profile ownership, descriptive metadata policy, fabricated seller relationship, credential, consent, or metadata-derived authorization |
+| Observatory | Collect and report allowlisted privacy-safe evidence and aggregate metrics for eligible pins | No policy, lifecycle, remediation, rollout, secrets or personal data, passing-state fabrication, or site mutation |
+| Individual sites | Supply truthful facts, site class, credentials, consent interaction, configuration, represented revision, and final publication authority | No policy rewrite, lifecycle promotion, evidence or relationship fabrication, or authority delegated to discovery surfaces |
+
+None of these handoffs is implemented or claimed adopted here.
+
+### Precise handoff to `egohygiene/holon#7`
+
+[Holon issue #7](https://github.com/egohygiene/holon/issues/7) may consume this
+contract later; this checkpoint does not implement or change that issue. Its
+safe implementation boundary is:
+
+1. Require a profile pin eligible under Hygiene lifecycle policy, resolve the
+   canonical path at that full revision, verify its digest, and reject a
+   floating or unsupported pin. The current `proposed` alpha.4 profile is not
+   production-eligible.
+2. Accept site-owned site class, public facts, local configuration, target
+   revision, and explicit applicability decisions as inputs. Never invent
+   relationships, capability support, credentials, consent, authorization,
+   evidence, exemptions, or a passing result.
+3. Resolve each registered mechanism with the canonical policy and generate or
+   scaffold only the eligible artifact set. Preserve concern boundaries and
+   record generator identity, profile pin, source revision, and output digests.
+4. Emit reviewable output for site authority and later Relay validation. Do not
+   publish, mutate an existing fleet, or claim conformance, adoption, release,
+   deployment, monitoring, or publication.
+5. Treat `humans.txt`, mentioned by Holon #7, as outside the current Agent-Ready
+   Web mechanism catalog. It cannot satisfy this profile or count toward its
+   conformance unless separately registered by reviewed Hygiene policy.
 
 ## Checkpoint boundary
 
-This review checkpoint is scoped to issue #52 only. It does not:
+This review checkpoint is scoped to issue #53 only. It does not:
 
-- enumerate artifacts beyond the bounded checkpoint mechanisms or define
-  application-specific WebMCP/MCP-B capability details;
+- add mechanisms beyond the bounded catalog or define application-specific
+  WebMCP/MCP-B capability details;
 - implement browser tools, transaction operations, Store-owned cart, checkout,
   payment, inventory, fulfillment, refund, or other commerce-domain contracts;
-- implement generators, shared workflows, fleet rollout, dashboards, site
-  publication, or downstream conformance;
+- implement Holon generation, Relay workflows, Pace rollout, Observatory
+  dashboards, site publication, or any downstream consumer state;
 - activate the proposed profile, merge its pull request, or publish a release;
-  or
-- close parent issue #16 or begin integration checkpoint #53.
+- certify any site, create real evidence or exemptions, or claim organization-
+  wide adoption, enforcement, monitoring, deployment, or publication; or
+- merge this checkpoint pull request.
 
-Issue #53 remains blocked until the focused pull request for #52 is reviewed
-and merged.
+The parent tracker may close only when checkpoints #50–#52 are verified closed
+by merged pull requests and every parent acceptance criterion is evidenced by
+this final checkpoint. Tracker checkboxes alone are not merge evidence.

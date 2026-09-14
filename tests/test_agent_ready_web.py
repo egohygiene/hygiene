@@ -32,6 +32,20 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
         cls.commerce_fixture = agent_ready_web.load_json(
             FIXTURES / "mechanism.commerce.valid.json"
         )
+        cls.application_fixture = agent_ready_web.load_json(
+            FIXTURES / "site.application.valid.json"
+        )
+        cls.content_fixture = agent_ready_web.load_json(
+            FIXTURES / "site.content.valid.json"
+        )
+
+    def refresh_conformance(self, candidate: dict) -> None:
+        summary, diagnostics = agent_ready_web.derive_conformance(
+            candidate,
+            self.profile,
+        )
+        candidate["summary"] = summary
+        candidate["diagnostics"] = diagnostics
 
     def test_contract_schema_is_a_json_schema_document(self) -> None:
         schema = json.loads(
@@ -54,6 +68,10 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
         self.assertIn("commercePolicy", schema["$defs"])
         self.assertIn("capabilityBinding", schema["$defs"])
         self.assertIn("commerceBinding", schema["$defs"])
+        self.assertIn("integrationPolicy", schema["$defs"])
+        self.assertIn("conformancePolicy", schema["$defs"])
+        self.assertIn("consumerResolution", schema["$defs"])
+        self.assertIn("referenceReview", schema["$defs"])
         self.assertEqual(
             ["resolution_policy", "representation_policy"],
             schema["allOf"][0]["then"]["required"],
@@ -67,6 +85,18 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
             ],
             schema["allOf"][1]["then"]["required"],
         )
+        self.assertEqual(
+            [
+                "resolution_policy",
+                "representation_policy",
+                "capability_policy",
+                "commerce_policy",
+                "integration_policy",
+                "conformance_policy",
+                "reference_review",
+            ],
+            schema["allOf"][2]["then"]["required"],
+        )
         self.assertIn(
             "browser-capability",
             schema["$defs"]["artifact"]["properties"]["kind"]["enum"],
@@ -75,7 +105,7 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
     def test_checked_in_catalog_is_valid_complete_and_proposed(self) -> None:
         self.assertEqual([], agent_ready_web.validate_profile(self.profile))
         self.assertEqual("proposed", self.profile["status"])
-        self.assertEqual("1.0.0-alpha.3", self.profile["version"])
+        self.assertEqual("1.0.0-alpha.4", self.profile["version"])
         self.assertEqual(
             agent_ready_web.SCOPED_MECHANISM_IDS,
             [item["id"] for item in self.profile["mechanisms"]],
@@ -93,6 +123,35 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
                 "cross_concern_inference": "forbidden",
             },
             self.profile["concern_policy"],
+        )
+
+    def test_integration_policy_preserves_cross_layer_authority_boundaries(self) -> None:
+        self.assertEqual(
+            agent_ready_web.INTEGRATION_POLICY,
+            self.profile["integration_policy"],
+        )
+        invariants = self.profile["integration_policy"]["cross_layer_invariants"]
+        self.assertEqual(
+            [
+                "discovery",
+                "structured-metadata",
+                "advertising-declaration",
+                "maturity-classification",
+            ],
+            invariants["non_authoritative_inputs"],
+        )
+        self.assertEqual(
+            ["capability", "consent", "authorization", "transaction-authority"],
+            invariants["cannot_grant"],
+        )
+        candidate = copy.deepcopy(self.profile)
+        candidate["integration_policy"]["cross_layer_invariants"][
+            "capability_source"
+        ] = "metadata"
+        self.assertIn(
+            "profile.integration_policy must preserve independent concerns and "
+            "authority boundaries",
+            agent_ready_web.validate_profile(candidate),
         )
 
     def test_site_requirement_and_maturity_vocabularies_are_stable(self) -> None:
@@ -120,6 +179,13 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
         self.assertEqual(
             "schemas/agent-ready-web-profile.v1.schema.json",
             contract["source"],
+        )
+        evidence_contract = registered[agent_ready_web.CONFORMANCE_SCHEMA]
+        self.assertEqual("proposed", evidence_contract["status"])
+        self.assertEqual("egohygiene/hygiene", evidence_contract["owner"])
+        self.assertEqual(
+            "schemas/agent-ready-web-conformance.v1.schema.json",
+            evidence_contract["source"],
         )
 
     def test_synthetic_mechanism_proves_the_registration_shape(self) -> None:
@@ -478,8 +544,322 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
     def test_compatibility_fixtures_cover_valid_and_invalid_records(self) -> None:
         self.assertEqual(
             [],
-            agent_ready_web.validate_fixture_directory(FIXTURES),
+            agent_ready_web.validate_fixture_directory(FIXTURES, self.profile),
         )
+
+    def test_whole_profile_fixtures_cover_every_site_class(self) -> None:
+        fixtures = [
+            agent_ready_web.load_json(path)
+            for path in sorted(FIXTURES.glob("site.*.valid.json"))
+        ]
+        self.assertEqual(
+            agent_ready_web.SITE_CLASSES,
+            sorted(fixture["site_class"] for fixture in fixtures),
+        )
+        for fixture in fixtures:
+            envelope_errors, conformance_errors = (
+                agent_ready_web.validate_conformance_fixture(fixture, self.profile)
+            )
+            self.assertEqual([], envelope_errors)
+            self.assertEqual([], conformance_errors)
+            self.assertTrue(fixture["synthetic"])
+            self.assertTrue(fixture["conformance"]["synthetic"])
+            self.assertEqual(
+                agent_ready_web.SCOPED_MECHANISM_IDS,
+                [item["id"] for item in fixture["conformance"]["mechanisms"]],
+            )
+
+    def test_conformance_schema_denies_cross_layer_authority(self) -> None:
+        schema = agent_ready_web.load_json(
+            ROOT / "schemas" / "agent-ready-web-conformance.v1.schema.json"
+        )
+        self.assertEqual(
+            "https://json-schema.org/draft/2020-12/schema",
+            schema["$schema"],
+        )
+        self.assertFalse(schema["additionalProperties"])
+        self.assertEqual(
+            agent_ready_web.AUTHORITY_ASSERTIONS,
+            schema["properties"]["authority_assertions"]["const"],
+        )
+        self.assertIn(
+            "profile",
+            schema["required"],
+        )
+        self.assertIn(
+            "resolved_revision",
+            schema["$defs"]["pin"]["required"],
+        )
+
+    def test_requirement_resolution_covers_every_normative_state(self) -> None:
+        mechanism = copy.deepcopy(self.profile["mechanisms"][0])
+        rule = mechanism["requirements"]["site_class_overrides"][0]
+        for strength in ("required", "recommended", "optional", "prohibited"):
+            rule["strength"] = strength
+            rule["condition"] = None
+            self.assertEqual(
+                (strength, strength),
+                agent_ready_web.resolve_requirement(
+                    mechanism,
+                    "application",
+                    "applicable",
+                    None,
+                ),
+            )
+        rule["strength"] = "conditional"
+        rule["condition"] = "synthetic-condition"
+        self.assertEqual(
+            ("conditional", "required"),
+            agent_ready_web.resolve_requirement(
+                mechanism, "application", "applicable", "met"
+            ),
+        )
+        self.assertEqual(
+            ("conditional", "inapplicable"),
+            agent_ready_web.resolve_requirement(
+                mechanism, "application", "applicable", "not-met"
+            ),
+        )
+        self.assertEqual(
+            ("conditional", "unresolved"),
+            agent_ready_web.resolve_requirement(
+                mechanism, "application", "applicable", "unknown"
+            ),
+        )
+        self.assertEqual(
+            ("conditional", "inapplicable"),
+            agent_ready_web.resolve_requirement(
+                mechanism, "application", "not-applicable", None
+            ),
+        )
+        self.assertEqual(
+            ("conditional", "unresolved"),
+            agent_ready_web.resolve_requirement(
+                mechanism, "application", "unknown", None
+            ),
+        )
+
+    def test_conformance_diagnostics_and_levels_are_deterministic(self) -> None:
+        application = self.application_fixture["conformance"]
+        self.assertEqual([], agent_ready_web.validate_conformance(application, self.profile))
+        self.assertEqual("recommended", application["summary"]["level"])
+        self.assertEqual(["ARW-EXP-001"], [item["code"] for item in application["diagnostics"]])
+
+        content = self.content_fixture["conformance"]
+        self.assertEqual([], agent_ready_web.validate_conformance(content, self.profile))
+        self.assertEqual("baseline", content["summary"]["level"])
+        self.assertEqual(["ARW-REC-001"], [item["code"] for item in content["diagnostics"]])
+
+        missing_required = copy.deepcopy(application)
+        assessment = missing_required["mechanisms"][4]
+        assessment["presence"] = "absent"
+        assessment["validation"] = "not-run"
+        assessment["evidence_ids"] = []
+        self.refresh_conformance(missing_required)
+        self.assertEqual("nonconformant", missing_required["summary"]["level"])
+        self.assertIn(
+            "ARW-REQ-001",
+            [item["code"] for item in missing_required["diagnostics"]],
+        )
+        self.assertEqual(
+            [],
+            agent_ready_web.validate_conformance(missing_required, self.profile),
+        )
+
+    def test_every_failure_diagnostic_path_is_exercised(self) -> None:
+        unknown = copy.deepcopy(self.application_fixture["conformance"])
+        unknown_assessment = unknown["mechanisms"][1]
+        unknown_assessment["applicability"] = "unknown"
+        unknown_assessment["resolved_strength"] = "unresolved"
+        self.refresh_conformance(unknown)
+        self.assertIn("ARW-APP-001", [item["code"] for item in unknown["diagnostics"]])
+
+        inapplicable_present = copy.deepcopy(
+            self.application_fixture["conformance"]
+        )
+        inapplicable_assessment = inapplicable_present["mechanisms"][16]
+        inapplicable_assessment["presence"] = "present"
+        inapplicable_assessment["validation"] = "passed"
+        inapplicable_assessment["evidence_ids"] = ["artifact-snapshot"]
+        self.refresh_conformance(inapplicable_present)
+        self.assertIn(
+            "ARW-APP-002",
+            [item["code"] for item in inapplicable_present["diagnostics"]],
+        )
+
+        failed_present = copy.deepcopy(self.application_fixture["conformance"])
+        failed_assessment = failed_present["mechanisms"][4]
+        failed_assessment["validation"] = "failed"
+        failed_assessment["evidence_ids"] = []
+        self.refresh_conformance(failed_present)
+        self.assertEqual(
+            ["ARW-EVD-001", "ARW-VAL-001"],
+            [
+                item["code"]
+                for item in failed_present["diagnostics"]
+                if item["mechanism_id"] == "canonical-metadata"
+            ],
+        )
+
+        conditional_profile = copy.deepcopy(self.profile)
+        conditional_rule = conditional_profile["mechanisms"][1]["requirements"][
+            "site_class_overrides"
+        ][0]
+        conditional_rule["strength"] = "conditional"
+        conditional_rule["condition"] = "synthetic-condition"
+        conditional = copy.deepcopy(self.application_fixture["conformance"])
+        conditional_assessment = conditional["mechanisms"][1]
+        conditional_assessment["declared_strength"] = "conditional"
+        conditional_assessment["requirement_condition"] = "unknown"
+        conditional_assessment["resolved_strength"] = "unresolved"
+        _, conditional_diagnostics = agent_ready_web.derive_conformance(
+            conditional,
+            conditional_profile,
+        )
+        self.assertIn(
+            "ARW-CND-001",
+            [item["code"] for item in conditional_diagnostics],
+        )
+
+        prohibited_profile = copy.deepcopy(self.profile)
+        prohibited_rule = prohibited_profile["mechanisms"][1]["requirements"][
+            "site_class_overrides"
+        ][0]
+        prohibited_rule["strength"] = "prohibited"
+        prohibited_rule["condition"] = None
+        prohibited = copy.deepcopy(self.application_fixture["conformance"])
+        prohibited_assessment = prohibited["mechanisms"][1]
+        prohibited_assessment["declared_strength"] = "prohibited"
+        prohibited_assessment["resolved_strength"] = "prohibited"
+        prohibited_assessment["presence"] = "present"
+        prohibited_assessment["validation"] = "passed"
+        prohibited_assessment["evidence_ids"] = ["artifact-snapshot"]
+        _, prohibited_diagnostics = agent_ready_web.derive_conformance(
+            prohibited,
+            prohibited_profile,
+        )
+        self.assertIn(
+            "ARW-PRO-001",
+            [item["code"] for item in prohibited_diagnostics],
+        )
+
+    def test_narrow_exemption_is_distinct_and_never_passing(self) -> None:
+        candidate = copy.deepcopy(self.application_fixture["conformance"])
+        candidate["evidence"].insert(
+            1,
+            {
+                "id": "approval-record",
+                "kind": "approval",
+                "location": "fixtures/agent-ready-web/site.application.valid.json",
+                "observed_at": "2026-09-14T16:00:00Z",
+                "subject_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "description": "Synthetic time-bounded approval for compatibility testing only.",
+                "sha256": None,
+            },
+        )
+        assessment = candidate["mechanisms"][4]
+        assessment["presence"] = "absent"
+        assessment["validation"] = "not-run"
+        assessment["evidence_ids"] = []
+        assessment["exemption"] = {
+            "id": "synthetic-canonical-exemption",
+            "scope": "required-absence",
+            "owner": "Synthetic site owner",
+            "reason": "Compatibility exercise",
+            "approved_by": "Synthetic reviewer",
+            "approval_evidence_id": "approval-record",
+            "approved_on": "2026-09-14",
+            "expires_on": "2026-09-15",
+        }
+        self.refresh_conformance(candidate)
+        self.assertEqual("exempt", candidate["summary"]["level"])
+        self.assertEqual(1, candidate["summary"]["exemptions"])
+        self.assertIn("ARW-EXM-001", [item["code"] for item in candidate["diagnostics"]])
+        self.assertEqual([], agent_ready_web.validate_conformance(candidate, self.profile))
+
+    def test_conformance_rejects_authority_inference_and_unbound_evidence(self) -> None:
+        authority = copy.deepcopy(self.application_fixture["conformance"])
+        authority["authority_assertions"]["structured_metadata_grants_capability"] = True
+        self.assertIn(
+            "conformance.authority_assertions must deny cross-layer authority inference",
+            agent_ready_web.validate_conformance(authority, self.profile),
+        )
+
+        unbound = copy.deepcopy(self.application_fixture["conformance"])
+        unbound["mechanisms"][4]["evidence_ids"] = ["missing-evidence"]
+        self.assertIn(
+            "conformance.mechanisms[4].evidence_ids contains unknown evidence ids: "
+            "missing-evidence",
+            agent_ready_web.validate_conformance(unbound, self.profile),
+        )
+
+        future = copy.deepcopy(self.application_fixture["conformance"])
+        future["evidence"][0]["observed_at"] = "2026-09-14T16:00:01Z"
+        self.assertIn(
+            "conformance.evidence[0].observed_at must not follow the assessment",
+            agent_ready_web.validate_conformance(future, self.profile),
+        )
+
+        not_an_origin = copy.deepcopy(self.application_fixture["conformance"])
+        not_an_origin["subject"]["origin"] = "https://example.invalid/path"
+        self.assertIn(
+            "conformance.subject.origin must be an HTTPS origin",
+            agent_ready_web.validate_conformance(not_an_origin, self.profile),
+        )
+
+    def test_profile_pin_and_derived_output_cannot_float_or_be_fabricated(self) -> None:
+        candidate = copy.deepcopy(self.application_fixture["conformance"])
+        candidate["profile"]["pin"]["value"] = "floating-main"
+        self.assertIn(
+            "conformance.profile.pin.value must equal the resolved immutable revision",
+            agent_ready_web.validate_conformance(candidate, self.profile),
+        )
+
+        candidate = copy.deepcopy(self.application_fixture["conformance"])
+        candidate["profile"]["pin"]["sha256"] = "sha256:" + ("0" * 64)
+        self.assertIn(
+            "conformance.profile.pin.sha256 must match the loaded canonical profile",
+            agent_ready_web.validate_conformance(candidate, self.profile),
+        )
+
+        candidate = copy.deepcopy(self.application_fixture["conformance"])
+        candidate["profile"]["version"] = "1.0.0-alpha.99"
+        self.assertIn(
+            "conformance.profile.version must match the loaded profile",
+            agent_ready_web.validate_conformance(candidate, self.profile),
+        )
+
+        candidate = copy.deepcopy(self.application_fixture["conformance"])
+        candidate["profile"]["pin"]["kind"] = "released-version"
+        candidate["profile"]["pin"]["value"] = self.profile["version"]
+        self.assertIn(
+            "conformance.profile.pin.kind released-version requires a non-proposed "
+            "profile",
+            agent_ready_web.validate_conformance(candidate, self.profile),
+        )
+
+        candidate = copy.deepcopy(self.application_fixture["conformance"])
+        candidate["summary"]["level"] = "baseline"
+        self.assertIn(
+            "conformance.summary must equal the deterministic derived summary",
+            agent_ready_web.validate_conformance(candidate, self.profile),
+        )
+
+    def test_reference_review_covers_the_complete_catalog(self) -> None:
+        review = self.profile["reference_review"]
+        self.assertEqual(
+            agent_ready_web.SCOPED_MECHANISM_IDS,
+            review["mechanism_ids"],
+        )
+        self.assertEqual(agent_ready_web.REFERENCE_REVIEW_CHECKS, review["checks"])
+        for mechanism in self.profile["mechanisms"]:
+            self.assertIn(
+                "primary",
+                {
+                    reference["authority"]
+                    for reference in mechanism["authoritative_references"]
+                },
+            )
 
     def test_compatibility_identifies_additions_and_breakage(self) -> None:
         compatibility = self.profile["compatibility"]
@@ -496,13 +876,36 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
             )
         )
         self.assertEqual("fail-closed", compatibility["unknown_core_values"])
+        self.assertEqual(
+            agent_ready_web.CONSUMER_RESOLUTION_POLICY,
+            compatibility["consumer_resolution"],
+        )
+        self.assertEqual(
+            "review-and-compatibility-testing-only",
+            compatibility["consumer_resolution"]["proposed_profile_use"],
+        )
+        candidate = copy.deepcopy(self.profile)
+        candidate["compatibility"]["consumer_resolution"]["upgrade"] = (
+            "follow-floating-main"
+        )
+        self.assertIn(
+            "profile.compatibility.consumer_resolution is invalid",
+            agent_ready_web.validate_profile(candidate),
+        )
 
     def test_ownership_boundary_is_complete_and_does_not_claim_adoption(self) -> None:
         self.assertEqual(agent_ready_web.OWNERS, set(self.profile["ownership"]))
-        self.assertIn("guarded commerce", self.profile["ownership"]["store"]["owns"])
+        self.assertIn(
+            "Transaction-domain capability",
+            self.profile["ownership"]["store"]["owns"],
+        )
         self.assertIn(
             "automatic adoption",
             self.profile["ownership"]["pace"]["excludes"],
+        )
+        self.assertIn(
+            "final publication authority",
+            self.profile["ownership"]["sites"]["owns"],
         )
 
 

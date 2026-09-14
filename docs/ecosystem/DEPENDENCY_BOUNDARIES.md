@@ -148,15 +148,23 @@ Relay, Observatory, and Pace consume the proposed Hygiene policy through their
 linked follow-up issues rather than placing their implementations here.
 
 The Agent-Ready Web relationship follows the same control-plane boundary.
-Hygiene owns the proposed profile vocabulary, schema, compatibility,
-extensions, reference-validation semantics, guarded browser-capability
-envelope, and descriptive commerce and advertising policy. Holon may later
-generate new-site artifacts, Relay may execute reusable checks and transport
-evidence, Pace may propose existing-site migrations, Store retains all guarded
-commerce-domain contracts, and Observatory may collect privacy-safe evidence.
-Sites retain facts, credentials, consent, and publication authority. The
-relationship remains `required` while the profile is proposed; this repository
-does not claim those downstream implementations or any site adoption.
+Hygiene owns the proposed integrated profile and conformance schemas,
+independent concern resolution, cross-layer authority denials, diagnostics,
+evidence shape, compatibility, reference review, and lifecycle. Consumers use
+an exact released version with resolved revision and digest, or an immutable
+repository revision with digest; they do not copy Hygiene policy. The current
+proposed pin is review- and compatibility-test-only.
+
+Holon may later scaffold and generate for new sites from an eligible immutable
+pin. Relay may implement reusable validation and publication workflows and
+transport privacy-safe evidence. Pace may plan reviewed adoption and propose
+reversible existing-site rollout and convergence. Store retains transaction-
+domain capability contracts. Observatory may collect privacy-safe evidence and
+aggregate metrics. Sites retain their facts, site class, credentials, consent
+interaction, configuration, represented revision, and final publication
+authority. The relationship remains `required`; this repository does not claim
+those downstream implementations, any passing site state, adoption,
+publication, monitoring, or enforcement.
 
 The continuity relationships remain `required` instead of `active` while the
 Aether artifacts are draft and the Hygiene profile is proposed. This is a

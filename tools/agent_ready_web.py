@@ -1,28 +1,35 @@
 #!/usr/bin/env python3
-"""Validate the proposed Agent-Ready Web profile and mechanism catalog.
+"""Validate the proposed Agent-Ready Web profile and compatibility evidence.
 
 This dependency-free reference checker proves the profile's cross-field,
 applicability, representation-integrity, and mechanism-policy invariants. It
-does not implement reusable CI, generate site artifacts, assess downstream
-conformance, or publish anything.
+also validates deterministic, revision-bound synthetic or site-owned evidence.
+It does not implement reusable CI, generate site artifacts, certify consumers,
+or publish anything.
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
 from collections.abc import Mapping
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 
 
 PROFILE_SCHEMA = "egohygiene.agent-ready-web-profile/v1"
-PROFILE_VERSION = "1.0.0-alpha.3"
+PROFILE_VERSION = "1.0.0-alpha.4"
 PROFILE_OWNER = "egohygiene/hygiene"
 FIXTURE_SCHEMA = "egohygiene.agent-ready-web-mechanism-fixture/v1"
+CONFORMANCE_SCHEMA = "egohygiene.agent-ready-web-conformance/v1"
+CONFORMANCE_FIXTURE_SCHEMA = (
+    "egohygiene.agent-ready-web-conformance-fixture/v1"
+)
 CONCERNS = ["readability", "capability", "efficiency", "commerce"]
 SITE_CLASSES = ["application", "commerce", "content", "documentation", "hybrid"]
 REQUIREMENT_STRENGTHS = [
@@ -59,7 +66,15 @@ EVIDENCE_KINDS = [
     "adoption-observation",
     "maintainer-assessment",
 ]
-OWNERS = {"hygiene", "holon", "relay", "pace", "store", "observatory"}
+OWNERS = {
+    "hygiene",
+    "holon",
+    "relay",
+    "pace",
+    "store",
+    "observatory",
+    "sites",
+}
 ARTIFACT_KINDS = [
     "browser-capability",
     "crawler-guidance",
@@ -248,6 +263,168 @@ COMMERCE_POLICY = {
         "offer_to_purchase_authority": "forbidden",
     },
 }
+INTEGRATION_POLICY = {
+    "composition": {
+        "concerns": CONCERNS,
+        "evaluation": "resolve-each-mechanism-within-primary-concern-then-aggregate",
+        "cross_concern_substitution": "prohibited",
+        "boundary_preservation": "required",
+    },
+    "cross_layer_invariants": {
+        "non_authoritative_inputs": [
+            "discovery",
+            "structured-metadata",
+            "advertising-declaration",
+            "maturity-classification",
+        ],
+        "cannot_grant": [
+            "capability",
+            "consent",
+            "authorization",
+            "transaction-authority",
+        ],
+        "capability_source": "explicit-versioned-origin-bound-capability-contract-only",
+        "consent_source": "fresh-explicit-human-interaction-only",
+        "authorization_source": "server-revalidated-per-invocation-only",
+        "transaction_source": "store-owned-contract-plus-fresh-confirmation-and-server-authorization-only",
+    },
+}
+CONFORMANCE_LEVELS = ["nonconformant", "exempt", "baseline", "recommended"]
+APPLICABILITY_STATES = ["applicable", "not-applicable", "unknown"]
+RESOLVED_STRENGTHS = [
+    "required",
+    "recommended",
+    "optional",
+    "prohibited",
+    "inapplicable",
+    "unresolved",
+]
+CONDITIONAL_STATES = ["met", "not-met", "unknown"]
+PRESENCE_STATES = ["present", "absent"]
+MECHANISM_VALIDATION_STATES = ["passed", "failed", "not-run"]
+DIAGNOSTIC_SEVERITIES = ["error", "advisory", "information"]
+EVIDENCE_KINDS_SITE = [
+    "approval",
+    "configuration",
+    "contract",
+    "generated-artifact",
+    "http-response",
+    "human-review",
+    "source-manifest",
+]
+CONFORMANCE_CLAIM = (
+    "assessment-only-no-certification-adoption-publication-or-authority"
+)
+AUTHORITY_ASSERTIONS = {
+    "discovery_grants_capability": False,
+    "structured_metadata_grants_capability": False,
+    "advertising_grants_capability": False,
+    "maturity_grants_capability": False,
+    "surface_grants_consent": False,
+    "surface_grants_authorization": False,
+    "surface_grants_transaction_authority": False,
+}
+CONFORMANCE_POLICY = {
+    "schema": CONFORMANCE_SCHEMA,
+    "profile_applicability": {
+        "scope": "public-human-facing-https-site",
+        "not_applicable": "explicit-reason-and-current-evidence-required",
+        "unknown": "error",
+    },
+    "resolution": {
+        "order": [
+            "verify-profile-pin",
+            "select-site-class",
+            "evaluate-applicability",
+            "resolve-conditional-rule",
+            "apply-strength",
+            "validate-present-mechanism",
+            "apply-narrow-exemption",
+            "derive-diagnostics",
+            "derive-level",
+        ],
+        "declared_strengths": REQUIREMENT_STRENGTHS,
+        "resolved_strengths": RESOLVED_STRENGTHS,
+        "applicability_states": APPLICABILITY_STATES,
+        "conditional": {
+            "met": "required",
+            "not_met": "inapplicable",
+            "unknown": "unresolved-error",
+        },
+        "experimental": {
+            "absent": "non-blocking",
+            "present": "full-present-mechanism-validation-required",
+            "authority": "none",
+        },
+    },
+    "levels": [
+        {
+            "id": "nonconformant",
+            "definition": "One or more error diagnostics remain after deterministic resolution.",
+        },
+        {
+            "id": "exempt",
+            "definition": "No unexempted error remains and at least one narrow approved exemption is active; this is not passing.",
+        },
+        {
+            "id": "baseline",
+            "definition": "No error or exemption remains, but at least one advisory remains.",
+        },
+        {
+            "id": "recommended",
+            "definition": "No error, advisory, or exemption remains; optional or experimental absence is still allowed.",
+        },
+    ],
+    "level_precedence": CONFORMANCE_LEVELS,
+    "diagnostics": {
+        "shape": "stable-code-severity-mechanism-path-message",
+        "severities": DIAGNOSTIC_SEVERITIES,
+        "ordering": "profile-mechanism-order-then-severity-code-and-path",
+        "unknown_state": "error",
+        "claim_limit": CONFORMANCE_CLAIM,
+    },
+    "evidence": {
+        "profile_pin": "exact-version-plus-resolved-immutable-revision-and-sha256",
+        "subject_revision": "immutable-revision",
+        "mechanism_cardinality": "exactly-once-in-profile-order",
+        "current_evidence": "subject-revision-bound-observed-no-later-than-assessment-and-required-for-applicability-and-present-mechanisms",
+        "privacy": "allowlisted-minimized-no-secrets-personal-data-or-credentials",
+        "authority_assertions": "must-match-cross-layer-invariants",
+    },
+    "exemptions": {
+        "scope": "single-required-absence-only",
+        "requirements": "named-owner-reason-approval-evidence-and-future-expiry",
+        "non_exemptable": [
+            "profile-pin",
+            "unknown-applicability",
+            "prohibited-presence",
+            "present-mechanism-validation",
+            "privacy-security-consent-authorization-transaction-and-cross-layer-invariants",
+        ],
+        "effect": "distinct-exempt-level-never-passing-or-recommended",
+    },
+}
+REFERENCE_REVIEW_CHECKS = [
+    "primary-authority-present-and-resolvable",
+    "maturity-rationale-supported-by-primary-source",
+    "standards-status-not-overstated",
+    "living-and-draft-sources-rechecked-at-upgrade",
+]
+CONSUMER_RESOLUTION_POLICY = {
+    "canonical_repository": "egohygiene/hygiene",
+    "canonical_path": "catalog/agent-ready-web-profile.json",
+    "supported_pins": [
+        "exact-released-version-with-resolved-revision-and-sha256",
+        "immutable-repository-revision-with-sha256",
+    ],
+    "digest": "sha256-of-canonical-json-utf8",
+    "proposed_profile_use": "review-and-compatibility-testing-only",
+    "production_eligibility": "active-lifecycle-plus-eligible-immutable-pin-required",
+    "policy_copying": "prohibited",
+    "unsupported_version": "fail-closed-with-upgrade-diagnostic",
+    "upgrade": "explicit-reviewed-pin-change-full-revalidation-and-fixture-replay",
+    "downgrade": "explicit-reviewed-pin-change-and-no-newer-semantics-assumed",
+}
 PROFILE_FIELDS = {
     "schema",
     "version",
@@ -265,6 +442,9 @@ PROFILE_FIELDS = {
     "representation_policy",
     "capability_policy",
     "commerce_policy",
+    "integration_policy",
+    "conformance_policy",
+    "reference_review",
     "mechanisms",
     "compatibility",
     "extensions",
@@ -316,6 +496,12 @@ IDENTIFIER_RE = re.compile(IDENTIFIER_PATTERN)
 EXTENSION_IDENTIFIER_RE = re.compile(EXTENSION_IDENTIFIER_PATTERN)
 REPOSITORY_RE = re.compile(r"^egohygiene/(?:\.github|[a-z0-9][a-z0-9.-]*)$")
 SAFE_PATH_RE = re.compile(r"^(?:[A-Za-z0-9._-]+/)*[A-Za-z0-9._-]+$")
+SHA_RE = re.compile(r"^[0-9a-f]{40}$")
+SHA256_RE = re.compile(r"^sha256:[0-9a-f]{64}$")
+SEMVER_RE = re.compile(
+    r"^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)"
+    r"(?:-[0-9A-Za-z.-]+)?$"
+)
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -326,6 +512,18 @@ def load_json(path: Path) -> dict[str, Any]:
     if not isinstance(value, dict):
         raise ValueError(f"{path} must contain a JSON object")
     return value
+
+
+def profile_digest(profile: Mapping[str, Any]) -> str:
+    """Return the representation-independent digest used by consumer pins."""
+
+    canonical = json.dumps(
+        profile,
+        ensure_ascii=False,
+        separators=(",", ":"),
+        sort_keys=True,
+    ).encode("utf-8")
+    return "sha256:" + hashlib.sha256(canonical).hexdigest()
 
 
 def _text(value: Any, path: str) -> list[str]:
@@ -355,6 +553,39 @@ def _iso_date(value: Any, path: str) -> list[str]:
         date.fromisoformat(value)
     except ValueError:
         return [f"{path} must be an ISO date"]
+    return []
+
+
+def _iso_datetime(value: Any, path: str) -> list[str]:
+    if not isinstance(value, str):
+        return [f"{path} must be an ISO date-time"]
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return [f"{path} must be an ISO date-time"]
+    if parsed.tzinfo is None:
+        return [f"{path} must include a timezone"]
+    return []
+
+
+def _https_origin(value: Any, path: str) -> list[str]:
+    if not isinstance(value, str):
+        return [f"{path} must be an HTTPS origin"]
+    try:
+        parsed = urlsplit(value)
+        parsed.port
+    except ValueError:
+        return [f"{path} must be an HTTPS origin"]
+    if (
+        parsed.scheme != "https"
+        or parsed.hostname is None
+        or parsed.username is not None
+        or parsed.password is not None
+        or parsed.path not in {"", "/"}
+        or parsed.query
+        or parsed.fragment
+    ):
+        return [f"{path} must be an HTTPS origin"]
     return []
 
 
@@ -924,6 +1155,41 @@ def _validate_commerce_policy(value: Any, path: str) -> list[str]:
     return errors
 
 
+def _validate_integration_policy(value: Any, path: str) -> list[str]:
+    if value != INTEGRATION_POLICY:
+        return [f"{path} must preserve independent concerns and authority boundaries"]
+    return []
+
+
+def _validate_conformance_policy(value: Any, path: str) -> list[str]:
+    if value != CONFORMANCE_POLICY:
+        return [f"{path} must preserve deterministic conformance semantics"]
+    return []
+
+
+def _validate_reference_review(
+    value: Any,
+    path: str,
+    mechanism_ids: list[str],
+) -> list[str]:
+    if not isinstance(value, dict):
+        return [f"{path} must be an object"]
+    errors: list[str] = []
+    fields = {"reviewed_on", "scope", "mechanism_ids", "checks", "outcome"}
+    if set(value) != fields:
+        errors.append(f"{path} fields must exactly match the v1 contract")
+    errors.extend(_iso_date(value.get("reviewed_on"), f"{path}.reviewed_on"))
+    if value.get("scope") != "all-registered-mechanisms-and-cross-cutting-policies":
+        errors.append(f"{path}.scope is invalid")
+    if value.get("mechanism_ids") != mechanism_ids:
+        errors.append(f"{path}.mechanism_ids must exactly cover the catalog")
+    if value.get("checks") != REFERENCE_REVIEW_CHECKS:
+        errors.append(f"{path}.checks must preserve the maturity review contract")
+    if value.get("outcome") != "coverage-complete-maturity-classifications-retained":
+        errors.append(f"{path}.outcome is invalid")
+    return errors
+
+
 def validate_profile(profile: Mapping[str, Any]) -> list[str]:
     """Return deterministic errors for the canonical profile foundation."""
 
@@ -997,7 +1263,7 @@ def validate_profile(profile: Mapping[str, Any]) -> list[str]:
         "reference_authorities": REFERENCE_AUTHORITIES,
         "evidence_kinds": EVIDENCE_KINDS,
         "evidence_scope": "mechanism-registration-only",
-        "site_conformance_evidence": "deferred",
+        "site_conformance_evidence": CONFORMANCE_SCHEMA,
         "required_primary_references": 1,
         "required_registration_evidence": 1,
         "concern_specific_bindings": ["capability", "commerce"],
@@ -1025,6 +1291,18 @@ def validate_profile(profile: Mapping[str, Any]) -> list[str]:
         _validate_commerce_policy(
             profile.get("commerce_policy"),
             "profile.commerce_policy",
+        )
+    )
+    errors.extend(
+        _validate_integration_policy(
+            profile.get("integration_policy"),
+            "profile.integration_policy",
+        )
+    )
+    errors.extend(
+        _validate_conformance_policy(
+            profile.get("conformance_policy"),
+            "profile.conformance_policy",
         )
     )
 
@@ -1090,8 +1368,19 @@ def validate_profile(profile: Mapping[str, Any]) -> list[str]:
             errors.append("profile.mechanisms must use stable id order")
         if mechanism_ids != SCOPED_MECHANISM_IDS:
             errors.append(
-                "profile.mechanisms must exactly match the checkpoint 3 catalog"
+                "profile.mechanisms must exactly match the integrated catalog"
             )
+
+    reference_mechanism_ids = (
+        mechanism_ids if isinstance(mechanisms, list) else []
+    )
+    errors.extend(
+        _validate_reference_review(
+            profile.get("reference_review"),
+            "profile.reference_review",
+            reference_mechanism_ids,
+        )
+    )
 
     compatibility = profile.get("compatibility")
     compatibility_fields = {
@@ -1103,6 +1392,7 @@ def validate_profile(profile: Mapping[str, Any]) -> list[str]:
         "breaking_changes",
         "unknown_core_values",
         "unknown_extensions",
+        "consumer_resolution",
     }
     if not isinstance(compatibility, dict):
         errors.append("profile.compatibility must be an object")
@@ -1123,6 +1413,8 @@ def validate_profile(profile: Mapping[str, Any]) -> list[str]:
         for field, expected in expected_values.items():
             if compatibility.get(field) != expected:
                 errors.append(f"profile.compatibility.{field} is invalid")
+        if compatibility.get("consumer_resolution") != CONSUMER_RESOLUTION_POLICY:
+            errors.append("profile.compatibility.consumer_resolution is invalid")
         errors.extend(
             _text(
                 compatibility.get("same_major_guarantee"),
@@ -1226,6 +1518,680 @@ def validate_profile(profile: Mapping[str, Any]) -> list[str]:
     return sorted(set(errors))
 
 
+def resolve_requirement(
+    mechanism: Mapping[str, Any],
+    site_class: str,
+    applicability: str,
+    requirement_condition: str | None,
+) -> tuple[str | None, str]:
+    """Resolve one mechanism without conflating strength and maturity."""
+
+    requirements = mechanism.get("requirements")
+    if not isinstance(requirements, dict):
+        return None, "unresolved"
+    rule = requirements.get("default")
+    overrides = requirements.get("site_class_overrides")
+    if isinstance(overrides, list):
+        for override in overrides:
+            if isinstance(override, dict) and override.get("site_class") == site_class:
+                rule = override
+                break
+    if not isinstance(rule, dict):
+        return None, "unresolved"
+    declared = rule.get("strength")
+    if not isinstance(declared, str) or declared not in REQUIREMENT_STRENGTHS:
+        return None, "unresolved"
+    if applicability == "unknown":
+        return declared, "unresolved"
+    if applicability == "not-applicable":
+        return declared, "inapplicable"
+    if applicability != "applicable":
+        return declared, "unresolved"
+    if declared != "conditional":
+        return declared, declared
+    if requirement_condition == "met":
+        return declared, "required"
+    if requirement_condition == "not-met":
+        return declared, "inapplicable"
+    return declared, "unresolved"
+
+
+def _validate_profile_pin(
+    value: Any,
+    profile: Mapping[str, Any],
+    path: str,
+) -> list[str]:
+    if not isinstance(value, dict):
+        return [f"{path} must be an object"]
+    errors: list[str] = []
+    fields = {"schema", "version", "status", "repository", "path", "pin"}
+    if set(value) != fields:
+        errors.append(f"{path} fields must exactly match the v1 contract")
+    if value.get("schema") != profile.get("schema"):
+        errors.append(f"{path}.schema must match the loaded profile")
+    if value.get("version") != profile.get("version"):
+        errors.append(f"{path}.version must match the loaded profile")
+    if value.get("status") != profile.get("status"):
+        errors.append(f"{path}.status must match the loaded profile")
+    if value.get("repository") != "egohygiene/hygiene":
+        errors.append(f"{path}.repository is invalid")
+    if value.get("path") != "catalog/agent-ready-web-profile.json":
+        errors.append(f"{path}.path is invalid")
+    pin = value.get("pin")
+    if not isinstance(pin, dict):
+        errors.append(f"{path}.pin must be an object")
+        return errors
+    pin_fields = {"kind", "value", "resolved_revision", "sha256"}
+    if set(pin) != pin_fields:
+        errors.append(f"{path}.pin fields must exactly match the v1 contract")
+    kind = pin.get("kind")
+    if kind not in {"immutable-revision", "released-version"}:
+        errors.append(f"{path}.pin.kind is invalid")
+    revision = pin.get("resolved_revision")
+    if not isinstance(revision, str) or SHA_RE.fullmatch(revision) is None:
+        errors.append(f"{path}.pin.resolved_revision must be a full commit SHA")
+    digest = pin.get("sha256")
+    if not isinstance(digest, str) or SHA256_RE.fullmatch(digest) is None:
+        errors.append(f"{path}.pin.sha256 must be a SHA-256 digest")
+    elif digest != profile_digest(profile):
+        errors.append(f"{path}.pin.sha256 must match the loaded canonical profile")
+    pin_value = pin.get("value")
+    if kind == "immutable-revision" and pin_value != revision:
+        errors.append(f"{path}.pin.value must equal the resolved immutable revision")
+    if kind == "released-version":
+        if profile.get("status") == "proposed":
+            errors.append(
+                f"{path}.pin.kind released-version requires a non-proposed profile"
+            )
+        if pin_value != profile.get("version"):
+            errors.append(f"{path}.pin.value must equal the exact profile version")
+        if not isinstance(pin_value, str) or SEMVER_RE.fullmatch(pin_value) is None:
+            errors.append(f"{path}.pin.value must be an exact semantic version")
+    return errors
+
+
+def _validate_site_evidence_registry(
+    value: Any,
+    subject_revision: str | None,
+    assessed_at: str | None,
+    path: str,
+) -> tuple[list[str], dict[str, Mapping[str, Any]]]:
+    errors: list[str] = []
+    evidence_by_id: dict[str, Mapping[str, Any]] = {}
+    if not isinstance(value, list) or not value:
+        return [f"{path} must be a non-empty array"], evidence_by_id
+    fields = {
+        "id",
+        "kind",
+        "location",
+        "observed_at",
+        "subject_revision",
+        "description",
+        "sha256",
+    }
+    ids: list[str] = []
+    for index, evidence in enumerate(value):
+        evidence_path = f"{path}[{index}]"
+        if not isinstance(evidence, dict):
+            errors.append(f"{evidence_path} must be an object")
+            continue
+        if set(evidence) != fields:
+            errors.append(f"{evidence_path} fields must exactly match the v1 contract")
+        evidence_id = evidence.get("id")
+        errors.extend(_identifier(evidence_id, f"{evidence_path}.id"))
+        if isinstance(evidence_id, str):
+            ids.append(evidence_id)
+            evidence_by_id[evidence_id] = evidence
+        if evidence.get("kind") not in EVIDENCE_KINDS_SITE:
+            errors.append(f"{evidence_path}.kind is invalid")
+        errors.extend(_location(evidence.get("location"), f"{evidence_path}.location"))
+        observed_at = evidence.get("observed_at")
+        errors.extend(_iso_datetime(observed_at, f"{evidence_path}.observed_at"))
+        if isinstance(observed_at, str) and isinstance(assessed_at, str):
+            try:
+                observed_time = datetime.fromisoformat(
+                    observed_at.replace("Z", "+00:00")
+                )
+                assessed_time = datetime.fromisoformat(
+                    assessed_at.replace("Z", "+00:00")
+                )
+                if observed_time > assessed_time:
+                    errors.append(
+                        f"{evidence_path}.observed_at must not follow the assessment"
+                    )
+            except ValueError:
+                pass
+        revision = evidence.get("subject_revision")
+        if revision != subject_revision:
+            errors.append(
+                f"{evidence_path}.subject_revision must match the assessed subject"
+            )
+        errors.extend(_text(evidence.get("description"), f"{evidence_path}.description"))
+        digest = evidence.get("sha256")
+        if digest is not None and (
+            not isinstance(digest, str) or SHA256_RE.fullmatch(digest) is None
+        ):
+            errors.append(f"{evidence_path}.sha256 must be null or a SHA-256 digest")
+    if len(ids) != len(set(ids)):
+        errors.append(f"{path} must use unique ids")
+    if ids != sorted(ids):
+        errors.append(f"{path} must use stable id order")
+    return errors, evidence_by_id
+
+
+def _validate_evidence_ids(
+    value: Any,
+    evidence_by_id: Mapping[str, Mapping[str, Any]],
+    path: str,
+    *,
+    allow_empty: bool,
+) -> list[str]:
+    errors = _unique_strings(value, path, allow_empty=allow_empty)
+    if not isinstance(value, list):
+        return errors
+    ids = [item for item in value if isinstance(item, str)]
+    if ids != sorted(ids):
+        errors.append(f"{path} must use stable id order")
+    unknown = sorted(set(ids) - set(evidence_by_id))
+    if unknown:
+        errors.append(f"{path} contains unknown evidence ids: {', '.join(unknown)}")
+    return errors
+
+
+def _validate_exemption(
+    value: Any,
+    evidence_by_id: Mapping[str, Mapping[str, Any]],
+    assessed_at: str | None,
+    path: str,
+) -> list[str]:
+    if value is None:
+        return []
+    if not isinstance(value, dict):
+        return [f"{path} must be null or an object"]
+    errors: list[str] = []
+    fields = {
+        "id",
+        "scope",
+        "owner",
+        "reason",
+        "approved_by",
+        "approval_evidence_id",
+        "approved_on",
+        "expires_on",
+    }
+    if set(value) != fields:
+        errors.append(f"{path} fields must exactly match the v1 contract")
+    errors.extend(_identifier(value.get("id"), f"{path}.id"))
+    if value.get("scope") != "required-absence":
+        errors.append(f"{path}.scope is not exemptable")
+    for field in ("owner", "reason", "approved_by"):
+        errors.extend(_text(value.get(field), f"{path}.{field}"))
+    approval_id = value.get("approval_evidence_id")
+    errors.extend(_identifier(approval_id, f"{path}.approval_evidence_id"))
+    approval_evidence = evidence_by_id.get(approval_id)
+    if approval_evidence is None or approval_evidence.get("kind") != "approval":
+        errors.append(f"{path}.approval_evidence_id must reference approval evidence")
+    errors.extend(_iso_date(value.get("approved_on"), f"{path}.approved_on"))
+    errors.extend(_iso_date(value.get("expires_on"), f"{path}.expires_on"))
+    if isinstance(assessed_at, str):
+        try:
+            assessed_date = datetime.fromisoformat(
+                assessed_at.replace("Z", "+00:00")
+            ).date()
+            approved_date = date.fromisoformat(value.get("approved_on"))
+            expiry_date = date.fromisoformat(value.get("expires_on"))
+            if approved_date > assessed_date:
+                errors.append(f"{path}.approved_on must not follow the assessment")
+            if expiry_date <= assessed_date:
+                errors.append(f"{path}.expires_on must be after the assessment")
+            if expiry_date <= approved_date:
+                errors.append(f"{path}.expires_on must be after approval")
+        except (TypeError, ValueError):
+            pass
+    return errors
+
+
+def _diagnostic(
+    code: str,
+    severity: str,
+    mechanism_id: str,
+    path: str,
+    message: str,
+) -> dict[str, str]:
+    return {
+        "code": code,
+        "severity": severity,
+        "mechanism_id": mechanism_id,
+        "path": path,
+        "message": message,
+    }
+
+
+def derive_conformance(
+    conformance: Mapping[str, Any],
+    profile: Mapping[str, Any],
+) -> tuple[dict[str, Any], list[dict[str, str]]]:
+    """Derive the summary and stable diagnostics for one site assessment."""
+
+    subject = conformance.get("subject")
+    site_class = subject.get("site_class") if isinstance(subject, dict) else None
+    raw_assessments = conformance.get("mechanisms")
+    assessments = raw_assessments if isinstance(raw_assessments, list) else []
+    assessment_by_id = {
+        item.get("id"): item
+        for item in assessments
+        if isinstance(item, dict)
+    }
+    diagnostics: list[dict[str, str]] = []
+    exemptions = 0
+    applicable = 0
+    inapplicable = 0
+    experimental_present = 0
+    mechanism_order: dict[str, int] = {}
+    for index, mechanism in enumerate(profile.get("mechanisms", [])):
+        if not isinstance(mechanism, dict) or not isinstance(mechanism.get("id"), str):
+            continue
+        mechanism_id = mechanism["id"]
+        mechanism_order[mechanism_id] = index
+        assessment = assessment_by_id.get(mechanism_id)
+        if not isinstance(assessment, dict):
+            continue
+        path = f"mechanisms[{index}]"
+        applicability = assessment.get("applicability")
+        _, resolved = resolve_requirement(
+            mechanism,
+            site_class if isinstance(site_class, str) else "",
+            applicability if isinstance(applicability, str) else "unknown",
+            assessment.get("requirement_condition"),
+        )
+        presence = assessment.get("presence")
+        validation = assessment.get("validation")
+        exemption = assessment.get("exemption")
+        maturity = mechanism.get("maturity")
+        is_experimental = (
+            isinstance(maturity, dict) and maturity.get("level") == "experimental"
+        )
+        if resolved == "inapplicable":
+            inapplicable += 1
+        elif resolved != "unresolved":
+            applicable += 1
+        if applicability == "unknown":
+            diagnostics.append(
+                _diagnostic(
+                    "ARW-APP-001",
+                    "error",
+                    mechanism_id,
+                    f"{path}.applicability",
+                    "Mechanism applicability is unknown and cannot be resolved.",
+                )
+            )
+        elif resolved == "unresolved":
+            diagnostics.append(
+                _diagnostic(
+                    "ARW-CND-001",
+                    "error",
+                    mechanism_id,
+                    f"{path}.requirement_condition",
+                    "Conditional requirement state is unknown and cannot be resolved.",
+                )
+            )
+        if resolved == "inapplicable" and presence == "present":
+            diagnostics.append(
+                _diagnostic(
+                    "ARW-APP-002",
+                    "error",
+                    mechanism_id,
+                    f"{path}.presence",
+                    "An inapplicable mechanism must be absent.",
+                )
+            )
+        if resolved == "required" and presence == "absent":
+            if exemption is None:
+                diagnostics.append(
+                    _diagnostic(
+                        "ARW-REQ-001",
+                        "error",
+                        mechanism_id,
+                        f"{path}.presence",
+                        "Applicable required mechanism is absent.",
+                    )
+                )
+            else:
+                exemptions += 1
+                diagnostics.append(
+                    _diagnostic(
+                        "ARW-EXM-001",
+                        "information",
+                        mechanism_id,
+                        f"{path}.exemption",
+                        "A narrow approved exemption is active; this is not passing.",
+                    )
+                )
+        if resolved == "recommended" and presence == "absent":
+            diagnostics.append(
+                _diagnostic(
+                    "ARW-REC-001",
+                    "advisory",
+                    mechanism_id,
+                    f"{path}.presence",
+                    "Applicable recommended mechanism is absent.",
+                )
+            )
+        if resolved == "prohibited" and presence == "present":
+            diagnostics.append(
+                _diagnostic(
+                    "ARW-PRO-001",
+                    "error",
+                    mechanism_id,
+                    f"{path}.presence",
+                    "Prohibited mechanism is present and cannot be exempted.",
+                )
+            )
+        if presence == "present":
+            evidence_ids = assessment.get("evidence_ids")
+            if not isinstance(evidence_ids, list) or not evidence_ids:
+                diagnostics.append(
+                    _diagnostic(
+                        "ARW-EVD-001",
+                        "error",
+                        mechanism_id,
+                        f"{path}.evidence_ids",
+                        "Present mechanism requires current evidence.",
+                    )
+                )
+            if validation != "passed":
+                diagnostics.append(
+                    _diagnostic(
+                        "ARW-VAL-001",
+                        "error",
+                        mechanism_id,
+                        f"{path}.validation",
+                        "Present mechanism did not pass its complete validation rules.",
+                    )
+                )
+            if is_experimental:
+                experimental_present += 1
+                diagnostics.append(
+                    _diagnostic(
+                        "ARW-EXP-001",
+                        "information",
+                        mechanism_id,
+                        path,
+                        "Present experimental mechanism is reviewed only and grants no adoption or authority.",
+                    )
+                )
+    severity_order = {value: index for index, value in enumerate(DIAGNOSTIC_SEVERITIES)}
+    diagnostics.sort(
+        key=lambda item: (
+            mechanism_order.get(item["mechanism_id"], len(mechanism_order)),
+            severity_order.get(item["severity"], len(severity_order)),
+            item["code"],
+            item["path"],
+        )
+    )
+    errors = sum(item["severity"] == "error" for item in diagnostics)
+    advisories = sum(item["severity"] == "advisory" for item in diagnostics)
+    informationals = sum(
+        item["severity"] == "information" for item in diagnostics
+    )
+    if errors:
+        level = "nonconformant"
+    elif exemptions:
+        level = "exempt"
+    elif advisories:
+        level = "baseline"
+    else:
+        level = "recommended"
+    return (
+        {
+            "level": level,
+            "errors": errors,
+            "advisories": advisories,
+            "informationals": informationals,
+            "exemptions": exemptions,
+            "applicable": applicable,
+            "inapplicable": inapplicable,
+            "experimental_present": experimental_present,
+            "claim": CONFORMANCE_CLAIM,
+        },
+        diagnostics,
+    )
+
+
+def validate_conformance(
+    conformance: Mapping[str, Any],
+    profile: Mapping[str, Any],
+) -> list[str]:
+    """Validate one evidence snapshot against the exact loaded profile pin."""
+
+    errors: list[str] = []
+    fields = {
+        "schema",
+        "synthetic",
+        "profile",
+        "subject",
+        "assessment",
+        "authority_assertions",
+        "evidence",
+        "mechanisms",
+        "summary",
+        "diagnostics",
+    }
+    if set(conformance) != fields:
+        errors.append("conformance fields must exactly match the v1 contract")
+    if conformance.get("schema") != CONFORMANCE_SCHEMA:
+        errors.append(f"conformance.schema must be {CONFORMANCE_SCHEMA}")
+    if not isinstance(conformance.get("synthetic"), bool):
+        errors.append("conformance.synthetic must be a boolean")
+    errors.extend(_validate_profile_pin(conformance.get("profile"), profile, "conformance.profile"))
+
+    subject = conformance.get("subject")
+    subject_revision: str | None = None
+    if not isinstance(subject, dict):
+        errors.append("conformance.subject must be an object")
+        site_class = None
+    else:
+        subject_fields = {"id", "site_class", "origin", "represented_revision"}
+        if set(subject) != subject_fields:
+            errors.append("conformance.subject fields must exactly match the v1 contract")
+        errors.extend(_identifier(subject.get("id"), "conformance.subject.id"))
+        site_class = subject.get("site_class")
+        if site_class not in SITE_CLASSES:
+            errors.append("conformance.subject.site_class is invalid")
+        errors.extend(
+            _https_origin(subject.get("origin"), "conformance.subject.origin")
+        )
+        subject_revision = subject.get("represented_revision")
+        if (
+            not isinstance(subject_revision, str)
+            or SHA_RE.fullmatch(subject_revision) is None
+        ):
+            errors.append(
+                "conformance.subject.represented_revision must be a full commit SHA"
+            )
+
+    assessment = conformance.get("assessment")
+    assessed_at: str | None = None
+    if not isinstance(assessment, dict):
+        errors.append("conformance.assessment must be an object")
+    else:
+        if set(assessment) != {"assessed_at", "assessor"}:
+            errors.append(
+                "conformance.assessment fields must exactly match the v1 contract"
+            )
+        assessed_at = assessment.get("assessed_at")
+        errors.extend(_iso_datetime(assessed_at, "conformance.assessment.assessed_at"))
+        assessor = assessment.get("assessor")
+        if not isinstance(assessor, dict):
+            errors.append("conformance.assessment.assessor must be an object")
+        else:
+            if set(assessor) != {"id", "version"}:
+                errors.append(
+                    "conformance.assessment.assessor fields must exactly match the v1 contract"
+                )
+            errors.extend(_identifier(assessor.get("id"), "conformance.assessment.assessor.id"))
+            version = assessor.get("version")
+            if not isinstance(version, str) or SEMVER_RE.fullmatch(version) is None:
+                errors.append(
+                    "conformance.assessment.assessor.version must be a semantic version"
+                )
+
+    if conformance.get("authority_assertions") != AUTHORITY_ASSERTIONS:
+        errors.append(
+            "conformance.authority_assertions must deny cross-layer authority inference"
+        )
+
+    evidence_errors, evidence_by_id = _validate_site_evidence_registry(
+        conformance.get("evidence"),
+        subject_revision,
+        assessed_at,
+        "conformance.evidence",
+    )
+    errors.extend(evidence_errors)
+
+    mechanisms = conformance.get("mechanisms")
+    raw_profile_mechanisms = profile.get("mechanisms")
+    profile_mechanisms = (
+        raw_profile_mechanisms
+        if isinstance(raw_profile_mechanisms, list)
+        else []
+    )
+    expected_ids = [
+        mechanism.get("id")
+        for mechanism in profile_mechanisms
+        if isinstance(mechanism, dict)
+    ]
+    if not isinstance(mechanisms, list):
+        errors.append("conformance.mechanisms must be an array")
+    else:
+        ids = [item.get("id") for item in mechanisms if isinstance(item, dict)]
+        if ids != expected_ids:
+            errors.append(
+                "conformance.mechanisms must cover every mechanism exactly once in profile order"
+            )
+        assessment_fields = {
+            "id",
+            "applicability",
+            "applicability_evidence_ids",
+            "declared_strength",
+            "requirement_condition",
+            "resolved_strength",
+            "presence",
+            "validation",
+            "evidence_ids",
+            "exemption",
+        }
+        for index, item in enumerate(mechanisms):
+            item_path = f"conformance.mechanisms[{index}]"
+            if not isinstance(item, dict):
+                errors.append(f"{item_path} must be an object")
+                continue
+            if set(item) != assessment_fields:
+                errors.append(f"{item_path} fields must exactly match the v1 contract")
+            applicability = item.get("applicability")
+            if applicability not in APPLICABILITY_STATES:
+                errors.append(f"{item_path}.applicability is invalid")
+            errors.extend(
+                _validate_evidence_ids(
+                    item.get("applicability_evidence_ids"),
+                    evidence_by_id,
+                    f"{item_path}.applicability_evidence_ids",
+                    allow_empty=False,
+                )
+            )
+            condition = item.get("requirement_condition")
+            if condition is not None and condition not in CONDITIONAL_STATES:
+                errors.append(f"{item_path}.requirement_condition is invalid")
+            presence = item.get("presence")
+            if presence not in PRESENCE_STATES:
+                errors.append(f"{item_path}.presence is invalid")
+            validation = item.get("validation")
+            if validation not in MECHANISM_VALIDATION_STATES:
+                errors.append(f"{item_path}.validation is invalid")
+            if presence == "absent" and validation != "not-run":
+                errors.append(f"{item_path}.validation must be not-run when absent")
+            errors.extend(
+                _validate_evidence_ids(
+                    item.get("evidence_ids"),
+                    evidence_by_id,
+                    f"{item_path}.evidence_ids",
+                    allow_empty=True,
+                )
+            )
+            exemption = item.get("exemption")
+            errors.extend(
+                _validate_exemption(
+                    exemption,
+                    evidence_by_id,
+                    assessed_at,
+                    f"{item_path}.exemption",
+                )
+            )
+            if index < len(profile_mechanisms) and isinstance(
+                profile_mechanisms[index], dict
+            ):
+                declared, resolved = resolve_requirement(
+                    profile_mechanisms[index],
+                    site_class if isinstance(site_class, str) else "",
+                    applicability if isinstance(applicability, str) else "unknown",
+                    condition,
+                )
+                if item.get("declared_strength") != declared:
+                    errors.append(
+                        f"{item_path}.declared_strength must equal profile resolution"
+                    )
+                if item.get("resolved_strength") != resolved:
+                    errors.append(
+                        f"{item_path}.resolved_strength must equal profile resolution"
+                    )
+                if declared == "conditional" and condition is None:
+                    errors.append(
+                        f"{item_path}.requirement_condition is required for a conditional rule"
+                    )
+                if declared != "conditional" and condition is not None:
+                    errors.append(
+                        f"{item_path}.requirement_condition must be null unless the rule is conditional"
+                    )
+                if exemption is not None and not (
+                    resolved == "required" and presence == "absent"
+                ):
+                    errors.append(
+                        f"{item_path}.exemption is allowed only for a required absence"
+                    )
+
+    summary, diagnostics = derive_conformance(conformance, profile)
+    if conformance.get("summary") != summary:
+        errors.append("conformance.summary must equal the deterministic derived summary")
+    provided_diagnostics = conformance.get("diagnostics")
+    if not isinstance(provided_diagnostics, list):
+        errors.append("conformance.diagnostics must be an array")
+    else:
+        diagnostic_fields = {"code", "severity", "mechanism_id", "path", "message"}
+        for index, diagnostic in enumerate(provided_diagnostics):
+            diagnostic_path = f"conformance.diagnostics[{index}]"
+            if not isinstance(diagnostic, dict):
+                errors.append(f"{diagnostic_path} must be an object")
+                continue
+            if set(diagnostic) != diagnostic_fields:
+                errors.append(
+                    f"{diagnostic_path} fields must exactly match the v1 contract"
+                )
+            code = diagnostic.get("code")
+            if not isinstance(code, str) or re.fullmatch(r"ARW-[A-Z]+-[0-9]{3}", code) is None:
+                errors.append(f"{diagnostic_path}.code is invalid")
+            if diagnostic.get("severity") not in DIAGNOSTIC_SEVERITIES:
+                errors.append(f"{diagnostic_path}.severity is invalid")
+            if diagnostic.get("mechanism_id") not in expected_ids:
+                errors.append(f"{diagnostic_path}.mechanism_id is invalid")
+            for field in ("path", "message"):
+                errors.extend(_text(diagnostic.get(field), f"{diagnostic_path}.{field}"))
+        if provided_diagnostics != diagnostics:
+            errors.append(
+                "conformance.diagnostics must equal deterministic derived diagnostics"
+            )
+    return sorted(set(errors))
+
+
 def validate_fixture(fixture: Mapping[str, Any]) -> tuple[list[str], list[str]]:
     """Validate a synthetic fixture envelope and its mechanism independently."""
 
@@ -1254,43 +2220,137 @@ def validate_fixture(fixture: Mapping[str, Any]) -> tuple[list[str], list[str]]:
     return sorted(set(envelope_errors)), mechanism_errors
 
 
-def validate_fixture_directory(path: Path) -> list[str]:
+def validate_conformance_fixture(
+    fixture: Mapping[str, Any],
+    profile: Mapping[str, Any],
+) -> tuple[list[str], list[str]]:
+    """Validate a synthetic whole-profile compatibility fixture."""
+
+    envelope_errors: list[str] = []
+    fields = {
+        "schema",
+        "name",
+        "expected",
+        "synthetic",
+        "site_class",
+        "conformance",
+        "expected_errors",
+    }
+    if set(fixture) != fields:
+        envelope_errors.append(
+            "conformance fixture fields must exactly match the v1 contract"
+        )
+    if fixture.get("schema") != CONFORMANCE_FIXTURE_SCHEMA:
+        envelope_errors.append(
+            f"conformance fixture.schema must be {CONFORMANCE_FIXTURE_SCHEMA}"
+        )
+    envelope_errors.extend(
+        _identifier(fixture.get("name"), "conformance fixture.name")
+    )
+    if fixture.get("expected") not in {"valid", "invalid"}:
+        envelope_errors.append("conformance fixture.expected is invalid")
+    if fixture.get("synthetic") is not True:
+        envelope_errors.append("conformance fixture.synthetic must be true")
+    site_class = fixture.get("site_class")
+    if site_class not in SITE_CLASSES:
+        envelope_errors.append("conformance fixture.site_class is invalid")
+    expected_errors = fixture.get("expected_errors")
+    envelope_errors.extend(
+        _unique_strings(
+            expected_errors,
+            "conformance fixture.expected_errors",
+            allow_empty=True,
+        )
+    )
+    if fixture.get("expected") == "valid" and expected_errors != []:
+        envelope_errors.append(
+            "conformance fixture.expected_errors must be empty for a valid fixture"
+        )
+    if fixture.get("expected") == "invalid" and expected_errors == []:
+        envelope_errors.append(
+            "conformance fixture.expected_errors must identify invalid coverage"
+        )
+    conformance = fixture.get("conformance")
+    if not isinstance(conformance, dict):
+        return sorted(set(envelope_errors)), [
+            "conformance fixture.conformance must be an object"
+        ]
+    if conformance.get("synthetic") is not True:
+        envelope_errors.append(
+            "conformance fixture.conformance.synthetic must be true"
+        )
+    subject = conformance.get("subject")
+    if not isinstance(subject, dict) or subject.get("site_class") != site_class:
+        envelope_errors.append(
+            "conformance fixture.site_class must match conformance.subject.site_class"
+        )
+    return sorted(set(envelope_errors)), validate_conformance(conformance, profile)
+
+
+def validate_fixture_directory(
+    path: Path,
+    profile: Mapping[str, Any],
+) -> list[str]:
     """Validate all checked-in valid and invalid compatibility fixtures."""
 
     errors: list[str] = []
     fixture_paths = sorted(path.glob("*.json"))
     if not fixture_paths:
         return [f"no fixtures found in {path}"]
-    expected_kinds: set[str] = set()
+    mechanism_expected_kinds: set[str] = set()
+    conformance_site_classes: set[str] = set()
     for fixture_path in fixture_paths:
         try:
             fixture = load_json(fixture_path)
         except (OSError, ValueError, json.JSONDecodeError) as error:
             errors.append(f"{fixture_path}: load failed: {error}")
             continue
-        envelope_errors, mechanism_errors = validate_fixture(fixture)
+        schema = fixture.get("schema")
+        if schema == FIXTURE_SCHEMA:
+            envelope_errors, payload_errors = validate_fixture(fixture)
+            fixture_kind = "mechanism"
+        elif schema == CONFORMANCE_FIXTURE_SCHEMA:
+            envelope_errors, payload_errors = validate_conformance_fixture(
+                fixture,
+                profile,
+            )
+            fixture_kind = "conformance"
+            site_class = fixture.get("site_class")
+            if fixture.get("expected") == "valid" and isinstance(site_class, str):
+                conformance_site_classes.add(site_class)
+        else:
+            errors.append(f"{fixture_path}: fixture.schema is unrecognized")
+            continue
         errors.extend(f"{fixture_path}: {error}" for error in envelope_errors)
         expected = fixture.get("expected")
-        if isinstance(expected, str):
-            expected_kinds.add(expected)
-        if expected == "valid" and mechanism_errors:
+        if fixture_kind == "mechanism" and isinstance(expected, str):
+            mechanism_expected_kinds.add(expected)
+        if expected == "valid" and payload_errors:
             errors.extend(
-                f"{fixture_path}: unexpected: {error}" for error in mechanism_errors
+                f"{fixture_path}: unexpected: {error}" for error in payload_errors
             )
         if expected == "invalid":
-            if not mechanism_errors:
+            if not payload_errors:
                 errors.append(
-                    f"{fixture_path}: expected invalid mechanism was accepted"
+                    f"{fixture_path}: expected invalid payload was accepted"
                 )
             expected_errors = fixture.get("expected_errors")
             listed_errors = expected_errors if isinstance(expected_errors, list) else []
             for expected_error in listed_errors:
-                if expected_error not in mechanism_errors:
+                if expected_error not in payload_errors:
                     errors.append(
                         f"{fixture_path}: missing expected error: {expected_error}"
                     )
-    if expected_kinds != {"valid", "invalid"}:
-        errors.append("fixture directory must contain valid and invalid coverage")
+    if mechanism_expected_kinds != {"valid", "invalid"}:
+        errors.append(
+            "fixture directory must contain valid and invalid mechanism coverage"
+        )
+    missing_site_classes = sorted(set(SITE_CLASSES) - conformance_site_classes)
+    if missing_site_classes:
+        errors.append(
+            "fixture directory lacks valid whole-profile coverage for: "
+            + ", ".join(missing_site_classes)
+        )
     return sorted(set(errors))
 
 
@@ -1306,6 +2366,8 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers.add_parser("validate-profile")
     mechanism = subparsers.add_parser("validate-mechanism")
     mechanism.add_argument("--input", type=Path, required=True)
+    conformance = subparsers.add_parser("validate-conformance")
+    conformance.add_argument("--input", type=Path, required=True)
     fixtures = subparsers.add_parser("validate-fixtures")
     fixtures.add_argument(
         "--fixtures",
@@ -1326,8 +2388,10 @@ def main(argv: list[str] | None = None) -> int:
             errors = [f"profile invalid: {error}" for error in profile_errors]
         elif arguments.command == "validate-mechanism":
             errors = validate_mechanism(load_json(arguments.input))
+        elif arguments.command == "validate-conformance":
+            errors = validate_conformance(load_json(arguments.input), profile)
         else:
-            errors = validate_fixture_directory(arguments.fixtures)
+            errors = validate_fixture_directory(arguments.fixtures, profile)
     except (OSError, ValueError, json.JSONDecodeError) as error:
         print(f"agent-ready web load failed: {error}", file=sys.stderr)
         return 2

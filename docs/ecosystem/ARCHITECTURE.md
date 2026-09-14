@@ -218,8 +218,12 @@ Hygiene will publish an architecture release containing:
 - `catalog/agent-ready-web-profile.json` — proposed human-first and
   machine-readable web publication vocabulary, site classes, discovery and
   representation policy, guarded browser-capability envelope, descriptive
-  commerce and advertising boundaries, maturity, reference/evidence shape,
-  compatibility, extensions, and ownership policy;
+  commerce and advertising boundaries, integrated concern and authority
+  invariants, deterministic conformance and evidence policy, maturity,
+  compatibility, reference review, extensions, and ownership policy;
+- `schemas/agent-ready-web-conformance.v1.schema.json` — proposed site-owned,
+  revision-bound whole-profile evidence, diagnostics, level, and negative-
+  authority assertion contract;
 - this ecosystem architecture;
 - cross-repository ADRs and contract indexes;
 - diagram sources and approved rendered diagrams;
@@ -264,12 +268,18 @@ adoption; and each repository owns its current-state wording and review.
 Agent-Ready Web publication also preserves control-plane separation. Hygiene
 defines the versioned profile, discovery catalog, representation-integrity
 rules, guarded capability envelope, descriptive commerce and advertising
-policy, and reference semantics; Holon may materialize accepted policy for new
-sites; Relay owns reusable validation and evidence transport; Pace proposes
-reviewable existing-site convergence; Store owns every guarded commerce-domain
-contract; Observatory reports privacy-safe evidence; and each site retains
-its facts, credentials, consent decisions, and final publication authority.
-The proposed profile does not implement those downstream responsibilities.
+policy, deterministic conformance semantics, compatibility, reference review,
+and lifecycle. Holon may later scaffold and generate new-site artifacts from an
+eligible immutable pin; Relay owns reusable validation and publication
+workflows plus privacy-safe evidence transport; Pace owns reviewed adoption
+planning, rollout, migration pull requests, and convergence; Store owns every
+transaction-domain capability contract; Observatory reports privacy-safe
+evidence and aggregate metrics; and each site retains its facts, site class,
+credentials, consent interaction, configuration, represented revision, and
+final publication authority. Discovery, structured metadata, advertising, and
+maturity never grant capability, consent, authorization, or transaction
+authority. The proposed profile does not implement downstream responsibilities
+or make an adoption, conformance, publication, or enforcement claim.
 
 ## 7. Control loops
 

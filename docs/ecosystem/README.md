@@ -35,8 +35,8 @@ This package defines the target repository architecture before any new infograph
 12. Review [`AGENT_READY_WEB.md`](AGENT_READY_WEB.md) for the proposed
     human-first and machine-readable web profile, discovery and efficient-
     representation catalog, guarded capability publication, descriptive
-    commerce and advertising policy, applicability, compatibility, and
-    ownership boundaries.
+    commerce and advertising policy, deterministic conformance evidence,
+    cross-layer authority denials, compatibility, and ownership boundaries.
 13. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
 
 ## Architectural decision
