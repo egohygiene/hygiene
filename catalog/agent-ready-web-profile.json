@@ -1,10 +1,10 @@
 {
   "schema": "egohygiene.agent-ready-web-profile/v1",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "status": "proposed",
   "owner": "egohygiene/hygiene",
   "updated": "2026-09-14",
-  "purpose": "Define the versioned vocabulary, compatibility rules, mechanism-registration shape, and ownership boundaries for human-first sites that also expose explicit machine-readable web surfaces.",
+  "purpose": "Define versioned discovery, representation, guarded browser-capability, descriptive commerce, compatibility, and ownership policy for human-first sites that expose explicit machine-readable web surfaces.",
   "concern_policy": {
     "primary_concern_cardinality": "exactly-one",
     "independent_requirement_resolution": true,
@@ -130,7 +130,11 @@
     "evidence_scope": "mechanism-registration-only",
     "site_conformance_evidence": "deferred",
     "required_primary_references": 1,
-    "required_registration_evidence": 1
+    "required_registration_evidence": 1,
+    "concern_specific_bindings": [
+      "capability",
+      "commerce"
+    ]
   },
   "resolution_policy": {
     "applicability_precedes_strength": true,
@@ -200,7 +204,338 @@
       }
     ]
   },
+  "capability_policy": {
+    "scope": "browser-agent-tool-exposure",
+    "protocol_status": {
+      "webmcp": "draft-community-group-report-not-a-web-standard",
+      "mcp_b": "experimental-implementation-not-webmcp-or-mcp-authority"
+    },
+    "declaration_contract": {
+      "identity": "stable-origin-bound-capability-id",
+      "protocol_revision": "exact-version-or-immutable-revision-required",
+      "discovery": "protocol-native-active-authorized-context-plus-origin-bound-contract-evidence",
+      "input_contract": "versioned-json-schema-and-runtime-validation-required",
+      "output_contract": "versioned-json-schema-and-runtime-validation-required",
+      "compatibility": "breaking-input-output-effect-or-permission-change-requires-new-capability-major",
+      "unknown_fields": "fail-closed"
+    },
+    "classification": {
+      "classes": [
+        "read-only",
+        "state-changing"
+      ],
+      "unclassified": "treat-as-state-changing-and-deny",
+      "read_only": {
+        "state_effects": "prohibited",
+        "sensitive_data": "explicit-permission-and-consent-required",
+        "confirmation": "required-before-sensitive-disclosure"
+      },
+      "state_changing": {
+        "effects": "declare-completely-before-consent",
+        "permission": "explicit-operation-scoped",
+        "confirmation": "fresh-human-confirmation-before-consequential-or-irreversible-effect",
+        "retry": "no-automatic-retry-without-idempotency-or-new-confirmation"
+      }
+    },
+    "security": {
+      "permission": "explicit-operation-scoped-and-revocable",
+      "consent": "informed-specific-and-obtained-before-invocation",
+      "least_privilege": "minimum-data-scope-and-duration",
+      "origin_binding": "secure-exact-origin-and-current-document",
+      "authentication": "required-when-human-ui-requires-authentication",
+      "authorization": "server-revalidated-for-every-invocation",
+      "credential_handling": "no-token-passthrough-or-secret-in-schema-description-output",
+      "data_minimization": "request-and-return-only-necessary-data",
+      "annotations": "untrusted-hints-never-authority",
+      "prompt_injection": "tool-metadata-input-and-output-treated-as-untrusted"
+    },
+    "execution_evidence": {
+      "provenance": "record-capability-id-version-origin-actor-and-contract-digests",
+      "audit": "tamper-evident-invocation-decision-result-and-confirmation-record",
+      "observability": "correlation-id-status-latency-and-redacted-error",
+      "revocation": "effective-before-next-invocation",
+      "expiry": "permissions-consent-and-handles-expire-explicitly",
+      "replay_protection": "nonce-or-idempotency-key-bound-to-actor-origin-action-and-expiry",
+      "rate_limits": "declared-and-enforced-per-actor-origin-and-capability"
+    },
+    "failure_policy": {
+      "default": "deny-and-perform-no-state-change",
+      "partial_failure": "report-observed-effects-and-do-not-claim-rollback",
+      "recovery": "human-visible-resume-or-compensating-path-required",
+      "timeouts": "bounded-and-cancelable",
+      "unknown_or_stale_contract": "deny"
+    },
+    "publication_gate": "experimental-capability-absence-is-non-blocking-and-present-exposure-must-pass-all-guards",
+    "authoritative_references": [
+      {
+        "id": "mcp-authorization-security",
+        "title": "Model Context Protocol Authorization Security Considerations",
+        "publisher": "Model Context Protocol",
+        "type": "standard",
+        "authority": "primary",
+        "location": "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/security-considerations",
+        "retrieved_on": "2026-09-14"
+      },
+      {
+        "id": "mcp-b-documentation",
+        "title": "WebMCP documentation and MCP-B boundary",
+        "publisher": "MCP-B",
+        "type": "official-documentation",
+        "authority": "primary",
+        "location": "https://docs.mcp-b.ai/explanation/what-is-webmcp",
+        "retrieved_on": "2026-09-14"
+      },
+      {
+        "id": "mcp-tools-2026-07-28",
+        "title": "Model Context Protocol Tools",
+        "publisher": "Model Context Protocol",
+        "type": "standard",
+        "authority": "primary",
+        "location": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+        "retrieved_on": "2026-09-14"
+      },
+      {
+        "id": "webmcp-community-draft",
+        "title": "WebMCP Draft Community Group Report",
+        "publisher": "W3C Web Machine Learning Community Group",
+        "type": "industry-specification",
+        "authority": "primary",
+        "location": "https://webmachinelearning.github.io/webmcp/",
+        "retrieved_on": "2026-09-14"
+      }
+    ]
+  },
+  "commerce_policy": {
+    "scope": "descriptive-commerce-and-advertising-boundaries",
+    "descriptive_metadata": {
+      "media_type": "application/ld+json",
+      "vocabulary": [
+        "https://schema.org/Offer",
+        "https://schema.org/Product"
+      ],
+      "visible_fact_parity": "required",
+      "seller_identity": "evidence-backed-explicit-or-omitted",
+      "availability_price_currency": "current-visible-and-source-backed",
+      "potential_action": "descriptive-only-no-execution-authority"
+    },
+    "guarded_actions": {
+      "owner": "egohygiene/store",
+      "capability_class": "state-changing",
+      "contract": "versioned-store-owned-contract-required",
+      "metadata_authority": "none",
+      "missing_contract": "do-not-expose-or-invoke",
+      "confirmation": "agent-ready-web-capability-policy-required",
+      "recovery": "store-contract-plus-agent-ready-web-failure-policy-required"
+    },
+    "advertising": {
+      "ads_txt_applicability": "actual-web-programmatic-inventory-authorization-or-explicit-iab-no-seller-declaration",
+      "app_ads_txt_applicability": "distributed-app-programmatic-inventory-linked-to-developer-domain-or-explicit-iab-no-seller-declaration",
+      "relationship_evidence": "current-publisher-and-ad-system-account-evidence-required",
+      "direct_or_reseller": "must-match-real-contractual-account-relationship",
+      "owner_manager_and_partner_domains": "must-match-current-documented-relationship",
+      "no_relationships": "artifact-absent-with-explicit-not-applicable-evidence-or-exact-iab-no-seller-placeholder",
+      "placeholder": "iab-reserved-sentinel-only-never-a-seller-relationship",
+      "invented_relationships": "prohibited",
+      "absence": "valid-when-inapplicable"
+    },
+    "separation": {
+      "metadata_to_capability_inference": "forbidden",
+      "advertising_to_commerce_action": "forbidden",
+      "offer_to_purchase_authority": "forbidden"
+    },
+    "authoritative_references": [
+      {
+        "id": "ads-txt-v1-1",
+        "title": "ads.txt Specification Version 1.1",
+        "publisher": "IAB Technology Laboratory",
+        "type": "industry-specification",
+        "authority": "primary",
+        "location": "https://iabtechlab.com/wp-content/uploads/2022/04/Ads.txt-1.1.pdf",
+        "retrieved_on": "2026-09-14"
+      },
+      {
+        "id": "app-ads-txt-v1-0",
+        "title": "Authorized Sellers for Apps app-ads.txt Version 1.0",
+        "publisher": "IAB Technology Laboratory",
+        "type": "industry-specification",
+        "authority": "primary",
+        "location": "https://iabtechlab.com/wp-content/uploads/2019/03/app-ads.txt-v1.0-final-.pdf",
+        "retrieved_on": "2026-09-14"
+      },
+      {
+        "id": "json-ld-11",
+        "title": "JSON-LD 1.1",
+        "publisher": "World Wide Web Consortium",
+        "type": "standard",
+        "authority": "primary",
+        "location": "https://www.w3.org/TR/json-ld11/",
+        "retrieved_on": "2026-09-14"
+      },
+      {
+        "id": "schema-org-offer",
+        "title": "Schema.org Offer",
+        "publisher": "Schema.org",
+        "type": "official-documentation",
+        "authority": "primary",
+        "location": "https://schema.org/Offer",
+        "retrieved_on": "2026-09-14"
+      },
+      {
+        "id": "schema-org-potential-action",
+        "title": "Schema.org potentialAction",
+        "publisher": "Schema.org",
+        "type": "official-documentation",
+        "authority": "primary",
+        "location": "https://schema.org/potentialAction",
+        "retrieved_on": "2026-09-14"
+      },
+      {
+        "id": "schema-org-product",
+        "title": "Schema.org Product",
+        "publisher": "Schema.org",
+        "type": "official-documentation",
+        "authority": "primary",
+        "location": "https://schema.org/Product",
+        "retrieved_on": "2026-09-14"
+      }
+    ]
+  },
   "mechanisms": [
+    {
+      "id": "ads-txt",
+      "title": "Authorized Digital Sellers declaration",
+      "description": "An IAB ads.txt declaration for the advertising systems truthfully authorized to sell programmatic web inventory for an origin.",
+      "concern": "commerce",
+      "artifact": {
+        "kind": "origin-file",
+        "locations": [
+          "/ads.txt"
+        ],
+        "media_types": [
+          "text/plain"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "web-programmatic-advertising-declaration",
+          "description": "The publisher has programmatic web advertising inventory and authorized seller relationships to declare, or intentionally uses the IAB no-seller sentinel."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "required",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "required",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "evidence-backed-records",
+          "strength": "required",
+          "description": "Every advertising-system domain, publisher account identifier, relationship type, certification authority identifier, and directive is backed by current publisher and counterparty evidence."
+        },
+        {
+          "id": "no-invented-relationships",
+          "strength": "prohibited",
+          "description": "A seller, reseller, account identifier, owner, manager, inventory partner, subdomain, or authorization relationship must never be guessed, copied without verification, or invented."
+        },
+        {
+          "id": "no-seller-sentinel",
+          "strength": "required",
+          "description": "When a participating publisher declares no authorized systems, only the exact IAB reserved placeholder record may represent that state and it is never interpreted as a seller."
+        },
+        {
+          "id": "root-location-and-format",
+          "strength": "required",
+          "description": "The artifact is served from the applicable root /ads.txt location and follows the current IAB record, directive, encoding, and HTTPS guidance."
+        },
+        {
+          "id": "scope-is-ad-inventory-only",
+          "strength": "required",
+          "description": "The declaration authorizes sale of named advertising inventory only; it grants no browsing, agent, product-sale, payment, or transaction authority."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "account-and-relationship-evidence",
+          "severity": "error",
+          "description": "Reject every non-placeholder record or relationship directive that cannot be matched to current first-party and advertising-system evidence."
+        },
+        {
+          "id": "iab-parse",
+          "severity": "error",
+          "description": "Reject malformed records, unsupported relationship values, unsafe redirects, invalid domains or account identifiers, and contradictory directives under ads.txt 1.1."
+        },
+        {
+          "id": "no-seller-state",
+          "severity": "error",
+          "description": "Reject invented filler when no relationship exists; accept absence with explicit not-applicable evidence, or the exact IAB sentinel only when the publisher intentionally participates."
+        }
+      ],
+      "commerce": {
+        "role": "advertising-authorization-declaration",
+        "identity_source": "publisher-and-advertising-system-contract-evidence",
+        "executable_authority": "none",
+        "transaction_contract": "store-owned-versioned-contract-required-for-actions"
+      },
+      "maturity": {
+        "level": "established",
+        "assessed_on": "2026-09-14",
+        "rationale": "IAB Tech Lab publishes ads.txt 1.1 as a peer-reviewed standard and documents broad industry adoption for authorized digital seller declarations.",
+        "reference_ids": [
+          "ads-txt-v1-1"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "ads-txt-v1-1",
+          "title": "ads.txt Specification Version 1.1",
+          "publisher": "IAB Technology Laboratory",
+          "type": "industry-specification",
+          "authority": "primary",
+          "location": "https://iabtechlab.com/wp-content/uploads/2022/04/Ads.txt-1.1.pdf",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "ads-txt-v1-1-publication",
+          "kind": "specification-publication",
+          "location": "https://iabtechlab.com/ads-txt/",
+          "description": "IAB Tech Lab publishes ads.txt 1.1, its version history, implementation guide, and authorized-seller purpose.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
     {
       "id": "ai-crawler-guidance",
       "title": "Optional AI crawler guidance",
@@ -424,6 +759,155 @@
           "kind": "specification-publication",
           "location": "https://html.spec.whatwg.org/multipage/semantics.html#other-metadata-names",
           "description": "The HTML Standard requires metadata extensions to identify their keyword, semantics, specification, and status.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
+      "id": "app-ads-txt",
+      "title": "Authorized Sellers for Apps declaration",
+      "description": "An IAB app-ads.txt declaration on the verified developer domain for advertising systems authorized to sell a distributed application's programmatic inventory.",
+      "concern": "commerce",
+      "artifact": {
+        "kind": "origin-file",
+        "locations": [
+          "/app-ads.txt"
+        ],
+        "media_types": [
+          "text/plain"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "distributed-app-programmatic-advertising-declaration",
+          "description": "An app distributed through an app store links to this developer domain and has authorized programmatic seller relationships to declare, or intentionally uses the IAB no-seller sentinel."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "required",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "required",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "developer-domain-binding",
+          "strength": "required",
+          "description": "The developer URL published by each relevant app-store listing resolves under the IAB canonicalization rules to the domain serving this file."
+        },
+        {
+          "id": "evidence-backed-records",
+          "strength": "required",
+          "description": "Every advertising-system domain, publisher account identifier, relationship type, certification authority identifier, and directive is backed by current app-developer and counterparty evidence."
+        },
+        {
+          "id": "no-invented-relationships",
+          "strength": "prohibited",
+          "description": "An app, developer domain, seller, reseller, account identifier, owner, manager, inventory partner, or authorization relationship must never be guessed or invented."
+        },
+        {
+          "id": "no-seller-sentinel",
+          "strength": "required",
+          "description": "When a participating developer declares no authorized systems, only the exact IAB reserved placeholder record may represent that state and it is never interpreted as a seller."
+        },
+        {
+          "id": "scope-is-app-ad-inventory-only",
+          "strength": "required",
+          "description": "The declaration authorizes sale of named app advertising inventory only; it grants no browser-agent, product-sale, payment, or transaction authority."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "account-and-relationship-evidence",
+          "severity": "error",
+          "description": "Reject every non-placeholder record or relationship directive that cannot be matched to current first-party and advertising-system evidence."
+        },
+        {
+          "id": "developer-url-chain",
+          "severity": "error",
+          "description": "Reject the artifact when the current authoritative app-store listing, bundle or store identity, developer URL, and canonicalized serving domain do not form a verified chain."
+        },
+        {
+          "id": "iab-parse",
+          "severity": "error",
+          "description": "Reject malformed records, unsupported relationship values, invalid domains or account identifiers, and app-ads.txt directives forbidden by the cited specification."
+        },
+        {
+          "id": "no-seller-state",
+          "severity": "error",
+          "description": "Reject invented filler when no relationship exists; accept absence with explicit not-applicable evidence, or the exact IAB sentinel only when the developer intentionally participates."
+        }
+      ],
+      "commerce": {
+        "role": "advertising-authorization-declaration",
+        "identity_source": "verified-app-store-developer-domain-and-advertising-system-contract-evidence",
+        "executable_authority": "none",
+        "transaction_contract": "store-owned-versioned-contract-required-for-actions"
+      },
+      "maturity": {
+        "level": "established",
+        "assessed_on": "2026-09-14",
+        "rationale": "IAB Tech Lab publishes app-ads.txt 1.0 as a final peer-reviewed standard and documents its industry use for authorized app inventory sellers.",
+        "reference_ids": [
+          "app-ads-txt-v1-0"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "ads-txt-v1-1",
+          "title": "ads.txt Specification Version 1.1",
+          "publisher": "IAB Technology Laboratory",
+          "type": "industry-specification",
+          "authority": "primary",
+          "location": "https://iabtechlab.com/wp-content/uploads/2022/04/Ads.txt-1.1.pdf",
+          "retrieved_on": "2026-09-14"
+        },
+        {
+          "id": "app-ads-txt-v1-0",
+          "title": "Authorized Sellers for Apps app-ads.txt Version 1.0",
+          "publisher": "IAB Technology Laboratory",
+          "type": "industry-specification",
+          "authority": "primary",
+          "location": "https://iabtechlab.com/wp-content/uploads/2019/03/app-ads.txt-v1.0-final-.pdf",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "app-ads-txt-v1-0-publication",
+          "kind": "specification-publication",
+          "location": "https://iabtechlab.com/ads-txt/",
+          "description": "IAB Tech Lab publishes app-ads.txt 1.0 as the final authorized-sellers extension for applications and links its implementation guidance.",
           "observed_on": "2026-09-14"
         }
       ],
@@ -671,6 +1155,170 @@
           "kind": "specification-publication",
           "location": "https://catstxt.org/docs/draft-catstxt-00/",
           "description": "The public draft defines the experimental location and format while disclaiming Internet Standards Track status.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
+      "id": "commerce-product-offer-jsonld",
+      "title": "Descriptive Product and Offer JSON-LD",
+      "description": "Source-backed Schema.org Product and Offer metadata describing visible commercial facts without granting permission to purchase or invoke an action.",
+      "concern": "commerce",
+      "artifact": {
+        "kind": "page-metadata",
+        "locations": [
+          "product-or-offer-page"
+        ],
+        "media_types": [
+          "application/ld+json"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "visible-product-or-offer",
+          "description": "A canonical human-facing page visibly presents a real product, service, or offer whose current facts can be maintained from an authoritative source."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "optional",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "recommended",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "recommended",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "descriptive-only",
+          "strength": "required",
+          "description": "Product, Offer, and potentialAction vocabulary describes public meaning only and never acts as consent, authorization, an executable endpoint contract, or proof of a completed transaction."
+        },
+        {
+          "id": "offer-facts",
+          "strength": "required",
+          "description": "Price, currency, availability, validity, condition, eligibility, and offer URL values are present only when current, visible, and supported by the same authoritative commercial source."
+        },
+        {
+          "id": "product-identity",
+          "strength": "required",
+          "description": "Product or service identity, identifiers, variants, and relationships match the item visibly presented to the human audience."
+        },
+        {
+          "id": "seller-truth",
+          "strength": "required",
+          "description": "A seller or offeredBy identity is declared only with current first-party evidence; absent or unknown seller identity is omitted rather than inferred."
+        },
+        {
+          "id": "visible-fact-parity",
+          "strength": "required",
+          "description": "Machine-readable commercial facts make no material claim unavailable to a human with the same access to the canonical page."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "json-ld-syntax",
+          "severity": "error",
+          "description": "Reject invalid JSON-LD, unknown core type substitutions, internally inconsistent Product or Offer relationships, or identifiers that cannot be resolved to the visible item."
+        },
+        {
+          "id": "no-action-inference",
+          "severity": "error",
+          "description": "Reject evidence or conformance logic that treats Product, Offer, potentialAction, URL, or EntryPoint metadata as an executable transaction capability."
+        },
+        {
+          "id": "source-parity",
+          "severity": "error",
+          "description": "Reject stale, hidden, fabricated, or materially divergent product, offer, seller, price, currency, availability, or eligibility facts."
+        }
+      ],
+      "commerce": {
+        "role": "descriptive-product-offer",
+        "identity_source": "canonical-human-facing-product-and-offer-source",
+        "executable_authority": "none",
+        "transaction_contract": "store-owned-versioned-contract-required-for-actions"
+      },
+      "maturity": {
+        "level": "established",
+        "assessed_on": "2026-09-14",
+        "rationale": "JSON-LD 1.1 is a W3C Recommendation and Schema.org Product and Offer vocabulary is broadly deployed, while this profile adds a stricter non-executable authority boundary.",
+        "reference_ids": [
+          "json-ld-11",
+          "schema-org-offer",
+          "schema-org-product"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "json-ld-11",
+          "title": "JSON-LD 1.1",
+          "publisher": "World Wide Web Consortium",
+          "type": "standard",
+          "authority": "primary",
+          "location": "https://www.w3.org/TR/json-ld11/",
+          "retrieved_on": "2026-09-14"
+        },
+        {
+          "id": "schema-org-offer",
+          "title": "Schema.org Offer",
+          "publisher": "Schema.org",
+          "type": "official-documentation",
+          "authority": "primary",
+          "location": "https://schema.org/Offer",
+          "retrieved_on": "2026-09-14"
+        },
+        {
+          "id": "schema-org-potential-action",
+          "title": "Schema.org potentialAction",
+          "publisher": "Schema.org",
+          "type": "official-documentation",
+          "authority": "primary",
+          "location": "https://schema.org/potentialAction",
+          "retrieved_on": "2026-09-14"
+        },
+        {
+          "id": "schema-org-product",
+          "title": "Schema.org Product",
+          "publisher": "Schema.org",
+          "type": "official-documentation",
+          "authority": "primary",
+          "location": "https://schema.org/Product",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "schema-org-product-offer-publication",
+          "kind": "adoption-observation",
+          "location": "https://schema.org/Product",
+          "description": "Schema.org publishes Product and Offer vocabulary with current web-usage observations and JSON-LD examples.",
           "observed_on": "2026-09-14"
         }
       ],
@@ -1293,6 +1941,164 @@
       "extensions": {}
     },
     {
+      "id": "mcp-b-runtime",
+      "title": "Pinned MCP-B browser runtime",
+      "description": "An explicitly pinned MCP-B implementation layer for browser tool exposure that remains subordinate to this profile's versioned contracts and safety guards.",
+      "concern": "capability",
+      "artifact": {
+        "kind": "browser-capability",
+        "locations": [
+          "document.modelContext"
+        ],
+        "media_types": [
+          "application/schema+json"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "explicit-mcp-b-runtime",
+          "description": "The site deliberately uses an MCP-B polyfill, runtime, or bridge to publish browser capabilities and can pin its exact implementation revision."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "optional",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "optional",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "implementation-layer-only",
+          "strength": "required",
+          "description": "Identify MCP-B as an independent implementation or bridge and never present it as W3C WebMCP, a W3C standard, or Model Context Protocol authority."
+        },
+        {
+          "id": "pin-runtime",
+          "strength": "required",
+          "description": "Pin the MCP-B package release or repository revision exactly and record the pin with published capability evidence."
+        },
+        {
+          "id": "protocol-contracts",
+          "strength": "required",
+          "description": "Every exposed capability has a stable origin-bound identity plus independently versioned input and output schemas validated at runtime."
+        },
+        {
+          "id": "safety-profile",
+          "strength": "required",
+          "description": "Every present MCP-B capability satisfies the profile-wide classification, permission, consent, confirmation, provenance, revocation, replay, rate-limit, and failure requirements."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "binding",
+          "severity": "error",
+          "description": "Reject an unpinned runtime, ambiguous protocol revision, unstable identity, non-origin-bound discovery surface, or undeclared compatibility behavior."
+        },
+        {
+          "id": "contract-schemas",
+          "severity": "error",
+          "description": "Reject capabilities without separately versioned input and output JSON Schemas or without runtime validation of both request and result."
+        },
+        {
+          "id": "safety-guards",
+          "severity": "error",
+          "description": "Reject present exposure that omits any applicable capability-policy guard or relies on implementation annotations as authorization."
+        }
+      ],
+      "capability": {
+        "protocol": "mcp-b",
+        "protocol_revision": "package-release-or-immutable-repository-revision",
+        "implementation_pin": "exact-version-or-immutable-revision",
+        "identity": "stable-origin-bound-capability-id",
+        "discovery_surface": "mcp-b-runtime-or-bridge-tool-list",
+        "classes": [
+          "read-only",
+          "state-changing"
+        ],
+        "input_contract": "versioned-json-schema-and-runtime-validation-required",
+        "output_contract": "versioned-json-schema-and-runtime-validation-required",
+        "compatibility": "breaking-change-requires-new-capability-major"
+      },
+      "maturity": {
+        "level": "experimental",
+        "assessed_on": "2026-09-14",
+        "rationale": "MCP-B publishes an open-source WebMCP implementation and bridge, but it is independent of W3C WebMCP and the official Model Context Protocol and remains an experimental dependency.",
+        "reference_ids": [
+          "mcp-b-documentation",
+          "mcp-b-repository",
+          "mcp-tools-2026-07-28"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "mcp-b-documentation",
+          "title": "What is WebMCP?",
+          "publisher": "MCP-B",
+          "type": "official-documentation",
+          "authority": "primary",
+          "location": "https://docs.mcp-b.ai/explanation/what-is-webmcp",
+          "retrieved_on": "2026-09-14"
+        },
+        {
+          "id": "mcp-b-repository",
+          "title": "MCP-B npm packages repository",
+          "publisher": "WebMCP-org",
+          "type": "maintainer-source",
+          "authority": "primary",
+          "location": "https://github.com/WebMCP-org/npm-packages",
+          "retrieved_on": "2026-09-14"
+        },
+        {
+          "id": "mcp-tools-2026-07-28",
+          "title": "Model Context Protocol Tools",
+          "publisher": "Model Context Protocol",
+          "type": "standard",
+          "authority": "supporting",
+          "location": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "mcp-b-implementation-publication",
+          "kind": "implementation-observation",
+          "location": "https://github.com/WebMCP-org/npm-packages",
+          "description": "The MCP-B maintainers publish an open-source polyfill, runtime packages, and bridge independently from WebMCP and MCP governance.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
       "id": "robots-txt",
       "title": "Robots Exclusion Protocol",
       "description": "Origin-scoped crawler access guidance published at /robots.txt under RFC 9309, separate from authorization and privacy controls.",
@@ -1652,6 +2458,154 @@
           "kind": "implementation-observation",
           "location": "https://schema.org/docs/gs.html",
           "description": "Schema.org publishes implementation guidance for embedding shared structured vocabulary in web content.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
+      "id": "webmcp-tools",
+      "title": "Guarded WebMCP tools",
+      "description": "Origin-bound browser capabilities registered through the WebMCP draft API with versioned contracts, explicit authority, human control, and fail-closed execution evidence.",
+      "concern": "capability",
+      "artifact": {
+        "kind": "browser-capability",
+        "locations": [
+          "document.modelContext"
+        ],
+        "media_types": [
+          "application/schema+json"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "deliberate-webmcp-tool-registration",
+          "description": "The active document deliberately registers a browser-agent tool through a compatible WebMCP implementation and can maintain its origin-bound contracts and guards."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "optional",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "optional",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "annotations-untrusted",
+          "strength": "required",
+          "description": "Treat readOnlyHint and every other tool annotation as untrusted descriptive input that never supplies permission, consent, authorization, or effect guarantees."
+        },
+        {
+          "id": "origin-and-permissions",
+          "strength": "required",
+          "description": "Bind registration and invocation to the active secure exact origin and applicable Permissions Policy; delegated frames receive no ambient cross-origin authority."
+        },
+        {
+          "id": "schema-and-effects",
+          "strength": "required",
+          "description": "Publish versioned input and output contracts, validate both at runtime, and declare data access and possible effects completely before consent."
+        },
+        {
+          "id": "state-classification",
+          "strength": "required",
+          "description": "Classify every tool as read-only or state-changing; unclassified tools are denied, and consequential or irreversible state changes require fresh human confirmation."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "contract-binding",
+          "severity": "error",
+          "description": "Reject unstable identities, unversioned schemas, stale revisions, origin ambiguity, undeclared effects, or incompatible changes under an unchanged capability major."
+        },
+        {
+          "id": "guardrails",
+          "severity": "error",
+          "description": "Reject present tools without explicit scoped permission, informed consent, least privilege, per-call authorization, required confirmation, audit evidence, revocation, expiry, replay protection, and rate limits."
+        },
+        {
+          "id": "lifecycle",
+          "severity": "error",
+          "description": "Reject unbounded or non-cancelable execution, unsafe retry, silent partial failure, fabricated rollback, or invocation under an unknown or stale contract."
+        }
+      ],
+      "capability": {
+        "protocol": "webmcp",
+        "protocol_revision": "2026-09-10-community-group-draft",
+        "implementation_pin": "exact-version-or-immutable-revision",
+        "identity": "stable-origin-bound-capability-id",
+        "discovery_surface": "document.modelContext-active-document-tool-list",
+        "classes": [
+          "read-only",
+          "state-changing"
+        ],
+        "input_contract": "versioned-json-schema-and-runtime-validation-required",
+        "output_contract": "versioned-json-schema-and-runtime-validation-required",
+        "compatibility": "breaking-change-requires-new-capability-major"
+      },
+      "maturity": {
+        "level": "experimental",
+        "assessed_on": "2026-09-14",
+        "rationale": "WebMCP is a current W3C Community Group draft report rather than a W3C Standard, and browser implementation and security behavior remain experimental.",
+        "reference_ids": [
+          "chrome-webmcp-overview",
+          "webmcp-community-draft"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "chrome-webmcp-overview",
+          "title": "WebMCP overview",
+          "publisher": "Chrome for Developers",
+          "type": "official-documentation",
+          "authority": "supporting",
+          "location": "https://developer.chrome.com/docs/ai/webmcp",
+          "retrieved_on": "2026-09-14"
+        },
+        {
+          "id": "webmcp-community-draft",
+          "title": "WebMCP Draft Community Group Report",
+          "publisher": "W3C Web Machine Learning Community Group",
+          "type": "industry-specification",
+          "authority": "primary",
+          "location": "https://webmachinelearning.github.io/webmcp/",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "webmcp-draft-publication",
+          "kind": "specification-publication",
+          "location": "https://webmachinelearning.github.io/webmcp/",
+          "description": "The W3C Community Group publishes the document.modelContext tool registration and invocation draft with explicit non-standards-track status.",
           "observed_on": "2026-09-14"
         }
       ],

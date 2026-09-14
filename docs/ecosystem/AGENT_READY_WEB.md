@@ -1,19 +1,21 @@
-# Agent-Ready Web discovery and representation profile
+# Agent-Ready Web guarded capability and commerce profile
 
-Status: **proposed `1.0.0-alpha.2`**
+Status: **proposed `1.0.0-alpha.3`**
 
 Policy owner: `egohygiene/hygiene`
 
-Tracked by: [hygiene#51](https://github.com/egohygiene/hygiene/issues/51),
-checkpoint 2 of [hygiene#16](https://github.com/egohygiene/hygiene/issues/16)
+Tracked by: [hygiene#52](https://github.com/egohygiene/hygiene/issues/52),
+checkpoint 3 of [hygiene#16](https://github.com/egohygiene/hygiene/issues/16)
 
 ## Purpose and authority
 
 The Agent-Ready Web profile defines how an Ego Hygiene website can remain an
 excellent human-facing experience while exposing explicit, efficient, and safe
 machine-readable surfaces. Checkpoint 1 established the vocabulary and
-ownership boundary. This checkpoint registers only discovery and efficient
-representation mechanisms.
+ownership boundary, and checkpoint 2 registered discovery and efficient
+representations. This checkpoint adds guarded browser-capability publication,
+descriptive Product and Offer metadata, and truthful advertising declarations.
+It does not implement a browser tool or a transaction contract.
 
 The canonical machine source is
 [`catalog/agent-ready-web-profile.json`](../../catalog/agent-ready-web-profile.json),
@@ -28,17 +30,18 @@ acceptance, publication, rollout, or a downstream conformance claim.
 | Field | Value |
 | --- | --- |
 | Contract | `egohygiene.agent-ready-web-profile/v1` |
-| Profile version | `1.0.0-alpha.2` |
+| Profile version | `1.0.0-alpha.3` |
 | Status | `proposed` |
 | Canonical owner | `egohygiene/hygiene` |
 | Consumer pin | Exact semantic version or immutable repository revision |
-| Catalog scope | Discovery and source-equivalent representations only |
+| Catalog scope | Discovery, representations, guarded capability publication, and non-executable commerce descriptions |
 
 The four independent concerns, five stable site classes, five requirement
 strengths, and four maturity levels defined by checkpoint 1 remain unchanged.
-Each mechanism still has exactly one primary concern. The entries below use
-only `readability` or `efficiency`; no entry grants a capability or supplies
-commerce semantics.
+Each mechanism still has exactly one primary concern. Concern assignment does
+not transfer authority across boundaries: discovery metadata cannot authorize
+a capability, commerce metadata cannot authorize a purchase, and advertising
+declarations cannot authorize a commerce action.
 
 ## Resolution and truthful absence
 
@@ -67,7 +70,7 @@ and an explicit override for all five site classes. That makes resolution
 deterministic and prevents a consumer from treating a missing override as an
 implicit requirement.
 
-## Discovery and representation catalog
+## Mechanism catalog
 
 Strength abbreviations are `R` required, `A` recommended (advisory when
 absent), and `O` optional. They apply only after the applicability condition is
@@ -75,18 +78,23 @@ true.
 
 | Mechanism | Concern | Maturity | Applicability condition | App | Commerce | Content | Docs | Hybrid |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `ads-txt` | commerce | established | Web inventory has real programmatic seller relationships or an intentional IAB no-seller declaration | R | R | R | R | R |
 | `ai-crawler-guidance` | readability | emerging | Identified crawler operator publishes authoritative product-token policy | O | O | O | O | O |
 | `ai-oriented-hints` | readability | experimental | Identified consumer owns a public hint specification | O | O | O | O | O |
+| `app-ads-txt` | commerce | established | Distributed app inventory resolves through a verified developer domain or an intentional IAB no-seller declaration | R | R | R | R | R |
 | `canonical-metadata` | readability | established | Page is public/indexable or duplicates an equivalent URL | R | R | R | R | R |
 | `cats-txt` | readability | experimental | Operator intentionally maintains a truthful cats file | O | O | O | O | O |
+| `commerce-product-offer-jsonld` | commerce | established | A visible real product or offer has current authoritative facts | O | A | O | O | A |
 | `entitymap-html` | readability | published specification | A conforming `entitymap.json` is published | R | R | R | R | R |
 | `entitymap-json` | readability | published specification | A source-backed public entity index can be maintained | O | O | O | O | O |
 | `llms-full-txt` | efficiency | emerging | A bounded public documentation corpus can be aggregated safely | O | O | O | O | O |
 | `llms-txt` | readability | emerging | Curated public AI-readable content benefits from an index | O | O | A | A | A |
 | `markdown-alternate` | efficiency | emerging | A current public source-equivalent can be maintained | O | O | A | A | A |
+| `mcp-b-runtime` | capability | experimental | The site deliberately uses and can immutably pin an MCP-B runtime or bridge | O | O | O | O | O |
 | `robots-txt` | readability | established | A public HTTP origin exposes crawlable resources | R | R | R | R | R |
 | `sitemap-xml` | readability | established | A truthful public indexable URL set exists | A | R | R | R | R |
 | `structured-discovery-jsonld` | readability | established | Stable vocabulary describes visible public facts | A | A | A | A | A |
+| `webmcp-tools` | capability | experimental | The active document deliberately registers a guarded compatible WebMCP tool | O | O | O | O | O |
 
 The canonical records contain the complete paths, media types, content rules,
 validation rules, maturity rationale, primary references, and registration
@@ -170,6 +178,100 @@ override the registration rules in
 Experimental entries are always optional in this profile and never satisfy an
 established discovery requirement.
 
+## Guarded browser capabilities
+
+`webmcp-tools` covers the current
+[WebMCP Community Group draft](https://webmachinelearning.github.io/webmcp/)
+surface at `document.modelContext`. A Community Group report is not a W3C
+Standard and is not on the W3C standards track. `mcp-b-runtime` covers the
+independent [MCP-B implementation and bridge](https://docs.mcp-b.ai/explanation/what-is-webmcp).
+MCP-B is neither W3C WebMCP nor an official Model Context Protocol authority.
+Both mechanisms are experimental, optional for every site class, and
+non-blocking when absent. When present, however, every guard below is required.
+
+| Contract element | Required behavior |
+| --- | --- |
+| Identity | Stable capability ID bound to the active secure exact origin |
+| Protocol | Exact version or immutable revision, with an exact implementation pin |
+| Discovery | Protocol-native active-document tool list plus origin-bound contract evidence |
+| Input | Independently versioned JSON Schema and runtime validation |
+| Output | Independently versioned JSON Schema and runtime validation, even when a draft API has no native output-schema field |
+| Compatibility | A breaking input, output, effect, or permission change receives a new capability major |
+| Unknown or stale data | Fail closed and do not invoke |
+
+Every tool is classified as `read-only` or `state-changing`; an unclassified
+tool is treated as state-changing and denied. Read-only tools cannot produce
+state effects. Access to or disclosure of sensitive data still needs explicit
+permission, informed consent, and confirmation before disclosure.
+State-changing tools declare all possible effects before consent and use
+operation-scoped permission. A consequential or irreversible effect requires
+fresh human confirmation immediately before execution. No automatic retry is
+permitted without an idempotency guarantee or a new confirmation.
+
+Tool names, descriptions, schemas, annotations such as `readOnlyHint`, inputs,
+and outputs are untrusted data, never authority. Present exposure also requires:
+
+- explicit, specific, revocable permission and informed consent before use;
+- least-privilege data scope and duration, data minimization, and exact-origin
+  binding, including applicable Permissions Policy constraints;
+- authentication whenever the human interface requires it and server-side
+  authorization revalidation on every call;
+- no token passthrough and no credentials or secrets in schema, description,
+  input, or output material; and
+- prompt-injection defenses that do not trust tool-controlled content.
+
+Each invocation records provenance for the capability, version, origin, actor,
+and input/output contract digests. Audit records cover the decision,
+confirmation, invocation, and result without exposing secrets. Correlation,
+status, latency, and redacted errors support observability. Permission and
+consent expire explicitly and revocation takes effect before the next call.
+Replay protection binds a nonce or idempotency key to actor, origin, action,
+and expiry, and declared limits are enforced per actor, origin, and capability.
+
+Timeouts are bounded and cancelable. The default failure performs no state
+change. A partial failure reports observed effects and never invents rollback;
+the user receives a visible resume or compensating path. These are publication
+requirements for a declared tool contract, not an implementation of the tool
+or a claim that any browser supports it.
+
+## Descriptive commerce and advertising
+
+`commerce-product-offer-jsonld` uses
+[JSON-LD 1.1](https://www.w3.org/TR/json-ld11/) and Schema.org
+[`Product`](https://schema.org/Product) and
+[`Offer`](https://schema.org/Offer) to describe current facts already visible
+on the canonical human-facing page. Product identity, identifiers, variants,
+seller, price, currency, availability, validity, eligibility, condition, and
+URLs are published only when current and source-backed. A seller is explicit
+and evidenced or omitted—never inferred. `potentialAction`, an `Offer`, a URL,
+or an `EntryPoint` remains descriptive and grants no consent, permission,
+executable endpoint contract, purchase authority, or proof of transaction.
+
+Any future guarded commerce action is a `state-changing` capability and must
+reference a separately reviewed, versioned contract owned by
+`egohygiene/store`. Without that Store contract, the action is neither exposed
+nor invoked. The capability policy's authority, fresh-confirmation, audit,
+replay, rate-limit, and failure rules remain the outer safety envelope; this
+profile does not define cart, checkout, payment, inventory, fulfillment,
+refund, or other transaction-domain semantics.
+
+`ads-txt` and `app-ads-txt` are applicable only when a publisher has actual
+programmatic advertising inventory relationships or deliberately publishes
+the exact IAB no-seller declaration. Once applicable, the artifact is required
+regardless of site class. Records follow the cited IAB Tech Lab specifications:
+
+- seller account IDs and `DIRECT` or `RESELLER` values match current contract
+  evidence; owner, manager, and partner domains match documented relationships;
+- `app-ads.txt` follows the verified app-store listing to the developer domain;
+- no seller, reseller, account, certification authority, domain, or
+  authorization relationship is invented; and
+- a site with no applicable relationship records not-applicable evidence and
+  omits the artifact, or uses the exact IAB reserved no-seller placeholder.
+  That placeholder is a sentinel only and never represents a seller.
+
+Advertising authorization cannot be inferred into commerce action authority,
+and descriptive offers cannot be inferred into browser capability authority.
+
 ## Source-equivalent representation integrity
 
 Markdown alternates and aggregate representations derive from a shared,
@@ -217,8 +319,11 @@ The profile remains contract major v1. Checkpoint-1 mechanism records retain
 their meaning and remain readable by the reference checker. Alpha.2 catalog
 entries add a complete `artifact`, `applicability`, `content_rules`, and
 `validation_rules` group. Supplying only part of that group is invalid.
-Canonical alpha.2 entries must supply all four fields and explicit rules for
-every site class.
+Alpha.3 preserves that group and adds an exact `capability` binding to
+capability records and an exact `commerce` binding to commerce records. A
+binding on another concern, a missing binding, a floating implementation,
+unversioned contract, or executable authority inferred from commerce metadata
+fails closed. Canonical entries supply explicit rules for every site class.
 
 Consumers pin the exact profile version or an immutable repository revision.
 Unknown core values fail closed. Unknown namespaced extensions may be
@@ -233,7 +338,8 @@ python3 -m unittest tests.test_agent_ready_web
 ```
 
 Fixtures cover the checkpoint-1 base shape, a complete checkpoint-2 policy
-record, and focused invalid cases. Reserved `example.com` locations are
+record, complete checkpoint-3 capability and commerce bindings, and focused
+invalid pinning and authority cases. Reserved `example.com` locations are
 synthetic test data, not claimed standards or implementations.
 
 ## Ownership boundary
@@ -243,24 +349,24 @@ validation. Holon may later generate artifacts for new sites from an accepted
 immutable pin. Relay may later provide reusable validation and publication
 workflow execution. Pace may later propose reversible existing-site adoption.
 Observatory may later report privacy-safe evidence. Store continues to own
-separately reviewed transaction-domain semantics. None of those downstream
-responsibilities moves into this checkpoint, and this repository does not
-claim their adoption.
+separately reviewed transaction-domain semantics. Each site retains its facts,
+credentials, consent interaction, and final publication decision. None of
+those downstream responsibilities moves into this checkpoint, and this
+repository does not claim their adoption.
 
 ## Checkpoint boundary
 
-This checkpoint closes only the discovery and efficient-representation work in
-issue #51. It does not:
+This review checkpoint is scoped to issue #52 only. It does not:
 
-- define WebMCP, MCP-B, browser-agent capability, consent, audit, or revocation
-  semantics assigned to #52;
-- define advertising seller declarations or transaction-oriented commerce
-  semantics;
+- enumerate artifacts beyond the bounded checkpoint mechanisms or define
+  application-specific WebMCP/MCP-B capability details;
+- implement browser tools, transaction operations, Store-owned cart, checkout,
+  payment, inventory, fulfillment, refund, or other commerce-domain contracts;
 - implement generators, shared workflows, fleet rollout, dashboards, site
   publication, or downstream conformance;
 - activate the proposed profile, merge its pull request, or publish a release;
   or
-- close parent issue #16.
+- close parent issue #16 or begin integration checkpoint #53.
 
-Issue #52 remains the next blocked checkpoint and must not begin until the pull
-request for #51 is reviewed and merged.
+Issue #53 remains blocked until the focused pull request for #52 is reviewed
+and merged.

@@ -16,7 +16,10 @@ This document is designed to be referenced by every Ego Hygiene repository agent
 1. **One owner per capability.** If a change appears to move a boundary, stop and propose an ecosystem ADR.
 2. **Standalone first.** A tool remains independently buildable, testable, documented, and releasable even when Flow, Beacon, Realm, or another facade composes it.
 3. **Integrate through releases.** Use pinned packages, binaries, OCI images, reusable workflows, or versioned contracts—never copied sibling source.
-4. **Respect control-plane boundaries.** Hygiene defines; Holon creates; Pace converges; Observatory observes.
+4. **Respect control-plane boundaries.** Hygiene defines; Holon creates; Pace
+   converges; Observatory observes. For Agent-Ready Web work, Store owns
+   transaction-domain contracts and each site retains facts, credentials,
+   consent interaction, and publication authority.
 5. **Respect developer-platform boundaries.** Realm provisions environments; Mantle configures the shell; Relay runs automation; Egolint defines lint behavior; Empathy proves integration.
 6. **Respect infrastructure boundaries.** Filament publishes reusable IaC
    contracts; consuming repositories own deployment intent, credentials,

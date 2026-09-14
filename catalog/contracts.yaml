@@ -95,7 +95,7 @@
     },
     {
       "id": "egohygiene.agent-ready-web-profile/v1",
-      "title": "Agent-Ready Web publication profile",
+      "title": "Agent-Ready Web discovery, capability, and commerce publication profile",
       "owner": "egohygiene/hygiene",
       "source": "schemas/agent-ready-web-profile.v1.schema.json",
       "status": "proposed",

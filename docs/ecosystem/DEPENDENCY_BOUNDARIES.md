@@ -149,12 +149,14 @@ linked follow-up issues rather than placing their implementations here.
 
 The Agent-Ready Web relationship follows the same control-plane boundary.
 Hygiene owns the proposed profile vocabulary, schema, compatibility,
-extensions, and reference-validation semantics. Holon may later generate new
-site artifacts, Relay may execute reusable checks and transport evidence, Pace
-may propose existing-site migrations, Store retains guarded commerce-domain
-semantics, and Observatory may collect privacy-safe evidence. The relationship
-remains `required` while the profile is proposed; this repository does not
-claim those downstream implementations or any site adoption.
+extensions, reference-validation semantics, guarded browser-capability
+envelope, and descriptive commerce and advertising policy. Holon may later
+generate new-site artifacts, Relay may execute reusable checks and transport
+evidence, Pace may propose existing-site migrations, Store retains all guarded
+commerce-domain contracts, and Observatory may collect privacy-safe evidence.
+Sites retain facts, credentials, consent, and publication authority. The
+relationship remains `required` while the profile is proposed; this repository
+does not claim those downstream implementations or any site adoption.
 
 The continuity relationships remain `required` instead of `active` while the
 Aether artifacts are draft and the Hygiene profile is proposed. This is a
