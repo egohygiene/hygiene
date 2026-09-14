@@ -30,6 +30,10 @@ evidence; it is not a substitute for the canonical sources below.
 - [Repository continuity policy source](catalog/repository-continuity-policy.json)
 - [Repository continuity policy schema](schemas/repository-continuity-policy.v1.schema.json)
 - [Repository context v2 schema](schemas/repository-context.v2.schema.json)
+- [Proposed Agent-Ready Web profile](docs/ecosystem/AGENT_READY_WEB.md)
+- [Agent-Ready Web profile source](catalog/agent-ready-web-profile.json)
+- [Agent-Ready Web profile schema](schemas/agent-ready-web-profile.v1.schema.json)
+- [Agent-Ready Web compatibility fixtures](fixtures/agent-ready-web)
 - [Dependency-boundary register](catalog/dependency-boundaries.yaml)
 - [Dependency-boundary schema](schemas/dependency-boundary-register.v1.schema.json)
 - [Generated dependency-boundary view](docs/generated/DEPENDENCY_BOUNDARIES.md)
@@ -53,6 +57,7 @@ sites are projections of those sources.
 - [ADR policy](docs/decisions/POLICY.md)
 - [Accepted governing decision](docs/decisions/ADR-002-organization-adr-and-delivery-history.md)
 - [Proposed Repository Intelligence decision](docs/decisions/ADR-005-unify-repository-intelligence-projection.md)
+- [Proposed Agent-Ready Web foundation decision](docs/decisions/ADR-009-agent-ready-web-profile-foundation.md)
 - [ADR reference template](docs/decisions/ADR-TEMPLATE.md)
 - [ADR migration guide](docs/decisions/MIGRATION.md)
 - [ADR validation plan](docs/decisions/VALIDATION.md)
@@ -89,6 +94,8 @@ python3 tools/catalog.py \
 python3 tools/context.py validate
 python3 tools/continuity.py validate-profile
 python3 tools/continuity.py validate-repository --repository .
+python3 tools/agent_ready_web.py validate-profile
+python3 tools/agent_ready_web.py validate-fixtures
 python3 tools/boundaries.py validate
 python3 tools/boundaries.py \
   check-generated \

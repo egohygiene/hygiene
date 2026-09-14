@@ -1,0 +1,54 @@
+{
+  "schema": "egohygiene.agent-ready-web-mechanism-fixture/v1",
+  "name": "ambiguous-concern",
+  "expected": "invalid",
+  "synthetic": true,
+  "mechanism": {
+    "id": "fixture-ambiguous-concern",
+    "title": "Synthetic ambiguous concern",
+    "description": "An invalid synthetic mechanism assigned to more than one primary concern.",
+    "concern": [
+      "readability",
+      "efficiency"
+    ],
+    "requirements": {
+      "default": {
+        "strength": "optional",
+        "condition": null
+      },
+      "site_class_overrides": []
+    },
+    "maturity": {
+      "level": "emerging",
+      "assessed_on": "2026-09-14",
+      "rationale": "Synthetic maturity data keeps the fixture focused on concern cardinality.",
+      "reference_ids": [
+        "fixture-specification"
+      ]
+    },
+    "authoritative_references": [
+      {
+        "id": "fixture-specification",
+        "title": "Synthetic ambiguous concern specification",
+        "publisher": "Example Standards Publisher",
+        "type": "maintainer-source",
+        "authority": "primary",
+        "location": "https://example.com/specifications/ambiguous-concern",
+        "retrieved_on": "2026-09-14"
+      }
+    ],
+    "registration_evidence": [
+      {
+        "id": "fixture-maintainer-assessment",
+        "kind": "maintainer-assessment",
+        "location": "https://example.com/evidence/ambiguous-concern",
+        "description": "Synthetic evidence keeps the fixture focused on concern cardinality.",
+        "observed_on": "2026-09-14"
+      }
+    ],
+    "extensions": {}
+  },
+  "expected_errors": [
+    "mechanism.concern must identify exactly one canonical concern"
+  ]
+}

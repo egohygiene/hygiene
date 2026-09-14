@@ -3,12 +3,12 @@ schema: aether.architecture-document/v1
 id: hygiene-roadmap
 title: Hygiene Roadmap
 kind: architecture-document
-version: 0.5.0
+version: 0.5.1
 status: provisional
 owners:
   - egohygiene
 created: 2026-08-19
-updated: 2026-09-12
+updated: 2026-09-14
 governed_by:
   - architecture-roadmap
 depends_on:
@@ -151,7 +151,7 @@ issues: []
 id: HYG-Q05
 status: planned
 depends_on: [HYG-Q03, HYG-Q04]
-issues: [19, 22, 45]
+issues: [16, 19, 22, 45]
 -->
 #### HYG-Q05 — Version and integrate the organization contract
 
@@ -176,6 +176,11 @@ issues: [19, 22, 45]
   breaking repository-context v2 transition, and observe-first downstream
   boundary. Stable Aether release evidence and ADR-008 acceptance remain gates
   before ratchet or enforcement.
+- Issue #16 splits the proposed Agent-Ready Web publication profile into four
+  ordered checkpoints. Checkpoint #50 proposes only the versioned vocabulary,
+  compatibility, mechanism-registration, and ownership foundation; its
+  canonical mechanism registry stays empty, and #51-#53 remain dependent on
+  the reviewed merge sequence.
 
 <!-- roadmap-step
 id: HYG-Q06

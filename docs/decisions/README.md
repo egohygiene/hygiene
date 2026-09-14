@@ -34,6 +34,7 @@ owned downstream and are not implemented by this directory.
 | [ADR-006](ADR-006-repository-presentation-profile.md) | Define an evidence-backed repository presentation profile | Proposed | 2026-08-30 |
 | [ADR-007](ADR-007-repository-release-baseline.md) | Define an inheritable repository release-convention baseline | Proposed | 2026-08-31 |
 | [ADR-008](ADR-008-repository-continuity-policy.md) | Require repository-owned continuity checkpoints through a versioned context successor | Proposed | 2026-09-08 |
+| [ADR-009](ADR-009-agent-ready-web-profile-foundation.md) | Define the Agent-Ready Web profile foundation | Proposed | 2026-09-14 |
 
 ADR-0001 predates the proposed three-digit filename convention. Its four-digit
 identity and original body remain unchanged for provenance. If the new policy is

@@ -110,3 +110,27 @@ older repository architecture catalog remains a visible reconciliation input;
 its stale count does not reduce the continuity scope. See the
 [repository continuity guide](../docs/ecosystem/REPOSITORY_CONTINUITY.md) for
 lifecycle truth, privacy, rollout, exception, downstream, and rollback rules.
+
+## Agent-Ready Web profile
+
+`agent-ready-web-profile.json` is the proposed versioned foundation for
+human-first websites that expose explicit machine-readable surfaces. It keeps
+readability, capability, efficiency, and commerce independent; defines stable
+site classes, requirement strengths, maturity, compatibility, extensions, and
+ownership; and requires primary references plus registration evidence for any
+future mechanism.
+
+The canonical `mechanisms` array is intentionally empty in checkpoint 1.
+Synthetic fixtures validate the registration contract without adding the
+discovery, interactive-capability, advertising, or commerce catalogs assigned
+to later issues.
+
+```bash
+python3 tools/agent_ready_web.py validate-profile
+python3 tools/agent_ready_web.py validate-fixtures
+```
+
+See the
+[Agent-Ready Web profile guide](../docs/ecosystem/AGENT_READY_WEB.md) for the
+vocabulary, compatibility model, evidence boundary, ownership split, and
+checkpoint exclusions.

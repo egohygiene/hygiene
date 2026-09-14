@@ -1,0 +1,197 @@
+{
+  "schema": "egohygiene.agent-ready-web-profile/v1",
+  "version": "1.0.0-alpha.1",
+  "status": "proposed",
+  "owner": "egohygiene/hygiene",
+  "updated": "2026-09-14",
+  "purpose": "Define the versioned vocabulary, compatibility rules, mechanism-registration shape, and ownership boundaries for human-first sites that also expose explicit machine-readable web surfaces.",
+  "concern_policy": {
+    "primary_concern_cardinality": "exactly-one",
+    "independent_requirement_resolution": true,
+    "cross_concern_inference": "forbidden"
+  },
+  "concerns": [
+    {
+      "id": "readability",
+      "title": "Readability",
+      "definition": "Discovery metadata and alternate content representations that help crawlers, retrieval systems, and agents understand a human-facing site.",
+      "boundary": "Readability describes content and discovery; it does not grant permission to invoke actions."
+    },
+    {
+      "id": "capability",
+      "title": "Capability",
+      "definition": "Explicitly declared browser-agent or tool interactions together with their permissions, consent, security, audit, and revocation boundaries.",
+      "boundary": "Capability declarations do not imply readability, efficiency, or commercial authority."
+    },
+    {
+      "id": "efficiency",
+      "title": "Efficiency",
+      "definition": "Lower-overhead, source-equivalent representations and delivery behavior for machine consumers.",
+      "boundary": "Efficiency must not weaken content meaning, access controls, provenance, or capability safeguards."
+    },
+    {
+      "id": "commerce",
+      "title": "Commerce",
+      "definition": "Machine-readable commercial meaning and the boundary around any guarded transaction-oriented capability.",
+      "boundary": "Commerce classification does not authorize a transaction or define Store-owned action semantics."
+    }
+  ],
+  "site_classes": [
+    {
+      "id": "application",
+      "title": "Web application",
+      "definition": "A site whose primary purpose is an interactive browser-delivered product or tool."
+    },
+    {
+      "id": "commerce",
+      "title": "Commerce site",
+      "definition": "A site whose primary purpose includes presenting products, offers, or guarded transaction paths."
+    },
+    {
+      "id": "content",
+      "title": "Content publication",
+      "definition": "A site whose primary purpose is publishing articles, media, research, or other human-readable content."
+    },
+    {
+      "id": "documentation",
+      "title": "Documentation site",
+      "definition": "A site whose primary purpose is structured product, project, API, or reference documentation."
+    },
+    {
+      "id": "hybrid",
+      "title": "Hybrid site",
+      "definition": "A site with multiple first-class purposes that cannot be represented truthfully by one other stable class."
+    }
+  ],
+  "requirement_strengths": [
+    {
+      "id": "required",
+      "definition": "An applicable site must implement the mechanism and provide current evidence."
+    },
+    {
+      "id": "recommended",
+      "definition": "An applicable site should implement the mechanism; an evidenced omission remains advisory rather than passing silently."
+    },
+    {
+      "id": "optional",
+      "definition": "A site may implement the mechanism, and absence alone does not create a conformance failure."
+    },
+    {
+      "id": "conditional",
+      "definition": "The mechanism becomes required only when its explicit, machine-identified condition applies."
+    },
+    {
+      "id": "prohibited",
+      "definition": "A site must not publish, advertise, infer, or fabricate the mechanism under the resolved profile rule."
+    }
+  ],
+  "maturity_levels": [
+    {
+      "id": "established",
+      "label": "established web standard / broadly deployed",
+      "definition": "A stable web mechanism with standards-based or broadly deployed interoperability evidence."
+    },
+    {
+      "id": "published_specification",
+      "label": "published industry specification",
+      "definition": "A mechanism described by a public primary specification but not yet established across the broader web."
+    },
+    {
+      "id": "emerging",
+      "label": "emerging convention",
+      "definition": "A documented convention with observable adoption whose compatibility and governance remain in motion."
+    },
+    {
+      "id": "experimental",
+      "label": "experimental/incubating capability",
+      "definition": "An exploratory mechanism that must not block unrelated publication or imply production readiness by default."
+    }
+  ],
+  "mechanism_contract": {
+    "identifier_pattern": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*$",
+    "reference_types": [
+      "standard",
+      "industry-specification",
+      "official-documentation",
+      "registry",
+      "maintainer-source"
+    ],
+    "reference_authorities": [
+      "primary",
+      "supporting"
+    ],
+    "evidence_kinds": [
+      "specification-publication",
+      "implementation-observation",
+      "conformance-test",
+      "adoption-observation",
+      "maintainer-assessment"
+    ],
+    "evidence_scope": "mechanism-registration-only",
+    "site_conformance_evidence": "deferred",
+    "required_primary_references": 1,
+    "required_registration_evidence": 1
+  },
+  "mechanisms": [],
+  "compatibility": {
+    "contract_major": 1,
+    "versioning": "semantic-versioning",
+    "consumer_pinning": "exact-version-or-immutable-revision",
+    "same_major_guarantee": "Existing valid core records retain their identifiers and meaning unless a documented major-version migration replaces them.",
+    "additive_changes": [
+      "clarify non-normative prose without changing validation",
+      "add optional mechanism records without changing existing identifiers or meaning",
+      "add core site classes, requirement strengths, or maturity levels in a reviewed minor version without changing existing values",
+      "register namespaced optional extensions that do not affect core conformance"
+    ],
+    "breaking_changes": [
+      "remove or rename a core concern, site class, requirement strength, maturity level, or mechanism",
+      "change lifecycle, requirement, maturity, or concern meaning",
+      "make previously optional data required or relax prohibited behavior",
+      "change concern assignment, reference or evidence shape, extension isolation, or ownership boundaries"
+    ],
+    "unknown_core_values": "fail-closed",
+    "unknown_extensions": "preserve-uninterpreted-and-exclude-from-core-conformance"
+  },
+  "extensions": {
+    "identifier_pattern": "^egohygiene\\.[a-z0-9][a-z0-9.-]*\\.agent-ready-web\\.[a-z0-9][a-z0-9.-]*/v[0-9]+$",
+    "registered": [],
+    "unknown_behavior": "preserve-uninterpreted-and-exclude-from-core-conformance",
+    "allowed": [
+      "add namespaced optional metadata",
+      "add stricter validation owned by the extension namespace"
+    ],
+    "prohibited": [
+      "redefine core concern, site-class, requirement-strength, maturity, lifecycle, reference, evidence, or compatibility semantics",
+      "satisfy a core requirement with an unknown extension",
+      "grant capability, consent, publication, deployment, or transaction authority",
+      "move ownership away from the canonical repository"
+    ]
+  },
+  "ownership": {
+    "hygiene": {
+      "owns": "The canonical profile, core vocabulary, lifecycle, schema, compatibility policy, extension rules, and reference validation.",
+      "excludes": "Artifact generation, reusable workflow implementation, fleet rollout, commerce-domain action contracts, conformance dashboards, and site publication."
+    },
+    "holon": {
+      "owns": "Deterministic generation for new repositories and sites from an accepted, immutably pinned profile.",
+      "excludes": "Profile meaning, existing-fleet mutation, site facts, and final publication authority."
+    },
+    "relay": {
+      "owns": "Reusable validation and publication workflow execution plus evidence transport for pinned profile consumers.",
+      "excludes": "Profile semantics, site-class selection, commerce semantics, credentials, and final publication decisions."
+    },
+    "pace": {
+      "owns": "Previewed, reversible migration and convergence pull requests for existing sites after the profile is accepted.",
+      "excludes": "Direct default-branch mutation, policy definition, and automatic adoption claims."
+    },
+    "store": {
+      "owns": "Transaction-domain semantics and guarded commerce capability contracts introduced by separately reviewed later work.",
+      "excludes": "The core publication profile, non-commerce concerns, fabricated seller relationships, and authorization inferred from metadata."
+    },
+    "observatory": {
+      "owns": "Collection and reporting of privacy-safe conformance evidence and metrics for an accepted profile.",
+      "excludes": "Policy definition, remediation, rollout, passing-state fabrication, and site mutation."
+    }
+  }
+}

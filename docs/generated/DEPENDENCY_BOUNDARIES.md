@@ -4,7 +4,7 @@
 
 - Architecture release: `architecture-v0.1.0`
 - Governing decision: `ADR-0001`
-- Relationships: `25`
+- Relationships: `26`
 - Active exceptions: `0`
 
 ## Rules
@@ -49,6 +49,7 @@
 | `RELATIONSHIP-023` | `egohygiene/hygiene` | `egohygiene/egolint`, `egohygiene/holon`, `egohygiene/pace`, `egohygiene/relay` | repository release applicability, migration, exception, and ownership baseline | `schema`, `generated-projection` | _required_ | `versioned` |
 | `RELATIONSHIP-024` | `egohygiene/aether` | `egohygiene/hygiene` | portable repository continuity specification, schema, template, skill, and managed instruction projection | `schema`, `generated-projection` | _required_ | `immutable` |
 | `RELATIONSHIP-025` | `egohygiene/hygiene` | `egohygiene/egolint`, `egohygiene/holon`, `egohygiene/observatory`, `egohygiene/pace`, `egohygiene/relay` | repository continuity applicability, required-file composition, rollout, migration, and exception policy | `schema`, `generated-projection` | _required_ | `versioned` |
+| `RELATIONSHIP-026` | `egohygiene/hygiene` | `egohygiene/holon`, `egohygiene/relay`, `egohygiene/pace`, `egohygiene/store`, `egohygiene/observatory` | Agent-Ready Web vocabulary, site classes, maturity and evidence shape, compatibility, extension, and ownership policy | `schema`, `generated-projection` | _required_ | `versioned` |
 
 ## Forbidden direct dependencies
 
