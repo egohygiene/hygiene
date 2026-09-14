@@ -147,6 +147,15 @@ required-file composition, rollout, migration, and exceptions. Egolint, Holon,
 Relay, Observatory, and Pace consume the proposed Hygiene policy through their
 linked follow-up issues rather than placing their implementations here.
 
+The Agent-Ready Web relationship follows the same control-plane boundary.
+Hygiene owns the proposed profile vocabulary, schema, compatibility,
+extensions, and reference-validation semantics. Holon may later generate new
+site artifacts, Relay may execute reusable checks and transport evidence, Pace
+may propose existing-site migrations, Store retains guarded commerce-domain
+semantics, and Observatory may collect privacy-safe evidence. The relationship
+remains `required` while the profile is proposed; this repository does not
+claim those downstream implementations or any site adoption.
+
 The continuity relationships remain `required` instead of `active` while the
 Aether artifacts are draft and the Hygiene profile is proposed. This is a
 lifecycle statement, not permission to use a mutable default-branch dependency.

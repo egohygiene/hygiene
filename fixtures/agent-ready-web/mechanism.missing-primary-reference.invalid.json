@@ -1,0 +1,52 @@
+{
+  "schema": "egohygiene.agent-ready-web-mechanism-fixture/v1",
+  "name": "missing-primary-reference",
+  "expected": "invalid",
+  "synthetic": true,
+  "mechanism": {
+    "id": "fixture-unanchored-mechanism",
+    "title": "Synthetic unanchored mechanism",
+    "description": "An invalid synthetic mechanism with only a supporting reference.",
+    "concern": "capability",
+    "requirements": {
+      "default": {
+        "strength": "prohibited",
+        "condition": null
+      },
+      "site_class_overrides": []
+    },
+    "maturity": {
+      "level": "experimental",
+      "assessed_on": "2026-09-14",
+      "rationale": "Synthetic maturity data exposes the missing primary authority.",
+      "reference_ids": [
+        "fixture-commentary"
+      ]
+    },
+    "authoritative_references": [
+      {
+        "id": "fixture-commentary",
+        "title": "Synthetic supporting commentary",
+        "publisher": "Example Commentator",
+        "type": "official-documentation",
+        "authority": "supporting",
+        "location": "https://example.com/commentary/unanchored-mechanism",
+        "retrieved_on": "2026-09-14"
+      }
+    ],
+    "registration_evidence": [
+      {
+        "id": "fixture-maintainer-assessment",
+        "kind": "maintainer-assessment",
+        "location": "https://example.com/evidence/unanchored-mechanism",
+        "description": "Synthetic evidence keeps the fixture focused on reference authority.",
+        "observed_on": "2026-09-14"
+      }
+    ],
+    "extensions": {}
+  },
+  "expected_errors": [
+    "mechanism.authoritative_references must include at least one primary authoritative reference",
+    "mechanism.maturity.reference_ids must include a primary authoritative reference"
+  ]
+}

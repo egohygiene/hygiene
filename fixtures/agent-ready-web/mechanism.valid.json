@@ -1,0 +1,62 @@
+{
+  "schema": "egohygiene.agent-ready-web-mechanism-fixture/v1",
+  "name": "synthetic-readable-summary",
+  "expected": "valid",
+  "synthetic": true,
+  "mechanism": {
+    "id": "fixture-readable-summary",
+    "title": "Synthetic readable summary",
+    "description": "A synthetic mechanism used only to exercise the foundation contract without registering a real web artifact.",
+    "concern": "readability",
+    "requirements": {
+      "default": {
+        "strength": "optional",
+        "condition": null
+      },
+      "site_class_overrides": [
+        {
+          "site_class": "documentation",
+          "strength": "conditional",
+          "condition": {
+            "id": "source-summary-available",
+            "description": "A canonical source summary is declared by the documentation site."
+          }
+        }
+      ]
+    },
+    "maturity": {
+      "level": "published_specification",
+      "assessed_on": "2026-09-14",
+      "rationale": "The synthetic primary specification exists solely to validate the published-specification shape.",
+      "reference_ids": [
+        "fixture-specification"
+      ]
+    },
+    "authoritative_references": [
+      {
+        "id": "fixture-specification",
+        "title": "Synthetic readable summary specification",
+        "publisher": "Example Standards Publisher",
+        "type": "industry-specification",
+        "authority": "primary",
+        "location": "https://example.com/specifications/readable-summary",
+        "retrieved_on": "2026-09-14"
+      }
+    ],
+    "registration_evidence": [
+      {
+        "id": "fixture-specification-publication",
+        "kind": "specification-publication",
+        "location": "https://example.com/specifications/readable-summary",
+        "description": "Synthetic publication evidence for contract validation only.",
+        "observed_on": "2026-09-14"
+      }
+    ],
+    "extensions": {
+      "egohygiene.holon.agent-ready-web.fixture/v1": {
+        "note": "Unknown namespaced data is preserved but cannot satisfy core conformance."
+      }
+    }
+  },
+  "expected_errors": []
+}

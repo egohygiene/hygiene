@@ -3,7 +3,7 @@
   "status": "proposed",
   "organization": "egohygiene",
   "canonical_repository": "egohygiene/hygiene",
-  "updated": "2026-09-12",
+  "updated": "2026-09-14",
   "contracts": [
     {
       "id": "egohygiene.architecture-decision/v1",
@@ -90,6 +90,14 @@
       "title": "Repository release-convention baseline policy",
       "owner": "egohygiene/hygiene",
       "source": "schemas/repository-release-policy.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.agent-ready-web-profile/v1",
+      "title": "Agent-Ready Web publication profile",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/agent-ready-web-profile.v1.schema.json",
       "status": "proposed",
       "visibility": "public"
     },

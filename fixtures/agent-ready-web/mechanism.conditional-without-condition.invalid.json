@@ -1,0 +1,57 @@
+{
+  "schema": "egohygiene.agent-ready-web-mechanism-fixture/v1",
+  "name": "conditional-without-condition",
+  "expected": "invalid",
+  "synthetic": true,
+  "mechanism": {
+    "id": "fixture-conditionless-mechanism",
+    "title": "Synthetic conditionless mechanism",
+    "description": "An invalid synthetic mechanism with a conditional rule that omits its condition.",
+    "concern": "efficiency",
+    "requirements": {
+      "default": {
+        "strength": "optional",
+        "condition": null
+      },
+      "site_class_overrides": [
+        {
+          "site_class": "application",
+          "strength": "conditional",
+          "condition": null
+        }
+      ]
+    },
+    "maturity": {
+      "level": "experimental",
+      "assessed_on": "2026-09-14",
+      "rationale": "Synthetic maturity data keeps the fixture focused on conditional requirements.",
+      "reference_ids": [
+        "fixture-specification"
+      ]
+    },
+    "authoritative_references": [
+      {
+        "id": "fixture-specification",
+        "title": "Synthetic conditionless mechanism specification",
+        "publisher": "Example Standards Publisher",
+        "type": "maintainer-source",
+        "authority": "primary",
+        "location": "https://example.com/specifications/conditionless-mechanism",
+        "retrieved_on": "2026-09-14"
+      }
+    ],
+    "registration_evidence": [
+      {
+        "id": "fixture-maintainer-assessment",
+        "kind": "maintainer-assessment",
+        "location": "https://example.com/evidence/conditionless-mechanism",
+        "description": "Synthetic evidence keeps the fixture focused on conditional requirements.",
+        "observed_on": "2026-09-14"
+      }
+    ],
+    "extensions": {}
+  },
+  "expected_errors": [
+    "mechanism.requirements.site_class_overrides[0].condition is required when strength is conditional"
+  ]
+}

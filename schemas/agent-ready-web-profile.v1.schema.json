@@ -1,0 +1,776 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/agent-ready-web-profile.v1.schema.json",
+  "title": "Ego Hygiene Agent-Ready Web profile v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "status",
+    "owner",
+    "updated",
+    "purpose",
+    "concern_policy",
+    "concerns",
+    "site_classes",
+    "requirement_strengths",
+    "maturity_levels",
+    "mechanism_contract",
+    "mechanisms",
+    "compatibility",
+    "extensions",
+    "ownership"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egohygiene.agent-ready-web-profile/v1"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "active",
+        "deprecated",
+        "superseded"
+      ]
+    },
+    "owner": {
+      "const": "egohygiene/hygiene"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date"
+    },
+    "purpose": {
+      "$ref": "#/$defs/text"
+    },
+    "concern_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary_concern_cardinality",
+        "independent_requirement_resolution",
+        "cross_concern_inference"
+      ],
+      "properties": {
+        "primary_concern_cardinality": {
+          "const": "exactly-one"
+        },
+        "independent_requirement_resolution": {
+          "const": true
+        },
+        "cross_concern_inference": {
+          "const": "forbidden"
+        }
+      }
+    },
+    "concerns": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/$defs/concern"
+      }
+    },
+    "site_classes": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "$ref": "#/$defs/siteClass"
+      }
+    },
+    "requirement_strengths": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "$ref": "#/$defs/vocabularyEntry"
+      }
+    },
+    "maturity_levels": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/$defs/maturityEntry"
+      }
+    },
+    "mechanism_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "identifier_pattern",
+        "reference_types",
+        "reference_authorities",
+        "evidence_kinds",
+        "evidence_scope",
+        "site_conformance_evidence",
+        "required_primary_references",
+        "required_registration_evidence"
+      ],
+      "properties": {
+        "identifier_pattern": {
+          "const": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*$"
+        },
+        "reference_types": {
+          "const": [
+            "standard",
+            "industry-specification",
+            "official-documentation",
+            "registry",
+            "maintainer-source"
+          ]
+        },
+        "reference_authorities": {
+          "const": [
+            "primary",
+            "supporting"
+          ]
+        },
+        "evidence_kinds": {
+          "const": [
+            "specification-publication",
+            "implementation-observation",
+            "conformance-test",
+            "adoption-observation",
+            "maintainer-assessment"
+          ]
+        },
+        "evidence_scope": {
+          "const": "mechanism-registration-only"
+        },
+        "site_conformance_evidence": {
+          "const": "deferred"
+        },
+        "required_primary_references": {
+          "const": 1
+        },
+        "required_registration_evidence": {
+          "const": 1
+        }
+      }
+    },
+    "mechanisms": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/mechanism"
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contract_major",
+        "versioning",
+        "consumer_pinning",
+        "same_major_guarantee",
+        "additive_changes",
+        "breaking_changes",
+        "unknown_core_values",
+        "unknown_extensions"
+      ],
+      "properties": {
+        "contract_major": {
+          "const": 1
+        },
+        "versioning": {
+          "const": "semantic-versioning"
+        },
+        "consumer_pinning": {
+          "const": "exact-version-or-immutable-revision"
+        },
+        "same_major_guarantee": {
+          "$ref": "#/$defs/text"
+        },
+        "additive_changes": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "breaking_changes": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "unknown_core_values": {
+          "const": "fail-closed"
+        },
+        "unknown_extensions": {
+          "const": "preserve-uninterpreted-and-exclude-from-core-conformance"
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "identifier_pattern",
+        "registered",
+        "unknown_behavior",
+        "allowed",
+        "prohibited"
+      ],
+      "properties": {
+        "identifier_pattern": {
+          "const": "^egohygiene\\.[a-z0-9][a-z0-9.-]*\\.agent-ready-web\\.[a-z0-9][a-z0-9.-]*/v[0-9]+$"
+        },
+        "registered": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/registeredExtension"
+          }
+        },
+        "unknown_behavior": {
+          "const": "preserve-uninterpreted-and-exclude-from-core-conformance"
+        },
+        "allowed": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "prohibited": {
+          "$ref": "#/$defs/uniqueStrings"
+        }
+      }
+    },
+    "ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hygiene",
+        "holon",
+        "relay",
+        "pace",
+        "store",
+        "observatory"
+      ],
+      "properties": {
+        "hygiene": {
+          "$ref": "#/$defs/ownershipBoundary"
+        },
+        "holon": {
+          "$ref": "#/$defs/ownershipBoundary"
+        },
+        "relay": {
+          "$ref": "#/$defs/ownershipBoundary"
+        },
+        "pace": {
+          "$ref": "#/$defs/ownershipBoundary"
+        },
+        "store": {
+          "$ref": "#/$defs/ownershipBoundary"
+        },
+        "observatory": {
+          "$ref": "#/$defs/ownershipBoundary"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*$"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "location": {
+      "type": "string",
+      "anyOf": [
+        {
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        {
+          "pattern": "^(?!\\.{1,2}(?:/|$))(?!.*\\/\\.{1,2}(?:/|$))(?:[A-Za-z0-9._-]+/)*[A-Za-z0-9._-]+$"
+        }
+      ]
+    },
+    "uniqueStrings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/text"
+      }
+    },
+    "concern": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "definition",
+        "boundary"
+      ],
+      "properties": {
+        "id": {
+          "enum": [
+            "readability",
+            "capability",
+            "efficiency",
+            "commerce"
+          ]
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "definition": {
+          "$ref": "#/$defs/text"
+        },
+        "boundary": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "siteClass": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "definition"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/siteClassId"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "definition": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "siteClassId": {
+      "enum": [
+        "application",
+        "commerce",
+        "content",
+        "documentation",
+        "hybrid"
+      ]
+    },
+    "vocabularyEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "definition"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/requirementStrength"
+        },
+        "definition": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "requirementStrength": {
+      "enum": [
+        "required",
+        "recommended",
+        "optional",
+        "conditional",
+        "prohibited"
+      ]
+    },
+    "maturityEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "definition"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/maturityLevel"
+        },
+        "label": {
+          "$ref": "#/$defs/text"
+        },
+        "definition": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "maturityLevel": {
+      "enum": [
+        "established",
+        "published_specification",
+        "emerging",
+        "experimental"
+      ]
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "requirementRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "strength",
+        "condition"
+      ],
+      "properties": {
+        "strength": {
+          "$ref": "#/$defs/requirementStrength"
+        },
+        "condition": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/condition"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "strength": {
+                "const": "conditional"
+              }
+            },
+            "required": [
+              "strength"
+            ]
+          },
+          "then": {
+            "properties": {
+              "condition": {
+                "$ref": "#/$defs/condition"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "condition": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "siteClassOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "site_class",
+        "strength",
+        "condition"
+      ],
+      "properties": {
+        "site_class": {
+          "$ref": "#/$defs/siteClassId"
+        },
+        "strength": {
+          "$ref": "#/$defs/requirementStrength"
+        },
+        "condition": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/condition"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "strength": {
+                "const": "conditional"
+              }
+            },
+            "required": [
+              "strength"
+            ]
+          },
+          "then": {
+            "properties": {
+              "condition": {
+                "$ref": "#/$defs/condition"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "condition": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "default",
+        "site_class_overrides"
+      ],
+      "properties": {
+        "default": {
+          "$ref": "#/$defs/requirementRule"
+        },
+        "site_class_overrides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/siteClassOverride"
+          }
+        }
+      }
+    },
+    "maturityAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "assessed_on",
+        "rationale",
+        "reference_ids"
+      ],
+      "properties": {
+        "level": {
+          "$ref": "#/$defs/maturityLevel"
+        },
+        "assessed_on": {
+          "$ref": "#/$defs/date"
+        },
+        "rationale": {
+          "$ref": "#/$defs/text"
+        },
+        "reference_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/identifier"
+          }
+        }
+      }
+    },
+    "authoritativeReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "publisher",
+        "type",
+        "authority",
+        "location",
+        "retrieved_on"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "publisher": {
+          "$ref": "#/$defs/text"
+        },
+        "type": {
+          "enum": [
+            "standard",
+            "industry-specification",
+            "official-documentation",
+            "registry",
+            "maintainer-source"
+          ]
+        },
+        "authority": {
+          "enum": [
+            "primary",
+            "supporting"
+          ]
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "retrieved_on": {
+          "$ref": "#/$defs/date"
+        }
+      }
+    },
+    "registrationEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "location",
+        "description",
+        "observed_on"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "kind": {
+          "enum": [
+            "specification-publication",
+            "implementation-observation",
+            "conformance-test",
+            "adoption-observation",
+            "maintainer-assessment"
+          ]
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        },
+        "observed_on": {
+          "$ref": "#/$defs/date"
+        }
+      }
+    },
+    "mechanism": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "description",
+        "concern",
+        "requirements",
+        "maturity",
+        "authoritative_references",
+        "registration_evidence",
+        "extensions"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        },
+        "concern": {
+          "enum": [
+            "readability",
+            "capability",
+            "efficiency",
+            "commerce"
+          ]
+        },
+        "requirements": {
+          "$ref": "#/$defs/requirements"
+        },
+        "maturity": {
+          "$ref": "#/$defs/maturityAssessment"
+        },
+        "authoritative_references": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/authoritativeReference"
+          }
+        },
+        "registration_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/registrationEvidence"
+          }
+        },
+        "extensions": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^egohygiene\\.[a-z0-9][a-z0-9.-]*\\.agent-ready-web\\.[a-z0-9][a-z0-9.-]*/v[0-9]+$"
+          },
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "registeredExtension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "owner",
+        "schema",
+        "status",
+        "purpose"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^egohygiene\\.[a-z0-9][a-z0-9.-]*\\.agent-ready-web\\.[a-z0-9][a-z0-9.-]*/v[0-9]+$"
+        },
+        "owner": {
+          "type": "string",
+          "pattern": "^egohygiene/(?:\\.github|[a-z0-9][a-z0-9.-]*)$"
+        },
+        "schema": {
+          "type": "string",
+          "pattern": "^schemas/(?!\\.{1,2}(?:/|$))(?!.*\\/\\.{1,2}(?:/|$))(?:[A-Za-z0-9._-]+/)*[A-Za-z0-9._-]+\\.json$"
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "active",
+            "deprecated"
+          ]
+        },
+        "purpose": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "ownershipBoundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owns",
+        "excludes"
+      ],
+      "properties": {
+        "owns": {
+          "$ref": "#/$defs/text"
+        },
+        "excludes": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    }
+  }
+}
