@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: "2026-09-14T11:46:04Z"
+  updated_at: "2026-09-14T11:48:36Z"
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -114,7 +114,7 @@ review:
     - command: GitHub branch publication and focused pull-request creation
       outcome: passed
       observed_at: "2026-09-14T11:45:53Z"
-      notes: PR 55 targets live main, contains two checkpoint commits, and closes only issue 51; parent issue 16 and successor issue 52 remain open.
+      notes: PR 55 targets live main and closes only issue 51; parent issue 16 and successor issue 52 remain open.
   environment_limitations:
     - Hygiene exposes only a manually dispatched release-policy workflow; no automatic pull-request CI exists to run before a pull request is opened.
     - The host does not expose Aether's maintain-repository-continuity skill as an installed skill, so its checked-in pointer and required local policy were applied manually with the repository validator.
