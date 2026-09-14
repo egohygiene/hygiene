@@ -9,7 +9,7 @@ visibility: public
 owners:
   - egohygiene/hygiene
 issue: https://github.com/egohygiene/hygiene/issues/52
-pull_request: null
+pull_request: https://github.com/egohygiene/hygiene/pull/56
 related:
   - ADR-0001
   - ADR-002
@@ -49,6 +49,9 @@ evidence:
   - type: external
     url: https://iabtechlab.com/ads-txt/
     description: IAB Tech Lab primary publication and specification index for ads.txt and app-ads.txt.
+  - type: pull_request
+    url: https://github.com/egohygiene/hygiene/pull/56
+    description: Focused review surface for the proposed checkpoint 3 capability and commerce policy.
 exceptions: []
 approval: null
 ---
@@ -192,9 +195,9 @@ reference validator, and focused unit tests.
 
 The canonical records link the primary WebMCP, Model Context Protocol, MCP-B,
 JSON-LD, Schema.org, ads.txt, and app-ads.txt sources used to assess maturity
-and boundaries. Issue #52 is the review authority. A focused pull request will
-be linked after it exists; no automatic pull-request CI evidence currently
-exists.
+and boundaries. Issue #52 is the review authority. The focused change is under
+review in [PR #56](https://github.com/egohygiene/hygiene/pull/56); no
+automatic pull-request CI evidence currently exists.
 
 ## Replacement or exit strategy
 

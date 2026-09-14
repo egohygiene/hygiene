@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: "2026-09-14T14:11:20Z"
+  updated_at: "2026-09-14T14:18:21Z"
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -73,20 +73,20 @@ state:
     verified_at: "2026-09-14T14:10:00Z"
   candidate:
     branch: codex/hygiene-16-guarded-capability-commerce
-    revision: c7c603023c444142bed82af14af23b5898ef568e
-    pull_request: null
-    handoff_state: implementation-validated
+    revision: 43152dda0fe74a3215170116dce6a904a4bca613
+    pull_request: https://github.com/egohygiene/hygiene/pull/56
+    handoff_state: review-open
   live:
     status: verified
-    observed_at: "2026-09-14T14:10:00Z"
+    observed_at: "2026-09-14T14:18:21Z"
     default_branch_revision: c7c603023c444142bed82af14af23b5898ef568e
     issue_state: open
-    pull_request_state: absent
-    notes: Main is checkpoint-2 PR 55's merge; issue 52 is dependency-ready with no comments, issue 16 remains open, issue 53 remains blocked, no pull request is open, this remote branch does not yet exist, and no workflow run exists for main. The parent checklist still shows earlier children unchecked despite their closed issue state.
+    pull_request_state: open
+    notes: PR 56 is the sole open pull request and targets unchanged main from the exact checkpoint-2 merge; its recorded revision is the implementation snapshot, with this documentation-only review update following it. Issue 52 is open with no comments, issue 16 remains open, issue 53 remains blocked, and no automatic workflow run exists. The parent checklist still shows earlier children unchecked despite their closed issue state.
   parallel_changes: []
 review:
   status: passed
-  reviewed_at: "2026-09-14T14:11:20Z"
+  reviewed_at: "2026-09-14T14:18:21Z"
   reviewed_by: Codex
   evidence:
     - command: python3 tools/agent_ready_web.py validate-profile && python3 tools/agent_ready_web.py validate-fixtures && python3 -m unittest tests.test_agent_ready_web
@@ -107,10 +107,14 @@ review:
       notes: No whitespace errors were reported before this continuity refresh.
     - command: GitHub main, issue, comments, predecessor, parent, successor, branch, open-PR, and workflow inspection
       outcome: passed
-      observed_at: "2026-09-14T14:10:00Z"
-      notes: Live main is PR 55's merge, issue 51 is closed, issue 52 is open with no comments, issue 16 is open, issue 53 is blocked, no PR competes, the remote candidate is absent, and main has no workflow run.
+      observed_at: "2026-09-14T14:18:21Z"
+      notes: Live main is PR 55's merge, issue 51 is closed, issue 52 is open with no comments, issue 16 is open, issue 53 is blocked, and PR 56 is the only open pull request and is mergeable against unchanged main.
+    - command: GitHub branch publication and focused pull-request creation
+      outcome: passed
+      observed_at: "2026-09-14T14:18:21Z"
+      notes: The remote implementation tree exactly matches the validated local tree, and PR 56 closes only issue 52 while parent issue 16 and successor issue 53 remain open.
   environment_limitations:
-    - Hygiene exposes only a manually dispatched release-policy workflow; no automatic pull-request CI exists to run before a pull request is opened.
+    - Hygiene exposes only a manually dispatched release-policy workflow; no automatic pull-request CI run appeared after pull request 56 opened.
     - The host does not expose Aether's maintain-repository-continuity skill as an installed skill, so its checked-in pointer and required local policy were applied manually with the repository validator.
 privacy:
   classification: public-repository
@@ -156,11 +160,12 @@ surfaces agree; and one unmerged PR closes only issue #52.
 
 - Base: `c7c603023c444142bed82af14af23b5898ef568e` on live `main`, the
   verified merge commit of checkpoint-2 PR #55.
-- Candidate: local validated work on
-  `codex/hygiene-16-guarded-capability-commerce`; the recorded revision is its
-  pre-commit base and must be replaced after branch publication.
-- Review: no PR exists yet; issue #52 and parent #16 remain open, issue #53 is
-  blocked, and no automatic pull-request CI is configured.
+- Candidate: remote implementation revision
+  `43152dda0fe74a3215170116dce6a904a4bca613` on
+  `codex/hygiene-16-guarded-capability-commerce`.
+- Review: [PR #56](https://github.com/egohygiene/hygiene/pull/56) is open and
+  mergeable against the verified base; issue #52 and parent #16 remain open,
+  issue #53 is blocked, and no automatic pull-request CI is configured.
 
 ## Completed and material changes
 
@@ -182,12 +187,12 @@ surfaces agree; and one unmerged PR closes only issue #52.
 ## Validation and review evidence
 
 Focused checks, all 10 fixtures, the complete README sequence with 123 tests,
-the regenerated boundary check, and `git diff --check` passed. The refreshed
-continuity document still requires its final repository and size validation.
+the regenerated boundary check, continuity validation, fixed size checks, and
+`git diff --check` passed.
 
 ## Blockers, risks, unknowns, and deferred work
 
-- Blockers: none observed for committing and opening the focused review.
+- Blockers: none observed for reviewing PR #56.
 - Risks: protocol revisions and all lifecycle choices remain proposed; every
   consumer must pin exactly and cannot infer adoption or executable authority.
 - Unknowns: no automatic pull-request CI exists, so local checks are the only
@@ -203,9 +208,9 @@ live `main`; this branch must not begin integration.
 
 ## Parallel changes and reconciliation
 
-No competing pull request or remote candidate branch was observed. This work
-began directly from the verified PR #55 merge commit and carries no unmerged
-sibling history.
+[PR #56](https://github.com/egohygiene/hygiene/pull/56) is the sole open pull
+request and this checkpoint's review surface. The branch began directly from
+the verified PR #55 merge commit and carries no unmerged sibling history.
 
 ## Privacy and redaction
 
