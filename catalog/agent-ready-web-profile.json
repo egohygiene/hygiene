@@ -1,10 +1,10 @@
 {
   "schema": "egohygiene.agent-ready-web-profile/v1",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "status": "proposed",
   "owner": "egohygiene/hygiene",
   "updated": "2026-09-14",
-  "purpose": "Define versioned discovery, representation, guarded browser-capability, descriptive commerce, compatibility, and ownership policy for human-first sites that expose explicit machine-readable web surfaces.",
+  "purpose": "Define a versioned, boundary-preserving discovery, representation, guarded browser-capability, descriptive commerce, deterministic conformance, compatibility, and ownership policy for human-first sites that expose explicit machine-readable web surfaces.",
   "concern_policy": {
     "primary_concern_cardinality": "exactly-one",
     "independent_requirement_resolution": true,
@@ -128,7 +128,7 @@
       "maintainer-assessment"
     ],
     "evidence_scope": "mechanism-registration-only",
-    "site_conformance_evidence": "deferred",
+    "site_conformance_evidence": "egohygiene.agent-ready-web-conformance/v1",
     "required_primary_references": 1,
     "required_registration_evidence": 1,
     "concern_specific_bindings": [
@@ -399,6 +399,143 @@
         "retrieved_on": "2026-09-14"
       }
     ]
+  },
+  "integration_policy": {
+    "composition": {
+      "concerns": [
+        "readability",
+        "capability",
+        "efficiency",
+        "commerce"
+      ],
+      "evaluation": "resolve-each-mechanism-within-primary-concern-then-aggregate",
+      "cross_concern_substitution": "prohibited",
+      "boundary_preservation": "required"
+    },
+    "cross_layer_invariants": {
+      "non_authoritative_inputs": [
+        "discovery",
+        "structured-metadata",
+        "advertising-declaration",
+        "maturity-classification"
+      ],
+      "cannot_grant": [
+        "capability",
+        "consent",
+        "authorization",
+        "transaction-authority"
+      ],
+      "capability_source": "explicit-versioned-origin-bound-capability-contract-only",
+      "consent_source": "fresh-explicit-human-interaction-only",
+      "authorization_source": "server-revalidated-per-invocation-only",
+      "transaction_source": "store-owned-contract-plus-fresh-confirmation-and-server-authorization-only"
+    }
+  },
+  "conformance_policy": {
+    "schema": "egohygiene.agent-ready-web-conformance/v1",
+    "profile_applicability": {
+      "scope": "public-human-facing-https-site",
+      "not_applicable": "explicit-reason-and-current-evidence-required",
+      "unknown": "error"
+    },
+    "resolution": {
+      "order": [
+        "verify-profile-pin",
+        "select-site-class",
+        "evaluate-applicability",
+        "resolve-conditional-rule",
+        "apply-strength",
+        "validate-present-mechanism",
+        "apply-narrow-exemption",
+        "derive-diagnostics",
+        "derive-level"
+      ],
+      "declared_strengths": [
+        "required",
+        "recommended",
+        "optional",
+        "conditional",
+        "prohibited"
+      ],
+      "resolved_strengths": [
+        "required",
+        "recommended",
+        "optional",
+        "prohibited",
+        "inapplicable",
+        "unresolved"
+      ],
+      "applicability_states": [
+        "applicable",
+        "not-applicable",
+        "unknown"
+      ],
+      "conditional": {
+        "met": "required",
+        "not_met": "inapplicable",
+        "unknown": "unresolved-error"
+      },
+      "experimental": {
+        "absent": "non-blocking",
+        "present": "full-present-mechanism-validation-required",
+        "authority": "none"
+      }
+    },
+    "levels": [
+      {
+        "id": "nonconformant",
+        "definition": "One or more error diagnostics remain after deterministic resolution."
+      },
+      {
+        "id": "exempt",
+        "definition": "No unexempted error remains and at least one narrow approved exemption is active; this is not passing."
+      },
+      {
+        "id": "baseline",
+        "definition": "No error or exemption remains, but at least one advisory remains."
+      },
+      {
+        "id": "recommended",
+        "definition": "No error, advisory, or exemption remains; optional or experimental absence is still allowed."
+      }
+    ],
+    "level_precedence": [
+      "nonconformant",
+      "exempt",
+      "baseline",
+      "recommended"
+    ],
+    "diagnostics": {
+      "shape": "stable-code-severity-mechanism-path-message",
+      "severities": [
+        "error",
+        "advisory",
+        "information"
+      ],
+      "ordering": "profile-mechanism-order-then-severity-code-and-path",
+      "unknown_state": "error",
+      "claim_limit": "assessment-only-no-certification-adoption-publication-or-authority"
+    },
+    "evidence": {
+      "profile_pin": "exact-version-plus-resolved-immutable-revision-and-sha256",
+      "subject_revision": "immutable-revision",
+      "mechanism_cardinality": "exactly-once-in-profile-order",
+      "current_evidence": "subject-revision-bound-observed-no-later-than-assessment-and-required-for-applicability-and-present-mechanisms",
+      "privacy": "allowlisted-minimized-no-secrets-personal-data-or-credentials",
+      "authority_assertions": "must-match-cross-layer-invariants"
+    },
+    "exemptions": {
+      "scope": "single-required-absence-only",
+      "requirements": "named-owner-reason-approval-evidence-and-future-expiry",
+      "non_exemptable": [
+        "profile-pin",
+        "unknown-applicability",
+        "prohibited-presence",
+        "present-mechanism-validation",
+        "privacy-security-consent-authorization-transaction-and-cross-layer-invariants"
+      ],
+      "effect": "distinct-exempt-level-never-passing-or-recommended"
+    }
   },
   "mechanisms": [
     {
@@ -2612,6 +2749,36 @@
       "extensions": {}
     }
   ],
+  "reference_review": {
+    "reviewed_on": "2026-09-14",
+    "scope": "all-registered-mechanisms-and-cross-cutting-policies",
+    "mechanism_ids": [
+      "ads-txt",
+      "ai-crawler-guidance",
+      "ai-oriented-hints",
+      "app-ads-txt",
+      "canonical-metadata",
+      "cats-txt",
+      "commerce-product-offer-jsonld",
+      "entitymap-html",
+      "entitymap-json",
+      "llms-full-txt",
+      "llms-txt",
+      "markdown-alternate",
+      "mcp-b-runtime",
+      "robots-txt",
+      "sitemap-xml",
+      "structured-discovery-jsonld",
+      "webmcp-tools"
+    ],
+    "checks": [
+      "primary-authority-present-and-resolvable",
+      "maturity-rationale-supported-by-primary-source",
+      "standards-status-not-overstated",
+      "living-and-draft-sources-rechecked-at-upgrade"
+    ],
+    "outcome": "coverage-complete-maturity-classifications-retained"
+  },
   "compatibility": {
     "contract_major": 1,
     "versioning": "semantic-versioning",
@@ -2630,7 +2797,22 @@
       "change concern assignment, reference or evidence shape, extension isolation, or ownership boundaries"
     ],
     "unknown_core_values": "fail-closed",
-    "unknown_extensions": "preserve-uninterpreted-and-exclude-from-core-conformance"
+    "unknown_extensions": "preserve-uninterpreted-and-exclude-from-core-conformance",
+    "consumer_resolution": {
+      "canonical_repository": "egohygiene/hygiene",
+      "canonical_path": "catalog/agent-ready-web-profile.json",
+      "supported_pins": [
+        "exact-released-version-with-resolved-revision-and-sha256",
+        "immutable-repository-revision-with-sha256"
+      ],
+      "digest": "sha256-of-canonical-json-utf8",
+      "proposed_profile_use": "review-and-compatibility-testing-only",
+      "production_eligibility": "active-lifecycle-plus-eligible-immutable-pin-required",
+      "policy_copying": "prohibited",
+      "unsupported_version": "fail-closed-with-upgrade-diagnostic",
+      "upgrade": "explicit-reviewed-pin-change-full-revalidation-and-fixture-replay",
+      "downgrade": "explicit-reviewed-pin-change-and-no-newer-semantics-assumed"
+    }
   },
   "extensions": {
     "identifier_pattern": "^egohygiene\\.[a-z0-9][a-z0-9.-]*\\.agent-ready-web\\.[a-z0-9][a-z0-9.-]*/v[0-9]+$",
@@ -2649,28 +2831,32 @@
   },
   "ownership": {
     "hygiene": {
-      "owns": "The canonical profile, core vocabulary, lifecycle, schema, compatibility policy, extension rules, and reference validation.",
-      "excludes": "Artifact generation, reusable workflow implementation, fleet rollout, commerce-domain action contracts, conformance dashboards, and site publication."
+      "owns": "The canonical profile, core vocabulary, lifecycle, schema, deterministic conformance semantics, compatibility policy, extension rules, and reference review.",
+      "excludes": "Artifact generation, reusable workflow implementation, adoption rollout, transaction-domain action contracts, conformance dashboards, site facts, credentials, and publication."
     },
     "holon": {
-      "owns": "Deterministic generation for new repositories and sites from an accepted, immutably pinned profile.",
-      "excludes": "Profile meaning, existing-fleet mutation, site facts, and final publication authority."
+      "owns": "Deterministic scaffolding and generation for new repositories and sites from an eligible immutable profile pin.",
+      "excludes": "Profile meaning or lifecycle, existing-site adoption, reusable publication workflows, site facts, credentials, consent interaction, and final publication authority."
     },
     "relay": {
-      "owns": "Reusable validation and publication workflow execution plus evidence transport for pinned profile consumers.",
-      "excludes": "Profile semantics, site-class selection, commerce semantics, credentials, and final publication decisions."
+      "owns": "Reusable validation and publication workflows plus privacy-safe evidence transport for eligible pinned profile consumers.",
+      "excludes": "Profile semantics or lifecycle, site-class selection, adoption policy, transaction semantics, credentials, and final publication decisions."
     },
     "pace": {
-      "owns": "Previewed, reversible migration and convergence pull requests for existing sites after the profile is accepted.",
-      "excludes": "Direct default-branch mutation, policy definition, and automatic adoption claims."
+      "owns": "Reviewed adoption planning, previewed rollout, reversible migration pull requests, and convergence for existing sites after the profile is eligible.",
+      "excludes": "Direct default-branch mutation, profile policy or lifecycle, generator implementation, publication workflow implementation, and automatic adoption claims."
     },
     "store": {
-      "owns": "Transaction-domain semantics and guarded commerce capability contracts introduced by separately reviewed later work.",
-      "excludes": "The core publication profile, non-commerce concerns, fabricated seller relationships, and authorization inferred from metadata."
+      "owns": "Transaction-domain capability semantics and guarded versioned action contracts introduced by separately reviewed work.",
+      "excludes": "The core profile, descriptive metadata policy, non-commerce concerns, fabricated seller relationships, consent, credentials, and authorization inferred from metadata."
     },
     "observatory": {
-      "owns": "Collection and reporting of privacy-safe conformance evidence and metrics for an accepted profile.",
-      "excludes": "Policy definition, remediation, rollout, passing-state fabrication, and site mutation."
+      "owns": "Collection and reporting of privacy-safe conformance evidence and aggregate metrics for an eligible pinned profile.",
+      "excludes": "Profile policy or lifecycle, remediation, rollout, credentials or personal data collection, passing-state fabrication, and site mutation."
+    },
+    "sites": {
+      "owns": "Truthful site facts, credentials, consent interaction, local configuration, represented revision, and final publication authority.",
+      "excludes": "Changing canonical profile semantics, claiming lifecycle promotion, fabricating evidence or relationships, and delegating consent or authorization to discovery surfaces."
     }
   }
 }

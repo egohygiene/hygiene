@@ -171,7 +171,7 @@ reference validator, and focused unit tests.
 Each canonical record links its primary specifications or maintainer sources
 and dated registration evidence. Issue #51 is the review authority, and
 [PR #55](https://github.com/egohygiene/hygiene/pull/55) is the focused review
-surface for this checkpoint. The parent issue remains open.
+surface that merged this checkpoint. The decision lifecycle remains proposed.
 
 ## Replacement or exit strategy
 
@@ -188,9 +188,7 @@ not authorize generation, deployment, or publication.
 
 ## Follow-up work
 
-1. Review and merge issue #51 without implicitly activating the profile.
-2. Only after that merge, address WebMCP and other guarded capability details
-   in issue #52.
-3. Keep integration, conformance evidence, and downstream adoption gates in
-   issue #53.
-4. Keep parent issue #16 open until all ordered checkpoints are reviewed.
+PR #56 subsequently merged issue #52's guarded capability and commerce layer.
+ADR-012 and issue #53 own final integration and conformance evidence. Parent
+#16 remains open until that final checkpoint merges; lifecycle promotion,
+release, and downstream implementation or adoption remain separate.

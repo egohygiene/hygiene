@@ -466,14 +466,14 @@
         "egohygiene/store",
         "egohygiene/observatory"
       ],
-      "capability": "Agent-Ready Web vocabulary, discovery and efficient-representation catalog, guarded browser-capability envelope, descriptive commerce and advertising policy, source-equivalence and negotiation rules, maturity and evidence shape, compatibility, extension, and ownership policy",
+      "capability": "proposed Agent-Ready Web integrated profile and conformance schemas, independent concern resolution, cross-layer authority invariants, deterministic diagnostics and evidence, immutable consumer resolution, compatibility, reference review, and bounded consumer handoffs",
       "interfaces": [
         "schema",
         "generated-projection"
       ],
       "contract": null,
       "contract_status": "required",
-      "pinning": "versioned"
+      "pinning": "immutable-or-versioned"
     }
   ],
   "forbidden_dependencies": [

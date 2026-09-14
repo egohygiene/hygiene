@@ -119,15 +119,17 @@ readability, capability, efficiency, and commerce independent; defines stable
 site classes, requirement strengths, maturity, compatibility, extensions, and
 ownership; and requires primary references plus registration evidence.
 
-Checkpoint 3 adds the bounded guarded-capability and descriptive-commerce
-foundation from issue #52 to the checkpoint-2 discovery catalog. WebMCP and
-MCP-B entries remain optional experiments but fail closed when present unless
-identity, immutable protocol and implementation pins, versioned input/output
-schemas, authority, confirmation, audit, revocation, replay, rate-limit, and
-failure guards are complete. Product and Offer JSON-LD remains descriptive;
-ads.txt and app-ads.txt require real relationship evidence when applicable;
-and Store retains every transaction-domain contract. The profile remains
-proposed, and emerging or experimental absence remains non-blocking.
+Checkpoint 4 integrates the merged checkpoint catalog as proposed alpha.4.
+The profile preserves four independent concerns while adding schema-enforced
+cross-layer authority denials, deterministic applicability and requirement
+resolution, stable diagnostics and levels, narrow non-passing exemptions,
+version- and revision-bound site evidence, explicit upgrade behavior, and
+precise consumer handoffs. The separate
+`agent-ready-web-conformance.v1.schema.json` describes whole-profile evidence;
+five explicitly synthetic fixtures cover every site class. The profile remains
+proposed, so its pins support review and compatibility testing but do not claim
+release, production eligibility, adoption, publication, monitoring, or
+enforcement.
 
 ```bash
 python3 tools/agent_ready_web.py validate-profile
@@ -138,4 +140,5 @@ See the
 [Agent-Ready Web profile guide](../docs/ecosystem/AGENT_READY_WEB.md) for the
 catalog matrix, applicability and absence behavior, representation-integrity
 rules, capability guards, non-executable commerce boundaries, compatibility
-model, ownership split, and checkpoint exclusions.
+model, conformance resolution and evidence, ownership split, Holon #7 handoff,
+and checkpoint exclusions.

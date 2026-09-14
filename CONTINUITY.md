@@ -7,22 +7,24 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: "2026-09-14T14:18:21Z"
+  updated_at: "2026-09-14T16:25:43Z"
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Preserve the bounded review handoff for Hygiene issue 52 and the proposed Agent-Ready Web guarded capability and commerce foundation.
+  purpose: Preserve the bounded maintainer-review handoff for Hygiene issue 53 and the proposed Agent-Ready Web alpha.4 integration and conformance contract.
   includes:
-    - issue 52 capability identity, contracts, authority, human control, execution evidence, expiry, revocation, replay, rate-limit, and failure policy
-    - descriptive Product and Offer metadata, truthful ads.txt and app-ads.txt applicability, and the Store-owned action boundary
-    - compatibility with merged checkpoints 50 and 51 plus the blocked checkpoint 4 handoff
+    - independent readability, capability, efficiency, and commerce composition with schema-enforced negative authority assertions
+    - deterministic applicability, requirement, exemption, diagnostic, level, evidence, pin, compatibility, and upgrade behavior
+    - five synthetic whole-profile site-class fixtures, current primary-source maturity review, precise consumer ownership, and the Holon 7 handoff
+    - final parent issue 16 evidence after verified checkpoint 50 through 52 merges
   excludes:
     - conversation transcripts
-    - duplicated architecture, roadmap, and changelog content
-    - application-specific browser tools and Store-owned transaction-domain contracts
-    - checkpoint 53 integration, generators, workflows, rollout, publication, dashboards, releases, and adoption claims
+    - duplicated architecture, roadmap, or policy text
+    - real site evidence, exemptions, relationships, credentials, consent, capability support, authorization, transactions, or passing state
+    - Holon generation, Relay workflows, Pace rollout, Store transactions, Observatory dashboards, browser tools, or site publication
+    - lifecycle promotion, release, tag, deployment, registry publication, merge, adoption, monitoring, or enforcement
   precedence:
     - user-and-runtime-instructions
     - scoped-repository-instructions
@@ -34,88 +36,110 @@ scope:
     - docs/ecosystem/ARCHITECTURE.md
     - docs/ecosystem/AGENT_CONTEXT.md
     - docs/ecosystem/DEPENDENCY_BOUNDARIES.md
+    - docs/ecosystem/AGENT_READY_WEB.md
     - docs/decisions/ADR-009-agent-ready-web-profile-foundation.md
     - docs/decisions/ADR-010-agent-ready-web-discovery-representations.md
     - docs/decisions/ADR-011-agent-ready-web-guarded-capability-commerce.md
-    - docs/ecosystem/AGENT_READY_WEB.md
+    - docs/decisions/ADR-012-agent-ready-web-integration-conformance.md
     - catalog/agent-ready-web-profile.json
     - schemas/agent-ready-web-profile.v1.schema.json
+    - schemas/agent-ready-web-conformance.v1.schema.json
     - catalog/contracts.yaml
     - catalog/dependency-boundaries.yaml
+    - docs/generated/DEPENDENCY_BOUNDARIES.md
     - ROADMAP.md
-    - https://github.com/egohygiene/hygiene/issues/52
+    - README.md
+    - https://github.com/egohygiene/hygiene/issues/53
     - https://github.com/egohygiene/hygiene/issues/16
+    - https://github.com/egohygiene/hygiene/pull/57
+    - https://github.com/egohygiene/holon/issues/7
 work:
-  objective: Implement checkpoint 3 as one proposed guarded browser-capability and descriptive-commerce policy foundation without beginning integration or downstream work.
+  objective: Present checkpoint 4 as one proposed, consumer-reviewable integration and validation layer without implementing downstream work or claiming lifecycle or operational state.
   success_conditions:
-    - Keep WebMCP and MCP-B experimental and optional while requiring versioned origin-bound contracts and fail-closed safeguards whenever present.
-    - Separate read-only from state-changing tools and enforce permission, consent, confirmation, security, audit, provenance, revocation, expiry, replay, rate-limit, and recovery policy.
-    - Keep Product and Offer metadata non-executable, require truthful advertising relationships when applicable, and preserve Store ownership of action contracts.
-    - Preserve checkpoint 1 and 2 compatibility and keep schema, fixtures, docs, indexes, roadmap, decision, tests, and generated views consistent.
-    - Pass focused checks, the complete README validation sequence, continuity verification, and git diff checks before opening one unmerged PR that closes only issue 52.
+    - Preserve concern boundaries and prevent discovery, metadata, advertising, or maturity from granting capability, consent, authorization, or transaction authority.
+    - Resolve all normative states deterministically into stable diagnostics, evidence, exemptions, and levels.
+    - Bind consumers to the canonical profile by exact version or immutable revision plus resolved revision and canonical-JSON digest, with explicit reviewed upgrade behavior.
+    - Cover all five site classes with explicitly synthetic whole-profile fixtures and retain current primary-source maturity classifications without overstatement.
+    - Record exact non-overlapping downstream handoffs, including Holon issue 7, while leaving all consumer implementations deferred.
+    - Pass focused checks, the exact README suite, continuity and size checks, generated views, boundary scan, all tests, and git diff checks.
+    - Leave one unmerged PR that closes issue 53 and closes parent 16 only when maintainers merge the final checkpoint.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#52
-    url: https://github.com/egohygiene/hygiene/issues/52
-  next:
-    kind: issue
     id: egohygiene/hygiene#53
-    description: Integrate and validate the complete profile only after checkpoint 3 is reviewed and merged.
-    readiness: blocked
+    url: https://github.com/egohygiene/hygiene/issues/53
+  next:
+    kind: pull-request-review
+    id: egohygiene/hygiene#57
+    description: Maintainers review the proposed final checkpoint; do not merge, promote lifecycle, publish, or begin downstream implementation from this handoff.
+    readiness: ready-for-review
     references:
-      - https://github.com/egohygiene/hygiene/issues/53
+      - https://github.com/egohygiene/hygiene/pull/57
     depends_on:
-      - egohygiene/hygiene#52
+      - egohygiene/hygiene#50-merged-via-54
+      - egohygiene/hygiene#51-merged-via-55
+      - egohygiene/hygiene#52-merged-via-56
 state:
   base:
-    revision: c7c603023c444142bed82af14af23b5898ef568e
+    revision: 3a2aa52111e32b3f1bcaeb294ebccd6c37df9a97
     ref: refs/heads/main
-    verified_at: "2026-09-14T14:10:00Z"
+    verified_at: "2026-09-14T16:24:00Z"
   candidate:
-    branch: codex/hygiene-16-guarded-capability-commerce
-    revision: 43152dda0fe74a3215170116dce6a904a4bca613
-    pull_request: https://github.com/egohygiene/hygiene/pull/56
+    branch: codex/hygiene-16-agent-ready-web-integration
+    revision: 746d6af5f70f2180dc3f40f326ca8d435b60158d
+    revision_role: validated-remote-implementation-snapshot
+    pull_request: https://github.com/egohygiene/hygiene/pull/57
     handoff_state: review-open
+    finalization: A continuity-and-PR-link-only commit follows this exact implementation snapshot; GitHub PR head is authoritative for the final review head.
   live:
     status: verified
-    observed_at: "2026-09-14T14:18:21Z"
-    default_branch_revision: c7c603023c444142bed82af14af23b5898ef568e
+    observed_at: "2026-09-14T16:25:43Z"
+    default_branch_revision: 3a2aa52111e32b3f1bcaeb294ebccd6c37df9a97
     issue_state: open
+    parent_issue_state: reopened
     pull_request_state: open
-    notes: PR 56 is the sole open pull request and targets unchanged main from the exact checkpoint-2 merge; its recorded revision is the implementation snapshot, with this documentation-only review update following it. Issue 52 is open with no comments, issue 16 remains open, issue 53 remains blocked, and no automatic workflow run exists. The parent checklist still shows earlier children unchecked despite their closed issue state.
+    notes: Main remains the PR 56 merge. Issue 53 has no comments. Parent 16 was reopened and its stale child list now records only 50 through 52 as merged; 53 and final completion remain pending. PR 57 is the sole open Hygiene pull request. No pull-request workflow run or commit status is present.
   parallel_changes: []
 review:
   status: passed
-  reviewed_at: "2026-09-14T14:18:21Z"
+  reviewed_at: "2026-09-14T16:25:43Z"
   reviewed_by: Codex
   evidence:
     - command: python3 tools/agent_ready_web.py validate-profile && python3 tools/agent_ready_web.py validate-fixtures && python3 -m unittest tests.test_agent_ready_web
       outcome: passed
-      observed_at: "2026-09-14T14:05:00Z"
-      notes: The proposed alpha.3 profile, all 10 expectation-aware fixtures, and all 28 focused tests passed.
-    - command: python3 tools/boundaries.py render --output docs/generated/DEPENDENCY_BOUNDARIES.md && python3 tools/boundaries.py validate && python3 tools/boundaries.py check-generated --output docs/generated/DEPENDENCY_BOUNDARIES.md
+      observed_at: "2026-09-14T16:24:00Z"
+      notes: Proposed alpha.4, all 15 expectation-aware fixtures including five whole-profile site classes, and all 38 focused tests passed.
+    - command: README.md exact complete repository validation sequence
       outcome: passed
-      observed_at: "2026-09-14T14:01:00Z"
-      notes: The 26-relationship register validated and its generated view is exact.
-    - command: README.md repository validation sequence
+      observed_at: "2026-09-14T16:22:00Z"
+      notes: Catalog, generated views, context, continuity, Agent-Ready Web, boundaries and scan, Repository Intelligence, presentation, ADR fixtures, and all 133 unit tests passed.
+    - command: python3 tools/boundaries.py validate && python3 tools/boundaries.py check-generated --output docs/generated/DEPENDENCY_BOUNDARIES.md && python3 tools/boundaries.py scan --repository-root . --repository egohygiene/hygiene
       outcome: passed
-      observed_at: "2026-09-14T14:09:00Z"
-      notes: Catalog, generated views, context, continuity, Agent-Ready Web, boundaries, Repository Intelligence, presentation, ADR fixtures, and all 123 unit tests passed.
+      observed_at: "2026-09-14T16:24:00Z"
+      notes: The 26-relationship register, exact generated view, and local dependency scan passed.
+    - command: profile digest and JSON plus changed ADR front-matter verification
+      outcome: passed
+      observed_at: "2026-09-14T16:22:00Z"
+      notes: All JSON loaded, all five fixtures matched the canonical profile digest, and ADR-010 through ADR-012 front matter satisfied the decision validator.
     - command: git diff --check
       outcome: passed
-      observed_at: "2026-09-14T14:09:00Z"
-      notes: No whitespace errors were reported before this continuity refresh.
-    - command: GitHub main, issue, comments, predecessor, parent, successor, branch, open-PR, and workflow inspection
+      observed_at: "2026-09-14T16:24:00Z"
+      notes: No whitespace errors existed at the validated implementation snapshot.
+    - command: GitHub main, issue and comment, predecessor, parent, branch, open pull request, workflow-run, and commit-status inspection
       outcome: passed
-      observed_at: "2026-09-14T14:18:21Z"
-      notes: Live main is PR 55's merge, issue 51 is closed, issue 52 is open with no comments, issue 16 is open, issue 53 is blocked, and PR 56 is the only open pull request and is mergeable against unchanged main.
-    - command: GitHub branch publication and focused pull-request creation
+      observed_at: "2026-09-14T16:25:00Z"
+      notes: Main and predecessor state were unchanged, issue 53 remained open, parent 16 was visibly reconciled and reopened, no competing PR existed, and CI evidence remained absent.
+    - command: GitHub atomic tree publication and focused pull-request creation
       outcome: passed
-      observed_at: "2026-09-14T14:18:21Z"
-      notes: The remote implementation tree exactly matches the validated local tree, and PR 56 closes only issue 52 while parent issue 16 and successor issue 53 remain open.
+      observed_at: "2026-09-14T16:25:43Z"
+      notes: Remote tree 27db2e76222b4e710a65b125cb01b25a0930d065 exactly matched the validated local tree; remote revision 746d6af5f70f2180dc3f40f326ca8d435b60158d opened PR 57 against the exact base.
+    - command: python3 tools/continuity.py validate-profile && python3 tools/continuity.py validate-repository --repository . && fixed byte and line limits
+      outcome: passed
+      observed_at: "2026-09-14T16:25:43Z"
+      notes: The final checkpoint is required to remain below 16384 bytes and 240 lines.
   environment_limitations:
-    - Hygiene exposes only a manually dispatched release-policy workflow; no automatic pull-request CI run appeared after pull request 56 opened.
-    - The host does not expose Aether's maintain-repository-continuity skill as an installed skill, so its checked-in pointer and required local policy were applied manually with the repository validator.
+    - Hygiene exposes only a manually dispatched release-policy workflow; no automatic pull-request CI run or commit status is available.
+    - The host does not expose Aether's maintain-repository-continuity skill, so the checked-in pointer and local policy were applied manually and verified with repository tooling.
+    - The checkout has no writable HTTPS Git credential; the selected GitHub connector created one atomic commit from the exact validated tree and fast-forwarded only the checkpoint branch.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -134,100 +158,64 @@ privacy:
 
 ## Purpose and precedence
 
-This checkpoint hands off issue #52's proposed guarded capability and
-descriptive-commerce foundation. It is subordinate to user and repository
-instructions, live GitHub evidence, and the canonical sources above. It does
-not replace issue #16's order or authorize checkpoint #53.
-
-## Resume protocol
-
-Read `AGENTS.md` and the canonical sources above, then recheck `main`, issue
-#52 and its comments, this branch and pull request, parent #16, predecessor
-#51, successor #53, open pull requests, and current CI. Surface stale or
-contradictory evidence and do not begin checkpoint #53 before this candidate
-is reviewed and merged.
+This checkpoint hands off issue #53's proposed alpha.4 integration and
+conformance contract. It is subordinate to instructions, live GitHub state,
+and the canonical sources above. It cannot grant lifecycle or downstream
+authority.
 
 ## Current objective and success conditions
 
-The candidate advances the proposed profile to `1.0.0-alpha.3`. Success means
-browser capabilities are structurally independent, origin-bound, versioned,
-explicitly authorized, human-controlled, auditable, revocable, replay-safe,
-rate-limited, and fail closed; commerce metadata remains descriptive;
-advertising claims remain truthful; Store retains action contracts; canonical
-surfaces agree; and one unmerged PR closes only issue #52.
+Present one unmerged final-checkpoint PR with the proposed profile, exact
+conformance behavior, complete site-class fixtures, current references,
+consumer handoffs, and all validation green. Success does not include merge,
+lifecycle promotion, publication, release, or downstream implementation.
 
 ## State snapshot
 
-- Base: `c7c603023c444142bed82af14af23b5898ef568e` on live `main`, the
-  verified merge commit of checkpoint-2 PR #55.
-- Candidate: remote implementation revision
-  `43152dda0fe74a3215170116dce6a904a4bca613` on
-  `codex/hygiene-16-guarded-capability-commerce`.
-- Review: [PR #56](https://github.com/egohygiene/hygiene/pull/56) is open and
-  mergeable against the verified base; issue #52 and parent #16 remain open,
-  issue #53 is blocked, and no automatic pull-request CI is configured.
+- Base: `3a2aa52111e32b3f1bcaeb294ebccd6c37df9a97`, the verified PR #56 merge on
+  live `main`.
+- Remote implementation: `746d6af5f70f2180dc3f40f326ca8d435b60158d`
+  on `codex/hygiene-16-agent-ready-web-integration`.
+- Review: [PR #57](https://github.com/egohygiene/hygiene/pull/57) is open and
+  unmerged. The profile remains proposed and GitHub reports no automatic CI.
+- Tracker: #16 is reopened with #50–#52 reconciled to merged PRs #54–#56;
+  #53 and final parent completion remain pending PR #57's merge.
 
-## Completed and material changes
+## Material result
 
-- The proposed profile adds exact capability and commerce policy objects plus
-  five bounded mechanism records without redefining earlier catalog entries.
-- WebMCP and MCP-B are optional experiments that require exact protocol and
-  implementation pins, versioned I/O schemas, read/state classification,
-  explicit permission and consent, fresh confirmation, security controls,
-  execution evidence, revocation, expiry, replay protection, rate limits, and
-  deterministic failure behavior when present.
-- Product and Offer JSON-LD is descriptive only; ads.txt and app-ads.txt use
-  real relationship evidence or safe absence; Store owns transaction domains.
-- Schema bindings, compatibility fixtures, the reference checker, focused
-  tests, ADR-011, architecture, dependency/contract indexes, roadmap, human
-  guide, generated boundary view, and README surfaces agree.
-- No browser tool, commerce transaction, Store contract, generator, workflow,
-  rollout, publication, dashboard, release, or adoption was implemented.
+The candidate composes four independent concerns, denies cross-layer authority,
+adds deterministic full-profile conformance evidence and diagnostics, validates
+five synthetic site classes, pins canonical policy by revision and digest,
+retains reviewed maturity classifications, and records exact consumer handoffs.
+It does not implement or claim downstream, release, publication, adoption,
+monitoring, enforcement, or real-site state.
 
-## Validation and review evidence
+## Validation and limitations
 
-Focused checks, all 10 fixtures, the complete README sequence with 123 tests,
-the regenerated boundary check, continuity validation, fixed size checks, and
-`git diff --check` passed.
-
-## Blockers, risks, unknowns, and deferred work
-
-- Blockers: none observed for reviewing PR #56.
-- Risks: protocol revisions and all lifecycle choices remain proposed; every
-  consumer must pin exactly and cannot infer adoption or executable authority.
-- Unknowns: no automatic pull-request CI exists, so local checks are the only
-  current executable evidence.
-- Deferred: issue #53 and every application capability, Store domain contract,
-  Holon, Relay, Pace, Observatory, or site implementation.
+Focused validation, all fixtures, the exact README sequence with 133 tests,
+generated views, continuity checks, fixed size limits, the dependency scan,
+changed ADR front matter, and `git diff --check` passed. The repository has no
+automatic pull-request CI; local evidence is the only current executable gate.
+The unavailable Aether skill and connector-based atomic publication are
+recorded above rather than hidden.
 
 ## Next dependency-ready work
 
-[Issue #53](https://github.com/egohygiene/hygiene/issues/53) remains blocked by
-the reviewed merge of issue #52. A future checkpoint must branch from that new
-live `main`; this branch must not begin integration.
-
-## Parallel changes and reconciliation
-
-[PR #56](https://github.com/egohygiene/hygiene/pull/56) is the sole open pull
-request and this checkpoint's review surface. The branch began directly from
-the verified PR #55 merge commit and carries no unmerged sibling history.
-
-## Privacy and redaction
-
-This public checkpoint contains only public repository state, public standards
-references, and synthetic fixture data. It excludes secrets, private
-conversations, personal data, local paths, and unpublished private business
-information.
+Holon #7 receives a specification-only handoff: later resolve an eligible
+immutable pin, accept site-owned inputs, generate with provenance, and make no
+conformance or publication claim. `humans.txt` is outside this profile. Relay,
+Pace, Store, Observatory, and individual sites retain their documented work and
+authority. The next safe action is maintainer review of PR #57. Do not merge,
+promote, publish, or start consumer work from this checkpoint.
 
 ## Handoff update protocol
 
-Before presenting or updating the pull request, recheck mutable GitHub state,
-replace stale candidate details, record exact checks and limitations, and keep
-this checkpoint in the same bounded change. Never predict a merge or treat
-generated text as maintainer authority.
+Before any PR update, recheck `main`, #53 and #16 with comments, PR #57, the
+branch head, competing PRs, and CI. Re-run affected and complete validation,
+record the exact remote head externally when a continuity-only commit follows
+the implementation snapshot, and never predict merge or adoption.
 
 ## Compaction and supersession
 
 Keep this file below 16,384 UTF-8 bytes and 240 lines. Replace stale snapshot
-prose rather than accumulating chronology. Git and GitHub retain history; mark
-this checkpoint stale or superseded only with the required reason or pointer.
+prose instead of accumulating chronology. Git and GitHub retain history.

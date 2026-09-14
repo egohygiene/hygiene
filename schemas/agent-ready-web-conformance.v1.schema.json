@@ -1,0 +1,614 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/agent-ready-web-conformance.v1.schema.json",
+  "title": "Ego Hygiene Agent-Ready Web conformance evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "synthetic",
+    "profile",
+    "subject",
+    "assessment",
+    "authority_assertions",
+    "evidence",
+    "mechanisms",
+    "summary",
+    "diagnostics"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egohygiene.agent-ready-web-conformance/v1"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "profile": {
+      "$ref": "#/$defs/profilePin"
+    },
+    "subject": {
+      "$ref": "#/$defs/subject"
+    },
+    "assessment": {
+      "$ref": "#/$defs/assessment"
+    },
+    "authority_assertions": {
+      "const": {
+        "discovery_grants_capability": false,
+        "structured_metadata_grants_capability": false,
+        "advertising_grants_capability": false,
+        "maturity_grants_capability": false,
+        "surface_grants_consent": false,
+        "surface_grants_authorization": false,
+        "surface_grants_transaction_authority": false
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "mechanisms": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/mechanismAssessment"
+      }
+    },
+    "summary": {
+      "$ref": "#/$defs/summary"
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/diagnostic"
+      }
+    }
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*$"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "location": {
+      "type": "string",
+      "anyOf": [
+        {
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        {
+          "pattern": "^(?!\\.{1,2}(?:/|$))(?!.*\\/\\.{1,2}(?:/|$))(?:[A-Za-z0-9._-]+/)*[A-Za-z0-9._-]+$"
+        }
+      ]
+    },
+    "semanticVersion": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "profilePin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "version",
+        "status",
+        "repository",
+        "path",
+        "pin"
+      ],
+      "properties": {
+        "schema": {
+          "const": "egohygiene.agent-ready-web-profile/v1"
+        },
+        "version": {
+          "$ref": "#/$defs/semanticVersion"
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "active",
+            "deprecated",
+            "superseded"
+          ]
+        },
+        "repository": {
+          "const": "egohygiene/hygiene"
+        },
+        "path": {
+          "const": "catalog/agent-ready-web-profile.json"
+        },
+        "pin": {
+          "$ref": "#/$defs/pin"
+        }
+      }
+    },
+    "pin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "value",
+        "resolved_revision",
+        "sha256"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "immutable-revision",
+            "released-version"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolved_revision": {
+          "$ref": "#/$defs/revision"
+        },
+        "sha256": {
+          "$ref": "#/$defs/digest"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "immutable-revision"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "$ref": "#/$defs/revision"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "released-version"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "$ref": "#/$defs/semanticVersion"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "site_class",
+        "origin",
+        "represented_revision"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "site_class": {
+          "enum": [
+            "application",
+            "commerce",
+            "content",
+            "documentation",
+            "hybrid"
+          ]
+        },
+        "origin": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://[^/@?#]+(?::[0-9]+)?/?$"
+        },
+        "represented_revision": {
+          "$ref": "#/$defs/revision"
+        }
+      }
+    },
+    "assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assessed_at",
+        "assessor"
+      ],
+      "properties": {
+        "assessed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "assessor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "version"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/identifier"
+            },
+            "version": {
+              "$ref": "#/$defs/semanticVersion"
+            }
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "location",
+        "observed_at",
+        "subject_revision",
+        "description",
+        "sha256"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "kind": {
+          "enum": [
+            "approval",
+            "configuration",
+            "contract",
+            "generated-artifact",
+            "http-response",
+            "human-review",
+            "source-manifest"
+          ]
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "subject_revision": {
+          "$ref": "#/$defs/revision"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        },
+        "sha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/digest"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "mechanismAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "applicability",
+        "applicability_evidence_ids",
+        "declared_strength",
+        "requirement_condition",
+        "resolved_strength",
+        "presence",
+        "validation",
+        "evidence_ids",
+        "exemption"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "applicability": {
+          "enum": [
+            "applicable",
+            "not-applicable",
+            "unknown"
+          ]
+        },
+        "applicability_evidence_ids": {
+          "$ref": "#/$defs/evidenceIds"
+        },
+        "declared_strength": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "conditional",
+            "prohibited"
+          ]
+        },
+        "requirement_condition": {
+          "enum": [
+            "met",
+            "not-met",
+            "unknown",
+            null
+          ]
+        },
+        "resolved_strength": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "prohibited",
+            "inapplicable",
+            "unresolved"
+          ]
+        },
+        "presence": {
+          "enum": [
+            "present",
+            "absent"
+          ]
+        },
+        "validation": {
+          "enum": [
+            "passed",
+            "failed",
+            "not-run"
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/identifier"
+          }
+        },
+        "exemption": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/exemption"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "presence": {
+                "const": "absent"
+              }
+            },
+            "required": [
+              "presence"
+            ]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "const": "not-run"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "presence": {
+                "const": "present"
+              }
+            },
+            "required": [
+              "presence"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "exemption": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "exemption"
+            ]
+          },
+          "then": {
+            "properties": {
+              "resolved_strength": {
+                "const": "required"
+              },
+              "presence": {
+                "const": "absent"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "evidenceIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/identifier"
+      }
+    },
+    "exemption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "scope",
+        "owner",
+        "reason",
+        "approved_by",
+        "approval_evidence_id",
+        "approved_on",
+        "expires_on"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "scope": {
+          "const": "required-absence"
+        },
+        "owner": {
+          "$ref": "#/$defs/text"
+        },
+        "reason": {
+          "$ref": "#/$defs/text"
+        },
+        "approved_by": {
+          "$ref": "#/$defs/text"
+        },
+        "approval_evidence_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "approved_on": {
+          "type": "string",
+          "format": "date"
+        },
+        "expires_on": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "errors",
+        "advisories",
+        "informationals",
+        "exemptions",
+        "applicable",
+        "inapplicable",
+        "experimental_present",
+        "claim"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "nonconformant",
+            "exempt",
+            "baseline",
+            "recommended"
+          ]
+        },
+        "errors": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "advisories": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "informationals": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "exemptions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "applicable": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "inapplicable": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "experimental_present": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "claim": {
+          "const": "assessment-only-no-certification-adoption-publication-or-authority"
+        }
+      }
+    },
+    "diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "severity",
+        "mechanism_id",
+        "path",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^ARW-[A-Z]+-[0-9]{3}$"
+        },
+        "severity": {
+          "enum": [
+            "error",
+            "advisory",
+            "information"
+          ]
+        },
+        "mechanism_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "path": {
+          "$ref": "#/$defs/text"
+        },
+        "message": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    }
+  }
+}

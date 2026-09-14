@@ -181,10 +181,15 @@ issues: [16, 19, 22, 45]
   compatibility, mechanism-registration, and ownership foundation, and PR #55
   merged checkpoint #51's bounded discovery and efficient-representation
   catalog, deterministic representation semantics, and truthful-absence
-  policy. Checkpoint #52 now proposes the guarded WebMCP/MCP-B capability
+  policy. PR #56 merged checkpoint #52's guarded WebMCP/MCP-B capability
   envelope, descriptive Product and Offer boundary, truthful ads.txt and
-  app-ads.txt applicability, and Store-owned action boundary. Integration
-  checkpoint #53 remains dependent on the reviewed merge sequence.
+  app-ads.txt applicability, and Store-owned action boundary. Final checkpoint
+  #53 and PR #57 now propose alpha.4 integration, cross-layer authority invariants,
+  deterministic whole-profile conformance and evidence, immutable consumer
+  resolution, reference review, compatibility fixtures for every site class,
+  and precise downstream handoffs. The profile remains proposed; no tagged
+  schema release, consumer adoption, generation, workflow, rollout, dashboard,
+  site publication, monitoring, or enforcement is evidenced.
 
 <!-- roadmap-step
 id: HYG-Q06
