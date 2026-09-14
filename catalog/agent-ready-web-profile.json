@@ -1,6 +1,6 @@
 {
   "schema": "egohygiene.agent-ready-web-profile/v1",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "status": "proposed",
   "owner": "egohygiene/hygiene",
   "updated": "2026-09-14",
@@ -132,7 +132,1532 @@
     "required_primary_references": 1,
     "required_registration_evidence": 1
   },
-  "mechanisms": [],
+  "resolution_policy": {
+    "applicability_precedes_strength": true,
+    "inapplicable_absence": "valid",
+    "optional_absence": "valid",
+    "recommended_absence": "advisory",
+    "conditional_absence": "valid-when-condition-false",
+    "required_absence": "error",
+    "prohibited_presence": "error",
+    "emerging_and_experimental_default": "non-blocking",
+    "fabricated_placeholder": "prohibited"
+  },
+  "representation_policy": {
+    "scope": "public-source-equivalent-alternate-representations",
+    "integrity": {
+      "canonical_source": "shared-reviewed-source",
+      "source_equivalence": "no-material-additions-omissions-or-changed-claims",
+      "freshness": "same-build-or-source-revision",
+      "canonical_url": "human-facing-canonical-url",
+      "provenance": "record-source-uri-revision-generator-and-generated-at",
+      "access_control": "same-or-stricter-than-canonical",
+      "hidden_or_privileged_content": "prohibited",
+      "drift": "invalidate-present-alternate"
+    },
+    "content_negotiation": {
+      "canonical_default": "text/html",
+      "markdown_selection": "only-when-accept-gives-text-markdown-a-higher-positive-quality-than-text-html",
+      "tie_or_wildcard": "text/html",
+      "unavailable_or_unacceptable": "text-html-if-acceptable-otherwise-406",
+      "vary": "Accept-required-when-selection-can-vary",
+      "content_location": "explicit-markdown-uri-required-for-negotiated-markdown",
+      "user_agent_selection": "prohibited"
+    },
+    "alternate_discovery": {
+      "relation": "alternate",
+      "media_type": "text/markdown",
+      "html_or_http_link": "required",
+      "canonical_backlink": "human-facing-canonical-url-required"
+    },
+    "authoritative_references": [
+      {
+        "id": "http-semantics-rfc9110",
+        "title": "RFC 9110: HTTP Semantics",
+        "publisher": "IETF / RFC Editor",
+        "type": "standard",
+        "authority": "primary",
+        "location": "https://www.rfc-editor.org/rfc/rfc9110.html",
+        "retrieved_on": "2026-09-14"
+      },
+      {
+        "id": "markdown-media-type-rfc7763",
+        "title": "RFC 7763: The text/markdown Media Type",
+        "publisher": "RFC Editor",
+        "type": "standard",
+        "authority": "primary",
+        "location": "https://www.rfc-editor.org/rfc/rfc7763.html",
+        "retrieved_on": "2026-09-14"
+      },
+      {
+        "id": "web-linking-rfc8288",
+        "title": "RFC 8288: Web Linking",
+        "publisher": "IETF / RFC Editor",
+        "type": "standard",
+        "authority": "primary",
+        "location": "https://www.rfc-editor.org/rfc/rfc8288.html",
+        "retrieved_on": "2026-09-14"
+      }
+    ]
+  },
+  "mechanisms": [
+    {
+      "id": "ai-crawler-guidance",
+      "title": "Optional AI crawler guidance",
+      "description": "Product-token-specific crawl guidance expressed through the Robots Exclusion Protocol for an AI crawler whose operator publishes authoritative identification documentation.",
+      "concern": "readability",
+      "artifact": {
+        "kind": "crawler-guidance",
+        "locations": [
+          "/robots.txt"
+        ],
+        "media_types": [
+          "text/plain"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "documented-ai-crawler-policy",
+          "description": "The site owner chooses a distinct policy for an AI crawler whose product token and purpose are documented by its operator."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "optional",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "optional",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "document-product-token",
+          "strength": "required",
+          "description": "Every AI-specific group names a product token backed by current operator documentation and records the intended crawl purpose in review evidence."
+        },
+        {
+          "id": "no-authorization-inference",
+          "strength": "prohibited",
+          "description": "Crawler guidance must not be represented as authentication, authorization, license, consent, or enforceable access control."
+        },
+        {
+          "id": "rfc9309-syntax",
+          "strength": "required",
+          "description": "AI-specific groups use the same UTF-8, group, product-token, allow, and disallow semantics as RFC 9309."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "documented-token",
+          "severity": "error",
+          "description": "Reject an AI-specific group when its product token cannot be traced to current operator documentation."
+        },
+        {
+          "id": "parse-rules",
+          "severity": "error",
+          "description": "Reject malformed groups or rules using the RFC 9309 parsing and matching requirements."
+        }
+      ],
+      "maturity": {
+        "level": "emerging",
+        "assessed_on": "2026-09-14",
+        "rationale": "AI-specific product tokens and purposes evolve across operators even though the underlying Robots Exclusion Protocol is standardized.",
+        "reference_ids": [
+          "robots-exclusion-rfc9309"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "robots-exclusion-rfc9309",
+          "title": "RFC 9309: Robots Exclusion Protocol",
+          "publisher": "IETF / RFC Editor",
+          "type": "standard",
+          "authority": "primary",
+          "location": "https://www.rfc-editor.org/rfc/rfc9309.html",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "rfc9309-publication",
+          "kind": "specification-publication",
+          "location": "https://www.rfc-editor.org/rfc/rfc9309.html",
+          "description": "The standards-track protocol defines product-token-specific crawler groups while explicitly excluding access authorization.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
+      "id": "ai-oriented-hints",
+      "title": "Justified AI-oriented discovery hints",
+      "description": "Narrow machine-readable hints whose names and processing semantics are published by an identified consumer, without inventing a universal AI metadata vocabulary.",
+      "concern": "readability",
+      "artifact": {
+        "kind": "page-metadata",
+        "locations": [
+          "consumer-specified HTML metadata or HTTP field"
+        ],
+        "media_types": [
+          "text/html"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "consumer-owned-hint-specification",
+          "description": "A real target consumer publishes stable hint semantics and the site has an evidenced need for that consumer-specific hint."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "optional",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "optional",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "no-authority",
+          "strength": "prohibited",
+          "description": "A hint must not grant capability, consent, license, transaction, or publication authority."
+        },
+        {
+          "id": "no-invented-hints",
+          "strength": "prohibited",
+          "description": "Do not emit guessed metadata names, values, or processing semantics without a primary consumer-owned specification."
+        },
+        {
+          "id": "public-claims-only",
+          "strength": "required",
+          "description": "Hint values are derived only from current public canonical content and remain subordinate to that content."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "declared-semantics",
+          "severity": "error",
+          "description": "Reject a present hint without a resolvable primary specification for its exact name, value shape, and consumer."
+        },
+        {
+          "id": "host-syntax",
+          "severity": "error",
+          "description": "Reject a hint that violates the syntax or extension rules of its HTML or HTTP host surface."
+        }
+      ],
+      "maturity": {
+        "level": "experimental",
+        "assessed_on": "2026-09-14",
+        "rationale": "No cross-consumer AI hint vocabulary is established; registration is only a guarded extension point for explicitly documented consumer semantics.",
+        "reference_ids": [
+          "html-metadata-extensions"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "html-metadata-extensions",
+          "title": "HTML Standard: Other metadata names",
+          "publisher": "WHATWG",
+          "type": "standard",
+          "authority": "primary",
+          "location": "https://html.spec.whatwg.org/multipage/semantics.html#other-metadata-names",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "html-extension-requirements",
+          "kind": "specification-publication",
+          "location": "https://html.spec.whatwg.org/multipage/semantics.html#other-metadata-names",
+          "description": "The HTML Standard requires metadata extensions to identify their keyword, semantics, specification, and status.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
+      "id": "canonical-metadata",
+      "title": "Canonical link metadata",
+      "description": "A page-level canonical link relation identifying the preferred human-facing URL for duplicate or source-equivalent representations.",
+      "concern": "readability",
+      "artifact": {
+        "kind": "page-metadata",
+        "locations": [
+          "HTML link element or HTTP Link field"
+        ],
+        "media_types": [
+          "text/html"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "public-indexable-page",
+          "description": "The response represents a public human-facing page that may be indexed or has duplicate or alternate representations."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "required",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "required",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "canonical-target",
+          "strength": "required",
+          "description": "The target is the absolute HTTPS URL of duplicative or superset content and remains stable across alternate representations."
+        },
+        {
+          "id": "human-canonical",
+          "strength": "required",
+          "description": "A machine-oriented alternate points to the human-facing page as canonical rather than replacing it as the preferred URL."
+        },
+        {
+          "id": "single-declaration",
+          "strength": "required",
+          "description": "Each representation resolves to exactly one internally consistent canonical target."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "equivalent-target",
+          "severity": "error",
+          "description": "Reject a target that is not duplicate, source-equivalent, or a truthful superset of the referring content."
+        },
+        {
+          "id": "resolvable-target",
+          "severity": "error",
+          "description": "Reject a canonical target that is malformed, inaccessible to the intended public audience, or outside an explicitly reviewed ownership boundary."
+        },
+        {
+          "id": "single-target",
+          "severity": "error",
+          "description": "Reject conflicting canonical declarations for the same representation."
+        }
+      ],
+      "maturity": {
+        "level": "established",
+        "assessed_on": "2026-09-14",
+        "rationale": "The canonical link relation is registered by RFC 6596 and broadly used by web indexing systems.",
+        "reference_ids": [
+          "canonical-link-rfc6596"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "canonical-link-rfc6596",
+          "title": "RFC 6596: The Canonical Link Relation",
+          "publisher": "RFC Editor",
+          "type": "standard",
+          "authority": "primary",
+          "location": "https://www.rfc-editor.org/rfc/rfc6596.html",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "rfc6596-publication",
+          "kind": "specification-publication",
+          "location": "https://www.rfc-editor.org/rfc/rfc6596.html",
+          "description": "RFC 6596 registers the canonical relation and defines its duplicate-or-superset target constraint.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
+      "id": "cats-txt",
+      "title": "cats.txt experimental well-known file",
+      "description": "The satirical cats.txt draft served at /.well-known/cats.txt, registered only as an optional experiment rather than a web or AI interoperability standard.",
+      "concern": "readability",
+      "artifact": {
+        "kind": "well-known-file",
+        "locations": [
+          "/.well-known/cats.txt"
+        ],
+        "media_types": [
+          "text/markdown"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "operator-maintains-truthful-cats-file",
+          "description": "The site operator voluntarily participates and can maintain the draft's public claims without inventing feline, personal, or security data."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "optional",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "optional",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "no-cryptographic-authority",
+          "strength": "prohibited",
+          "description": "A feline-generated key, embedding, or validation image must not be treated as authentication, cryptographic, identity, or trust authority."
+        },
+        {
+          "id": "no-fabricated-cat",
+          "strength": "prohibited",
+          "description": "Do not invent a cat, role, relationship, credential, or observation merely to satisfy the draft."
+        },
+        {
+          "id": "public-data-only",
+          "strength": "required",
+          "description": "Any claims, contacts, images, or embeddings are limited to intentionally public, consented source material."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "draft-format",
+          "severity": "error",
+          "description": "When present, validate the location, media type, and fields against the cited cats.txt draft without calling it an IETF standard."
+        },
+        {
+          "id": "privacy",
+          "severity": "error",
+          "description": "Reject private contact data, secrets, unapproved personal data, or embeddings derived from non-public source material."
+        },
+        {
+          "id": "well-known-location",
+          "severity": "error",
+          "description": "Reject a claimed cats.txt artifact served outside the origin's exact /.well-known/cats.txt path."
+        }
+      ],
+      "maturity": {
+        "level": "experimental",
+        "assessed_on": "2026-09-14",
+        "rationale": "The publisher describes cats.txt as satirical, and its informational draft explicitly is not an Internet Standards Track specification.",
+        "reference_ids": [
+          "cats-txt-draft"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "cats-txt-draft",
+          "title": "cats.txt informational draft",
+          "publisher": "cats.txt standard team",
+          "type": "maintainer-source",
+          "authority": "primary",
+          "location": "https://catstxt.org/docs/draft-catstxt-00/",
+          "retrieved_on": "2026-09-14"
+        },
+        {
+          "id": "well-known-rfc8615",
+          "title": "RFC 8615: Well-Known Uniform Resource Identifiers",
+          "publisher": "IETF / RFC Editor",
+          "type": "standard",
+          "authority": "supporting",
+          "location": "https://www.rfc-editor.org/rfc/rfc8615.html",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "cats-draft-publication",
+          "kind": "specification-publication",
+          "location": "https://catstxt.org/docs/draft-catstxt-00/",
+          "description": "The public draft defines the experimental location and format while disclaiming Internet Standards Track status.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
+      "id": "entitymap-html",
+      "title": "EntityMap HTML companion",
+      "description": "The human- and crawler-readable HTML companion generated from a conforming entitymap.json under the EntityMap v1.0 specification.",
+      "concern": "readability",
+      "artifact": {
+        "kind": "origin-file",
+        "locations": [
+          "/entitymap.html"
+        ],
+        "media_types": [
+          "text/html"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "entitymap-json-published",
+          "description": "The same origin has voluntarily published a conforming /entitymap.json artifact."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "required",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "required",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "generated-from-json",
+          "strength": "required",
+          "description": "The HTML companion is generated from the same entitymap.json and is never maintained as an independent semantic source."
+        },
+        {
+          "id": "json-alternate-link",
+          "strength": "required",
+          "description": "The document links to /entitymap.json with rel=alternate and type=application/json."
+        },
+        {
+          "id": "visible-attribution",
+          "strength": "required",
+          "description": "Every rendered chunk retains visible publisher attribution and its public canonical source URL."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "json-drift",
+          "severity": "error",
+          "description": "Reject a companion whose entities, chunks, source URLs, or attribution diverge from the paired entitymap.json."
+        },
+        {
+          "id": "no-noindex",
+          "severity": "error",
+          "description": "Reject a companion carrying a noindex directive contrary to the cited specification."
+        },
+        {
+          "id": "visible-source-links",
+          "severity": "error",
+          "description": "Reject missing visible publisher text, source links, or the required JSON alternate link."
+        }
+      ],
+      "maturity": {
+        "level": "published_specification",
+        "assessed_on": "2026-09-14",
+        "rationale": "EntityMap v1.0 publicly specifies the generated HTML companion, but broad interoperable deployment has not been established.",
+        "reference_ids": [
+          "entitymap-v1-spec"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "entitymap-v1-spec",
+          "title": "EntityMap Specification v1.0",
+          "publisher": "EntityMap",
+          "type": "industry-specification",
+          "authority": "primary",
+          "location": "https://www.entitymap.org/spec/v1.0",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "entitymap-v1-publication",
+          "kind": "specification-publication",
+          "location": "https://www.entitymap.org/spec/v1.0",
+          "description": "The published v1.0 specification defines /entitymap.html as a generated companion with visible attribution and a JSON alternate link.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
+      "id": "entitymap-json",
+      "title": "EntityMap JSON",
+      "description": "An optional source-backed entity and evidence index at /entitymap.json following the EntityMap v1.0 industry specification.",
+      "concern": "readability",
+      "artifact": {
+        "kind": "origin-file",
+        "locations": [
+          "/entitymap.json"
+        ],
+        "media_types": [
+          "application/json"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "source-backed-public-entity-index",
+          "description": "The publisher chooses to maintain an entity index and can derive every entity, chunk, relation, and attribution from current public canonical sources."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "optional",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "optional",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "public-source-attribution",
+          "strength": "required",
+          "description": "Each chunk preserves the canonical public source URL, page title, and exact publisher attribution required by the cited specification."
+        },
+        {
+          "id": "truthful-confidence",
+          "strength": "required",
+          "description": "Relations, confidence, verification status, and certification claims reflect review evidence and never upgrade automated inference to verified fact."
+        },
+        {
+          "id": "truthful-public-corpus",
+          "strength": "required",
+          "description": "Entities and chunks contain only current public canonical material and exclude hidden, privileged, or audience-restricted content."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "certification-claims",
+          "severity": "error",
+          "description": "Reject malformed, cross-domain, expired-as-current, or otherwise unevidenced certification and verification claims; registry unavailability remains unknown."
+        },
+        {
+          "id": "source-resolution",
+          "severity": "error",
+          "description": "Reject chunks whose sourceUrl is non-public, non-canonical, inaccessible to the intended audience, or materially inconsistent with the chunk."
+        },
+        {
+          "id": "v1-structure",
+          "severity": "error",
+          "description": "Reject a present file that fails the EntityMap v1.0 structural, attribution, predicate, or size constraints."
+        }
+      ],
+      "maturity": {
+        "level": "published_specification",
+        "assessed_on": "2026-09-14",
+        "rationale": "EntityMap has a public v1.0 specification and validator, while broad deployment and independent interoperability evidence remain unestablished.",
+        "reference_ids": [
+          "entitymap-v1-spec"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "entitymap-v1-spec",
+          "title": "EntityMap Specification v1.0",
+          "publisher": "EntityMap",
+          "type": "industry-specification",
+          "authority": "primary",
+          "location": "https://www.entitymap.org/spec/v1.0",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "entitymap-v1-publication",
+          "kind": "specification-publication",
+          "location": "https://www.entitymap.org/spec/v1.0",
+          "description": "The published v1.0 specification defines the JSON structure, source attribution, freshness, and validation requirements.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
+      "id": "llms-full-txt",
+      "title": "Aggregate llms-full.txt representation",
+      "description": "An optional Markdown aggregation of a bounded public documentation corpus, treated as an emerging implementation convention rather than part of the llms.txt v2 proposal.",
+      "concern": "efficiency",
+      "artifact": {
+        "kind": "origin-file",
+        "locations": [
+          "/llms-full.txt"
+        ],
+        "media_types": [
+          "text/markdown"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "bounded-public-documentation-corpus",
+          "description": "The site has a bounded public documentation corpus that can be aggregated within an owned size budget without leaking excluded content."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "optional",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "optional",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "bounded-size",
+          "strength": "required",
+          "description": "The publisher declares and enforces a size budget; oversized corpora use selective linked Markdown rather than an unbounded aggregate."
+        },
+        {
+          "id": "public-canonical-content",
+          "strength": "required",
+          "description": "The aggregate includes only current public canonical documentation and preserves page boundaries and source URLs."
+        },
+        {
+          "id": "source-equivalence",
+          "strength": "required",
+          "description": "Every included section is generated from the same reviewed source revision as its human-facing page without machine-only claims or instructions."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "aggregate-drift",
+          "severity": "error",
+          "description": "Reject a present aggregate with material additions, omissions, changed claims, stale pages, or missing canonical source links."
+        },
+        {
+          "id": "privacy-boundary",
+          "severity": "error",
+          "description": "Reject hidden, draft, authenticated, tenant-specific, personal, or otherwise non-public content."
+        },
+        {
+          "id": "size-budget",
+          "severity": "error",
+          "description": "Reject a present aggregate that exceeds the publisher's explicit machine-consumption size budget."
+        }
+      ],
+      "maturity": {
+        "level": "emerging",
+        "assessed_on": "2026-09-14",
+        "rationale": "Documentation platforms publish llms-full.txt, but the current llms.txt v2 proposal does not define it and interoperable limits remain unsettled.",
+        "reference_ids": [
+          "mintlify-llms-full"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "mintlify-llms-full",
+          "title": "Mintlify llms.txt and llms-full.txt documentation",
+          "publisher": "Mintlify",
+          "type": "official-documentation",
+          "authority": "primary",
+          "location": "https://www.mintlify.com/docs/ai/llmstxt",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "mintlify-implementation",
+          "kind": "implementation-observation",
+          "location": "https://www.mintlify.com/docs/ai/llmstxt",
+          "description": "Mintlify documents automatic llms-full.txt publication as a complete documentation-site Markdown aggregation.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
+      "id": "llms-txt",
+      "title": "llms.txt curated discovery index",
+      "description": "A concise, path-scoped Markdown overview and curated link index following the llms.txt v2 proposal.",
+      "concern": "readability",
+      "artifact": {
+        "kind": "path-file",
+        "locations": [
+          "/llms.txt",
+          "<path>/llms.txt"
+        ],
+        "media_types": [
+          "text/markdown"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "curated-public-ai-readable-content",
+          "description": "The site or controlled path exposes public content for which a maintained, curated agent-readable overview provides a truthful navigation benefit."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "optional",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "recommended",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "recommended",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "recommended",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "curated-scope",
+          "strength": "required",
+          "description": "The H1, summary, guidance, sections, and links describe only the site or path covered by the file and follow the v2 ordering rules."
+        },
+        {
+          "id": "public-links",
+          "strength": "required",
+          "description": "Linked resources are intentionally public, canonical, current, and preferably source-equivalent Markdown when available."
+        },
+        {
+          "id": "separate-crawl-policy",
+          "strength": "required",
+          "description": "The file provides navigation context only and never claims crawler permission, training consent, access authorization, or action capability."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "link-scope",
+          "severity": "error",
+          "description": "Reject broken, non-public, misleading, or out-of-scope links that are not explicitly justified external context."
+        },
+        {
+          "id": "v2-format",
+          "severity": "error",
+          "description": "Reject a present file without the required H1 or with headings and link lists that violate the cited v2 format."
+        },
+        {
+          "id": "v2-path-resolution",
+          "severity": "error",
+          "description": "Reject ambiguous path coverage; the most specific applicable llms.txt governs its descendant path."
+        }
+      ],
+      "maturity": {
+        "level": "emerging",
+        "assessed_on": "2026-09-14",
+        "rationale": "The v2 proposal records substantial implementation adoption, while its governance remains an open community proposal rather than a web standard.",
+        "reference_ids": [
+          "llms-txt-v2"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "llms-txt-v2",
+          "title": "The /llms.txt file, v2",
+          "publisher": "llms-txt / Jeremy Howard",
+          "type": "maintainer-source",
+          "authority": "primary",
+          "location": "https://llmstxt.org/",
+          "retrieved_on": "2026-09-14"
+        },
+        {
+          "id": "llms-txt-v2-changes",
+          "title": "llms.txt v2 changes",
+          "publisher": "llms-txt / Jeremy Howard",
+          "type": "maintainer-source",
+          "authority": "supporting",
+          "location": "https://llmstxt.org/changes.html",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "llms-txt-v2-publication",
+          "kind": "specification-publication",
+          "location": "https://llmstxt.org/",
+          "description": "The August 2026 v2 proposal defines path scope, ordered Markdown format, alternate discovery, and current adoption evidence.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
+      "id": "markdown-alternate",
+      "title": "Source-equivalent Markdown alternate",
+      "description": "An explicitly discoverable Markdown representation of a canonical human-facing page, derived from the same reviewed source without semantic drift.",
+      "concern": "efficiency",
+      "artifact": {
+        "kind": "page-alternate",
+        "locations": [
+          "<canonical-path>.md",
+          "<explicit-markdown-uri>"
+        ],
+        "media_types": [
+          "text/markdown"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "maintainable-public-source-equivalent",
+          "description": "A public canonical page has a reviewed source from which a current, materially equivalent Markdown representation can be generated without exposing hidden or privileged content."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "optional",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "recommended",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "recommended",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "recommended",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "canonical-backlink",
+          "strength": "required",
+          "description": "The alternate identifies the human-facing canonical URL and is discoverable from that canonical representation with an alternate link typed text/markdown."
+        },
+        {
+          "id": "privacy-parity",
+          "strength": "required",
+          "description": "The alternate applies the same or stricter access controls and contains no hidden, private, draft, or privileged source material."
+        },
+        {
+          "id": "source-equivalence",
+          "strength": "required",
+          "description": "The alternate and canonical page derive from the same reviewed source revision with no material additions, omissions, or changed claims."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "discovery-link",
+          "severity": "error",
+          "description": "Reject a present alternate that lacks a typed HTML or HTTP Link relation from the canonical page or lacks its canonical backlink."
+        },
+        {
+          "id": "negotiation",
+          "severity": "error",
+          "description": "Reject user-agent sniffing, Markdown preference ties, missing Vary: Accept, or missing Content-Location when the canonical URL performs negotiation."
+        },
+        {
+          "id": "representation-integrity",
+          "severity": "error",
+          "description": "Reject a present alternate whose source revision, freshness, meaning, provenance, or access controls do not satisfy the profile-wide representation policy."
+        }
+      ],
+      "maturity": {
+        "level": "emerging",
+        "assessed_on": "2026-09-14",
+        "rationale": "The Markdown media type and alternate links are standardized, while a web-wide convention for source-equivalent page alternates and deterministic Markdown negotiation remains emerging.",
+        "reference_ids": [
+          "markdown-media-type-rfc7763",
+          "web-linking-rfc8288"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "markdown-media-type-rfc7763",
+          "title": "RFC 7763: The text/markdown Media Type",
+          "publisher": "RFC Editor",
+          "type": "standard",
+          "authority": "primary",
+          "location": "https://www.rfc-editor.org/rfc/rfc7763.html",
+          "retrieved_on": "2026-09-14"
+        },
+        {
+          "id": "web-linking-rfc8288",
+          "title": "RFC 8288: Web Linking",
+          "publisher": "IETF / RFC Editor",
+          "type": "standard",
+          "authority": "primary",
+          "location": "https://www.rfc-editor.org/rfc/rfc8288.html",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "alternate-link-standards",
+          "kind": "specification-publication",
+          "location": "https://www.rfc-editor.org/rfc/rfc8288.html",
+          "description": "RFC 8288 defines typed alternate links, providing the standards basis for explicit discovery without user-agent inference.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
+      "id": "robots-txt",
+      "title": "Robots Exclusion Protocol",
+      "description": "Origin-scoped crawler access guidance published at /robots.txt under RFC 9309, separate from authorization and privacy controls.",
+      "concern": "readability",
+      "artifact": {
+        "kind": "origin-file",
+        "locations": [
+          "/robots.txt"
+        ],
+        "media_types": [
+          "text/plain"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "public-http-origin",
+          "description": "The profile applies to an HTTP origin that publishes public resources for crawler discovery or indexing."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "required",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "required",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "authorization-boundary",
+          "strength": "required",
+          "description": "The file states crawl guidance only; it is not access authorization, authentication, confidentiality protection, training consent, or action permission."
+        },
+        {
+          "id": "rfc9309-groups",
+          "strength": "required",
+          "description": "User-agent groups, allow and disallow rules, matching, encoding, retrieval, and caching follow RFC 9309."
+        },
+        {
+          "id": "sensitive-paths",
+          "strength": "prohibited",
+          "description": "Rules must not disclose non-public paths or secrets that are not otherwise intentionally public."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "rfc9309-conformance",
+          "severity": "error",
+          "description": "Reject a present file whose encoding, group parsing, rule matching, redirect handling, or status behavior contradicts RFC 9309."
+        },
+        {
+          "id": "security-boundary",
+          "severity": "error",
+          "description": "Reject claims that robots.txt protects private resources or grants permissions beyond crawler access guidance."
+        }
+      ],
+      "maturity": {
+        "level": "established",
+        "assessed_on": "2026-09-14",
+        "rationale": "RFC 9309 standardizes the long-deployed Robots Exclusion Protocol and its crawler interoperability behavior.",
+        "reference_ids": [
+          "robots-exclusion-rfc9309"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "robots-exclusion-rfc9309",
+          "title": "RFC 9309: Robots Exclusion Protocol",
+          "publisher": "IETF / RFC Editor",
+          "type": "standard",
+          "authority": "primary",
+          "location": "https://www.rfc-editor.org/rfc/rfc9309.html",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "rfc9309-publication",
+          "kind": "specification-publication",
+          "location": "https://www.rfc-editor.org/rfc/rfc9309.html",
+          "description": "RFC 9309 publishes the standards-track syntax, matching, retrieval, and security boundaries for /robots.txt.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
+      "id": "sitemap-xml",
+      "title": "XML Sitemap",
+      "description": "A current XML inventory of canonical public URLs and optional discovery metadata under the Sitemaps protocol.",
+      "concern": "readability",
+      "artifact": {
+        "kind": "origin-file",
+        "locations": [
+          "/sitemap.xml",
+          "<declared-sitemap-location>"
+        ],
+        "media_types": [
+          "application/xml"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "public-indexable-url-set",
+          "description": "The origin exposes canonical public URLs intended for discovery and can generate a truthful current inventory."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "recommended",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "recommended",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "required",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "required",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "canonical-public-urls",
+          "strength": "required",
+          "description": "Every entry is an absolute canonical URL intentionally public on the allowed host and does not reveal private, preview, session, or internal routes."
+        },
+        {
+          "id": "current-metadata",
+          "strength": "required",
+          "description": "Optional last-modified values reflect actual significant source changes; priority and change frequency are omitted unless truthfully maintained."
+        },
+        {
+          "id": "protocol-limits",
+          "strength": "required",
+          "description": "Encoding, escaping, host scope, file limits, and sitemap-index partitioning follow the Sitemaps protocol."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "freshness",
+          "severity": "error",
+          "description": "Reject stale, broken, redirected-away, non-canonical, private, or cross-host URLs not permitted by the protocol."
+        },
+        {
+          "id": "xml-protocol",
+          "severity": "error",
+          "description": "Reject malformed XML or a sitemap that violates protocol encoding, namespace, location, size, URL-count, or host constraints."
+        }
+      ],
+      "maturity": {
+        "level": "established",
+        "assessed_on": "2026-09-14",
+        "rationale": "The Sitemaps protocol is a stable, broadly deployed search-engine discovery mechanism with published interoperability rules.",
+        "reference_ids": [
+          "sitemaps-protocol"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "sitemaps-protocol",
+          "title": "Sitemaps XML format",
+          "publisher": "Sitemaps.org",
+          "type": "industry-specification",
+          "authority": "primary",
+          "location": "https://www.sitemaps.org/protocol.html",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "sitemaps-protocol-publication",
+          "kind": "specification-publication",
+          "location": "https://www.sitemaps.org/protocol.html",
+          "description": "The published protocol defines URL-set, sitemap-index, encoding, host, size, and discovery constraints.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    },
+    {
+      "id": "structured-discovery-jsonld",
+      "title": "JSON-LD structured discovery metadata",
+      "description": "Standards-based JSON-LD embedded in a canonical page to describe visible public entities and relationships for discovery, without defining commerce or action semantics.",
+      "concern": "readability",
+      "artifact": {
+        "kind": "page-metadata",
+        "locations": [
+          "<canonical-page>"
+        ],
+        "media_types": [
+          "application/ld+json"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "applicable-public-vocabulary",
+          "description": "The canonical page presents public facts that an authoritative, stable vocabulary can describe truthfully without fabricating entities, relationships, offers, actions, or credentials."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "recommended",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "recommended",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "recommended",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "recommended",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "recommended",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "recommended",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "canonical-identifiers",
+          "strength": "required",
+          "description": "Entity identifiers and URLs resolve to canonical public resources and remain stable across equivalent representations."
+        },
+        {
+          "id": "public-fact-parity",
+          "strength": "required",
+          "description": "Structured claims are current, source-backed, and materially visible on the canonical page; hidden, private, inferred, or placeholder claims are prohibited."
+        },
+        {
+          "id": "scope-boundary",
+          "strength": "prohibited",
+          "description": "This checkpoint does not use structured metadata to grant actions or define seller, advertising, offer, payment, fulfillment, or transaction semantics."
+        },
+        {
+          "id": "valid-json-ld",
+          "strength": "required",
+          "description": "The document is valid JSON-LD 1.1 and uses authoritative vocabulary terms whose meaning matches the visible facts."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "json-ld-processing",
+          "severity": "error",
+          "description": "Reject invalid JSON-LD or unresolved, redefined, or semantically incompatible contexts and terms."
+        },
+        {
+          "id": "truth-and-privacy",
+          "severity": "error",
+          "description": "Reject metadata that is stale, contradicts the page, invents facts, exposes non-public data, or claims capabilities and commerce semantics outside this checkpoint."
+        }
+      ],
+      "maturity": {
+        "level": "established",
+        "assessed_on": "2026-09-14",
+        "rationale": "JSON-LD 1.1 is a W3C Recommendation and Schema.org supplies a broadly deployed discovery vocabulary, while vocabulary-specific conformance remains independently governed.",
+        "reference_ids": [
+          "json-ld-11",
+          "schema-org-getting-started"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "json-ld-11",
+          "title": "JSON-LD 1.1",
+          "publisher": "W3C",
+          "type": "standard",
+          "authority": "primary",
+          "location": "https://www.w3.org/TR/json-ld11/",
+          "retrieved_on": "2026-09-14"
+        },
+        {
+          "id": "schema-org-getting-started",
+          "title": "Getting started with schema.org using Microdata",
+          "publisher": "Schema.org",
+          "type": "official-documentation",
+          "authority": "primary",
+          "location": "https://schema.org/docs/gs.html",
+          "retrieved_on": "2026-09-14"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "json-ld-recommendation",
+          "kind": "specification-publication",
+          "location": "https://www.w3.org/TR/json-ld11/",
+          "description": "The W3C Recommendation defines interoperable JSON-LD 1.1 syntax and processing.",
+          "observed_on": "2026-09-14"
+        },
+        {
+          "id": "schema-org-publication",
+          "kind": "implementation-observation",
+          "location": "https://schema.org/docs/gs.html",
+          "description": "Schema.org publishes implementation guidance for embedding shared structured vocabulary in web content.",
+          "observed_on": "2026-09-14"
+        }
+      ],
+      "extensions": {}
+    }
+  ],
   "compatibility": {
     "contract_major": 1,
     "versioning": "semantic-versioning",

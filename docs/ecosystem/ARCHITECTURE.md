@@ -260,13 +260,13 @@ Observatory records privacy-safe metadata; Pace proposes existing-repository
 adoption; and each repository owns its current-state wording and review.
 
 Agent-Ready Web publication also preserves control-plane separation. Hygiene
-defines the versioned profile and reference semantics; Holon may materialize
-accepted policy for new sites; Relay owns reusable validation and evidence
-transport; Pace proposes reviewable existing-site convergence; Store owns
-guarded commerce-domain contracts; Observatory reports privacy-safe evidence;
-and each site retains its facts, credentials, consent decisions, and final
-publication authority. The proposed foundation does not implement those
-downstream responsibilities.
+defines the versioned profile, discovery catalog, representation-integrity
+rules, and reference semantics; Holon may materialize accepted policy for new
+sites; Relay owns reusable validation and evidence transport; Pace proposes
+reviewable existing-site convergence; Store owns guarded commerce-domain
+contracts; Observatory reports privacy-safe evidence; and each site retains
+its facts, credentials, consent decisions, and final publication authority.
+The proposed profile does not implement those downstream responsibilities.
 
 ## 7. Control loops
 
