@@ -155,6 +155,12 @@
         }
       }
     },
+    "resolution_policy": {
+      "$ref": "#/$defs/resolutionPolicy"
+    },
+    "representation_policy": {
+      "$ref": "#/$defs/representationPolicy"
+    },
     "mechanisms": {
       "type": "array",
       "items": {
@@ -265,6 +271,34 @@
       }
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "const": "1.0.0-alpha.2"
+          }
+        },
+        "required": [
+          "version"
+        ]
+      },
+      "then": {
+        "required": [
+          "resolution_policy",
+          "representation_policy"
+        ],
+        "properties": {
+          "mechanisms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/catalogMechanism"
+            }
+          }
+        }
+      }
+    }
+  ],
   "$defs": {
     "text": {
       "type": "string",
@@ -296,6 +330,267 @@
       "uniqueItems": true,
       "items": {
         "$ref": "#/$defs/text"
+      }
+    },
+    "resolutionPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability_precedes_strength",
+        "inapplicable_absence",
+        "optional_absence",
+        "recommended_absence",
+        "conditional_absence",
+        "required_absence",
+        "prohibited_presence",
+        "emerging_and_experimental_default",
+        "fabricated_placeholder"
+      ],
+      "properties": {
+        "applicability_precedes_strength": {
+          "const": true
+        },
+        "inapplicable_absence": {
+          "const": "valid"
+        },
+        "optional_absence": {
+          "const": "valid"
+        },
+        "recommended_absence": {
+          "const": "advisory"
+        },
+        "conditional_absence": {
+          "const": "valid-when-condition-false"
+        },
+        "required_absence": {
+          "const": "error"
+        },
+        "prohibited_presence": {
+          "const": "error"
+        },
+        "emerging_and_experimental_default": {
+          "const": "non-blocking"
+        },
+        "fabricated_placeholder": {
+          "const": "prohibited"
+        }
+      }
+    },
+    "representationPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "integrity",
+        "content_negotiation",
+        "alternate_discovery",
+        "authoritative_references"
+      ],
+      "properties": {
+        "scope": {
+          "const": "public-source-equivalent-alternate-representations"
+        },
+        "integrity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "canonical_source",
+            "source_equivalence",
+            "freshness",
+            "canonical_url",
+            "provenance",
+            "access_control",
+            "hidden_or_privileged_content",
+            "drift"
+          ],
+          "properties": {
+            "canonical_source": {
+              "const": "shared-reviewed-source"
+            },
+            "source_equivalence": {
+              "const": "no-material-additions-omissions-or-changed-claims"
+            },
+            "freshness": {
+              "const": "same-build-or-source-revision"
+            },
+            "canonical_url": {
+              "const": "human-facing-canonical-url"
+            },
+            "provenance": {
+              "const": "record-source-uri-revision-generator-and-generated-at"
+            },
+            "access_control": {
+              "const": "same-or-stricter-than-canonical"
+            },
+            "hidden_or_privileged_content": {
+              "const": "prohibited"
+            },
+            "drift": {
+              "const": "invalidate-present-alternate"
+            }
+          }
+        },
+        "content_negotiation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "canonical_default",
+            "markdown_selection",
+            "tie_or_wildcard",
+            "unavailable_or_unacceptable",
+            "vary",
+            "content_location",
+            "user_agent_selection"
+          ],
+          "properties": {
+            "canonical_default": {
+              "const": "text/html"
+            },
+            "markdown_selection": {
+              "const": "only-when-accept-gives-text-markdown-a-higher-positive-quality-than-text-html"
+            },
+            "tie_or_wildcard": {
+              "const": "text/html"
+            },
+            "unavailable_or_unacceptable": {
+              "const": "text-html-if-acceptable-otherwise-406"
+            },
+            "vary": {
+              "const": "Accept-required-when-selection-can-vary"
+            },
+            "content_location": {
+              "const": "explicit-markdown-uri-required-for-negotiated-markdown"
+            },
+            "user_agent_selection": {
+              "const": "prohibited"
+            }
+          }
+        },
+        "alternate_discovery": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "relation",
+            "media_type",
+            "html_or_http_link",
+            "canonical_backlink"
+          ],
+          "properties": {
+            "relation": {
+              "const": "alternate"
+            },
+            "media_type": {
+              "const": "text/markdown"
+            },
+            "html_or_http_link": {
+              "const": "required"
+            },
+            "canonical_backlink": {
+              "const": "human-facing-canonical-url-required"
+            }
+          }
+        },
+        "authoritative_references": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/authoritativeReference"
+          }
+        }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "locations",
+        "media_types"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "crawler-guidance",
+            "origin-file",
+            "page-alternate",
+            "page-metadata",
+            "path-file",
+            "well-known-file"
+          ]
+        },
+        "locations": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "media_types": {
+          "$ref": "#/$defs/uniqueStrings"
+        }
+      }
+    },
+    "applicability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "condition",
+        "evaluation",
+        "inapplicable_result"
+      ],
+      "properties": {
+        "condition": {
+          "$ref": "#/$defs/condition"
+        },
+        "evaluation": {
+          "const": "before-requirement-strength"
+        },
+        "inapplicable_result": {
+          "const": "valid-absent"
+        }
+      }
+    },
+    "contentRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "strength",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "strength": {
+          "enum": [
+            "required",
+            "recommended",
+            "prohibited"
+          ]
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "validationRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "severity",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "severity": {
+          "enum": [
+            "advisory",
+            "error"
+          ]
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        }
       }
     },
     "concern": {
@@ -692,6 +987,103 @@
         },
         "requirements": {
           "$ref": "#/$defs/requirements"
+        },
+        "maturity": {
+          "$ref": "#/$defs/maturityAssessment"
+        },
+        "authoritative_references": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/authoritativeReference"
+          }
+        },
+        "registration_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/registrationEvidence"
+          }
+        },
+        "extensions": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^egohygiene\\.[a-z0-9][a-z0-9.-]*\\.agent-ready-web\\.[a-z0-9][a-z0-9.-]*/v[0-9]+$"
+          },
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "catalogMechanism": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "description",
+        "concern",
+        "artifact",
+        "applicability",
+        "requirements",
+        "content_rules",
+        "validation_rules",
+        "maturity",
+        "authoritative_references",
+        "registration_evidence",
+        "extensions"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        },
+        "concern": {
+          "enum": [
+            "readability",
+            "capability",
+            "efficiency",
+            "commerce"
+          ]
+        },
+        "artifact": {
+          "$ref": "#/$defs/artifact"
+        },
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "requirements": {
+          "$ref": "#/$defs/requirements"
+        },
+        "content_rules": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/contentRule"
+          }
+        },
+        "validation_rules": {
+          "type": "array",
+          "minItems": 1,
+          "contains": {
+            "properties": {
+              "severity": {
+                "const": "error"
+              }
+            },
+            "required": [
+              "severity"
+            ]
+          },
+          "items": {
+            "$ref": "#/$defs/validationRule"
+          }
         },
         "maturity": {
           "$ref": "#/$defs/maturityAssessment"

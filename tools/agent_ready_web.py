@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Validate the proposed Agent-Ready Web profile foundation.
+"""Validate the proposed Agent-Ready Web profile and mechanism catalog.
 
-This dependency-free reference checker proves the foundation's cross-field
-invariants. It does not enumerate web mechanisms, implement reusable CI,
-generate site artifacts, assess downstream conformance, or publish anything.
+This dependency-free reference checker proves the profile's cross-field,
+applicability, representation-integrity, and mechanism-policy invariants. It
+does not implement reusable CI, generate site artifacts, assess downstream
+conformance, or publish anything.
 """
 
 from __future__ import annotations
@@ -19,7 +20,7 @@ from typing import Any
 
 
 PROFILE_SCHEMA = "egohygiene.agent-ready-web-profile/v1"
-PROFILE_VERSION = "1.0.0-alpha.1"
+PROFILE_VERSION = "1.0.0-alpha.2"
 PROFILE_OWNER = "egohygiene/hygiene"
 FIXTURE_SCHEMA = "egohygiene.agent-ready-web-mechanism-fixture/v1"
 CONCERNS = ["readability", "capability", "efficiency", "commerce"]
@@ -59,6 +60,67 @@ EVIDENCE_KINDS = [
     "maintainer-assessment",
 ]
 OWNERS = {"hygiene", "holon", "relay", "pace", "store", "observatory"}
+ARTIFACT_KINDS = [
+    "crawler-guidance",
+    "origin-file",
+    "page-alternate",
+    "page-metadata",
+    "path-file",
+    "well-known-file",
+]
+VALIDATION_SEVERITIES = ["advisory", "error"]
+SCOPED_MECHANISM_IDS = [
+    "ai-crawler-guidance",
+    "ai-oriented-hints",
+    "canonical-metadata",
+    "cats-txt",
+    "entitymap-html",
+    "entitymap-json",
+    "llms-full-txt",
+    "llms-txt",
+    "markdown-alternate",
+    "robots-txt",
+    "sitemap-xml",
+    "structured-discovery-jsonld",
+]
+RESOLUTION_POLICY = {
+    "applicability_precedes_strength": True,
+    "inapplicable_absence": "valid",
+    "optional_absence": "valid",
+    "recommended_absence": "advisory",
+    "conditional_absence": "valid-when-condition-false",
+    "required_absence": "error",
+    "prohibited_presence": "error",
+    "emerging_and_experimental_default": "non-blocking",
+    "fabricated_placeholder": "prohibited",
+}
+REPRESENTATION_INTEGRITY = {
+    "canonical_source": "shared-reviewed-source",
+    "source_equivalence": "no-material-additions-omissions-or-changed-claims",
+    "freshness": "same-build-or-source-revision",
+    "canonical_url": "human-facing-canonical-url",
+    "provenance": "record-source-uri-revision-generator-and-generated-at",
+    "access_control": "same-or-stricter-than-canonical",
+    "hidden_or_privileged_content": "prohibited",
+    "drift": "invalidate-present-alternate",
+}
+CONTENT_NEGOTIATION_POLICY = {
+    "canonical_default": "text/html",
+    "markdown_selection": (
+        "only-when-accept-gives-text-markdown-a-higher-positive-quality-than-text-html"
+    ),
+    "tie_or_wildcard": "text/html",
+    "unavailable_or_unacceptable": "text-html-if-acceptable-otherwise-406",
+    "vary": "Accept-required-when-selection-can-vary",
+    "content_location": "explicit-markdown-uri-required-for-negotiated-markdown",
+    "user_agent_selection": "prohibited",
+}
+ALTERNATE_DISCOVERY_POLICY = {
+    "relation": "alternate",
+    "media_type": "text/markdown",
+    "html_or_http_link": "required",
+    "canonical_backlink": "human-facing-canonical-url-required",
+}
 PROFILE_FIELDS = {
     "schema",
     "version",
@@ -72,12 +134,14 @@ PROFILE_FIELDS = {
     "requirement_strengths",
     "maturity_levels",
     "mechanism_contract",
+    "resolution_policy",
+    "representation_policy",
     "mechanisms",
     "compatibility",
     "extensions",
     "ownership",
 }
-MECHANISM_FIELDS = {
+MECHANISM_BASE_FIELDS = {
     "id",
     "title",
     "description",
@@ -88,6 +152,13 @@ MECHANISM_FIELDS = {
     "registration_evidence",
     "extensions",
 }
+MECHANISM_POLICY_FIELDS = {
+    "artifact",
+    "applicability",
+    "content_rules",
+    "validation_rules",
+}
+MECHANISM_FIELDS = MECHANISM_BASE_FIELDS | MECHANISM_POLICY_FIELDS
 IDENTIFIER_PATTERN = r"^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*$"
 EXTENSION_IDENTIFIER_PATTERN = (
     r"^egohygiene\.[a-z0-9][a-z0-9.-]*\.agent-ready-web\."
@@ -258,6 +329,99 @@ def _validate_requirements(value: Any, path: str) -> list[str]:
     return errors
 
 
+def _validate_artifact(value: Any, path: str) -> list[str]:
+    if not isinstance(value, dict):
+        return [f"{path} must be an object"]
+    errors: list[str] = []
+    if set(value) != {"kind", "locations", "media_types"}:
+        errors.append(f"{path} fields must exactly match the v1 contract")
+    if value.get("kind") not in ARTIFACT_KINDS:
+        errors.append(f"{path}.kind is invalid")
+    for field in ("locations", "media_types"):
+        field_path = f"{path}.{field}"
+        field_value = value.get(field)
+        errors.extend(_unique_strings(field_value, field_path))
+        if isinstance(field_value, list):
+            strings = [item for item in field_value if isinstance(item, str)]
+            if strings != sorted(strings):
+                errors.append(f"{field_path} must use stable order")
+    return errors
+
+
+def _validate_applicability(value: Any, path: str) -> list[str]:
+    if not isinstance(value, dict):
+        return [f"{path} must be an object"]
+    errors: list[str] = []
+    if set(value) != {"condition", "evaluation", "inapplicable_result"}:
+        errors.append(f"{path} fields must exactly match the v1 contract")
+    errors.extend(_validate_condition(value.get("condition"), f"{path}.condition"))
+    if value.get("evaluation") != "before-requirement-strength":
+        errors.append(f"{path}.evaluation is invalid")
+    if value.get("inapplicable_result") != "valid-absent":
+        errors.append(f"{path}.inapplicable_result is invalid")
+    return errors
+
+
+def _validate_content_rules(value: Any, path: str) -> list[str]:
+    errors: list[str] = []
+    if not isinstance(value, list) or not value:
+        return [f"{path} must be a non-empty array"]
+    ids: list[str] = []
+    fields = {"id", "strength", "description"}
+    for index, rule in enumerate(value):
+        rule_path = f"{path}[{index}]"
+        if not isinstance(rule, dict):
+            errors.append(f"{rule_path} must be an object")
+            continue
+        if set(rule) != fields:
+            errors.append(f"{rule_path} fields must exactly match the v1 contract")
+        rule_id = rule.get("id")
+        errors.extend(_identifier(rule_id, f"{rule_path}.id"))
+        if isinstance(rule_id, str):
+            ids.append(rule_id)
+        if rule.get("strength") not in {"required", "recommended", "prohibited"}:
+            errors.append(f"{rule_path}.strength is invalid")
+        errors.extend(_text(rule.get("description"), f"{rule_path}.description"))
+    if len(ids) != len(set(ids)):
+        errors.append(f"{path} must use unique ids")
+    if ids != sorted(ids):
+        errors.append(f"{path} must use stable id order")
+    return errors
+
+
+def _validate_validation_rules(value: Any, path: str) -> list[str]:
+    errors: list[str] = []
+    if not isinstance(value, list) or not value:
+        return [f"{path} must be a non-empty array"]
+    ids: list[str] = []
+    severities: list[str] = []
+    fields = {"id", "severity", "description"}
+    for index, rule in enumerate(value):
+        rule_path = f"{path}[{index}]"
+        if not isinstance(rule, dict):
+            errors.append(f"{rule_path} must be an object")
+            continue
+        if set(rule) != fields:
+            errors.append(f"{rule_path} fields must exactly match the v1 contract")
+        rule_id = rule.get("id")
+        errors.extend(_identifier(rule_id, f"{rule_path}.id"))
+        if isinstance(rule_id, str):
+            ids.append(rule_id)
+        severity = rule.get("severity")
+        if severity not in VALIDATION_SEVERITIES:
+            errors.append(f"{rule_path}.severity is invalid")
+        elif isinstance(severity, str):
+            severities.append(severity)
+        errors.extend(_text(rule.get("description"), f"{rule_path}.description"))
+    if len(ids) != len(set(ids)):
+        errors.append(f"{path} must use unique ids")
+    if ids != sorted(ids):
+        errors.append(f"{path} must use stable id order")
+    if "error" not in severities:
+        errors.append(f"{path} must include at least one error rule")
+    return errors
+
+
 def _validate_maturity(value: Any, path: str) -> list[str]:
     if not isinstance(value, dict):
         return [f"{path} must be an object"]
@@ -364,7 +528,8 @@ def validate_mechanism(value: Any, *, path: str = "mechanism") -> list[str]:
     if not isinstance(value, dict):
         return [f"{path} must be an object"]
     errors: list[str] = []
-    if set(value) != MECHANISM_FIELDS:
+    fields = set(value)
+    if fields != MECHANISM_BASE_FIELDS and fields != MECHANISM_FIELDS:
         errors.append(f"{path} fields must exactly match the v1 contract")
     errors.extend(_identifier(value.get("id"), f"{path}.id"))
     for field in ("title", "description"):
@@ -375,13 +540,55 @@ def validate_mechanism(value: Any, *, path: str = "mechanism") -> list[str]:
     errors.extend(
         _validate_requirements(value.get("requirements"), f"{path}.requirements")
     )
+    policy_fields = fields & MECHANISM_POLICY_FIELDS
+    if policy_fields:
+        if policy_fields != MECHANISM_POLICY_FIELDS:
+            errors.append(f"{path} policy fields must be complete when present")
+        errors.extend(_validate_artifact(value.get("artifact"), f"{path}.artifact"))
+        errors.extend(
+            _validate_applicability(
+                value.get("applicability"),
+                f"{path}.applicability",
+            )
+        )
+        errors.extend(
+            _validate_content_rules(
+                value.get("content_rules"),
+                f"{path}.content_rules",
+            )
+        )
+        errors.extend(
+            _validate_validation_rules(
+                value.get("validation_rules"),
+                f"{path}.validation_rules",
+            )
+        )
     errors.extend(_validate_maturity(value.get("maturity"), f"{path}.maturity"))
+    maturity = value.get("maturity")
+    requirements = value.get("requirements")
+    if (
+        policy_fields == MECHANISM_POLICY_FIELDS
+        and isinstance(maturity, dict)
+        and maturity.get("level") in {"emerging", "experimental"}
+        and isinstance(requirements, dict)
+    ):
+        rules = [requirements.get("default")]
+        overrides = requirements.get("site_class_overrides")
+        if isinstance(overrides, list):
+            rules.extend(overrides)
+        if any(
+            isinstance(rule, dict) and rule.get("strength") == "required"
+            for rule in rules
+        ):
+            errors.append(
+                f"{path} emerging or experimental mechanisms must remain "
+                "non-blocking by default"
+            )
     reference_errors, authorities = _validate_references(
         value.get("authoritative_references"),
         f"{path}.authoritative_references",
     )
     errors.extend(reference_errors)
-    maturity = value.get("maturity")
     if isinstance(maturity, dict) and isinstance(maturity.get("reference_ids"), list):
         reference_ids = maturity["reference_ids"]
         unknown = sorted(
@@ -419,6 +626,35 @@ def validate_mechanism(value: Any, *, path: str = "mechanism") -> list[str]:
             if not isinstance(payload, dict):
                 errors.append(f"{path}.extensions.{extension_id} must be an object")
     return sorted(set(errors))
+
+
+def _validate_representation_policy(value: Any, path: str) -> list[str]:
+    if not isinstance(value, dict):
+        return [f"{path} must be an object"]
+    errors: list[str] = []
+    fields = {
+        "scope",
+        "integrity",
+        "content_negotiation",
+        "alternate_discovery",
+        "authoritative_references",
+    }
+    if set(value) != fields:
+        errors.append(f"{path} fields must exactly match the v1 contract")
+    if value.get("scope") != "public-source-equivalent-alternate-representations":
+        errors.append(f"{path}.scope is invalid")
+    if value.get("integrity") != REPRESENTATION_INTEGRITY:
+        errors.append(f"{path}.integrity must preserve canonical source integrity")
+    if value.get("content_negotiation") != CONTENT_NEGOTIATION_POLICY:
+        errors.append(f"{path}.content_negotiation is invalid")
+    if value.get("alternate_discovery") != ALTERNATE_DISCOVERY_POLICY:
+        errors.append(f"{path}.alternate_discovery is invalid")
+    reference_errors, _ = _validate_references(
+        value.get("authoritative_references"),
+        f"{path}.authoritative_references",
+    )
+    errors.extend(reference_errors)
+    return errors
 
 
 def validate_profile(profile: Mapping[str, Any]) -> list[str]:
@@ -501,6 +737,17 @@ def validate_profile(profile: Mapping[str, Any]) -> list[str]:
     if profile.get("mechanism_contract") != expected_mechanism_contract:
         errors.append("profile.mechanism_contract must exactly match the v1 foundation")
 
+    if profile.get("resolution_policy") != RESOLUTION_POLICY:
+        errors.append(
+            "profile.resolution_policy must preserve truthful applicability and absence"
+        )
+    errors.extend(
+        _validate_representation_policy(
+            profile.get("representation_policy"),
+            "profile.representation_policy",
+        )
+    )
+
     mechanisms = profile.get("mechanisms")
     if not isinstance(mechanisms, list):
         errors.append("profile.mechanisms must be an array")
@@ -515,10 +762,55 @@ def validate_profile(profile: Mapping[str, Any]) -> list[str]:
             )
             if isinstance(mechanism, dict) and isinstance(mechanism.get("id"), str):
                 mechanism_ids.append(mechanism["id"])
+                mechanism_path = f"profile.mechanisms[{index}]"
+                if set(mechanism) != MECHANISM_FIELDS:
+                    errors.append(
+                        f"{mechanism_path} must include the complete catalog policy"
+                    )
+                requirements = mechanism.get("requirements")
+                if isinstance(requirements, dict):
+                    overrides = requirements.get("site_class_overrides")
+                    if isinstance(overrides, list):
+                        classes = [
+                            override.get("site_class")
+                            for override in overrides
+                            if isinstance(override, dict)
+                        ]
+                        if classes != SITE_CLASSES:
+                            errors.append(
+                                f"{mechanism_path}.requirements.site_class_overrides "
+                                "must resolve every canonical site class"
+                            )
+                maturity = mechanism.get("maturity")
+                if (
+                    isinstance(maturity, dict)
+                    and maturity.get("level") in {"emerging", "experimental"}
+                    and isinstance(requirements, dict)
+                ):
+                    rules = [requirements.get("default")]
+                    overrides = requirements.get("site_class_overrides")
+                    if isinstance(overrides, list):
+                        rules.extend(overrides)
+                    if any(
+                        isinstance(rule, dict) and rule.get("strength") == "required"
+                        for rule in rules
+                    ):
+                        errors.append(
+                            f"{mechanism_path} emerging or experimental mechanisms "
+                            "must remain non-blocking by default"
+                        )
+                if mechanism.get("concern") not in {"readability", "efficiency"}:
+                    errors.append(
+                        f"{mechanism_path}.concern exceeds checkpoint 2 scope"
+                    )
         if len(mechanism_ids) != len(set(mechanism_ids)):
             errors.append("profile.mechanisms must use unique ids")
         if mechanism_ids != sorted(mechanism_ids):
             errors.append("profile.mechanisms must use stable id order")
+        if mechanism_ids != SCOPED_MECHANISM_IDS:
+            errors.append(
+                "profile.mechanisms must exactly match the checkpoint 2 catalog"
+            )
 
     compatibility = profile.get("compatibility")
     compatibility_fields = {

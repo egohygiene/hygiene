@@ -14,7 +14,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import agent_ready_web  # noqa: E402
 
 
-class AgentReadyWebFoundationTests(unittest.TestCase):
+class AgentReadyWebCatalogTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.profile = agent_ready_web.load_json(
@@ -22,6 +22,9 @@ class AgentReadyWebFoundationTests(unittest.TestCase):
         )
         cls.valid_fixture = agent_ready_web.load_json(
             FIXTURES / "mechanism.valid.json"
+        )
+        cls.policy_fixture = agent_ready_web.load_json(
+            FIXTURES / "mechanism.discovery-policy.valid.json"
         )
 
     def test_contract_schema_is_a_json_schema_document(self) -> None:
@@ -40,11 +43,20 @@ class AgentReadyWebFoundationTests(unittest.TestCase):
             schema["$id"],
         )
         self.assertFalse(schema["additionalProperties"])
+        self.assertIn("catalogMechanism", schema["$defs"])
+        self.assertEqual(
+            ["resolution_policy", "representation_policy"],
+            schema["allOf"][0]["then"]["required"],
+        )
 
-    def test_checked_in_foundation_is_valid_proposed_and_catalog_empty(self) -> None:
+    def test_checked_in_catalog_is_valid_complete_and_proposed(self) -> None:
         self.assertEqual([], agent_ready_web.validate_profile(self.profile))
         self.assertEqual("proposed", self.profile["status"])
-        self.assertEqual([], self.profile["mechanisms"])
+        self.assertEqual("1.0.0-alpha.2", self.profile["version"])
+        self.assertEqual(
+            agent_ready_web.SCOPED_MECHANISM_IDS,
+            [item["id"] for item in self.profile["mechanisms"]],
+        )
 
     def test_four_concerns_are_distinct_and_exactly_one_is_required(self) -> None:
         self.assertEqual(
@@ -98,6 +110,153 @@ class AgentReadyWebFoundationTests(unittest.TestCase):
             "mechanism-registration-only",
             self.profile["mechanism_contract"]["evidence_scope"],
         )
+
+    def test_checkpoint_one_mechanism_shape_remains_compatible(self) -> None:
+        self.assertEqual(
+            agent_ready_web.MECHANISM_BASE_FIELDS,
+            set(self.valid_fixture["mechanism"]),
+        )
+        self.assertEqual(
+            [],
+            agent_ready_web.validate_mechanism(self.valid_fixture["mechanism"]),
+        )
+
+    def test_enriched_policy_fixture_proves_catalog_record_shape(self) -> None:
+        envelope_errors, mechanism_errors = agent_ready_web.validate_fixture(
+            self.policy_fixture
+        )
+        self.assertEqual([], envelope_errors)
+        self.assertEqual([], mechanism_errors)
+        self.assertEqual(
+            agent_ready_web.MECHANISM_FIELDS,
+            set(self.policy_fixture["mechanism"]),
+        )
+
+    def test_applicability_and_truthful_absence_policy_is_exact(self) -> None:
+        self.assertEqual(
+            agent_ready_web.RESOLUTION_POLICY,
+            self.profile["resolution_policy"],
+        )
+        self.assertTrue(
+            self.profile["resolution_policy"]["applicability_precedes_strength"]
+        )
+        self.assertEqual(
+            "prohibited",
+            self.profile["resolution_policy"]["fabricated_placeholder"],
+        )
+        for mechanism in self.profile["mechanisms"]:
+            self.assertEqual(
+                "before-requirement-strength",
+                mechanism["applicability"]["evaluation"],
+            )
+            self.assertEqual(
+                "valid-absent",
+                mechanism["applicability"]["inapplicable_result"],
+            )
+
+    def test_every_mechanism_resolves_every_site_class(self) -> None:
+        for mechanism in self.profile["mechanisms"]:
+            self.assertEqual(
+                agent_ready_web.SITE_CLASSES,
+                [
+                    rule["site_class"]
+                    for rule in mechanism["requirements"]["site_class_overrides"]
+                ],
+            )
+
+    def test_mechanism_classification_and_concern_scope_are_explicit(self) -> None:
+        expected = {
+            "ai-crawler-guidance": ("readability", "emerging"),
+            "ai-oriented-hints": ("readability", "experimental"),
+            "canonical-metadata": ("readability", "established"),
+            "cats-txt": ("readability", "experimental"),
+            "entitymap-html": ("readability", "published_specification"),
+            "entitymap-json": ("readability", "published_specification"),
+            "llms-full-txt": ("efficiency", "emerging"),
+            "llms-txt": ("readability", "emerging"),
+            "markdown-alternate": ("efficiency", "emerging"),
+            "robots-txt": ("readability", "established"),
+            "sitemap-xml": ("readability", "established"),
+            "structured-discovery-jsonld": ("readability", "established"),
+        }
+        actual = {
+            mechanism["id"]: (
+                mechanism["concern"],
+                mechanism["maturity"]["level"],
+            )
+            for mechanism in self.profile["mechanisms"]
+        }
+        self.assertEqual(expected, actual)
+        self.assertNotIn("capability", {value[0] for value in actual.values()})
+        self.assertNotIn("commerce", {value[0] for value in actual.values()})
+
+    def test_emerging_and_experimental_mechanisms_are_non_blocking(self) -> None:
+        for mechanism in self.profile["mechanisms"]:
+            if mechanism["maturity"]["level"] not in {
+                "emerging",
+                "experimental",
+            }:
+                continue
+            rules = [mechanism["requirements"]["default"]]
+            rules.extend(mechanism["requirements"]["site_class_overrides"])
+            self.assertNotIn("required", {rule["strength"] for rule in rules})
+
+        candidate = copy.deepcopy(self.policy_fixture["mechanism"])
+        candidate["requirements"]["default"]["strength"] = "required"
+        errors = agent_ready_web.validate_mechanism(candidate)
+        self.assertIn(
+            "mechanism emerging or experimental mechanisms must remain "
+            "non-blocking by default",
+            errors,
+        )
+
+    def test_representation_integrity_and_negotiation_are_deterministic(self) -> None:
+        policy = self.profile["representation_policy"]
+        self.assertEqual(
+            agent_ready_web.REPRESENTATION_INTEGRITY,
+            policy["integrity"],
+        )
+        self.assertEqual(
+            agent_ready_web.CONTENT_NEGOTIATION_POLICY,
+            policy["content_negotiation"],
+        )
+        self.assertEqual(
+            agent_ready_web.ALTERNATE_DISCOVERY_POLICY,
+            policy["alternate_discovery"],
+        )
+        self.assertEqual(
+            "prohibited",
+            policy["content_negotiation"]["user_agent_selection"],
+        )
+        self.assertEqual(
+            "same-or-stricter-than-canonical",
+            policy["integrity"]["access_control"],
+        )
+
+    def test_catalog_rules_include_privacy_and_scope_boundaries(self) -> None:
+        descriptions = " ".join(
+            rule["description"]
+            for mechanism in self.profile["mechanisms"]
+            for rule in mechanism["content_rules"] + mechanism["validation_rules"]
+        ).lower()
+        self.assertIn("private", descriptions)
+        self.assertIn("canonical", descriptions)
+        self.assertIn("commerce", descriptions)
+        self.assertIn("authorization", descriptions)
+        self.assertNotIn("webmcp", descriptions)
+
+    def test_every_maturity_assessment_cites_a_primary_reference(self) -> None:
+        for mechanism in self.profile["mechanisms"]:
+            authorities = {
+                reference["id"]: reference["authority"]
+                for reference in mechanism["authoritative_references"]
+            }
+            self.assertTrue(
+                any(
+                    authorities.get(reference_id) == "primary"
+                    for reference_id in mechanism["maturity"]["reference_ids"]
+                )
+            )
 
     def test_ambiguous_concern_is_rejected(self) -> None:
         candidate = copy.deepcopy(self.valid_fixture["mechanism"])

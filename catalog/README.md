@@ -113,17 +113,20 @@ lifecycle truth, privacy, rollout, exception, downstream, and rollback rules.
 
 ## Agent-Ready Web profile
 
-`agent-ready-web-profile.json` is the proposed versioned foundation for
+`agent-ready-web-profile.json` is the proposed versioned policy and catalog for
 human-first websites that expose explicit machine-readable surfaces. It keeps
 readability, capability, efficiency, and commerce independent; defines stable
 site classes, requirement strengths, maturity, compatibility, extensions, and
-ownership; and requires primary references plus registration evidence for any
-future mechanism.
+ownership; and requires primary references plus registration evidence.
 
-The canonical `mechanisms` array is intentionally empty in checkpoint 1.
-Synthetic fixtures validate the registration contract without adding the
-discovery, interactive-capability, advertising, or commerce catalogs assigned
-to later issues.
+Checkpoint 2 registers the bounded discovery and efficient-representation
+catalog from issue #51. Each entry declares applicability, a rule for every
+site class, content and validation expectations, maturity, and authoritative
+references. The global representation policy defines source equivalence,
+freshness, canonical URLs, provenance, drift, privacy, typed alternate
+discovery, and deterministic HTTP content negotiation. Emerging and
+experimental entries remain non-blocking. Interactive capabilities,
+advertising declarations, and commerce semantics remain deferred.
 
 ```bash
 python3 tools/agent_ready_web.py validate-profile
@@ -132,5 +135,5 @@ python3 tools/agent_ready_web.py validate-fixtures
 
 See the
 [Agent-Ready Web profile guide](../docs/ecosystem/AGENT_READY_WEB.md) for the
-vocabulary, compatibility model, evidence boundary, ownership split, and
-checkpoint exclusions.
+catalog matrix, applicability and absence behavior, representation-integrity
+rules, compatibility model, ownership split, and checkpoint exclusions.

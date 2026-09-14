@@ -1,0 +1,96 @@
+{
+  "schema": "egohygiene.agent-ready-web-mechanism-fixture/v1",
+  "name": "synthetic-discovery-policy",
+  "expected": "valid",
+  "synthetic": true,
+  "mechanism": {
+    "id": "fixture-discovery-index",
+    "title": "Synthetic discovery index",
+    "description": "A synthetic mechanism used only to exercise the complete discovery-policy record shape.",
+    "concern": "readability",
+    "artifact": {
+      "kind": "origin-file",
+      "locations": [
+        "/fixture-index.txt"
+      ],
+      "media_types": [
+        "text/plain"
+      ]
+    },
+    "applicability": {
+      "condition": {
+        "id": "public-fixture-content",
+        "description": "The synthetic site exposes intentionally public fixture content."
+      },
+      "evaluation": "before-requirement-strength",
+      "inapplicable_result": "valid-absent"
+    },
+    "requirements": {
+      "default": {
+        "strength": "optional",
+        "condition": null
+      },
+      "site_class_overrides": [
+        {
+          "site_class": "documentation",
+          "strength": "recommended",
+          "condition": null
+        }
+      ]
+    },
+    "content_rules": [
+      {
+        "id": "public-source",
+        "strength": "required",
+        "description": "Synthetic entries represent only intentionally public source facts."
+      },
+      {
+        "id": "truthful-content",
+        "strength": "required",
+        "description": "Synthetic entries remain current and do not fabricate unavailable features."
+      }
+    ],
+    "validation_rules": [
+      {
+        "id": "current-source",
+        "severity": "error",
+        "description": "Reject a present synthetic index that differs from its declared source revision."
+      },
+      {
+        "id": "recommended-absence",
+        "severity": "advisory",
+        "description": "Report an applicable recommended omission without turning it into an error."
+      }
+    ],
+    "maturity": {
+      "level": "emerging",
+      "assessed_on": "2026-09-14",
+      "rationale": "Synthetic maturity data exercises a non-blocking emerging mechanism.",
+      "reference_ids": [
+        "fixture-discovery-specification"
+      ]
+    },
+    "authoritative_references": [
+      {
+        "id": "fixture-discovery-specification",
+        "title": "Synthetic discovery policy specification",
+        "publisher": "Example Standards Publisher",
+        "type": "maintainer-source",
+        "authority": "primary",
+        "location": "https://example.com/specifications/discovery-policy",
+        "retrieved_on": "2026-09-14"
+      }
+    ],
+    "registration_evidence": [
+      {
+        "id": "fixture-discovery-publication",
+        "kind": "specification-publication",
+        "location": "https://example.com/specifications/discovery-policy",
+        "description": "Synthetic publication evidence for the complete policy shape.",
+        "observed_on": "2026-09-14"
+      }
+    ],
+    "extensions": {}
+  },
+  "expected_errors": []
+}
