@@ -9,7 +9,7 @@ visibility: public
 owners:
   - egohygiene/hygiene
 issue: https://github.com/egohygiene/hygiene/issues/51
-pull_request: null
+pull_request: https://github.com/egohygiene/hygiene/pull/55
 related:
   - ADR-0001
   - ADR-002
@@ -36,6 +36,9 @@ evidence:
   - type: external
     url: https://www.rfc-editor.org/rfc/rfc9110.html
     description: Primary HTTP semantics for deterministic proactive content negotiation and response metadata.
+  - type: pull_request
+    url: https://github.com/egohygiene/hygiene/pull/55
+    description: Focused review surface for the proposed checkpoint 2 catalog and representation policy.
 exceptions: []
 approval: null
 ---
@@ -166,9 +169,9 @@ its [JSON Schema](../../schemas/agent-ready-web-profile.v1.schema.json), the
 reference validator, and focused unit tests.
 
 Each canonical record links its primary specifications or maintainer sources
-and dated registration evidence. Issue #51 is the review authority for this
-checkpoint. A pull request link will be added when the validated branch is
-published; the parent issue remains open.
+and dated registration evidence. Issue #51 is the review authority, and
+[PR #55](https://github.com/egohygiene/hygiene/pull/55) is the focused review
+surface for this checkpoint. The parent issue remains open.
 
 ## Replacement or exit strategy
 
