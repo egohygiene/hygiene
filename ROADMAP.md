@@ -184,7 +184,7 @@ issues: [16, 19, 22, 45]
   policy. PR #56 merged checkpoint #52's guarded WebMCP/MCP-B capability
   envelope, descriptive Product and Offer boundary, truthful ads.txt and
   app-ads.txt applicability, and Store-owned action boundary. Final checkpoint
-  #53 now proposes alpha.4 integration, cross-layer authority invariants,
+  #53 and PR #57 now propose alpha.4 integration, cross-layer authority invariants,
   deterministic whole-profile conformance and evidence, immutable consumer
   resolution, reference review, compatibility fixtures for every site class,
   and precise downstream handoffs. The profile remains proposed; no tagged

@@ -9,7 +9,7 @@ visibility: public
 owners:
   - egohygiene/hygiene
 issue: https://github.com/egohygiene/hygiene/issues/53
-pull_request: null
+pull_request: https://github.com/egohygiene/hygiene/pull/57
 related:
   - ADR-0001
   - ADR-002
@@ -229,9 +229,9 @@ generated projection, architecture and agent context, roadmap, README, and
 continuity checkpoint link those canonical sources without duplicating their
 policy.
 
-Issue #53 is the review authority. The pull-request evidence link remains null
-until the focused review surface exists. No automatic pull-request CI evidence
-is assumed.
+Issue #53 is the review authority, and
+[PR #57](https://github.com/egohygiene/hygiene/pull/57) is the focused,
+unmerged review surface. No automatic pull-request CI evidence is assumed.
 
 ## Replacement or exit strategy
 
