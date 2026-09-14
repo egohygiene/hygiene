@@ -9,7 +9,7 @@ visibility: public
 owners:
   - egohygiene/hygiene
 issue: https://github.com/egohygiene/hygiene/issues/50
-pull_request: null
+pull_request: https://github.com/egohygiene/hygiene/pull/54
 related:
   - ADR-0001
   - ADR-002
@@ -33,6 +33,9 @@ evidence:
   - type: issue
     url: https://github.com/egohygiene/hygiene/issues/16
     description: Parent roadmap and ordered four-checkpoint dependency boundary.
+  - type: pull_request
+    url: https://github.com/egohygiene/hygiene/pull/54
+    description: Focused review surface for the proposed checkpoint 1 foundation.
 exceptions: []
 approval: null
 ---

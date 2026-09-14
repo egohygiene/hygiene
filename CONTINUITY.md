@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: "2026-09-14T10:49:08Z"
+  updated_at: "2026-09-14T10:54:08Z"
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -65,20 +65,20 @@ state:
     verified_at: "2026-09-14T10:44:53Z"
   candidate:
     branch: codex/hygiene-16-agent-ready-web-profile
-    revision: null
-    pull_request: null
-    handoff_state: ready-for-review
+    revision: a74842cd16a3367be245c08416fef60a6b622def
+    pull_request: https://github.com/egohygiene/hygiene/pull/54
+    handoff_state: review-open
   live:
     status: verified
-    observed_at: "2026-09-14T10:44:53Z"
+    observed_at: "2026-09-14T10:54:08Z"
     default_branch_revision: bae230ba92fd231e8f26e24f85667c7117e4021b
     issue_state: open
-    pull_request_state: not-applicable
-    notes: Main and the remote checkpoint branch matched the verified base; issues 50, 16, and 51 were open with no comments; no open pull request or Actions run was observed. Recheck before continuing.
+    pull_request_state: open
+    notes: Pull request 54 is the only open pull request and targets unchanged main; its recorded revision is the foundation implementation snapshot, with this documentation-only review-evidence update following it. Issues 50, 16, and 51 remain open, issue 50 still has no comments, and no pull-request workflow run was observed. Recheck before continuing.
   parallel_changes: []
 review:
   status: passed
-  reviewed_at: "2026-09-14T10:49:08Z"
+  reviewed_at: "2026-09-14T10:54:08Z"
   reviewed_by: Codex
   evidence:
     - command: python3 -m unittest tests.test_agent_ready_web tests.test_boundaries
@@ -101,8 +101,12 @@ review:
       outcome: passed
       observed_at: "2026-09-14T10:47:31Z"
       notes: The refreshed checkpoint passed deterministic validation, remained below both fixed size limits, and introduced no whitespace errors.
+    - command: GitHub pull request, issue, open-PR, and workflow inspection
+      outcome: passed
+      observed_at: "2026-09-14T10:54:08Z"
+      notes: Pull request 54 is open for the recorded foundation implementation revision and closes only issue 50; it is the sole open PR, parent issue 16 remains open, issue 51 remains blocked, and no PR workflow run exists.
   environment_limitations:
-    - Hygiene exposes only a manually dispatched release-policy workflow; no pull-request CI run was available before the PR existed.
+    - Hygiene exposes only a manually dispatched release-policy workflow; no automatic pull-request CI run was available after pull request 54 opened.
     - The host did not expose Aether's maintain-repository-continuity skill as an installed skill, so its pinned public source and required guides were applied manually with the local continuity validator.
 privacy:
   classification: public-repository
@@ -147,10 +151,11 @@ passes; and one unmerged PR closes only issue #50.
 
 - Base: `bae230ba92fd231e8f26e24f85667c7117e4021b` on `main`, reverified
   against the provider at `2026-09-14T10:44:53Z`.
-- Candidate: `codex/hygiene-16-agent-ready-web-profile`, ready for review with
-  no pull request yet at the observation time.
-- Live state: issues #50, #16, and #51 were open; #50 and #51 had no comments;
-  no open Hygiene PR or Actions run was observed.
+- Candidate: `codex/hygiene-16-agent-ready-web-profile` with foundation
+  implementation revision `a74842cd16a3367be245c08416fef60a6b622def`, under review in
+  [PR #54](https://github.com/egohygiene/hygiene/pull/54).
+- Live state: issues #50, #16, and #51 remain open; PR #54 is the only open
+  Hygiene PR; no pull-request workflow run was observed.
 
 ## Completed and material changes
 
@@ -176,8 +181,8 @@ checkpoint also passed its deterministic continuity and size checks.
 - Blockers: none observed for opening the checkpoint #50 review.
 - Risks: proposed vocabulary may change during review; consumers must not treat
   it as accepted or claim adoption.
-- Unknowns: PR-time checks remain unavailable until a PR exists, and the
-  repository currently defines no automatic pull-request workflow.
+- Unknowns: the repository currently defines no automatic pull-request
+  workflow, so no PR-associated CI result is available.
 - Deferred: issues #51-#53 and every Holon, Relay, Pace, Store, Observatory, or
   site implementation.
 
@@ -189,9 +194,10 @@ the new live `main`; this branch must not begin checkpoint 2.
 
 ## Parallel changes and reconciliation
 
-No open Hygiene pull request was observed at `2026-09-14T10:44:53Z`. The
-remote checkpoint branch still matched `main`, so no competing checkpoint edit
-required reconciliation before this local candidate was prepared.
+[PR #54](https://github.com/egohygiene/hygiene/pull/54) is the sole open Hygiene
+pull request and is this checkpoint's review surface. No competing pull request
+required reconciliation; live `main` remained at the verified base when the
+candidate was published.
 
 ## Privacy and redaction
 
