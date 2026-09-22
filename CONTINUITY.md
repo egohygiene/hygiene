@@ -7,24 +7,24 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: "2026-09-14T16:25:43Z"
+  updated_at: "2026-09-22T00:04:51Z"
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Preserve the bounded maintainer-review handoff for Hygiene issue 53 and the proposed Agent-Ready Web alpha.4 integration and conformance contract.
+  purpose: Preserve the bounded maintainer-review handoff for Hygiene issue 25 and the proposed canonical public-site surface and route registry.
   includes:
-    - independent readability, capability, efficiency, and commerce composition with schema-enforced negative authority assertions
-    - deterministic applicability, requirement, exemption, diagnostic, level, evidence, pin, compatibility, and upgrade behavior
-    - five synthetic whole-profile site-class fixtures, current primary-source maturity review, precise consumer ownership, and the Holon 7 handoff
-    - final parent issue 16 evidence after verified checkpoint 50 through 52 merges
+    - 36 canonical public-site surfaces with organization and repository route profiles, base-path resolution, and redirect-only aliases
+    - separate requirement, applicability, implementation, publication, visibility, freshness, assertion, disposition, ownership, provenance, and evidence semantics
+    - route-profile-specific publication prerequisites, immutable registry and renderer pins, privacy-safe redaction, and subject-versus-publication authority
+    - strict schemas, a dependency-free semantic validator, three complete synthetic site declarations, architecture integration, and consumer handoffs
   excludes:
     - conversation transcripts
-    - duplicated architecture, roadmap, or policy text
-    - real site evidence, exemptions, relationships, credentials, consent, capability support, authorization, transactions, or passing state
-    - Holon generation, Relay workflows, Pace rollout, Store transactions, Observatory dashboards, browser tools, or site publication
-    - lifecycle promotion, release, tag, deployment, registry publication, merge, adoption, monitoring, or enforcement
+    - duplicated registry, architecture, roadmap, or policy text
+    - live site facts, private topology, credentials, or real conformance claims
+    - redirects, rendering, hosting, deployment, monitoring, legal review, incident semantics, or downstream consumer implementations
+    - acceptance, merge, release, lifecycle promotion, adoption, or publication
   precedence:
     - user-and-runtime-instructions
     - scoped-repository-instructions
@@ -36,110 +36,102 @@ scope:
     - docs/ecosystem/ARCHITECTURE.md
     - docs/ecosystem/AGENT_CONTEXT.md
     - docs/ecosystem/DEPENDENCY_BOUNDARIES.md
-    - docs/ecosystem/AGENT_READY_WEB.md
-    - docs/decisions/ADR-009-agent-ready-web-profile-foundation.md
-    - docs/decisions/ADR-010-agent-ready-web-discovery-representations.md
-    - docs/decisions/ADR-011-agent-ready-web-guarded-capability-commerce.md
-    - docs/decisions/ADR-012-agent-ready-web-integration-conformance.md
-    - catalog/agent-ready-web-profile.json
-    - schemas/agent-ready-web-profile.v1.schema.json
-    - schemas/agent-ready-web-conformance.v1.schema.json
+    - docs/ecosystem/PUBLIC_SITE_SURFACES.md
+    - docs/decisions/ADR-013-public-site-surface-route-registry.md
+    - catalog/public-site-surface-registry.json
+    - schemas/public-site-surface-registry.v1.schema.json
+    - schemas/public-site-surface-declaration.v1.schema.json
     - catalog/contracts.yaml
     - catalog/dependency-boundaries.yaml
     - docs/generated/DEPENDENCY_BOUNDARIES.md
     - ROADMAP.md
     - README.md
-    - https://github.com/egohygiene/hygiene/issues/53
-    - https://github.com/egohygiene/hygiene/issues/16
-    - https://github.com/egohygiene/hygiene/pull/57
-    - https://github.com/egohygiene/holon/issues/7
+    - https://github.com/egohygiene/hygiene/issues/25
+    - https://github.com/egohygiene/hygiene/issues/17
+    - https://github.com/egohygiene/hygiene/pull/63
+    - https://github.com/egohygiene/.github/issues/30
 work:
-  objective: Present checkpoint 4 as one proposed, consumer-reviewable integration and validation layer without implementing downstream work or claiming lifecycle or operational state.
+  objective: Present one proposed, consumer-reviewable registry and declaration contract without implementing or claiming downstream publication.
   success_conditions:
-    - Preserve concern boundaries and prevent discovery, metadata, advertising, or maturity from granting capability, consent, authorization, or transaction authority.
-    - Resolve all normative states deterministically into stable diagnostics, evidence, exemptions, and levels.
-    - Bind consumers to the canonical profile by exact version or immutable revision plus resolved revision and canonical-JSON digest, with explicit reviewed upgrade behavior.
-    - Cover all five site classes with explicitly synthetic whole-profile fixtures and retain current primary-source maturity classifications without overstatement.
-    - Record exact non-overlapping downstream handoffs, including Holon issue 7, while leaving all consumer implementations deferred.
-    - Pass focused checks, the exact README suite, continuity and size checks, generated views, boundary scan, all tests, and git diff checks.
-    - Leave one unmerged PR that closes issue 53 and closes parent 16 only when maintainers merge the final checkpoint.
+    - Provide a strict machine-readable registry and schemas plus one human-readable specification.
+    - Give every surface a stable ID, profile-specific canonical route and aliases, applicability, owner, source, renderer, dependencies, and truthful delivery evidence.
+    - Keep missing, stale, blocked, private, unknown, withdrawn, and not-applicable states distinct and fail closed on contradictions.
+    - Make aliases redirect-only and prevent duplicate canonical content.
+    - Let product repositories declare complete state without copying renderer implementations.
+    - Compose explicitly with Agent-Ready Web, public-site policy, Repository Intelligence, presentation, Identity, Renderflow, and System Status boundaries.
+    - Validate small-content, documentation-heavy, and organization-hybrid synthetic declarations and document Holon, Relay, Observatory, and Pace handoffs.
+    - Pass focused checks, the exact README suite, schema/runtime parity tests, malformed-input mutation, generated-view, boundary, continuity, size, and diff checks.
+    - Leave one unmerged pull request that closes issue 25 only when maintainers merge it.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#53
-    url: https://github.com/egohygiene/hygiene/issues/53
+    id: egohygiene/hygiene#25
+    url: https://github.com/egohygiene/hygiene/issues/25
   next:
     kind: pull-request-review
-    id: egohygiene/hygiene#57
-    description: Maintainers review the proposed final checkpoint; do not merge, promote lifecycle, publish, or begin downstream implementation from this handoff.
+    id: egohygiene/hygiene#63
+    description: Maintainers review the proposed registry contract; do not merge, promote, publish, deploy, or begin consumer adoption from this handoff.
     readiness: ready-for-review
     references:
-      - https://github.com/egohygiene/hygiene/pull/57
+      - https://github.com/egohygiene/hygiene/pull/63
     depends_on:
-      - egohygiene/hygiene#50-merged-via-54
-      - egohygiene/hygiene#51-merged-via-55
-      - egohygiene/hygiene#52-merged-via-56
+      - egohygiene/hygiene#25
 state:
   base:
-    revision: 3a2aa52111e32b3f1bcaeb294ebccd6c37df9a97
+    revision: c589587395750cd1c79c6fa0bef010189c547249
     ref: refs/heads/main
-    verified_at: "2026-09-14T16:24:00Z"
+    verified_at: "2026-09-22T00:01:20Z"
   candidate:
-    branch: codex/hygiene-16-agent-ready-web-integration
-    revision: 746d6af5f70f2180dc3f40f326ca8d435b60158d
+    branch: codex/hygiene-25-public-site-surface-registry
+    revision: af413e07033929b5da7dc8477ce1ea2267aff367
     revision_role: validated-remote-implementation-snapshot
-    pull_request: https://github.com/egohygiene/hygiene/pull/57
+    pull_request: https://github.com/egohygiene/hygiene/pull/63
     handoff_state: review-open
-    finalization: A continuity-and-PR-link-only commit follows this exact implementation snapshot; GitHub PR head is authoritative for the final review head.
+    finalization: A continuity-and-ADR-link-only commit follows this exact implementation snapshot; the GitHub pull-request head is authoritative for final review.
   live:
     status: verified
-    observed_at: "2026-09-14T16:25:43Z"
-    default_branch_revision: 3a2aa52111e32b3f1bcaeb294ebccd6c37df9a97
+    observed_at: "2026-09-22T00:01:20Z"
+    default_branch_revision: c589587395750cd1c79c6fa0bef010189c547249
     issue_state: open
-    parent_issue_state: reopened
     pull_request_state: open
-    notes: Main remains the PR 56 merge. Issue 53 has no comments. Parent 16 was reopened and its stale child list now records only 50 through 52 as merged; 53 and final completion remain pending. PR 57 is the sole open Hygiene pull request. No pull-request workflow run or commit status is present.
+    notes: Pull request 63 targets the exact verified main revision and is the sole issue-25 implementation review. The issue has no comments. The contract remains proposed and unmerged.
   parallel_changes: []
 review:
   status: passed
-  reviewed_at: "2026-09-14T16:25:43Z"
+  reviewed_at: "2026-09-22T00:04:51Z"
   reviewed_by: Codex
   evidence:
-    - command: python3 tools/agent_ready_web.py validate-profile && python3 tools/agent_ready_web.py validate-fixtures && python3 -m unittest tests.test_agent_ready_web
+    - command: python3 tools/site_surfaces.py validate-registry && python3 tools/site_surfaces.py validate-fixtures && python3 -m unittest -v tests.test_site_surfaces
       outcome: passed
-      observed_at: "2026-09-14T16:24:00Z"
-      notes: Proposed alpha.4, all 15 expectation-aware fixtures including five whole-profile site classes, and all 38 focused tests passed.
+      observed_at: "2026-09-22T00:00:00Z"
+      notes: The proposed alpha.1 registry has 36 surfaces, all three complete declarations validate, and all 43 focused tests pass.
     - command: README.md exact complete repository validation sequence
       outcome: passed
-      observed_at: "2026-09-14T16:22:00Z"
-      notes: Catalog, generated views, context, continuity, Agent-Ready Web, boundaries and scan, Repository Intelligence, presentation, ADR fixtures, and all 133 unit tests passed.
+      observed_at: "2026-09-22T00:00:00Z"
+      notes: Catalog, generated views, context, continuity, Agent-Ready Web, boundaries and scan, Repository Intelligence, presentation, public-site surfaces, ADR fixtures, and all 176 unit tests passed.
     - command: python3 tools/boundaries.py validate && python3 tools/boundaries.py check-generated --output docs/generated/DEPENDENCY_BOUNDARIES.md && python3 tools/boundaries.py scan --repository-root . --repository egohygiene/hygiene
       outcome: passed
-      observed_at: "2026-09-14T16:24:00Z"
-      notes: The 26-relationship register, exact generated view, and local dependency scan passed.
-    - command: profile digest and JSON plus changed ADR front-matter verification
+      observed_at: "2026-09-22T00:00:00Z"
+      notes: The 27-relationship register, exact generated view, and local dependency scan passed.
+    - command: recursive malformed-input mutation sweep over registry and declaration values
       outcome: passed
-      observed_at: "2026-09-14T16:22:00Z"
-      notes: All JSON loaded, all five fixtures matched the canonical profile digest, and ADR-010 through ADR-012 front matter satisfied the decision validator.
-    - command: git diff --check
+      observed_at: "2026-09-22T00:00:00Z"
+      notes: Replacing every nested value with object, array, null, and number shapes caused zero validator crashes.
+    - command: independent adversarial contract, schema, validator, and documentation review
       outcome: passed
-      observed_at: "2026-09-14T16:24:00Z"
-      notes: No whitespace errors existed at the validated implementation snapshot.
-    - command: GitHub main, issue and comment, predecessor, parent, branch, open pull request, workflow-run, and commit-status inspection
-      outcome: passed
-      observed_at: "2026-09-14T16:25:00Z"
-      notes: Main and predecessor state were unchanged, issue 53 remained open, parent 16 was visibly reconciled and reopened, no competing PR existed, and CI evidence remained absent.
+      observed_at: "2026-09-22T00:00:00Z"
+      notes: Profile-specific dependency, ownership, public-site-policy composition, impacted-consumer, boolean, synthetic-ID, and URL parity findings were resolved and re-reviewed clear.
     - command: GitHub atomic tree publication and focused pull-request creation
       outcome: passed
-      observed_at: "2026-09-14T16:25:43Z"
-      notes: Remote tree 27db2e76222b4e710a65b125cb01b25a0930d065 exactly matched the validated local tree; remote revision 746d6af5f70f2180dc3f40f326ca8d435b60158d opened PR 57 against the exact base.
-    - command: python3 tools/continuity.py validate-profile && python3 tools/continuity.py validate-repository --repository . && fixed byte and line limits
+      observed_at: "2026-09-22T00:01:20Z"
+      notes: Remote tree 76fd430b0076aa46d888dcd277f1bb507ed6c459 exactly matched the validated local implementation tree; revision af413e07033929b5da7dc8477ce1ea2267aff367 opened pull request 63 against the exact base.
+    - command: python3 tools/continuity.py validate-profile && python3 tools/continuity.py validate-repository --repository . && fixed byte and line limits && git diff --check
       outcome: passed
-      observed_at: "2026-09-14T16:25:43Z"
-      notes: The final checkpoint is required to remain below 16384 bytes and 240 lines.
+      observed_at: "2026-09-22T00:04:51Z"
+      notes: The final checkpoint remains below 16384 bytes and 240 lines with no whitespace errors.
   environment_limitations:
-    - Hygiene exposes only a manually dispatched release-policy workflow; no automatic pull-request CI run or commit status is available.
+    - Hygiene exposes only a manually dispatched release-policy workflow; no automatic pull-request CI run or commit status is assumed.
     - The host does not expose Aether's maintain-repository-continuity skill, so the checked-in pointer and local policy were applied manually and verified with repository tooling.
-    - The checkout has no writable HTTPS Git credential; the selected GitHub connector created one atomic commit from the exact validated tree and fast-forwarded only the checkpoint branch.
+    - The checkout has no writable HTTPS Git credential; the GitHub connector created an atomic commit from the exact validated tree and updated only the issue branch.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -158,62 +150,60 @@ privacy:
 
 ## Purpose and precedence
 
-This checkpoint hands off issue #53's proposed alpha.4 integration and
-conformance contract. It is subordinate to instructions, live GitHub state,
-and the canonical sources above. It cannot grant lifecycle or downstream
-authority.
+This checkpoint hands off issue #25's proposed canonical public-site surface
+and route registry. It is subordinate to instructions, live GitHub state, and
+the canonical sources above. It cannot grant lifecycle, publication, or
+downstream implementation authority.
 
 ## Current objective and success conditions
 
-Present one unmerged final-checkpoint PR with the proposed profile, exact
-conformance behavior, complete site-class fixtures, current references,
-consumer handoffs, and all validation green. Success does not include merge,
-lifecycle promotion, publication, release, or downstream implementation.
+Present one unmerged review PR with stable surface identities, profile-specific
+routes and prerequisites, complete declaration semantics, strict schemas,
+synthetic reference declarations, architecture integration, and every
+validation green. Success does not include merge, release, live redirects,
+deployment, adoption, or conformance.
 
 ## State snapshot
 
-- Base: `3a2aa52111e32b3f1bcaeb294ebccd6c37df9a97`, the verified PR #56 merge on
-  live `main`.
-- Remote implementation: `746d6af5f70f2180dc3f40f326ca8d435b60158d`
-  on `codex/hygiene-16-agent-ready-web-integration`.
-- Review: [PR #57](https://github.com/egohygiene/hygiene/pull/57) is open and
-  unmerged. The profile remains proposed and GitHub reports no automatic CI.
-- Tracker: #16 is reopened with #50–#52 reconciled to merged PRs #54–#56;
-  #53 and final parent completion remain pending PR #57's merge.
+- Base: `c589587395750cd1c79c6fa0bef010189c547249` on verified live `main`.
+- Remote implementation: `af413e07033929b5da7dc8477ce1ea2267aff367`
+  on `codex/hygiene-25-public-site-surface-registry`.
+- Review: [PR #63](https://github.com/egohygiene/hygiene/pull/63) is open and
+  unmerged; issue #25 remains open until review and merge.
+- Contract: `1.0.0-alpha.1`, 36 surfaces, lifecycle `proposed`.
 
 ## Material result
 
-The candidate composes four independent concerns, denies cross-layer authority,
-adds deterministic full-profile conformance evidence and diagnostics, validates
-five synthetic site classes, pins canonical policy by revision and digest,
-retains reviewed maturity classifications, and records exact consumer handoffs.
-It does not implement or claim downstream, release, publication, adoption,
-monitoring, enforcement, or real-site state.
+The candidate defines one canonical registry, two route profiles, strict
+declarations, profile-specific publication prerequisites, immutable provenance
+and renderer pins, privacy-safe state, separate subject and publisher
+authority, and explicit neighboring-contract boundaries. Three complete
+synthetic site classes validate the model. No live site or downstream
+implementation is claimed.
 
 ## Validation and limitations
 
-Focused validation, all fixtures, the exact README sequence with 133 tests,
-generated views, continuity checks, fixed size limits, the dependency scan,
-changed ADR front matter, and `git diff --check` passed. The repository has no
-automatic pull-request CI; local evidence is the only current executable gate.
-The unavailable Aether skill and connector-based atomic publication are
-recorded above rather than hidden.
+Focused validation, all fixtures, the exact README sequence with 176 tests,
+generated views, continuity and size checks, the boundary scan, independent
+adversarial review, a zero-crash mutation sweep, and `git diff --check` passed.
+The repository has no automatic pull-request CI evidence. The unavailable
+Aether skill and connector-based publication are recorded above.
 
 ## Next dependency-ready work
 
-Holon #7 receives a specification-only handoff: later resolve an eligible
-immutable pin, accept site-owned inputs, generate with provenance, and make no
-conformance or publication claim. `humans.txt` is outside this profile. Relay,
-Pace, Store, Observatory, and individual sites retain their documented work and
-authority. The next safe action is maintainer review of PR #57. Do not merge,
-promote, publish, or start consumer work from this checkpoint.
+After maintainers review and merge this proposal, Relay can consume an eligible
+immutable pin for reusable validation, rendering, redirects, and publication
+workflows. Holon, Observatory, and Pace retain their documented scaffold,
+aggregation, and adoption boundaries. The immediate safe action is review of
+PR #63; do not merge, publish, deploy, or start consumer work from this
+checkpoint.
 
 ## Handoff update protocol
 
-Before any PR update, recheck `main`, #53 and #16 with comments, PR #57, the
+Before any PR update, recheck `main`, issue #25 and comments, PR #63, the
 branch head, competing PRs, and CI. Re-run affected and complete validation,
-record the exact remote head externally when a continuity-only commit follows
-the implementation snapshot, and never predict merge or adoption.
+record the exact remote head when a continuity-only commit follows the
+implementation snapshot, and never predict merge, release, or adoption.
 
 ## Compaction and supersession
 

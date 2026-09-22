@@ -9,7 +9,7 @@ visibility: public
 owners:
   - egohygiene/hygiene
 issue: https://github.com/egohygiene/hygiene/issues/25
-pull_request: null
+pull_request: https://github.com/egohygiene/hygiene/pull/63
 related:
   - ADR-0001
   - ADR-002
