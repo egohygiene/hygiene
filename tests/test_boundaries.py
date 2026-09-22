@@ -31,7 +31,7 @@ class DependencyBoundaryContractTests(unittest.TestCase):
                 self.register, self.catalog, self.contract_index
             ),
         )
-        self.assertEqual(26, len(self.register["relationships"]))
+        self.assertEqual(27, len(self.register["relationships"]))
 
     def test_duplicate_rule_is_rejected(self) -> None:
         candidate = copy.deepcopy(self.register)

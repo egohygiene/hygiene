@@ -22,7 +22,14 @@ This document is designed to be referenced by every Ego Hygiene repository agent
    workflows; and each site retains facts, site class, credentials, consent
    interaction, configuration, represented revision, and publication authority.
    Discovery, structured metadata, advertising, and maturity do not grant
-   capability, consent, authorization, or transaction authority.
+   capability, consent, authorization, or transaction authority. For
+   public-site surfaces, Hygiene owns the registry and declaration semantics; the
+   declaring and publication repositories own facts and final publication;
+   Relay owns reusable validation, redirect, rendering, and publication
+   mechanics; Renderflow owns exact-pinned magazine and presentation artifacts;
+   and Identity owns the `/identity/` product experience and versioned identity
+   assets. Holon scaffolds, Observatory observes privacy-safe state, and Pace
+   proposes reviewed adoption without taking those authorities.
 5. **Respect developer-platform boundaries.** Realm provisions environments; Mantle configures the shell; Relay runs automation; Egolint defines lint behavior; Empathy proves integration.
 6. **Respect infrastructure boundaries.** Filament publishes reusable IaC
    contracts; consuming repositories own deployment intent, credentials,
@@ -85,6 +92,8 @@ An extraction from Empathy is complete only when:
 When uncertain, classify the work before coding:
 
 - architecture/policy/catalog → Hygiene;
+- public-site surface IDs, route profiles, state policy, and declaration schema → Hygiene;
+- site facts and declaration, route composition, deployment, and final publication → the declaring and publication repositories;
 - AI specs/skills/agents → Aether;
 - new-repo generation → Holon;
 - existing-repo sync/migration → Pace;
@@ -94,10 +103,11 @@ When uncertain, classify the work before coding:
 - reusable infrastructure modules, stacks, schemas, or provider adapters → Filament;
 - deployment intent, credentials, budgets, approvals, and state → the consuming repository;
 - shell behavior/installers → Mantle;
-- GitHub workflow mechanics → Relay;
+- reusable validation, redirect, rendering, and publication workflow mechanics → Relay;
 - lint semantics/reports → Egolint;
 - suite orchestration → Flow;
+- magazine and presentation transformation artifacts → Renderflow;
 - specialized content behavior → the owning holon;
 - release/distribution → Beacon;
-- identity tokens/assets → Identity;
+- `/identity/` product experience and identity tokens/assets → Identity;
 - raw archival/reference material → Athena.

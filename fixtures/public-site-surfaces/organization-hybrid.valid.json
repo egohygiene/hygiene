@@ -1,0 +1,1489 @@
+{
+  "schema": "egohygiene.public-site-surface-declaration/v1",
+  "contract_version": "1.0.0-alpha.1",
+  "synthetic": true,
+  "registry": {
+    "schema": "egohygiene.public-site-surface-registry/v1",
+    "version": "1.0.0-alpha.1",
+    "source_path": "catalog/public-site-surface-registry.json",
+    "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "sha256": "82af08b921934709bb5ee8aa92e89acb16d8fabcd5f8f79d06b722ac6042107e"
+  },
+  "site": {
+    "id": "egohygiene/synthetic-organization-site",
+    "publication_repository": "egohygiene/synthetic-organization-site",
+    "origin": "https://organization.example.invalid",
+    "base_path": "/",
+    "route_profile": "organization",
+    "site_class": "hybrid",
+    "visibility": "public",
+    "represented_revision": "dddddddddddddddddddddddddddddddddddddddd"
+  },
+  "surfaces": [
+    {
+      "id": "accessibility",
+      "canonical_route": "/accessibility/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "repository-policy",
+        "location": "fixtures/sources/accessibility.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "contract": "site-owned",
+        "implementation": "synthetic-site-owned",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/accessibility/",
+        "evidence_url": "https://example.invalid/evidence/accessibility",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "audits",
+      "canonical_route": "/audits/",
+      "aliases": [
+        "/intelligence/audits/"
+      ],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "blocked",
+        "publication_state": "unpublished",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": "https://example.invalid/assessment/blocked",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "Delivery is blocked on an explicitly named dependency.",
+        "blocked_by": [
+          "synthetic:audit-contract"
+        ]
+      }
+    },
+    {
+      "id": "blog",
+      "canonical_route": "/blog/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "community",
+      "canonical_route": "/community/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "compare",
+      "canonical_route": "/intelligence/compare/",
+      "aliases": [
+        "/compare/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "dashboard",
+      "canonical_route": "/intelligence/dashboard/",
+      "aliases": [
+        "/dashboard/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "decisions",
+      "canonical_route": "/decisions/",
+      "aliases": [
+        "/adr/",
+        "/intelligence/decisions/"
+      ],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "repository-intelligence",
+        "location": "fixtures/sources/decisions.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/relay",
+        "contract": "relay-compatible",
+        "implementation": "synthetic-relay-compatible",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/decisions/",
+        "evidence_url": "https://example.invalid/evidence/decisions",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "dependencies",
+      "canonical_route": "/dependencies/",
+      "aliases": [
+        "/intelligence/dependencies/"
+      ],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "repository-intelligence",
+        "location": "fixtures/sources/dependencies.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/relay",
+        "contract": "relay-compatible",
+        "implementation": "synthetic-relay-compatible",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/dependencies/",
+        "evidence_url": "https://example.invalid/evidence/dependencies",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "diagnostics",
+      "canonical_route": "/intelligence/diagnostics/",
+      "aliases": [
+        "/diagnostics/"
+      ],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "unknown",
+        "assertion": "authoritative",
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "Applicability evidence is private and redacted."
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "unpublished",
+        "visibility": "private",
+        "freshness": "unknown",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The surface exists privately; implementation and evidence details are redacted.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "distribution",
+      "canonical_route": "/distribution/",
+      "aliases": [
+        "/intelligence/distribution/"
+      ],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "operational-evidence",
+        "location": "fixtures/sources/distribution.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/relay",
+        "contract": "relay-compatible",
+        "implementation": "synthetic-relay-compatible",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [
+        "releases"
+      ],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/distribution/",
+        "evidence_url": "https://example.invalid/evidence/distribution",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "documentation",
+      "canonical_route": "/docs/",
+      "aliases": [
+        "/documentation/"
+      ],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "repository-content",
+        "location": "fixtures/sources/documentation.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "contract": "site-owned",
+        "implementation": "synthetic-site-owned",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/docs/",
+        "evidence_url": "https://example.invalid/evidence/documentation",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "donate",
+      "canonical_route": "/donate/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "feed",
+      "canonical_route": "/feed.xml",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "garden",
+      "canonical_route": "/garden/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "health",
+      "canonical_route": "/health/",
+      "aliases": [
+        "/intelligence/health/"
+      ],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "blocked",
+        "publication_state": "unpublished",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": "https://example.invalid/assessment/blocked",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "Delivery is blocked on an explicitly named dependency.",
+        "blocked_by": [
+          "capability:synthetic-health-evidence-feed"
+        ]
+      }
+    },
+    {
+      "id": "help",
+      "canonical_route": "/help/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "hygiene",
+      "canonical_route": "/hygiene/",
+      "aliases": [
+        "/intelligence/hygiene/"
+      ],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "operational-evidence",
+        "location": "fixtures/sources/hygiene.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/relay",
+        "contract": "relay-compatible",
+        "implementation": "synthetic-relay-compatible",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/hygiene/",
+        "evidence_url": "https://example.invalid/evidence/hygiene",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "identity",
+      "canonical_route": "/identity/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "inherited",
+      "owner": "egohygiene/identity",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/identity",
+        "kind": "identity-artifact",
+        "location": "fixtures/sources/identity.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/identity",
+        "contract": "identity-compatible",
+        "implementation": "synthetic-identity-compatible",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/identity/",
+        "evidence_url": "https://example.invalid/evidence/identity",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "identity_intelligence",
+      "canonical_route": "/intelligence/identity/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "identity-artifact",
+        "location": "fixtures/sources/identity_intelligence.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/relay",
+        "contract": "relay-compatible",
+        "implementation": "synthetic-relay-compatible",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/intelligence/identity/",
+        "evidence_url": "https://example.invalid/evidence/identity_intelligence",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "intelligence",
+      "canonical_route": "/intelligence/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "repository-intelligence",
+        "location": "fixtures/sources/intelligence.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/relay",
+        "contract": "relay-compatible",
+        "implementation": "synthetic-relay-compatible",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/intelligence/",
+        "evidence_url": "https://example.invalid/evidence/intelligence",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "journey",
+      "canonical_route": "/intelligence/journey/",
+      "aliases": [
+        "/activity/",
+        "/intelligence/activity/",
+        "/journey/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "landing",
+      "canonical_route": "/",
+      "aliases": [],
+      "requirement": "required",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "repository-content",
+        "location": "fixtures/sources/landing.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "contract": "site-owned",
+        "implementation": "synthetic-site-owned",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/",
+        "evidence_url": "https://example.invalid/evidence/landing",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "legal",
+      "canonical_route": "/legal/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "repository-policy",
+        "location": "fixtures/sources/legal.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "contract": "site-owned",
+        "implementation": "synthetic-site-owned",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/legal/",
+        "evidence_url": "https://example.invalid/evidence/legal",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "magazine",
+      "canonical_route": "/magazine/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "now",
+      "canonical_route": "/intelligence/now/",
+      "aliases": [
+        "/now/"
+      ],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "repository-intelligence",
+        "location": "fixtures/sources/now.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/relay",
+        "contract": "relay-compatible",
+        "implementation": "synthetic-relay-compatible",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/intelligence/now/",
+        "evidence_url": "https://example.invalid/evidence/now",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "presentation",
+      "canonical_route": "/presentation/",
+      "aliases": [
+        "/slideshow/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "privacy",
+      "canonical_route": "/privacy/",
+      "aliases": [],
+      "requirement": "required",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "repository-policy",
+        "location": "fixtures/sources/privacy.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "contract": "site-owned",
+        "implementation": "synthetic-site-owned",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/privacy/",
+        "evidence_url": "https://example.invalid/evidence/privacy",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "privacy_choices",
+      "canonical_route": "/privacy/choices/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "privacy"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "releases",
+      "canonical_route": "/releases/",
+      "aliases": [
+        "/intelligence/releases/"
+      ],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "repository-intelligence",
+        "location": "fixtures/sources/releases.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/relay",
+        "contract": "relay-compatible",
+        "implementation": "synthetic-relay-compatible",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/releases/",
+        "evidence_url": "https://example.invalid/evidence/releases",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "roadmap",
+      "canonical_route": "/roadmap/",
+      "aliases": [
+        "/intelligence/roadmap/"
+      ],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "repository-intelligence",
+        "location": "fixtures/sources/roadmap.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/relay",
+        "contract": "relay-compatible",
+        "implementation": "synthetic-relay-compatible",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "stale",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/roadmap/",
+        "evidence_url": "https://example.invalid/evidence/roadmap",
+        "represented_revision": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "sanity",
+      "canonical_route": "/sanity/",
+      "aliases": [
+        "/intelligence/sanity/"
+      ],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "operational-evidence",
+        "location": "fixtures/sources/sanity.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/relay",
+        "contract": "relay-compatible",
+        "implementation": "synthetic-relay-compatible",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/sanity/",
+        "evidence_url": "https://example.invalid/evidence/sanity",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "search",
+      "canonical_route": "/search/",
+      "aliases": [
+        "/intelligence/search/"
+      ],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "generated-index",
+        "location": "fixtures/sources/search.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/relay",
+        "contract": "relay-compatible",
+        "implementation": "synthetic-relay-compatible",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/search/",
+        "evidence_url": "https://example.invalid/evidence/search",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "status",
+      "canonical_route": "/status/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "planned",
+        "publication_state": "unpublished",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": "https://example.invalid/assessment/planned",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The repository has intentionally planned this surface but has not implemented it.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "support",
+      "canonical_route": "/support/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "trust",
+      "canonical_route": "/trust/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "kind": "operational-evidence",
+        "location": "fixtures/sources/trust.json",
+        "revision": "dddddddddddddddddddddddddddddddddddddddd"
+      },
+      "renderer": {
+        "owner": "egohygiene/synthetic-organization-site",
+        "contract": "site-owned",
+        "implementation": "synthetic-site-owned",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://organization.example.invalid/trust/",
+        "evidence_url": "https://example.invalid/evidence/trust",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "work",
+      "canonical_route": "/intelligence/work/",
+      "aliases": [
+        "/work/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "dddddddddddddddddddddddddddddddddddddddd",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-organization-site",
+      "publication_owner": "egohygiene/synthetic-organization-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    }
+  ]
+}

@@ -4,7 +4,7 @@
 
 - Architecture release: `architecture-v0.1.0`
 - Governing decision: `ADR-0001`
-- Relationships: `26`
+- Relationships: `27`
 - Active exceptions: `0`
 
 ## Rules
@@ -50,6 +50,7 @@
 | `RELATIONSHIP-024` | `egohygiene/aether` | `egohygiene/hygiene` | portable repository continuity specification, schema, template, skill, and managed instruction projection | `schema`, `generated-projection` | _required_ | `immutable` |
 | `RELATIONSHIP-025` | `egohygiene/hygiene` | `egohygiene/egolint`, `egohygiene/holon`, `egohygiene/observatory`, `egohygiene/pace`, `egohygiene/relay` | repository continuity applicability, required-file composition, rollout, migration, and exception policy | `schema`, `generated-projection` | _required_ | `versioned` |
 | `RELATIONSHIP-026` | `egohygiene/hygiene` | `egohygiene/holon`, `egohygiene/relay`, `egohygiene/pace`, `egohygiene/store`, `egohygiene/observatory` | proposed Agent-Ready Web integrated profile and conformance schemas, independent concern resolution, cross-layer authority invariants, deterministic diagnostics and evidence, immutable consumer resolution, compatibility, reference review, and bounded consumer handoffs | `schema`, `generated-projection` | _required_ | `immutable-or-versioned` |
+| `RELATIONSHIP-027` | `egohygiene/hygiene` | `egohygiene/holon`, `egohygiene/identity`, `egohygiene/observatory`, `egohygiene/pace`, `egohygiene/relay`, `egohygiene/renderflow`, `egohygiene/website` | proposed public-site surface registry and declaration contracts, route profiles, base-path resolution, applicability and state semantics, ownership and privacy boundaries, immutable evidence, compatibility, and bounded consumer handoffs | `schema`, `generated-projection` | _required_ | `immutable-or-versioned` |
 
 ## Forbidden direct dependencies
 

@@ -24,7 +24,9 @@ The target system optimizes for one person moving very quickly without turning t
 
 This plane defines the ecosystem, creates and evolves repositories, distributes reusable AI artifacts, reconciles the fleet, and makes maturity visible.
 
-- **hygiene** — canonical ecosystem architecture, repository registry, platform policies, cross-repository decisions, adoption and continuity applicability models, and staging ledger.
+- **hygiene** — canonical ecosystem architecture, repository registry, platform
+  policies, cross-repository decisions, public-site surface and declaration
+  contracts, adoption and continuity applicability models, and staging ledger.
 - **.github** — organization profile, public defaults, funding, and default community-health files.
 - **aether** — canonical first-party AI specifications, skills, agents, catalogs, validators, release projections, and the portable repository-continuity protocol.
 - **holon** — architecture-driven bootstrapper that creates new organizations and repositories from versioned blueprints.
@@ -83,7 +85,8 @@ Athena is the reservoir; Akashic is an opinionated public collection; Mindcap is
 
 This plane exposes the ecosystem to people.
 
-- **identity** — brand systems, design tokens, voice, public metadata, and generated creative-asset packages.
+- **identity** — the `/identity/` product experience, brand systems, design
+  tokens, voice, public metadata, and generated creative-asset packages.
 - **egohygiene** — the private, local-first Flutter cognition and reflection product.
 - **egohygiene.io** — the renamed `website` repository and canonical public website, documentation, playground, and shared web packages.
 - **store** — provider-neutral storefront and commerce adapter deployed at `egohygiene.io/store`.
@@ -144,7 +147,15 @@ Repositories compose through one or more of these versioned surfaces:
 
 ### 4.3 Contract ownership
 
-Contracts live with the capability that owns their semantics. Flow owns suite orchestration schemas; Aether owns AI artifact catalogs; Hygiene owns the repository registry and conformance model; Identity owns brand package schemas; each product owns its domain contracts. A generic “shared contracts” repository is intentionally avoided.
+Contracts live with the capability that owns their semantics. Flow owns suite
+orchestration schemas; Aether owns AI artifact catalogs; Hygiene owns the
+repository registry, public-site surface policy and declaration schema, and
+conformance model; Identity owns the `/identity/` product contract and brand
+package schemas; each product owns its domain contracts. A site repository
+owns its truthful declaration and source facts, and its publication repository
+retains final route composition, hosting, credentials, deployment, rollback,
+and publication authority. A generic “shared contracts” repository is
+intentionally avoided.
 
 ## 5. Realm artifact architecture
 
@@ -224,6 +235,12 @@ Hygiene will publish an architecture release containing:
 - `schemas/agent-ready-web-conformance.v1.schema.json` — proposed site-owned,
   revision-bound whole-profile evidence, diagnostics, level, and negative-
   authority assertion contract;
+- `catalog/public-site-surface-registry.json` — proposed stable surface IDs,
+  scoped route profiles and bindings, applicability, state, ownership,
+  compatibility, dependency, and privacy policy;
+- `schemas/public-site-surface-registry.v1.schema.json` and
+  `schemas/public-site-surface-declaration.v1.schema.json` — proposed registry
+  and repository-owned declaration exchange shapes;
 - this ecosystem architecture;
 - cross-repository ADRs and contract indexes;
 - diagram sources and approved rendered diagrams;
@@ -280,6 +297,21 @@ final publication authority. Discovery, structured metadata, advertising, and
 maturity never grant capability, consent, authorization, or transaction
 authority. The proposed profile does not implement downstream responsibilities
 or make an adoption, conformance, publication, or enforcement claim.
+
+Public-site surface composition follows the same separation. Hygiene defines
+stable IDs, route profiles and bindings, base-path resolution, applicability
+and state semantics, schemas, compatibility, dependency rules, and privacy
+boundaries; it neither renders nor publishes a site. A declaring repository
+owns its facts and evidence, and the named publication repository owns final
+composition and deployment. Relay may provide reusable validation, redirects,
+rendering, and publication execution without taking publication authority;
+Renderflow supplies exact-pinned magazine and presentation transformation
+artifacts without owning routes; and Identity retains the `/identity/` product
+experience and its versioned brand and asset inputs. Holon may scaffold new
+declarations, Observatory may aggregate privacy-safe declaration state, and
+Pace may propose reviewed adoption changes. The catalog identity
+`egohygiene/website` continues to represent the renamed `egohygiene.io` site
+until that separate repository-catalog reconciliation is reviewed.
 
 ## 7. Control loops
 

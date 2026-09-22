@@ -1,0 +1,1323 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/public-site-surface-declaration.v1.schema.json",
+  "title": "Ego Hygiene public-site surface declaration v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contract_version",
+    "synthetic",
+    "registry",
+    "site",
+    "surfaces"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egohygiene.public-site-surface-declaration/v1"
+    },
+    "contract_version": {
+      "const": "1.0.0-alpha.1"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "registry": {
+      "$ref": "#/$defs/registryReference"
+    },
+    "site": {
+      "$ref": "#/$defs/site"
+    },
+    "surfaces": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/surfaceDeclaration"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "synthetic": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "site": {
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^egohygiene/synthetic-[a-z0-9][a-z0-9.-]*$"
+              },
+              "publication_repository": {
+                "type": "string",
+                "pattern": "^egohygiene/synthetic-[a-z0-9][a-z0-9.-]*$"
+              },
+              "origin": {
+                "type": "string",
+                "pattern": "^https://(?:[A-Za-z0-9-]+\\.)+invalid(?::[0-9]+)?/?$"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "site": {
+            "properties": {
+              "visibility": {
+                "const": "private"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "surfaces": {
+            "items": {
+              "properties": {
+                "publication": {
+                  "properties": {
+                    "visibility": {
+                      "const": "private"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "site": {
+            "properties": {
+              "visibility": {
+                "const": "internal"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "surfaces": {
+            "items": {
+              "properties": {
+                "publication": {
+                  "properties": {
+                    "visibility": {
+                      "enum": [
+                        "internal",
+                        "private"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "nullableText": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "nullableRevision": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/revision"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "httpsUriOrNull": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://(?![^/?#]*@)[^\\s\\\\]+$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "canonicalUriOrNull": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://(?![^/?#]*@)[^\\s\\\\?#]+$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "route": {
+      "type": "string",
+      "pattern": "^/(?:$|(?:[a-z0-9][a-z0-9._-]*/)*[a-z0-9][a-z0-9_-]*/|(?:[a-z0-9][a-z0-9._-]*/)*[a-z0-9][a-z0-9_-]*\\.[a-z0-9][a-z0-9._-]*)$"
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^egohygiene/(?:\\.github|[a-z0-9][a-z0-9.-]*)$"
+    },
+    "registryReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "version",
+        "source_path",
+        "revision",
+        "sha256"
+      ],
+      "properties": {
+        "schema": {
+          "const": "egohygiene.public-site-surface-registry/v1"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-alpha\\.[0-9]+)?$"
+        },
+        "source_path": {
+          "const": "catalog/public-site-surface-registry.json"
+        },
+        "revision": {
+          "$ref": "#/$defs/revision"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "site": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "publication_repository",
+        "origin",
+        "base_path",
+        "route_profile",
+        "site_class",
+        "visibility",
+        "represented_revision"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/repository"
+        },
+        "publication_repository": {
+          "$ref": "#/$defs/repository"
+        },
+        "origin": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://(?![^/?#]*@)[^\\s\\\\/?#]+/?$"
+        },
+        "base_path": {
+          "type": "string",
+          "pattern": "^/(?:[a-z0-9][a-z0-9._-]*/)*$"
+        },
+        "route_profile": {
+          "enum": [
+            "organization",
+            "repository"
+          ]
+        },
+        "site_class": {
+          "enum": [
+            "application",
+            "commerce",
+            "content",
+            "documentation",
+            "hybrid"
+          ]
+        },
+        "visibility": {
+          "enum": [
+            "public",
+            "internal",
+            "private"
+          ]
+        },
+        "represented_revision": {
+          "$ref": "#/$defs/revision"
+        }
+      }
+    },
+    "sourceArtifact": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "owner",
+            "kind",
+            "location",
+            "revision"
+          ],
+          "properties": {
+            "owner": {
+              "$ref": "#/$defs/repository"
+            },
+            "kind": {
+              "enum": [
+                "generated-index",
+                "identity-artifact",
+                "operational-evidence",
+                "publication-artifact",
+                "repository-content",
+                "repository-intelligence",
+                "repository-policy"
+              ]
+            },
+            "location": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^https://(?![^/?#]*@)[^\\s\\\\]+$"
+                },
+                {
+                  "type": "string",
+                  "pattern": "^(?!\\.{1,2}(?:/|$))[A-Za-z0-9._@+-]+(?:/(?!\\.{1,2}(?:/|$))[A-Za-z0-9._@+-]+)*$"
+                }
+              ]
+            },
+            "revision": {
+              "$ref": "#/$defs/revision"
+            }
+          }
+        }
+      ]
+    },
+    "renderer": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "owner",
+            "contract",
+            "implementation",
+            "version"
+          ],
+          "properties": {
+            "owner": {
+              "$ref": "#/$defs/repository"
+            },
+            "contract": {
+              "enum": [
+                "identity-compatible",
+                "relay-compatible",
+                "renderflow-compatible",
+                "site-owned"
+              ]
+            },
+            "implementation": {
+              "$ref": "#/$defs/text"
+            },
+            "version": {
+              "type": "string",
+              "pattern": "^(?:(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)(?:-(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*))*)?(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?|[0-9a-f]{40})$"
+            }
+          }
+        }
+      ]
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "implementation_state",
+        "publication_state",
+        "visibility",
+        "freshness",
+        "assertion",
+        "canonical_url",
+        "evidence_url",
+        "represented_revision",
+        "observed_at",
+        "reason",
+        "blocked_by"
+      ],
+      "properties": {
+        "implementation_state": {
+          "enum": [
+            "unknown",
+            "missing",
+            "planned",
+            "blocked",
+            "implemented",
+            "unsupported",
+            "not_applicable"
+          ]
+        },
+        "publication_state": {
+          "enum": [
+            "unknown",
+            "unpublished",
+            "preview",
+            "published",
+            "withdrawn",
+            "not_applicable"
+          ]
+        },
+        "visibility": {
+          "enum": [
+            "public",
+            "internal",
+            "private"
+          ]
+        },
+        "freshness": {
+          "enum": [
+            "current",
+            "stale",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "assertion": {
+          "enum": [
+            "authoritative",
+            "inferred",
+            "unknown"
+          ]
+        },
+        "canonical_url": {
+          "$ref": "#/$defs/canonicalUriOrNull"
+        },
+        "evidence_url": {
+          "$ref": "#/$defs/httpsUriOrNull"
+        },
+        "represented_revision": {
+          "$ref": "#/$defs/nullableRevision"
+        },
+        "observed_at": {
+          "oneOf": [
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "(?:Z|[+-][0-9]{2}:[0-9]{2})$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "$ref": "#/$defs/nullableText"
+        },
+        "blocked_by": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "implementation_state": {
+                "const": "unknown"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "publication_state": {
+                "const": "unknown"
+              },
+              "freshness": {
+                "const": "unknown"
+              },
+              "assertion": {
+                "const": "unknown"
+              },
+              "canonical_url": {
+                "type": "null"
+              },
+              "evidence_url": {
+                "type": "null"
+              },
+              "represented_revision": {
+                "type": "null"
+              },
+              "observed_at": {
+                "type": "null"
+              },
+              "reason": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "implementation_state": {
+                "enum": [
+                  "missing",
+                  "planned",
+                  "blocked",
+                  "unsupported"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "publication_state": {
+                "enum": [
+                  "unknown",
+                  "unpublished"
+                ]
+              },
+              "canonical_url": {
+                "type": "null"
+              },
+              "reason": {
+                "$ref": "#/$defs/text"
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "visibility": {
+                      "const": "private"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "freshness": {
+                      "const": "unknown"
+                    },
+                    "assertion": {
+                      "enum": [
+                        "authoritative",
+                        "inferred"
+                      ]
+                    },
+                    "evidence_url": {
+                      "type": "null"
+                    },
+                    "represented_revision": {
+                      "type": "null"
+                    },
+                    "observed_at": {
+                      "type": "null"
+                    }
+                  }
+                },
+                "else": {
+                  "properties": {
+                    "freshness": {
+                      "enum": [
+                        "current",
+                        "stale"
+                      ]
+                    },
+                    "assertion": {
+                      "enum": [
+                        "authoritative",
+                        "inferred"
+                      ]
+                    },
+                    "evidence_url": {
+                      "type": "string",
+                      "format": "uri",
+                      "pattern": "^https://"
+                    },
+                    "represented_revision": {
+                      "$ref": "#/$defs/revision"
+                    },
+                    "observed_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "(?:Z|[+-][0-9]{2}:[0-9]{2})$"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "implementation_state": {
+                "const": "blocked"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "blocked_by": {
+                "minItems": 1
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "visibility": {
+                      "const": "private"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "blocked_by": {
+                      "const": [
+                        "redacted"
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "else": {
+            "properties": {
+              "blocked_by": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "implementation_state": {
+                "const": "implemented"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "publication_state": {
+                "enum": [
+                  "unpublished",
+                  "preview",
+                  "published",
+                  "withdrawn"
+                ]
+              },
+              "assertion": {
+                "enum": [
+                  "authoritative",
+                  "inferred"
+                ]
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "publication_state": {
+                      "const": "published"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "visibility": {
+                      "const": "public"
+                    },
+                    "freshness": {
+                      "enum": [
+                        "current",
+                        "stale"
+                      ]
+                    },
+                    "canonical_url": {
+                      "type": "string",
+                      "format": "uri",
+                      "pattern": "^https://"
+                    },
+                    "evidence_url": {
+                      "type": "string",
+                      "format": "uri",
+                      "pattern": "^https://"
+                    },
+                    "represented_revision": {
+                      "$ref": "#/$defs/revision"
+                    },
+                    "observed_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "(?:Z|[+-][0-9]{2}:[0-9]{2})$"
+                    },
+                    "reason": {
+                      "type": "null"
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "publication_state": {
+                      "const": "unpublished"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "freshness": {
+                      "const": "unknown"
+                    },
+                    "canonical_url": {
+                      "type": "null"
+                    },
+                    "evidence_url": {
+                      "type": "null"
+                    },
+                    "represented_revision": {
+                      "type": "null"
+                    },
+                    "observed_at": {
+                      "type": "null"
+                    },
+                    "reason": {
+                      "$ref": "#/$defs/text"
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "publication_state": {
+                      "enum": [
+                        "preview",
+                        "withdrawn"
+                      ]
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "internal"
+                      ]
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "freshness": {
+                      "enum": [
+                        "current",
+                        "stale"
+                      ]
+                    },
+                    "evidence_url": {
+                      "type": "string",
+                      "format": "uri",
+                      "pattern": "^https://"
+                    },
+                    "represented_revision": {
+                      "$ref": "#/$defs/revision"
+                    },
+                    "observed_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "(?:Z|[+-][0-9]{2}:[0-9]{2})$"
+                    },
+                    "reason": {
+                      "$ref": "#/$defs/text"
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "visibility": {
+                      "const": "private"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "publication_state": {
+                      "enum": [
+                        "unpublished",
+                        "preview",
+                        "withdrawn"
+                      ]
+                    },
+                    "freshness": {
+                      "const": "unknown"
+                    },
+                    "canonical_url": {
+                      "type": "null"
+                    },
+                    "evidence_url": {
+                      "type": "null"
+                    },
+                    "represented_revision": {
+                      "type": "null"
+                    },
+                    "observed_at": {
+                      "type": "null"
+                    },
+                    "reason": {
+                      "$ref": "#/$defs/text"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "implementation_state": {
+                "const": "not_applicable"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "publication_state": {
+                "const": "not_applicable"
+              },
+              "freshness": {
+                "const": "not_applicable"
+              },
+              "assertion": {
+                "const": "authoritative"
+              },
+              "canonical_url": {
+                "type": "null"
+              },
+              "evidence_url": {
+                "type": "null"
+              },
+              "represented_revision": {
+                "type": "null"
+              },
+              "observed_at": {
+                "type": "null"
+              },
+              "reason": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "surfaceDeclaration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "canonical_route",
+        "aliases",
+        "requirement",
+        "applicability",
+        "disposition",
+        "owner",
+        "publication_owner",
+        "source_artifact",
+        "renderer",
+        "dependencies",
+        "publication"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "canonical_route": {
+          "$ref": "#/$defs/route"
+        },
+        "aliases": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/route"
+          }
+        },
+        "requirement": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional"
+          ]
+        },
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "disposition": {
+          "enum": [
+            "owned",
+            "inherited",
+            "omitted"
+          ]
+        },
+        "owner": {
+          "$ref": "#/$defs/repository"
+        },
+        "publication_owner": {
+          "$ref": "#/$defs/repository"
+        },
+        "source_artifact": {
+          "$ref": "#/$defs/sourceArtifact"
+        },
+        "renderer": {
+          "$ref": "#/$defs/renderer"
+        },
+        "dependencies": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "publication": {
+          "$ref": "#/$defs/publication"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "applicability": {
+                "properties": {
+                  "state": {
+                    "const": "not_applicable"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "disposition": {
+                "const": "omitted"
+              },
+              "source_artifact": {
+                "type": "null"
+              },
+              "renderer": {
+                "type": "null"
+              },
+              "publication": {
+                "properties": {
+                  "implementation_state": {
+                    "const": "not_applicable"
+                  },
+                  "publication_state": {
+                    "const": "not_applicable"
+                  },
+                  "freshness": {
+                    "const": "not_applicable"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "publication": {
+                "properties": {
+                  "implementation_state": {
+                    "const": "not_applicable"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "applicability": {
+                "properties": {
+                  "state": {
+                    "const": "not_applicable"
+                  }
+                }
+              },
+              "disposition": {
+                "const": "omitted"
+              },
+              "source_artifact": {
+                "type": "null"
+              },
+              "renderer": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "applicability": {
+                "properties": {
+                  "state": {
+                    "const": "unknown"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "disposition": {
+                "const": "omitted"
+              },
+              "source_artifact": {
+                "type": "null"
+              },
+              "renderer": {
+                "type": "null"
+              },
+              "publication": {
+                "properties": {
+                  "implementation_state": {
+                    "const": "unknown"
+                  },
+                  "publication_state": {
+                    "const": "unknown"
+                  },
+                  "freshness": {
+                    "const": "unknown"
+                  },
+                  "assertion": {
+                    "const": "unknown"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "publication": {
+                "properties": {
+                  "visibility": {
+                    "const": "private"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_artifact": {
+                "type": "null"
+              },
+              "renderer": {
+                "type": "null"
+              },
+              "applicability": {
+                "properties": {
+                  "freshness": {
+                    "const": "unknown"
+                  },
+                  "assertion": {
+                    "enum": [
+                      "authoritative",
+                      "inferred"
+                    ]
+                  },
+                  "evidence_url": {
+                    "type": "null"
+                  },
+                  "represented_revision": {
+                    "type": "null"
+                  },
+                  "observed_at": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "applicability": {
+                "properties": {
+                  "freshness": {
+                    "enum": [
+                      "current",
+                      "stale"
+                    ]
+                  },
+                  "assertion": {
+                    "enum": [
+                      "authoritative",
+                      "inferred"
+                    ]
+                  },
+                  "evidence_url": {
+                    "type": "string",
+                    "format": "uri",
+                    "pattern": "^https://"
+                  },
+                  "represented_revision": {
+                    "$ref": "#/$defs/revision"
+                  },
+                  "observed_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "(?:Z|[+-][0-9]{2}:[0-9]{2})$"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "publication": {
+                "properties": {
+                  "implementation_state": {
+                    "enum": [
+                      "unknown",
+                      "missing",
+                      "planned",
+                      "blocked",
+                      "unsupported",
+                      "not_applicable"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_artifact": {
+                "type": "null"
+              },
+              "renderer": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "publication": {
+                "properties": {
+                  "implementation_state": {
+                    "const": "implemented"
+                  },
+                  "visibility": {
+                    "enum": [
+                      "public",
+                      "internal"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_artifact": {
+                "type": "object"
+              },
+              "renderer": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "disposition": {
+                "const": "omitted"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "publication": {
+                "properties": {
+                  "implementation_state": {
+                    "not": {
+                      "const": "implemented"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "applicability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "freshness",
+        "assertion",
+        "evidence_url",
+        "represented_revision",
+        "observed_at",
+        "reason"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "applicable",
+            "not_applicable",
+            "unknown"
+          ]
+        },
+        "freshness": {
+          "enum": [
+            "current",
+            "stale",
+            "unknown"
+          ]
+        },
+        "assertion": {
+          "enum": [
+            "authoritative",
+            "inferred",
+            "unknown"
+          ]
+        },
+        "evidence_url": {
+          "$ref": "#/$defs/httpsUriOrNull"
+        },
+        "represented_revision": {
+          "$ref": "#/$defs/nullableRevision"
+        },
+        "observed_at": {
+          "oneOf": [
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "(?:Z|[+-][0-9]{2}:[0-9]{2})$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "$ref": "#/$defs/nullableText"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "unknown"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "assertion": {
+                "enum": [
+                  "authoritative",
+                  "inferred"
+                ]
+              },
+              "reason": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "not_applicable"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "assertion": {
+                "const": "authoritative"
+              },
+              "reason": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "applicable"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "assertion": {
+                "enum": [
+                  "authoritative",
+                  "inferred"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

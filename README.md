@@ -48,6 +48,11 @@ evidence; it is not a substitute for the canonical sources below.
 - [Repository presentation profile schema](schemas/repository-presentation-profile.v1.schema.json)
 - [Repository presentation evidence schema](schemas/repository-presentation-evidence.v1.schema.json)
 - [Repository presentation fixtures](fixtures/repository-presentation)
+- [Proposed public-site surface and route contract](docs/ecosystem/PUBLIC_SITE_SURFACES.md)
+- [Public-site surface registry](catalog/public-site-surface-registry.json)
+- [Public-site surface registry schema](schemas/public-site-surface-registry.v1.schema.json)
+- [Public-site declaration schema](schemas/public-site-surface-declaration.v1.schema.json)
+- [Public-site surface compatibility fixtures](fixtures/public-site-surfaces)
 
 The accepted written architecture and versioned machine-readable catalog are
 authoritative. Rendered diagrams, local repository context, and future landscape
@@ -62,6 +67,7 @@ sites are projections of those sources.
 - [Proposed Agent-Ready Web discovery decision](docs/decisions/ADR-010-agent-ready-web-discovery-representations.md)
 - [Proposed Agent-Ready Web capability and commerce decision](docs/decisions/ADR-011-agent-ready-web-guarded-capability-commerce.md)
 - [Proposed Agent-Ready Web integration and conformance decision](docs/decisions/ADR-012-agent-ready-web-integration-conformance.md)
+- [Proposed public-site surface and route registry decision](docs/decisions/ADR-013-public-site-surface-route-registry.md)
 - [ADR reference template](docs/decisions/ADR-TEMPLATE.md)
 - [ADR migration guide](docs/decisions/MIGRATION.md)
 - [ADR validation plan](docs/decisions/VALIDATION.md)
@@ -115,6 +121,8 @@ python3 tools/presentation.py validate-evidence \
   --evidence fixtures/repository-presentation/minimal.valid.json
 python3 tools/presentation.py validate-evidence \
   --evidence fixtures/repository-presentation/rich.valid.json
+python3 tools/site_surfaces.py validate-registry
+python3 tools/site_surfaces.py validate-fixtures
 python3 tools/decisions.py decision \
   --input fixtures/architecture-decisions/decision.proposed.valid.json
 python3 tools/decisions.py decision-set \
