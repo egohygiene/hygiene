@@ -92,6 +92,26 @@ See the
 for applicability, badge-state derivation, evidence, composition, ownership,
 and rollout boundaries.
 
+## Public-site surface registry
+
+`public-site-surface-registry.json` is the proposed versioned catalog for
+stable public-surface identities, organization and repository route profiles,
+aliases, applicability, ownership, dependencies, source artifacts, renderer
+expectations, and truthful delivery states. A separate declaration schema lets
+each site resolve every registered surface without treating registration as a
+publication claim.
+
+```bash
+python3 tools/site_surfaces.py validate-registry
+python3 tools/site_surfaces.py validate-fixtures
+```
+
+The [public-site surface contract](../docs/ecosystem/PUBLIC_SITE_SURFACES.md),
+[registry schema](../schemas/public-site-surface-registry.v1.schema.json),
+[declaration schema](../schemas/public-site-surface-declaration.v1.schema.json),
+and [compatibility fixtures](../fixtures/public-site-surfaces) define the
+proposed alpha contract tracked by [ADR-013](../docs/decisions/ADR-013-public-site-surface-route-registry.md).
+
 ## Repository continuity policy
 
 `repository-continuity-policy.json` composes an immutable Aether continuity

@@ -151,7 +151,7 @@ issues: []
 id: HYG-Q05
 status: planned
 depends_on: [HYG-Q03, HYG-Q04]
-issues: [16, 19, 22, 45]
+issues: [16, 19, 22, 25, 45]
 -->
 #### HYG-Q05 — Version and integrate the organization contract
 
@@ -172,6 +172,10 @@ issues: [16, 19, 22, 45]
   integration remains unproven.
 - Issue #22 defines the proposed repository-presentation profile and evidence
   boundary before Identity, Holon, Egolint, and Pace implementations.
+- Issue #25 now has a proposed versioned public-site surface and route
+  registry, site declaration schema, compatibility fixtures, and reference
+  validator. ADR-013 and the contract remain proposed; acceptance, release,
+  and downstream adoption are not yet evidenced.
 - Issue #45 defines the proposed repository-continuity applicability profile,
   breaking repository-context v2 transition, and observe-first downstream
   boundary. Stable Aether release evidence and ADR-008 acceptance remain gates

@@ -1,0 +1,513 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/public-site-surface-registry.v1.schema.json",
+  "title": "Ego Hygiene public-site surface registry v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "status",
+    "owner",
+    "updated",
+    "purpose",
+    "requirements",
+    "applicability_states",
+    "applicability_rules",
+    "implementation_states",
+    "publication_states",
+    "freshness_states",
+    "assertions",
+    "visibilities",
+    "dispositions",
+    "site_classes",
+    "route_profiles",
+    "dependency_policy",
+    "route_policy",
+    "surfaces",
+    "compatibility",
+    "composition",
+    "ownership"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egohygiene.public-site-surface-registry/v1"
+    },
+    "version": {
+      "const": "1.0.0-alpha.1"
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "active",
+        "deprecated",
+        "superseded"
+      ]
+    },
+    "owner": {
+      "const": "egohygiene/hygiene"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date"
+    },
+    "purpose": {
+      "$ref": "#/$defs/text"
+    },
+    "requirements": {
+      "const": [
+        "required",
+        "recommended",
+        "optional"
+      ]
+    },
+    "applicability_states": {
+      "const": [
+        "applicable",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "applicability_rules": {
+      "const": [
+        "always",
+        "site-declared"
+      ]
+    },
+    "implementation_states": {
+      "const": [
+        "unknown",
+        "missing",
+        "planned",
+        "blocked",
+        "implemented",
+        "unsupported",
+        "not_applicable"
+      ]
+    },
+    "publication_states": {
+      "const": [
+        "unknown",
+        "unpublished",
+        "preview",
+        "published",
+        "withdrawn",
+        "not_applicable"
+      ]
+    },
+    "freshness_states": {
+      "const": [
+        "current",
+        "stale",
+        "unknown",
+        "not_applicable"
+      ]
+    },
+    "assertions": {
+      "const": [
+        "authoritative",
+        "inferred",
+        "unknown"
+      ]
+    },
+    "visibilities": {
+      "const": [
+        "public",
+        "internal",
+        "private"
+      ]
+    },
+    "dispositions": {
+      "const": [
+        "owned",
+        "inherited",
+        "omitted"
+      ]
+    },
+    "site_classes": {
+      "const": [
+        "application",
+        "commerce",
+        "content",
+        "documentation",
+        "hybrid"
+      ]
+    },
+    "route_profiles": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/routeProfile"
+      }
+    },
+    "dependency_policy": {
+      "$ref": "#/$defs/dependencyPolicy"
+    },
+    "route_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_routes_are_absolute",
+        "directory_routes_use_trailing_slash",
+        "aliases_are_redirects_only",
+        "aliases_must_not_publish_duplicate_canonical_content",
+        "query_and_fragment_routes_forbidden"
+      ],
+      "properties": {
+        "canonical_routes_are_absolute": {
+          "const": true
+        },
+        "directory_routes_use_trailing_slash": {
+          "const": true
+        },
+        "aliases_are_redirects_only": {
+          "const": true
+        },
+        "aliases_must_not_publish_duplicate_canonical_content": {
+          "const": true
+        },
+        "query_and_fragment_routes_forbidden": {
+          "const": true
+        }
+      }
+    },
+    "surfaces": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/surface"
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consumer_pin",
+        "unknown_surface_behavior",
+        "declaration_coverage",
+        "breaking_changes"
+      ],
+      "properties": {
+        "consumer_pin": {
+          "const": "exact-version-or-immutable-revision"
+        },
+        "unknown_surface_behavior": {
+          "const": "fail-closed"
+        },
+        "declaration_coverage": {
+          "const": "complete"
+        },
+        "breaking_changes": {
+          "$ref": "#/$defs/uniqueStrings"
+        }
+      }
+    },
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "agent_ready_web",
+        "public_site_policy",
+        "repository_intelligence",
+        "repository_presentation",
+        "identity",
+        "renderflow",
+        "status"
+      ],
+      "properties": {
+        "agent_ready_web": {
+          "$ref": "#/$defs/text"
+        },
+        "public_site_policy": {
+          "$ref": "#/$defs/text"
+        },
+        "repository_intelligence": {
+          "$ref": "#/$defs/text"
+        },
+        "repository_presentation": {
+          "$ref": "#/$defs/text"
+        },
+        "identity": {
+          "$ref": "#/$defs/text"
+        },
+        "renderflow": {
+          "$ref": "#/$defs/text"
+        },
+        "status": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hygiene",
+        "subject_repository",
+        "publication_repository",
+        "identity",
+        "holon",
+        "relay",
+        "observatory",
+        "pace",
+        "egohygiene_io"
+      ],
+      "properties": {
+        "hygiene": {
+          "$ref": "#/$defs/text"
+        },
+        "subject_repository": {
+          "$ref": "#/$defs/text"
+        },
+        "publication_repository": {
+          "$ref": "#/$defs/text"
+        },
+        "identity": {
+          "$ref": "#/$defs/text"
+        },
+        "holon": {
+          "$ref": "#/$defs/text"
+        },
+        "relay": {
+          "$ref": "#/$defs/text"
+        },
+        "observatory": {
+          "$ref": "#/$defs/text"
+        },
+        "pace": {
+          "$ref": "#/$defs/text"
+        },
+        "egohygiene_io": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "route": {
+      "type": "string",
+      "pattern": "^/(?:$|(?:[a-z0-9][a-z0-9._-]*/)*[a-z0-9][a-z0-9_-]*/|(?:[a-z0-9][a-z0-9._-]*/)*[a-z0-9][a-z0-9_-]*\\.[a-z0-9][a-z0-9._-]*)$"
+    },
+    "requirement": {
+      "enum": [
+        "required",
+        "recommended",
+        "optional"
+      ]
+    },
+    "uniqueStrings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/text"
+      }
+    },
+    "surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "description",
+        "route_bindings",
+        "applicability_rule",
+        "default_requirement",
+        "site_class_overrides",
+        "default_owner",
+        "source_artifact_kind",
+        "renderer_contract",
+        "dependencies",
+        "related_contracts"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        },
+        "route_bindings": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "organization",
+            "repository"
+          ],
+          "properties": {
+            "organization": {
+              "$ref": "#/$defs/routeBinding"
+            },
+            "repository": {
+              "$ref": "#/$defs/routeBinding"
+            }
+          }
+        },
+        "applicability_rule": {
+          "enum": [
+            "always",
+            "site-declared"
+          ]
+        },
+        "default_requirement": {
+          "$ref": "#/$defs/requirement"
+        },
+        "site_class_overrides": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "application",
+            "commerce",
+            "content",
+            "documentation",
+            "hybrid"
+          ],
+          "properties": {
+            "application": {
+              "$ref": "#/$defs/requirement"
+            },
+            "commerce": {
+              "$ref": "#/$defs/requirement"
+            },
+            "content": {
+              "$ref": "#/$defs/requirement"
+            },
+            "documentation": {
+              "$ref": "#/$defs/requirement"
+            },
+            "hybrid": {
+              "$ref": "#/$defs/requirement"
+            }
+          }
+        },
+        "default_owner": {
+          "type": "string",
+          "pattern": "^(repository|egohygiene/(?:\\.github|[a-z0-9][a-z0-9.-]*))$"
+        },
+        "source_artifact_kind": {
+          "enum": [
+            "generated-index",
+            "identity-artifact",
+            "operational-evidence",
+            "publication-artifact",
+            "repository-content",
+            "repository-intelligence",
+            "repository-policy"
+          ]
+        },
+        "renderer_contract": {
+          "enum": [
+            "identity-compatible",
+            "relay-compatible",
+            "renderflow-compatible",
+            "site-owned"
+          ]
+        },
+        "dependencies": {
+          "$ref": "#/$defs/dependencyBindings"
+        },
+        "related_contracts": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^egohygiene\\.[a-z0-9][a-z0-9.-]*/v[0-9]+$"
+          }
+        }
+      }
+    },
+    "routeProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "enum": [
+            "organization",
+            "repository"
+          ]
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "routeBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_route",
+        "aliases"
+      ],
+      "properties": {
+        "canonical_route": {
+          "$ref": "#/$defs/route"
+        },
+        "aliases": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/route"
+          }
+        }
+      }
+    },
+    "dependencyBindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "organization",
+        "repository"
+      ],
+      "properties": {
+        "organization": {
+          "$ref": "#/$defs/dependencyList"
+        },
+        "repository": {
+          "$ref": "#/$defs/dependencyList"
+        }
+      }
+    },
+    "dependencyList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      }
+    },
+    "dependencyPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "meaning",
+        "binding",
+        "published_requires_published_dependencies"
+      ],
+      "properties": {
+        "meaning": {
+          "const": "publication-prerequisite"
+        },
+        "binding": {
+          "const": "route-profile"
+        },
+        "published_requires_published_dependencies": {
+          "const": true
+        }
+      }
+    }
+  }
+}

@@ -38,6 +38,7 @@ owned downstream and are not implemented by this directory.
 | [ADR-010](ADR-010-agent-ready-web-discovery-representations.md) | Specify Agent-Ready Web discovery and representations | Proposed | 2026-09-14 |
 | [ADR-011](ADR-011-agent-ready-web-guarded-capability-commerce.md) | Guard Agent-Ready Web capability and commerce publication | Proposed | 2026-09-14 |
 | [ADR-012](ADR-012-agent-ready-web-integration-conformance.md) | Integrate Agent-Ready Web conformance without collapsing authority | Proposed | 2026-09-14 |
+| [ADR-013](ADR-013-public-site-surface-route-registry.md) | Define the canonical public-site surface and route registry | Proposed | 2026-09-21 |
 
 ADR-0001 predates the proposed three-digit filename convention. Its four-digit
 identity and original body remain unchanged for provenance. If the new policy is

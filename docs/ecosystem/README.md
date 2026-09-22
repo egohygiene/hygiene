@@ -37,7 +37,10 @@ This package defines the target repository architecture before any new infograph
     representation catalog, guarded capability publication, descriptive
     commerce and advertising policy, deterministic conformance evidence,
     cross-layer authority denials, compatibility, and ownership boundaries.
-13. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
+13. Review [`PUBLIC_SITE_SURFACES.md`](PUBLIC_SITE_SURFACES.md) for the proposed
+    public-site surface identities, scope-specific routes, applicability,
+    delivery states, ownership, composition, and downstream handoffs.
+14. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
 
 ## Architectural decision
 

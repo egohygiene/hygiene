@@ -1,0 +1,1393 @@
+{
+  "schema": "egohygiene.public-site-surface-declaration/v1",
+  "contract_version": "1.0.0-alpha.1",
+  "synthetic": true,
+  "registry": {
+    "schema": "egohygiene.public-site-surface-registry/v1",
+    "version": "1.0.0-alpha.1",
+    "source_path": "catalog/public-site-surface-registry.json",
+    "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "sha256": "82af08b921934709bb5ee8aa92e89acb16d8fabcd5f8f79d06b722ac6042107e"
+  },
+  "site": {
+    "id": "egohygiene/synthetic-content-site",
+    "publication_repository": "egohygiene/synthetic-content-site",
+    "origin": "https://content.example.invalid",
+    "base_path": "/",
+    "route_profile": "repository",
+    "site_class": "content",
+    "visibility": "public",
+    "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "surfaces": [
+    {
+      "id": "accessibility",
+      "canonical_route": "/accessibility/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-content-site",
+        "kind": "repository-policy",
+        "location": "fixtures/sources/accessibility.json",
+        "revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "renderer": {
+        "owner": "egohygiene/synthetic-content-site",
+        "contract": "site-owned",
+        "implementation": "synthetic-site-owned",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://content.example.invalid/accessibility/",
+        "evidence_url": "https://example.invalid/evidence/accessibility",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "audits",
+      "canonical_route": "/intelligence/audits/",
+      "aliases": [
+        "/audits/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "blog",
+      "canonical_route": "/blog/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-content-site",
+        "kind": "repository-content",
+        "location": "fixtures/sources/blog.json",
+        "revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "renderer": {
+        "owner": "egohygiene/synthetic-content-site",
+        "contract": "site-owned",
+        "implementation": "synthetic-site-owned",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://content.example.invalid/blog/",
+        "evidence_url": "https://example.invalid/evidence/blog",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "community",
+      "canonical_route": "/community/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "planned",
+        "publication_state": "unpublished",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": "https://example.invalid/assessment/planned",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The repository has intentionally planned this surface but has not implemented it.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "compare",
+      "canonical_route": "/intelligence/compare/",
+      "aliases": [
+        "/compare/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "dashboard",
+      "canonical_route": "/intelligence/dashboard/",
+      "aliases": [
+        "/dashboard/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "decisions",
+      "canonical_route": "/intelligence/decisions/",
+      "aliases": [
+        "/adr/",
+        "/decisions/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "dependencies",
+      "canonical_route": "/intelligence/dependencies/",
+      "aliases": [
+        "/dependencies/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "diagnostics",
+      "canonical_route": "/intelligence/diagnostics/",
+      "aliases": [
+        "/diagnostics/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "distribution",
+      "canonical_route": "/intelligence/distribution/",
+      "aliases": [
+        "/distribution/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "releases"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "documentation",
+      "canonical_route": "/docs/",
+      "aliases": [
+        "/documentation/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "missing",
+        "publication_state": "unpublished",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": "https://example.invalid/assessment/missing",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "No implementation or publication evidence was found.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "donate",
+      "canonical_route": "/donate/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "feed",
+      "canonical_route": "/feed.xml",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-content-site",
+        "kind": "generated-index",
+        "location": "fixtures/sources/feed.json",
+        "revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "renderer": {
+        "owner": "egohygiene/synthetic-content-site",
+        "contract": "site-owned",
+        "implementation": "synthetic-site-owned",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://content.example.invalid/feed.xml",
+        "evidence_url": "https://example.invalid/evidence/feed",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "garden",
+      "canonical_route": "/garden/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "health",
+      "canonical_route": "/intelligence/health/",
+      "aliases": [
+        "/health/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "help",
+      "canonical_route": "/help/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "hygiene",
+      "canonical_route": "/intelligence/hygiene/",
+      "aliases": [
+        "/hygiene/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "identity",
+      "canonical_route": "/identity/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "inherited",
+      "owner": "egohygiene/identity",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": {
+        "owner": "egohygiene/identity",
+        "kind": "identity-artifact",
+        "location": "fixtures/sources/identity.json",
+        "revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "renderer": {
+        "owner": "egohygiene/identity",
+        "contract": "identity-compatible",
+        "implementation": "synthetic-identity-compatible",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://content.example.invalid/identity/",
+        "evidence_url": "https://example.invalid/evidence/identity",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "identity_intelligence",
+      "canonical_route": "/intelligence/identity/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "intelligence",
+      "canonical_route": "/intelligence/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "journey",
+      "canonical_route": "/intelligence/journey/",
+      "aliases": [
+        "/activity/",
+        "/intelligence/activity/",
+        "/journey/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "landing",
+      "canonical_route": "/",
+      "aliases": [],
+      "requirement": "required",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-content-site",
+        "kind": "repository-content",
+        "location": "fixtures/sources/landing.json",
+        "revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "renderer": {
+        "owner": "egohygiene/synthetic-content-site",
+        "contract": "site-owned",
+        "implementation": "synthetic-site-owned",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://content.example.invalid/",
+        "evidence_url": "https://example.invalid/evidence/landing",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "legal",
+      "canonical_route": "/legal/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-content-site",
+        "kind": "repository-policy",
+        "location": "fixtures/sources/legal.json",
+        "revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "renderer": {
+        "owner": "egohygiene/synthetic-content-site",
+        "contract": "site-owned",
+        "implementation": "synthetic-site-owned",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://content.example.invalid/legal/",
+        "evidence_url": "https://example.invalid/evidence/legal",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "magazine",
+      "canonical_route": "/magazine/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "now",
+      "canonical_route": "/intelligence/now/",
+      "aliases": [
+        "/now/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "presentation",
+      "canonical_route": "/presentation/",
+      "aliases": [
+        "/slideshow/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "privacy",
+      "canonical_route": "/privacy/",
+      "aliases": [],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null
+      },
+      "disposition": "owned",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": {
+        "owner": "egohygiene/synthetic-content-site",
+        "kind": "repository-policy",
+        "location": "fixtures/sources/privacy.json",
+        "revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "renderer": {
+        "owner": "egohygiene/synthetic-content-site",
+        "contract": "site-owned",
+        "implementation": "synthetic-site-owned",
+        "version": "1.0.0-fixture"
+      },
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "implemented",
+        "publication_state": "published",
+        "visibility": "public",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "canonical_url": "https://content.example.invalid/privacy/",
+        "evidence_url": "https://example.invalid/evidence/privacy",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": null,
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "privacy_choices",
+      "canonical_route": "/privacy/choices/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "privacy"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "releases",
+      "canonical_route": "/intelligence/releases/",
+      "aliases": [
+        "/releases/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "roadmap",
+      "canonical_route": "/intelligence/roadmap/",
+      "aliases": [
+        "/roadmap/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "sanity",
+      "canonical_route": "/intelligence/sanity/",
+      "aliases": [
+        "/sanity/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "search",
+      "canonical_route": "/intelligence/search/",
+      "aliases": [
+        "/search/"
+      ],
+      "requirement": "recommended",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "status",
+      "canonical_route": "/status/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "support",
+      "canonical_route": "/support/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "trust",
+      "canonical_route": "/trust/",
+      "aliases": [],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    },
+    {
+      "id": "work",
+      "canonical_route": "/intelligence/work/",
+      "aliases": [
+        "/work/"
+      ],
+      "requirement": "optional",
+      "applicability": {
+        "state": "not_applicable",
+        "freshness": "current",
+        "assertion": "authoritative",
+        "evidence_url": "https://example.invalid/applicability/not-applicable",
+        "represented_revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "observed_at": "2026-09-21T00:00:00Z",
+        "reason": "The site owner reviewed this surface and declared it out of scope."
+      },
+      "disposition": "omitted",
+      "owner": "egohygiene/synthetic-content-site",
+      "publication_owner": "egohygiene/synthetic-content-site",
+      "source_artifact": null,
+      "renderer": null,
+      "dependencies": [
+        "intelligence"
+      ],
+      "publication": {
+        "implementation_state": "not_applicable",
+        "publication_state": "not_applicable",
+        "visibility": "public",
+        "freshness": "not_applicable",
+        "assertion": "authoritative",
+        "canonical_url": null,
+        "evidence_url": null,
+        "represented_revision": null,
+        "observed_at": null,
+        "reason": "The repository explicitly declares this optional surface out of scope.",
+        "blocked_by": []
+      }
+    }
+  ]
+}

@@ -12,6 +12,10 @@ compatibility promise applies.
 
 ### Added
 
+- Proposed the versioned public-site surface and route registry, site
+  declaration schema, scope-specific route profiles, compatibility fixtures,
+  and reference validator
+  ([#25](https://github.com/egohygiene/hygiene/issues/25)).
 - Proposed the repository continuity policy, immutable Aether provenance,
   explicit 29-repository scope, staged rollout, v2 required-file successor,
   deterministic validator, and Hygiene dogfood checkpoint

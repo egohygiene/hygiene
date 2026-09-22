@@ -166,6 +166,29 @@ authority. The relationship remains `required`; this repository does not claim
 those downstream implementations, any passing site state, adoption,
 publication, monitoring, or enforcement.
 
+The public-site surface relationship preserves a separate policy, artifact,
+execution, and publication boundary. Hygiene owns stable surface IDs, route
+profiles and bindings, base-path resolution, applicability and state semantics,
+schemas, compatibility, dependency rules, and privacy boundaries; it neither
+renders nor publishes a site. A declaring repository owns its facts and source
+evidence, while the named publication repository retains final route
+composition, hosting, credentials, deployment, rollback, and publication
+authority. `egohygiene/website` remains the current catalog identity for the
+renamed `egohygiene.io` site; this proposed relationship does not perform the
+separate catalog reconciliation.
+
+Relay may implement reusable validation, redirect, rendering, and publication
+mechanics without acquiring site authority. Renderflow owns versioned magazine
+and presentation transformation artifacts, and Identity retains the
+`/identity/` product experience plus versioned brand and asset inputs; neither
+owns a consuming site's declaration or deployment. Holon may scaffold complete
+new-repository declarations from an eligible immutable pin, Observatory may
+normalize only privacy-safe declarations and freshness evidence, and Pace may
+propose reviewed adoption changes without direct default-branch mutation. The
+relationship remains `required` while the registry and declaration contracts
+are proposed; it records a delivery boundary, not downstream implementation,
+adoption, or publication.
+
 The continuity relationships remain `required` instead of `active` while the
 Aether artifacts are draft and the Hygiene profile is proposed. This is a
 lifecycle statement, not permission to use a mutable default-branch dependency.

@@ -474,6 +474,27 @@
       "contract": null,
       "contract_status": "required",
       "pinning": "immutable-or-versioned"
+    },
+    {
+      "id": "RELATIONSHIP-027",
+      "producer": "egohygiene/hygiene",
+      "consumers": [
+        "egohygiene/holon",
+        "egohygiene/identity",
+        "egohygiene/observatory",
+        "egohygiene/pace",
+        "egohygiene/relay",
+        "egohygiene/renderflow",
+        "egohygiene/website"
+      ],
+      "capability": "proposed public-site surface registry and declaration contracts, route profiles, base-path resolution, applicability and state semantics, ownership and privacy boundaries, immutable evidence, compatibility, and bounded consumer handoffs",
+      "interfaces": [
+        "schema",
+        "generated-projection"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "immutable-or-versioned"
     }
   ],
   "forbidden_dependencies": [
