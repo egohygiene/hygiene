@@ -111,6 +111,10 @@ privacy:
 This operational checkpoint is subordinate to instructions, live state and
 canonical sources. It grants no merge, publication or deployment authority.
 
+## Resume protocol
+
+Verify main and the live owner and consumer PRs before continuing.
+
 ## Current objective and success conditions
 
 Provide the input-contract dependency for Observatory #25: empty arrays never
@@ -122,22 +126,36 @@ The candidate branches from main at the exact revision in front matter.
 The former PR #63 checkpoint was stale: that PR is merged. This candidate
 remains unmerged until live GitHub evidence establishes otherwise.
 
-## Material result
+## Completed and material changes
 
 The proposed alpha.2 schema requires nine explicit domain claims. The reference
 validator, eight synthetic fixtures, catalog pointer and ADR-005 amendment
 retain Hygiene ownership and exact alpha.1 compatibility artifacts.
 
-## Validation and limitations
+## Validation and review evidence
 
 184 tests and the complete README checks pass. Schema/format validation and
 256 malformed coverage parity cases pass. No automatic hosted CI is available.
+
+## Blockers, risks, unknowns, and deferred work
+
+Production EgoLint and Relay still need compatible alpha.2 support. The shared
+Intelligence contract remains proposed.
 
 ## Next dependency-ready work
 
 Review this owner contract and the dependent Observatory consumer together.
 EgoLint production validation and Relay collection/rendering require a separate
 compatible repin before publication. No provider collection is implemented here.
+
+## Parallel changes and reconciliation
+
+Observatory implements the consumer in its own PR. Hygiene PR #67 is the owner
+review. Its immutable contract commit is pinned by that consumer.
+
+## Privacy and redaction
+
+Only synthetic public-safe fixtures and fixed coverage reason codes are used.
 
 ## Handoff update protocol
 
