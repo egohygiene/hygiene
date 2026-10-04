@@ -20,6 +20,22 @@ from typing import Any
 
 SCHEMA = "egohygiene.repository-intelligence/v1"
 CONTRACT_VERSION = "1.0.0-alpha.1"
+COVERAGE_CONTRACT_VERSION = "1.0.0-alpha.2"
+COVERAGE_DOMAINS = {
+    "roadmap": "roadmap_step", "decisions": "architecture_decision",
+    "git": "commit", "issues": "issue", "pull_requests": "pull_request",
+    "checks": "check", "releases": "release", "deployments": "deployment",
+    "history": None,
+}
+COVERAGE_STATES = {
+    "uncollected": ({"not_requested"}, {"unknown"}, False),
+    "unavailable": ({"access_denied", "provider_unavailable"}, {"unknown"}, False),
+    "partial": ({"filtered", "truncated", "incomplete"}, {"current", "stale"}, True),
+    "observed_empty": ({"complete"}, {"current", "stale"}, True),
+    "observed": ({"complete"}, {"current", "stale"}, True),
+    "failed": ({"collection_failed"}, {"unknown"}, False),
+    "not_applicable": ({"explicit_not_applicable"}, {"not_applicable"}, True),
+}
 VOCABULARY_SCHEMA = "egohygiene.repository-intelligence-vocabulary/v1"
 REPOSITORY_RE = re.compile(r"^egohygiene/(?:\.github|[a-z0-9][a-z0-9.-]*)$")
 COMMIT_RE = re.compile(r"^[0-9a-f]{40}$")
@@ -463,6 +479,57 @@ def _cycle_errors(
     return []
 
 
+def validate_collection_coverage(snapshot: Mapping[str, Any]) -> list[str]:
+    """Check collection claims without echoing provider payloads or identities."""
+    coverage = snapshot.get("collection_coverage")
+    if snapshot.get("contract_version") == CONTRACT_VERSION:
+        return (["alpha.1 must not carry collection_coverage; migrate to alpha.2"]
+                if "collection_coverage" in snapshot else [])
+    if not isinstance(coverage, dict) or set(coverage) != set(COVERAGE_DOMAINS):
+        return ["collection_coverage must contain exactly the nine defined domains"]
+    errors = []
+    root_entities = [e for e in snapshot.get("entities", []) if isinstance(e, dict)
+                     and e.get("repository") == snapshot.get("repository")]
+    root_ids = {e.get("id") for e in root_entities if isinstance(e.get("id"), str)}
+    for domain, kind in COVERAGE_DOMAINS.items():
+        label = f"collection_coverage.{domain}"
+        item = coverage[domain]
+        if not isinstance(item, dict) or set(item) != {"collection", "freshness", "reason", "observed_at"}:
+            errors.append(f"{label} must contain only the four defined fields")
+            continue
+        state = item["collection"]
+        if not isinstance(state, str) or state not in COVERAGE_STATES:
+            errors.append(f"{label}.collection is unsupported")
+            continue
+        reasons, freshnesses, has_time = COVERAGE_STATES[state]
+        if not isinstance(item["reason"], str) or item["reason"] not in reasons:
+            errors.append(f"{label}.reason contradicts collection")
+        if not isinstance(item["freshness"], str) or item["freshness"] not in freshnesses:
+            errors.append(f"{label}.freshness contradicts collection")
+        if has_time:
+            value = item["observed_at"]
+            if not isinstance(value, str) or not re.fullmatch(
+                r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z", value
+            ):
+                errors.append(f"{label}.observed_at must be a UTC RFC 3339 timestamp")
+                continue
+            observed, time_errors = _timestamp(item["observed_at"], f"{label}.observed_at")
+            errors.extend(time_errors)
+            snapshot_time, _ = _timestamp(snapshot.get("observed_at"), "snapshot.observed_at")
+            if observed and snapshot_time and observed > snapshot_time:
+                errors.append(f"{label}.observed_at exceeds projection observation")
+        elif item["observed_at"] is not None:
+            errors.append(f"{label}.observed_at must be null without an observation")
+        records = ([e for e in snapshot.get("events", []) if isinstance(e, dict)
+                    and e.get("subject") in root_ids] if domain == "history" else
+                   [e for e in root_entities if e.get("kind") == kind])
+        if records and state in {"observed_empty", "uncollected", "unavailable", "failed", "not_applicable"}:
+            errors.append(f"{label}.collection contradicts represented records")
+        if not records and state == "observed":
+            errors.append(f"{label}.observed requires represented records")
+    return errors
+
+
 def validate_snapshot(
     snapshot: Mapping[str, Any], vocabulary: Mapping[str, Any]
 ) -> list[str]:
@@ -493,8 +560,8 @@ def validate_snapshot(
     )
     if snapshot.get("schema") != SCHEMA:
         errors.append(f"snapshot.schema must be {SCHEMA}")
-    if snapshot.get("contract_version") != CONTRACT_VERSION:
-        errors.append(f"snapshot.contract_version must be {CONTRACT_VERSION}")
+    if snapshot.get("contract_version") not in (CONTRACT_VERSION, COVERAGE_CONTRACT_VERSION):
+        errors.append("snapshot.contract_version must be 1.0.0-alpha.1 or 1.0.0-alpha.2")
 
     repository = snapshot.get("repository")
     if not isinstance(repository, str) or not REPOSITORY_RE.fullmatch(repository):
@@ -529,6 +596,7 @@ def validate_snapshot(
             collections[name] = value
 
     sources_by_id, id_errors = _unique_ids(collections["sources"], "snapshot.sources")
+    errors.extend(validate_collection_coverage({**snapshot, **collections}))
     errors.extend(id_errors)
     errors.extend(
         _validate_stable_order(

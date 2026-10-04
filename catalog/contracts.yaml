@@ -33,7 +33,7 @@
       "id": "egohygiene.repository-intelligence/v1",
       "title": "Repository Intelligence graph projection",
       "owner": "egohygiene/hygiene",
-      "source": "schemas/repository-intelligence.v1.schema.json",
+      "source": "schemas/repository-intelligence.alpha2.schema.json",
       "status": "proposed",
       "visibility": "public"
     },

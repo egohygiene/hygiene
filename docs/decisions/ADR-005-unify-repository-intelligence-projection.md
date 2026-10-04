@@ -168,3 +168,11 @@ history.
 4. Implement Holon's accessible Roadmap, Decisions, and Journey components.
 5. Implement Relay collection, generation, and consumer-owned publication.
 6. Use Pace to pilot and then reconcile adoption across eligible repositories.
+
+## Proposed alpha.2 collection coverage amendment
+
+[Explicit per-domain coverage](../ecosystem/REPOSITORY_INTELLIGENCE_COVERAGE.md)
+adds required collection claims for Observatory #25 while retaining alpha.1
+compatibility artifacts. Collection completeness, observation freshness, and
+conformance remain separate. This amendment retains the proposed status and
+existing owners; it does not claim human ratification or downstream adoption.

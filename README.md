@@ -40,6 +40,7 @@ evidence; it is not a substitute for the canonical sources below.
 - [Generated dependency-boundary view](docs/generated/DEPENDENCY_BOUNDARIES.md)
 - [Dependency-boundary guide](docs/ecosystem/DEPENDENCY_BOUNDARIES.md)
 - [Proposed Repository Intelligence contract](docs/ecosystem/REPOSITORY_INTELLIGENCE.md)
+- [Repository Intelligence collection coverage and alpha.2 migration](docs/ecosystem/REPOSITORY_INTELLIGENCE_COVERAGE.md)
 - [Repository Intelligence schema](schemas/repository-intelligence.v1.schema.json)
 - [Repository Intelligence vocabulary](catalog/repository-intelligence-vocabulary.json)
 - [Complete quest fixture](fixtures/repository-intelligence/complete-quest.json)
