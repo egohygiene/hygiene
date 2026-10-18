@@ -1,10 +1,10 @@
 ---
-schema_version: "aether.repository-continuity/v1"
+schema_version: aether.repository-continuity/v1
 repository:
   id: "egohygiene/hygiene"
   visibility: "public"
   default_branch: "main"
-  continuity_path: "CONTINUITY.md"
+  continuity_path: CONTINUITY.md
 document:
   status: "active"
   updated_at: "2026-10-18T20:38:37Z"
@@ -89,7 +89,7 @@ review:
       notes: "Thirteen Hygiene records change padding; existing ADR-0001 and numerical identities remain. Source statements and historical evidence are preserved."
     -
       command: "Local execution service"
-      outcome: "unavailable"
+      outcome: "limited"
       observed_at: "2026-10-18T20:38:37Z"
       notes: "Exec-server Noise handshake fails before commands start; no local test execution is claimed. Hosted validation is required before merge."
   environment_limitations:
