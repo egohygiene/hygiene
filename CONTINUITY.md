@@ -7,17 +7,19 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-18T20:55:26Z'
+  updated_at: '2026-10-18T21:24:23Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Standardize four-digit ADR identifiers and mapped migrations through the shared owner process.
+  purpose: Adopt the standardized four-digit authoring and native runtime process in the canonical policy owner.
   includes:
-  - Policy v1.2.0, schema and authoring helper require ADR-NNNN. Thirteen records and current references normalize
-    with a per-record map. Original ADR-0001 and earlier JSON receipts remain byte-identical. The updated ADR-0001
-    review patch stays unapplied.
+  - 'The owner configuration selects Hygiene policy v1.2.0 at a05b14f8b9e2772124f879f818e09a911e996ad8 and native
+    EgoLint catalog alpha.5. All publisher Relay entrypoints select ac2600f4619f64c75a0e499e0540d8f48d516f9c. Aether
+    dc8a16851f452763ef4f7fbe4bf057d4500b1921 supplies spec 3.1.0, skill 2.1.0 and exact managed module 0.3.0 through
+    the shared merge boundary. Policy/corpus normalization is already merged in #72. The original ADR-0001 and historical
+    receipts remain unchanged.'
   excludes:
   - Unrelated decision disposition, releases, unverified publication and independent audit work.
   precedence:
@@ -31,7 +33,7 @@ scope:
   - DECISIONS.md
   - https://github.com/egohygiene/hygiene/issues/73
 work:
-  objective: Standardize four-digit ADR identifiers and mapped migrations through the shared owner process.
+  objective: Adopt the standardized four-digit authoring and native runtime process in the canonical policy owner.
   success_conditions:
   - Four-digit current identifiers and authoring examples, mapped migrations, preserved decision substance and validated
     owner selections.
@@ -42,31 +44,28 @@ work:
   next:
     kind: action
     id: complete-four-digit-adoption
-    description: Merge the validated owner change, then adopt immutable policy a05b14f8b9e2772124f879f818e09a911e996ad8
-      through EgoLint, both Relay runtimes, Holon, Aether and mapped consumers.
+    description: 'Merge validated consumer adoption, complete central naming tracker #73 and return Hygiene #47
+      to its separate original ADR-0001 approval/backfill and live publication gate.'
     readiness: ready
     references:
     - https://github.com/egohygiene/hygiene/issues/73
     depends_on: []
 state:
   base:
-    revision: 6884be6a7347d5e749bd0497ee9f0456577b58cb
+    revision: 1f4988324739674561a3b94c9d61ba70e1ce9108
     ref: refs/heads/main
-    verified_at: '2026-10-18T20:55:26Z'
+    verified_at: '2026-10-18T21:24:23Z'
   candidate:
-    branch: codex/four-digit-adr-standard
+    branch: codex/four-digit-adr-adoption
     revision: null
-    pull_request:
-      provider: github
-      id: egohygiene/hygiene#72
-      url: https://github.com/egohygiene/hygiene/pull/72
+    pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-18T20:55:26Z'
-    default_branch_revision: 6884be6a7347d5e749bd0497ee9f0456577b58cb
+    observed_at: '2026-10-18T21:24:23Z'
+    default_branch_revision: 1f4988324739674561a3b94c9d61ba70e1ce9108
     issue_state: open
-    pull_request_state: draft
+    pull_request_state: not-applicable
     notes: 'Exact base refreshed from the verified default branch; central naming issue is open. The existing Identity
       #114 field audit remains independent.'
   parallel_changes:
@@ -75,24 +74,26 @@ state:
     url: https://github.com/egohygiene/identity/pull/114
 review:
   status: partial
-  reviewed_at: '2026-10-18T20:55:26Z'
+  reviewed_at: '2026-10-18T21:24:23Z'
   reviewed_by: Codex
   evidence:
-  - command: python -m unittest discover --start-directory tests
+  - command: python -m unittest discover --start-directory tests --pattern test_*.py
     outcome: passed
-    observed_at: '2026-10-18T20:55:26Z'
-    notes: 194 tests passed; source preservation and the unapplied patch check passed.
-  - command: Hygiene Pages PR run 39164421780
+    observed_at: '2026-10-18T21:24:23Z'
+    notes: 194 tests passed.
+  - command: Pinned native EgoLint owner validation of candidate working tree
     outcome: passed
-    observed_at: '2026-10-18T20:55:26Z'
-    notes: Metadata, catalog, context and workflow checks passed. Admission denied; build/deploy skipped.
-  - command: Pinned Aether continuity schema and twelve-section budget check
+    observed_at: '2026-10-18T21:24:23Z'
+    notes: No authority-contract mismatch; thirteen valid metadata records inspected. Source remains invalid because
+      original ADR-0001 lacks metadata and referenced identity cannot enter the graph.
+  - command: Exact Aether module parity; continuity schema/sections/budgets
     outcome: passed
-    observed_at: '2026-10-18T20:55:26Z'
-    notes: Metadata validates against the selected continuity contract.
+    observed_at: '2026-10-18T21:24:23Z'
+    notes: Shared block is exact and consumer prose preserved.
   environment_limitations:
-  - Existing runtime selection predates the new policy. Original ADR-0001 still needs actual structured architecture
-    approval; naming authorization does not supply it. No deployment or release is claimed.
+  - Relay fresh hosted acquisition and this candidate hosted checks remain pending. Naming does not supply missing
+    architecture approval; original ADR-0001 stays unchanged and its review patch stays unapplied. No new release
+    or deployment is claimed.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -119,27 +120,27 @@ Read AGENTS, this checkpoint, canonical decisions and the central naming issue. 
 
 ## Current objective and success conditions
 
-Standardize four-digit ADR identifiers and mapped migrations through the shared owner process.
+Adopt the standardized four-digit authoring and native runtime process in the canonical policy owner.
 
 ## State snapshot
 
-Base is 6884be6a7347d5e749bd0497ee9f0456577b58cb. Candidate branch is codex/four-digit-adr-standard. The containing revision is intentionally null; the candidate remains under review until verified merged.
+Base is 1f4988324739674561a3b94c9d61ba70e1ce9108. Candidate branch is codex/four-digit-adr-adoption. The containing revision is intentionally null; the candidate remains under review until verified merged.
 
 ## Completed and material changes
 
-Policy v1.2.0, schema and authoring helper require ADR-NNNN. Thirteen records and current references normalize with a per-record map. Original ADR-0001 and earlier JSON receipts remain byte-identical. The updated ADR-0001 review patch stays unapplied.
+The owner configuration selects Hygiene policy v1.2.0 at a05b14f8b9e2772124f879f818e09a911e996ad8 and native EgoLint catalog alpha.5. All publisher Relay entrypoints select ac2600f4619f64c75a0e499e0540d8f48d516f9c. Aether dc8a16851f452763ef4f7fbe4bf057d4500b1921 supplies spec 3.1.0, skill 2.1.0 and exact managed module 0.3.0 through the shared merge boundary. Policy/corpus normalization is already merged in #72. The original ADR-0001 and historical receipts remain unchanged.
 
 ## Validation and review evidence
 
-All 194 Python tests passed, including fifteen ADR metadata tests and eight publisher tests. The continuity schema, index uniqueness, inverse ID/content comparison, original ADR-0001 digest and historical JSON preservation passed. Hosted PR checks passed; native admission remains denied and build/deploy are skipped.
+All 194 Python tests pass. Native EgoLint inspects thirteen metadata-bearing records with no authority-contract mismatch; original ADR-0001 lacks YAML metadata, causing real downstream index/lineage findings. Admission remains invalid. Shared module parity and continuity schema/sections/budgets pass.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Existing runtime selection predates the new policy. Original ADR-0001 still needs actual structured architecture approval; naming authorization does not supply it. No deployment or release is claimed.
+Relay fresh hosted acquisition and this candidate hosted checks remain pending. Naming does not supply missing architecture approval; original ADR-0001 stays unchanged and its review patch stays unapplied. No new release or deployment is claimed.
 
 ## Next dependency-ready work
 
-Merge the validated owner change, then adopt immutable policy a05b14f8b9e2772124f879f818e09a911e996ad8 through EgoLint, both Relay runtimes, Holon, Aether and mapped consumers.
+Merge validated consumer adoption, complete central naming tracker #73 and return Hygiene #47 to its separate original ADR-0001 approval/backfill and live publication gate.
 
 ## Parallel changes and reconciliation
 

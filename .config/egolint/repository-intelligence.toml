@@ -1,6 +1,6 @@
 # Copyright 2026 Ego Hygiene
 # SPDX-License-Identifier: MIT
-# Native catalog: EgoLint 72267fd0a371da6d94922cbc6bd3dedddb68df30.
+# Native catalog: EgoLint d917ea524962639494e5bb4b3196192238ba57d9.
 # Hygiene is the canonical policy owner; no self-inheritance reference.
 schema-version = 1
 id = "egolint.repository-intelligence-validation/v1"
@@ -22,10 +22,10 @@ enabled-rules = [
 
 [[contracts]]
 id = "egohygiene.architecture-decision/v1"
-version = "1.1.0"
+version = "1.2.0"
 authority = "accepted"
 source-repository = "egohygiene/hygiene"
-source-revision = "c589587395750cd1c79c6fa0bef010189c547249"
+source-revision = "a05b14f8b9e2772124f879f818e09a911e996ad8"
 source-path = "schemas/architecture-decision.v1.schema.json"
 
 [[contracts]]
@@ -33,7 +33,7 @@ id = "egohygiene.architecture-decision-policy-reference/v1"
 version = "1.0.0"
 authority = "accepted"
 source-repository = "egohygiene/hygiene"
-source-revision = "c589587395750cd1c79c6fa0bef010189c547249"
+source-revision = "a05b14f8b9e2772124f879f818e09a911e996ad8"
 source-path = "schemas/architecture-decision-policy-reference.v1.schema.json"
 
 [[contracts]]
@@ -61,7 +61,7 @@ index = "docs/decisions/README.md"
 known-external-decisions = ["egohygiene/identity#ADR-0017"]
 
 [adrs.policy-owner]
-source-revision = "c589587395750cd1c79c6fa0bef010189c547249"
+source-revision = "a05b14f8b9e2772124f879f818e09a911e996ad8"
 
 [roadmap]
 state = "unknown"

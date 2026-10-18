@@ -8,22 +8,22 @@ Hygiene owns the canonical ADR policy. Use the
 ## Selected authoring source
 
 The managed decision-impact block in `AGENTS.md` is the exact Aether module
-0.2.0 from commit `8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2`:
+0.2.0 from commit `dc8a16851f452763ef4f7fbe4bf057d4500b1921`:
 
-- [Module source](https://github.com/egohygiene/aether/blob/8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2/library/organization/projections/templates/decision-impact.AGENTS.md)
-- [create-decisions-document 2.0.0](https://github.com/egohygiene/aether/blob/8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2/library/organization/skills/architecture/create-decisions-document/SKILL.md)
-- [architecture-decisions 3.0.0](https://github.com/egohygiene/aether/blob/8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2/library/organization/specs/architecture/governance/decisions.spec.md)
-- [Policy selection and source digests](https://github.com/egohygiene/aether/blob/8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2/library/organization/skills/architecture/create-decisions-document/references/policy-selection.json)
-- [Installation, managed merge and rollback procedure](https://github.com/egohygiene/aether/blob/8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2/library/organization/skills/architecture/create-decisions-document/references/adoption.md)
+- [Module source](https://github.com/egohygiene/aether/blob/dc8a16851f452763ef4f7fbe4bf057d4500b1921/library/organization/projections/templates/decision-impact.AGENTS.md)
+- [create-decisions-document 2.1.0](https://github.com/egohygiene/aether/blob/dc8a16851f452763ef4f7fbe4bf057d4500b1921/library/organization/skills/architecture/create-decisions-document/SKILL.md)
+- [architecture-decisions 3.1.0](https://github.com/egohygiene/aether/blob/dc8a16851f452763ef4f7fbe4bf057d4500b1921/library/organization/specs/architecture/governance/decisions.spec.md)
+- [Policy selection and source digests](https://github.com/egohygiene/aether/blob/dc8a16851f452763ef4f7fbe4bf057d4500b1921/library/organization/skills/architecture/create-decisions-document/references/policy-selection.json)
+- [Installation, managed merge and rollback procedure](https://github.com/egohygiene/aether/blob/dc8a16851f452763ef4f7fbe4bf057d4500b1921/library/organization/skills/architecture/create-decisions-document/references/adoption.md)
 
 The Aether package remains draft. Its policy selection is accepted Hygiene
-v1.1.0 at `c589587395750cd1c79c6fa0bef010189c547249`; its independent
+v1.2.0 at `a05b14f8b9e2772124f879f818e09a911e996ad8`; its independent
 Intelligence selection remains proposed. Those authorities do not collapse.
 
 A host with the supported GitHub skills CLI can install this exact selection:
 
 ```bash
-gh skill install egohygiene/aether create-decisions-document --pin 8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2
+gh skill install egohygiene/aether create-decisions-document --pin dc8a16851f452763ef4f7fbe4bf057d4500b1921
 ```
 
 Review the selected package and follow its host-specific discovery procedure.
@@ -99,3 +99,7 @@ Its prepared patch remains unapplied; advisory execution success cannot admit
 an invalid corpus. Keep the organization `/decisions/` aggregation distinct.
 Close #47 only after source admission, live bytes, accessibility/favicons and
 recovery have actually been evidenced.
+
+## Four-digit runtime adoption (2026-10-18)
+
+The current authoring selection is Aether `dc8a16851f452763ef4f7fbe4bf057d4500b1921` (skill 2.1.0, spec 3.1.0, module 0.3.0). The block was adopted through the shared projection merge boundary and matches the canonical source bytes. Hygiene owner configuration and all publisher Relay references now select the reviewed four-digit runtime at `ac2600f4619f64c75a0e499e0540d8f48d516f9c`. Policy v1.2.0 is pinned at `a05b14f8b9e2772124f879f818e09a911e996ad8`. Earlier dated replays below retain their original source observations. The original ADR-0001 metadata/architecture approval remains unresolved; its review patch is unapplied and publication admission stays strict.
