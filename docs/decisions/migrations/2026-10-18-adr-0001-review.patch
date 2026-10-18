@@ -1,0 +1,78 @@
+diff --git a/docs/decisions/ADR-0001-holistic-architecture-v0.1.md b/docs/decisions/ADR-0001-holistic-architecture-v0.1.md
+--- a/docs/decisions/ADR-0001-holistic-architecture-v0.1.md
++++ b/docs/decisions/ADR-0001-holistic-architecture-v0.1.md
+@@ -0,0 +1,39 @@
++---
++schema: egohygiene.architecture-decision/v1
++id: ADR-0001
++title: Adopt the holistic ecosystem architecture v0.1
++status: accepted
++date: '2026-08-18'
++decision_scope: organization
++visibility: public
++owners:
++- egohygiene/hygiene
++issue: https://github.com/egohygiene/hygiene/issues/1
++pull_request: https://github.com/egohygiene/hygiene/pull/3
++related: []
++supersedes: []
++superseded_by: []
++affected_repositories:
++- egohygiene/*
++affected_contracts: []
++implementation_status: unknown
++evidence:
++- type: commit
++  url: https://github.com/egohygiene/hygiene/commit/a10a05dcd748547c8df31e249559868a7f19faee
++  description: Original historical record; preserves its Accepted claim without supplying a new disposition.
++- type: commit
++  url: https://github.com/egohygiene/hygiene/commit/ada6e5f320260cacde25228f31c1a9abed528f1a
++  description: Later dependency-boundary verification amendment retained in the source.
++- type: pull_request
++  url: https://github.com/egohygiene/hygiene/pull/3
++  description: Legacy authority candidate; human reaffirmation or clarification remains unresolved.
++exceptions:
++- rule: legacy-identity
++  reason: Preserve the historical four-digit ADR-0001 ID and filename without renumbering or creating an alias.
++  status: proposed
++  owner: egohygiene/hygiene
++  approval_evidence: null
++  expires: null
++approval: null
++---
++
+@@ -56,0 +96,2 @@
++## Alternatives considered and rejected
++
+@@ -66 +107 @@
+-## Consequences
++## Consequences and tradeoffs
+@@ -79 +120,3 @@
+-## Verification
++## Implementation and evidence links
++
++### Verification
+@@ -88,0 +132,23 @@
++
++## Replacement or exit strategy
++
++The historical source did not record a replacement or exit strategy. No new
++strategy is attributed to its original authors. A future architectural
++replacement requires its own proposed ADR and actual human disposition under
++the current policy, retaining this record and its lineage.
++
++## Follow-up work
++
++[Hygiene #47](https://github.com/egohygiene/hygiene/issues/47) owns the legacy
++migration. Resolve the historical disposition and four-digit identity exception
++before applying this draft; retain actual approval dates and durable evidence.
++Implementation remains `unknown` in this draft, independently of acceptance.
++
++## Migration note
++
++Prepared on 2026-10-18 for review only. Original substantive prose, historical
++status/date bullets and five-plane terminology are retained. Heading changes
++supply the current required anatomy; they do not rewrite the historical model.
++The accepted metadata value preserves the existing claim and has no valid
++approval yet. The proposed identity exception grants no authority. This draft
++intentionally fails conformance until actual human evidence is recorded.

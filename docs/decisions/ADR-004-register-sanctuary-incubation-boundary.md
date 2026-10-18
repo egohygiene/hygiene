@@ -116,6 +116,25 @@ versioned consumer contracts.
 - A later decision may standardize the lifecycle only after real incubation
   evidence demonstrates which fields and states are durable.
 
+## Implementation and evidence links
+
+The existing front matter records the implementation evidence separately from
+this proposal's disposition:
+
+- [Organization intake #12](https://github.com/egohygiene/.github/issues/12)
+  defines the incubation purpose and control-plane boundary.
+- [Sanctuary bootstrap PR #1](https://github.com/egohygiene/sanctuary/pull/1)
+  supplies its provisional local lifecycle and explicit non-goals.
+- [Empathy PR #66](https://github.com/egohygiene/empathy/pull/66)
+  records the strict-baseline split and general incubation routing.
+- [Hygiene audit PR #9](https://github.com/egohygiene/hygiene/pull/9)
+  records the earlier architecture reconciliation proposal.
+
+This section was added on 2026-10-18 from those existing citations for
+[Hygiene #47](https://github.com/egohygiene/hygiene/issues/47). It adds no new
+verification, human approval or lifecycle transition. The record remains
+`proposed` with the existing `in_progress` implementation label.
+
 ## Replacement or exit strategy
 
 If bounded incubation does not justify a permanent repository, active work is

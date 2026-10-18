@@ -1,0 +1,97 @@
+# Hygiene source-backfill checkpoint — 2026-10-18
+
+This follows the [October 10 inventory](2026-10-10-hygiene-inventory.md) for
+[Hygiene #47](https://github.com/egohygiene/hygiene/issues/47). It is stacked on
+[PR #68](https://github.com/egohygiene/hygiene/pull/68), exact head
+`f234155ff76ffe7164c3d7293318e5e3f9262689`; that inventory and its historical
+preservation receipt remain unchanged. Base main is
+`b8d2c02368e40d4f6c2017bb1a22c6ec23323ad3`. Full reachable main history contains
+81 commits after explicit history acquisition; no unrecorded intent is inferred.
+
+## Source changes
+
+| Surface | Change | Authority retained |
+| --- | --- | --- |
+| ADR-004 | Insert the missing required Implementation and evidence links section using its existing citations | Every original line and all metadata remain; proposed/in_progress labels unchanged |
+| ADR-014 | New repository-local historical proposal for JSON-compatible catalogs and dependency-free Python reference tools | Original implementation/rationale are linked; proposed, null approval, implemented independently of disposition |
+| Canonical index | Add ADR-014 and links to this packet and capture guide | One numeric-order row per record; historical identities unchanged |
+| AGENTS.md | Insert exactly one pinned Aether decision-impact block through its managed merge helper, plus local owner/loading pointers | Existing local instructions and continuity block preserved; no skill installation or automatic enforcement claim |
+| ADR-0001 review patch | Prepare required anatomy/metadata while preserving substantive source prose | Unapplied; canonical record unchanged; null approval and proposed identity exception intentionally block conformance |
+
+ADR-002 and ADR-003 through ADR-013 retain their original dispositions; only
+ADR-004 gains the bounded section. Twelve current proposals include the new
+ADR-014. No architecture/catalog ownership, policy bytes, schemas, production
+workflow, release, host or deployed files change. Existing dated implementation
+wording elsewhere is left for separate evidence correction rather than inferred
+ratification or status promotion.
+
+## Concrete ADR-0001 review
+
+The [unapplied review patch](2026-10-18-adr-0001-review.patch) targets only
+`docs/decisions/ADR-0001-holistic-architecture-v0.1.md`, whose original SHA-256 is
+`5b7a4f36456e80790d4f7d989600310f8effdb2f800058f0f0bb23826730655b`.
+It preserves the Accepted/date bullets, four-digit identity, substantive prose,
+five-plane terminology and dependency-boundary amendment. It moves the existing
+Rejected bullets under the required alternatives heading, renames the historical
+Consequences heading, places Verification under the required evidence heading,
+and explicitly records absent historical exit-strategy evidence.
+
+This file is review material, not another canonical ADR or a ready-to-apply
+approved migration. **Do not apply it to main as supplied.** The draft preserves
+the existing accepted claim with `approval: null`; its legacy-identity exception
+is proposed with null approval evidence. A syntax-only preview uses
+`git apply --unidiff-zero --check` against the original source hash; it does not
+apply or approve the patch. The expected owner validation failure
+is evidence that no approval has been fabricated.
+
+The existing [disposition recommendation](2026-10-10-hygiene-inventory.md#adr-0001-disposition-packet)
+is ready for the maintainer: reaffirm the unchanged historical record and approve
+only its legacy ID/filename exception, or explicitly clarify the intended
+historical disposition. If reaffirmed, record the actual date, authority and
+durable evidence in both approval and matching approval evidence; separately
+record actual exception authority. Preserve the old historical date rather than
+backdating the new reaffirmation. No human response is presumed by preparing
+this patch, and no future policy exception can waive human lifecycle authority.
+
+After that disposition, apply the reviewed patch, complete real metadata and
+rerun native owner validation at the exact new Git revision. Do not copy example
+approval objects or silently relabel the original record to get a green result.
+
+## Native source-validation boundary
+
+Merged EgoLint `72267fd0a371da6d94922cbc6bd3dedddb68df30` supplies owner semantics.
+[Relay #154](https://github.com/egohygiene/relay/pull/154) saves candidate
+`acfb1222b5f05298ad8c94b2e83bfece84b6cdf8`; hosted action/native validation and
+continuity preflight passed for that candidate. It remains a draft; no merged
+Relay consumer baseline is claimed. The
+[capture guide](../CAPTURE.md) records exact authoring and validation selections.
+
+The [bounded source evidence](../../evidence/hygiene-adrs-source-backfill-2026-10-18.json)
+records reference metadata/anatomy checks, source preservation, managed-module
+bytes and the native whole-corpus replay. Source validity remains blocked by
+legacy ADR-0001 and its resulting index/lineage gaps. ADR-013's external
+`egohygiene/identity#ADR-017` is an existing declared relationship; the bounded
+collector currently has no external-decision selection input, so its
+undeclared-reference finding does not prove the public target is missing.
+Preserve the reference and resolve that collector evidence boundary explicitly.
+
+## Remaining mini-roadmap
+
+| Step | Prepared state | Next owner/gate |
+| --- | --- | --- |
+| Shared owner semantics | EgoLint #82 merged; Relay #154 draft passes local and hosted checks | Review/merge Relay, then use exact merge revision for consumer adoption |
+| Source backfill | ADR-004, proposed ADR-014, capture instructions and legacy review patch drafted | Review this stacked source change and resolve ADR-0001 disposition/exception |
+| Full source admission | Native review at immutable candidate; remaining findings retained | Apply actual legacy disposition and resolve external-reference evidence, then rerun shared validator |
+| Read-only production artifact | No invalid corpus promoted | Exact supported Relay baseline and valid source; keep all uncollected domains explicit |
+| Host and route | No declaration or deployment invented | Review concrete declaration/composition in the actual publication repository |
+| Publication and upkeep | Capture source/pins documented; no automatic hook claimed | Validate/render, approve actual publication, verify live bytes/accessibility/favicons and rollback; close #47 only on its full acceptance |
+
+Rollback is reverting this source checkpoint relative to the inventory head.
+The review patch has no applied source state to roll back. Existing deployed
+sites, release state, policy authority and historical inventory receipts remain
+outside this change.
+
+ADR-Ref: `egohygiene/hygiene#ADR-014` (create; proposed historical reconstruction)
+and `egohygiene/hygiene#ADR-004` (update; missing evidence section). ADR-002 governs
+metadata and human authority. This checkpoint does not propose a new global
+runtime rule or public-host architecture.
