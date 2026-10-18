@@ -12,7 +12,9 @@ local ADRs.
 - [Onboarding and migration](MIGRATION.md)
 - [Acceptance and validation plan](VALIDATION.md)
 - [ADR-002 ratification evidence](RATIFICATION.md)
-- [Hygiene #47 inventory and migration checkpoint](migrations/2026-10-10-hygiene-inventory.md)
+- [Hygiene #47 inventory and migration checkpoint](../adr-workflow/2026-10-10-hygiene-inventory.md)
+- [Continuous decision capture and pinned authoring guidance](../adr-workflow/CAPTURE.md)
+- [Source-backfill checkpoint and remaining gates](../adr-workflow/2026-10-18-source-backfill.md)
 - [ADR front matter schema](../../schemas/architecture-decision.v1.schema.json)
 - [Repository policy-reference schema](../../schemas/architecture-decision-policy-reference.v1.schema.json)
 - [Compatibility fixtures](../../fixtures/architecture-decisions)
@@ -40,6 +42,7 @@ owned downstream and are not implemented by this directory.
 | [ADR-011](ADR-011-agent-ready-web-guarded-capability-commerce.md) | Guard Agent-Ready Web capability and commerce publication | Proposed | 2026-09-14 |
 | [ADR-012](ADR-012-agent-ready-web-integration-conformance.md) | Integrate Agent-Ready Web conformance without collapsing authority | Proposed | 2026-09-14 |
 | [ADR-013](ADR-013-public-site-surface-route-registry.md) | Define the canonical public-site surface and route registry | Proposed | 2026-09-21 |
+| [ADR-014](ADR-014-json-compatible-catalogs-and-reference-tools.md) | Keep Hygiene catalogs JSON-compatible with dependency-free reference tools | Proposed | 2026-08-19 |
 
 ADR-0001 predates the accepted policy's three-digit filename convention. Its
 four-digit identity and original body remain unchanged for provenance. The
