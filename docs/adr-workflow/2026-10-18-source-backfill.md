@@ -130,3 +130,20 @@ ADR-Ref: `egohygiene/hygiene#ADR-014` (create; proposed historical reconstructio
 and `egohygiene/hygiene#ADR-004` (update; missing evidence section). ADR-002 governs
 metadata and human authority. This checkpoint does not propose a new global
 runtime rule or public-host architecture.
+
+## Subsequent merge and host checkpoint
+
+The earlier sections preserve the source-preparation observation. Relay #154
+merged at `f2e624cbbd1bb1150e29743061140f601b8486f6`, then #155 at
+`6cddad3124bdda1b1e3d54a40931f23322b7be26`. Hygiene #68 merged at
+`b774a63187476a1ef83291a3a3fc33a5c6a0e86d`, then #70 at
+`6db2a38fb80d9881a7d7d001ffb6d2f8456c3262`. Those merges do not themselves
+ratify ADR-0001 or the other proposals.
+
+The maintainer selected `https://hygiene.egohygiene.io` for this repository
+and configured GitHub Actions Pages with verified DNS. The
+[publication runbook](../../publication/README.md) now prepares that concrete
+consumer publisher, canonical repository routes and explicit admission gate.
+The remaining source decision is the unchanged ADR-0001's actual approval and
+legacy-identity exception. Publication, live UI and provider recovery are
+observations to collect after that gate; no invalid corpus is promoted.
