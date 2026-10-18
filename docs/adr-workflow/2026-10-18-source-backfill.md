@@ -84,18 +84,39 @@ The [bounded source evidence](../evidence/hygiene-adrs-source-backfill-2026-10-1
 records reference metadata/anatomy checks, source preservation, managed-module
 bytes and the native whole-corpus replay. Source validity remains blocked by
 legacy ADR-0001 and its resulting index/lineage gaps. ADR-013's external
-`egohygiene/identity#ADR-017` is an existing declared relationship; the bounded
-collector currently has no external-decision selection input, so its
-undeclared-reference finding does not prove the public target is missing.
-Preserve the reference and resolve that collector evidence boundary explicitly.
+`egohygiene/identity#ADR-017` is an existing declared relationship; the recorded
+Relay #154 collector has no external-decision selection input, so that finding
+does not prove the public target is missing. Preserve the relationship and
+select it explicitly through the follow-up below.
+
+## External-reference follow-up and review order
+
+[Relay #155](https://github.com/egohygiene/relay/pull/155), exact candidate
+`9fb7b2795d9d0bfa9849a1974ba58bbc7bcf8275`, forwards the existing native external
+ADR declaration through every supported input and provenance boundary. Its
+local full suite passes 670 tests (19 optional native checks skipped), and fresh
+locked acquisition passes all 40 ADR tests with no skips. Hosted checks are
+separate candidate evidence. The
+[paired immutable Hygiene replay](https://github.com/egohygiene/relay/blob/9fb7b2795d9d0bfa9849a1974ba58bbc7bcf8275/docs/evidence/external-adr-declarations-2026-10-18.json)
+removes exactly the one external finding with all 23 source hashes and both
+candidate digests unchanged; source remains invalid/publication denied for
+ADR-0001's legacy migration. This supplements the earlier dated receipt rather
+than rewriting its observation.
+
+Review Relay #154, then retarget/review #155 and use its exact merged revision.
+Separately review Hygiene #68, then retarget/review #70. Actual human ADR-0001
+disposition and its identity exception can be reviewed from the prepared patch;
+apply only with real evidence, then rerun source admission using the exact Relay
+baseline and the explicit Identity key in the capture guide. No merge or human
+disposition is presumed by these prepared review chains.
 
 ## Remaining mini-roadmap
 
 | Step | Prepared state | Next owner/gate |
 | --- | --- | --- |
-| Shared owner semantics | EgoLint #82 merged; Relay #154 draft passes local and hosted checks | Review/merge Relay, then use exact merge revision for consumer adoption |
+| Shared owner semantics | EgoLint #82 merged; Relay #154 and #155 prepared as a stack | Review/merge owner support then external-input follow-up, using the exact final merge revision |
 | Source backfill | ADR-004, proposed ADR-014, capture instructions and legacy review patch drafted | Review this stacked source change and resolve ADR-0001 disposition/exception |
-| Full source admission | Native review at immutable candidate; remaining findings retained | Apply actual legacy disposition and resolve external-reference evidence, then rerun shared validator |
+| Full source admission | Native review at immutable candidate; remaining findings retained | Apply actual legacy disposition and select the reviewed external key through Relay #155, then rerun shared validation |
 | Read-only production artifact | No invalid corpus promoted | Exact supported Relay baseline and valid source; keep all uncollected domains explicit |
 | Host and route | No declaration or deployment invented | Review concrete declaration/composition in the actual publication repository |
 | Publication and upkeep | Capture source/pins documented; no automatic hook claimed | Validate/render, approve actual publication, verify live bytes/accessibility/favicons and rollback; close #47 only on its full acceptance |

@@ -32,7 +32,7 @@ source checkout; it did not run this installation command or verify persistent
 host discovery. A future agent must report an unavailable skill rather than
 claiming it loaded. Static instructions do not install an automatic PR hook.
 The selected package's older EgoLint/Relay matrix lacks canonical-owner support;
-the newer candidate below is the separate explicitly reviewed consumer selection.
+the newer candidates below are the separate explicit selections prepared for review.
 
 ## Before work and before handoff
 
@@ -53,12 +53,15 @@ selection after checking for later edits; retain authored records and history.
 canonical-owner support at `72267fd0a371da6d94922cbc6bd3dedddb68df30`.
 [Relay draft PR #154](https://github.com/egohygiene/relay/pull/154), candidate
 `acfb1222b5f05298ad8c94b2e83bfece84b6cdf8`, consumes that owner in both runtimes.
-This is an immutable candidate for review, not a merged baseline or adopted
-workflow. Replace the candidate selection with its exact reviewed merge revision
-before installing a consumer workflow. Do not use `main` or a moving tag.
+[Relay follow-up #155](https://github.com/egohygiene/relay/pull/155) at
+`9fb7b2795d9d0bfa9849a1974ba58bbc7bcf8275` adds explicit external ADR declarations
+using EgoLint's existing native selection. Review/merge #154 first, then retarget
+and review #155; use the latter's exact final merge revision for adoption.
+These are immutable review candidates, not a merged baseline or installed
+workflow. Do not use `main` or a moving tag.
 
-Use that selected Relay source's
-[pinned preparation instructions](https://github.com/egohygiene/relay/blob/acfb1222b5f05298ad8c94b2e83bfece84b6cdf8/docs/repository-adr-collector.md#native-commands-and-reproducible-checks)
+Use the follow-up Relay source's
+[pinned preparation instructions](https://github.com/egohygiene/relay/blob/9fb7b2795d9d0bfa9849a1974ba58bbc7bcf8275/docs/repository-adr-collector.md#native-commands-and-reproducible-checks)
 and locked dependencies. Keep its runtime and output outside this repository.
 For an immutable source replay, bind caller-selected absolute paths:
 
@@ -73,6 +76,12 @@ python3 -I "${ADR_RELAY_SOURCE}/actions/repository-intelligence/scripts/collect_
 inside the inspected Hygiene checkout. Review exit 2 and remaining source
 findings are expected while ADR-0001's migration is unresolved. Every review
 envelope says `publication: denied`; it is not a production build input.
+The explicit external key is the existing public relationship in ADR-013.
+Its target front matter was separately inspected at
+[Identity `69d55c1`](https://github.com/egohygiene/identity/blob/69d55c1caaa5b3959ed2ffdbbcd1fd69357d87dc/docs/decisions/ADR-017-zensical-launchkit-publication-architecture.md).
+This is a caller declaration, not collector-acquired target observation. The
+paired native replay removes exactly its undeclared-reference finding while
+preserving all source hashes, candidate digests and legacy findings.
 Reference metadata checks alone cannot establish full Markdown/native conformance.
 
 ## Publication and upkeep gate

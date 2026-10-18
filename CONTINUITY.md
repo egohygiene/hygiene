@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-18T17:41:43Z'
+  updated_at: '2026-10-18T17:56:38Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -39,6 +39,7 @@ scope:
   - https://github.com/egohygiene/hygiene/issues/47
   - https://github.com/egohygiene/hygiene/pull/68
   - https://github.com/egohygiene/relay/pull/154
+  - https://github.com/egohygiene/relay/pull/155
 work:
   objective: Save reviewable source preparation and a concrete legacy ADR patch without inventing human disposition or a Decisions host.
   success_conditions:
@@ -70,17 +71,21 @@ state:
   candidate:
     branch: codex/hygiene-47-source-backfill
     revision: null
-    pull_request: null
-    handoff_state: ready-for-review
+    pull_request:
+      provider: github
+      id: egohygiene/hygiene#70
+      url: https://github.com/egohygiene/hygiene/pull/70
+    handoff_state: review-reference-recorded
   live:
     status: verified
-    observed_at: '2026-10-18T17:41:43Z'
+    observed_at: '2026-10-18T17:56:38Z'
     default_branch_revision: b8d2c02368e40d4f6c2017bb1a22c6ec23323ad3
     issue_state: open
-    pull_request_state: not-applicable
-    notes: 'Verified Hygiene #47 and inventory PR #68 remain open at f234155ff76ffe7164c3d7293318e5e3f9262689. The source follow-up is stacked
-      on that exact head, not merged main. EgoLint PR #82 is merged. Relay #154 is a draft at acfb1222b5f05298ad8c94b2e83bfece84b6cdf8 with successful
-      hosted validation, dependency review and continuity preflight. No source-follow-up PR existed at this pre-publication snapshot.'
+    pull_request_state: draft
+    notes: 'Verified Hygiene source PR #70 is a draft on inventory #68 at recorded source 48143eff8fb6c9ef9c679a2d71f9dee4e722b3bd. Relay #154
+      has successful hosted checks. Follow-up #155 is now a draft at 9fb7b2795d9d0bfa9849a1974ba58bbc7bcf8275; its full local and fresh native
+      suites pass. This update adds only handoff/capture guidance outside the canonical ADR inventory; no merge, new human disposition or deployment
+      is inferred.'
   parallel_changes:
   - provider: github
     id: egohygiene/hygiene#68
@@ -88,9 +93,12 @@ state:
   - provider: github
     id: egohygiene/relay#154
     url: https://github.com/egohygiene/relay/pull/154
+  - provider: github
+    id: egohygiene/relay#155
+    url: https://github.com/egohygiene/relay/pull/155
 review:
   status: partial
-  reviewed_at: '2026-10-18T17:41:43Z'
+  reviewed_at: '2026-10-18T17:56:38Z'
   reviewed_by: Codex
   evidence:
   - command: Pinned ADR decoding, unchanged Hygiene reference metadata checks and required-section inspection
@@ -113,12 +121,18 @@ review:
     observed_at: '2026-10-18T17:41:43Z'
     notes: 27 repositories; generated catalog current; continuity profile/local composition valid. Source/doc change only; no new executable behavior
       or production workflow.
+  - command: 'Relay #155 paired native replay of unchanged Hygiene source 48143eff8fb6c9ef9c679a2d71f9dee4e722b3bd'
+    outcome: passed
+    observed_at: '2026-10-18T17:56:38Z'
+    notes: Selecting the existing Identity ADR-017 key removes exactly one lineage finding; all 23 source hashes and both candidate digests stay
+      identical. All remaining legacy findings remain and publication is denied.
   environment_limitations:
   - Canonical ADR-0001 still lacks structured metadata and actual disposition/legacy-exception evidence; review patch is unapplied and intentionally
     nonconforming.
-  - 'Relay #154 is green but unmerged; the collector cannot yet select external-decision evidence. The existing Identity reference is not removed.'
   - No valid production artifact, consumer workflow adoption, persistent skill installation, host selection or deployment is claimed.
   - Aether authoring remains draft and its older validation matrix is distinct from the newer Relay owner candidate.
+  - 'Relay #154 and #155 remain unmerged. The #155 paired replay resolves only the selected external relationship; actual legacy human authority
+    and host/publication gates remain.'
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -149,7 +163,7 @@ Prepare the dependency-ready source backfill: repair ADR-004 anatomy, draft the 
 
 ## State snapshot
 
-Main is `b8d2c02368e40d4f6c2017bb1a22c6ec23323ad3`; this branch stacks on PR #68 head `f234155ff76ffe7164c3d7293318e5e3f9262689`. Candidate branch is `codex/hygiene-47-source-backfill`; containing commit/PR are null in this pre-publication snapshot. Its native source checkpoint is `d5cbb79ee677566f96507dcec3c0be0f2035d1e7`. EgoLint #82 merged at `72267fd0a371da6d94922cbc6bd3dedddb68df30`; Relay #154 remains a green draft at `acfb1222b5f05298ad8c94b2e83bfece84b6cdf8`. #47 and the inventory remain open.
+Main is `b8d2c02368e40d4f6c2017bb1a22c6ec23323ad3`; this branch stacks on PR #68 head `f234155ff76ffe7164c3d7293318e5e3f9262689`. Candidate branch is `codex/hygiene-47-source-backfill`; containing commit is null and draft PR #70 records the review reference. Its native source checkpoint is `d5cbb79ee677566f96507dcec3c0be0f2035d1e7`. EgoLint #82 merged at `72267fd0a371da6d94922cbc6bd3dedddb68df30`; Relay #154 remains a green draft at `acfb1222b5f05298ad8c94b2e83bfece84b6cdf8`; external-reference follow-up #155 is a draft at `9fb7b2795d9d0bfa9849a1974ba58bbc7bcf8275`. #47 and both Hygiene drafts remain open.
 
 ## Completed and material changes
 
@@ -167,11 +181,11 @@ Native Relay owner collection at the exact source checkpoint verifies all 23 cap
 
 ## Blockers, risks, unknowns, and deferred work
 
-ADR-0001 requires actual human disposition and legacy-identity exception evidence before the prepared patch can be finalized. No approval is manufactured or backdated. The collector has no external-decision selection input; its finding does not prove Identity ADR-017 is missing. Relay's green draft must be reviewed/merged before a consumer adopts an exact baseline. Hygiene's Decisions host/declaration, valid artifact, publication, live bytes, accessibility and rollback evidence remain separate gates. Static capture guidance does not prove installation or automated enforcement.
+ADR-0001 requires actual human disposition and legacy-identity exception evidence before the prepared patch can be finalized. No approval is manufactured or backdated. Relay #155 now supplies explicit external-decision input; its paired source replay removes exactly that one finding without changing source hashes or candidate data. Relay #154 then #155 need review/merge before a consumer adopts the exact baseline. Hygiene's Decisions host/declaration, valid artifact, publication, live bytes, accessibility and rollback evidence remain separate gates. Static capture guidance does not prove installation or automated enforcement.
 
 ## Next dependency-ready work
 
-Review the stacked source draft and the concrete legacy disposition packet. Resolve actual authority, then apply the reviewed normalization with real evidence and rerun shared native validation. Address the external-reference collection boundary without deleting the existing relationship. Select and review a real host/declaration only after distinguishing organization aggregation from a repository ledger; continue the mini-roadmap in the source packet. Keep #47 open until its full source/publication/upkeep acceptance is evidenced.
+Review the stacked source draft and the concrete legacy disposition packet. Resolve actual authority, then apply the reviewed normalization with real evidence and rerun shared native validation. Select the existing external relationship through the exact reviewed Relay #155 successor; the capture guide includes the concrete command. Select and review a real host/declaration only after distinguishing organization aggregation from a repository ledger; continue the mini-roadmap in the source packet. Keep #47 open until its full source/publication/upkeep acceptance is evidenced.
 
 ## Parallel changes and reconciliation
 
