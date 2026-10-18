@@ -1,6 +1,6 @@
 {
   "schema": "egohygiene.architecture-decision/v1",
-  "id": "ADR-009",
+  "id": "ADR-0009",
   "title": "Claim acceptance without authority",
   "status": "accepted",
   "date": "2026-08-25",

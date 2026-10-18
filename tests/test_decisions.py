@@ -79,9 +79,9 @@ class DecisionContractTests(unittest.TestCase):
     def test_supersession_cycle_is_rejected(self) -> None:
         first = self.load("decision.superseded.valid.json")
         second = self.load("decision.accepted.valid.json")
-        first["supersedes"] = ["ADR-007"]
+        first["supersedes"] = ["ADR-0007"]
         second["status"] = "superseded"
-        second["superseded_by"] = ["ADR-006"]
+        second["superseded_by"] = ["ADR-0006"]
         errors = decisions.validate_decision_set([first, second])
         self.assertTrue(
             any(error.startswith("E_SUPERSESSION_CYCLE") for error in errors),
@@ -96,7 +96,7 @@ class DecisionContractTests(unittest.TestCase):
         replacement["evidence"] = []
         errors = decisions.validate_decision_set([predecessor, replacement])
         self.assertIn(
-            "E_SUPERSESSION_AUTHORITY ADR-006 replacement ADR-007 is not accepted",
+            "E_SUPERSESSION_AUTHORITY ADR-0006 replacement ADR-0007 is not accepted",
             errors,
         )
 
@@ -159,6 +159,21 @@ class DecisionContractTests(unittest.TestCase):
         self.assertEqual(
             "active", contracts[decisions.POLICY_REFERENCE_SCHEMA]["status"]
         )
+
+
+class FourDigitIdentifierTests(unittest.TestCase):
+    def test_three_digit_canonical_id_requires_normalization(self):
+        candidate = json.loads((FIXTURES / "decision.proposed.valid.json").read_text())
+        candidate["id"] = "ADR-001"
+        self.assertIn("E_ID id must match four-digit ADR-NNNN", decisions.validate_decision(candidate))
+
+    def test_four_digit_range_and_oversized_id(self):
+        for identifier in ("ADR-0001", "ADR-9999"):
+            candidate = json.loads((FIXTURES / "decision.proposed.valid.json").read_text())
+            candidate["id"] = identifier
+            self.assertEqual([], decisions.validate_decision(candidate))
+        candidate["id"] = "ADR-10000"
+        self.assertIn("E_ID id must match four-digit ADR-NNNN", decisions.validate_decision(candidate))
 
 
 if __name__ == "__main__":

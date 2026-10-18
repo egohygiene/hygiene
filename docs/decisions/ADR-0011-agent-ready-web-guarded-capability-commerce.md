@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-011
+id: ADR-0011
 title: Guard Agent-Ready Web capability and commerce publication
 status: proposed
 date: 2026-09-14
@@ -12,9 +12,9 @@ issue: https://github.com/egohygiene/hygiene/issues/52
 pull_request: https://github.com/egohygiene/hygiene/pull/56
 related:
   - ADR-0001
-  - ADR-002
-  - ADR-009
-  - ADR-010
+  - ADR-0002
+  - ADR-0009
+  - ADR-0010
 supersedes: []
 superseded_by: []
 affected_repositories:
@@ -56,12 +56,12 @@ exceptions: []
 approval: null
 ---
 
-# ADR-011: Guard Agent-Ready Web capability and commerce publication
+# ADR-0011: Guard Agent-Ready Web capability and commerce publication
 
 ## Context
 
-ADR-009 and merged checkpoint #50 establish the proposed Agent-Ready Web v1
-vocabulary and ownership boundary. ADR-010 and merged checkpoint #51 add the
+ADR-0009 and merged checkpoint #50 establish the proposed Agent-Ready Web v1
+vocabulary and ownership boundary. ADR-0010 and merged checkpoint #51 add the
 bounded discovery and source-equivalent representation catalog. Issue #52 now
 requires a policy foundation for browser-agent capabilities and commercially
 descriptive surfaces without implementing either browser tools or transaction
@@ -212,7 +212,7 @@ exposure can be removed without fabricating a substitute.
 
 ## Follow-up work
 
-[Issue #53](https://github.com/egohygiene/hygiene/issues/53) and ADR-012 now own
+[Issue #53](https://github.com/egohygiene/hygiene/issues/53) and ADR-0012 now own
 the final integration and conformance contract. Parent #16 remains open until
 that final checkpoint merges. Browser tools, transaction contracts, generators,
 reusable workflows, fleet rollout, publication, dashboards, release activity,

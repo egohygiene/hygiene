@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-003
+id: ADR-0003
 title: Route reusable infrastructure contracts to Filament
 status: proposed
 date: 2026-08-21
@@ -39,7 +39,7 @@ exceptions: []
 approval: null
 ---
 
-# ADR-003: Route reusable infrastructure contracts to Filament
+# ADR-0003: Route reusable infrastructure contracts to Filament
 
 ## Context
 

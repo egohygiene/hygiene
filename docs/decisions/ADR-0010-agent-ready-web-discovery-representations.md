@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-010
+id: ADR-0010
 title: Specify Agent-Ready Web discovery and representations
 status: proposed
 date: 2026-09-14
@@ -12,8 +12,8 @@ issue: https://github.com/egohygiene/hygiene/issues/51
 pull_request: https://github.com/egohygiene/hygiene/pull/55
 related:
   - ADR-0001
-  - ADR-002
-  - ADR-009
+  - ADR-0002
+  - ADR-0009
 supersedes: []
 superseded_by: []
 affected_repositories:
@@ -43,11 +43,11 @@ exceptions: []
 approval: null
 ---
 
-# ADR-010: Specify Agent-Ready Web discovery and representations
+# ADR-0010: Specify Agent-Ready Web discovery and representations
 
 ## Context
 
-ADR-009 and merged checkpoint #50 establish the proposed Agent-Ready Web v1
+ADR-0009 and merged checkpoint #50 establish the proposed Agent-Ready Web v1
 vocabulary, compatibility model, evidence shape, and ownership boundary. The
 foundation intentionally registered no mechanisms. Issue #51 now requires a
 bounded catalog of discovery artifacts and efficient representations before
@@ -189,6 +189,6 @@ not authorize generation, deployment, or publication.
 ## Follow-up work
 
 PR #56 subsequently merged issue #52's guarded capability and commerce layer.
-ADR-012 and issue #53 own final integration and conformance evidence. Parent
+ADR-0012 and issue #53 own final integration and conformance evidence. Parent
 #16 remains open until that final checkpoint merges; lifecycle promotion,
 release, and downstream implementation or adoption remain separate.

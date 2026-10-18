@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-002
+id: ADR-0002
 title: Establish an organization ADR and delivery-history contract
 status: accepted
 date: 2026-08-20
@@ -45,7 +45,7 @@ evidence:
     description: Ratification packet recording 95 passing tests and focused lifecycle and inheritance checks.
   - type: approval
     url: https://github.com/egohygiene/hygiene/issues/15#issuecomment-5647398908
-    description: Explicit maintainer approval of ADR-002 and policy v1.1.0 at the pinned implementation commit.
+    description: Explicit maintainer approval of ADR-0002 and policy v1.1.0 at the pinned implementation commit.
   - type: pull_request
     url: https://github.com/egohygiene/hygiene/pull/48
     description: Reviewable activation change that records ratification and activates the governed contracts.
@@ -56,7 +56,7 @@ approval:
   evidence: https://github.com/egohygiene/hygiene/issues/15#issuecomment-5647398908
 ---
 
-# ADR-002: Establish an organization ADR and delivery-history contract
+# ADR-0002: Establish an organization ADR and delivery-history contract
 
 ## Context
 
@@ -80,7 +80,7 @@ view without copying protected GitHub content into public output.
 
 Adopt a Hygiene-owned organization ADR policy, versioned front matter schema,
 and repository inheritance-reference schema. New local ADRs use
-`docs/decisions/ADR-NNN-short-slug.md`, begin as `proposed`, retain local
+`docs/decisions/ADR-NNNN-short-slug.md`, begin as `proposed`, retain local
 ownership, and link human disposition, implementation evidence, affected
 contracts, affected repositories, and supersession lineage. Repository-local
 policy pins the Hygiene version and commit instead of copying global prose.
@@ -178,3 +178,13 @@ Markdown remains portable even if Relay or Observatory is replaced.
    privacy and legacy fixtures.
 4. Pilot Identity with a provenance-preserving migration map.
 5. Use Pace to roll out grouped, reviewable repository pull requests.
+
+### Naming amendment — 2026-10-18
+
+The maintainer selected four-digit canonical IDs and authorized an explicit,
+mapped normalization of the existing three-digit records. Policy v1.2.0 records
+this naming amendment under the existing v1 data model. See
+[PR #72](https://github.com/egohygiene/hygiene/pull/72) for the recorded human
+instruction and the [per-record map](../adr-workflow/2026-10-18-four-digit-ids.md).
+This appends a dated naming outcome; the original decision rationale, lifecycle,
+approval, dates and historical evidence remain intact.

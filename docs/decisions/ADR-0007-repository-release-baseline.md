@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-007
+id: ADR-0007
 title: Define an inheritable repository release-convention baseline
 status: proposed
 date: 2026-08-31
@@ -33,7 +33,7 @@ exceptions: []
 approval: null
 ---
 
-# ADR-007: Define an inheritable repository release-convention baseline
+# ADR-0007: Define an inheritable repository release-convention baseline
 
 ## Context
 

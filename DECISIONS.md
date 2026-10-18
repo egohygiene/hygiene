@@ -40,11 +40,11 @@ it does not duplicate full rationale.
 | ID | Decision | Status | Record |
 | --- | --- | --- | --- |
 | ADR-0001 | Accept holistic organization architecture v0.1 | Accepted | [Detailed record](docs/decisions/ADR-0001-holistic-architecture-v0.1.md) |
-| ADR-002 | Establish an organization ADR and delivery-history contract | Accepted | [Detailed record](docs/decisions/ADR-002-organization-adr-and-delivery-history.md) |
+| ADR-0002 | Establish an organization ADR and delivery-history contract | Accepted | [Detailed record](docs/decisions/ADR-0002-organization-adr-and-delivery-history.md) |
 
 ## Accepted governance contract
 
-ADR-002 establishes the accepted organization
+ADR-0002 establishes the accepted organization
 [ADR policy](docs/decisions/POLICY.md),
 [front matter schema](schemas/architecture-decision.v1.schema.json),
 [migration guide](docs/decisions/MIGRATION.md), and
@@ -72,7 +72,7 @@ later understanding.
 
 - **Observed:** ADR-0001 and the ecosystem architecture are present on the
   default branch.
-- **Accepted:** ADR-002 and policy v1.1.0 were approved by maintainer `szmyty`
+- **Accepted:** ADR-0002 and policy v1.1.0 were approved by maintainer `szmyty`
   on 2026-09-12 at the pinned implementation revision.
 - **Open question:** Downstream rollout and repository-local migration remain
   separately reviewed implementation work.

@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-009
+id: ADR-0009
 title: Define the Agent-Ready Web profile foundation
 status: proposed
 date: 2026-09-14
@@ -12,8 +12,8 @@ issue: https://github.com/egohygiene/hygiene/issues/50
 pull_request: https://github.com/egohygiene/hygiene/pull/54
 related:
   - ADR-0001
-  - ADR-002
-  - ADR-006
+  - ADR-0002
+  - ADR-0006
 supersedes: []
 superseded_by: []
 affected_repositories:
@@ -40,7 +40,7 @@ exceptions: []
 approval: null
 ---
 
-# ADR-009: Define the Agent-Ready Web profile foundation
+# ADR-0009: Define the Agent-Ready Web profile foundation
 
 ## Context
 
@@ -157,7 +157,7 @@ because this checkpoint authorizes neither.
 ## Follow-up work
 
 PR #54, PR #55, and PR #56 merged the first three ordered implementation
-checkpoints without activating the proposed profile. ADR-012 and issue #53 own
+checkpoints without activating the proposed profile. ADR-0012 and issue #53 own
 final integration and conformance evidence. Lifecycle promotion, releases, and
 all downstream implementation or adoption remain separate work requiring their
 own authority.

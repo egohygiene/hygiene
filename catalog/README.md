@@ -110,7 +110,7 @@ The [public-site surface contract](../docs/ecosystem/PUBLIC_SITE_SURFACES.md),
 [registry schema](../schemas/public-site-surface-registry.v1.schema.json),
 [declaration schema](../schemas/public-site-surface-declaration.v1.schema.json),
 and [compatibility fixtures](../fixtures/public-site-surfaces) define the
-proposed alpha contract tracked by [ADR-013](../docs/decisions/ADR-013-public-site-surface-route-registry.md).
+proposed alpha contract tracked by [ADR-0013](../docs/decisions/ADR-0013-public-site-surface-route-registry.md).
 
 ## Repository continuity policy
 

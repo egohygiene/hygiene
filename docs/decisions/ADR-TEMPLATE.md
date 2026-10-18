@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-000
+id: ADR-0000
 title: Replace with a concise decision title
 status: proposed
 date: YYYY-MM-DD
@@ -23,10 +23,10 @@ approval: null
 extensions: {}
 ---
 
-# ADR-000: Replace with a concise decision title
+# ADR-0000: Replace with a concise decision title
 
 > Copy this normative reference into
-> `docs/decisions/ADR-NNN-short-slug.md`. New records always begin as
+> `docs/decisions/ADR-NNNN-short-slug.md`. New records always begin as
 > `proposed`. Keep `extensions: {}` unless the repository policy reference
 > registers a namespaced extension contract. Remove this note from the copied
 > record.

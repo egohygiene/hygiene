@@ -64,7 +64,7 @@ POLICY_REFERENCE_FIELDS = {
     "extensions",
     "exceptions",
 }
-ADR_ID = re.compile(r"^ADR-[0-9]{3,4}$")
+ADR_ID = re.compile(r"^ADR-[0-9]{4}$")
 DECISION_REFERENCE = re.compile(
     r"^(ADR-[0-9]{3,4}|[a-z0-9][a-z0-9.-]*/"
     r"[a-z0-9][a-z0-9.-]*#ADR-[0-9]{3,4})$"
@@ -243,7 +243,7 @@ def validate_decision(document: dict[str, Any]) -> list[str]:
     if document.get("schema") != DECISION_SCHEMA:
         errors.append(f"E_SCHEMA schema must be {DECISION_SCHEMA}")
     if not isinstance(document.get("id"), str) or not ADR_ID.fullmatch(document["id"]):
-        errors.append("E_ID id must match ADR-NNN or preserved ADR-NNNN")
+        errors.append("E_ID id must match four-digit ADR-NNNN")
     title = document.get("title")
     if not isinstance(title, str) or not 1 <= len(title) <= 160:
         errors.append("E_TITLE title must contain 1-160 characters")

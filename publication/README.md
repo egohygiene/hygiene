@@ -21,7 +21,7 @@ not claim an organization-wide Decisions aggregation or skills directory.
 `site.json` is this publisher's small local composition configuration. It is
 **not** an `egohygiene.public-site-surface-declaration/v1` declaration. The
 proposed registry requires a separate, complete assessment of every registered
-surface; this change does not invent those assessments or ratify ADR-013.
+surface; this change does not invent those assessments or ratify ADR-0013.
 
 ## Immutable implementation and source gate
 
@@ -39,7 +39,7 @@ native EgoLint owner support merged at `72267fd0a371da6d94922cbc6bd3dedddb68df30
    remain incomplete because contract/diagram adoption is unknown; that is
    never presented as complete architecture conformance.
 4. Only an admitted source enters Relay's strict `collect-adrs` builder, with
-   explicit canonical-owner mode and the existing Identity ADR-017 key. The
+   explicit canonical-owner mode and the existing Identity ADR-0017 key. The
    builder independently rejects incomplete, invalid or stale ADR coverage.
 5. Hygiene composes only the landing and aliases. Relay captures their baseline
    and verifies preservation, source binding, every bundle route and freshness.
@@ -100,8 +100,8 @@ This runbook does not claim an exercised provider rollback before a site exists.
 ## Current boundary and upkeep
 
 The merged source retains ADR-0001's historical Accepted claim and unchanged
-canonical bytes. Its actual approval and legacy-ID exception remain unresolved.
-The [concrete review patch](../docs/adr-workflow/2026-10-18-adr-0001-review.patch)
+canonical bytes. Its actual approval remain unresolved.
+The [concrete review patch](../docs/adr-workflow/2026-10-18-adr-0001-v1.2-review.patch)
 is unapplied. Do not fill its null authority fields merely to unblock deployment.
 Hygiene #47 stays open until full source admission, deployed bytes, keyboard/
 favicon checks and recovery evidence have actually been observed.
@@ -111,8 +111,8 @@ and normalization remain in their owning repositories. Aether's selected
 authoring skill is documented in the [capture guide](../docs/adr-workflow/CAPTURE.md);
 this workflow does not claim persistent host skill installation.
 
-Decision impact: reference accepted ADR-002 for source/lifecycle authority and
-the existing proposed ADR-006/ADR-013 publication design without changing their
+Decision impact: reference accepted ADR-0002 for source/lifecycle authority and
+the existing proposed ADR-0006/ADR-0013 publication design without changing their
 disposition. ADR not required for this repository-local host instantiation,
 transport/recovery implementation and explicit selection of existing shared
 tools; no cross-repository ownership or policy contract changes.

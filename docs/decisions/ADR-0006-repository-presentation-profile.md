@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-006
+id: ADR-0006
 title: Define an evidence-backed repository presentation profile
 status: proposed
 date: 2026-08-30
@@ -31,7 +31,7 @@ exceptions: []
 approval: null
 ---
 
-# ADR-006: Define an evidence-backed repository presentation profile
+# ADR-0006: Define an evidence-backed repository presentation profile
 
 ## Context
 

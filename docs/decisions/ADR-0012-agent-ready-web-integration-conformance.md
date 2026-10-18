@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-012
+id: ADR-0012
 title: Integrate Agent-Ready Web conformance without collapsing authority
 status: proposed
 date: 2026-09-14
@@ -12,10 +12,10 @@ issue: https://github.com/egohygiene/hygiene/issues/53
 pull_request: https://github.com/egohygiene/hygiene/pull/57
 related:
   - ADR-0001
-  - ADR-002
-  - ADR-009
-  - ADR-010
-  - ADR-011
+  - ADR-0002
+  - ADR-0009
+  - ADR-0010
+  - ADR-0011
 supersedes: []
 superseded_by: []
 affected_repositories:
@@ -67,11 +67,11 @@ exceptions: []
 approval: null
 ---
 
-# ADR-012: Integrate Agent-Ready Web conformance without collapsing authority
+# ADR-0012: Integrate Agent-Ready Web conformance without collapsing authority
 
 ## Context
 
-ADR-009 through ADR-011 and merged pull requests #54 through #56 establish the
+ADR-0009 through ADR-0011 and merged pull requests #54 through #56 establish the
 proposed profile foundation, discovery and representation catalog, and guarded
 capability and commerce policy. The final checkpoint must make that profile
 deterministically consumable as one version without allowing readability,

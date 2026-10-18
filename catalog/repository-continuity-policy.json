@@ -54,7 +54,7 @@
         "sha256_utf8_lf": "dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"
       }
     ],
-    "activation_gate": "Aether must mark the pinned contract and skill stable and releasable, and a maintainer must accept ADR-008, before Hygiene advances beyond observe."
+    "activation_gate": "Aether must mark the pinned contract and skill stable and releasable, and a maintainer must accept ADR-0008, before Hygiene advances beyond observe."
   },
   "required_files": [
     {
@@ -182,7 +182,7 @@
         "order": 1,
         "finding_behavior": "visible-non-blocking",
         "entry_gate": "The proposed Hygiene profile and immutable Aether pin are reviewable.",
-        "exit_gate": "Aether is stable and releasable, ADR-008 is accepted, and representative public and private pilots produce reviewable evidence.",
+        "exit_gate": "Aether is stable and releasable, ADR-0008 is accepted, and representative public and private pilots produce reviewable evidence.",
         "rollback": "Keep repository files, stop policy promotion, and repin the prior immutable repository-context/v1 contract."
       },
       {

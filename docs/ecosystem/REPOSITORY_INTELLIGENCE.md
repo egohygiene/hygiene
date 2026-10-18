@@ -5,7 +5,7 @@
 - Vocabulary: `egohygiene.repository-intelligence-vocabulary/v1`
 - Status: **proposed**
 - Owner: `egohygiene/hygiene`
-- Governing proposal: [`ADR-005`](../decisions/ADR-005-unify-repository-intelligence-projection.md)
+- Governing proposal: [`ADR-0005`](../decisions/ADR-0005-unify-repository-intelligence-projection.md)
 
 > This contract is review material until a human maintainer accepts its
 > governing ADR. Its presence does not claim that fleet collection, rendering,
@@ -86,7 +86,7 @@ Examples:
 ```text
 ri:egohygiene/relay:repository:egohygiene/relay
 ri:egohygiene/relay:roadmap-step:REL-RM-003
-ri:egohygiene/relay:architecture-decision:ADR-007
+ri:egohygiene/relay:architecture-decision:ADR-0007
 ri:egohygiene/relay:issue:27
 ri:egohygiene/relay:pull-request:28
 ri:egohygiene/relay:commit:0123456789abcdef0123456789abcdef01234567
@@ -229,7 +229,7 @@ Trailers improve future linkage but are never the only accepted evidence.
 feat(intelligence): publish the normalized graph
 
 Roadmap-Step: HYG-Q05
-ADR-Ref: egohygiene/hygiene#ADR-005
+ADR-Ref: egohygiene/hygiene#ADR-0005
 Refs: #19
 ```
 
@@ -237,8 +237,8 @@ Conventions:
 
 - `Roadmap-Step:` contains one stable local step ID or one fully qualified
   `<owner>/<repository>#<step-id>` value. It may be repeated.
-- `ADR-Ref:` contains one local `ADR-NNN` value or one fully qualified
-  `<owner>/<repository>#ADR-NNN` value. It may be repeated.
+- `ADR-Ref:` contains one local `ADR-NNNN` value or one fully qualified
+  `<owner>/<repository>#ADR-NNNN` value. It may be repeated.
 - Trailers appear in the Git trailer block, not an arbitrary prose match.
 - A cross-repository reference is always fully qualified.
 - Generators preserve the trailer as source evidence and still validate that

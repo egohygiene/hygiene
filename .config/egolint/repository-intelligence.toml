@@ -58,7 +58,7 @@ source-path = "schemas/repository-intelligence.v1.schema.json"
 state = "present"
 decision-directory = "docs/decisions"
 index = "docs/decisions/README.md"
-known-external-decisions = ["egohygiene/identity#ADR-017"]
+known-external-decisions = ["egohygiene/identity#ADR-0017"]
 
 [adrs.policy-owner]
 source-revision = "c589587395750cd1c79c6fa0bef010189c547249"

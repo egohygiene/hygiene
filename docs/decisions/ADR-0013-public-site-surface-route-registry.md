@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-013
+id: ADR-0013
 title: Define the canonical public-site surface and route registry
 status: proposed
 date: 2026-09-21
@@ -12,12 +12,12 @@ issue: https://github.com/egohygiene/hygiene/issues/25
 pull_request: https://github.com/egohygiene/hygiene/pull/63
 related:
   - ADR-0001
-  - ADR-002
-  - ADR-005
-  - ADR-006
-  - ADR-009
-  - ADR-012
-  - egohygiene/identity#ADR-017
+  - ADR-0002
+  - ADR-0005
+  - ADR-0006
+  - ADR-0009
+  - ADR-0012
+  - egohygiene/identity#ADR-0017
 supersedes: []
 superseded_by: []
 affected_repositories:
@@ -56,7 +56,7 @@ exceptions: []
 approval: null
 ---
 
-# ADR-013: Define the canonical public-site surface and route registry
+# ADR-0013: Define the canonical public-site surface and route registry
 
 ## Context
 
@@ -76,7 +76,7 @@ then have to guess.
 
 Existing boundaries constrain the answer. Relay documents the Repository
 Intelligence bundle under `/intelligence/` and nested module routes. Identity's
-accepted ADR-017 preserves its product experience under `/identity/`. Agent-
+accepted ADR-0017 preserves its product experience under `/identity/`. Agent-
 Ready Web already owns discovery, representation, guarded capability,
 commerce, and conformance policy. Repository presentation owns README and
 orientation semantics. The later System Status contract must own incident and
@@ -113,7 +113,7 @@ publication repository so a central host can publish a subject's truthful
 declaration without taking semantic ownership.
 
 Preserve `/identity/` for the Identity product experience established by
-Identity ADR-017. Keep the Repository Intelligence identity/adoption view as
+Identity ADR-0017. Keep the Repository Intelligence identity/adoption view as
 the distinct `identity_intelligence` surface at `/intelligence/identity/`.
 `.github#37` must reconcile its conflicting request for organization
 `/identity/` before publication; the registry does not collapse incompatible
@@ -221,7 +221,7 @@ declaration still selects exactly one canonical binding.
 
 ### Move Identity under Repository Intelligence
 
-Rejected because Identity ADR-017 already assigns `/identity/` to a product
+Rejected because Identity ADR-0017 already assigns `/identity/` to a product
 experience with its own nested documentation and legal surfaces. The
 intelligence/adoption view receives a distinct ID and scoped route.
 

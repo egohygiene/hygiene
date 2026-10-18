@@ -25,6 +25,8 @@ jobs:
         with:
           persist-credentials: false
       - run: python3 -I -m unittest discover --start-directory tests --pattern test_publication.py --verbose
+      - run: python3 -I -m unittest discover --start-directory tests --pattern test_decisions.py --verbose
+      - run: git apply --check --unidiff-zero docs/adr-workflow/2026-10-18-adr-0001-v1.2-review.patch
       - run: python3 tools/catalog.py validate
       - run: python3 tools/catalog.py check-generated --output docs/generated/REPOSITORIES.md
       - run: python3 tools/context.py validate
@@ -99,7 +101,7 @@ jobs:
         with:
           collect-adrs: "true"
           adr-policy-owner: "true"
-          adr-known-external-decisions: '["egohygiene/identity#ADR-017"]'
+          adr-known-external-decisions: '["egohygiene/identity#ADR-0017"]'
           output-directory: dist/intelligence
           source-commit: ${{ github.sha }}
           activity-ref: ${{ github.sha }}

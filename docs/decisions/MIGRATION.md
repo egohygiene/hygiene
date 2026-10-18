@@ -42,8 +42,8 @@ never overwritten by a managed projection.
 ## Existing patterns found in the audit
 
 - Hygiene has a detailed four-digit `ADR-0001` without YAML front matter.
-- Identity has inline ADR-001 through ADR-003 and detailed ADR-004 through
-  ADR-011.
+- Identity has inline ADR-0001 through ADR-0003 and detailed ADR-0004 through
+  ADR-0011.
 - Optiflow uses an established `OFD-NNN` inline convention.
 - Empathy has two different records identified as ADR-0001, one inline and one
   detailed. The collision must be resolved by human review before migration.
@@ -58,8 +58,11 @@ meaning, or retroactively accept them.
 
 ## Migration rules
 
-1. **Preserve identity.** Never reuse an ID. Retain historical prefixes and
-   digit widths with an exception when changing them would break provenance.
+1. **Preserve decision numbers.** Never reuse a number. Policy v1.2.0 uses
+   four-digit canonical IDs. A maintainer-authorized padding-only migration
+   records every old/new ID and path, checks collisions, and updates current
+   references together. Preserve original rationale, dates, disposition and
+   approval; retain immutable citations and dated receipts as historical evidence.
 2. **Preserve content.** Do not silently rewrite original context, rationale,
    alternatives, or consequences to satisfy a new template.
 3. **Preserve authority.** A legacy `accepted` label without clear approval is
@@ -115,7 +118,7 @@ after Phase 2 defines provenance markers and migration-safe ownership rules.
 
 ## Rollout sequence
 
-1. Pin the accepted ADR-002 policy revision and its durable human approval
+1. Pin the accepted ADR-0002 policy revision and its durable human approval
    evidence.
 2. Release Aether's pinned reusable instruction module; retain its legacy policy
    text only as clearly non-canonical migration evidence.

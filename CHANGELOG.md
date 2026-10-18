@@ -10,6 +10,10 @@ compatibility promise applies.
 
 ## [Unreleased]
 
+### Changed
+
+- Standardize ADR policy v1.2.0 on four-digit identifiers and record each authorized ID/path normalization.
+
 ### Added
 
 - Proposed the versioned public-site surface and route registry, site

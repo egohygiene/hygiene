@@ -68,7 +68,7 @@ python3 -I "${ADR_RELAY_SOURCE}/actions/repository-intelligence/scripts/collect_
   --repository egohygiene/hygiene --visibility public \
   --source-commit "${ADR_SOURCE_REVISION}" --observed-at "${ADR_OBSERVED_AT}" \
   --adoption legacy --policy-owner \
-  --known-external-decisions '["egohygiene/identity#ADR-017"]' \
+  --known-external-decisions '["egohygiene/identity#ADR-0017"]' \
   --output "${ADR_REVIEW_DIRECTORY}/adr-collection.review.json"
 ```
 
@@ -77,12 +77,13 @@ python3 -I "${ADR_RELAY_SOURCE}/actions/repository-intelligence/scripts/collect_
 inside the inspected Hygiene checkout. Review exit 2 and remaining source
 findings are expected while ADR-0001's migration is unresolved. Every review
 envelope says `publication: denied`; it is not a production build input.
-The explicit external key is the existing public relationship in ADR-013.
-Its target front matter was separately inspected at
-[Identity `69d55c1`](https://github.com/egohygiene/identity/blob/69d55c1caaa5b3959ed2ffdbbcd1fd69357d87dc/docs/decisions/ADR-017-zensical-launchkit-publication-architecture.md).
-This is a caller declaration, not collector-acquired target observation. The
-paired native replay removes exactly its undeclared-reference finding while
-preserving all source hashes, candidate digests and legacy findings.
+The earlier paired replay selected the original `egohygiene/identity#ADR-017`
+key. The coordinated migration maps that decision to `ADR-0017`; the current
+command selects the new key. The immutable
+[earlier target inspection](https://github.com/egohygiene/identity/blob/69d55c1caaa5b3959ed2ffdbbcd1fd69357d87dc/docs/decisions/ADR-017-zensical-launchkit-publication-architecture.md)
+observed the old ID, not the renamed source. A caller declaration does not
+claim collector-acquired external target observation. Earlier receipts preserve
+their actual inputs and results.
 Reference metadata checks alone cannot establish full Markdown/native conformance.
 
 ## Publication and upkeep gate
@@ -93,7 +94,7 @@ The selected repository origin is `https://hygiene.egohygiene.io` with canonical
 selection, read-only source gate, exact artifact handoff and actual recovery/
 HTTPS verification. The central roadmap host does not replace this local origin.
 
-ADR-0001's real approval and legacy-identity exception remain the source gate.
+ADR-0001's real approval remain the source gate.
 Its prepared patch remains unapplied; advisory execution success cannot admit
 an invalid corpus. Keep the organization `/decisions/` aggregation distinct.
 Close #47 only after source admission, live bytes, accessibility/favicons and

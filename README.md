@@ -67,23 +67,23 @@ sites are projections of those sources.
 ## Accepted ADR and delivery-history foundation
 
 - [ADR policy](docs/decisions/POLICY.md)
-- [Accepted governing decision](docs/decisions/ADR-002-organization-adr-and-delivery-history.md)
-- [Proposed Repository Intelligence decision](docs/decisions/ADR-005-unify-repository-intelligence-projection.md)
-- [Proposed Agent-Ready Web foundation decision](docs/decisions/ADR-009-agent-ready-web-profile-foundation.md)
-- [Proposed Agent-Ready Web discovery decision](docs/decisions/ADR-010-agent-ready-web-discovery-representations.md)
-- [Proposed Agent-Ready Web capability and commerce decision](docs/decisions/ADR-011-agent-ready-web-guarded-capability-commerce.md)
-- [Proposed Agent-Ready Web integration and conformance decision](docs/decisions/ADR-012-agent-ready-web-integration-conformance.md)
-- [Proposed public-site surface and route registry decision](docs/decisions/ADR-013-public-site-surface-route-registry.md)
+- [Accepted governing decision](docs/decisions/ADR-0002-organization-adr-and-delivery-history.md)
+- [Proposed Repository Intelligence decision](docs/decisions/ADR-0005-unify-repository-intelligence-projection.md)
+- [Proposed Agent-Ready Web foundation decision](docs/decisions/ADR-0009-agent-ready-web-profile-foundation.md)
+- [Proposed Agent-Ready Web discovery decision](docs/decisions/ADR-0010-agent-ready-web-discovery-representations.md)
+- [Proposed Agent-Ready Web capability and commerce decision](docs/decisions/ADR-0011-agent-ready-web-guarded-capability-commerce.md)
+- [Proposed Agent-Ready Web integration and conformance decision](docs/decisions/ADR-0012-agent-ready-web-integration-conformance.md)
+- [Proposed public-site surface and route registry decision](docs/decisions/ADR-0013-public-site-surface-route-registry.md)
 - [ADR reference template](docs/decisions/ADR-TEMPLATE.md)
 - [ADR migration guide](docs/decisions/MIGRATION.md)
 - [ADR validation plan](docs/decisions/VALIDATION.md)
-- [ADR-002 ratification evidence](docs/decisions/RATIFICATION.md)
+- [ADR-0002 ratification evidence](docs/decisions/RATIFICATION.md)
 - [ADR front matter schema](schemas/architecture-decision.v1.schema.json)
 - [Repository ADR policy-reference schema](schemas/architecture-decision-policy-reference.v1.schema.json)
 - [ADR compatibility fixtures](fixtures/architecture-decisions)
 - [Organization contract index](catalog/contracts.yaml)
 
-ADR-002 and policy v1.1.0 are accepted organization authority. This repository
+ADR-0002 and policy v1.1.0 are accepted organization authority. This repository
 provides their canonical schemas, fixtures, and reference checks; it does not
 claim that downstream fleet validation, generated decision/activity data, or
 dashboard publication is complete.
