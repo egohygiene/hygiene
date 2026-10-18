@@ -103,10 +103,10 @@
   ],
   "entities": [
     {
-      "id": "ri:egohygiene/relay:architecture-decision:ADR-007",
+      "id": "ri:egohygiene/relay:architecture-decision:ADR-0007",
       "kind": "architecture_decision",
       "repository": "egohygiene/relay",
-      "key": "ADR-007",
+      "key": "ADR-0007",
       "title": "Adopt the Repository Intelligence projection",
       "canonical_url": "https://github.com/egohygiene/relay/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/docs/decisions/ADR-007-repository-intelligence.md",
       "visibility": "public",
@@ -340,7 +340,7 @@
     {
       "id": "relationship:adr-informs-quest",
       "type": "informs",
-      "source": "ri:egohygiene/relay:architecture-decision:ADR-007",
+      "source": "ri:egohygiene/relay:architecture-decision:ADR-0007",
       "target": "ri:egohygiene/relay:roadmap-step:REL-RM-003",
       "direction": "directed",
       "assertion": "authoritative",
@@ -368,7 +368,7 @@
       "id": "relationship:check-verifies-decision",
       "type": "verifies",
       "source": "ri:egohygiene/relay:check:repository-intelligence-812",
-      "target": "ri:egohygiene/relay:architecture-decision:ADR-007",
+      "target": "ri:egohygiene/relay:architecture-decision:ADR-0007",
       "direction": "directed",
       "assertion": "authoritative",
       "freshness": "current",
@@ -526,7 +526,7 @@
     {
       "id": "event:decision-proposed",
       "type": "architecture_decision.proposed",
-      "subject": "ri:egohygiene/relay:architecture-decision:ADR-007",
+      "subject": "ri:egohygiene/relay:architecture-decision:ADR-0007",
       "occurred_at": "2026-08-03T09:00:00Z",
       "recorded_at": "2026-08-25T14:00:00Z",
       "actor": null,
@@ -548,7 +548,7 @@
     {
       "id": "event:decision-accepted",
       "type": "architecture_decision.accepted",
-      "subject": "ri:egohygiene/relay:architecture-decision:ADR-007",
+      "subject": "ri:egohygiene/relay:architecture-decision:ADR-0007",
       "occurred_at": "2026-08-04T09:00:00Z",
       "recorded_at": "2026-08-25T14:00:00Z",
       "actor": null,

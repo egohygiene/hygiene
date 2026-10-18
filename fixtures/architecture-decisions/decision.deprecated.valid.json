@@ -1,6 +1,6 @@
 {
   "schema": "egohygiene.architecture-decision/v1",
-  "id": "ADR-011",
+  "id": "ADR-0011",
   "title": "Publish an experimental projection format",
   "status": "deprecated",
   "date": "2026-08-25",
@@ -9,7 +9,7 @@
   "owners": ["egohygiene/relay"],
   "issue": "https://github.com/egohygiene/relay/issues/11",
   "pull_request": "https://github.com/egohygiene/relay/pull/12",
-  "related": ["ADR-007"],
+  "related": ["ADR-0007"],
   "supersedes": [],
   "superseded_by": [],
   "affected_repositories": ["egohygiene/relay"],

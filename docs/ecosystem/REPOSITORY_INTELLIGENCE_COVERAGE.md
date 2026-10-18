@@ -1,6 +1,6 @@
 # Repository Intelligence collection coverage
 
-Status: **proposed alpha.2**, under [ADR-005](../decisions/ADR-005-unify-repository-intelligence-projection.md).
+Status: **proposed alpha.2**, under [ADR-0005](../decisions/ADR-0005-unify-repository-intelligence-projection.md).
 Implements the input boundary needed by [Observatory #25](https://github.com/egohygiene/observatory/issues/25).
 
 An empty array does not say whether its source was checked. Projection

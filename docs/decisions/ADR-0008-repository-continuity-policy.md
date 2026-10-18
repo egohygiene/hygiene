@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-008
+id: ADR-0008
 title: Require repository-owned continuity checkpoints through a versioned context successor
 status: proposed
 date: 2026-09-08
@@ -35,7 +35,7 @@ exceptions: []
 approval: null
 ---
 
-# ADR-008: Require repository-owned continuity checkpoints through a versioned context successor
+# ADR-0008: Require repository-owned continuity checkpoints through a versioned context successor
 
 ## Context
 
@@ -165,7 +165,7 @@ require a reviewed major successor with migration fixtures.
 
 1. Stabilize and release the Aether continuity artifacts or update this
    proposal to another reviewed immutable revision.
-2. Obtain explicit maintainer acceptance for ADR-008 before leaving observe.
+2. Obtain explicit maintainer acceptance for ADR-0008 before leaving observe.
 3. Implement [egolint#55](https://github.com/egohygiene/egolint/issues/55),
    [holon#42](https://github.com/egohygiene/holon/issues/42),
    [relay#60](https://github.com/egohygiene/relay/issues/60),

@@ -61,8 +61,10 @@ Egolint rules, orchestrated by Relay in CI, execute these deterministic stages:
    custom tags, aliases, duplicate keys, or multiple documents.
 5. Validate metadata against the pinned Hygiene schema, then validate only
    registered local extensions against repository-owned schemas.
-6. Enforce filename/ID agreement for new records and require an approved or
-   migration-pending exception for legacy variance.
+6. Under policy v1.2.0, enforce four-digit canonical IDs and filename/ID
+   agreement. Validate older snapshots only through their explicit supported
+   policy pin. A naming migration records the number-preserving old/new map;
+   four-digit IDs require no legacy-width exception.
 7. Detect duplicate local IDs, duplicate global keys, and case-folding path
    collisions.
 8. Verify that `docs/decisions/README.md` has exactly one linked row per
@@ -153,7 +155,8 @@ Egolint and Relay must extend the corpus to cover:
 - missing, duplicate, malformed, and filename-mismatched IDs;
 - missing, moving, unsupported, and owner/path-mismatched policy pins;
 - permitted optional and required local extensions plus prohibited overrides;
-- four-digit and alternate-prefix legacy records with migration notes;
+- canonical four-digit records, rejected three-/five-digit canonical IDs, and
+  explicitly pinned historical/alternate-prefix migration fixtures;
 - the known Empathy-style ID collision;
 - a private repository and private issue metadata;
 - deterministic regeneration under different locale, time zone, and working

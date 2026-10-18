@@ -25,7 +25,7 @@ the prior files and references remain recoverable from Git history.
 4. Aether/Holon: canonical specification, skill, examples and scaffolding.
 5. Consumers: exact pins, canonical IDs, current cross-references and local map.
 
-The numbering work is in progress. No pending downstream merge or validation
+Hygiene's policy/corpus naming change is prepared in [PR #72](https://github.com/egohygiene/hygiene/pull/72); downstream tooling adoption is in progress. No pending downstream merge or validation
 result is inferred by this preparation record. Hygiene #47's independent
 historical approval/source-publication gate remains visible.
 
@@ -57,3 +57,12 @@ one index row per record, local and cross-repository lineage, the migration map,
 and exact supported policy/runtime pins. Run each owner's normal tests and retain
 actual hosted outcomes. Revert the corresponding reviewed change to restore the
 previous names and references together; do not mix old names with new metadata.
+
+## ADR-0001 review packet
+
+The original four-digit identity needs no exception under policy v1.2.0. The
+[new unapplied metadata/anatomy patch](2026-10-18-adr-0001-v1.2-review.patch)
+removes that obsolete width exception while retaining null approval. The earlier
+review patch remains a dated historical artifact and must not be applied under
+the new convention. Canonical ADR-0001 is unchanged; actual architecture
+approval remains a separate evidence gap.

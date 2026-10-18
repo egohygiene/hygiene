@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-005
+id: ADR-0005
 title: Unify repository intelligence as a provenance-aware graph projection
 status: proposed
 date: 2026-08-25
@@ -11,7 +11,7 @@ owners:
 issue: https://github.com/egohygiene/hygiene/issues/19
 pull_request: https://github.com/egohygiene/hygiene/pull/20
 related:
-  - ADR-002
+  - ADR-0002
 supersedes: []
 superseded_by: []
 affected_repositories:
@@ -34,7 +34,7 @@ exceptions: []
 approval: null
 ---
 
-# ADR-005: Unify repository intelligence as a provenance-aware graph projection
+# ADR-0005: Unify repository intelligence as a provenance-aware graph projection
 
 ## Context
 
@@ -161,7 +161,7 @@ history.
 
 ## Follow-up work
 
-1. Obtain explicit human review for ADR-002, ADR-005, and their policy boundary.
+1. Obtain explicit human review for ADR-0002, ADR-0005, and their policy boundary.
 2. Add the decision-impact hook in Aether and semantic checks in Egolint.
 3. Implement Observatory's normalized graph/read model against the complete
    quest fixture.

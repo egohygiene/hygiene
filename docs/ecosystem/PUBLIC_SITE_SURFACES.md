@@ -5,7 +5,7 @@
 - Registry: [`catalog/public-site-surface-registry.json`](../../catalog/public-site-surface-registry.json)
 - Registry schema: [`public-site-surface-registry.v1.schema.json`](../../schemas/public-site-surface-registry.v1.schema.json)
 - Declaration schema: [`public-site-surface-declaration.v1.schema.json`](../../schemas/public-site-surface-declaration.v1.schema.json)
-- Governing proposal: [`ADR-013`](../decisions/ADR-013-public-site-surface-route-registry.md)
+- Governing proposal: [`ADR-0013`](../decisions/ADR-0013-public-site-surface-route-registry.md)
 - Tracking issue: [Hygiene #25](https://github.com/egohygiene/hygiene/issues/25)
 
 ## Purpose
@@ -112,7 +112,7 @@ rules include:
 ## Identity route conflict
 
 Two different products currently want the same organization path. Accepted
-Identity ADR-017 assigns `/identity/` to the Identity product experience.
+Identity ADR-0017 assigns `/identity/` to the Identity product experience.
 `.github#37` asks for an Observatory-backed organization adoption module at
 that path. The registry does not collapse their source, renderer, dependency,
 or ownership contracts:

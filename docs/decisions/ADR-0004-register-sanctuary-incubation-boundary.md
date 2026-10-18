@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-004
+id: ADR-0004
 title: Register Sanctuary as the bounded incubation owner
 status: proposed
 date: 2026-08-21
@@ -42,7 +42,7 @@ exceptions: []
 approval: null
 ---
 
-# ADR-004: Register Sanctuary as the bounded incubation owner
+# ADR-0004: Register Sanctuary as the bounded incubation owner
 
 ## Context
 

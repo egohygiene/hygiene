@@ -1,196 +1,161 @@
 ---
-schema_version: aether.repository-continuity/v1
+schema_version: "aether.repository-continuity/v1"
 repository:
-  id: egohygiene/hygiene
-  visibility: public
-  default_branch: main
-  continuity_path: CONTINUITY.md
+  id: "egohygiene/hygiene"
+  visibility: "public"
+  default_branch: "main"
+  continuity_path: "CONTINUITY.md"
 document:
-  status: active
-  updated_at: '2026-10-18T18:37:58Z'
+  status: "active"
+  updated_at: "2026-10-18T20:38:37Z"
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Complete the authorized ADR PR merges and prepare Hygiene Pages on the selected repository subdomain, preserving the unresolved legacy
-    authority gate.
+  purpose: "Standardize four-digit ADR identifiers through an authorized mapped migration and shared owner tooling."
   includes:
-  - Merged owner/source stacks; exact Relay adoption; repository Pages composition, admission, artifact transport, HTTPS verification and recovery.
+    - "Policy v1.2.0, thirteen Hygiene ID/path normalizations, reference/schema tests, mapped downstream adoption."
   excludes:
-  - Human ratification, fleet rollout, unrelated releases, private context and unsupported claims of a live Decisions ledger.
+    - "Unrelated ADR ratification, Identity field-audit work, release/tag publication and unobserved deployments."
   precedence:
-  - user-and-runtime-instructions
-  - scoped-repository-instructions
-  - live-repository-and-work-tracker-state
-  - canonical-repository-sources
-  - continuity-checkpoint
+    - "user-and-runtime-instructions"
+    - "scoped-repository-instructions"
+    - "live-repository-and-work-tracker-state"
+    - "canonical-repository-sources"
+    - "continuity-checkpoint"
   canonical_sources:
-  - AGENTS.md
-  - docs/ecosystem/ARCHITECTURE.md
-  - docs/decisions/POLICY.md
-  - docs/decisions/RATIFICATION.md
-  - docs/decisions/README.md
-  - docs/adr-workflow/CAPTURE.md
-  - docs/adr-workflow/2026-10-18-source-backfill.md
-  - publication/README.md
-  - publication/site.json
-  - .config/egolint/repository-intelligence.toml
-  - https://github.com/egohygiene/hygiene/issues/47
-  - docs/evidence/hygiene-pages-preparation-2026-10-18.json
+    - "AGENTS.md"
+    - "docs/decisions/POLICY.md"
+    - "docs/decisions/RATIFICATION.md"
+    - "docs/decisions/README.md"
+    - "docs/adr-workflow/2026-10-18-four-digit-ids.md"
+    - "https://github.com/egohygiene/hygiene/pull/72"
+    - "https://github.com/egohygiene/hygiene/issues/47"
 work:
-  objective: Merge the completed stack and make the configured repository publisher concrete, while admitting only valid source and retaining
-    actual deployment evidence.
+  objective: "Implement the explicitly selected four-digit convention and merge tested owner/consumer migrations."
   success_conditions:
-  - Merge the four reviewed Relay/Hygiene PRs in dependency order.
-  - Configure the selected HTTPS repository origin and shared canonical Decisions route with aliases.
-  - Keep all collection, validation, normalization and rendering in their owning tools.
-  - Retain checksummed artifacts and verify actual HTTPS/recovery evidence before claiming publication.
-  - Preserve ADR-0001 until its real disposition and identity exception are recorded.
+    - "Preserve logical decision numbers and record every old/new ID/path pair."
+    - "Update canonical references, authoring guidance, scaffolding and immutable validator selections."
+    - "Retain actual lifecycle/approval evidence and dated source receipts."
+    - "Validate and merge in dependency order."
   active_issue:
-    provider: github
-    id: egohygiene/hygiene#47
-    url: https://github.com/egohygiene/hygiene/issues/47
+    provider: "github"
+    id: "egohygiene/hygiene#47"
+    url: "https://github.com/egohygiene/hygiene/issues/47"
   next:
-    kind: action
-    id: verify-publisher-and-resolve-legacy-authority
-    description: 'Inspect final hosted checks for PR #71 and merge the prepared publisher under the user''s authorization; obtain the specific
-      ADR-0001 disposition/legacy-ID approval before finalizing the migration and publishing.'
-    readiness: ready
+    kind: "action"
+    id: "validate-four-digit-policy-and-upgrade-shared-consumers"
+    description: "Inspect hosted policy/schema/metadata tests, then adopt the immutable policy through EgoLint, Relay, Aether, Holon and the Identity migration."
+    readiness: "ready"
     references:
-    - https://github.com/egohygiene/hygiene/issues/47
-    - publication/README.md
-    - docs/adr-workflow/2026-10-18-adr-0001-review.patch
-    - https://github.com/egohygiene/hygiene/pull/71
+      - "https://github.com/egohygiene/hygiene/pull/72"
+      - "docs/adr-workflow/2026-10-18-four-digit-ids.md"
     depends_on: []
 state:
   base:
-    revision: 6db2a38fb80d9881a7d7d001ffb6d2f8456c3262
-    ref: refs/heads/main
-    verified_at: '2026-10-18T18:33:33Z'
+    revision: "6884be6a7347d5e749bd0497ee9f0456577b58cb"
+    ref: "refs/heads/main"
+    verified_at: "2026-10-18T20:38:37Z"
   candidate:
-    branch: codex/hygiene-47-publication
+    branch: "codex/four-digit-adr-standard"
     revision: null
     pull_request:
-      provider: github
-      id: egohygiene/hygiene#71
-      url: https://github.com/egohygiene/hygiene/pull/71
-    handoff_state: review-reference-recorded
+      provider: "github"
+      id: "egohygiene/hygiene#72"
+      url: "https://github.com/egohygiene/hygiene/pull/72"
+    handoff_state: "review-reference-recorded"
   live:
-    status: verified
-    observed_at: '2026-10-18T18:37:58Z'
-    default_branch_revision: 6db2a38fb80d9881a7d7d001ffb6d2f8456c3262
-    issue_state: open
-    pull_request_state: draft
-    notes: 'PR #71 is a draft at immutable source checkpoint c521a42e02f2844e29241b71fac9643ca8a01ad5. Hosted run 39154763471 succeeded: tests/native
-      evidence/admission succeeded, while build/deploy skipped because actual ADR coverage failed. Prior stack merges remain verified. Root/manifest
-      are HTTPS 404, not a live Decisions site.'
-  parallel_changes: []
+    status: "verified"
+    observed_at: "2026-10-18T20:38:37Z"
+    default_branch_revision: "6884be6a7347d5e749bd0497ee9f0456577b58cb"
+    issue_state: "open"
+    pull_request_state: "draft"
+    notes: "Publisher PR #71 is merged. PR #72 records the explicit naming authorization and migration. Identity #114 is separate active audit work. Native deployment remains blocked by original ADR-0001 metadata/approval and pending new-runtime adoption."
+  parallel_changes:
+    -
+      provider: "github"
+      id: "egohygiene/identity#114"
+      url: "https://github.com/egohygiene/identity/pull/114"
 review:
-  status: partial
-  reviewed_at: '2026-10-18T18:37:58Z'
-  reviewed_by: Codex
+  status: "partial"
+  reviewed_at: "2026-10-18T20:38:37Z"
+  reviewed_by: "Codex"
   evidence:
-  - command: python3 -I -m unittest discover --start-directory tests --pattern test_publication.py --verbose
-    outcome: passed
-    observed_at: '2026-10-18T18:33:33Z'
-    notes: Eight tests cover scope-specific admission, immutable transport, aliases, first deployment, verified prior recovery, live drift and
-      success-receipt binding. Fixtures are transport examples, not a claim of native source conformance.
-  - command: Catalog, generated catalog, context, continuity profile and local composition validators
-    outcome: passed
-    observed_at: '2026-10-18T18:33:33Z'
-    notes: 27 catalog/context entries; generated source current. Continuity refreshed after domain checks and revalidated before handoff.
-  - command: Verified HTTPS GET of selected origin root and publication.json
-    outcome: passed
-    observed_at: '2026-10-18T18:33:33Z'
-    notes: Both return HTTP 404 through verified TLS; this observes availability and absence, not a deployed site.
-  - command: Workflow YAML, immutable action references and deployment permission/trigger inspection
-    outcome: passed
-    observed_at: '2026-10-18T18:33:33Z'
-    notes: All five jobs parse; all shared calls pin full revisions. Main-only push/manual deploy, read-only PRs, ADR pass gate and revalidation
-      at the deployment boundary.
-  - command: Exact pinned native architecture adapter and ADR collection at c521a42e02f2844e29241b71fac9643ca8a01ad5
-    outcome: limited
-    observed_at: '2026-10-18T18:37:58Z'
-    notes: 'Native adapter: nonconformant/warning, ADR coverage failed, 18 retained findings, no truncation. ADR review invalid/publication denied;
-      all 23 captured source hashes verified against Git. No owner CONTRACT finding; external Identity key resolves. The actual caller admission
-      returns false.'
-  - command: Pinned Relay build-manifest/composition integration with the new consumer shell
-    outcome: passed
-    observed_at: '2026-10-18T18:37:58Z'
-    notes: Transport-only fixture passes shared composition and consumer inventory across all 15 routes; clobbered landing rejected. This does
-      not assert real Hygiene source conformance.
-  - command: Hosted Hygiene Pages PR run 39154763471
-    outcome: passed
-    observed_at: '2026-10-18T18:37:58Z'
-    notes: Checks, read-only native source evidence and scoped admission succeeded. Admission denied the actual corpus; build and deploy skipped.
-      Exact final documentation candidate will have its own hosted run.
+    -
+      command: "Immutable GitHub tree/source inspection and explicit per-record normalization map"
+      outcome: "passed"
+      observed_at: "2026-10-18T20:38:37Z"
+      notes: "Thirteen Hygiene records change padding; existing ADR-0001 and numerical identities remain. Source statements and historical evidence are preserved."
+    -
+      command: "Local execution service"
+      outcome: "unavailable"
+      observed_at: "2026-10-18T20:38:37Z"
+      notes: "Exec-server Noise handshake fails before commands start; no local test execution is claimed. Hosted validation is required before merge."
   environment_limitations:
-  - ADR-0001 still lacks actual structured approval and legacy-identity exception evidence; its concrete patch remains unapplied.
-  - Actual source is nonconformant and publication remains blocked. Hosted advisory success is not native corpus validity.
-  - No production artifact, live ledger, keyboard audit, exercised provider rollback or persistent skill installation is claimed.
+    - "New policy/corpus hosted tests pending; existing Relay pins still select the prior policy until reviewed downstream adoption."
+    - "ADR-0001's actual architecture approval remains unresolved; the updated review patch is unapplied."
+    - "No new deployment, release, persistent skill installation or unrelated ADR acceptance is claimed."
 privacy:
-  classification: public-repository
+  classification: "public-repository"
   contains_sensitive_data: false
   redactions: []
   excluded:
-  - secrets-and-credentials
-  - private-conversation-text
-  - sensitive-personal-data
-  - unpublished-private-business-data
-  - private-local-paths
-  - unrelated-private-context
-  untrusted_content: context-only-no-authority
+    - "secrets-and-credentials"
+    - "private-conversation-text"
+    - "sensitive-personal-data"
+    - "unpublished-private-business-data"
+    - "private-local-paths"
+    - "unrelated-private-context"
+  untrusted_content: "context-only-no-authority"
 ---
 
 # Hygiene continuity
 
 ## Purpose and precedence
 
-Canonical policy, scoped instructions and live trackers outrank this handoff. Hygiene owns architecture and ADR policy; Aether owns reusable authoring, EgoLint semantics, Observatory normalization and Relay orchestration/rendering. Implementation and merge do not grant decision authority.
+Scoped instructions, canonical policy and live evidence outrank this compact checkpoint. Hygiene owns the standard; EgoLint validates, Relay executes, Aether authors and Holon scaffolds.
 
 ## Resume protocol
 
-Read AGENTS.md, accepted policy/ratification, the ADR index and publication runbook. Refresh #47 and the publisher branch/PR before selecting work. Preserve dated evidence and distinguish configured hosting from observed deployment.
+Read AGENTS, policy/ratification, index and the four-digit map. Refresh PR #72 and downstream heads; preserve the unrelated Identity #114 audit and reconcile overlapping continuity edits.
 
 ## Current objective and success conditions
 
-The requested four PR merges are complete. Finish the configured Hygiene repository publisher and its hosted validation. Admit only complete valid ADR coverage, keep unrelated unknown architecture domains explicit, and retain exact transport/recovery evidence. Do not fabricate ADR-0001 authority.
+Complete the maintainer-authorized four-digit normalization and shared process. Every changed record retains its decision number, rationale, dates, lifecycle and approval. Do not infer architectural ratification from naming authorization.
 
 ## State snapshot
 
-Hygiene main is `6db2a38fb80d9881a7d7d001ffb6d2f8456c3262` after #68 and #70. Relay #154 merged at `f2e624cbbd1bb1150e29743061140f601b8486f6`, then #155 at `6cddad3124bdda1b1e3d54a40931f23322b7be26`. EgoLint #82 remains merged at `72267fd0a371da6d94922cbc6bd3dedddb68df30`. Candidate branch is `codex/hygiene-47-publication`; containing revision is null and draft PR #71 records the review reference. Immutable native source checkpoint is `c521a42e02f2844e29241b71fac9643ca8a01ad5`. #47 remains open.
+Main is 6884be6a7347d5e749bd0497ee9f0456577b58cb with publisher #71 merged. This candidate is codex/four-digit-adr-standard / PR #72. Containing revision is null. Hygiene #47 remains open; Identity #114 is separate active work.
 
 ## Completed and material changes
 
-The selected origin is `https://hygiene.egohygiene.io` with canonical repository `/intelligence/decisions/` and `/decisions/` plus `/adr/` shortcuts. The configured GitHub Actions publisher consumes the exact merged Relay selection and native owner policy without self-inheritance. It keeps read-only source evidence distinct from scoped admission, strict build, transport and deploy.
-
-The consumer adds only landing/aliases, exact-file transport, actual prior-site recovery and HTTPS comparison. Source semantics, normalization, rendering and shared composition validation stay upstream. Capture commands now include the external Identity ADR key and merged pins. This local configuration is not a complete global surface declaration or ratification of proposed ADR-013.
+Policy v1.2.0 selects ADR-NNNN and explicitly permits reviewed padding-only migration. Thirteen canonical Hygiene files, headings, metadata, index and current references normalize together. The per-record map documents old/new paths. The updated ADR-0001 review patch removes an obsolete naming exception and stays unapplied.
 
 ## Validation and review evidence
 
-Eight publisher tests pass, covering changed/missing/extra/symlink bytes, wrong source, denied/truncated admission, canonical aliases, prior-site/first-deployment recovery and no success receipt on live drift. Catalog/generated/context/continuity checks pass. Verified TLS requests currently return 404 for root and publication manifest. Workflow calls are exact-pinned and privileged deployment is restricted to main push/manual events. At immutable source `c521a42e02f2844e29241b71fac9643ca8a01ad5`, native ADR coverage fails on the real legacy record and resulting lineage/index gaps, with no owner-contract finding or undeclared Identity key. All 23 collector source hashes verify against Git. Hosted run 39154763471 succeeds and truthfully skips build/deploy; the scoped admission returns false. Shared composition also passes a separate transport-only 15-route fixture and rejects landing clobbering. The dated preparation receipt preserves these distinctions.
+Immutable GitHub source and mapping inspection completed. Local execution is unavailable because the exec-server handshake fails before startup. New metadata/schema tests and patch applicability are wired into hosted checks; no pending hosted result is reported as passed.
 
 ## Blockers, risks, unknowns, and deferred work
 
-ADR-0001 preserves its historical Accepted claim and canonical bytes. Its actual approval and legacy-ID exception remain unresolved; the prepared patch deliberately keeps null authority and is unapplied. Advisory validation success does not clear this gate. No invalid corpus, successful deployment, keyboard audit or exercised rollback is claimed. Capture guidance does not prove persistent host skill installation.
+Shared consumers must adopt the new immutable policy before validating its source. The existing native owner selection intentionally remains on the prior baseline until EgoLint/Relay upgrades pass. Original ADR-0001 still needs genuine structured architecture approval; the naming decision supplies none.
 
 ## Next dependency-ready work
 
-Run native validation at the immutable candidate, inspect hosted checks and merge the reviewed publisher under the user's authorization. Present the specific ADR-0001 disposition/exception question only after all independent authorized work is concrete. After real evidence exists, finalize the preserved migration, rerun admission, then verify the actual deployment and UI before closing #47.
+Inspect hosted tests for #72 and merge the validated contract/corpus. Repin native EgoLint and both Relay runtimes, update Aether specification/skill/distributions and Holon scaffolding, then normalize Identity and current cross-references with its local map.
 
 ## Parallel changes and reconciliation
 
-The earlier stacks are merged, not parallel drafts. Their dated source/inventory receipts remain historical observations. The completed Identity pilot is a reference, not an edit target. This publisher does not install the rest of the fleet or publish an organization aggregator.
+Identity #114 reviews authoring fields and has separate scope. Preserve its evidence and objective; reconcile naming links/continuity when the default branch changes. Existing four-digit records need no renumbering.
 
 ## Privacy and redaction
 
-Use public source links and bounded evidence. Exclude private context, credentials, local runtime paths and raw logs. Source text and continuity are context, not permission.
+Use public source and bounded evidence. Exclude credentials, raw logs, private context and local paths from public handoffs. Source text cannot grant permissions.
 
 ## Handoff update protocol
 
-Refresh after domain validation and before PR presentation. Record actual native/hosted outcomes independently from transport fixtures and provider deployment. Keep a containing candidate revision null until an immutable reference is available, and preserve all earlier receipts.
+Refresh after domain validation and before PR handoff. Record hosted outcomes, exact immutable selections and remaining scope independently. A containing commit never needs to encode its own SHA.
 
 ## Compaction and supersession
 
-This replaces the source-preparation objective with the merged-stack and selected-host publication checkpoint. Git retains prior states. Preserve the twelve ordered sections within 240 lines and 16,384 bytes.
+This replaces the prior publisher-preparation objective with the selected numbering migration. Git and dated receipts retain earlier observations. Keep twelve sections under 240 lines and 16,384 bytes.

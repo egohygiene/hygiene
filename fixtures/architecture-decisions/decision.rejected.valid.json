@@ -1,6 +1,6 @@
 {
   "schema": "egohygiene.architecture-decision/v1",
-  "id": "ADR-008",
+  "id": "ADR-0008",
   "title": "Make generated indexes canonical",
   "status": "rejected",
   "date": "2026-08-25",
@@ -9,7 +9,7 @@
   "owners": ["egohygiene/relay"],
   "issue": "https://github.com/egohygiene/relay/issues/9",
   "pull_request": "https://github.com/egohygiene/relay/pull/10",
-  "related": ["ADR-007"],
+  "related": ["ADR-0007"],
   "supersedes": [],
   "superseded_by": [],
   "affected_repositories": ["egohygiene/relay"],

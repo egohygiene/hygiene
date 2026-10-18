@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-014
+id: ADR-0014
 title: Keep Hygiene catalogs JSON-compatible with dependency-free reference tools
 status: proposed
 date: 2026-08-19
@@ -38,7 +38,7 @@ exceptions: []
 approval: null
 ---
 
-# ADR-014: Keep Hygiene catalogs JSON-compatible with dependency-free reference tools
+# ADR-0014: Keep Hygiene catalogs JSON-compatible with dependency-free reference tools
 
 ## Context
 

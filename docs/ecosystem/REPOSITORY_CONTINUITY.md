@@ -4,7 +4,7 @@ Status: **proposed `1.0.0-alpha.1`; observe stage**
 
 Owner: `egohygiene/hygiene`
 
-Governing proposal: [ADR-008](../decisions/ADR-008-repository-continuity-policy.md)
+Governing proposal: [ADR-0008](../decisions/ADR-0008-repository-continuity-policy.md)
 
 Machine source:
 [`catalog/repository-continuity-policy.json`](../../catalog/repository-continuity-policy.json)
@@ -42,7 +42,7 @@ Promotion beyond observe requires both:
 
 1. Aether to mark the pinned contract and skill stable and releasable, through
    a reviewed immutable revision; and
-2. a maintainer to accept ADR-008 with durable approval evidence.
+2. a maintainer to accept ADR-0008 with durable approval evidence.
 
 The consumed sources are linked at the exact pin:
 
@@ -134,7 +134,7 @@ Initial scope:
 
 | Stage | Finding behavior | Entry and exit meaning |
 | --- | --- | --- |
-| `observe` | Visible, non-blocking findings | Current stage. Profile and evidence can be reviewed while Aether remains draft. Exit requires stable upstream artifacts, accepted ADR-008, and representative public/private pilots. |
+| `observe` | Visible, non-blocking findings | Current stage. Profile and evidence can be reviewed while Aether remains draft. Exit requires stable upstream artifacts, accepted ADR-0008, and representative public/private pilots. |
 | `ratchet` | Block new regressions | New active repositories and already adopted files cannot regress. Exit requires every active repository to conform or carry a reviewed unexpired exception. |
 | `enforce` | Block nonconformance | Begins only after ratchet evidence and a tested rollback. A later major successor must provide migration guidance. |
 

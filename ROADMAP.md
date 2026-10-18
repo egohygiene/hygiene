@@ -40,7 +40,7 @@ updated: 2026-08-25
 > This evidence-reconciled snapshot is the issue-generation and visual-roadmap handoff. The longer-horizon strategy below remains canonical context; generated HTML, JSON, progress, issue plans, and commit lists are projections.
 
 **Lifecycle:** seed, architecture-first control plane  
-**Current gate:** Merge the ADR-002 activation change, then add CI against the accepted organization contracts.
+**Current gate:** Merge the ADR-0002 activation change, then add CI against the accepted organization contracts.
 
 **North-star outcome:** The canonical, machine-readable definition of the organization, its repositories, boundaries, and lifecycle contracts.
 
@@ -88,11 +88,11 @@ issues: [15]
 **State:** `complete`
 **Depends on:** `HYG-Q01`
 
-**Outcome:** ADR-002, tracked by issue #15, defines what Hygiene owns and how repositories inherit its versioned ADR contract without copying policy.
+**Outcome:** ADR-0002, tracked by issue #15, defines what Hygiene owns and how repositories inherit its versioned ADR contract without copying policy.
 
 **Exit criteria:**
 
-- [x] ADR-002 is explicitly accepted with named human authority and durable evidence.
+- [x] ADR-0002 is explicitly accepted with named human authority and durable evidence.
 - [x] The front matter and repository policy-reference contracts are activated.
 - [x] Conflicting local policy sources are deprecated or clearly marked non-canonical.
 
@@ -100,7 +100,7 @@ issues: [15]
 
 - PR #10 merged the proposed foundation and PR #21 hardened its inheritance and extension contract.
 - Aether PR #50 provides a pinned consumer without claiming policy authority.
-- Maintainer `szmyty` explicitly approved ADR-002 and policy v1.1.0 at
+- Maintainer `szmyty` explicitly approved ADR-0002 and policy v1.1.0 at
   `f598ed659a43dd759d4ede41c27f9e5daf991aa7` in issue #15 on 2026-09-12.
 
 <!-- roadmap-step
@@ -174,11 +174,11 @@ issues: [16, 19, 22, 25, 45]
   boundary before Identity, Holon, Egolint, and Pace implementations.
 - Issue #25 now has a proposed versioned public-site surface and route
   registry, site declaration schema, compatibility fixtures, and reference
-  validator. ADR-013 and the contract remain proposed; acceptance, release,
+  validator. ADR-0013 and the contract remain proposed; acceptance, release,
   and downstream adoption are not yet evidenced.
 - Issue #45 defines the proposed repository-continuity applicability profile,
   breaking repository-context v2 transition, and observe-first downstream
-  boundary. Stable Aether release evidence and ADR-008 acceptance remain gates
+  boundary. Stable Aether release evidence and ADR-0008 acceptance remain gates
   before ratchet or enforcement.
 - Issue #16 splits the proposed Agent-Ready Web publication profile into four
   ordered checkpoints. PR #54 merged checkpoint #50's versioned vocabulary,
