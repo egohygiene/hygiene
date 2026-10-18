@@ -4,7 +4,7 @@ Before architecture-changing work in this repository:
 
 1. Read [`docs/ecosystem/ARCHITECTURE.md`](docs/ecosystem/ARCHITECTURE.md).
 2. Read [`docs/ecosystem/AGENT_CONTEXT.md`](docs/ecosystem/AGENT_CONTEXT.md).
-3. Read the relevant accepted record under [`docs/decisions/`](docs/decisions/).
+3. Read the relevant accepted record under [`docs/decisions/`](docs/decisions).
 4. For cross-repository integration, read
    [`docs/ecosystem/DEPENDENCY_BOUNDARIES.md`](docs/ecosystem/DEPENDENCY_BOUNDARIES.md)
    and validate `catalog/dependency-boundaries.yaml`.
@@ -113,7 +113,7 @@ inheritance reference. Hygiene does not inherit from itself.
 The decision-impact module above is selected from Aether
 `8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2` (draft module 0.2.0,
 `create-decisions-document` 2.0.0 and `architecture-decisions` 3.0.0).
-See [the capture guide](docs/decisions/CAPTURE.md) for exact source, loading,
+See [the capture guide](docs/adr-workflow/CAPTURE.md) for exact source, loading,
 validation and rollback. The skill is loaded from that reviewed source when
 available; this instruction does not claim a host installation or automatic
 PR enforcement.

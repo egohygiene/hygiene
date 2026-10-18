@@ -13,7 +13,7 @@ not change decision dispositions, canonical ADR bodies, policy, or publication.
 - Full reachable history: 81 commits; checkout is not shallow; no tags were
   advertised by this clone. No open Hygiene pull requests were observed before
   this checkpoint was prepared.
-- [Machine-readable inventory](../../evidence/hygiene-adrs-inventory-2026-10-10.json)
+- [Machine-readable inventory](../evidence/hygiene-adrs-inventory-2026-10-10.json)
   records each canonical ADR's source hash and Git blob, preservation hashes,
   and bounded reference-check results. It is a dated receipt, not a generated
   Decisions publication or a new ADR contract.
@@ -48,19 +48,19 @@ The receipt binds each row to the unchanged source bytes.
 
 | ID and canonical record | Current disposition | Current implementation | Authority and proposed treatment |
 | --- | --- | --- | --- |
-| [ADR-0001](../ADR-0001-holistic-architecture-v0.1.md), holistic architecture | Legacy Accepted claim, 2026-08-18 | No structured value | No YAML front matter. Preserve four-digit identity and original anatomy; confirm the legacy disposition and migration exceptions before metadata normalization. |
-| [ADR-002](../ADR-002-organization-adr-and-delivery-history.md), ADR policy | Accepted | verified | Explicit approval and validation packet exist. Preserve; no repeat policy ratification. |
-| [ADR-003](../ADR-003-route-filament-infrastructure-contracts.md), Filament | Proposed | in_progress | Preserve proposal and evidence; no acceptance inferred from implementation. |
-| [ADR-004](../ADR-004-register-sanctuary-incubation-boundary.md), Sanctuary | Proposed | in_progress | Missing required Implementation and evidence links section; add it later from existing evidence while preserving original prose. |
-| [ADR-005](../ADR-005-unify-repository-intelligence-projection.md), Intelligence projection | Proposed | in_progress | Preserve proposal, including its alpha.2 collection-coverage amendment; do not create a duplicate coverage ADR. |
-| [ADR-006](../ADR-006-repository-presentation-profile.md), presentation profile | Proposed | in_progress | Preserve proposal and evidence. |
-| [ADR-007](../ADR-007-repository-release-baseline.md), release baseline | Proposed | in_progress | Preserve proposal; it already covers Hygiene's local release validation. |
-| [ADR-008](../ADR-008-repository-continuity-policy.md), continuity | Proposed | in_progress | Preserve proposal; local use and context-v2 implementation do not ratify it. |
-| [ADR-009](../ADR-009-agent-ready-web-profile-foundation.md), web foundation | Proposed | in_progress | Preserve proposal and evidence. |
-| [ADR-010](../ADR-010-agent-ready-web-discovery-representations.md), discovery | Proposed | in_progress | Preserve proposal and evidence. |
-| [ADR-011](../ADR-011-agent-ready-web-guarded-capability-commerce.md), guarded capabilities | Proposed | in_progress | Preserve proposal and evidence. |
-| [ADR-012](../ADR-012-agent-ready-web-integration-conformance.md), conformance | Proposed | in_progress | Preserve proposal and evidence. |
-| [ADR-013](../ADR-013-public-site-surface-route-registry.md), surface registry | Proposed | in_progress | Preserve proposal; its implementation does not choose Hygiene's Decisions host. |
+| [ADR-0001](../decisions/ADR-0001-holistic-architecture-v0.1.md), holistic architecture | Legacy Accepted claim, 2026-08-18 | No structured value | No YAML front matter. Preserve four-digit identity and original anatomy; confirm the legacy disposition and migration exceptions before metadata normalization. |
+| [ADR-002](../decisions/ADR-002-organization-adr-and-delivery-history.md), ADR policy | Accepted | verified | Explicit approval and validation packet exist. Preserve; no repeat policy ratification. |
+| [ADR-003](../decisions/ADR-003-route-filament-infrastructure-contracts.md), Filament | Proposed | in_progress | Preserve proposal and evidence; no acceptance inferred from implementation. |
+| [ADR-004](../decisions/ADR-004-register-sanctuary-incubation-boundary.md), Sanctuary | Proposed | in_progress | Missing required Implementation and evidence links section; add it later from existing evidence while preserving original prose. |
+| [ADR-005](../decisions/ADR-005-unify-repository-intelligence-projection.md), Intelligence projection | Proposed | in_progress | Preserve proposal, including its alpha.2 collection-coverage amendment; do not create a duplicate coverage ADR. |
+| [ADR-006](../decisions/ADR-006-repository-presentation-profile.md), presentation profile | Proposed | in_progress | Preserve proposal and evidence. |
+| [ADR-007](../decisions/ADR-007-repository-release-baseline.md), release baseline | Proposed | in_progress | Preserve proposal; it already covers Hygiene's local release validation. |
+| [ADR-008](../decisions/ADR-008-repository-continuity-policy.md), continuity | Proposed | in_progress | Preserve proposal; local use and context-v2 implementation do not ratify it. |
+| [ADR-009](../decisions/ADR-009-agent-ready-web-profile-foundation.md), web foundation | Proposed | in_progress | Preserve proposal and evidence. |
+| [ADR-010](../decisions/ADR-010-agent-ready-web-discovery-representations.md), discovery | Proposed | in_progress | Preserve proposal and evidence. |
+| [ADR-011](../decisions/ADR-011-agent-ready-web-guarded-capability-commerce.md), guarded capabilities | Proposed | in_progress | Preserve proposal and evidence. |
+| [ADR-012](../decisions/ADR-012-agent-ready-web-integration-conformance.md), conformance | Proposed | in_progress | Preserve proposal and evidence. |
+| [ADR-013](../decisions/ADR-013-public-site-surface-route-registry.md), surface registry | Proposed | in_progress | Preserve proposal; its implementation does not choose Hygiene's Decisions host. |
 
 The canonical index resolves all 13 files without duplicate IDs or paths.
 The eleven proposed records may remain proposed in a valid Decisions view;

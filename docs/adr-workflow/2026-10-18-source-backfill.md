@@ -3,8 +3,8 @@
 This follows the [October 10 inventory](2026-10-10-hygiene-inventory.md) for
 [Hygiene #47](https://github.com/egohygiene/hygiene/issues/47). It is stacked on
 [PR #68](https://github.com/egohygiene/hygiene/pull/68), exact head
-`f234155ff76ffe7164c3d7293318e5e3f9262689`; that inventory and its historical
-preservation receipt remain unchanged. Base main is
+`f234155ff76ffe7164c3d7293318e5e3f9262689`; the historical preservation receipt remains unchanged. The inventory prose is
+preserved while its relative links are rebound at the support-document location. Base main is
 `b8d2c02368e40d4f6c2017bb1a22c6ec23323ad3`. Full reachable main history contains
 81 commits after explicit history acquisition; no unrecorded intent is inferred.
 
@@ -15,6 +15,7 @@ preservation receipt remain unchanged. Base main is
 | ADR-004 | Insert the missing required Implementation and evidence links section using its existing citations | Every original line and all metadata remain; proposed/in_progress labels unchanged |
 | ADR-014 | New repository-local historical proposal for JSON-compatible catalogs and dependency-free Python reference tools | Original implementation/rationale are linked; proposed, null approval, implemented independently of disposition |
 | Canonical index | Add ADR-014 and links to this packet and capture guide | One numeric-order row per record; historical identities unchanged |
+| Support-document layout | Move migration packets and capture guidance to `docs/adr-workflow/` | Original inventory prose and historical JSON receipt preserved; relative Markdown destinations rebound |
 | AGENTS.md | Insert exactly one pinned Aether decision-impact block through its managed merge helper, plus local owner/loading pointers | Existing local instructions and continuity block preserved; no skill installation or automatic enforcement claim |
 | ADR-0001 review patch | Prepare required anatomy/metadata while preserving substantive source prose | Unapplied; canonical record unchanged; null approval and proposed identity exception intentionally block conformance |
 
@@ -57,6 +58,19 @@ After that disposition, apply the reviewed patch, complete real metadata and
 rerun native owner validation at the exact new Git revision. Do not copy example
 approval objects or silently relabel the original record to get a green result.
 
+## Support-document layout
+
+The native collector conservatively marks unrecognized Markdown inside the
+canonical decision directory as incomplete, so it cannot mistake a legacy
+record for a harmless note. The inventory packet previously lived there, and
+the first draft added two more support documents. This checkpoint moves those
+notes to `docs/adr-workflow/` and repairs relative links. It does not weaken the
+collector's legacy detection or hide a canonical decision. All fourteen ADRs
+remain indexed in `docs/decisions/`; the unapplied review patch is also outside
+the ledger directory. The original October 10 packet remains available at its
+immutable PR #68 head. Its prose is unchanged here apart from link destinations;
+its historical JSON preservation receipt remains byte-identical.
+
 ## Native source-validation boundary
 
 Merged EgoLint `72267fd0a371da6d94922cbc6bd3dedddb68df30` supplies owner semantics.
@@ -64,9 +78,9 @@ Merged EgoLint `72267fd0a371da6d94922cbc6bd3dedddb68df30` supplies owner semanti
 `acfb1222b5f05298ad8c94b2e83bfece84b6cdf8`; hosted action/native validation and
 continuity preflight passed for that candidate. It remains a draft; no merged
 Relay consumer baseline is claimed. The
-[capture guide](../CAPTURE.md) records exact authoring and validation selections.
+[capture guide](CAPTURE.md) records exact authoring and validation selections.
 
-The [bounded source evidence](../../evidence/hygiene-adrs-source-backfill-2026-10-18.json)
+The [bounded source evidence](../evidence/hygiene-adrs-source-backfill-2026-10-18.json)
 records reference metadata/anatomy checks, source preservation, managed-module
 bytes and the native whole-corpus replay. Source validity remains blocked by
 legacy ADR-0001 and its resulting index/lineage gaps. ADR-013's external

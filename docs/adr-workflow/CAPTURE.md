@@ -1,9 +1,9 @@
 # Continuous decision capture in Hygiene
 
 Hygiene owns the canonical ADR policy. Use the
-[accepted policy and significance test](POLICY.md),
-[ratification evidence](RATIFICATION.md) and
-[canonical index](README.md). Do not add a self-inheritance reference.
+[accepted policy and significance test](../decisions/POLICY.md),
+[ratification evidence](../decisions/RATIFICATION.md) and
+[canonical index](../decisions/README.md). Do not add a self-inheritance reference.
 
 ## Selected authoring source
 
