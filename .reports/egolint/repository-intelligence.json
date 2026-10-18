@@ -1,0 +1,362 @@
+{
+  "schema_version": 1,
+  "contract": "egolint.repository-intelligence-validation/v1",
+  "catalog_version": "0.1.0-alpha.5",
+  "repository": "egohygiene/hygiene",
+  "policy_path": ".config/egolint/repository-intelligence.toml",
+  "profile": {
+    "id": "hygiene-decisions-advisory",
+    "enforcement": "advisory",
+    "enabled-rules": [
+      "EGO-INTEL-CONTRACT-001",
+      "EGO-INTEL-ADOPTION-001",
+      "EGO-INTEL-ADR-METADATA-001",
+      "EGO-INTEL-ADR-LIFECYCLE-001",
+      "EGO-INTEL-ADR-INDEX-001",
+      "EGO-INTEL-ADR-LINEAGE-001",
+      "EGO-INTEL-LINK-001",
+      "EGO-INTEL-CYCLE-001"
+    ]
+  },
+  "contracts": [
+    {
+      "id": "egohygiene.architecture-decision/v1",
+      "version": "1.2.0",
+      "authority": "accepted",
+      "source-repository": "egohygiene/hygiene",
+      "source-revision": "a05b14f8b9e2772124f879f818e09a911e996ad8",
+      "source-path": "schemas/architecture-decision.v1.schema.json"
+    },
+    {
+      "id": "egohygiene.architecture-decision-policy-reference/v1",
+      "version": "1.0.0",
+      "authority": "accepted",
+      "source-repository": "egohygiene/hygiene",
+      "source-revision": "a05b14f8b9e2772124f879f818e09a911e996ad8",
+      "source-path": "schemas/architecture-decision-policy-reference.v1.schema.json"
+    },
+    {
+      "id": "hygiene.roadmap/v1alpha1",
+      "version": "0.1.0",
+      "authority": "proposed",
+      "source-repository": "egohygiene/hygiene",
+      "source-revision": "f598ed659a43dd759d4ede41c27f9e5daf991aa7",
+      "source-path": "docs/ecosystem/visual-roadmap-system.md"
+    },
+    {
+      "id": "egohygiene.repository-intelligence/v1",
+      "version": "1.0.0-alpha.1",
+      "authority": "proposed",
+      "source-repository": "egohygiene/hygiene",
+      "source-revision": "f598ed659a43dd759d4ede41c27f9e5daf991aa7",
+      "source-path": "schemas/repository-intelligence.v1.schema.json"
+    }
+  ],
+  "represented_commit": {
+    "state": "unknown",
+    "revision": null
+  },
+  "adrs": "present",
+  "roadmap": "unknown",
+  "commit_history": "unknown",
+  "commit_history_truncated": false,
+  "status": "invalid",
+  "summary": {
+    "diagnostics": 17,
+    "blocking_diagnostics": 0,
+    "commits_inspected": 0,
+    "adrs_inspected": 13,
+    "roadmap_steps_inspected": 0
+  },
+  "diagnostics": [
+    {
+      "id": "EGO-INTEL-ADOPTION-001-repository-intelligence-v1-26c3d437bcfae5fe",
+      "rule_id": "EGO-INTEL-ADOPTION-001",
+      "severity": "warning",
+      "message": "roadmap evidence is explicitly unknown; conformance is incomplete",
+      "remediation": "Declare each surface present, unknown, or not-applicable; provide a represented commit before claiming complete evidence.",
+      "location": {
+        "path": ".config/egolint/repository-intelligence.toml",
+        "start_line": null,
+        "start_column": null,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.repository-intelligence/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADOPTION-001-repository-intelligence-v1-8100af8bba50adc2",
+      "rule_id": "EGO-INTEL-ADOPTION-001",
+      "severity": "warning",
+      "message": "represented commit is unknown; the report cannot claim a complete source snapshot",
+      "remediation": "Declare each surface present, unknown, or not-applicable; provide a represented commit before claiming complete evidence.",
+      "location": {
+        "path": ".config/egolint/repository-intelligence.toml",
+        "start_line": null,
+        "start_column": null,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.repository-intelligence/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADOPTION-001-repository-intelligence-v1-86dfb5c7e9913f46",
+      "rule_id": "EGO-INTEL-ADOPTION-001",
+      "severity": "warning",
+      "message": "commit-history evidence is explicitly unknown; conformance is incomplete",
+      "remediation": "Declare each surface present, unknown, or not-applicable; provide a represented commit before claiming complete evidence.",
+      "location": {
+        "path": ".config/egolint/repository-intelligence.toml",
+        "start_line": null,
+        "start_column": null,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.repository-intelligence/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADR-METADATA-001-repository-intelligence-v1-4810eeb5eeb9765d",
+      "rule_id": "EGO-INTEL-ADR-METADATA-001",
+      "severity": "warning",
+      "message": "ADR must begin with one YAML front matter document",
+      "remediation": "Repair the first YAML front matter document, filename/ID agreement, required fields, or required section order.",
+      "location": {
+        "path": "docs/decisions/ADR-0001-holistic-architecture-v0.1.md",
+        "start_line": 1,
+        "start_column": 1,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.architecture-decision/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADR-LINEAGE-001-repository-intelligence-v1-7757a5d032f9f058",
+      "rule_id": "EGO-INTEL-ADR-LINEAGE-001",
+      "severity": "warning",
+      "message": "ADR ADR-0002 contains dangling or undeclared decision reference ADR-0001",
+      "remediation": "Resolve dangling decision references, add the reciprocal supersession link, and remove lineage cycles.",
+      "location": {
+        "path": "docs/decisions/ADR-0002-organization-adr-and-delivery-history.md",
+        "start_line": 2,
+        "start_column": 1,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.architecture-decision/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADR-LINEAGE-001-repository-intelligence-v1-228715f27e58ed37",
+      "rule_id": "EGO-INTEL-ADR-LINEAGE-001",
+      "severity": "warning",
+      "message": "ADR ADR-0003 contains dangling or undeclared decision reference ADR-0001",
+      "remediation": "Resolve dangling decision references, add the reciprocal supersession link, and remove lineage cycles.",
+      "location": {
+        "path": "docs/decisions/ADR-0003-route-filament-infrastructure-contracts.md",
+        "start_line": 2,
+        "start_column": 1,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.architecture-decision/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADR-LINEAGE-001-repository-intelligence-v1-634f55d84cffe0e5",
+      "rule_id": "EGO-INTEL-ADR-LINEAGE-001",
+      "severity": "warning",
+      "message": "ADR ADR-0004 contains dangling or undeclared decision reference ADR-0001",
+      "remediation": "Resolve dangling decision references, add the reciprocal supersession link, and remove lineage cycles.",
+      "location": {
+        "path": "docs/decisions/ADR-0004-register-sanctuary-incubation-boundary.md",
+        "start_line": 2,
+        "start_column": 1,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.architecture-decision/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADR-LINEAGE-001-repository-intelligence-v1-ef62f72e5ac9f884",
+      "rule_id": "EGO-INTEL-ADR-LINEAGE-001",
+      "severity": "warning",
+      "message": "ADR ADR-0006 contains dangling or undeclared decision reference ADR-0001",
+      "remediation": "Resolve dangling decision references, add the reciprocal supersession link, and remove lineage cycles.",
+      "location": {
+        "path": "docs/decisions/ADR-0006-repository-presentation-profile.md",
+        "start_line": 2,
+        "start_column": 1,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.architecture-decision/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADR-LINEAGE-001-repository-intelligence-v1-4e5ac797a621fa3b",
+      "rule_id": "EGO-INTEL-ADR-LINEAGE-001",
+      "severity": "warning",
+      "message": "ADR ADR-0007 contains dangling or undeclared decision reference ADR-0001",
+      "remediation": "Resolve dangling decision references, add the reciprocal supersession link, and remove lineage cycles.",
+      "location": {
+        "path": "docs/decisions/ADR-0007-repository-release-baseline.md",
+        "start_line": 2,
+        "start_column": 1,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.architecture-decision/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADR-LINEAGE-001-repository-intelligence-v1-0aac3b351f0eafed",
+      "rule_id": "EGO-INTEL-ADR-LINEAGE-001",
+      "severity": "warning",
+      "message": "ADR ADR-0008 contains dangling or undeclared decision reference ADR-0001",
+      "remediation": "Resolve dangling decision references, add the reciprocal supersession link, and remove lineage cycles.",
+      "location": {
+        "path": "docs/decisions/ADR-0008-repository-continuity-policy.md",
+        "start_line": 2,
+        "start_column": 1,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.architecture-decision/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADR-LINEAGE-001-repository-intelligence-v1-a55116e8a4c7b147",
+      "rule_id": "EGO-INTEL-ADR-LINEAGE-001",
+      "severity": "warning",
+      "message": "ADR ADR-0009 contains dangling or undeclared decision reference ADR-0001",
+      "remediation": "Resolve dangling decision references, add the reciprocal supersession link, and remove lineage cycles.",
+      "location": {
+        "path": "docs/decisions/ADR-0009-agent-ready-web-profile-foundation.md",
+        "start_line": 2,
+        "start_column": 1,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.architecture-decision/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADR-LINEAGE-001-repository-intelligence-v1-e0a30c21cf11fda3",
+      "rule_id": "EGO-INTEL-ADR-LINEAGE-001",
+      "severity": "warning",
+      "message": "ADR ADR-0010 contains dangling or undeclared decision reference ADR-0001",
+      "remediation": "Resolve dangling decision references, add the reciprocal supersession link, and remove lineage cycles.",
+      "location": {
+        "path": "docs/decisions/ADR-0010-agent-ready-web-discovery-representations.md",
+        "start_line": 2,
+        "start_column": 1,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.architecture-decision/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADR-LINEAGE-001-repository-intelligence-v1-05edbeb4bea45831",
+      "rule_id": "EGO-INTEL-ADR-LINEAGE-001",
+      "severity": "warning",
+      "message": "ADR ADR-0011 contains dangling or undeclared decision reference ADR-0001",
+      "remediation": "Resolve dangling decision references, add the reciprocal supersession link, and remove lineage cycles.",
+      "location": {
+        "path": "docs/decisions/ADR-0011-agent-ready-web-guarded-capability-commerce.md",
+        "start_line": 2,
+        "start_column": 1,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.architecture-decision/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADR-LINEAGE-001-repository-intelligence-v1-6ba244d7f3ba8d08",
+      "rule_id": "EGO-INTEL-ADR-LINEAGE-001",
+      "severity": "warning",
+      "message": "ADR ADR-0012 contains dangling or undeclared decision reference ADR-0001",
+      "remediation": "Resolve dangling decision references, add the reciprocal supersession link, and remove lineage cycles.",
+      "location": {
+        "path": "docs/decisions/ADR-0012-agent-ready-web-integration-conformance.md",
+        "start_line": 2,
+        "start_column": 1,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.architecture-decision/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADR-LINEAGE-001-repository-intelligence-v1-e034a59b43c9dae0",
+      "rule_id": "EGO-INTEL-ADR-LINEAGE-001",
+      "severity": "warning",
+      "message": "ADR ADR-0013 contains dangling or undeclared decision reference ADR-0001",
+      "remediation": "Resolve dangling decision references, add the reciprocal supersession link, and remove lineage cycles.",
+      "location": {
+        "path": "docs/decisions/ADR-0013-public-site-surface-route-registry.md",
+        "start_line": 2,
+        "start_column": 1,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.architecture-decision/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADR-LINEAGE-001-repository-intelligence-v1-dcf64e27ce3303f5",
+      "rule_id": "EGO-INTEL-ADR-LINEAGE-001",
+      "severity": "warning",
+      "message": "ADR ADR-0014 contains dangling or undeclared decision reference ADR-0001",
+      "remediation": "Resolve dangling decision references, add the reciprocal supersession link, and remove lineage cycles.",
+      "location": {
+        "path": "docs/decisions/ADR-0014-json-compatible-catalogs-and-reference-tools.md",
+        "start_line": 2,
+        "start_column": 1,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.architecture-decision/v1"
+      ]
+    },
+    {
+      "id": "EGO-INTEL-ADR-INDEX-001-repository-intelligence-v1-c89180ebd2855f7d",
+      "rule_id": "EGO-INTEL-ADR-INDEX-001",
+      "severity": "warning",
+      "message": "ADR index contains dangling canonical entry ADR-0001",
+      "remediation": "Add or repair the canonical relative index link and remove duplicate entries without deleting historical records.",
+      "location": {
+        "path": "docs/decisions/README.md",
+        "start_line": 32,
+        "start_column": 1,
+        "end_line": null,
+        "end_column": null
+      },
+      "contracts": [
+        "egohygiene.architecture-decision/v1"
+      ]
+    }
+  ]
+}
