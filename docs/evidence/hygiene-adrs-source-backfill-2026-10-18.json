@@ -1,0 +1,211 @@
+{
+  "kind": "hygiene-adr-source-backfill-evidence",
+  "observed_at": "2026-10-18T17:41:43Z",
+  "scope": "Stacked source/authoring preparation, not corpus admission or publication.",
+  "issue": "https://github.com/egohygiene/hygiene/issues/47",
+  "main_revision": "b8d2c02368e40d4f6c2017bb1a22c6ec23323ad3",
+  "inventory_parent": "f234155ff76ffe7164c3d7293318e5e3f9262689",
+  "source_checkpoint": "d5cbb79ee677566f96507dcec3c0be0f2035d1e7",
+  "source_tree": "a50faa7ce6875ae5f1eb3568bc325cb35d8e1239",
+  "source_checkpoint_note": "The final handoff adds only this receipt and root CONTINUITY.md after the immutable source replay; canonical collected source bytes remain the same.",
+  "aether": {
+    "revision": "8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2",
+    "skill": "create-decisions-document",
+    "skill_version": "2.0.0",
+    "specification_version": "3.0.0",
+    "module_version": "0.2.0",
+    "module_sha256": "4b694a719eb12201e3da647d317bcb6772c75817071e665410dd43802e69fcb8",
+    "lifecycle": "draft",
+    "loaded_from_clean_source": true,
+    "persistent_host_installation": "not-performed",
+    "automatic_pr_enforcement": "not-installed"
+  },
+  "shared_validation": {
+    "egolint_merged_revision": "72267fd0a371da6d94922cbc6bd3dedddb68df30",
+    "relay_candidate_revision": "acfb1222b5f05298ad8c94b2e83bfece84b6cdf8",
+    "relay_pull_request": "https://github.com/egohygiene/relay/pull/154",
+    "relay_candidate_state": "draft",
+    "hosted_validation": "https://github.com/egohygiene/relay/actions/runs/39149915447",
+    "hosted_validation_result": "success"
+  },
+  "reference_checks": {
+    "modern_records_validated": 13,
+    "required_anatomy_validated": 13,
+    "decision_set_expected_missing_legacy_references": 12,
+    "legacy_review_patch_applies_cleanly": true,
+    "legacy_review_expected_metadata_errors": [
+      "E_APPROVAL approval must be an object"
+    ],
+    "unchanged_original_adrs": 12,
+    "adr_004_original_recovered_exactly_by_removing_added_section": true,
+    "authority_and_inventory_preserved": true,
+    "managed_module_exact": true,
+    "index_rows": 14,
+    "legacy_review_patch_check": "git apply --unidiff-zero --check docs/adr-workflow/2026-10-18-adr-0001-review.patch"
+  },
+  "support_layout": {
+    "location": "docs/adr-workflow",
+    "inventory_prose_preserved_except_relative_link_destinations": true,
+    "inventory_json_byte_preserved": true,
+    "reason": "Preserve conservative unknown-legacy detection in the collector; support notes are outside the canonical ADR inventory."
+  },
+  "immutable_native_replay": {
+    "source_commit": "d5cbb79ee677566f96507dcec3c0be0f2035d1e7",
+    "observed_at": "2026-10-18T17:40:18Z",
+    "exit_code": 2,
+    "status": "invalid",
+    "publication": "denied",
+    "validation": {
+      "coverage": "valid",
+      "diagnostics_truncated": false,
+      "egolint": "invalid",
+      "hygiene": "valid",
+      "observatory": "normalized"
+    },
+    "sources": [
+      {
+        "path": "catalog/contracts.yaml",
+        "sha256": "2a8c4e114c2964acbf160ed6f0183013f175d07f6752878b9984542596b6622a"
+      },
+      {
+        "path": "docs/decisions/ADR-0001-holistic-architecture-v0.1.md",
+        "sha256": "5b7a4f36456e80790d4f7d989600310f8effdb2f800058f0f0bb23826730655b"
+      },
+      {
+        "path": "docs/decisions/ADR-002-organization-adr-and-delivery-history.md",
+        "sha256": "27f960a773cc5180d39dba523031b3115723a67da5c6d9fe8db61ee0c0e65281"
+      },
+      {
+        "path": "docs/decisions/ADR-003-route-filament-infrastructure-contracts.md",
+        "sha256": "dc1e3b26f581a97940f1f1e6e6f15c9654d465e128f6e87c57861ee8a0364a8a"
+      },
+      {
+        "path": "docs/decisions/ADR-004-register-sanctuary-incubation-boundary.md",
+        "sha256": "7d394839c775726c1770d79cc7c426997d66328577f1f92025b2469838d7102d"
+      },
+      {
+        "path": "docs/decisions/ADR-005-unify-repository-intelligence-projection.md",
+        "sha256": "91cddaedba115a76f5fada40c73ddcce57a7d36c20ce10a7c9df07a144b14083"
+      },
+      {
+        "path": "docs/decisions/ADR-006-repository-presentation-profile.md",
+        "sha256": "2d8789aba5751ddbe319714475326fc9a52ed4c08439063ed2d70fe8d557504d"
+      },
+      {
+        "path": "docs/decisions/ADR-007-repository-release-baseline.md",
+        "sha256": "20a2f06f8274c102c44deb3990e2d2baaf659cf7764b32fc37d6c63aaeeef7b4"
+      },
+      {
+        "path": "docs/decisions/ADR-008-repository-continuity-policy.md",
+        "sha256": "da60d419927e74153a1b21d64bc61e012439bf64781394a7b7bf7a148d07906d"
+      },
+      {
+        "path": "docs/decisions/ADR-009-agent-ready-web-profile-foundation.md",
+        "sha256": "6c8bde46ed2679868b59ca0e931012999f4c1c018526b31d38ed80f15314337d"
+      },
+      {
+        "path": "docs/decisions/ADR-010-agent-ready-web-discovery-representations.md",
+        "sha256": "51e2c8cc358fc5897fc7359ef554c7ec83500109c19390dc57306dbd795994f9"
+      },
+      {
+        "path": "docs/decisions/ADR-011-agent-ready-web-guarded-capability-commerce.md",
+        "sha256": "ca4065ef8bc0ec85dde17ef895c5d1820b5ad6924aa9fb7520c487a9d93c31e2"
+      },
+      {
+        "path": "docs/decisions/ADR-012-agent-ready-web-integration-conformance.md",
+        "sha256": "31d10865107aa516e5955a21d81b683539d52c51a3ccb226b53e813467d3f417"
+      },
+      {
+        "path": "docs/decisions/ADR-013-public-site-surface-route-registry.md",
+        "sha256": "a75f92e99be8c64eb70c6afae610c6993a4a220b64bec8b84dce21cac9449b28"
+      },
+      {
+        "path": "docs/decisions/ADR-014-json-compatible-catalogs-and-reference-tools.md",
+        "sha256": "d8c7576ec9308de23474e3d68541b58be34d95979eff5f03178fec9871016b0a"
+      },
+      {
+        "path": "docs/decisions/ADR-TEMPLATE.md",
+        "sha256": "e81042a6c4b792e49c7c1aff0c16a9b146115bb9e737cef21715b70305465471"
+      },
+      {
+        "path": "docs/decisions/MIGRATION.md",
+        "sha256": "6e89f99ccd2855a827bcbcb2bc17b38958a19ec4e010d88ecdd46fcdf76a4ea2"
+      },
+      {
+        "path": "docs/decisions/POLICY.md",
+        "sha256": "e8b1f3c379a56d389d7689d187b2932ff3cfdf5e80acc829d244fb2527fcd361"
+      },
+      {
+        "path": "docs/decisions/RATIFICATION.md",
+        "sha256": "0d3569c85955ae0412b4cd6778c1d6cdc899f4fc9b93e89795343ea82af043d1"
+      },
+      {
+        "path": "docs/decisions/README.md",
+        "sha256": "af6f0cb6a44c0d66c76d0f4f370b18644454775985e87c959c53a822c0578e4b"
+      },
+      {
+        "path": "docs/decisions/VALIDATION.md",
+        "sha256": "7d74744e28325b21674419eec7a46d5951d95af41e768b171e7f8d667e394568"
+      },
+      {
+        "path": "schemas/architecture-decision-policy-reference.v1.schema.json",
+        "sha256": "fdf451cfa38ba666ec579aa75d2acbd52a56b95e73c7437565b79dfcfb689216"
+      },
+      {
+        "path": "schemas/architecture-decision.v1.schema.json",
+        "sha256": "491eae26e498ee311bb37d5eff23a51d682eb687196c80a3df10ac1ce98e04d4"
+      }
+    ],
+    "all_source_hashes_verified_against_git": true,
+    "source_worktree_clean_after_collection": true,
+    "diagnostic_counts": {
+      "EGO-INTEL-ADOPTION-001": 3,
+      "EGO-INTEL-ADR-INDEX-001": 1,
+      "EGO-INTEL-ADR-LINEAGE-001": 13,
+      "EGO-INTEL-ADR-METADATA-001": 1,
+      "EXTRACTION": 1,
+      "INTEGRATION": 1
+    },
+    "candidate_digests": {
+      "projection_sha256": "db34e97c3fea44dcf74165ffaeaf7b8552c24c0c240fa9d2371378cc82bfbb24",
+      "snapshot_sha256": "3ed88e97b1a52f542d4a1371f495022dc64a1c89cdd041f56d4bb12e3282575e"
+    },
+    "notes": [
+      "ADR-004 has no remaining metadata/anatomy finding; only unchanged legacy ADR-0001 has that rule.",
+      "No canonical-owner inheritance/authority finding is present.",
+      "Twelve local references to legacy ADR-0001 and one undeclared Identity external reference remain in native lineage diagnostics.",
+      "The collector has no external-decision selection input; undeclared is not proof of an absent public target.",
+      "The legacy adoption selection and other uncollected domains remain explicit; no full-repository or publication acceptance."
+    ]
+  },
+  "other_checks": [
+    {
+      "command": "python3 tools/catalog.py validate",
+      "result": "passed",
+      "notes": "27 repositories"
+    },
+    {
+      "command": "python3 tools/catalog.py check-generated --output docs/generated/REPOSITORIES.md",
+      "result": "passed"
+    },
+    {
+      "command": "python3 tools/continuity.py validate-profile; validate-repository --repository .",
+      "result": "passed"
+    },
+    {
+      "command": "python3 tools/context.py validate",
+      "result": "passed",
+      "notes": "27 repository context entries"
+    }
+  ],
+  "human_gates": [
+    "ADR-0001 actual disposition and legacy-identity exception evidence; review patch remains unapplied.",
+    "ADR-014 is a new proposal with null approval; no disposition is inferred from historical implementation.",
+    "Host/surface declaration and publication remain separately reviewed."
+  ],
+  "decision_impact": [
+    "egohygiene/hygiene#ADR-014: create, proposed historical reconstruction.",
+    "egohygiene/hygiene#ADR-004: update, evidence anatomy only.",
+    "egohygiene/hygiene#ADR-002: governs metadata, authority and continued capture."
+  ]
+}
