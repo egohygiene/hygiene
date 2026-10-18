@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-18T18:33:33Z'
+  updated_at: '2026-10-18T18:37:58Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -37,6 +37,7 @@ scope:
   - publication/site.json
   - .config/egolint/repository-intelligence.toml
   - https://github.com/egohygiene/hygiene/issues/47
+  - docs/evidence/hygiene-pages-preparation-2026-10-18.json
 work:
   objective: Merge the completed stack and make the configured repository publisher concrete, while admitting only valid source and retaining
     actual deployment evidence.
@@ -53,13 +54,14 @@ work:
   next:
     kind: action
     id: verify-publisher-and-resolve-legacy-authority
-    description: Review hosted publisher checks and actual native admission; merge the prepared publisher, then obtain the specific ADR-0001 disposition
-      before attempting source migration/publication.
+    description: 'Inspect final hosted checks for PR #71 and merge the prepared publisher under the user''s authorization; obtain the specific
+      ADR-0001 disposition/legacy-ID approval before finalizing the migration and publishing.'
     readiness: ready
     references:
     - https://github.com/egohygiene/hygiene/issues/47
     - publication/README.md
     - docs/adr-workflow/2026-10-18-adr-0001-review.patch
+    - https://github.com/egohygiene/hygiene/pull/71
     depends_on: []
 state:
   base:
@@ -69,20 +71,24 @@ state:
   candidate:
     branch: codex/hygiene-47-publication
     revision: null
-    pull_request: null
-    handoff_state: in-progress
+    pull_request:
+      provider: github
+      id: egohygiene/hygiene#71
+      url: https://github.com/egohygiene/hygiene/pull/71
+    handoff_state: review-reference-recorded
   live:
     status: verified
-    observed_at: '2026-10-18T18:33:33Z'
+    observed_at: '2026-10-18T18:37:58Z'
     default_branch_revision: 6db2a38fb80d9881a7d7d001ffb6d2f8456c3262
     issue_state: open
-    pull_request_state: none
-    notes: 'Relay #154/#155 and Hygiene #68/#70 are merged. No remaining open PR was returned for those two repositories before this new publisher
-      branch. Verified HTTPS root and publication.json both return 404; no live site or ADR admission is claimed.'
+    pull_request_state: draft
+    notes: 'PR #71 is a draft at immutable source checkpoint c521a42e02f2844e29241b71fac9643ca8a01ad5. Hosted run 39154763471 succeeded: tests/native
+      evidence/admission succeeded, while build/deploy skipped because actual ADR coverage failed. Prior stack merges remain verified. Root/manifest
+      are HTTPS 404, not a live Decisions site.'
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-10-18T18:33:33Z'
+  reviewed_at: '2026-10-18T18:37:58Z'
   reviewed_by: Codex
   evidence:
   - command: python3 -I -m unittest discover --start-directory tests --pattern test_publication.py --verbose
@@ -103,10 +109,26 @@ review:
     observed_at: '2026-10-18T18:33:33Z'
     notes: All five jobs parse; all shared calls pin full revisions. Main-only push/manual deploy, read-only PRs, ADR pass gate and revalidation
       at the deployment boundary.
+  - command: Exact pinned native architecture adapter and ADR collection at c521a42e02f2844e29241b71fac9643ca8a01ad5
+    outcome: limited
+    observed_at: '2026-10-18T18:37:58Z'
+    notes: 'Native adapter: nonconformant/warning, ADR coverage failed, 18 retained findings, no truncation. ADR review invalid/publication denied;
+      all 23 captured source hashes verified against Git. No owner CONTRACT finding; external Identity key resolves. The actual caller admission
+      returns false.'
+  - command: Pinned Relay build-manifest/composition integration with the new consumer shell
+    outcome: passed
+    observed_at: '2026-10-18T18:37:58Z'
+    notes: Transport-only fixture passes shared composition and consumer inventory across all 15 routes; clobbered landing rejected. This does
+      not assert real Hygiene source conformance.
+  - command: Hosted Hygiene Pages PR run 39154763471
+    outcome: passed
+    observed_at: '2026-10-18T18:37:58Z'
+    notes: Checks, read-only native source evidence and scoped admission succeeded. Admission denied the actual corpus; build and deploy skipped.
+      Exact final documentation candidate will have its own hosted run.
   environment_limitations:
   - ADR-0001 still lacks actual structured approval and legacy-identity exception evidence; its concrete patch remains unapplied.
-  - Native admission on the exact publisher candidate and hosted execution are pending; source invalidity is expected until ADR-0001 is resolved.
-  - No production artifact, live ledger, keyboard audit, provider rollback or persistent skill installation is claimed.
+  - Actual source is nonconformant and publication remains blocked. Hosted advisory success is not native corpus validity.
+  - No production artifact, live ledger, keyboard audit, exercised provider rollback or persistent skill installation is claimed.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -137,7 +159,7 @@ The requested four PR merges are complete. Finish the configured Hygiene reposit
 
 ## State snapshot
 
-Hygiene main is `6db2a38fb80d9881a7d7d001ffb6d2f8456c3262` after #68 and #70. Relay #154 merged at `f2e624cbbd1bb1150e29743061140f601b8486f6`, then #155 at `6cddad3124bdda1b1e3d54a40931f23322b7be26`. EgoLint #82 remains merged at `72267fd0a371da6d94922cbc6bd3dedddb68df30`. Candidate branch is `codex/hygiene-47-publication`; containing revision and PR are pending. #47 remains open.
+Hygiene main is `6db2a38fb80d9881a7d7d001ffb6d2f8456c3262` after #68 and #70. Relay #154 merged at `f2e624cbbd1bb1150e29743061140f601b8486f6`, then #155 at `6cddad3124bdda1b1e3d54a40931f23322b7be26`. EgoLint #82 remains merged at `72267fd0a371da6d94922cbc6bd3dedddb68df30`. Candidate branch is `codex/hygiene-47-publication`; containing revision is null and draft PR #71 records the review reference. Immutable native source checkpoint is `c521a42e02f2844e29241b71fac9643ca8a01ad5`. #47 remains open.
 
 ## Completed and material changes
 
@@ -147,7 +169,7 @@ The consumer adds only landing/aliases, exact-file transport, actual prior-site 
 
 ## Validation and review evidence
 
-Eight publisher tests pass, covering changed/missing/extra/symlink bytes, wrong source, denied/truncated admission, canonical aliases, prior-site/first-deployment recovery and no success receipt on live drift. Catalog/generated/context/continuity checks pass. Verified TLS requests currently return 404 for root and publication manifest. Workflow calls are exact-pinned and privileged deployment is restricted to main push/manual events. Actual candidate native/hosted checks remain pending at this checkpoint.
+Eight publisher tests pass, covering changed/missing/extra/symlink bytes, wrong source, denied/truncated admission, canonical aliases, prior-site/first-deployment recovery and no success receipt on live drift. Catalog/generated/context/continuity checks pass. Verified TLS requests currently return 404 for root and publication manifest. Workflow calls are exact-pinned and privileged deployment is restricted to main push/manual events. At immutable source `c521a42e02f2844e29241b71fac9643ca8a01ad5`, native ADR coverage fails on the real legacy record and resulting lineage/index gaps, with no owner-contract finding or undeclared Identity key. All 23 collector source hashes verify against Git. Hosted run 39154763471 succeeds and truthfully skips build/deploy; the scoped admission returns false. Shared composition also passes a separate transport-only 15-route fixture and rejects landing clobbering. The dated preparation receipt preserves these distinctions.
 
 ## Blockers, risks, unknowns, and deferred work
 
