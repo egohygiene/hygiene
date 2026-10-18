@@ -7,17 +7,18 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-03T22:52:43Z'
+  updated_at: '2026-10-10T19:45:31Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Preserve the Hygiene-owned collection-coverage dependency for Observatory issue 25.
+  purpose: Preserve the reviewed preparation boundary for Hygiene issue 47 ADR migration.
   includes:
-  - Proposed Repository Intelligence alpha.2 coverage semantics, schema, reference validation, fixtures and compatibility migration.
+  - The 13-record source inventory, historical evidence gaps, migration plan and shared policy-owner dependency.
   excludes:
-  - Provider collection, rendering, deployment, downstream adoption and lifecycle ratification.
+  - ADR ratification, canonical-record rewriting, shared validator implementation, publication and wider
+    fleet rollout.
   - Private data, conversation transcripts and credentials.
   precedence:
   - user-and-runtime-instructions
@@ -27,69 +28,95 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - docs/ecosystem/REPOSITORY_INTELLIGENCE_COVERAGE.md
-  - docs/decisions/ADR-005-unify-repository-intelligence-projection.md
-  - schemas/repository-intelligence.alpha2.schema.json
-  - catalog/contracts.yaml
-  - https://github.com/egohygiene/observatory/issues/25
+  - docs/decisions/POLICY.md
+  - docs/decisions/RATIFICATION.md
+  - docs/decisions/migrations/2026-10-10-hygiene-inventory.md
+  - docs/evidence/hygiene-adrs-inventory-2026-10-10.json
+  - https://github.com/egohygiene/hygiene/issues/47
+  - https://github.com/egohygiene/egolint/issues/81
+  - https://github.com/egohygiene/pace/issues/5
 work:
-  objective: Present a bounded input-contract dependency for honest per-domain collection coverage.
+  objective: Present the evidence-backed Hygiene ADR inventory and bounded migration plan.
   success_conditions:
-  - Explicit collection and freshness states for nine domains.
-  - Legacy alpha.1 artifacts retained; exact alpha.2 migration documented.
-  - Privacy-safe fixtures and reference validation pass.
+  - All 13 canonical ADRs and their identities remain byte-preserved.
+  - Authority, source-conformance and publication gaps have explicit next owners.
+  - The inventory, review packet and resume checkpoint are durably reviewable.
   active_issue:
     provider: github
-    id: egohygiene/observatory#25
-    url: https://github.com/egohygiene/observatory/issues/25
+    id: egohygiene/hygiene#47
+    url: https://github.com/egohygiene/hygiene/issues/47
   next:
-    kind: pull-request-review
-    id: collection-coverage-contract-review
-    description: Review this Hygiene candidate before merging the dependent Observatory implementation; production EgoLint/Relay repinning follows separately.
-    readiness: ready-for-review
+    kind: action
+    id: hygiene-47-inventory-review
+    description: 'Review this inventory and the concrete ADR-0001 reaffirmation/legacy-exception recommendation;
+      implement EgoLint #81 separately before native owner admission.'
+    readiness: ready
     references:
-    - https://github.com/egohygiene/observatory/issues/25
+    - https://github.com/egohygiene/hygiene/issues/47
+    - https://github.com/egohygiene/egolint/issues/81
     depends_on: []
 state:
   base:
-    revision: 63d313b1ddf8669808e897853b74928505494da0
+    revision: b8d2c02368e40d4f6c2017bb1a22c6ec23323ad3
     ref: refs/heads/main
-    verified_at: '2026-10-03T22:52:43Z'
+    verified_at: '2026-10-10T19:45:31Z'
   candidate:
-    branch: codex/observatory-25-domain-coverage
+    branch: codex/hygiene-47-adr-inventory
     revision: null
-    revision_role: working-tree-candidate
     pull_request: null
     handoff_state: ready-for-review
-    finalization: The commit containing this checkpoint and its pull request are the authoritative review candidate.
   live:
     status: verified
-    observed_at: '2026-10-03T22:52:43Z'
-    default_branch_revision: 63d313b1ddf8669808e897853b74928505494da0
+    observed_at: '2026-10-10T19:45:31Z'
+    default_branch_revision: b8d2c02368e40d4f6c2017bb1a22c6ec23323ad3
     issue_state: open
-    pull_request_state: not-created
-    notes: Observatory issue 25 is open. Hygiene PR 63 merged at this base; its previous checkpoint is superseded by this task. No competing Hygiene PR was open at inspection.
+    pull_request_state: not-applicable
+    notes: 'Hygiene #47 is open; no open Hygiene PR was observed before this candidate. Prior PR #67 merged
+      into this main and Observatory #25 is closed. EgoLint #81 was created and read back; its main remains
+      2d3600f14848e28099acc34ce8043699da2b9a32.'
   parallel_changes:
-  - The dependent Observatory coverage candidate is prepared separately; no Identity repository changes are part of this task.
+  - provider: github
+    id: egohygiene/egolint#81
+    url: https://github.com/egohygiene/egolint/issues/81
 review:
-  status: passed
-  reviewed_at: '2026-10-03T22:52:43Z'
+  status: partial
+  reviewed_at: '2026-10-10T19:45:31Z'
   reviewed_by: Codex
   evidence:
-  - command: python3 -m unittest discover --start-directory tests --pattern "test_*.py"
+  - command: tools/decisions.py decision --input, for each safely decoded ADR-002 through ADR-013
     outcome: passed
-    observed_at: '2026-10-03T22:52:43Z'
-    notes: 184 tests, including eight new coverage contract tests.
-  - command: README.md complete validation sequence
+    observed_at: '2026-10-10T19:45:31Z'
+    notes: All 12 metadata objects pass the unchanged reference checker; not full Markdown conformance.
+  - command: tools/decisions.py decision-set --input, over the same twelve decoded records
+    outcome: limited
+    observed_at: '2026-10-10T19:45:31Z'
+    notes: Expected exit 1 with 11 references to legacy ADR-0001, whose Markdown exists but has no metadata.
+      No synthetic record or green full-corpus result.
+  - command: Inventory/source SHA-256 comparison and local Markdown-link inspection
     outcome: passed
-    observed_at: '2026-10-03T22:52:43Z'
-    notes: Catalog, generated views, context, continuity, profiles, boundaries, fixtures and ADR reference checks passed.
-  - command: Draft202012Validator with RFC3339 FormatChecker against alpha.2 schema and coverage mutations
+    observed_at: '2026-10-10T19:45:31Z'
+    notes: 13 canonical ADRs and six policy/navigation source files byte-preserved; receipt counts and
+      diagnostics agree; relative links resolve and no private workspace paths appear.
+  - command: python3 tools/continuity.py validate-profile; python3 tools/continuity.py validate-repository
+      --repository .; python3 tools/context.py validate
     outcome: passed
-    observed_at: '2026-10-03T22:52:43Z'
-    notes: Eight fixture documents and 256 malformed coverage schema/reference parity cases passed.
+    observed_at: '2026-10-10T19:45:31Z'
+    notes: Organization continuity composition and 27 repository context entries pass.
+  - command: Aether b7597301 continuity Draft202012 schema, twelve-heading/size/privacy checks and git
+      diff --check
+    outcome: passed
+    observed_at: '2026-10-10T19:45:31Z'
+    notes: Exact catalog-pinned schema validation passed after replacing unsupported inherited handoff
+      fields; all twelve headings, size and public-path checks pass.
+  - command: Native production ADR validation, hosted CI, site generation and deployment
+    outcome: not-run
+    observed_at: '2026-10-10T19:45:31Z'
+    notes: Documentation-only checkpoint; owner-mode compatibility and legacy migration remain open.
   environment_limitations:
-  - No automatic Hygiene pull-request CI workflow exists. Local reference validation is not a claim of production EgoLint alpha.2 support.
+  - Reference metadata checks cannot establish Markdown or native production conformance.
+  - The current pinned EgoLint/Relay path lacks explicit Hygiene policy-owner support; no self-inheritance
+    file was fabricated.
+  - No deployment, release or whole-fleet acceptance is claimed.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -108,60 +135,72 @@ privacy:
 
 ## Purpose and precedence
 
-This operational checkpoint is subordinate to instructions, live state and
-canonical sources. It grants no merge, publication or deployment authority.
+This handoff records the Hygiene #47 preparation candidate. Instructions, live
+state and canonical policy take precedence; it grants no lifecycle authority.
 
 ## Resume protocol
 
-Verify main and the live owner and consumer PRs before continuing.
+Read the migration packet, source receipt and policy; recheck main, this PR,
+Hygiene #47, EgoLint #81, Pace #5 and the program checkpoint before continuing.
 
 ## Current objective and success conditions
 
-Provide the input-contract dependency for Observatory #25: empty arrays never
-stand in for collection completeness or applicability.
+Make the existing ADR inventory, preservation requirements and next dependencies
+reviewable. This checkpoint does not claim the migration or publication complete.
 
 ## State snapshot
 
-The candidate branches from main at the exact revision in front matter.
-The former PR #63 checkpoint was stale: that PR is merged. This candidate
-remains unmerged until live GitHub evidence establishes otherwise.
+The exact base is recorded above. Thirteen organization records exist: one
+legacy Accepted claim, one explicitly accepted record and eleven proposals.
+No competing Hygiene PR was observed before this candidate was prepared.
 
 ## Completed and material changes
 
-The proposed alpha.2 schema requires nine explicit domain claims. The reference
-validator, eight synthetic fixtures, catalog pointer and ADR-005 amendment
-retain Hygiene ownership and exact alpha.1 compatibility artifacts.
+The migration packet inventories history and authority, identifies one proposed
+local backfill candidate, and records the central-host question. Its receipt
+preserves source hashes and bounded diagnostics. The index's stale ratification
+wording is corrected; canonical ADRs, policy and executable files are unchanged.
 
 ## Validation and review evidence
 
-184 tests and the complete README checks pass. Schema/format validation and
-256 malformed coverage parity cases pass. No automatic hosted CI is available.
+Twelve metadata checks pass. The twelve-record decoded set has eleven expected
+links to omitted legacy ADR-0001; that is an incomplete corpus, not missing
+Markdown. ADR-004 also lacks one required section. Preservation, documentation,
+context and continuity checks are recorded above; no runtime deployment ran.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Production EgoLint and Relay still need compatible alpha.2 support. The shared
-Intelligence contract remains proposed.
+ADR-0001's PR #3 is a legacy authority candidate; the packet proposes explicit
+reaffirmation and a narrow legacy identity exception. No modern approval is invented.
+EgoLint #81 must support the canonical policy owner without self-inheritance.
+Hygiene has no Decisions publisher or site declaration. Central roadmap intent
+does not silently choose a Decisions route. Eleven proposals remain proposals.
 
 ## Next dependency-ready work
 
-Review this owner contract and the dependent Observatory consumer together.
-EgoLint production validation and Relay collection/rendering require a separate
-compatible repin before publication. No provider collection is implemented here.
+Review the concrete inventory/disposition packet. Prepare source normalization
+and the narrowly evidenced proposed catalog-format ADR after that review.
+The shared owner-mode fix can proceed separately; native admission precedes
+artifact/host composition, which precedes live publication acceptance.
 
 ## Parallel changes and reconciliation
 
-Observatory implements the consumer in its own PR. Hygiene PR #67 is the owner
-review. Its immutable contract commit is pinned by that consumer.
+Pace #5 and .github #30 track this repository checkpoint and future branding
+checks. EgoLint owns semantics, Relay owns adapters, and the chosen host owns
+publication. No other repository rollout is included here.
 
 ## Privacy and redaction
 
-Only synthetic public-safe fixtures and fixed coverage reason codes are used.
+Only public repository facts and selected evidence links appear. The receipt
+omits raw provider responses, private paths and unneeded actor data.
 
 ## Handoff update protocol
 
-Before changing the candidate, verify live main, competing PRs and Observatory
-issue 25. Preserve proposed lifecycle and exact immutable consumer pins.
+Reconcile this file in the same next scoped PR after validation. Record actual
+approval, source, dependency and deployment evidence independently. Preserve
+all ADR identities, original substantive prose and the prior checkpoints in Git history.
 
 ## Compaction and supersession
 
-Keep the checkpoint below 16384 bytes and 240 lines. Git retains prior history.
+This replaces the stale PR #67/Observatory #25 operational checkpoint. Its
+historical evidence stays in Git. Keep this file below 16384 bytes and 240 lines.

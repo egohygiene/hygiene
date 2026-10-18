@@ -12,6 +12,7 @@ local ADRs.
 - [Onboarding and migration](MIGRATION.md)
 - [Acceptance and validation plan](VALIDATION.md)
 - [ADR-002 ratification evidence](RATIFICATION.md)
+- [Hygiene #47 inventory and migration checkpoint](migrations/2026-10-10-hygiene-inventory.md)
 - [ADR front matter schema](../../schemas/architecture-decision.v1.schema.json)
 - [Repository policy-reference schema](../../schemas/architecture-decision-policy-reference.v1.schema.json)
 - [Compatibility fixtures](../../fixtures/architecture-decisions)
@@ -40,10 +41,11 @@ owned downstream and are not implemented by this directory.
 | [ADR-012](ADR-012-agent-ready-web-integration-conformance.md) | Integrate Agent-Ready Web conformance without collapsing authority | Proposed | 2026-09-14 |
 | [ADR-013](ADR-013-public-site-surface-route-registry.md) | Define the canonical public-site surface and route registry | Proposed | 2026-09-21 |
 
-ADR-0001 predates the proposed three-digit filename convention. Its four-digit
-identity and original body remain unchanged for provenance. If the new policy is
-accepted, migration metadata will be added in a separate reviewed change rather
-than rewriting its history in this proposal.
+ADR-0001 predates the accepted policy's three-digit filename convention. Its
+four-digit identity and original body remain unchanged for provenance. The
+Hygiene #47 migration checkpoint records its missing structured metadata and
+human-authority evidence review; any migration is a separate reviewed change.
+The historical Accepted label is not new ratification by this inventory.
 
 Rejected, deprecated, accepted, and superseded decisions remain discoverable.
 A replacement links the record it supersedes, and the old record links back
