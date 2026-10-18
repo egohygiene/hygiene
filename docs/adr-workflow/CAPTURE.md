@@ -23,7 +23,7 @@ Intelligence selection remains proposed. Those authorities do not collapse.
 A host with the supported GitHub skills CLI can install this exact selection:
 
 ```bash
-gh skill install egohygiene/aether create-decisions-document   --pin 8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2
+gh skill install egohygiene/aether create-decisions-document --pin 8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2
 ```
 
 Review the selected package and follow its host-specific discovery procedure.
@@ -51,24 +51,25 @@ selection after checking for later edits; retain authored records and history.
 
 [EgoLint PR #82](https://github.com/egohygiene/egolint/pull/82) merged native
 canonical-owner support at `72267fd0a371da6d94922cbc6bd3dedddb68df30`.
-[Relay draft PR #154](https://github.com/egohygiene/relay/pull/154), candidate
-`acfb1222b5f05298ad8c94b2e83bfece84b6cdf8`, consumes that owner in both runtimes.
-[Relay follow-up #155](https://github.com/egohygiene/relay/pull/155) at
-`9fb7b2795d9d0bfa9849a1974ba58bbc7bcf8275` adds explicit external ADR declarations
-using EgoLint's existing native selection. Review/merge #154 first, then retarget
-and review #155; use the latter's exact final merge revision for adoption.
-These are immutable review candidates, not a merged baseline or installed
-workflow. Do not use `main` or a moving tag.
-
-Use the follow-up Relay source's
-[pinned preparation instructions](https://github.com/egohygiene/relay/blob/9fb7b2795d9d0bfa9849a1974ba58bbc7bcf8275/docs/repository-adr-collector.md#native-commands-and-reproducible-checks)
+[Relay PR #154](https://github.com/egohygiene/relay/pull/154) merged canonical-owner
+adoption at `f2e624cbbd1bb1150e29743061140f601b8486f6`.
+[Relay PR #155](https://github.com/egohygiene/relay/pull/155) then merged explicit
+external ADR selection at **`6cddad3124bdda1b1e3d54a40931f23322b7be26`**.
+Use that exact merged revision for both CLI and action/workflow adoption, with
+its [preparation instructions](https://github.com/egohygiene/relay/blob/6cddad3124bdda1b1e3d54a40931f23322b7be26/docs/repository-adr-collector.md#native-commands-and-reproducible-checks)
 and locked dependencies. Keep its runtime and output outside this repository.
 For an immutable source replay, bind caller-selected absolute paths:
 
 ```bash
 ADR_SOURCE_REVISION="$(git rev-parse --verify HEAD)"
 ADR_OBSERVED_AT="$(date --utc +%Y-%m-%dT%H:%M:%SZ)"
-python3 -I "${ADR_RELAY_SOURCE}/actions/repository-intelligence/scripts/collect_repository_adrs.py" collect   --runtime "${ADR_RUNTIME}" --repository-root "${ADR_HYGIENE_SOURCE}"   --repository egohygiene/hygiene --visibility public   --source-commit "${ADR_SOURCE_REVISION}" --observed-at "${ADR_OBSERVED_AT}"   --adoption legacy --policy-owner   --output "${ADR_REVIEW_DIRECTORY}/adr-collection.review.json"
+python3 -I "${ADR_RELAY_SOURCE}/actions/repository-intelligence/scripts/collect_repository_adrs.py" collect \
+  --runtime "${ADR_RUNTIME}" --repository-root "${ADR_HYGIENE_SOURCE}" \
+  --repository egohygiene/hygiene --visibility public \
+  --source-commit "${ADR_SOURCE_REVISION}" --observed-at "${ADR_OBSERVED_AT}" \
+  --adoption legacy --policy-owner \
+  --known-external-decisions '["egohygiene/identity#ADR-017"]' \
+  --output "${ADR_REVIEW_DIRECTORY}/adr-collection.review.json"
 ```
 
 `ADR_RELAY_SOURCE`, `ADR_RUNTIME`, `ADR_HYGIENE_SOURCE` and
@@ -86,12 +87,14 @@ Reference metadata checks alone cannot establish full Markdown/native conformanc
 
 ## Publication and upkeep gate
 
-After source conformance and Relay adoption, review a concrete Hygiene surface
-declaration and publication-repository composition. Hygiene has no Decisions
-host selected by this checkpoint. The central roadmap's `egohygiene.io` choice
-does not select a repository ledger or authorize another publisher.
-Keep organization `/decisions/` aggregation distinct from a repository
-`/intelligence/decisions/` view. Preserve existing host routes/assets and the
-host's single publisher; require source/freshness, immutable bundle validation,
-visible logo/source links and favicon, keyboard checks, exact deployed bytes
-and rollback evidence before closing #47.
+The selected repository origin is `https://hygiene.egohygiene.io` with canonical
+`/intelligence/decisions/` and `/decisions/` plus `/adr/` shortcuts. The
+[consumer publisher/runbook](../../publication/README.md) binds the merged Relay
+selection, read-only source gate, exact artifact handoff and actual recovery/
+HTTPS verification. The central roadmap host does not replace this local origin.
+
+ADR-0001's real approval and legacy-identity exception remain the source gate.
+Its prepared patch remains unapplied; advisory execution success cannot admit
+an invalid corpus. Keep the organization `/decisions/` aggregation distinct.
+Close #47 only after source admission, live bytes, accessibility/favicons and
+recovery have actually been evidenced.

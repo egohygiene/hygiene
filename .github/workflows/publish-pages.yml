@@ -1,0 +1,193 @@
+# Copyright 2026 Ego Hygiene
+# SPDX-License-Identifier: MIT
+name: Hygiene Pages
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "hygiene-pages-${{ github.ref }}"
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    name: Check publisher and repository contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - run: python3 -I -m unittest discover --start-directory tests --pattern test_publication.py --verbose
+      - run: python3 tools/catalog.py validate
+      - run: python3 tools/catalog.py check-generated --output docs/generated/REPOSITORIES.md
+      - run: python3 tools/context.py validate
+      - run: python3 tools/continuity.py validate-profile
+      - run: python3 tools/continuity.py validate-repository --repository .
+
+  validation:
+    name: Read-only native source evidence
+    uses: egohygiene/relay/.github/workflows/repository-architecture-validation.yml@6cddad3124bdda1b1e3d54a40931f23322b7be26
+    with:
+      check-id: hygiene-decisions
+      mode: advisory
+      repository-contract-adoption: unknown
+      repository-contracts: "[]"
+      adr-adoption: present
+      adr-policy: ".config/egolint/repository-intelligence.toml"
+      diagram-adoption: unknown
+      diagram-roots: "[]"
+      artifact-retention-days: 90
+
+  admission:
+    name: Select only passed ADR coverage
+    needs: [checks, validation]
+    if: ${{ needs.validation.outputs.report-upload-outcome == 'success' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      ready: ${{ steps.admit.outputs.ready }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: ${{ needs.validation.outputs.report-artifact-name }}
+          path: .cache/architecture
+      - name: Report the scoped source gate
+        id: admit
+        env:
+          SOURCE_REVISION: ${{ github.sha }}
+        run: >-
+          python3 -I tools/publication.py admit
+          --revision "${SOURCE_REVISION}"
+          --report .cache/architecture/.reports/architecture-validation/result.json
+
+  build:
+    name: Build admitted immutable site
+    needs: admission
+    if: ${{ needs.admission.outputs.ready == 'true' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    outputs:
+      handoff: ${{ steps.handoff.outputs.artifact-id }}
+    steps:
+      - uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Compose the repository-owned landing and aliases
+        run: python3 -I tools/publication.py shell
+      - name: Capture the consumer route baseline
+        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@6cddad3124bdda1b1e3d54a40931f23322b7be26
+        with:
+          operation: capture-baseline
+          evidence-directory: .cache/publication/composition
+      - name: Collect and build through the shared strict pipeline
+        uses: egohygiene/relay/actions/repository-intelligence@6cddad3124bdda1b1e3d54a40931f23322b7be26
+        with:
+          collect-adrs: "true"
+          adr-policy-owner: "true"
+          adr-known-external-decisions: '["egohygiene/identity#ADR-017"]'
+          output-directory: dist/intelligence
+          source-commit: ${{ github.sha }}
+          activity-ref: ${{ github.sha }}
+          require-full-history: "true"
+      - name: Seal the transport handoff
+        run: python3 -I tools/publication.py seal
+      - name: Verify preserved routes, aliases, source and complete bundle
+        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@6cddad3124bdda1b1e3d54a40931f23322b7be26
+        with:
+          operation: verify-composition
+          evidence-directory: .cache/publication/composition
+          required-routes: '["/","/intelligence/","/intelligence/decisions/","/decisions/","/adr/"]'
+          aliases: '[{"route":"/decisions/","target":"/intelligence/decisions/"},{"route":"/adr/","target":"/intelligence/decisions/"}]'
+      - name: Retain the exact site and predeploy evidence
+        id: handoff
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: "hygiene-pages-${{ github.run_id }}-${{ github.run_attempt }}"
+          path: |
+            dist/
+            .cache/publication/composition/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
+
+  deploy:
+    name: Deploy and verify canonical HTTPS bytes
+    needs: build
+    if: >-
+      github.repository == 'egohygiene/hygiene' &&
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.pages.outputs.page_url }}
+    steps:
+      - uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          artifact-ids: ${{ needs.build.outputs.handoff }}
+          path: .
+          merge-multiple: true
+      - name: Recheck downloaded bytes
+        run: python3 -I tools/publication.py check
+      - name: Reverify the shared composition at the deployment boundary
+        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@6cddad3124bdda1b1e3d54a40931f23322b7be26
+        with:
+          operation: verify-composition
+          evidence-directory: .cache/publication/composition
+          required-routes: '["/","/intelligence/","/intelligence/decisions/","/decisions/","/adr/"]'
+          aliases: '[{"route":"/decisions/","target":"/intelligence/decisions/"},{"route":"/adr/","target":"/intelligence/decisions/"}]'
+      - name: Capture the actual prior site or prove first deployment
+        run: python3 -I tools/publication.py capture-recovery
+      - name: Retain recovery before deployment
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: "hygiene-pages-recovery-${{ github.run_id }}-${{ github.run_attempt }}"
+          path: .cache/publication/recovery/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
+        with:
+          path: dist
+      - name: Deploy the checked site
+        id: pages
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128
+      - name: Verify every public file at the canonical HTTPS origin
+        run: python3 -I tools/publication.py verify-live
+      - name: Preserve actual verification and recovery evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: "hygiene-pages-evidence-${{ github.run_id }}-${{ github.run_attempt }}"
+          path: .cache/publication/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90

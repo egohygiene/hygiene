@@ -8,6 +8,11 @@ platform policy, adoption model, organization contract index, and migration
 context. It does not own the implementations of every policy or product
 capability.
 
+Repository-site publication is configured for `https://hygiene.egohygiene.io`.
+See the [publisher and admission runbook](publication/README.md) for routes,
+source gates, deployment evidence and recovery. Configuration is separate from
+an observed successful deployment.
+
 Current work is handed off through the repository-owned
 [`CONTINUITY.md`](CONTINUITY.md). Reconcile it against live Git and GitHub
 evidence; it is not a substitute for the canonical sources below.
