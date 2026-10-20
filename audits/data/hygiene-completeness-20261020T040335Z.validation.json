@@ -1,0 +1,3375 @@
+{
+  "artifact_id": "hygiene-completeness-20261020T040335Z",
+  "audited_revision": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d",
+  "audited_tree": "b1e0a67191e8c86ea89c25e1e8f67a12237cac7c",
+  "bounded_reproductions": {
+    "contract": {
+      "AUDIT-002": {
+        "catalog_cli_exit_code": 0,
+        "catalog_diagnostics": [],
+        "context_policy_diagnostics": [],
+        "escaped_file_remains_inside_temporary_parent": true,
+        "file_written_outside_selected_output_root": true,
+        "render_all_exit_code": 0,
+        "schema_name_pattern_accepts": false,
+        "synthetic_repository_name": "../escaped"
+      },
+      "AUDIT-003": {
+        "double_quoted": {
+          "exit_code": 0,
+          "findings": []
+        },
+        "pinned_double_quoted": {
+          "exit_code": 0,
+          "findings": []
+        },
+        "plain": {
+          "exit_code": 1,
+          "findings": [
+            {
+              "line": 5,
+              "message": "mutable default-branch dependency on egohygiene/relay",
+              "path": ".github/workflows/synthetic.yml",
+              "rule": "BOUNDARY-002"
+            }
+          ]
+        },
+        "single_quoted": {
+          "exit_code": 0,
+          "findings": []
+        }
+      },
+      "audited_revision": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d",
+      "baseline": {
+        "catalog_diagnostics": [],
+        "context_policy_diagnostics": []
+      }
+    },
+    "policy": {
+      "as_of": "2026-10-20",
+      "continuity_expiry_clock": {
+        "cli_exit_code": 0,
+        "cli_requirement": "exempt",
+        "default_requirement": "exempt",
+        "explicit_as_of_requirement": "required",
+        "profile_errors": [],
+        "profile_updated": "2026-09-08",
+        "synthetic_expiry": "2026-10-01"
+      },
+      "decision_approval_only_verification": {
+        "errors": [],
+        "evidence_types": [
+          "approval"
+        ]
+      },
+      "decision_legacy_reference_resolution": {
+        "four_digit_dangling_errors": [
+          "E_DANGLING_REFERENCE ADR-0006.related -> ADR-0999"
+        ],
+        "three_digit_dangling_errors": []
+      },
+      "decision_pending_supersession": {
+        "predecessor_errors": [],
+        "predecessor_status": "accepted",
+        "proposed_replacement_errors": [],
+        "replacement_status": "proposed",
+        "set_errors": [
+          "E_SUPERSESSION_BACKLINK ADR-0007 -> ADR-0006 is not linked through superseded_by"
+        ]
+      },
+      "decision_zero_identifier": {
+        "errors": []
+      },
+      "presentation_stale_unknown_passing": {
+        "all_records_mutated": true,
+        "asserted_assessment": "passing",
+        "baseline_errors": [],
+        "derived_state": "passing",
+        "mutated_errors": []
+      },
+      "source_revision": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d"
+    },
+    "publication": {
+      "publication_selection_parity": {
+        "actual_workflow_pin_rejected": "Relay build revision differs from the reviewed selection",
+        "config_pin_transport_fixture_seals": true,
+        "fixture_limit": "minimal synthetic transport input, not a real Relay semantic build or live deployment",
+        "publication_config_relay_revision": "6cddad3124bdda1b1e3d54a40931f23322b7be26",
+        "publication_manifest_written_for_actual_workflow_pin": false,
+        "workflow_relay_revision": "ac2600f4619f64c75a0e499e0540d8f48d516f9c"
+      },
+      "release_baseline_composition": {
+        "baseline_accepted": true,
+        "inline_push_trigger_against_manual_only_guard": {
+          "accepted": true,
+          "error": null
+        },
+        "limit": "current declaration is valid; these are temporary negative cases, not a live publication claim",
+        "schema_invalid_declared_task_value": {
+          "accepted": true,
+          "error": null
+        },
+        "schema_invalid_empty_version_authority": {
+          "accepted": true,
+          "error": null
+        }
+      }
+    },
+    "qualification": "Synthetic temporary/in-memory negative cases reproduce defects; their successful execution does not mean repaired product behavior.",
+    "root_independent_replays": [
+      {
+        "exit_code": 0,
+        "normalized_command": [
+          "python3",
+          "policy-repros.py",
+          "--repository-root",
+          "<frozen-source>",
+          "--as-of",
+          "2026-10-20"
+        ],
+        "observed_at": "2026-10-20T04:11:46.508250+00:00",
+        "result_matches_review": true,
+        "script": "policy-repros.py"
+      },
+      {
+        "exit_code": 0,
+        "normalized_command": [
+          "python3",
+          "web-surfaces-repro.py",
+          "--repository-root",
+          "<frozen-source>"
+        ],
+        "observed_at": "2026-10-20T04:11:46.608626+00:00",
+        "result_matches_review": true,
+        "script": "web-surfaces-repro.py"
+      },
+      {
+        "exit_code": 0,
+        "normalized_command": [
+          "python3",
+          "publication-repros.py",
+          "--repository-root",
+          "<frozen-source>"
+        ],
+        "observed_at": "2026-10-20T04:11:46.666661+00:00",
+        "result_matches_review": true,
+        "script": "publication-repros.py"
+      },
+      {
+        "exit_code": 0,
+        "normalized_command": [
+          "python3",
+          "contracts-repros.py",
+          "--repository-root",
+          "<frozen-source>"
+        ],
+        "observed_at": "2026-10-20T04:14:37.386062+00:00",
+        "result_matches_review": true,
+        "results": {
+          "AUDIT-002": {
+            "catalog_cli_exit_code": 0,
+            "catalog_diagnostics": [],
+            "context_policy_diagnostics": [],
+            "escaped_file_remains_inside_temporary_parent": true,
+            "file_written_outside_selected_output_root": true,
+            "render_all_exit_code": 0,
+            "schema_name_pattern_accepts": false,
+            "synthetic_repository_name": "../escaped"
+          },
+          "AUDIT-003": {
+            "double_quoted": {
+              "exit_code": 0,
+              "findings": []
+            },
+            "pinned_double_quoted": {
+              "exit_code": 0,
+              "findings": []
+            },
+            "plain": {
+              "exit_code": 1,
+              "findings": [
+                {
+                  "line": 5,
+                  "message": "mutable default-branch dependency on egohygiene/relay",
+                  "path": ".github/workflows/synthetic.yml",
+                  "rule": "BOUNDARY-002"
+                }
+              ]
+            },
+            "single_quoted": {
+              "exit_code": 0,
+              "findings": []
+            }
+          },
+          "audited_revision": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d",
+          "baseline": {
+            "catalog_diagnostics": [],
+            "context_policy_diagnostics": []
+          }
+        },
+        "script": "contracts-repros.py"
+      }
+    ],
+    "web": {
+      "baseline_errors": [],
+      "cli": {
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "agent-ready web valid: validate-conformance"
+      },
+      "evidence_locations": [
+        {
+          "errors": [],
+          "value": "https://"
+        },
+        {
+          "errors": [],
+          "value": "https://synthetic-user:synthetic-password@example.invalid/evidence"
+        },
+        {
+          "errors": [],
+          "value": "https://exa mple.invalid/evidence"
+        },
+        {
+          "errors": [],
+          "value": "https://example.invalid\\path"
+        },
+        {
+          "errors": [],
+          "value": "https://example.invalid\t"
+        }
+      ],
+      "origins": [
+        {
+          "errors": [],
+          "value": "https://example.invalid\\path"
+        },
+        {
+          "errors": [],
+          "value": "https://example.invalid\t"
+        },
+        {
+          "errors": [],
+          "value": "https://exa mple.invalid"
+        },
+        {
+          "errors": [],
+          "value": "https://example.invalid:0"
+        }
+      ]
+    }
+  },
+  "command_receipts": [
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-m",
+        "unittest",
+        "discover",
+        "--start-directory",
+        "tests",
+        "--pattern",
+        "test_*.py",
+        "--verbose"
+      ],
+      "duration_seconds": 0.728,
+      "exit_code": 0,
+      "id": "unit-tests",
+      "log": "unit-tests.log",
+      "log_sha256": "6e036c5eb02ec6c3e330ab2b7910a5e02af449cd6c85798f2bd0da2854f51f37",
+      "started_at": "2026-10-20T04:06:25.467252+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/catalog.py",
+        "validate"
+      ],
+      "duration_seconds": 0.031,
+      "exit_code": 0,
+      "id": "catalog",
+      "log": "catalog.log",
+      "log_sha256": "e172998a04b7440f3db8fc2ec54fa003c09401d14475b99c50a6a32b58e0c266",
+      "started_at": "2026-10-20T04:06:26.195146+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/catalog.py",
+        "check-generated",
+        "--output",
+        "docs/generated/REPOSITORIES.md"
+      ],
+      "duration_seconds": 0.03,
+      "exit_code": 0,
+      "id": "catalog-generated",
+      "log": "catalog-generated.log",
+      "log_sha256": "98ad7ef2ebd732b93ba6abd1c021c34c07cd4fb7448e4dfa70dbc62971f97a16",
+      "started_at": "2026-10-20T04:06:26.226552+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/context.py",
+        "validate"
+      ],
+      "duration_seconds": 0.033,
+      "exit_code": 0,
+      "id": "context",
+      "log": "context.log",
+      "log_sha256": "6cf177a64d321171106534f176b43e04633b0181636efcb33547183a5c70a3fc",
+      "started_at": "2026-10-20T04:06:26.257198+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/continuity.py",
+        "validate-profile"
+      ],
+      "duration_seconds": 0.044,
+      "exit_code": 0,
+      "id": "continuity-profile",
+      "log": "continuity-profile.log",
+      "log_sha256": "fdc7ebd058ffcb90ef7eb9dd945f0ead03eb0a774deee9f4ced4d74224d538c9",
+      "started_at": "2026-10-20T04:06:26.290340+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/continuity.py",
+        "validate-repository",
+        "--repository",
+        "."
+      ],
+      "duration_seconds": 0.036,
+      "exit_code": 0,
+      "id": "continuity-repository",
+      "log": "continuity-repository.log",
+      "log_sha256": "42505451a1dae7bcf777ed83f5f141b7a858b223ea074ca130bc0e8d339e9b06",
+      "started_at": "2026-10-20T04:06:26.334697+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/boundaries.py",
+        "validate"
+      ],
+      "duration_seconds": 0.046,
+      "exit_code": 0,
+      "id": "boundaries",
+      "log": "boundaries.log",
+      "log_sha256": "1e71200bbca82137c18c87a06f279ebbcf674838d87fa38ac2a441e62c946e4d",
+      "started_at": "2026-10-20T04:06:26.370929+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/boundaries.py",
+        "check-generated",
+        "--output",
+        "docs/generated/DEPENDENCY_BOUNDARIES.md"
+      ],
+      "duration_seconds": 0.042,
+      "exit_code": 0,
+      "id": "boundaries-generated",
+      "log": "boundaries-generated.log",
+      "log_sha256": "e1e99cdead2650b52226b399769517cf22e53e23bf44c7e42f7ea9454600acf4",
+      "started_at": "2026-10-20T04:06:26.417677+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/boundaries.py",
+        "scan",
+        "--repository-root",
+        ".",
+        "--repository",
+        "egohygiene/hygiene",
+        "--format",
+        "json"
+      ],
+      "duration_seconds": 0.119,
+      "exit_code": 0,
+      "id": "boundaries-scan",
+      "log": "boundaries-scan.log",
+      "log_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "started_at": "2026-10-20T04:06:26.460118+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/intelligence.py",
+        "validate",
+        "--snapshot",
+        "fixtures/repository-intelligence/complete-quest.json",
+        "--vocabulary",
+        "catalog/repository-intelligence-vocabulary.json"
+      ],
+      "duration_seconds": 0.035,
+      "exit_code": 0,
+      "id": "intelligence",
+      "log": "intelligence.log",
+      "log_sha256": "40a85112e910e719b7ef0f5fe140cb8a2b91cae01a4fe00fe2768029eb23c039",
+      "started_at": "2026-10-20T04:06:26.579620+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/presentation.py",
+        "validate-profile"
+      ],
+      "duration_seconds": 0.032,
+      "exit_code": 0,
+      "id": "presentation-profile",
+      "log": "presentation-profile.log",
+      "log_sha256": "73c8452a49abef1f10341a9832b955e0067450bf7b082c3a65d839f721b341d6",
+      "started_at": "2026-10-20T04:06:26.615411+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/presentation.py",
+        "validate-evidence",
+        "--evidence",
+        "fixtures/repository-presentation/minimal.valid.json"
+      ],
+      "duration_seconds": 0.033,
+      "exit_code": 0,
+      "id": "presentation-minimal",
+      "log": "presentation-minimal.log",
+      "log_sha256": "329e84c6b79f71402c7d3d65c89ec7642931f0d6f11e19339792981e22f64911",
+      "started_at": "2026-10-20T04:06:26.647223+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/presentation.py",
+        "validate-evidence",
+        "--evidence",
+        "fixtures/repository-presentation/rich.valid.json"
+      ],
+      "duration_seconds": 0.036,
+      "exit_code": 0,
+      "id": "presentation-rich",
+      "log": "presentation-rich.log",
+      "log_sha256": "329e84c6b79f71402c7d3d65c89ec7642931f0d6f11e19339792981e22f64911",
+      "started_at": "2026-10-20T04:06:26.680750+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/agent_ready_web.py",
+        "validate-profile"
+      ],
+      "duration_seconds": 0.047,
+      "exit_code": 0,
+      "id": "agent-ready-web-profile",
+      "log": "agent-ready-web-profile.log",
+      "log_sha256": "32e06d02abd0e89e1e8808578d70b25c24e9a0169040c552dc0a832d5ba3cf58",
+      "started_at": "2026-10-20T04:06:26.717390+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/agent_ready_web.py",
+        "validate-fixtures"
+      ],
+      "duration_seconds": 0.05,
+      "exit_code": 0,
+      "id": "agent-ready-web-fixtures",
+      "log": "agent-ready-web-fixtures.log",
+      "log_sha256": "dae914ccbadd07f8ba48e41a309cb817fc8e0d5837420c6cffab27bad4e60120",
+      "started_at": "2026-10-20T04:06:26.764566+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/site_surfaces.py",
+        "validate-registry"
+      ],
+      "duration_seconds": 0.042,
+      "exit_code": 0,
+      "id": "site-surfaces-registry",
+      "log": "site-surfaces-registry.log",
+      "log_sha256": "b1450e04cead4f8e7e52edab79d11089a9053db2aef7b4e79660e51f7bd65ef6",
+      "started_at": "2026-10-20T04:06:26.815222+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/site_surfaces.py",
+        "validate-fixtures"
+      ],
+      "duration_seconds": 0.049,
+      "exit_code": 0,
+      "id": "site-surfaces-fixtures",
+      "log": "site-surfaces-fixtures.log",
+      "log_sha256": "0ecabaa80f835b5b02284cdf4842418bd73b09e67ee01d338f99f2b1939b275d",
+      "started_at": "2026-10-20T04:06:26.857288+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/releases.py",
+        "validate-profile"
+      ],
+      "duration_seconds": 0.034,
+      "exit_code": 0,
+      "id": "release-profile",
+      "log": "release-profile.log",
+      "log_sha256": "f655baaa8b60fb435a2d6b8719bb1c31350b9df61ec76544c4ec0204e0f16bf5",
+      "started_at": "2026-10-20T04:06:26.906571+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/releases.py",
+        "validate-declaration",
+        "--repository",
+        ".",
+        "--format",
+        "json"
+      ],
+      "duration_seconds": 0.034,
+      "exit_code": 0,
+      "id": "release-declaration",
+      "log": "release-declaration.log",
+      "log_sha256": "4532716f62a17e96df3c9610b3ff38b2ede70727dd748214fc8bdee8e823a8a7",
+      "started_at": "2026-10-20T04:06:26.940908+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/decisions.py",
+        "decision",
+        "--input",
+        "fixtures/architecture-decisions/decision.proposed.valid.json"
+      ],
+      "duration_seconds": 0.033,
+      "exit_code": 0,
+      "id": "adr-proposed",
+      "log": "adr-proposed.log",
+      "log_sha256": "7f687b0ab85fac36bd0284067e5276a091212d99c9d8def695cc94a86038b457",
+      "started_at": "2026-10-20T04:06:26.975133+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/decisions.py",
+        "decision-set",
+        "--input",
+        "fixtures/architecture-decisions/decision.superseded.valid.json",
+        "--input",
+        "fixtures/architecture-decisions/decision.accepted.valid.json"
+      ],
+      "duration_seconds": 0.043,
+      "exit_code": 0,
+      "id": "adr-lineage",
+      "log": "adr-lineage.log",
+      "log_sha256": "d8f9ca32b4a70810ab751e4236d5b93142b3b2e586d4c572aab0816023d8621d",
+      "started_at": "2026-10-20T04:06:27.008385+00:00"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/decisions.py",
+        "policy-reference",
+        "--input",
+        "fixtures/architecture-decisions/policy-reference.valid.json"
+      ],
+      "duration_seconds": 0.035,
+      "exit_code": 0,
+      "id": "adr-policy-reference",
+      "log": "adr-policy-reference.log",
+      "log_sha256": "b6e7144c6eb0c4ac3e7ffdca17ef236362fb55f8a94ce2da7b2a28b64a2691a3",
+      "started_at": "2026-10-20T04:06:27.051545+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--check",
+        "--unidiff-zero",
+        "docs/adr-workflow/2026-10-18-adr-0001-v1.2-review.patch"
+      ],
+      "duration_seconds": 0.002,
+      "exit_code": 0,
+      "id": "adr-review-patch",
+      "log": "adr-review-patch.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "started_at": "2026-10-20T04:06:27.086721+00:00"
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "duration_seconds": 0.009,
+      "exit_code": 0,
+      "id": "generated-source-drift",
+      "log": "generated-source-drift.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "started_at": "2026-10-20T04:06:27.089137+00:00"
+    }
+  ],
+  "diagram_reproduction": {
+    "available": true,
+    "byte_identical": true,
+    "exit_code": 0,
+    "original_sha256": "6373bcb8e5a65dc7925347061d1bceebcc51e5505cdf0769f030c88a4f69ed15",
+    "regenerated_sha256": "6373bcb8e5a65dc7925347061d1bceebcc51e5505cdf0769f030c88a4f69ed15",
+    "stderr": "",
+    "stdout": ""
+  },
+  "format": "hygiene.audit-local-validation/v1",
+  "format_status": "Audit-local evidence structure; not a newly published canonical checkpoint/report contract.",
+  "generated_at": "2026-10-20T04:20:50.940933+00:00",
+  "hosted_publication_observation": {
+    "conclusion": "success",
+    "created_at": "2026-10-18T21:31:12Z",
+    "event": "push",
+    "head_sha": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d",
+    "html_url": "https://github.com/egohygiene/hygiene/actions/runs/39168195558",
+    "id": 39168195558,
+    "jobs": [
+      {
+        "completed_at": "2026-10-18T21:31:22Z",
+        "conclusion": "success",
+        "head_sha": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d",
+        "html_url": "https://github.com/egohygiene/hygiene/actions/runs/39168195558/job/117795503836",
+        "id": 117795503836,
+        "name": "Check publisher and repository contracts",
+        "started_at": "2026-10-18T21:31:15Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-10-18T21:32:32Z",
+        "conclusion": "success",
+        "head_sha": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d",
+        "html_url": "https://github.com/egohygiene/hygiene/actions/runs/39168195558/job/117795504050",
+        "id": 117795504050,
+        "name": "Read-only native source evidence / Validate architecture and retain bounded evidence",
+        "started_at": "2026-10-18T21:31:23Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-10-18T21:32:40Z",
+        "conclusion": "success",
+        "head_sha": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d",
+        "html_url": "https://github.com/egohygiene/hygiene/actions/runs/39168195558/job/117795799938",
+        "id": 117795799938,
+        "name": "Select only passed ADR coverage",
+        "started_at": "2026-10-18T21:32:35Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-10-18T21:32:40Z",
+        "conclusion": "skipped",
+        "head_sha": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d",
+        "html_url": "https://github.com/egohygiene/hygiene/actions/runs/39168195558/job/117795830981",
+        "id": 117795830981,
+        "name": "Build admitted immutable site",
+        "started_at": "2026-10-18T21:32:41Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-10-18T21:32:40Z",
+        "conclusion": "skipped",
+        "head_sha": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d",
+        "html_url": "https://github.com/egohygiene/hygiene/actions/runs/39168195558/job/117795831088",
+        "id": 117795831088,
+        "name": "Deploy and verify canonical HTTPS bytes",
+        "started_at": "2026-10-18T21:32:41Z",
+        "status": "completed"
+      }
+    ],
+    "name": "Hygiene Pages",
+    "qualification": "Workflow success means the checks/admission evaluation succeeded. Build/deploy jobs were skipped because native source coverage remains invalid. No successful site deployment follows from the green run.",
+    "run_attempt": 1,
+    "status": "completed",
+    "updated_at": "2026-10-18T21:32:41Z"
+  },
+  "inventory": {
+    "source": {
+      "blob_bytes": 2122968,
+      "entries": [
+        {
+          "blob": "f36e0717bf1147fda45bc644ce8f1084cf5c6ea2",
+          "bytes": 10676,
+          "kind": "blob",
+          "mode": "100644",
+          "path": ".audits/2026-08-19-organization-audit.md"
+        },
+        {
+          "blob": "a1463859f0fe8b15da302a4d89fa92fff24e8a6f",
+          "bytes": 38111,
+          "kind": "blob",
+          "mode": "100644",
+          "path": ".audits/2026-08-24-organization-audit.md"
+        },
+        {
+          "blob": "01eb19f3ef0b9a0f6e09a9093b668c20f2dd7eba",
+          "bytes": 2233,
+          "kind": "blob",
+          "mode": "100644",
+          "path": ".config/egolint/repository-intelligence.toml"
+        },
+        {
+          "blob": "fdc67332a70300e2202f6ac2c9461401965439dd",
+          "bytes": 1855,
+          "kind": "blob",
+          "mode": "100644",
+          "path": ".egohygiene/release.json"
+        },
+        {
+          "blob": "31dd946df36372d9a0c7ed996cc5b14dcaac9396",
+          "bytes": 8117,
+          "kind": "blob",
+          "mode": "100644",
+          "path": ".github/workflows/publish-pages.yml"
+        },
+        {
+          "blob": "a3a7ac719eaf4134eb34f2744591d0c9a8fa9724",
+          "bytes": 1155,
+          "kind": "blob",
+          "mode": "100644",
+          "path": ".github/workflows/release-policy.yml"
+        },
+        {
+          "blob": "1e46b01bbc5f2e46a182e7cc6f8e6055121bd6f8",
+          "bytes": 778,
+          "kind": "blob",
+          "mode": "100644",
+          "path": ".gitignore"
+        },
+        {
+          "blob": "36f9ee96d116ecdda8bbe4536bbf6ab9373a47d8",
+          "bytes": 1407,
+          "kind": "blob",
+          "mode": "100644",
+          "path": ".tasks/release.yml"
+        },
+        {
+          "blob": "835a79d113707a293dca4a007d5e657f028f7e4b",
+          "bytes": 7521,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "AGENTS.md"
+        },
+        {
+          "blob": "eb80e93ed8cff8a01d87c1e3535e591e17c725f4",
+          "bytes": 3110,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "AI_CONSTITUTION.md"
+        },
+        {
+          "blob": "681a089314c84f996857d055ab8a3b06bdbd3bbb",
+          "bytes": 4719,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "ARCHITECTURE.md"
+        },
+        {
+          "blob": "799e15a3b01a5c1503919ae7c8e8843b577cf7c7",
+          "bytes": 1311,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "CHANGELOG.md"
+        },
+        {
+          "blob": "8224d0aa4673a7800562590376a96f608aab777f",
+          "bytes": 7200,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "CONTINUITY.md"
+        },
+        {
+          "blob": "a19edcf250073d0387b7ac1b3df5978e38e1b0cf",
+          "bytes": 3243,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "DECISIONS.md"
+        },
+        {
+          "blob": "3ee55a279c1da34b8f341ddcf38706b0d80bbc1d",
+          "bytes": 2650,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "DESIGN.md"
+        },
+        {
+          "blob": "4ad56db5aafaa99518b0a2b5cfdf6385cf7893c2",
+          "bytes": 2854,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "DESIGN_SYSTEM.md"
+        },
+        {
+          "blob": "d6a4747b4c665f32567771ce1f9caeb4edb27974",
+          "bytes": 2498,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "EPISTEMOLOGY.md"
+        },
+        {
+          "blob": "f274b191d7aa872c38c5124997adfea10921ede8",
+          "bytes": 2664,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "FOUNDATIONS.md"
+        },
+        {
+          "blob": "25f52dc63ff2c47f22d679b04f3fd071c085d8fe",
+          "bytes": 1068,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "LICENSE"
+        },
+        {
+          "blob": "bb1bd4eb27c265ee38a8aed16fd4d78757851042",
+          "bytes": 2347,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "MANIFESTO.md"
+        },
+        {
+          "blob": "ae58860e7fe3a9b2ee74080563c2355149927540",
+          "bytes": 7019,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "META.md"
+        },
+        {
+          "blob": "6dec992443d47efebc82eab794e3cef8361dc38d",
+          "bytes": 2946,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "METHODOLOGY.md"
+        },
+        {
+          "blob": "659c6debac112d7af6e4d24b5051350bda19a6e2",
+          "bytes": 3589,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "ONTOLOGY.md"
+        },
+        {
+          "blob": "0e633616f9efa2ae50700164c4cd6d734aa1a52d",
+          "bytes": 2576,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "PERSONAL_MODEL.md"
+        },
+        {
+          "blob": "12c61066bc95c0295172c1c16880ae6cc5058b4f",
+          "bytes": 2288,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "PILLARS.md"
+        },
+        {
+          "blob": "71fa647bb0028b6d6c5622affbb8e6cdad16df29",
+          "bytes": 2958,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "PRINCIPLES.md"
+        },
+        {
+          "blob": "1a2f9c71c7cd7bd407b9cbbd51bd023d08797469",
+          "bytes": 2168,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "PURPOSE.md"
+        },
+        {
+          "blob": "26843c184f45566a8f7798e1078e2b7b6dcb87d3",
+          "bytes": 8766,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "README.md"
+        },
+        {
+          "blob": "f08f24b4bc1d2161e36d2ff7329174946ae76596",
+          "bytes": 15021,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "ROADMAP.md"
+        },
+        {
+          "blob": "ce9f360e3e69ffb0b5980852d23850b04c409f4b",
+          "bytes": 4348,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "SYSTEM.md"
+        },
+        {
+          "blob": "4ccebfb80b174f32cb1df9b14d58a47bead173ab",
+          "bytes": 211,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "Taskfile.yml"
+        },
+        {
+          "blob": "3c2bddf3947d9d4f300c4b268c3cf8a0d6dabd9f",
+          "bytes": 2261,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "VISION.md"
+        },
+        {
+          "blob": "1afbc65cad63d7862069fff7ca0200f63d371786",
+          "bytes": 6827,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "catalog/README.md"
+        },
+        {
+          "blob": "8bc43d8ed515ac57544e2d6fbb3b719d55ddb855",
+          "bytes": 110029,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "catalog/agent-ready-web-profile.json"
+        },
+        {
+          "blob": "8d783ade11d4e15fe14782a361574139783b8b06",
+          "bytes": 4925,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "catalog/contracts.yaml"
+        },
+        {
+          "blob": "aa175a4fad26e665f45cb09fde2b80de57570172",
+          "bytes": 15549,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "catalog/dependency-boundaries.yaml"
+        },
+        {
+          "blob": "60c43aa6b81704ccfefbf9e08fa7dde1967bec9f",
+          "bytes": 45397,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "catalog/public-site-surface-registry.json"
+        },
+        {
+          "blob": "9baea7922157720f1792cb8fd65dfe986697e828",
+          "bytes": 22574,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "catalog/repositories.yaml"
+        },
+        {
+          "blob": "22c970283979870b3972b68cd58eeb7b04871f2a",
+          "bytes": 3280,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "catalog/repository-context.json"
+        },
+        {
+          "blob": "8154547071a17fcc408d6d8c9bfe2c35d61454dd",
+          "bytes": 12678,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "catalog/repository-continuity-policy.json"
+        },
+        {
+          "blob": "4fb3821250ed08b4488f518d83f859256c5244a5",
+          "bytes": 4838,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "catalog/repository-intelligence-vocabulary.json"
+        },
+        {
+          "blob": "bfa0a03461f28c4acb67bec4f8fefb539b01a7e0",
+          "bytes": 9876,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "catalog/repository-presentation-profile.json"
+        },
+        {
+          "blob": "46277cbb57d753d447b20b3630b9f7ddd500548a",
+          "bytes": 9794,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "catalog/repository-release-policy.json"
+        },
+        {
+          "blob": "d28c4b8175a9c38892bdd2a492846307a3de06cd",
+          "bytes": 1510,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "contracts/repository-context.toml"
+        },
+        {
+          "blob": "a5a7987131c55fe9f4cd98b342b64dd01ab92b6e",
+          "bytes": 762,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "contracts/repository-context.v1.toml"
+        },
+        {
+          "blob": "73da73179553bcd515f3b0b3a3c5540cb2c32a90",
+          "bytes": 16827,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/adr-workflow/2026-10-10-hygiene-inventory.md"
+        },
+        {
+          "blob": "0919233c5d0676225208a75c711c52cbe8c1f391",
+          "bytes": 3021,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/adr-workflow/2026-10-18-adr-0001-review.patch"
+        },
+        {
+          "blob": "14f65d1d46b6fd4f7621f83a26283bedfbedd6f3",
+          "bytes": 2783,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/adr-workflow/2026-10-18-adr-0001-v1.2-review.patch"
+        },
+        {
+          "blob": "92f1318a123b785696264ce6a3dd66042ecd618e",
+          "bytes": 5100,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/adr-workflow/2026-10-18-four-digit-ids.md"
+        },
+        {
+          "blob": "f0daacc89be99ded507c35ceb48e7adbacc22991",
+          "bytes": 10375,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/adr-workflow/2026-10-18-source-backfill.md"
+        },
+        {
+          "blob": "ca6f303634ce2d6785f702a1154786acd3d544d2",
+          "bytes": 7162,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/adr-workflow/CAPTURE.md"
+        },
+        {
+          "blob": "24b3e11f9e26c9b703a00cdc4badfe630dc08044",
+          "bytes": 4008,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-0001-holistic-architecture-v0.1.md"
+        },
+        {
+          "blob": "cb06d23fdbb3d7b24634f5d0ed6226a07c6edf3d",
+          "bytes": 8987,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-0002-organization-adr-and-delivery-history.md"
+        },
+        {
+          "blob": "f38a3b1bfc453ea756a46d2010c26056004a64e6",
+          "bytes": 6975,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-0003-route-filament-infrastructure-contracts.md"
+        },
+        {
+          "blob": "42fa0c419b96a78c53218566b436bc473dd5fe77",
+          "bytes": 6601,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-0004-register-sanctuary-incubation-boundary.md"
+        },
+        {
+          "blob": "e1f5ee30e922508d1d34f56e49ad6169f0ede85a",
+          "bytes": 7975,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-0005-unify-repository-intelligence-projection.md"
+        },
+        {
+          "blob": "5540cf8eb6be7d546bc03d719e2b321960d6593c",
+          "bytes": 5738,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-0006-repository-presentation-profile.md"
+        },
+        {
+          "blob": "ba53df3df1547453519ded729a1391e2cb89131b",
+          "bytes": 5699,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-0007-repository-release-baseline.md"
+        },
+        {
+          "blob": "36a36172c881f2a0c12227e9a721a0d1028228f2",
+          "bytes": 8101,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-0008-repository-continuity-policy.md"
+        },
+        {
+          "blob": "f2608246e7681a2fd94d9618f84059420c3f4e74",
+          "bytes": 7356,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-0009-agent-ready-web-profile-foundation.md"
+        },
+        {
+          "blob": "43b296e545cddc30309f4d05fbaf655cf905d25c",
+          "bytes": 9266,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-0010-agent-ready-web-discovery-representations.md"
+        },
+        {
+          "blob": "f4f189de75d069d8cf602991de808f903d8f9b1e",
+          "bytes": 10763,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-0011-agent-ready-web-guarded-capability-commerce.md"
+        },
+        {
+          "blob": "c47d7c2133975bbc6561ed87e45e6c770ab86309",
+          "bytes": 12738,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-0012-agent-ready-web-integration-conformance.md"
+        },
+        {
+          "blob": "6244a59cf65d0325e00ba0ea7423412484343492",
+          "bytes": 16235,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-0013-public-site-surface-route-registry.md"
+        },
+        {
+          "blob": "377668bd737a62f752d4eb73df8a9e1f03dddc3c",
+          "bytes": 5702,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-0014-json-compatible-catalogs-and-reference-tools.md"
+        },
+        {
+          "blob": "cdccb3ec1036b0004c1987b6b58aa8b0010d9e9d",
+          "bytes": 1955,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/ADR-TEMPLATE.md"
+        },
+        {
+          "blob": "ace781b20e7d0a5fbe0028490324e11eac663701",
+          "bytes": 7339,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/MIGRATION.md"
+        },
+        {
+          "blob": "27bf08ac47222511f1ebc7eda6bb33b046e8b5c8",
+          "bytes": 17519,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/POLICY.md"
+        },
+        {
+          "blob": "8433c5347bf0bab9177dd14d67e6b38e8e9d3003",
+          "bytes": 3729,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/RATIFICATION.md"
+        },
+        {
+          "blob": "1e40315c98f22a762c348c35a615b96fca740300",
+          "bytes": 4209,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/README.md"
+        },
+        {
+          "blob": "26667c3562508fbf89ba4a2ae6b946c02bc4b8e1",
+          "bytes": 9170,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/decisions/VALIDATION.md"
+        },
+        {
+          "blob": "d840200a92d626ad961a63733288c7b33f4f3c6d",
+          "bytes": 6758,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/AGENT_CONTEXT.md"
+        },
+        {
+          "blob": "d79789aea40b7a6d64e5c8cb164f8f05dbd9f13c",
+          "bytes": 31173,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/AGENT_READY_WEB.md"
+        },
+        {
+          "blob": "c80702355c71c70c87e9e4f18fa8a3023e037200",
+          "bytes": 21484,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/ARCHITECTURE.md"
+        },
+        {
+          "blob": "6a352a9f207843a595acebac1b8195d0b352cf81",
+          "bytes": 3639,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/CONTEXT.md"
+        },
+        {
+          "blob": "0bd65c0e575cfdea7404018aca9109d5f1765b87",
+          "bytes": 9703,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/DEPENDENCY_BOUNDARIES.md"
+        },
+        {
+          "blob": "468fe8a1081d0004bbe6e58f518a1ce614ee8ef4",
+          "bytes": 8958,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/MIGRATION_PLAN.md"
+        },
+        {
+          "blob": "962321aff206ff04b5c3d3bde1be3749547ad9d8",
+          "bytes": 17519,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/PUBLIC_SITE_SURFACES.md"
+        },
+        {
+          "blob": "fa5aa33550a57aada1330bc14a66115e16179c46",
+          "bytes": 4243,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/README.md"
+        },
+        {
+          "blob": "eac22f3d5c27898cb4e453f84b45d749bc8e717e",
+          "bytes": 10192,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/REPOSITORY_CATALOG.md"
+        },
+        {
+          "blob": "b049f77c05cdcdc603ce79a63dbb582602066d62",
+          "bytes": 4660,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/REPOSITORY_CONTEXT.md"
+        },
+        {
+          "blob": "7a1168486871d08b5e75ac2f08a18d1209a13ee0",
+          "bytes": 12794,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/REPOSITORY_CONTINUITY.md"
+        },
+        {
+          "blob": "5a190c8a8a8f05c9fafdca63df2946bf801f3e68",
+          "bytes": 13652,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/REPOSITORY_INTELLIGENCE.md"
+        },
+        {
+          "blob": "a1ad4b51efc0fb8478dedc66a47d26c6706b218d",
+          "bytes": 6980,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/REPOSITORY_INTELLIGENCE_COVERAGE.md"
+        },
+        {
+          "blob": "ac6454e4d64da4a6ca2bd43eae0eed878dc7c78f",
+          "bytes": 16532,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/REPOSITORY_PRESENTATION.md"
+        },
+        {
+          "blob": "ee03b614d86ebaef2bed507670637f9ea60196c1",
+          "bytes": 7901,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/REPOSITORY_RELEASE.md"
+        },
+        {
+          "blob": "dd92c5b888b772b01a953550b3d3f03297d74fcf",
+          "bytes": 5088,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/SOURCE_REVIEW.md"
+        },
+        {
+          "blob": "2441ceabea07294647740097bdae6bfb0b045515",
+          "bytes": 494,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/architecture-release.yaml"
+        },
+        {
+          "blob": "88f6092dacf47e38d70bb179dea4d6b69c7d4869",
+          "bytes": 1366,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/diagrams/README.md"
+        },
+        {
+          "blob": "817f14945fb8d4de091d680546b696d236519534",
+          "bytes": 100580,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/diagrams/ecosystem.excalidraw"
+        },
+        {
+          "blob": "4f96b66019683892c8a7cff24699d68748d75895",
+          "bytes": 4041,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/diagrams/ecosystem.mmd"
+        },
+        {
+          "blob": "df211d6820201456ec511c84137e64914c8413e5",
+          "bytes": 3590,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/diagrams/ecosystem.puml"
+        },
+        {
+          "blob": "0b637c0258552d5e378286b6e78e6c2accfb357a",
+          "bytes": 8359,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/diagrams/generate-excalidraw.mjs"
+        },
+        {
+          "blob": "327fbef97e3e291191e5f47c42c63722d7a87b7b",
+          "bytes": 7072,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/roadmap-pr-index.md"
+        },
+        {
+          "blob": "f1f64764fa44e1ff5289fece1807d600301784af",
+          "bytes": 36978,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/roadmap-rollout-plan.md"
+        },
+        {
+          "blob": "16f1a30792ab9691eda76bf861a1d4a07794c99f",
+          "bytes": 14780,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/ecosystem/visual-roadmap-system.md"
+        },
+        {
+          "blob": "1c85b7be9925a629b4ceb3bef6263af6d88d171e",
+          "bytes": 8803,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/evidence/hygiene-adrs-inventory-2026-10-10.json"
+        },
+        {
+          "blob": "5a4ec700293e1d5edc216d7ebb704e258eefd955",
+          "bytes": 9202,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/evidence/hygiene-adrs-source-backfill-2026-10-18.json"
+        },
+        {
+          "blob": "7c4b8567b3e424ed8f00b0f8b442e520e385990f",
+          "bytes": 13286,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/evidence/hygiene-pages-preparation-2026-10-18.json"
+        },
+        {
+          "blob": "99831e815b112e398d0fce9fc45c532eca8e7e8e",
+          "bytes": 8627,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/generated/DEPENDENCY_BOUNDARIES.md"
+        },
+        {
+          "blob": "51d2a94e41106fb783c8ae67944433e4ca8cffb3",
+          "bytes": 9647,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/generated/REPOSITORIES.md"
+        },
+        {
+          "blob": "cb8ea205c250967e8fb9025200c3475e33990883",
+          "bytes": 3918,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "docs/generated/contexts/sanctuary.md"
+        },
+        {
+          "blob": "33f79e557de374124099b3c9ab8e98c9326998ad",
+          "bytes": 1656,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/mechanism.ambiguous-concern.invalid.json"
+        },
+        {
+          "blob": "e1c79c585b438d5e6eed5a17ce800cb986c3072e",
+          "bytes": 3172,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/mechanism.capability-unpinned.invalid.json"
+        },
+        {
+          "blob": "0d632234d6983f82fd014a999dc4e530483dffa9",
+          "bytes": 3145,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/mechanism.capability.valid.json"
+        },
+        {
+          "blob": "d39561a2c1022d23b70d88726a184f6f905502ed",
+          "bytes": 2850,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/mechanism.commerce-authority.invalid.json"
+        },
+        {
+          "blob": "ee93b8df847dcd724d235be55dd6edf10efc8527",
+          "bytes": 2790,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/mechanism.commerce.valid.json"
+        },
+        {
+          "blob": "a547809d95651a0828ac6a8a273f62191e3e70ca",
+          "bytes": 1851,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/mechanism.conditional-without-condition.invalid.json"
+        },
+        {
+          "blob": "e275ad4f4b14cae835e8c6b17b44806eb97be9d0",
+          "bytes": 2955,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/mechanism.discovery-policy.valid.json"
+        },
+        {
+          "blob": "c01507279b08bc2d8b88906186261f1d814f8f78",
+          "bytes": 1725,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/mechanism.missing-primary-reference.invalid.json"
+        },
+        {
+          "blob": "a2340c29135b6fa47cb4c4b5bbe0b92af78f2df1",
+          "bytes": 1793,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/mechanism.partial-policy.invalid.json"
+        },
+        {
+          "blob": "64ef0a37555005df3ba26be039205956ff4ea13e",
+          "bytes": 2080,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/mechanism.valid.json"
+        },
+        {
+          "blob": "920f0ae82527a8b11979e3d082eac11ff8792ae5",
+          "bytes": 8133,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/site.application.valid.json"
+        },
+        {
+          "blob": "1c3146208a7b109dcc5eb343d56bc05cb2896e35",
+          "bytes": 7666,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/site.commerce.valid.json"
+        },
+        {
+          "blob": "4f84028bd69ecb24c3a938b246911acd6a70b08a",
+          "bytes": 7898,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/site.content.valid.json"
+        },
+        {
+          "blob": "5f823bd32979ff1d92be818a8f4c33e8712e4dc6",
+          "bytes": 7734,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/site.documentation.valid.json"
+        },
+        {
+          "blob": "1a67b2e4f3d6647989554fa7dde04b749ce6f3d7",
+          "bytes": 7702,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/agent-ready-web/site.hybrid.valid.json"
+        },
+        {
+          "blob": "aef34d26fcd51f864705e811603aa717751b5c83",
+          "bytes": 543,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/architecture-decisions/decision.accepted-missing-approval.invalid.json"
+        },
+        {
+          "blob": "5dab83f6c5fc0d2d4e8fe139808cc46c5e849b02",
+          "bytes": 1042,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/architecture-decisions/decision.accepted.valid.json"
+        },
+        {
+          "blob": "dfee12fe15f31244bcf9aede117f0bd1e32da091",
+          "bytes": 1007,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/architecture-decisions/decision.deprecated.valid.json"
+        },
+        {
+          "blob": "54c8870cbcc47a2614fa7ac5e1a6a74e8d44410d",
+          "bytes": 757,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/architecture-decisions/decision.proposed.valid.json"
+        },
+        {
+          "blob": "4ffd965b8b3d434f4fb7ce12c02bacf44bac9672",
+          "bytes": 995,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/architecture-decisions/decision.rejected.valid.json"
+        },
+        {
+          "blob": "e204f6cd02270f5d560ac40bcf9c6197fe0bf601",
+          "bytes": 1019,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/architecture-decisions/decision.superseded.valid.json"
+        },
+        {
+          "blob": "6b7156b2bc64738b753c91f8a7203baa3f8282a5",
+          "bytes": 455,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/architecture-decisions/policy-reference-unpinned.invalid.json"
+        },
+        {
+          "blob": "6a05c0330b4eebe47797186f7c0dfb618cf5fe16",
+          "bytes": 680,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/architecture-decisions/policy-reference.valid.json"
+        },
+        {
+          "blob": "cd71ac96ecb28b01faa19b7765ed9eb8beb0bf2c",
+          "bytes": 50409,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/public-site-surfaces/content-small.valid.json"
+        },
+        {
+          "blob": "f53f38a3b19fa09b6c395c7b50f7244eff9d6a55",
+          "bytes": 52195,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/public-site-surfaces/documentation-heavy.valid.json"
+        },
+        {
+          "blob": "c588b5a551c0ce67ac8a5cae058fe4034a06b2f0",
+          "bytes": 54848,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/public-site-surfaces/organization-hybrid.valid.json"
+        },
+        {
+          "blob": "6fd2cdd73306a1dfbe4f9cd4cba6bca02ded7524",
+          "bytes": 23013,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/repository-intelligence/complete-quest.json"
+        },
+        {
+          "blob": "1f7723b400b0a9d23853ad69c40c794054caac18",
+          "bytes": 5418,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/repository-intelligence/coverage/failed.json"
+        },
+        {
+          "blob": "b0636f1214ad49a1c2cb918610a061c3347fab54",
+          "bytes": 25113,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/repository-intelligence/coverage/full.json"
+        },
+        {
+          "blob": "b125fe74032cf306055d1170b92275f3e9255dac",
+          "bytes": 5569,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/repository-intelligence/coverage/not-applicable.json"
+        },
+        {
+          "blob": "e4d566aeaae70a349c005e7d92ecc5bda70e4f53",
+          "bytes": 5547,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/repository-intelligence/coverage/observed-empty.json"
+        },
+        {
+          "blob": "c8d880ce7574d99ca2490723b34dbfc4cdb997c6",
+          "bytes": 5428,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/repository-intelligence/coverage/partial.json"
+        },
+        {
+          "blob": "f9817f7ef0b990b86dba80bf50a78da71e452030",
+          "bytes": 5419,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/repository-intelligence/coverage/provider-denied.json"
+        },
+        {
+          "blob": "bd6e9f9d4853044ed6c24edfb0ea272318b93c3f",
+          "bytes": 5419,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/repository-intelligence/coverage/roadmap-only.json"
+        },
+        {
+          "blob": "aa08c99a98c8e8584d29b3200b99f2c2f4650031",
+          "bytes": 25095,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/repository-intelligence/coverage/stale.json"
+        },
+        {
+          "blob": "0ff90285c8e4b05e6cf36315aea47b8e9b5fc153",
+          "bytes": 4682,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/repository-presentation/minimal.valid.json"
+        },
+        {
+          "blob": "799396ef0d4b3535f878b07dc2cd274ec1da43ad",
+          "bytes": 4785,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "fixtures/repository-presentation/rich.valid.json"
+        },
+        {
+          "blob": "30be2bcca2ced8f78ed2ef90f0404850d61b6ad8",
+          "bytes": 7025,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "publication/README.md"
+        },
+        {
+          "blob": "9de3b4f4e391575275bd03c76f04f36db57a5b7f",
+          "bytes": 397,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "publication/site.json"
+        },
+        {
+          "blob": "7c2c8b02ee2502f8c92d8fd3b0b983c5dfb63976",
+          "bytes": 13363,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/agent-ready-web-conformance.v1.schema.json"
+        },
+        {
+          "blob": "86ceb05181cf338a807285b5e6d862cdb11ed62e",
+          "bytes": 49887,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/agent-ready-web-profile.v1.schema.json"
+        },
+        {
+          "blob": "50ea3d16769e7bb63d6d8f461e51ff0b0bb1d785",
+          "bytes": 3782,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/architecture-decision-policy-reference.v1.schema.json"
+        },
+        {
+          "blob": "f6e99529332a188c3d71e59d76556b0aaf5a3c8e",
+          "bytes": 8474,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/architecture-decision.v1.schema.json"
+        },
+        {
+          "blob": "2ca0721304b6aeefdc834354a2696b1775789f06",
+          "bytes": 6344,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/dependency-boundary-register.v1.schema.json"
+        },
+        {
+          "blob": "82345d3a230dc59bb934eed6f7fd1b89401fc37d",
+          "bytes": 1652,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/organization-contract-index.v1.schema.json"
+        },
+        {
+          "blob": "0a2635cc2846c37ff149e864e4d26729a05f8851",
+          "bytes": 33096,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/public-site-surface-declaration.v1.schema.json"
+        },
+        {
+          "blob": "7903abcaa94943b4dfe3186b9a8d3a4cbc0e8f31",
+          "bytes": 11561,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/public-site-surface-registry.v1.schema.json"
+        },
+        {
+          "blob": "a10d05342db78eebc6f331303eb2eeb9fb59d240",
+          "bytes": 4235,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/repository-catalog.v1.schema.json"
+        },
+        {
+          "blob": "1978a547a2f0211f5aad970d02b646da110bc58a",
+          "bytes": 3690,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/repository-context.v1.schema.json"
+        },
+        {
+          "blob": "d66ddb803ecbd0ecdcb4d2e4e6f0d01052b6bafa",
+          "bytes": 4823,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/repository-context.v2.schema.json"
+        },
+        {
+          "blob": "c69a26e3c6f99d6d377b30973d402e9795c78e0a",
+          "bytes": 13137,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/repository-continuity-policy.v1.schema.json"
+        },
+        {
+          "blob": "ebd0f3a1c0455ee99e74393142ba69a11823b049",
+          "bytes": 2718,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/repository-intelligence-vocabulary.v1.schema.json"
+        },
+        {
+          "blob": "7ff78f352f2e30698aa383d4f84569da62dc8c97",
+          "bytes": 28080,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/repository-intelligence.alpha2.schema.json"
+        },
+        {
+          "blob": "90d07d6f9ba455d727590f4979de8c8389010467",
+          "bytes": 20035,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/repository-intelligence.v1.schema.json"
+        },
+        {
+          "blob": "8d4a89da6ea2fff36930afe0ef2b46db931f6687",
+          "bytes": 4237,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/repository-presentation-evidence.v1.schema.json"
+        },
+        {
+          "blob": "6180b5cb2fdc7ac2ddf8faf9e11db64e1f3b1ac2",
+          "bytes": 5999,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/repository-presentation-profile.v1.schema.json"
+        },
+        {
+          "blob": "c365eb1596fffb6eb5dc0a3da2323e9ad863a95f",
+          "bytes": 6969,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "schemas/repository-release-policy.v1.schema.json"
+        },
+        {
+          "blob": "8d404b9fcd968573bec049f549b93dc820397ea1",
+          "bytes": 37611,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tests/test_agent_ready_web.py"
+        },
+        {
+          "blob": "23b48dadc1a170227851526b80da219c781cdec8",
+          "bytes": 7673,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tests/test_boundaries.py"
+        },
+        {
+          "blob": "72d2d55a3c4730dc51eed024ad43a25e669d15a2",
+          "bytes": 2563,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tests/test_catalog.py"
+        },
+        {
+          "blob": "3be18038288709146fdf05ca9a52a707741cfcb9",
+          "bytes": 7589,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tests/test_context.py"
+        },
+        {
+          "blob": "be6f75969976ef22f93a198388af5d6688776f47",
+          "bytes": 10075,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tests/test_continuity.py"
+        },
+        {
+          "blob": "c07492eea41c4ef45c102c4efb73b9a8cb4a3086",
+          "bytes": 7321,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tests/test_decisions.py"
+        },
+        {
+          "blob": "994284cf239e19efd9b8451a40eb1930b179e909",
+          "bytes": 8777,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tests/test_intelligence.py"
+        },
+        {
+          "blob": "9f76278c17f613a8ee50a2fdaae59b0e55c6a5b1",
+          "bytes": 4893,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tests/test_intelligence_coverage.py"
+        },
+        {
+          "blob": "04e4668f97c1867e7ced5cbf00c4b5ea4f9fb7cd",
+          "bytes": 6050,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tests/test_presentation.py"
+        },
+        {
+          "blob": "fbd7e2dff1ada14913021da06ab4d30bd6472fb4",
+          "bytes": 7658,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tests/test_publication.py"
+        },
+        {
+          "blob": "18ffcb83020bb9e9744e49f5cba3b71e4de55c42",
+          "bytes": 4576,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tests/test_release_policy.py"
+        },
+        {
+          "blob": "5ac8bbd9c1096b4a127bfdb8e874bae0c9ac0eb4",
+          "bytes": 49434,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tests/test_site_surfaces.py"
+        },
+        {
+          "blob": "b86fb36868fd9641277b081f6b76798ad024bf62",
+          "bytes": 96648,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tools/agent_ready_web.py"
+        },
+        {
+          "blob": "5181d738afd919825416e2f41da0937b8d96644c",
+          "bytes": 26968,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tools/boundaries.py"
+        },
+        {
+          "blob": "721df95c39a3832d1c7f87f01d6cabbd448e8972",
+          "bytes": 9593,
+          "kind": "blob",
+          "mode": "100755",
+          "path": "tools/catalog.py"
+        },
+        {
+          "blob": "f16452bd928c51673af09e83dc1d98fcc5ef5d4d",
+          "bytes": 20855,
+          "kind": "blob",
+          "mode": "100755",
+          "path": "tools/context.py"
+        },
+        {
+          "blob": "f2b09d7eae641d0618b7a39dd08c5005a31b9737",
+          "bytes": 35704,
+          "kind": "blob",
+          "mode": "100755",
+          "path": "tools/continuity.py"
+        },
+        {
+          "blob": "04f9b78afe0f1fa24e242323098eefd6410ed8d7",
+          "bytes": 22571,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tools/decisions.py"
+        },
+        {
+          "blob": "6522fb73a43ef18cf9a4bde69c420cd19ff0509e",
+          "bytes": 31310,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tools/intelligence.py"
+        },
+        {
+          "blob": "6ff98d155c997d86041ee8332224c115ef913891",
+          "bytes": 23510,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tools/presentation.py"
+        },
+        {
+          "blob": "d7665fe43f4bb0c9ab81d3cec23cd91450847f96",
+          "bytes": 13855,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tools/publication.py"
+        },
+        {
+          "blob": "4943e04d4dcb71b20a2e3e455d9e45a60b8a059e",
+          "bytes": 25359,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tools/releases.py"
+        },
+        {
+          "blob": "0de6c50f40a26c01268015658929dfcbf6202ef6",
+          "bytes": 65224,
+          "kind": "blob",
+          "mode": "100644",
+          "path": "tools/site_surfaces.py"
+        }
+      ],
+      "files": 182,
+      "revision": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d"
+    },
+    "summary": {
+      "contract_statuses": {
+        "active": 3,
+        "deprecated": 1,
+        "proposed": 12
+      },
+      "contracts": 16,
+      "files_by_top_level": {
+        ".audits": 2,
+        ".config": 1,
+        ".egohygiene": 1,
+        ".github": 2,
+        ".tasks": 1,
+        "catalog": 11,
+        "contracts": 2,
+        "docs": 57,
+        "fixtures": 37,
+        "publication": 2,
+        "root": 25,
+        "schemas": 18,
+        "tests": 12,
+        "tools": 11
+      },
+      "python_tools": 11,
+      "relative_link_check_scope": "Markdown inline destination paths, excluding URL/mailto/data/anchor/placeholder patterns; anchors and external links not validated",
+      "relative_markdown_destinations_missing": 0,
+      "repository_records": 27,
+      "revision": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d",
+      "root_markdown_files": 22,
+      "schemas": 18,
+      "staging_tracked_files": 0,
+      "test_modules": 12,
+      "tracked_blob_bytes": 2122968,
+      "tracked_entries": 182
+    }
+  },
+  "issue_ledger_at_assessment": {
+    "authority": "Dated assessment only; live tracker owns created numbers, disposition and later execution order.",
+    "body_hash_semantics": "SHA-256 over exact fetched issue body encoded as UTF-8, without normalization.",
+    "comment_collection_count": 31,
+    "comment_count": 6,
+    "comment_counts_by_issue": {
+      "17": 2,
+      "23": 1,
+      "26": 0,
+      "29": 0,
+      "30": 0,
+      "31": 0,
+      "32": 0,
+      "33": 0,
+      "34": 0,
+      "35": 0,
+      "36": 0,
+      "37": 0,
+      "38": 0,
+      "39": 0,
+      "40": 0,
+      "41": 0,
+      "42": 0,
+      "43": 0,
+      "44": 0,
+      "47": 0,
+      "49": 0,
+      "58": 3,
+      "59": 0,
+      "60": 0,
+      "61": 0,
+      "62": 0,
+      "64": 0,
+      "65": 0,
+      "66": 0,
+      "69": 0,
+      "7": 0
+    },
+    "comments_retained": false,
+    "finding_count": 12,
+    "finding_coverage": [
+      {
+        "candidate_key": "CI",
+        "id": "AUDIT-001"
+      },
+      {
+        "candidate_key": "CONTAINMENT",
+        "id": "AUDIT-002"
+      },
+      {
+        "candidate_key": "BOUNDARY",
+        "id": "AUDIT-003"
+      },
+      {
+        "candidate_key": "CLOCK",
+        "id": "AUDIT-004"
+      },
+      {
+        "candidate_key": "PRESENTATION",
+        "id": "AUDIT-005"
+      },
+      {
+        "candidate_key": "ADR",
+        "id": "AUDIT-006"
+      },
+      {
+        "candidate_key": "WEB",
+        "id": "AUDIT-007"
+      },
+      {
+        "candidate_key": "RELEASE",
+        "id": "AUDIT-008"
+      },
+      {
+        "existing_issue": 47,
+        "id": "AUDIT-009"
+      },
+      {
+        "candidate_key": "DOCS",
+        "id": "AUDIT-010"
+      },
+      {
+        "candidate_key": "DOCS",
+        "id": "AUDIT-011"
+      },
+      {
+        "candidate_key": "DOCS",
+        "id": "AUDIT-012"
+      }
+    ],
+    "native_parent_observations": [
+      {
+        "issue_number": 69,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/69/parent"
+      },
+      {
+        "issue_number": 66,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/66/parent"
+      },
+      {
+        "issue_number": 65,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/65/parent"
+      },
+      {
+        "issue_number": 64,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/64/parent"
+      },
+      {
+        "issue_number": 62,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/62/parent"
+      },
+      {
+        "issue_number": 61,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/61/parent"
+      },
+      {
+        "issue_number": 60,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/60/parent"
+      },
+      {
+        "issue_number": 59,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/59/parent"
+      },
+      {
+        "issue_number": 58,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/58/parent"
+      },
+      {
+        "issue_number": 49,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/49/parent"
+      },
+      {
+        "issue_number": 47,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/47/parent"
+      },
+      {
+        "issue_number": 44,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/44/parent"
+      },
+      {
+        "issue_number": 43,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/43/parent"
+      },
+      {
+        "issue_number": 42,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/42/parent"
+      },
+      {
+        "issue_number": 41,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/41/parent"
+      },
+      {
+        "issue_number": 40,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/40/parent"
+      },
+      {
+        "issue_number": 39,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/39/parent"
+      },
+      {
+        "issue_number": 38,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/38/parent"
+      },
+      {
+        "issue_number": 37,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/37/parent"
+      },
+      {
+        "issue_number": 36,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/36/parent"
+      },
+      {
+        "issue_number": 35,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/35/parent"
+      },
+      {
+        "issue_number": 34,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/34/parent"
+      },
+      {
+        "issue_number": 33,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/33/parent"
+      },
+      {
+        "issue_number": 32,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/32/parent"
+      },
+      {
+        "issue_number": 31,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/31/parent"
+      },
+      {
+        "issue_number": 30,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/30/parent"
+      },
+      {
+        "issue_number": 29,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/29/parent"
+      },
+      {
+        "issue_number": 26,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/26/parent"
+      },
+      {
+        "issue_number": 23,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/23/parent"
+      },
+      {
+        "issue_number": 17,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/17/parent"
+      },
+      {
+        "issue_number": 7,
+        "provider_response": "404 No parent issue found",
+        "state": "no-parent-observed",
+        "url": "https://api.github.com/repos/egohygiene/hygiene/issues/7/parent"
+      }
+    ],
+    "open_pr_count": 0,
+    "readiness": {
+      "original_gated_full_outcomes": 9,
+      "original_independently_startable": 22,
+      "with_nine_proposed_gap_issues": {
+        "gated_full_outcomes": 9,
+        "independently_startable": 31,
+        "work_items": 40
+      }
+    },
+    "snapshot": [
+      {
+        "body_sha256_utf8": "873caf3c337cedfbfe08c22c926d65f9f85574ce9cf3eecec8f3e015611c38a6",
+        "comments_inspected": 0,
+        "created_at": "2026-10-18T13:43:17Z",
+        "issue_number": 69,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "\ud83c\udfd7\ufe0f [architecture] Freeze the Intelligence authority and compatibility gate",
+        "updated_at": "2026-10-18T13:43:17Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/69"
+      },
+      {
+        "body_sha256_utf8": "3f21d9e21bce7ad7963c522b90b77d49eceed944b9b5819684bd57ba8be9667a",
+        "comments_inspected": 0,
+        "created_at": "2026-09-28T21:51:58Z",
+        "issue_number": 66,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "\ud83c\udfc6 [Progress 1/4] Define achievement rules and register the Progress surface",
+        "updated_at": "2026-09-28T21:51:58Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/66"
+      },
+      {
+        "body_sha256_utf8": "a32621bb65c12206c3d00a3f92478ca6f3485219e71aa74ed231ff8efb8c87f0",
+        "comments_inspected": 0,
+        "created_at": "2026-09-28T21:20:06Z",
+        "issue_number": 65,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "\ud83d\udcdc [Release checkpoint 3] Review the common release policy and migration gates",
+        "updated_at": "2026-09-28T21:20:06Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/65"
+      },
+      {
+        "body_sha256_utf8": "66619bd189ef3afbabe428e1e42ca2b5a205d11acc1a42d0b8c6f5ca263d4c3a",
+        "comments_inspected": 0,
+        "created_at": "2026-09-28T19:04:38Z",
+        "issue_number": 64,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "\ud83d\udcda Define canonical documentation layout, architecture navigation, and agent entry points",
+        "updated_at": "2026-10-18T03:35:50Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/64"
+      },
+      {
+        "body_sha256_utf8": "a499e9e3a0810f89e241630cef15b2600389578b1ed82e86049212d1f482d4cf",
+        "comments_inspected": 0,
+        "created_at": "2026-09-20T22:18:18Z",
+        "issue_number": 62,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define the canonical System Status and incident-communication contract",
+        "updated_at": "2026-09-20T22:18:18Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/62"
+      },
+      {
+        "body_sha256_utf8": "21a3fde282f001e8e41d15be5989397b90f801c25c5519f65c480839e2629f52",
+        "comments_inspected": 0,
+        "created_at": "2026-09-18T18:44:03Z",
+        "issue_number": 61,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Roadmap: converge the federated Second Brain through reference journeys",
+        "updated_at": "2026-09-28T19:34:04Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/61"
+      },
+      {
+        "body_sha256_utf8": "0b5a920f1e8a0b415f7990eddba0e23dfbaaf88863b9eae048e0203a0b4c6d2d",
+        "comments_inspected": 0,
+        "created_at": "2026-09-16T01:02:04Z",
+        "issue_number": 60,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define the canonical organization roadmap and repository-roadmap inheritance contract",
+        "updated_at": "2026-09-18T18:48:52Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/60"
+      },
+      {
+        "body_sha256_utf8": "78cc9766c4e144dfba7972968d171b66afca187c066e8fcdc1f9b196950420c8",
+        "comments_inspected": 0,
+        "created_at": "2026-09-15T15:39:56Z",
+        "issue_number": 59,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define architecture-coherence ratification policy and review applicability",
+        "updated_at": "2026-09-15T15:39:56Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/59"
+      },
+      {
+        "body_sha256_utf8": "3a81d83b0931718d476c833b0385af2048e3e49e6570d3dc565c9adc0eb22608",
+        "comments_inspected": 3,
+        "created_at": "2026-09-15T15:33:08Z",
+        "issue_number": 58,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Roadmap: make audits, hygiene, and organization intelligence a continuous control loop",
+        "updated_at": "2026-09-20T22:26:45Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/58"
+      },
+      {
+        "body_sha256_utf8": "00c37f7a584a375dbb4eddfcd57dff771725e193d5a343d33bce79048b30f73d",
+        "comments_inspected": 0,
+        "created_at": "2026-09-13T17:40:41Z",
+        "issue_number": 49,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Build a corpus-assisted canonical configuration synthesis workflow",
+        "updated_at": "2026-09-13T17:40:41Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/49"
+      },
+      {
+        "body_sha256_utf8": "cd1543c7dfa1d21e4634c7f1d41a502c50517a90c4d33ab99a4a0bc1064e1bb8",
+        "comments_inspected": 0,
+        "created_at": "2026-09-12T17:04:47Z",
+        "issue_number": 47,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Backfill repository ADR history and enable continuous decision capture",
+        "updated_at": "2026-10-18T21:39:47Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/47"
+      },
+      {
+        "body_sha256_utf8": "c2191c300b7c89ad1e4eff11c3481a99da772489d3c5e52c628d178ceadeb53d",
+        "comments_inspected": 0,
+        "created_at": "2026-09-07T03:31:29Z",
+        "issue_number": 44,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "\ud83c\udfe0 Define workstation configuration and OS provisioning ownership boundaries",
+        "updated_at": "2026-09-07T03:31:29Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/44"
+      },
+      {
+        "body_sha256_utf8": "1fb1a6f8e1b54a140487ca333e0122cb87818804bdd62650f25a923ed6ed441b",
+        "comments_inspected": 0,
+        "created_at": "2026-09-06T22:52:29Z",
+        "issue_number": 43,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Roadmap: prove Ego Hygiene as a reusable organization platform with a second consumer",
+        "updated_at": "2026-09-25T20:42:25Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/43"
+      },
+      {
+        "body_sha256_utf8": "9bfeba10f9265b16fced46815f96ca81a8615e4e1417c41954d9c611ad1e98ad",
+        "comments_inspected": 0,
+        "created_at": "2026-09-06T22:47:21Z",
+        "issue_number": 42,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define the portable organization-foundation contract and platform distribution lock",
+        "updated_at": "2026-09-06T22:47:21Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/42"
+      },
+      {
+        "body_sha256_utf8": "716ac26b3d4f09953478cf1acee2762621776ba5be4e473daad87b3c7cf528fb",
+        "comments_inspected": 0,
+        "created_at": "2026-09-04T18:39:23Z",
+        "issue_number": 41,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define repository applicability for diagnosis records",
+        "updated_at": "2026-09-04T18:39:23Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/41"
+      },
+      {
+        "body_sha256_utf8": "8f1bd454f7ec607c72fa4e288050110d77cbfa25b28fa40bb0056f63808b974c",
+        "comments_inspected": 0,
+        "created_at": "2026-09-03T17:26:25Z",
+        "issue_number": 40,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define a verifiable local AI isolation and privacy assurance profile",
+        "updated_at": "2026-09-03T17:26:25Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/40"
+      },
+      {
+        "body_sha256_utf8": "98bb9b681ed11fbc12f1b4baa0275437cd932fb12c9803902377fa0c219ac42a",
+        "comments_inspected": 0,
+        "created_at": "2026-09-03T17:26:24Z",
+        "issue_number": 39,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define the confidential AI workload and information-flow policy",
+        "updated_at": "2026-09-03T17:26:24Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/39"
+      },
+      {
+        "body_sha256_utf8": "2686fe36da6cda0508591233ef7dc773661aa6b5430aa9856eca79237a2e6197",
+        "comments_inspected": 0,
+        "created_at": "2026-09-02T10:58:04Z",
+        "issue_number": 38,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Design a provenance-preserving commit-history normalization program",
+        "updated_at": "2026-09-02T10:58:04Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/38"
+      },
+      {
+        "body_sha256_utf8": "13abcc4b00f921f352f1b26c7dcc6c5373fdad192fc4f69cbef98394fbfc292d",
+        "comments_inspected": 0,
+        "created_at": "2026-09-02T10:58:02Z",
+        "issue_number": 37,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define the canonical commit, pull-request title, and change-history contract",
+        "updated_at": "2026-09-02T10:58:02Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/37"
+      },
+      {
+        "body_sha256_utf8": "0899de7f9889679a059702f943de9352a1b6d4ea925a8716b65d80c87017f3fe",
+        "comments_inspected": 0,
+        "created_at": "2026-09-02T10:57:57Z",
+        "issue_number": 36,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define recurring organization health checkpoints and keep the repository catalog live",
+        "updated_at": "2026-09-26T18:09:40Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/36"
+      },
+      {
+        "body_sha256_utf8": "20d879f8673c376a261ed82ab34e181ab94a3eef8e89286b63f2fdffe6f28854",
+        "comments_inspected": 0,
+        "created_at": "2026-09-02T09:41:10Z",
+        "issue_number": 35,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Extend the assurance profile with ISO/IEC 27001 and ISO/IEC 27701 readiness",
+        "updated_at": "2026-09-02T09:41:10Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/35"
+      },
+      {
+        "body_sha256_utf8": "1cff0708c6e24cfd784d1f9ae9a805b356f18a514e0df3a5a5f2de9e054370c9",
+        "comments_inspected": 0,
+        "created_at": "2026-09-02T09:07:48Z",
+        "issue_number": 34,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Evaluate queryable field-level encryption for applicable Postgres workloads",
+        "updated_at": "2026-09-02T09:07:48Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/34"
+      },
+      {
+        "body_sha256_utf8": "c044a01f1aa0088515a6b32b4e7b5e7d50bec575ededcd50e83c26e55f0e43f7",
+        "comments_inspected": 0,
+        "created_at": "2026-09-02T09:07:46Z",
+        "issue_number": 33,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define an organization-wide Hugging Face presence and publication profile",
+        "updated_at": "2026-09-02T09:07:46Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/33"
+      },
+      {
+        "body_sha256_utf8": "c6d177f7cc3842514e6766183b65c0f367a2498ee2bc5a1d94b083683ccd51c8",
+        "comments_inspected": 0,
+        "created_at": "2026-09-02T07:16:42Z",
+        "issue_number": 32,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define an evidence-based application architecture quality profile",
+        "updated_at": "2026-09-02T07:16:42Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/32"
+      },
+      {
+        "body_sha256_utf8": "22509d600cce92557aeb8dddffd116050fe2fa910afc56b48dace83eed41c897",
+        "comments_inspected": 0,
+        "created_at": "2026-09-02T06:48:12Z",
+        "issue_number": 31,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Roadmap: make compatibility, evaluation, and agent claims inspectable",
+        "updated_at": "2026-09-02T06:48:12Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/31"
+      },
+      {
+        "body_sha256_utf8": "e1ad4c24a0e56d99b3663d52048fec3eda7c0609098c63d9499c04ecaa19a0aa",
+        "comments_inspected": 0,
+        "created_at": "2026-09-02T06:45:52Z",
+        "issue_number": 30,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define an evidence-backed quantitative and compatibility claims policy",
+        "updated_at": "2026-09-02T06:45:52Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/30"
+      },
+      {
+        "body_sha256_utf8": "beded84386a8fc03ec9e59d9242095a2c2f89e9f96f415ed59926409d563f250",
+        "comments_inspected": 0,
+        "created_at": "2026-08-31T18:44:28Z",
+        "issue_number": 29,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "policy(distribution): define the universal tool distribution and native-installability profile",
+        "updated_at": "2026-09-28T21:25:45Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/29"
+      },
+      {
+        "body_sha256_utf8": "7643cfd541e5fb4c76d2f329559761a9e6a41330a7f0d945b74ab2c3e7a0f9e2",
+        "comments_inspected": 0,
+        "created_at": "2026-08-30T14:31:09Z",
+        "issue_number": 26,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define the organization software supply-chain assurance profile",
+        "updated_at": "2026-08-30T14:31:09Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/26"
+      },
+      {
+        "body_sha256_utf8": "8eced72ca15b02dcac71aa42b5a023493a244d6039cee84b0451ec51b6b66ba5",
+        "comments_inspected": 1,
+        "created_at": "2026-08-29T10:11:42Z",
+        "issue_number": 23,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define a people-first helpful-content and editorial quality profile",
+        "updated_at": "2026-08-29T10:15:58Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/23"
+      },
+      {
+        "body_sha256_utf8": "f9e1acadfdb79479fd90c2e835431d06189ade86e7fde0d10581e721521d057f",
+        "comments_inspected": 2,
+        "created_at": "2026-08-22T20:22:24Z",
+        "issue_number": 17,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Define the universal public-site legal, policy, trust, and disclosure profile",
+        "updated_at": "2026-08-30T14:33:36Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/17"
+      },
+      {
+        "body_sha256_utf8": "e2b6b9562bd3d7ba34f8c2aa05dcb29f7ab064129752b9fca35dc1db1d867cbf",
+        "comments_inspected": 0,
+        "created_at": "2026-08-19T14:30:51Z",
+        "issue_number": 7,
+        "labels": [],
+        "native_subissue_total": 0,
+        "state": "open",
+        "state_reason": null,
+        "title": "Architect a self-hostable organization compiler and hybrid business model",
+        "updated_at": "2026-08-19T14:30:51Z",
+        "url": "https://github.com/egohygiene/hygiene/issues/7"
+      }
+    ],
+    "uncreated_candidate_issue_count": 9,
+    "work_issue_count": 31
+  },
+  "limitations": [
+    "Repository-scoped local Linux source audit, not a new full-organization scan or complete security assessment.",
+    "Historical audits, accepted decisions, original ADR-0001 bytes, and all existing issue scopes/dispositions remain preserved.",
+    "ADR policy1.2.0 is already accepted; proposed profiles remain proposed. Naming/merge/validation do not supply missing human architecture approval.",
+    "Existing47 retains original ADR-0001 source-approval, metadata/lineage and real deployment/UI/recovery acceptance.",
+    "Native source admission is invalid; successful Python checks and green hosted admission workflow do not prove conformance or a published site.",
+    "No release, deployment, policy ratification, private-source review, credential use or destructive migration was performed.",
+    "URL/containment/scanner/release counterexamples use synthetic inputs and harmless temporary targets; no secret exposure, exploit or unauthorized execution established.",
+    "Raw logs/provider payloads are omitted; their hashes are integrity aids, not accessible-public-evidence claims.",
+    "Public issue metadata and exact body hashes are retained; comment and issue bodies are not copied into this receipt."
+  ],
+  "live_handoff_observation": {
+    "identity114": {
+      "merged": true,
+      "merged_at": "2026-10-19T10:02:22Z",
+      "state": "closed",
+      "url": "https://github.com/egohygiene/identity/pull/114"
+    },
+    "issue73": {
+      "state": "closed",
+      "state_reason": "completed",
+      "url": "https://github.com/egohygiene/hygiene/issues/73"
+    },
+    "main": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d",
+    "observed_at": "2026-10-20T04:13:58.580Z",
+    "open_prs": 0,
+    "pr74": {
+      "merged": true,
+      "merged_at": "2026-10-18T21:31:09Z",
+      "state": "closed",
+      "url": "https://github.com/egohygiene/hygiene/pull/74"
+    }
+  },
+  "local_runtime": {
+    "checkpoint_schema_engine": {
+      "PyYAML": "6.0.1",
+      "jsonschema": "4.10.3"
+    },
+    "python": "3.12.14",
+    "qualification": "Prepared audit environment outside source; native/Relay environments have their own separately recorded versions."
+  },
+  "native_validation": {
+    "binary_sha256": "4cd698364693e5b094152a9d374fd9c01842eed9c1c05591437d42694769f305",
+    "build": {
+      "cargo": "1.97.1 (c980f4866 2026-06-30)",
+      "command": "cargo +1.97.1 build --frozen --target-dir <outside-source>",
+      "exit_code": 0,
+      "rustc": "1.97.1 (8bab26f4f 2026-07-14)",
+      "source_toolchain": "1.85.1",
+      "source_toolchain_executed": false
+    },
+    "command": "egolint validate --workspace <separate-exact-source-worktree> --repository-intelligence .config/egolint/repository-intelligence.toml --represented-commit aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d",
+    "egolint_revision": "d917ea524962639494e5bb4b3196192238ba57d9",
+    "exit_code": 1,
+    "intelligence": {
+      "owner_contract_mismatch_count": 0,
+      "represented_commit": {
+        "revision": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d",
+        "state": "present"
+      },
+      "rule_counts": {
+        "EGO-INTEL-ADOPTION-001": 2,
+        "EGO-INTEL-ADR-INDEX-001": 1,
+        "EGO-INTEL-ADR-LINEAGE-001": 12,
+        "EGO-INTEL-ADR-METADATA-001": 1
+      },
+      "status": "invalid",
+      "summary": {
+        "adrs_inspected": 13,
+        "blocking_diagnostics": 0,
+        "commits_inspected": 99,
+        "diagnostics": 16,
+        "roadmap_steps_inspected": 0
+      }
+    },
+    "limits": [
+      "Direct CLI also evaluates automatic portability/release checks; findings require scope review, not automatic classification as Hygiene defects.",
+      "No source edit, source approval, release, deployment, network-native validation or provider mutation.",
+      "Raw local reports/logs are retained only as intermediates; normalize private paths before any public artifact."
+    ],
+    "observed_at": "2026-10-20T04:13:21.712304+00:00",
+    "release": {
+      "state": "invalid",
+      "summary": {
+        "advisory_slots": 0,
+        "checks_completed": 6,
+        "checks_failed": 1,
+        "external_evidence_items": 0,
+        "not_applicable_slots": 0,
+        "required_slots": 7,
+        "unavailable_evidence_items": 1,
+        "validation_complete": false
+      }
+    },
+    "run": {
+      "completeness": "partial",
+      "rule_counts": {
+        "EGO-INTEL-ADOPTION-001": 2,
+        "EGO-INTEL-ADR-INDEX-001": 1,
+        "EGO-INTEL-ADR-LINEAGE-001": 12,
+        "EGO-INTEL-ADR-METADATA-001": 1,
+        "EGO-PORT-EXEC-001": 7,
+        "EGOLINT_RELEASE_AETHER_DECLARATION": 1,
+        "EGOLINT_RELEASE_TASK_HANDOFFS": 1
+      },
+      "status": "findings",
+      "summary": {
+        "normalized_findings": 25,
+        "normalized_suppressions": 0,
+        "normalized_tool_results": 3
+      }
+    },
+    "source_revision": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d"
+  },
+  "native_validation_qualification": "Exact d917ea5 source built frozen/offline with installed Rust/Cargo1.97.1; source toolchain1.85.1 was not executed. The direct CLI exits1 with25 qualified findings. Intelligence is invalid with16 diagnostics and13 inspected metadata ADRs, zero owner-contract mismatches; missing original ADR-0001 and explicitly unknown adoption are preserved under existing47. Additional automatic release/portability compatibility findings are limited integration observations, not automatically new Hygiene defects.",
+  "observation_window": {
+    "assessment_id_instant": "2026-10-20T04:03:35Z",
+    "latest_live_observation": "2026-10-20T04:13:58.580Z"
+  },
+  "privacy": {
+    "classification": "public-repository",
+    "contains_sensitive_data": false,
+    "omitted_categories": [
+      "private-local-paths",
+      "environment-values",
+      "raw-logs",
+      "raw-comments",
+      "private-conversation-text",
+      "unrelated-private-context"
+    ],
+    "synthetic_url_userinfo": "Only explicitly synthetic example.invalid fixture strings; no real credential."
+  },
+  "publication_artifact_validation": {
+    "bytes": 12425,
+    "continuity_sha256_utf8": "4309523df5e05e276e0710b400a4cc1853bb1494c2b17a1763d7b7e8f6fffa5f",
+    "headings": [
+      "Purpose and precedence",
+      "Resume protocol",
+      "Current objective and success conditions",
+      "State snapshot",
+      "Completed and material changes",
+      "Validation and review evidence",
+      "Blockers, risks, unknowns, and deferred work",
+      "Next dependency-ready work",
+      "Parallel changes and reconciliation",
+      "Privacy and redaction",
+      "Handoff update protocol",
+      "Compaction and supersession"
+    ],
+    "headings_match": true,
+    "lines": 205,
+    "missing_relative_links": [],
+    "observed_at": "2026-10-20T04:20:52.672853+00:00",
+    "placeholder_present": false,
+    "public_path_secret_shape_hits": [],
+    "regular_root_file": true,
+    "repository_composition": {
+      "command": [
+        "python3",
+        "tools/continuity.py",
+        "validate-repository",
+        "--repository",
+        "."
+      ],
+      "exit_code": 0
+    },
+    "schema_engine": "jsonschema4.10.3 Draft202012Validator with FormatChecker; PyYAML6.0.1",
+    "schema_errors": [],
+    "schema_revision": "b7597301c4d22a9bcd580967b5753138bb368111",
+    "schema_sha256": "a725e004fe0db2bf96a968c6e3f300d37ecf8b00b9a0923be5c5f4c529655916",
+    "whitespace": {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    "within_budget": true
+  },
+  "publication_state": {
+    "assessment_publication": "Authorized report/receipt and continuity proposal; not a merged repair.",
+    "candidate_branch": "audit/hygiene-completeness-20261020",
+    "candidate_revision": null,
+    "implementation_or_policy_fixes_applied": false,
+    "issue_candidates_at_assessment": "uncreated",
+    "pull_request": null,
+    "release_or_site_deployment_performed_by_audit": false
+  },
+  "published_reproduction_artifacts": [
+    {
+      "bytes": 5706,
+      "path": "audits/data/hygiene-completeness-20261020T040335Z.contract-repros.py",
+      "sha256": "2a99fbf0e2c21545922433f8af95bf98b080c707ff6130175dc54f4b5d2ef2da"
+    },
+    {
+      "bytes": 5171,
+      "path": "audits/data/hygiene-completeness-20261020T040335Z.policy-repros.py",
+      "sha256": "21d43d6dfea1f51a6f4206f50c273a80ea7f8e583ccc85b23177c5ac960babc1"
+    },
+    {
+      "bytes": 2730,
+      "path": "audits/data/hygiene-completeness-20261020T040335Z.web-repros.py",
+      "sha256": "5d363d86b4c38303e892f6ad992a593475a26baf0ddabea02cdec0883de54157"
+    },
+    {
+      "bytes": 5088,
+      "path": "audits/data/hygiene-completeness-20261020T040335Z.publication-repros.py",
+      "sha256": "a5b69bb9e48d21cd047ffcbca593398e587a61acebcdf0b1243bb91bedea8446"
+    }
+  ],
+  "raw_intermediate_integrity": [
+    {
+      "meaning": "Integrity-only digest of a local intermediate not published with this assessment.",
+      "path_label": "validation-receipts.json",
+      "sha256": "113b12c8969644275233434bb1c5fe8e7d322604a719ebb6a0b687e7185d1cf4"
+    },
+    {
+      "meaning": "Integrity-only digest of a local intermediate not published with this assessment.",
+      "path_label": "unit-tests.log",
+      "sha256": "6e036c5eb02ec6c3e330ab2b7910a5e02af449cd6c85798f2bd0da2854f51f37"
+    },
+    {
+      "meaning": "Integrity-only digest of a local intermediate not published with this assessment.",
+      "path_label": "native-validation.log",
+      "sha256": "de0631915f05d2cb08ca71d1b161aa9d2f4d1693abf75d23becd8e714d535bde"
+    },
+    {
+      "meaning": "Integrity-only digest of a local intermediate not published with this assessment.",
+      "path_label": "native-run.json",
+      "sha256": "6417b886b08d6532f3ae042f9d5553716c72565f5fa4504625a30d0915019f0c"
+    },
+    {
+      "meaning": "Integrity-only digest of a local intermediate not published with this assessment.",
+      "path_label": "native-repository-intelligence.json",
+      "sha256": "e83be1409bf49eb39e0acde265987d8544579fcd6d22ce227b76c332be495318"
+    },
+    {
+      "meaning": "Integrity-only digest of a local intermediate not published with this assessment.",
+      "path_label": "native-repository-release.json",
+      "sha256": "8922d2cdbc3d731237e296b52329332a821649aaaabaf7bd90bd1d55c143e639"
+    },
+    {
+      "meaning": "Integrity-only digest of a local intermediate not published with this assessment.",
+      "path_label": "publication-hosted-jobs.json",
+      "sha256": "e3f5caec708ec225556d4a6bd09311b30e04fd2b6e0cbf7150331215a9ede347"
+    },
+    {
+      "meaning": "Integrity-only digest of a local intermediate not published with this assessment.",
+      "path_label": "ledger-provider-receipt.json",
+      "sha256": "7cda7df9da2b763f753bfda9a6b0521ae16736d4db07e8d4739f78883b519912"
+    }
+  ],
+  "relay_native_validation": {
+    "collect": {
+      "candidate_digests": {
+        "projection_sha256": "89c7aef02cf4797d2e60da19587502579d3e195e2afc0723820e81cc8af0b3ea",
+        "snapshot_sha256": "dadc285b86383e77231f17b80088449c55a8f99716806d99f29cf19549b51c3d"
+      },
+      "coverage": {
+        "checks": {
+          "collection": "uncollected",
+          "freshness": "unknown",
+          "observed_at": null,
+          "reason": "not_requested"
+        },
+        "decisions": {
+          "collection": "partial",
+          "freshness": "current",
+          "observed_at": "2026-10-20T04:13:30Z",
+          "reason": "incomplete"
+        },
+        "deployments": {
+          "collection": "uncollected",
+          "freshness": "unknown",
+          "observed_at": null,
+          "reason": "not_requested"
+        },
+        "git": {
+          "collection": "uncollected",
+          "freshness": "unknown",
+          "observed_at": null,
+          "reason": "not_requested"
+        },
+        "history": {
+          "collection": "uncollected",
+          "freshness": "unknown",
+          "observed_at": null,
+          "reason": "not_requested"
+        },
+        "issues": {
+          "collection": "uncollected",
+          "freshness": "unknown",
+          "observed_at": null,
+          "reason": "not_requested"
+        },
+        "pull_requests": {
+          "collection": "uncollected",
+          "freshness": "unknown",
+          "observed_at": null,
+          "reason": "not_requested"
+        },
+        "releases": {
+          "collection": "uncollected",
+          "freshness": "unknown",
+          "observed_at": null,
+          "reason": "not_requested"
+        },
+        "roadmap": {
+          "collection": "uncollected",
+          "freshness": "unknown",
+          "observed_at": null,
+          "reason": "not_requested"
+        }
+      },
+      "diagnostic_code_counts": {
+        "EGO-INTEL-ADOPTION-001": 3,
+        "EGO-INTEL-ADR-INDEX-001": 1,
+        "EGO-INTEL-ADR-LINEAGE-001": 12,
+        "EGO-INTEL-ADR-METADATA-001": 1,
+        "EXTRACTION": 1,
+        "INTEGRATION": 1
+      },
+      "diagnostic_count": 19,
+      "exit_code": 2,
+      "inputs": {
+        "adoption": "legacy",
+        "collected_at": "2026-10-20T04:13:30Z",
+        "decision_directory": "docs/decisions",
+        "index": "docs/decisions/README.md",
+        "known_external_decisions": [
+          "egohygiene/identity#ADR-0017"
+        ],
+        "maximum_age_seconds": 86400,
+        "policy_owner": true,
+        "policy_reference": null
+      },
+      "publication": "denied",
+      "repository": "egohygiene/hygiene",
+      "represented_commit": "aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d",
+      "retained_envelope_bytes": 150621,
+      "retained_envelope_sha256": "e41a00c62de2fb73ff5694c7082915963cd8c35a4ca2f86c11d6294e5e7686ed",
+      "schema": "egohygiene.relay.adr-collection-review/v1",
+      "source_count": 23,
+      "sources": [
+        {
+          "path": "catalog/contracts.yaml",
+          "sha256": "2a8c4e114c2964acbf160ed6f0183013f175d07f6752878b9984542596b6622a"
+        },
+        {
+          "path": "docs/decisions/ADR-0001-holistic-architecture-v0.1.md",
+          "sha256": "5b7a4f36456e80790d4f7d989600310f8effdb2f800058f0f0bb23826730655b"
+        },
+        {
+          "path": "docs/decisions/ADR-0002-organization-adr-and-delivery-history.md",
+          "sha256": "62a8f1af34cb8ebce80c2c14f4c0624598188ac76bf138415ee84ff4caab6617"
+        },
+        {
+          "path": "docs/decisions/ADR-0003-route-filament-infrastructure-contracts.md",
+          "sha256": "8057fc97ebb5f5f5bcb5b6b29028fb3eadc88e75a7c07b02d555436309698fc5"
+        },
+        {
+          "path": "docs/decisions/ADR-0004-register-sanctuary-incubation-boundary.md",
+          "sha256": "75ce3ddc0acd768564082bf51153cb5b7457df5db214fcbfb48bcb5b7c3883c3"
+        },
+        {
+          "path": "docs/decisions/ADR-0005-unify-repository-intelligence-projection.md",
+          "sha256": "9b7d8a017c8e15619bcd226c6af425bfaf066c211fb78797daf58a51edc0bb62"
+        },
+        {
+          "path": "docs/decisions/ADR-0006-repository-presentation-profile.md",
+          "sha256": "93cf95a41dbcdde4f10e816e210995bffe2061fd7e05cfa7073114be7e30e71d"
+        },
+        {
+          "path": "docs/decisions/ADR-0007-repository-release-baseline.md",
+          "sha256": "450ee5ee95868549ed931a4abe3c008675b0ed61f8cf2de513bd13c1a9e84028"
+        },
+        {
+          "path": "docs/decisions/ADR-0008-repository-continuity-policy.md",
+          "sha256": "a30f7adaaf5cdf85a29e45a02e4b7003dfe43518ce669c298a73f726fe5d0e3c"
+        },
+        {
+          "path": "docs/decisions/ADR-0009-agent-ready-web-profile-foundation.md",
+          "sha256": "7dfdf450a52870b048b86bcb685525e85f25aa757ac446cd208ac7e2d12825e3"
+        },
+        {
+          "path": "docs/decisions/ADR-0010-agent-ready-web-discovery-representations.md",
+          "sha256": "f45fa7921537e8c1cda84fce6c9865ffb4b694e51a6710c8f8f21f62c17a2cca"
+        },
+        {
+          "path": "docs/decisions/ADR-0011-agent-ready-web-guarded-capability-commerce.md",
+          "sha256": "4bb03b73ff4c8025927b94317175136a74d02e3090d8162e1a58022607288518"
+        },
+        {
+          "path": "docs/decisions/ADR-0012-agent-ready-web-integration-conformance.md",
+          "sha256": "57e461076aec553c448514950d011a4edee93bf41379d26f45930be3ff44aeaf"
+        },
+        {
+          "path": "docs/decisions/ADR-0013-public-site-surface-route-registry.md",
+          "sha256": "ae0bcd791af58aa41bedc96b42085c409f5436b5a61eeb6ede5ee602bff02f88"
+        },
+        {
+          "path": "docs/decisions/ADR-0014-json-compatible-catalogs-and-reference-tools.md",
+          "sha256": "6314f85dfeda90dec5b423db6fbc1545d3cfff723534cc59218c58da55a21a6b"
+        },
+        {
+          "path": "docs/decisions/ADR-TEMPLATE.md",
+          "sha256": "5f88b5af7b51032b5b0fe8c12589bd8b55f9ffd7303575249a58eb06695648a4"
+        },
+        {
+          "path": "docs/decisions/MIGRATION.md",
+          "sha256": "401efcd02d899d37621ac5b315404d6b2dea2db48461884b94a978b03f36e7be"
+        },
+        {
+          "path": "docs/decisions/POLICY.md",
+          "sha256": "b8832d30363fc9005460c7353f73a58444f0230bc98960df201969f54682839b"
+        },
+        {
+          "path": "docs/decisions/RATIFICATION.md",
+          "sha256": "0e31c754c28b432b22d6698f1ab89231c223bf731831430d5efd67dab7afcddb"
+        },
+        {
+          "path": "docs/decisions/README.md",
+          "sha256": "d3f32a95f3813f2b4f277700e1807ba03d6737be3684482f043ca2579b0f76ea"
+        },
+        {
+          "path": "docs/decisions/VALIDATION.md",
+          "sha256": "dabc48eca2df720ec2a8c41733b1ff0913cfb57c31a28f49e3458f3c0df3a79a"
+        },
+        {
+          "path": "schemas/architecture-decision-policy-reference.v1.schema.json",
+          "sha256": "fdf451cfa38ba666ec579aa75d2acbd52a56b95e73c7437565b79dfcfb689216"
+        },
+        {
+          "path": "schemas/architecture-decision.v1.schema.json",
+          "sha256": "725a7cf58cd0b0454d4d481e8ef72815f29ecca80a5b44da5ce48f7ec6e6b8c4"
+        }
+      ],
+      "status": "invalid",
+      "validation": {
+        "coverage": "valid",
+        "diagnostics_truncated": false,
+        "egolint": "invalid",
+        "hygiene": "valid",
+        "observatory": "normalized"
+      }
+    },
+    "limits": [
+      "Read-only review envelope alwaysdeniespublication; projection/snapshotcandidates are notadmittedproductioninputs.",
+      "Knownexternaldecision key was explicitlydeclared; no externaltargetfetchorapprovalwasperformed.",
+      "No originalADR0001metadata, decisionstatus, humanapprovalorcanonicalbyteswerechanged.",
+      "Rawreviewenvelope retainedonlyasintermediate; summarydoesnotclaimpublicaccessibilityofrawartifact."
+    ],
+    "native_collector_tests": {
+      "command": "RELAY_ADR_RUNTIME=<verified-runtime> RELAY_ADR_CANARY=<exact-source> python -B -I -m unittest discover --start-directory tests --pattern test_repository_adr_collector.py --verbose",
+      "duration_seconds": 6.267,
+      "exit_code": 0,
+      "skips": 0,
+      "tests": 31
+    },
+    "observed_at": "2026-10-20T04:13:30Z",
+    "prepare": {
+      "exit_code": 0,
+      "mode": "verified locked Git object intake and offline native build through actual pinned collector",
+      "python_requirements": "exact actions/repository-intelligence/contracts/roadmap-collector-requirements.txt",
+      "runtime": {
+        "egolint_sha256": "b8cee9cb13814c1fad47c7c9d54cf45b8e73598d96517b8c1f14e3f68c6789d5",
+        "lock_sha256": "44e9b34d5c2531c5c8c4cae83111146f4e812a0188bb665288e69af4bfdfdb6c"
+      },
+      "sources": {
+        "egolint": {
+          "repository": "egohygiene/egolint",
+          "revision": "d917ea524962639494e5bb4b3196192238ba57d9",
+          "tree": "033b3d4c4b91d31de7e9004744dcf97549d12de8",
+          "verified_file_count": 8
+        },
+        "hygiene": {
+          "repository": "egohygiene/hygiene",
+          "revision": "639a003d5ddc4d242c2cf190eeb59a9fc522d199",
+          "tree": "212a81d3f0527dc925ab1379afacaffeebb23658",
+          "verified_file_count": 4
+        },
+        "hygiene_adr": {
+          "repository": "egohygiene/hygiene",
+          "revision": "a05b14f8b9e2772124f879f818e09a911e996ad8",
+          "tree": "16da72be28aa06c784e3e706e264d1765f130441",
+          "verified_file_count": 6
+        },
+        "observatory": {
+          "repository": "egohygiene/observatory",
+          "revision": "f411b83398dd07aa3d5e6e2c89d1e8dfff746085",
+          "tree": "bf621ef1b6c389979179e27c0f074b25d6f1565e",
+          "verified_file_count": 3
+        }
+      },
+      "toolchain": "Rust/Cargo1.97.1; source1.85.1 notexecuted",
+      "verified_owner_files": 21
+    },
+    "relay_revision": "ac2600f4619f64c75a0e499e0540d8f48d516f9c"
+  },
+  "release_owner_schema_validation": {
+    "observed_at": "2026-10-20T04:20:22.763361+00:00",
+    "owner_revision": "8a2a3d08f3aa9da3847bd5277843506ab855192e",
+    "results": {
+      "baseline": [],
+      "empty_version_authority": [
+        {
+          "message": "'kind' is a required property",
+          "path": [
+            "components",
+            0,
+            "version_authority"
+          ],
+          "validator": "required"
+        }
+      ],
+      "wrong_declared_task": [
+        {
+          "message": "'release:plan' was expected",
+          "path": [
+            "automation",
+            "tasks",
+            "plan"
+          ],
+          "validator": "const"
+        }
+      ]
+    },
+    "schema_path": "catalog/schemas/aether.repository-release.v1.schema.json",
+    "schema_sha256": "8431ea7651336aa7695aee5b9aedce536b1e7c76c3cb15927f64a6206f9cc1f5",
+    "schema_validator": "jsonschema4.10.3 Draft202012Validator with FormatChecker"
+  },
+  "report_status": "partial",
+  "repository": "egohygiene/hygiene",
+  "schema_meta_validation": {
+    "engine": "jsonschema Draft202012Validator.check_schema",
+    "qualification": "Validates the 18 schema documents against their metaschema; not complete fixture/catalog instance conformance.",
+    "results": [
+      {
+        "path": "schemas/agent-ready-web-conformance.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/agent-ready-web-profile.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/architecture-decision-policy-reference.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/architecture-decision.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/dependency-boundary-register.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/organization-contract-index.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/public-site-surface-declaration.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/public-site-surface-registry.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/repository-catalog.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/repository-context.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/repository-context.v2.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/repository-continuity-policy.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/repository-intelligence-vocabulary.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/repository-intelligence.alpha2.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/repository-intelligence.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/repository-presentation-evidence.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/repository-presentation-profile.v1.schema.json",
+        "schema_validity": "pass"
+      },
+      {
+        "path": "schemas/repository-release-policy.v1.schema.json",
+        "schema_validity": "pass"
+      }
+    ],
+    "schemas_checked": 18
+  },
+  "source_file_sha256_at_audited_revision": {
+    ".config/egolint/repository-intelligence.toml": "43e4c8e45fbf8a8e765575ecb9ccd201083ffe764ea125a03610c27aa771b80e",
+    ".egohygiene/release.json": "5c0fcf3190cde8165585de9cdcbfde3367d44c8fd15975f0fb9a672578dceb32",
+    ".github/workflows/publish-pages.yml": "8b899260d2c32f0cf2da51279a28a21ababafb0a932a8c5bf50fba8cc2502030",
+    ".github/workflows/release-policy.yml": "a88b94c74245d51a2f215a03e2c056ab9745099f0f3ae7794db7cf7577cb4b52",
+    "AGENTS.md": "9cec42795ad1ffcfd083e2703d039c7a82e8dacd4ad6529941eedcb7462394fc",
+    "CONTINUITY.md": "f710a2ebec13dd6f8666694a6595caca3ea1b5ef6d3a8591ab6881017480095c",
+    "Taskfile.yml": "969b619fad5ce99371d763541608907f9cf827d00f087fabd748a541070f2b3c",
+    "catalog/agent-ready-web-profile.json": "bb30c8d39b4800b95ff91c3a66f487f5d7fda82833441345f12478f63e7b66c0",
+    "catalog/repository-continuity-policy.json": "2f694682df641f9c9741d79c7d23bca2ae5bd0d1e3aa6ca00cb31db17e0e2e2c",
+    "catalog/repository-presentation-profile.json": "44e0881519350e6747723995939c79c6fb4659e38a74b2c32e409866e7a186ba",
+    "docs/decisions/ADR-0001-holistic-architecture-v0.1.md": "5b7a4f36456e80790d4f7d989600310f8effdb2f800058f0f0bb23826730655b",
+    "docs/decisions/POLICY.md": "b8832d30363fc9005460c7353f73a58444f0230bc98960df201969f54682839b",
+    "publication/site.json": "380a5bea3835890abccfd84b369a3fb6e4edfec47dadcf8870e912788a52096c"
+  },
+  "source_pins": {
+    "accepted_adr_policy": {
+      "approval_url": "https://github.com/egohygiene/hygiene/pull/72",
+      "authority": "accepted",
+      "revision": "a05b14f8b9e2772124f879f818e09a911e996ad8",
+      "version": "1.2.0"
+    },
+    "audit_procedure": {
+      "audit_skill_status": "draft",
+      "audit_skill_version": "1.1.0",
+      "auditor_status": "approved",
+      "auditor_version": "2.0.0",
+      "repository": "egohygiene/aether",
+      "revision": "dc8a16851f452763ef4f7fbe4bf057d4500b1921"
+    },
+    "continuity": {
+      "contract": "aether.repository-continuity/v1",
+      "lifecycle": "draft",
+      "repository": "egohygiene/aether",
+      "revision": "b7597301c4d22a9bcd580967b5753138bb368111",
+      "schema_parity_with_audit_procedure_pin": true,
+      "schema_path": "catalog/schemas/aether.repository-continuity.v1.schema.json",
+      "schema_sha256_utf8_lf": "a725e004fe0db2bf96a968c6e3f300d37ecf8b00b9a0923be5c5f4c529655916",
+      "skill_version": "1.1.0"
+    },
+    "native_egolint": {
+      "binary_sha256": "4cd698364693e5b094152a9d374fd9c01842eed9c1c05591437d42694769f305",
+      "revision": "d917ea524962639494e5bb4b3196192238ba57d9"
+    },
+    "relay_publication_configuration": "6cddad3124bdda1b1e3d54a40931f23322b7be26",
+    "relay_workflow_selection": "ac2600f4619f64c75a0e499e0540d8f48d516f9c"
+  },
+  "unit_tests": {
+    "exit_code": 0,
+    "qualification": "Local dependency-free Python suite; not native acceptance, full schema-instance or live-site evidence.",
+    "receipt_id": "unit-tests",
+    "skips": 0,
+    "tests_run": 194
+  }
+}
