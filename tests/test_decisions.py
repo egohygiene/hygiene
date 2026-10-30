@@ -372,11 +372,13 @@ class DecisionAlignmentTests(unittest.TestCase):
 
     def test_zero_id_is_rejected_and_valid_canonical_bounds_remain_valid(self) -> None:
         candidate = self.load("decision.zero-id.invalid.json")
-        for command in ("decision", "decision-set"):
-            with self.subTest(command=command):
-                result = self.cli([candidate], command=command)
-                self.assertEqual(1, result.returncode, result.stdout)
-                self.assertIn("E_ID", result.stderr)
+        for identifier in ("ADR-0000", "ADR-0000\n", "ADR-0001\n"):
+            candidate["id"] = identifier
+            for command in ("decision", "decision-set"):
+                with self.subTest(identifier=identifier, command=command):
+                    result = self.cli([candidate], command=command)
+                    self.assertEqual(1, result.returncode, result.stdout)
+                    self.assertIn("E_ID", result.stderr)
         for identifier in ("ADR-0001", "ADR-9999"):
             candidate["id"] = identifier
             self.assertEqual([], decisions.validate_decision(candidate))

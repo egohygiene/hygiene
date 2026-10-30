@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T22:55:56Z'
+  updated_at: '2026-10-30T23:12:11Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -46,12 +46,12 @@ work:
     url: https://github.com/egohygiene/hygiene/issues/82
   next:
     kind: action
-    id: review-adr-reference-alignment
-    description: 'Review current #82 source/schema/fixtures and compatibility proof, then refresh the
-      final draft for combined batch sync.'
+    id: review-three-issue-batch
+    description: Independently review draft90 and qualify the combined80–82 batch, then sync with the
+      maintainer before any merge or next batch.
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/82
+    - https://github.com/egohygiene/hygiene/issues/76
     depends_on: []
 state:
   base:
@@ -65,15 +65,15 @@ state:
       provider: github
       id: egohygiene/hygiene#90
       url: https://github.com/egohygiene/hygiene/pull/90
-    handoff_state: in-progress
+    handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-30T22:55:56Z'
+    observed_at: '2026-10-30T23:12:11Z'
     default_branch_revision: fa41ccc95d0cd0365b38008e02bdc67b928c5ed2
     issue_state: open
     pull_request_state: draft
-    notes: 'Draft #90 is open for #82; main remains fa41ccc95d0cd0365b38008e02bdc67b928c5ed2. This implementation
-      remains independent and unmerged.'
+    notes: Live draft90 is open for82; main staysfa41ccc95d0cd0365b38008e02bdc67b928c5ed2. Audit75 is
+      unchanged/open/draft. This candidate is unmerged.
   parallel_changes:
   - provider: github
     id: egohygiene/hygiene#75
@@ -86,7 +86,7 @@ state:
     url: https://github.com/egohygiene/hygiene/issues/81
 review:
   status: partial
-  reviewed_at: '2026-10-30T22:55:56Z'
+  reviewed_at: '2026-10-30T23:12:11Z'
   reviewed_by: Codex
   evidence:
   - command: python3 -I tools/check_contracts.py (unchanged base)
@@ -119,6 +119,22 @@ review:
     observed_at: '2026-10-30T22:55:56Z'
     notes: Six findings remain identical by path/rule/message to unchanged source; no new finding and
       no Ruff-clean claim.
+  - command: Final focused suite and complete python3 -I tools/check_contracts.py
+    outcome: passed
+    observed_at: '2026-10-30T23:12:11Z'
+    notes: Focused27; full240 tests, zero skips/failures/errors and all25 command checks passed on final
+      implementation bytes.
+  - command: Own-review schema end-anchor reproduction and repair qualification
+    outcome: passed
+    observed_at: '2026-10-30T23:12:11Z'
+    notes: Two newline-suffixed IDs were admitted by the pre-review8ee schema while the helper rejected
+      them. Exact8-character schema limits repair both; final schema/meta/formats and27 targeted cases
+      plus public CLI controls pass.
+  - command: Full scoped diff, pinned continuity schema/formats, privacy/budgets and whitespace
+    outcome: passed
+    observed_at: '2026-10-30T23:12:11Z'
+    notes: Thirteen changed files including synthetic fixtures; all other tracked source, actual ADRs,
+      policies/pins, audit and original review patch remain unchanged.
   environment_limitations:
   - 'Exact selected native EgoLint d917ea524962639494e5bb4b3196192238ba57d9 replay is unavailable: no
     cached binary is proven bound to that source. The different cached f14 runtime is not substituted.'
@@ -162,15 +178,15 @@ tools/decisions.py now distinguishes declared proposal history from effective re
 
 ## Validation and review evidence
 
-The baseline gate passed228 tests/25 checks. Implementation focused27 and complete240 tests/25 checks pass without skips. The earlier focused25/twelve expected failing subcases preserve the stage-one reproduction. Targeted schema parity25 and four exact older/current CLI compatibility checks pass; optional Ruff retains six unchanged findings. The exact Aether authoring guide and its older-helper warning were inspected at dc8a16851f452763ef4f7fbe4bf057d4500b1921.
+The baseline gate passed228 tests/25 checks. Implementation focused27 and complete240 tests/25 checks pass without skips. The earlier focused25/twelve expected failing subcases preserve the stage-one reproduction. Final targeted schema parity27 and four exact older/current CLI compatibility checks pass; optional Ruff retains six unchanged findings. The exact Aether authoring guide and its older-helper warning were inspected at dc8a16851f452763ef4f7fbe4bf057d4500b1921.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Independent source review is pending. Selected native d917 replay is unavailable; a different cached runtime cannot replace it. Source admission/publication and original ADR-0001 historical approval stay #47 work. The17 unchanged broader web-schema diagnostics remain in #76. No source helper/schema result authenticates human approval or actual execution.
+Author complete-diff review repaired the schema end-anchor mismatch; parent independent and combined-batch review remain pending. Selected native d917 replay is unavailable; a different cached runtime cannot replace it. Source admission/publication and original ADR-0001 historical approval stay #47 work. The17 unchanged broader web-schema diagnostics remain in #76. No source helper/schema result authenticates human approval or actual execution.
 
 ## Next dependency-ready work
 
-Review the complete #82 diff and exact compatibility limits, then prepare the final draft for the three-issue batch sync. Keep #83–#85 unstarted.
+Independently review draft90 and qualify the combined80–82 batch, then sync with the maintainer before any merge or next batch. Keep #83–#85 unstarted.
 
 ## Parallel changes and reconciliation
 
