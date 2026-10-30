@@ -505,7 +505,7 @@ def _line_number(text: str, offset: int) -> int:
 
 
 def _target_repository(match: re.Match[str]) -> str | None:
-    for group_name in ("action_repo", "raw_repo", "github_repo", "git_repo"):
+    for group_name in ("raw_repo", "github_repo", "git_repo"):
         value = match.groupdict().get(group_name)
         if value:
             return f"egohygiene/{value.removesuffix('.git')}"
@@ -513,11 +513,6 @@ def _target_repository(match: re.Match[str]) -> str | None:
 
 
 MUTABLE_REFERENCE_PATTERNS = [
-    re.compile(
-        rf"uses\s*:\s*egohygiene/(?P<action_repo>[a-z0-9.-]+)"
-        rf"(?:/[^\s@]+)?@(?:{DEFAULT_BRANCHES})(?=$|[\s#])",
-        re.IGNORECASE | re.MULTILINE,
-    ),
     re.compile(
         rf"https?://raw\.githubusercontent\.com/egohygiene/"
         rf"(?P<raw_repo>[a-z0-9.-]+)/(?:{DEFAULT_BRANCHES})(?:/|$)",
@@ -544,6 +539,121 @@ ESCAPING_PATH_PATTERN = re.compile(
     r"(?:\bpath\s*[=:]\s*[\"']?|[\"']file:)(?:\.\./)+",
     re.IGNORECASE,
 )
+
+YAML_MAPPING_LINE = re.compile(
+    r"(?P<key>[A-Za-z0-9_-]+|'[A-Za-z0-9_-]+'|\"[A-Za-z0-9_-]+\")"
+    r"[ \t]*:(?:[ \t]+(?P<value>.*)|$)"
+)
+MUTABLE_ACTION_REFERENCE = re.compile(
+    rf"egohygiene/(?P<repository>[a-z0-9.-]+)"
+    rf"(?:/[a-z0-9_.-]+)*@(?:{DEFAULT_BRANCHES})",
+    re.IGNORECASE,
+)
+
+
+def _quoted_scalar_end(value: str, quote: str, start: int = 1) -> int | None:
+    """Find a YAML quote terminator, including continuation-line state."""
+
+    index = start
+    while index < len(value):
+        if quote == '"' and value[index] == "\\":
+            index += 2
+        elif value[index] == quote:
+            if quote == "'" and value[index:index + 2] == "''":
+                index += 2
+            else:
+                return index
+        else:
+            index += 1
+    return None
+
+
+def _action_scalar(value: str) -> str | None:
+    """Decode one literal scalar; YAML-only features remain unsupported."""
+
+    if not value:
+        return None
+    if value[0] in {"'", '"'}:
+        end = _quoted_scalar_end(value, value[0])
+        if end is None:
+            return None
+        trailing = value[end + 1:].strip()
+        if trailing and not trailing.startswith("#"):
+            return None
+        if value[0] == "'":
+            return value[1:end].replace("''", "'")
+        try:
+            return json.loads(value[:end + 1])
+        except ValueError:
+            return None
+    return re.split(r"[ \t]+#", value, maxsplit=1)[0].rstrip()
+
+
+def _action_references(text: str, relative_path: Path) -> Iterable[tuple[int, str]]:
+    """Read literal uses at bounded block-YAML workflow/action locations.
+
+    This is not a general YAML parser. Scalar bodies and continuation lines are
+    skipped so text inside a run/env/name value cannot become a uses mapping.
+    """
+
+    workflow = (
+        len(relative_path.parts) == 3
+        and relative_path.parts[:2] == (".github", "workflows")
+        and relative_path.suffix in {".yaml", ".yml"}
+    )
+    action = relative_path.name in {"action.yaml", "action.yml"}
+    if not workflow and not action:
+        return
+
+    stack: list[tuple[int, str]] = []
+    scalar_indent: int | None = None
+    continued_quote: str | None = None
+    for line_number, line in enumerate(text.splitlines(), start=1):
+        if continued_quote is not None:
+            if _quoted_scalar_end(line, continued_quote, 0) is not None:
+                continued_quote = None
+            continue
+        content = line.lstrip(" ")
+        if not content or content.startswith("#"):
+            continue
+        indent = len(line) - len(content)
+        if scalar_indent is not None and indent > scalar_indent:
+            continue
+        scalar_indent = None
+        sequence = content == "-" or content.startswith(("- ", "-\t"))
+        while stack and stack[-1][0] >= indent:
+            # YAML permits an indentless sequence as a mapping value.
+            if sequence and stack[-1] == (indent, "steps"):
+                break
+            stack.pop()
+        if sequence:
+            stack.append((indent, "[]"))
+            remainder = content[1:].lstrip(" \t")
+            indent += len(content) - len(remainder)
+            content = remainder
+        match = YAML_MAPPING_LINE.fullmatch(content)
+        if match is None:
+            continue
+        key = match["key"].strip("'\"")
+        value = (match["value"] or "").strip()
+        keys = [entry[1] for entry in stack] + [key]
+        workflow_uses = workflow and (
+            (len(keys) == 3 and keys[0] == "jobs" and keys[-1] == "uses")
+            or (len(keys) == 5 and keys[0] == "jobs"
+                and keys[2:] == ["steps", "[]", "uses"])
+        )
+        action_uses = action and keys == ["runs", "steps", "[]", "uses"]
+        if workflow_uses or action_uses:
+            scalar = _action_scalar(value)
+            reference = MUTABLE_ACTION_REFERENCE.fullmatch(scalar or "")
+            if reference is not None:
+                yield line_number, f"egohygiene/{reference['repository'].lower()}"
+        if not value or value.startswith("#"):
+            stack.append((indent, key))
+        else:
+            scalar_indent = indent
+            if value[0] in {"'", '"'} and _quoted_scalar_end(value, value[0]) is None:
+                continued_quote = value[0]
 
 
 def scan_repository(
@@ -597,11 +707,22 @@ def scan_repository(
             continue
 
     for path in _iter_dependency_files(repository_root):
-        relative_path = path.relative_to(repository_root).as_posix()
+        relative = path.relative_to(repository_root)
+        relative_path = relative.as_posix()
         try:
             text = path.read_text(encoding="utf-8")
         except UnicodeDecodeError:
             continue
+        for line_number, target in _action_references(text, relative):
+            if target != repository and target in repositories:
+                findings.add(
+                    Finding(
+                        rule="BOUNDARY-002",
+                        path=relative_path,
+                        line=line_number,
+                        message=f"mutable default-branch dependency on {target}",
+                    )
+                )
         for match in ESCAPING_PATH_PATTERN.finditer(text):
             findings.add(
                 Finding(

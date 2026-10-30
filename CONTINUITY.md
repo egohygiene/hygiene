@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T21:54:14Z'
+  updated_at: '2026-10-30T21:58:13Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -44,8 +44,9 @@ work:
     url: https://github.com/egohygiene/hygiene/issues/79
   next:
     kind: action
-    id: implement-quoted-uses-detection
-    description: Implement the bounded scanner repair, then rerun focused and complete checks before review.
+    id: review-quoted-uses-repair
+    description: 'Review the complete #79 diff, run final validation and refresh its draft for the three-issue
+      batch sync.'
     readiness: ready
     references:
     - https://github.com/egohygiene/hygiene/issues/79
@@ -58,16 +59,19 @@ state:
   candidate:
     branch: fix/79-quoted-action-refs
     revision: null
-    pull_request: null
+    pull_request:
+      provider: github
+      id: egohygiene/hygiene#86
+      url: https://github.com/egohygiene/hygiene/pull/86
     handoff_state: in-progress
   live:
     status: verified
-    observed_at: '2026-10-30T21:54:14Z'
+    observed_at: '2026-10-30T21:58:13Z'
     default_branch_revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
     issue_state: open
-    pull_request_state: not-applicable
-    notes: 'Live issue #79 is open without comments; parent verified unchanged main and audit draft #75.
-      This candidate has not merged.'
+    pull_request_state: open
+    notes: 'The regression draft #86 is open; this implementation candidate remains unmerged. Main and
+      audit draft are unchanged in the coordinated batch.'
   parallel_changes:
   - provider: github
     id: egohygiene/hygiene#75
@@ -80,17 +84,31 @@ state:
     url: https://github.com/egohygiene/hygiene/issues/78
 review:
   status: partial
-  reviewed_at: '2026-10-30T21:54:14Z'
+  reviewed_at: '2026-10-30T21:58:13Z'
   reviewed_by: Codex
   evidence:
   - command: python3 -I -m unittest discover --start-directory tests --pattern test_boundaries.py --verbose
-    outcome: failed
-    observed_at: '2026-10-30T21:54:14Z'
-    notes: 'Regression checkpoint: 24 methods ran; thirteen expected failing subcases expose missing quotes/escapes
-      and unrelated-text matches. No scanner implementation changed yet.'
+    outcome: passed
+    observed_at: '2026-10-30T21:58:13Z'
+    notes: 25 focused methods pass, including nine actual public CLI positive-shaped mutable cases in
+      JSON and text modes.
+  - command: python3 -I -m unittest discover --start-directory tests --pattern test_*.py --verbose
+    outcome: passed
+    observed_at: '2026-10-30T21:58:13Z'
+    notes: 203 methods pass without skips.
+  - command: Boundary validate, generated-view check and current-tree scan; Python 3.9 grammar; git diff
+      --check
+    outcome: passed
+    observed_at: '2026-10-30T21:58:13Z'
+    notes: 27 relationships and zero exceptions; unchanged generated view; no supported current-tree finding.
+  - command: Optional workspace Ruff comparison against exact unchanged base
+    outcome: limited
+    observed_at: '2026-10-30T21:58:13Z'
+    notes: Eight findings remain identical by path/rule/message to the base; no new finding was introduced.
+      This is not a Ruff-clean result.
   environment_limitations:
-  - Hosted changed-head qualification remains deferred; regression failures are deliberately retained
-    before the repair.
+  - Hosted changed-head qualification and fleet/native enforcement remain deferred; final independent
+    batch review is pending.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -121,23 +139,23 @@ Repair equivalent quoted Action references with correct executable locations and
 
 ## State snapshot
 
-This regression candidate starts from verified main aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d. Its containing revision is intentionally null. The previous #73/#74 continuity objective was already merged; this snapshot replaces that stale task state.
+This implementation candidate starts from verified main aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d. Its containing revision is intentionally null. The previous #73/#74 continuity objective was already merged; this snapshot replaces that stale task state.
 
 ## Completed and material changes
 
-Eight focused methods add quoted/plain, reusable workflow/composite, public CLI, pinned-reference and unrelated-text controls. Two old inline fixtures now use actual workflow nesting. tools/boundaries.py and its owning policy remain unchanged at this checkpoint. ADR not required: this is a repair of the existing BOUNDARY-002 reference implementation, preserving ownership, dependency rules and authority.
+tools/boundaries.py now reads literal Action values only at bounded workflow/composite locations, decodes supported quotes/escapes, skips scalar bodies and preserves path/line/rule identity. Nine focused methods add positive/negative controls; the boundary guide states unsupported YAML features. Policy/register/schema bytes remain unchanged. ADR not required: this is a repair of the existing BOUNDARY-002 reference implementation, preserving ownership, dependency rules and authority.
 
 ## Validation and review evidence
 
-The focused command ran 24 methods and retained thirteen expected failing subcases. The failures are the stage-one reproduction, not acceptance. Full unchanged-base coverage is recorded by the batch coordinator. No hosted result is inferred.
+Focused25 and complete203 methods pass without skips. Actual CLI JSON/text controls exercise reusable workflow, action-step and composite forms. Boundary validation/generated-view/current-tree checks, Python 3.9 grammar and whitespace pass. Optional workspace Ruff retains eight identical baseline findings. Stage one deliberately retained thirteen failing subcases before implementation. No hosted result is inferred.
 
 ## Blockers, risks, unknowns, and deferred work
 
-The scanner repair is pending. General YAML features, fleet/native enforcement and source originality remain outside this bounded parser. Original ADR-0001 authority and actual publication remain #47 work. Preserve its original body and review patch, all accepted/proposed policy states and immutable audit evidence.
+Final review is pending. General YAML features, fleet/native enforcement and source originality remain outside this bounded parser. Original ADR-0001 authority and actual publication remain #47 work. Preserve its original body and review patch, all accepted/proposed policy states and immutable audit evidence.
 
 ## Next dependency-ready work
 
-Implement #79, pass the focused and complete checks, then prepare its draft for the batch review. Do not start #80–#85.
+Review the complete #79 repair and pass final checks, then prepare its draft for the batch review. Do not start #80–#85.
 
 ## Parallel changes and reconciliation
 
