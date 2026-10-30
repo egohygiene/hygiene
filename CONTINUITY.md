@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T22:58:15Z'
+  updated_at: '2026-10-30T23:20:13Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -49,9 +49,9 @@ work:
     url: https://github.com/egohygiene/hygiene/issues/80
   next:
     kind: action
-    id: review-assessment-clock
-    description: 'Complete independent review and combined #80–#82 qualification; keep the three new PRs
-      in draft for maintainer sync. Do not start #83–#85.'
+    id: review-batch80-82
+    description: 'Review draft PRs #91, #89, then #90; reconcile continuity snapshots before a later authorized
+      merge and keep all unmet acceptance in #76. Select #83–#85 only after the maintainer sync.'
     readiness: ready
     references:
     - https://github.com/egohygiene/hygiene/issues/80
@@ -61,7 +61,7 @@ state:
   base:
     revision: fa41ccc95d0cd0365b38008e02bdc67b928c5ed2
     ref: refs/heads/main
-    verified_at: '2026-10-30T22:58:15Z'
+    verified_at: '2026-10-30T23:20:13Z'
   candidate:
     branch: fix/80-continuity-assessment
     revision: null
@@ -69,10 +69,10 @@ state:
       provider: github
       id: egohygiene/hygiene#91
       url: https://github.com/egohygiene/hygiene/pull/91
-    handoff_state: in-progress
+    handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-30T22:58:15Z'
+    observed_at: '2026-10-30T23:20:13Z'
     default_branch_revision: fa41ccc95d0cd0365b38008e02bdc67b928c5ed2
     issue_state: open
     pull_request_state: draft
@@ -90,29 +90,45 @@ state:
     url: https://github.com/egohygiene/hygiene/issues/82
 review:
   status: partial
-  reviewed_at: '2026-10-30T22:58:15Z'
+  reviewed_at: '2026-10-30T23:20:13Z'
   reviewed_by: Codex
   evidence:
-  - command: Predecessor gate and stage-one focused regressions
+  - command: Merged baseline and stage-one focused regressions
     outcome: passed
-    observed_at: '2026-10-30T22:58:15Z'
-    notes: The merged baseline passed 228 tests/all 25 checks. The new 22-method focused suite initially
-      exposed 17 expected failing subcases and six errors, all repaired.
-  - command: python3 -I tools/check_contracts.py
+    observed_at: '2026-10-30T23:20:13Z'
+    notes: Merged baseline source passed 228 tests/all 25 checks. Twenty-two focused methods initially
+      exposed 17 expected failing subcases and six errors; all are repaired.
+  - command: Complete local gate and independent assessment-date review at 67b6afe212166cf540b04bc996beacaa5419a496
     outcome: passed
-    observed_at: '2026-10-30T22:58:15Z'
-    notes: All 236 tests, zero skips/failures/errors, and all 25 declared command checks pass. The focused
-      22-method suite passes, including actual frozen/default CLI and unavailable-clock main/API paths.
-  - command: Typed date-format, clock-fault and canonical-source comparisons; Ruff predecessor comparison
+    observed_at: '2026-10-30T23:20:13Z'
+    notes: 236 tests, zero skips/failures/errors and all 25 declared checks pass. Independent review is
+      clear; 22 control groups plus six invalid API types cover UTC/TZ behavior, fixed CLI/API repetitions,
+      all clock failures, expiry boundaries and nonapproved states.
+  - command: 'Combined exact-source gate over #80/#81/#82 candidates'
     outcome: passed
-    observed_at: '2026-10-30T22:58:15Z'
-    notes: Sixteen date/type cases agree with Draft 2020-12 full-date validation, five synthetic clock
-      fault types reject while explicit dates still work, and policy/schema/authority bytes are unchanged.
-      No new Ruff diagnostics; two predecessor findings remain.
+    observed_at: '2026-10-30T23:20:13Z'
+    notes: 256 tests, zero skips/failures/errors and all 25 checks passed. All 22 changed non-handoff
+      files/Git roles match the qualified candidates; 172 other base files are unchanged. Actual branch
+      handoffs are validated separately.
+  - command: Date-format/schema and canonical metadata checks
+    outcome: limited
+    observed_at: '2026-10-30T23:20:13Z'
+    notes: Sixteen date/type checks agree with full-date schema validation; 18 schema definitions, seven
+      of eight canonical profiles, two presentation fixtures, six ADR fixtures and 13 actual decoded front-matter
+      records pass. The unchanged web profile retains 17 schema diagnostics; original ADR-0001 lacks front
+      matter. These are structural observations, not native admission or approval authentication.
+  - command: Pinned continuity schema/formats/composition and optional Ruff predecessor comparison
+    outcome: passed
+    observed_at: '2026-10-30T23:20:13Z'
+    notes: Exact schema, required sections, privacy and budgets pass. No new optional Ruff diagnostics;
+      two predecessor findings remain. Canonical source dates/policy/schema/authority and historical evidence
+      bytes are preserved.
   environment_limitations:
-  - Independent final review and combined80–82 qualification remain pending. Hosted/ruleset checks, the
-    unchanged web-profile17-diagnostic schema mismatch and native/source-admission/publication remain
-    separate in76/#47.
+  - 'Hosted/ruleset acceptance, baseline web-profile/schema mismatch, duplicate presentation-record mismatch
+    and fail-closed ADR reference-newline schema mismatch remain tracked in #76. Exact selected native
+    d917 replay is unavailable; #47 retains original ADR-0001/source-admission/publication.'
+  - 'All three new PRs remain drafts; no new merge/closure, workflow dispatch, release/tag, deployment
+    or publication. #83–#85 remain unstarted.'
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -151,15 +167,15 @@ tools/continuity.py defaults omitted assessment dates to current UTC and retains
 
 ## Validation and review evidence
 
-The merged baseline passed 228 tests/all 25 checks. The new 22-method focused suite initially exposed 17 expected failing subcases and six errors, all repaired. All 236 tests, zero skips/failures/errors, and all 25 declared command checks pass. The focused 22-method suite passes, including actual frozen/default CLI and unavailable-clock main/API paths. Sixteen date/type cases agree with Draft 2020-12 full-date validation, five synthetic clock fault types reject while explicit dates still work, and policy/schema/authority bytes are unchanged. No new Ruff diagnostics; two predecessor findings remain.
+Merged baseline source passed 228 tests/all 25 checks. Twenty-two focused methods initially exposed 17 expected failing subcases and six errors; all are repaired. 236 tests, zero skips/failures/errors and all 25 declared checks pass. Independent review is clear; 22 control groups plus six invalid API types cover UTC/TZ behavior, fixed CLI/API repetitions, all clock failures, expiry boundaries and nonapproved states. 256 tests, zero skips/failures/errors and all 25 checks passed. All 22 changed non-handoff files/Git roles match the qualified candidates; 172 other base files are unchanged. Actual branch handoffs are validated separately. Sixteen date/type checks agree with full-date schema validation; 18 schema definitions, seven of eight canonical profiles, two presentation fixtures, six ADR fixtures and 13 actual decoded front-matter records pass. The unchanged web profile retains 17 schema diagnostics; original ADR-0001 lacks front matter. These are structural observations, not native admission or approval authentication. Exact schema, required sections, privacy and budgets pass. No new optional Ruff diagnostics; two predecessor findings remain. Canonical source dates/policy/schema/authority and historical evidence bytes are preserved.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Independent final review and combined80–82 qualification remain pending. Hosted/ruleset checks, the unchanged web-profile17-diagnostic schema mismatch and native/source-admission/publication remain separate in76/#47. ADR not required: this repairs the existing as_of resolver seam and clock reporting without changing policy authority or Aether continuity semantics. Canonical profile dates and the absence of real exceptions remain unchanged.
+Hosted/ruleset acceptance, baseline web-profile/schema mismatch, duplicate presentation-record mismatch and fail-closed ADR reference-newline schema mismatch remain tracked in #76. Exact selected native d917 replay is unavailable; #47 retains original ADR-0001/source-admission/publication. All three new PRs remain drafts; no new merge/closure, workflow dispatch, release/tag, deployment or publication. #83–#85 remain unstarted. ADR not required: this repairs the existing as_of resolver seam and clock reporting without changing policy authority or Aether continuity semantics. Canonical profile dates and the absence of real exceptions remain unchanged.
 
 ## Next dependency-ready work
 
-Complete independent review and combined #80–#82 qualification; keep the three new PRs in draft for maintainer sync. Do not start #83–#85.
+Review draft PRs #91, #89, then #90; reconcile continuity snapshots before a later authorized merge and keep all unmet acceptance in #76. Select #83–#85 only after the maintainer sync.
 
 ## Parallel changes and reconciliation
 
