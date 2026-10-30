@@ -110,6 +110,55 @@ EVIDENCE_KINDS = {
     "release",
     "workflow",
 }
+EVIDENCE_ASSERTIONS = {"authoritative", "derived", "unknown"}
+EVIDENCE_FRESHNESS = {"current", "stale", "unknown", "not_applicable"}
+
+
+def _record_errors(record: Any, path: str) -> list[str]:
+    """Check the closed record shape before using it to support a claim."""
+
+    if not isinstance(record, dict):
+        return [f"{path} must be an object"]
+    errors: list[str] = []
+    if set(record) != EVIDENCE_RECORD_FIELDS:
+        errors.append(f"{path} fields must exactly match the v1 contract")
+    for field, allowed in (
+        ("kind", EVIDENCE_KINDS),
+        ("assertion", EVIDENCE_ASSERTIONS),
+        ("freshness", EVIDENCE_FRESHNESS),
+    ):
+        value = record.get(field)
+        if not isinstance(value, str) or value not in allowed:
+            errors.append(f"{path}.{field} is invalid")
+    location = record.get("location")
+    if not isinstance(location, str) or not location.strip():
+        errors.append(f"{path}.location must be a non-blank string")
+    return errors
+
+
+def _effective_slot_state(slot: Mapping[str, Any]) -> str:
+    """Keep explicit outcomes; a passing label also needs current support."""
+
+    state = slot.get("state")
+    if not isinstance(state, str) or state not in EVIDENCE_STATES:
+        return "unknown"
+    if state != "passing":
+        return state
+    records = slot.get("evidence")
+    if not isinstance(records, list):
+        return "unknown"
+    valid = [record for record in records if not _record_errors(record, "record")]
+    if any(
+        record["freshness"] == "current"
+        and record["assertion"] in {"authoritative", "derived"}
+        for record in valid
+    ):
+        return "passing"
+    if valid and len(valid) == len(records) and all(
+        record["freshness"] == "stale" for record in valid
+    ):
+        return "stale"
+    return "unknown"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -332,13 +381,13 @@ def resolve_requirements(
 
 
 def derive_state(slots: Sequence[Mapping[str, Any]]) -> str:
-    """Derive the honest badge state from resolved slot evidence."""
+    """Derive the badge from supported outcomes without modifying records."""
 
     required = [slot for slot in slots if slot.get("requirement") == "required"]
     recommended = [
         slot for slot in slots if slot.get("requirement") == "recommended"
     ]
-    required_states = {slot.get("state") for slot in required}
+    required_states = {_effective_slot_state(slot) for slot in required}
     if "failing" in required_states:
         return "failing"
     if "blocked" in required_states:
@@ -349,7 +398,7 @@ def derive_state(slots: Sequence[Mapping[str, Any]]) -> str:
         return "evaluating"
     if required_states & {"unknown", "partial", "advisory", "exempt"}:
         return "partial"
-    if any(slot.get("state") not in {"passing", "not_applicable"} for slot in recommended):
+    if any(_effective_slot_state(slot) not in {"passing", "not_applicable"} for slot in recommended):
         return "advisory"
     return "passing"
 
@@ -437,35 +486,22 @@ def validate_evidence(
         reason = slot.get("reason")
         if requirement != resolved[slot_id]:
             errors.append(f"{path}.requirement does not match resolved profile")
-        if state not in EVIDENCE_STATES:
+        if not isinstance(state, str) or state not in EVIDENCE_STATES:
             errors.append(f"{path}.state is invalid")
         if not isinstance(records, list):
             errors.append(f"{path}.evidence must be an array")
             records = []
         for record_index, record in enumerate(records):
             record_path = f"{path}.evidence[{record_index}]"
-            if not isinstance(record, dict):
-                errors.append(f"{record_path} must be an object")
-                continue
-            if set(record) != EVIDENCE_RECORD_FIELDS:
-                errors.append(
-                    f"{record_path} fields must exactly match the v1 contract"
-                )
-            if record.get("kind") not in EVIDENCE_KINDS:
-                errors.append(f"{record_path}.kind is invalid")
-            if not isinstance(record.get("location"), str) or not record["location"]:
-                errors.append(f"{record_path}.location must be a non-empty string")
-            if record.get("assertion") not in {"authoritative", "derived", "unknown"}:
-                errors.append(f"{record_path}.assertion is invalid")
-            if record.get("freshness") not in {
-                "current",
-                "stale",
-                "unknown",
-                "not_applicable",
-            }:
-                errors.append(f"{record_path}.freshness is invalid")
-        if state in EVIDENCE_REQUIRED_STATES and not records:
+            errors.extend(_record_errors(record, record_path))
+        if isinstance(state, str) and state in EVIDENCE_REQUIRED_STATES and not records:
             errors.append(f"{path}.evidence is required for state {state}")
+        effective = _effective_slot_state(slot)
+        if state == "passing" and effective != "passing":
+            errors.append(
+                f"{path}.state passing requires at least one valid current "
+                f"authoritative or derived evidence record; effective state is {effective}"
+            )
         if requirement == "not_applicable":
             if state != "not_applicable":
                 errors.append(f"{path}.state must be not_applicable")

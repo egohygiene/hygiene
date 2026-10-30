@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import copy
-import json
 import itertools
+import json
 import subprocess
 import sys
 import tempfile

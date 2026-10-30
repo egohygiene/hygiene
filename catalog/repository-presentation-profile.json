@@ -3,8 +3,8 @@
   "version": "1.0.0-alpha.1",
   "status": "proposed",
   "owner": "egohygiene/hygiene",
-  "updated": "2026-08-30",
-  "purpose": "Define the minimum honest, accessible, evidence-backed public presentation of an Ego Hygiene repository.",
+  "updated": "2026-10-30",
+  "purpose": "Define the minimum honest, accessible, evidence-backed public presentation of an Ego Hygiene repository. A passing slot claim requires at least one valid current authoritative or derived evidence record; other supporting records remain visible.",
   "claim_policy": {
     "badge_label": "Hygienic",
     "state_messages": {
