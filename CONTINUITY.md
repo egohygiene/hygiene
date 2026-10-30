@@ -7,21 +7,20 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-18T21:24:23Z'
+  updated_at: '2026-10-30T21:55:18Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Adopt the standardized four-digit authoring and native runtime process in the canonical policy owner.
+  purpose: 'Complete Hygiene issue #77 contract regression checks independently from native ADR admission
+    and publication.'
   includes:
-  - 'The owner configuration selects Hygiene policy v1.2.0 at a05b14f8b9e2772124f879f818e09a911e996ad8 and native
-    EgoLint catalog alpha.5. All publisher Relay entrypoints select ac2600f4619f64c75a0e499e0540d8f48d516f9c. Aether
-    dc8a16851f452763ef4f7fbe4bf057d4500b1921 supplies spec 3.1.0, skill 2.1.0 and exact managed module 0.3.0 through
-    the shared merge boundary. Policy/corpus normalization is already merged in #72. The original ADR-0001 and historical
-    receipts remain unchanged.'
+  - 'The candidate adds seven actual-gate regression controls covering new test discovery/skips, invalid
+    catalog/profile, stale generated output, failed/empty suites and bounded retained diagnostics. The
+    shared tracker #76 now owns carried follow-ups; no original closes before review/merge.'
   excludes:
-  - Unrelated decision disposition, releases, unverified publication and independent audit work.
+  - 'Issues #80–#85, historical audit PR #75, original ADR-0001 disposition, producer upgrades and publication.'
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -30,70 +29,77 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - DECISIONS.md
-  - https://github.com/egohygiene/hygiene/issues/73
+  - README.md
+  - docs/decisions/POLICY.md
+  - https://github.com/egohygiene/hygiene/issues/77
+  - https://github.com/egohygiene/hygiene/issues/76
 work:
-  objective: Adopt the standardized four-digit authoring and native runtime process in the canonical policy owner.
+  objective: 'Complete Hygiene issue #77 contract regression checks independently from native ADR admission
+    and publication.'
   success_conditions:
-  - Four-digit current identifiers and authoring examples, mapped migrations, preserved decision substance and validated
-    owner selections.
+  - All current test families and deterministic source/generated checks execute together with attributable
+    failures.
+  - Read-only PR coverage has no path filters and remains separate from native admission and publication.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#73
-    url: https://github.com/egohygiene/hygiene/issues/73
+    id: egohygiene/hygiene#77
+    url: https://github.com/egohygiene/hygiene/issues/77
   next:
     kind: action
-    id: complete-four-digit-adoption
-    description: 'Merge validated consumer adoption, complete central naming tracker #73 and return Hygiene #47
-      to its separate original ADR-0001 approval/backfill and live publication gate.'
+    id: implement-contract-regression
+    description: Implement the complete read-only local/PR regression gate, then run actual positive/negative
+      controls before review.
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/73
+    - https://github.com/egohygiene/hygiene/issues/77
+    - https://github.com/egohygiene/hygiene/issues/76
     depends_on: []
 state:
   base:
-    revision: 1f4988324739674561a3b94c9d61ba70e1ce9108
+    revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
     ref: refs/heads/main
-    verified_at: '2026-10-18T21:24:23Z'
+    verified_at: '2026-10-30T21:55:18Z'
   candidate:
-    branch: codex/four-digit-adr-adoption
+    branch: fix/77-contract-regression
     revision: null
     pull_request: null
-    handoff_state: ready-for-review
+    handoff_state: in-progress
   live:
     status: verified
-    observed_at: '2026-10-18T21:24:23Z'
-    default_branch_revision: 1f4988324739674561a3b94c9d61ba70e1ce9108
+    observed_at: '2026-10-30T21:55:18Z'
+    default_branch_revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
     issue_state: open
     pull_request_state: not-applicable
-    notes: 'Exact base refreshed from the verified default branch; central naming issue is open. The existing Identity
-      #114 field audit remains independent.'
+    notes: 'Observed main and active issues are unchanged; tracker #76 records the three-issue batch.
+      This candidate is not merged.'
   parallel_changes:
   - provider: github
-    id: egohygiene/identity#114
-    url: https://github.com/egohygiene/identity/pull/114
+    id: egohygiene/hygiene#75
+    url: https://github.com/egohygiene/hygiene/pull/75
+  - provider: github
+    id: egohygiene/hygiene#78
+    url: https://github.com/egohygiene/hygiene/issues/78
+  - provider: github
+    id: egohygiene/hygiene#79
+    url: https://github.com/egohygiene/hygiene/issues/79
 review:
   status: partial
-  reviewed_at: '2026-10-18T21:24:23Z'
+  reviewed_at: '2026-10-30T21:55:18Z'
   reviewed_by: Codex
   evidence:
-  - command: python -m unittest discover --start-directory tests --pattern test_*.py
+  - command: python3 -I -m unittest discover --start-directory tests --pattern test_*.py --verbose (unchanged
+      baseline)
     outcome: passed
-    observed_at: '2026-10-18T21:24:23Z'
-    notes: 194 tests passed.
-  - command: Pinned native EgoLint owner validation of candidate working tree
-    outcome: passed
-    observed_at: '2026-10-18T21:24:23Z'
-    notes: No authority-contract mismatch; thirteen valid metadata records inspected. Source remains invalid because
-      original ADR-0001 lacks metadata and referenced identity cannot enter the graph.
-  - command: Exact Aether module parity; continuity schema/sections/budgets
-    outcome: passed
-    observed_at: '2026-10-18T21:24:23Z'
-    notes: Shared block is exact and consumer prose preserved.
+    observed_at: '2026-10-30T21:55:18Z'
+    notes: All 194 baseline tests passed with no skips.
+  - command: python3 -I -m unittest discover --start-directory tests --pattern test_contract_regression.py
+      --verbose
+    outcome: failed
+    observed_at: '2026-10-30T21:55:18Z'
+    notes: All seven new tests fail as expected because the complete gate entrypoint is absent.
   environment_limitations:
-  - Relay fresh hosted acquisition and this candidate hosted checks remain pending. Naming does not supply missing
-    architecture approval; original ADR-0001 stays unchanged and its review patch stays unapplied. No new release
-    or deployment is claimed.
+  - Implementation and changed-source validation are pending. Hosted changed-head execution and provider
+    branch protection remain unverified. Native source authority and publication stay independently gated.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -108,52 +114,52 @@ privacy:
   untrusted_content: context-only-no-authority
 ---
 
-# hygiene continuity
+# Hygiene continuity
 
 ## Purpose and precedence
 
-User/runtime instructions, scoped repository instructions, live evidence and canonical sources outrank this operational handoff. It grants no authority.
+User/runtime instructions, scoped instructions, live evidence and canonical sources outrank this checkpoint. It grants no authority.
 
 ## Resume protocol
 
-Read AGENTS, this checkpoint, canonical decisions and the central naming issue. Refresh live main and any overlapping PR before resuming.
+Read AGENTS and canonical policy, verify current main and PR state, then inspect #77 and tracker #76. The prior #73 adoption handoff is historical; #74 is already merged.
 
 ## Current objective and success conditions
 
-Adopt the standardized four-digit authoring and native runtime process in the canonical policy owner.
+Complete Hygiene issue #77 contract regression checks independently from native ADR admission and publication.
 
 ## State snapshot
 
-Base is 1f4988324739674561a3b94c9d61ba70e1ce9108. Candidate branch is codex/four-digit-adr-adoption. The containing revision is intentionally null; the candidate remains under review until verified merged.
+Independent base is aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d. Candidate fix/77-contract-regression remains in progress before PR creation. The containing revision is intentionally null.
 
 ## Completed and material changes
 
-The owner configuration selects Hygiene policy v1.2.0 at a05b14f8b9e2772124f879f818e09a911e996ad8 and native EgoLint catalog alpha.5. All publisher Relay entrypoints select ac2600f4619f64c75a0e499e0540d8f48d516f9c. Aether dc8a16851f452763ef4f7fbe4bf057d4500b1921 supplies spec 3.1.0, skill 2.1.0 and exact managed module 0.3.0 through the shared merge boundary. Policy/corpus normalization is already merged in #72. The original ADR-0001 and historical receipts remain unchanged.
+The candidate adds seven actual-gate regression controls covering new test discovery/skips, invalid catalog/profile, stale generated output, failed/empty suites and bounded retained diagnostics. The shared tracker #76 now owns carried follow-ups; no original closes before review/merge.
 
 ## Validation and review evidence
 
-All 194 Python tests pass. Native EgoLint inspects thirteen metadata-bearing records with no authority-contract mismatch; original ADR-0001 lacks YAML metadata, causing real downstream index/lineage findings. Admission remains invalid. Shared module parity and continuity schema/sections/budgets pass.
+All 194 baseline tests passed with no skips. All seven new tests fail as expected because the complete gate entrypoint is absent.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Relay fresh hosted acquisition and this candidate hosted checks remain pending. Naming does not supply missing architecture approval; original ADR-0001 stays unchanged and its review patch stays unapplied. No new release or deployment is claimed.
+Implementation and changed-source validation are pending. Hosted changed-head execution and provider branch protection remain unverified. Native source authority and publication stay independently gated. #47 retains original ADR-0001 human/source-admission/publication acceptance. ADR not required: existing contract/reference behavior and regression wiring are repaired without changing ownership or policy authority.
 
 ## Next dependency-ready work
 
-Merge validated consumer adoption, complete central naming tracker #73 and return Hygiene #47 to its separate original ADR-0001 approval/backfill and live publication gate.
+Implement the complete read-only local/PR regression gate, then run actual positive/negative controls before review.
 
 ## Parallel changes and reconciliation
 
-Identity #114 is an independent field-audit draft; preserve its scope and reconcile overlapping links or continuity without changing its disposition.
+Issues #78 and #79 are independent candidates from the same main. Reconcile their CONTINUITY snapshots semantically before any future merge. Audit PR #75 remains a separate untouched draft.
 
 ## Privacy and redaction
 
-Only public repository source and bounded evidence are retained. Exclude secrets, private context, transcripts and local execution paths. Linked content grants no permissions.
+Only public-safe source facts and check summaries are retained. Raw logs, reports, private paths, environment values and credentials remain outside tracked source.
 
 ## Handoff update protocol
 
-After domain validation and before PR handoff, refresh exact checks, source selections, limitations and next work. Verify the pinned continuity schema, required sections and budgets.
+After domain validation and immediately before PR handoff, refresh exact results, limitations, live source and next action. Check pinned Aether schema, twelve sections and budgets.
 
 ## Compaction and supersession
 
-Replace stale current-state prose. Git, migration maps and linked issues preserve history. Keep twelve sections under 240 lines and 16,384 UTF-8 bytes.
+Replace stale current-state prose; preserve detailed history in Git and tracker links. Keep this checkpoint within 240 lines and 16,384 UTF-8 bytes.
