@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import copy
 import json
+import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -173,7 +175,241 @@ class FourDigitIdentifierTests(unittest.TestCase):
             candidate["id"] = identifier
             self.assertEqual([], decisions.validate_decision(candidate))
         candidate["id"] = "ADR-10000"
-        self.assertIn("E_ID id must match four-digit ADR-NNNN", decisions.validate_decision(candidate))
+        self.assertIn(
+            "E_ID id must match four-digit ADR-NNNN",
+            decisions.validate_decision(candidate),
+        )
+
+
+class DecisionAlignmentTests(unittest.TestCase):
+    load = DecisionContractTests.load
+
+    def cli(
+        self, documents: list[dict], *, command: str = "decision-set"
+    ) -> subprocess.CompletedProcess[str]:
+        with tempfile.TemporaryDirectory() as directory:
+            arguments = [
+                sys.executable,
+                "-I",
+                str(ROOT / "tools/decisions.py"),
+                command,
+            ]
+            for index, document in enumerate(documents):
+                path = Path(directory) / f"decision-{index}.json"
+                path.write_text(json.dumps(document), encoding="utf-8")
+                arguments.extend(["--input", str(path)])
+            return subprocess.run(
+                arguments,
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+                timeout=10,
+            )
+
+    def test_pending_proposal_preserves_accepted_predecessor_and_has_no_backlink(
+        self,
+    ) -> None:
+        documents = [
+            self.load("decision.pending-predecessor.valid.json"),
+            self.load("decision.pending-replacement.valid.json"),
+        ]
+        before = copy.deepcopy(documents)
+        self.assertEqual([], decisions.validate_decision_set(documents))
+        self.assertEqual(before, documents)
+        result = self.cli(documents)
+        self.assertEqual(0, result.returncode, result.stderr)
+
+    def test_declined_proposal_history_does_not_require_effective_backlinks(
+        self,
+    ) -> None:
+        for status in ("rejected", "deprecated"):
+            predecessor = self.load("decision.pending-predecessor.valid.json")
+            replacement = self.load("decision.accepted.valid.json")
+            replacement["status"] = status
+            with self.subTest(status=status):
+                self.assertEqual(
+                    [], decisions.validate_decision_set([predecessor, replacement])
+                )
+                predecessor["status"] = "superseded"
+                predecessor["superseded_by"] = [replacement["id"]]
+                errors = decisions.validate_decision_set([predecessor, replacement])
+                self.assertTrue(
+                    any(
+                        error.startswith("E_SUPERSESSION_AUTHORITY") for error in errors
+                    ),
+                    errors,
+                )
+
+    def test_effective_supersession_requires_old_disposition_and_reciprocal_links(
+        self,
+    ) -> None:
+        predecessor = self.load("decision.pending-predecessor.valid.json")
+        replacement = self.load("decision.accepted.valid.json")
+        predecessor["superseded_by"] = [replacement["id"]]
+        self.assertTrue(
+            any(
+                "E_SUPERSESSION" in error
+                for error in decisions.validate_decision_set([predecessor, replacement])
+            )
+        )
+        predecessor["status"] = "superseded"
+        self.assertEqual(
+            [], decisions.validate_decision_set([predecessor, replacement])
+        )
+        replacement["supersedes"] = []
+        self.assertTrue(
+            any(
+                error.startswith("E_SUPERSESSION_FORWARD")
+                for error in decisions.validate_decision_set([predecessor, replacement])
+            )
+        )
+
+    def test_verified_approval_only_is_rejected_by_both_public_commands(self) -> None:
+        candidate = self.load("decision.verified-approval-only.invalid.json")
+        self.assertTrue(
+            any(
+                error.startswith("E_VERIFICATION")
+                for error in decisions.validate_decision(candidate)
+            )
+        )
+        for command in ("decision", "decision-set"):
+            with self.subTest(command=command):
+                result = self.cli([candidate], command=command)
+                self.assertEqual(1, result.returncode, result.stdout)
+                self.assertIn("E_VERIFICATION", result.stderr)
+
+    def test_named_validation_descriptor_is_structural_and_not_execution(self) -> None:
+        candidate = self.load("decision.verified.valid.json")
+        self.assertEqual([], decisions.validate_decision(candidate))
+        self.assertEqual(0, self.cli([candidate], command="decision").returncode)
+        candidate["evidence"][0]["description"] = " \t"
+        self.assertTrue(
+            any(
+                error.startswith("E_VERIFICATION")
+                for error in decisions.validate_decision(candidate)
+            )
+        )
+        candidate["evidence"][0]["description"] = "Synthetic named validation"
+        candidate["evidence"][0]["url"] = "not-a-uri"
+        self.assertTrue(
+            any(
+                error.startswith("E_URI")
+                for error in decisions.validate_decision(candidate)
+            )
+        )
+
+    def test_dangling_legacy_and_canonical_local_refs_receive_same_diagnostics(
+        self,
+    ) -> None:
+        for field in ("related", "supersedes", "superseded_by"):
+            for reference in ("ADR-999", "ADR-0999"):
+                candidate = (
+                    self.load("decision.superseded.valid.json")
+                    if field == "superseded_by"
+                    else self.load("decision.proposed.valid.json")
+                )
+                candidate[field] = [reference]
+                with self.subTest(field=field, reference=reference):
+                    expected = (
+                        f"E_DANGLING_REFERENCE {candidate['id']}.{field} -> {reference}"
+                    )
+                    self.assertIn(
+                        expected, decisions.validate_decision_set([candidate])
+                    )
+                    result = self.cli([candidate])
+                    self.assertEqual(1, result.returncode)
+                    self.assertIn(expected, result.stderr)
+
+    def test_legacy_reference_does_not_silently_alias_a_padded_identity(self) -> None:
+        first = self.load("decision.pending-predecessor.valid.json")
+        second = self.load("decision.proposed.valid.json")
+        second["related"] = ["ADR-006"]
+        self.assertIn(
+            "E_DANGLING_REFERENCE ADR-0007.related -> ADR-006",
+            decisions.validate_decision_set([first, second]),
+        )
+        self.assertEqual(["ADR-006"], second["related"])
+
+    def test_historical_fixture_lookup_preserves_identity_but_requires_older_pin(
+        self,
+    ) -> None:
+        documents = [
+            self.load("historical/policy-1.1.0/decision.previous.json"),
+            self.load("historical/policy-1.1.0/decision.replacement.json"),
+        ]
+        before = copy.deepcopy(documents)
+        errors = decisions.validate_decision_set(documents)
+        self.assertTrue(any("E_ID" in error for error in errors), errors)
+        self.assertFalse(
+            any(
+                "E_DANGLING_REFERENCE" in error or "E_SUPERSESSION_" in error
+                for error in errors
+            ),
+            errors,
+        )
+        self.assertEqual(before, documents)
+
+    def test_explicit_synthetic_padding_map_preserves_disposition_and_resolves(
+        self,
+    ) -> None:
+        documents = [
+            self.load("historical/policy-1.1.0/decision.previous.json"),
+            self.load("historical/policy-1.1.0/decision.replacement.json"),
+        ]
+        originals = copy.deepcopy(documents)
+        mapping = {"ADR-006": "ADR-0006", "ADR-007": "ADR-0007"}
+        for document in documents:
+            document["id"] = mapping[document["id"]]
+            for field in ("related", "supersedes", "superseded_by"):
+                document[field] = [
+                    mapping.get(reference, reference) for reference in document[field]
+                ]
+        self.assertEqual([], decisions.validate_decision_set(documents))
+        for before, after in zip(originals, documents):
+            for key in set(before) - {"id", "related", "supersedes", "superseded_by"}:
+                self.assertEqual(before[key], after[key])
+
+    def test_zero_id_is_rejected_and_valid_canonical_bounds_remain_valid(self) -> None:
+        candidate = self.load("decision.zero-id.invalid.json")
+        for identifier in ("ADR-0000", "ADR-0000\n", "ADR-0001\n"):
+            candidate["id"] = identifier
+            for command in ("decision", "decision-set"):
+                with self.subTest(identifier=identifier, command=command):
+                    result = self.cli([candidate], command=command)
+                    self.assertEqual(1, result.returncode, result.stdout)
+                    self.assertIn("E_ID", result.stderr)
+        for identifier in ("ADR-0001", "ADR-9999"):
+            candidate["id"] = identifier
+            self.assertEqual([], decisions.validate_decision(candidate))
+
+    def test_pending_declarations_still_reject_cycles_and_self_links(self) -> None:
+        predecessor = self.load("decision.pending-predecessor.valid.json")
+        replacement = self.load("decision.pending-replacement.valid.json")
+        predecessor["supersedes"] = [replacement["id"]]
+        errors = decisions.validate_decision_set([predecessor, replacement])
+        self.assertTrue(
+            any(error.startswith("E_SUPERSESSION_CYCLE") for error in errors), errors
+        )
+        replacement["supersedes"] = [replacement["id"]]
+        self.assertTrue(
+            any(
+                error.startswith("E_SELF_REFERENCE")
+                for error in decisions.validate_decision_set([replacement])
+            )
+        )
+
+    def test_malformed_lineage_is_diagnosed_without_graph_lookup_crashes(self) -> None:
+        for field in ("related", "supersedes", "superseded_by"):
+            for invalid in (None, {}, [{}]):
+                candidate = self.load("decision.superseded.valid.json")
+                candidate[field] = invalid
+                with self.subTest(field=field, invalid=invalid):
+                    errors = decisions.validate_decision_set([candidate])
+                    self.assertTrue(any("E_TYPE" in error for error in errors), errors)
+                    result = self.cli([candidate])
+                    self.assertEqual(1, result.returncode, result.stderr)
+                    self.assertNotIn("Traceback", result.stderr)
 
 
 if __name__ == "__main__":

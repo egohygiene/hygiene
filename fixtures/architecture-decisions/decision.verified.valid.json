@@ -1,0 +1,40 @@
+{
+  "schema": "egohygiene.architecture-decision/v1",
+  "id": "ADR-0008",
+  "title": "Synthetic implementation with declared validation evidence",
+  "status": "proposed",
+  "date": "2026-08-25",
+  "decision_scope": "repository",
+  "visibility": "public",
+  "owners": [
+    "egohygiene/relay"
+  ],
+  "issue": "https://github.com/egohygiene/relay/issues/7",
+  "pull_request": null,
+  "related": [
+    "egohygiene/hygiene#ADR-0002"
+  ],
+  "supersedes": [],
+  "superseded_by": [],
+  "affected_repositories": [
+    "egohygiene/relay"
+  ],
+  "affected_contracts": [
+    "egohygiene.architecture-decision/v1"
+  ],
+  "implementation_status": "verified",
+  "evidence": [
+    {
+      "type": "validation",
+      "url": "https://github.com/egohygiene/hygiene/issues/82",
+      "description": "Synthetic named validation descriptor for this compatibility fixture; no actual execution is claimed."
+    }
+  ],
+  "exceptions": [],
+  "approval": null,
+  "extensions": {
+    "egohygiene.relay.decision-impact/v1": {
+      "risk": "medium"
+    }
+  }
+}
