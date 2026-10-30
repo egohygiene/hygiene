@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T22:56:30Z'
+  updated_at: '2026-10-30T23:12:13Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -60,7 +60,7 @@ state:
   base:
     revision: fa41ccc95d0cd0365b38008e02bdc67b928c5ed2
     ref: refs/heads/main
-    verified_at: '2026-10-30T22:56:30Z'
+    verified_at: '2026-10-30T23:12:13Z'
   candidate:
     branch: fix/81-presentation-evidence
     revision: null
@@ -68,10 +68,10 @@ state:
       provider: github
       id: egohygiene/hygiene#89
       url: https://github.com/egohygiene/hygiene/pull/89
-    handoff_state: in-progress
+    handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-30T22:56:30Z'
+    observed_at: '2026-10-30T23:12:13Z'
     default_branch_revision: fa41ccc95d0cd0365b38008e02bdc67b928c5ed2
     issue_state: open
     pull_request_state: draft
@@ -89,42 +89,43 @@ state:
     url: https://github.com/egohygiene/hygiene/pull/75
 review:
   status: partial
-  reviewed_at: '2026-10-30T22:56:30Z'
+  reviewed_at: '2026-10-30T23:12:13Z'
   reviewed_by: Codex
   evidence:
   - command: python3 -I tools/check_contracts.py --report-directory (private report directory)
     outcome: passed
-    observed_at: '2026-10-30T22:56:30Z'
-    notes: 236 tests,zero skips and all25 declared gate checks pass. Focused presentation suite20 methods passes;
-      actual CLI temp-fixture mutations and explicit negative controls are exercised.
+    observed_at: '2026-10-30T23:12:13Z'
+    notes: Fresh final gate passed236 tests,zero skips and all25declared checks on implementation ae38bbf. Focused
+      presentation suite20methods and actual temporary publicCLI mutations/explicit-negative controls pass.
   - command: Draft202012Validator with registered formats and independent support/shape/derived-state oracle
     outcome: passed
-    observed_at: '2026-10-30T22:56:30Z'
+    observed_at: '2026-10-30T23:12:13Z'
     notes: 18 schema definitions, canonical presentation profile,798 scoped support/honest-state cases,62 malformed-record
       cases,24 explicit negative cases,4 original/current examples and24 actual publicCLI cases pass. Distinct record
       locations preserve the schema uniqueItems precondition.
   - command: Exact unfixed-source regression and actual public CLI before repair
     outcome: limited
-    observed_at: '2026-10-30T22:56:30Z'
+    observed_at: '2026-10-30T23:12:13Z'
     notes: 20 focused methods expose14 expected subcase failures on exact main; three actual all-stale/unknown fixture
       probes incorrectly return exit0/derived passing. These source defects remain separate from repaired conformance.
   - command: Paired unchanged duplicate-record schema/reference reproduction
     outcome: limited
-    observed_at: '2026-10-30T22:56:30Z'
+    observed_at: '2026-10-30T23:12:13Z'
     notes: 'Identical synthetic instance SHA256 d627ba0ff6710465b0d04cd47550be593d0b47c052f7782a300a892ffae3ddda:
       both old and candidate CLI return0 while each schema rejects the duplicated record with uniqueItems. Tracker76
       owns the remaining mismatch.'
   - command: Changed-file grammar/compilation, whitespace and optional ambient Ruff comparison
     outcome: limited
-    observed_at: '2026-10-30T22:56:30Z'
+    observed_at: '2026-10-30T23:12:13Z'
     notes: Python3.11 grammar and compilation/whitespace pass. Ambient Ruff retains five predecessor diagnostics
       with identical rule/path/message; no new diagnostic or rule weakening.
   - command: Decision-impact and continuity contract/privacy/budget validation
     outcome: passed
-    observed_at: '2026-10-30T22:56:30Z'
-    notes: ADR not required for enforcing the already documented current-evidence invariant under proposed ADR0006.
-      Profile v1/alpha.1/proposed, owner boundaries and existing pins remain unchanged. Root handoff is refreshed
-      and structurally checked for this unmerged candidate.
+    observed_at: '2026-10-30T23:12:13Z'
+    notes: Parent independently passed51schema/helper support cases and15actualCLI cases at ae38bbf, preserving
+      explicit negatives and inputs; no scoped blocker. All6 qualified source/test/schema/fixture/guide hashes are
+      unchanged. ADR0006/profile alpha.1 remain proposed; original authority/audit/pins remain unchanged. Final
+      handoff is separately verified after the domain gate.
   environment_limitations:
   - Hosted changed-head coverage/provider required-check evidence remains deferred; all new commits use [skip ci].
   - Tracker76 retains17 unchanged Agent-Ready Web profile/schema additional-property diagnostics. Schema meta-validation
