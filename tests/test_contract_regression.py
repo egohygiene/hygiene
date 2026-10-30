@@ -8,7 +8,6 @@ import tempfile
 import unittest
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 RUNNER = ROOT / "tools" / "check_contracts.py"
 
@@ -23,7 +22,11 @@ class ContractRegressionGateTests(unittest.TestCase):
             ROOT,
             self.repository,
             ignore=shutil.ignore_patterns(
-                ".git", ".cache", "__pycache__", "*.pyc", "dist",
+                ".git",
+                ".cache",
+                "__pycache__",
+                "*.pyc",
+                "dist",
                 "test_contract_regression.py",
             ),
         )
@@ -66,7 +69,7 @@ class ContractRegressionGateTests(unittest.TestCase):
             {path.name for path in (self.repository / "tests").glob("test_*.py")},
             set(report["test_modules"]),
         )
-        self.assertIn("skipped=1", result.stdout)
+        self.assertIn('"skipped": 1', result.stdout)
 
     def test_invalid_catalog_fails_the_actual_gate(self) -> None:
         target = self.repository / "catalog" / "repositories.yaml"
@@ -92,7 +95,9 @@ class ContractRegressionGateTests(unittest.TestCase):
 
     def test_stale_generated_output_fails_while_unit_tests_still_pass(self) -> None:
         target = self.repository / "docs" / "generated" / "DEPENDENCY_BOUNDARIES.md"
-        target.write_text(target.read_text(encoding="utf-8") + "stale\n", encoding="utf-8")
+        target.write_text(
+            target.read_text(encoding="utf-8") + "stale\n", encoding="utf-8"
+        )
         result, report = self.run_gate()
         self.assertNotEqual(0, result.returncode)
         self.assertEqual("passed", self.check_result(report, "unit-tests")["status"])
@@ -104,13 +109,16 @@ class ContractRegressionGateTests(unittest.TestCase):
         (self.repository / "tests" / "test_new_failure.py").write_text(
             "import unittest\n"
             "class NewFailure(unittest.TestCase):\n"
-            "    def test_failure(self): self.fail('synthetic gate control')\n",
+            "    def test_failure(self): self.fail('synthetic gate control skipped=12')\n",
             encoding="utf-8",
         )
         result, report = self.run_gate()
         self.assertNotEqual(0, result.returncode)
         self.assertEqual("failed", self.check_result(report, "unit-tests")["status"])
-        self.assertEqual(1, self.check_result(report, "unit-tests")["tests"]["failures"])
+        self.assertEqual(
+            1, self.check_result(report, "unit-tests")["tests"]["failures"]
+        )
+        self.assertEqual(0, self.check_result(report, "unit-tests")["tests"]["skipped"])
         self.assertEqual("passed", self.check_result(report, "catalog")["status"])
 
     def test_empty_test_discovery_cannot_be_a_success(self) -> None:

@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T21:55:18Z'
+  updated_at: '2026-10-30T22:02:18Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -16,9 +16,12 @@ scope:
   purpose: 'Complete Hygiene issue #77 contract regression checks independently from native ADR admission
     and publication.'
   includes:
-  - 'The candidate adds seven actual-gate regression controls covering new test discovery/skips, invalid
-    catalog/profile, stale generated output, failed/empty suites and bounded retained diagnostics. The
-    shared tracker #76 now owns carried follow-ups; no original closes before review/merge.'
+  - tools/check_contracts.py composes full unittest discovery and 24 deterministic reference/generated
+    checks, reports actual counts and failures, and retains bounded diagnostics.
+  - The Pages checks job runs that entrypoint at the exact PR head without path filters, with read-only
+    permissions and diagnostic upload. Native/admission/build/deployment definitions remain unchanged.
+  - 'README, Task check and the current HYG-Q03 note identify the same gate; the August roadmap snapshot
+    is byte-preserved. Tracker #76 owns carried follow-ups.'
   excludes:
   - 'Issues #80–#85, historical audit PR #75, original ADR-0001 disposition, producer upgrades and publication.'
   precedence:
@@ -46,9 +49,9 @@ work:
     url: https://github.com/egohygiene/hygiene/issues/77
   next:
     kind: action
-    id: implement-contract-regression
-    description: Implement the complete read-only local/PR regression gate, then run actual positive/negative
-      controls before review.
+    id: review-contract-gate
+    description: 'Complete independent source review and combined #77–#79 qualification, then keep the
+      three drafts open for maintainer sync; do not start #80–#85.'
     readiness: ready
     references:
     - https://github.com/egohygiene/hygiene/issues/77
@@ -58,18 +61,21 @@ state:
   base:
     revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
     ref: refs/heads/main
-    verified_at: '2026-10-30T21:55:18Z'
+    verified_at: '2026-10-30T22:02:18Z'
   candidate:
     branch: fix/77-contract-regression
     revision: null
-    pull_request: null
+    pull_request:
+      provider: github
+      id: egohygiene/hygiene#87
+      url: https://github.com/egohygiene/hygiene/pull/87
     handoff_state: in-progress
   live:
     status: verified
-    observed_at: '2026-10-30T21:55:18Z'
+    observed_at: '2026-10-30T22:02:18Z'
     default_branch_revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
     issue_state: open
-    pull_request_state: not-applicable
+    pull_request_state: open-draft
     notes: 'Observed main and active issues are unchanged; tracker #76 records the three-issue batch.
       This candidate is not merged.'
   parallel_changes:
@@ -84,22 +90,33 @@ state:
     url: https://github.com/egohygiene/hygiene/issues/79
 review:
   status: partial
-  reviewed_at: '2026-10-30T21:55:18Z'
+  reviewed_at: '2026-10-30T22:02:18Z'
   reviewed_by: Codex
   evidence:
-  - command: python3 -I -m unittest discover --start-directory tests --pattern test_*.py --verbose (unchanged
-      baseline)
+  - command: Unchanged baseline full unittest discovery
     outcome: passed
-    observed_at: '2026-10-30T21:55:18Z'
-    notes: All 194 baseline tests passed with no skips.
-  - command: python3 -I -m unittest discover --start-directory tests --pattern test_contract_regression.py
-      --verbose
+    observed_at: '2026-10-30T22:02:18Z'
+    notes: 194 baseline tests passed with no skips.
+  - command: Stage-one actual-gate regression suite
     outcome: failed
-    observed_at: '2026-10-30T21:55:18Z'
-    notes: All seven new tests fail as expected because the complete gate entrypoint is absent.
+    observed_at: '2026-10-30T22:02:18Z'
+    notes: Seven expected failures exposed the absent entrypoint; later implementation controls pass.
+  - command: python3 -I tools/check_contracts.py
+    outcome: passed
+    observed_at: '2026-10-30T22:02:18Z'
+    notes: 201 tests across all thirteen current modules passed with zero skips; all 25 planned command
+      checks passed. Actual copied-source controls reject invalid catalog/profile, stale output, failed/empty
+      discovery and preserve explicit skip counts.
+  - command: Workflow structural comparison, new-file Ruff check/format, pinned continuity schema/composition
+      and git diff --check
+    outcome: passed
+    observed_at: '2026-10-30T22:02:18Z'
+    notes: Exact-head/read-only/unfiltered wiring is checked; every other workflow job/event and the historical
+      roadmap block remain unchanged. New source lint/format and continuity constraints pass.
   environment_limitations:
-  - Implementation and changed-source validation are pending. Hosted changed-head execution and provider
-    branch protection remain unverified. Native source authority and publication stay independently gated.
+  - Independent final review and combined batch qualification remain pending. Hosted changed-head execution
+    and provider required-check configuration are unverified; no dispatch was performed. Native source
+    authority and publication retain independent gates.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -130,23 +147,23 @@ Complete Hygiene issue #77 contract regression checks independently from native 
 
 ## State snapshot
 
-Independent base is aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d. Candidate fix/77-contract-regression remains in progress before PR creation. The containing revision is intentionally null.
+Independent base is aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d. Candidate fix/77-contract-regression remains open/draft in PR #87. The containing revision is intentionally null.
 
 ## Completed and material changes
 
-The candidate adds seven actual-gate regression controls covering new test discovery/skips, invalid catalog/profile, stale generated output, failed/empty suites and bounded retained diagnostics. The shared tracker #76 now owns carried follow-ups; no original closes before review/merge.
+tools/check_contracts.py composes full unittest discovery and 24 deterministic reference/generated checks, reports actual counts and failures, and retains bounded diagnostics. The Pages checks job runs that entrypoint at the exact PR head without path filters, with read-only permissions and diagnostic upload. Native/admission/build/deployment definitions remain unchanged. README, Task check and the current HYG-Q03 note identify the same gate; the August roadmap snapshot is byte-preserved. Tracker #76 owns carried follow-ups.
 
 ## Validation and review evidence
 
-All 194 baseline tests passed with no skips. All seven new tests fail as expected because the complete gate entrypoint is absent.
+194 baseline tests passed with no skips. Seven expected failures exposed the absent entrypoint; later implementation controls pass. 201 tests across all thirteen current modules passed with zero skips; all 25 planned command checks passed. Actual copied-source controls reject invalid catalog/profile, stale output, failed/empty discovery and preserve explicit skip counts. Exact-head/read-only/unfiltered wiring is checked; every other workflow job/event and the historical roadmap block remain unchanged. New source lint/format and continuity constraints pass.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Implementation and changed-source validation are pending. Hosted changed-head execution and provider branch protection remain unverified. Native source authority and publication stay independently gated. #47 retains original ADR-0001 human/source-admission/publication acceptance. ADR not required: existing contract/reference behavior and regression wiring are repaired without changing ownership or policy authority.
+Independent final review and combined batch qualification remain pending. Hosted changed-head execution and provider required-check configuration are unverified; no dispatch was performed. Native source authority and publication retain independent gates. #47 retains original ADR-0001 human/source-admission/publication acceptance. ADR not required: existing contract/reference behavior and regression wiring are repaired without changing ownership or policy authority.
 
 ## Next dependency-ready work
 
-Implement the complete read-only local/PR regression gate, then run actual positive/negative controls before review.
+Complete independent source review and combined #77–#79 qualification, then keep the three drafts open for maintainer sync; do not start #80–#85.
 
 ## Parallel changes and reconciliation
 
