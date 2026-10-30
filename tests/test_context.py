@@ -3,7 +3,9 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import subprocess
 import sys
+import tempfile
 import tomllib
 import unittest
 from pathlib import Path
@@ -180,6 +182,107 @@ class RepositoryContextContractTests(unittest.TestCase):
                 encoding="utf-8"
             ),
         )
+
+    def _run_context(self, *arguments: str) -> subprocess.CompletedProcess[str]:
+        return subprocess.run(
+            [sys.executable, "-I", str(ROOT / "tools" / "context.py"), *arguments],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            timeout=10,
+            check=False,
+        )
+
+    def _escaped_catalog(self) -> dict:
+        candidate = copy.deepcopy(self.catalog)
+        repository = copy.deepcopy(candidate["repositories"][0])
+        repository.update(
+            name="../escaped",
+            full_name="egohygiene/../escaped",
+            source_url="https://github.com/egohygiene/../escaped",
+        )
+        candidate["repositories"].append(repository)
+        candidate["repository_count"] += 1
+        return candidate
+
+    def test_direct_context_generation_rejects_unsafe_catalog_identity(self) -> None:
+        with self.assertRaisesRegex(ValueError, r"repositories\[27\]\.name"):
+            context.build_context(
+                self._escaped_catalog(), self.policy, "egohygiene/../escaped", SOURCE_REVISION
+            )
+
+    def test_render_all_cli_rejects_traversal_before_outside_output(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "catalog.json"
+            source.write_text(json.dumps(self._escaped_catalog()), encoding="utf-8")
+            outside = root / "escaped.md"
+            outside.write_bytes(b"outside sentinel\n")
+            output = root / "output"
+            result = self._run_context(
+                "--catalog", str(source), "render-all", "--source-revision", SOURCE_REVISION,
+                "--output-directory", str(output),
+            )
+            self.assertNotEqual(0, result.returncode, result.stdout + result.stderr)
+            self.assertIn(".name", result.stderr)
+            self.assertNotIn("Traceback", result.stderr)
+            self.assertEqual(b"outside sentinel\n", outside.read_bytes())
+            self.assertFalse(output.exists())
+
+    def test_render_all_cli_rejects_existing_symlink_without_partial_writes(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            output = root / "output"
+            output.mkdir()
+            outside = root / "outside.md"
+            outside.write_bytes(b"outside sentinel\n")
+            name = self.catalog["repositories"][-1]["name"]
+            link = output / f"{name}.md"
+            link.symlink_to(outside)
+            result = self._run_context(
+                "render-all", "--source-revision", SOURCE_REVISION,
+                "--output-directory", str(output),
+            )
+            self.assertNotEqual(0, result.returncode, result.stdout + result.stderr)
+            self.assertIn("symlink", result.stderr)
+            self.assertNotIn("Traceback", result.stderr)
+            self.assertEqual(b"outside sentinel\n", outside.read_bytes())
+            self.assertEqual([link], list(output.iterdir()))
+
+    def test_single_render_rejects_existing_symlink(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            outside = root / "outside.md"
+            outside.write_bytes(b"outside sentinel\n")
+            link = root / "context.md"
+            link.symlink_to(outside)
+            result = self._run_context(
+                "render", "--repository", "hygiene", "--source-revision", SOURCE_REVISION,
+                "--output", str(link),
+            )
+            self.assertNotEqual(0, result.returncode, result.stdout + result.stderr)
+            self.assertEqual(b"outside sentinel\n", outside.read_bytes())
+
+    def test_render_all_is_complete_and_repeatable(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "output"
+            arguments = (
+                "render-all", "--source-revision", SOURCE_REVISION,
+                "--output-directory", str(output),
+            )
+            first = self._run_context(*arguments)
+            self.assertEqual(0, first.returncode, first.stderr)
+            actual = {path.name: path.read_bytes() for path in output.iterdir()}
+            expected = {
+                f"{repository['name']}.md": context.render_markdown(
+                    context.build_context(self.catalog, self.policy, repository["full_name"], SOURCE_REVISION)
+                ).encode("utf-8")
+                for repository in self.catalog["repositories"]
+            }
+            self.assertEqual(expected, actual)
+            repeated = self._run_context(*arguments)
+            self.assertEqual(0, repeated.returncode, repeated.stderr)
+            self.assertEqual(actual, {path.name: path.read_bytes() for path in output.iterdir()})
 
 
 if __name__ == "__main__":
