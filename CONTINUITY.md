@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T22:02:18Z'
+  updated_at: '2026-10-30T22:02:46Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -61,7 +61,7 @@ state:
   base:
     revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
     ref: refs/heads/main
-    verified_at: '2026-10-30T22:02:18Z'
+    verified_at: '2026-10-30T22:02:46Z'
   candidate:
     branch: fix/77-contract-regression
     revision: null
@@ -72,10 +72,10 @@ state:
     handoff_state: in-progress
   live:
     status: verified
-    observed_at: '2026-10-30T22:02:18Z'
+    observed_at: '2026-10-30T22:02:46Z'
     default_branch_revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
     issue_state: open
-    pull_request_state: open-draft
+    pull_request_state: draft
     notes: 'Observed main and active issues are unchanged; tracker #76 records the three-issue batch.
       This candidate is not merged.'
   parallel_changes:
@@ -90,27 +90,27 @@ state:
     url: https://github.com/egohygiene/hygiene/issues/79
 review:
   status: partial
-  reviewed_at: '2026-10-30T22:02:18Z'
+  reviewed_at: '2026-10-30T22:02:46Z'
   reviewed_by: Codex
   evidence:
   - command: Unchanged baseline full unittest discovery
     outcome: passed
-    observed_at: '2026-10-30T22:02:18Z'
+    observed_at: '2026-10-30T22:02:46Z'
     notes: 194 baseline tests passed with no skips.
   - command: Stage-one actual-gate regression suite
     outcome: failed
-    observed_at: '2026-10-30T22:02:18Z'
+    observed_at: '2026-10-30T22:02:46Z'
     notes: Seven expected failures exposed the absent entrypoint; later implementation controls pass.
   - command: python3 -I tools/check_contracts.py
     outcome: passed
-    observed_at: '2026-10-30T22:02:18Z'
+    observed_at: '2026-10-30T22:02:46Z'
     notes: 201 tests across all thirteen current modules passed with zero skips; all 25 planned command
       checks passed. Actual copied-source controls reject invalid catalog/profile, stale output, failed/empty
       discovery and preserve explicit skip counts.
   - command: Workflow structural comparison, new-file Ruff check/format, pinned continuity schema/composition
       and git diff --check
     outcome: passed
-    observed_at: '2026-10-30T22:02:18Z'
+    observed_at: '2026-10-30T22:02:46Z'
     notes: Exact-head/read-only/unfiltered wiring is checked; every other workflow job/event and the historical
       roadmap block remain unchanged. New source lint/format and continuity constraints pass.
   environment_limitations:
