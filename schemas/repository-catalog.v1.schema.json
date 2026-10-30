@@ -20,7 +20,7 @@
     "architecture_release": { "type": "string", "pattern": "^architecture-v[0-9]+\\.[0-9]+\\.[0-9]+$" },
     "observed_at": { "type": "string", "format": "date" },
     "organization": { "const": "egohygiene" },
-    "canonical_repository": { "type": "string", "minLength": 1 },
+    "canonical_repository": { "$ref": "#/$defs/name" },
     "repository_count": { "type": "integer", "minimum": 1 },
     "planes": {
       "type": "array",
@@ -41,7 +41,7 @@
   "$defs": {
     "name": {
       "type": "string",
-      "pattern": "^(\\.github|[a-z0-9][a-z0-9.-]*)$"
+      "pattern": "^(\\.github|[a-z0-9][a-z0-9.-]*)(?![\\s\\S])"
     },
     "nonEmptyUniqueStrings": {
       "type": "array",
@@ -92,7 +92,7 @@
       "properties": {
         "name": { "$ref": "#/$defs/name" },
         "target_name": { "$ref": "#/$defs/name" },
-        "full_name": { "type": "string", "pattern": "^egohygiene/" },
+        "full_name": { "type": "string", "pattern": "^egohygiene/(\\.github|[a-z0-9][a-z0-9.-]*)(?![\\s\\S])" },
         "visibility": { "enum": ["public", "private"] },
         "plane": { "type": "string" },
         "lifecycle": { "enum": ["seed", "incubating", "active", "transition", "architecture-first"] },
@@ -102,7 +102,7 @@
         "consumes": { "$ref": "#/$defs/uniqueStrings" },
         "outputs": { "$ref": "#/$defs/nonEmptyUniqueStrings" },
         "domains": { "$ref": "#/$defs/uniqueStrings" },
-        "source_url": { "type": "string", "format": "uri" }
+        "source_url": { "type": "string", "format": "uri", "pattern": "^https://github\\.com/egohygiene/(\\.github|[a-z0-9][a-z0-9.-]*)(?![\\s\\S])" }
       }
     },
     "proposedRepository": {
@@ -122,7 +122,7 @@
       ],
       "properties": {
         "name": { "$ref": "#/$defs/name" },
-        "target_full_name": { "type": "string", "pattern": "^egohygiene/" },
+        "target_full_name": { "type": "string", "pattern": "^egohygiene/(\\.github|[a-z0-9][a-z0-9.-]*)(?![\\s\\S])" },
         "plane": { "const": "infrastructure-deployment" },
         "status": { "const": "deferred" },
         "create_after": { "type": "string", "minLength": 1 },

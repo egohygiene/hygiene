@@ -5,12 +5,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
 
 
 SCHEMA_VERSION = "1.0.0"
+REPOSITORY_NAME_PATTERN = re.compile(r"(?:\.github|[a-z0-9][a-z0-9.-]*)")
 LIFECYCLES = {"seed", "incubating", "active", "transition", "architecture-first"}
 VISIBILITIES = {"public", "private"}
 REPOSITORY_FIELDS = {
@@ -52,6 +54,10 @@ def _unique_strings(value: Any, path: str, *, allow_empty: bool) -> list[str]:
     return errors
 
 
+def _valid_repository_name(value: Any) -> bool:
+    return isinstance(value, str) and REPOSITORY_NAME_PATTERN.fullmatch(value) is not None
+
+
 def validate_catalog(catalog: dict[str, Any]) -> list[str]:
     """Return deterministic semantic validation errors."""
 
@@ -82,10 +88,12 @@ def validate_catalog(catalog: dict[str, Any]) -> list[str]:
             errors.append(f"{prefix} must be an object")
             continue
         name = repository.get("name")
-        if not isinstance(name, str) or not name:
-            errors.append(f"{prefix}.name must be a non-empty string")
+        if not _valid_repository_name(name):
+            errors.append(f"{prefix}.name must match the catalog repository-name grammar")
             continue
         names.append(name)
+        if "target_name" in repository and not _valid_repository_name(repository["target_name"]):
+            errors.append(f"{prefix}.target_name must match the catalog repository-name grammar")
         missing = REPOSITORY_FIELDS - repository.keys()
         if missing:
             errors.append(f"{prefix} is missing: {', '.join(sorted(missing))}")
@@ -123,8 +131,8 @@ def validate_catalog(catalog: dict[str, Any]) -> list[str]:
             errors.append(f"{prefix} must be an object")
             continue
         name = repository.get("name")
-        if not isinstance(name, str) or not name:
-            errors.append(f"{prefix}.name must be a non-empty string")
+        if not _valid_repository_name(name):
+            errors.append(f"{prefix}.name must match the catalog repository-name grammar")
             continue
         proposed_names.append(name)
         if repository.get("status") != "deferred":

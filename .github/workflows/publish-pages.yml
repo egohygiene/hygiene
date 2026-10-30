@@ -17,21 +17,25 @@ concurrency:
 
 jobs:
   checks:
-    name: Check publisher and repository contracts
+    name: Complete reference-contract regression
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
-      - run: python3 -I -m unittest discover --start-directory tests --pattern test_publication.py --verbose
-      - run: python3 -I -m unittest discover --start-directory tests --pattern test_decisions.py --verbose
-      - run: git apply --check --unidiff-zero docs/adr-workflow/2026-10-18-adr-0001-v1.2-review.patch
-      - run: python3 tools/catalog.py validate
-      - run: python3 tools/catalog.py check-generated --output docs/generated/REPOSITORIES.md
-      - run: python3 tools/context.py validate
-      - run: python3 tools/continuity.py validate-profile
-      - run: python3 tools/continuity.py validate-repository --repository .
+      - name: Run all reference tests and deterministic source checks
+        run: python3 -I tools/check_contracts.py
+      - name: Retain bounded contract diagnostics
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: "hygiene-contracts-${{ github.run_id }}-${{ github.run_attempt }}"
+          path: .cache/contract-regression/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 7
 
   validation:
     name: Read-only native source evidence

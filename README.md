@@ -99,7 +99,21 @@ See [issue #1](https://github.com/egohygiene/hygiene/issues/1) for the initial
 architecture import and [issue #2](https://github.com/egohygiene/hygiene/issues/2)
 for the validated repository catalog contract.
 
-Validate the existing repository catalog and its generated view with:
+Run the complete reference-contract regression gate with:
+
+```sh
+python3 -I tools/check_contracts.py
+```
+
+`task check` invokes the same command. The [validation guide](docs/CONTRACT_VALIDATION.md)
+describes coverage, bounded diagnostics, required Python/Git tools and the
+separate native source-admission/publication gates. The Pages workflow's
+read-only `checks` job runs it for every pull request without path filters.
+Local results do not establish hosted acceptance or required-check rulesets.
+Use [#76](https://github.com/egohygiene/hygiene/issues/76) for this batch's
+review state and remaining acceptance.
+
+The existing individual reference commands remain available:
 
 ```bash
 python3 tools/catalog.py --catalog catalog/repositories.yaml validate

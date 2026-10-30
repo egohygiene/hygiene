@@ -5,8 +5,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import re
+import secrets
+import stat
 import sys
 from typing import Any
 
@@ -52,6 +55,8 @@ def validate_policy(catalog: dict[str, Any], policy: dict[str, Any]) -> list[str
     """Return stable errors for the context policy and catalog relationship map."""
 
     errors = repository_catalog.validate_catalog(catalog)
+    if errors:
+        return errors
     for field in ("schema_version", "context_version"):
         if policy.get(field) != SCHEMA_VERSION:
             errors.append(f"{field} must be {SCHEMA_VERSION}")
@@ -449,9 +454,72 @@ markers = [
 '''
 
 
+def _output_root(directory: Path) -> Path:
+    """Select a stable caller-owned output root without following symlinks."""
+
+    absolute = directory.absolute()
+    for component in (absolute, *absolute.parents):
+        try:
+            mode = component.lstat().st_mode
+        except FileNotFoundError:
+            continue
+        if stat.S_ISLNK(mode):
+            raise ValueError(f"context output directory contains a symlink: {component}")
+        if not stat.S_ISDIR(mode):
+            raise ValueError(f"context output parent is not a directory: {component}")
+    absolute.mkdir(parents=True, exist_ok=True)
+    return absolute.resolve(strict=True)
+
+
+def _output_target(root: Path, name: str) -> Path:
+    """Preflight one direct child independently of catalog identity checks."""
+
+    if not name or Path(name).name != name or name in {".", ".."}:
+        raise ValueError(f"context output is not a single file name: {name}")
+    target = root / name
+    try:
+        mode = target.lstat().st_mode
+    except FileNotFoundError:
+        mode = None
+    if mode is not None:
+        if stat.S_ISLNK(mode):
+            raise ValueError(f"context output destination is a symlink: {target}")
+        if not stat.S_ISREG(mode):
+            raise ValueError(f"context output destination is not a regular file: {target}")
+    if target.resolve(strict=False).parent != root:
+        raise ValueError(f"context output destination escapes its output root: {target}")
+    return target
+
+
+def _replace_output(path: Path, contents: str) -> None:
+    """Replace an output entry without writing through an existing hard link."""
+
+    path = _output_target(path.parent, path.name)
+    try:
+        mode = stat.S_IMODE(path.lstat().st_mode) & 0o777
+    except FileNotFoundError:
+        mode = None
+    temporary = path.parent / f".hygiene-context-{secrets.token_hex(16)}.tmp"
+    descriptor = os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o666)
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
+            stream.write(contents)
+        if mode is not None:
+            temporary.chmod(mode)
+        os.replace(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def _write_all(directory: Path, outputs: list[tuple[str, str]]) -> None:
+    root = _output_root(directory)
+    targets = [(_output_target(root, name), contents) for name, contents in outputs]
+    for target, contents in targets:
+        _replace_output(target, contents)
+
+
 def _write(path: Path, contents: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(contents, encoding="utf-8")
+    _write_all(path.parent, [(path.name, contents)])
 
 
 def _check(path: Path, contents: str) -> bool:
@@ -511,14 +579,13 @@ def main(argv: list[str] | None = None) -> int:
             print(f"generated context current: {arguments.output}")
             return 0
         if arguments.command == "render-all":
+            outputs = []
             for repository in catalog["repositories"]:
                 context = build_context(
                     catalog, policy, repository["full_name"], arguments.source_revision
                 )
-                _write(
-                    arguments.output_directory / f"{repository['name']}.md",
-                    render_markdown(context),
-                )
+                outputs.append((f"{repository['name']}.md", render_markdown(context)))
+            _write_all(arguments.output_directory, outputs)
             print(
                 f"wrote {len(catalog['repositories'])} contexts to "
                 f"{arguments.output_directory}"

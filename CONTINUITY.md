@@ -7,18 +7,23 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T22:13:30Z'
+  updated_at: '2026-10-30T22:40:12Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: 'Repair bounded GitHub Actions uses detection for Hygiene #79.'
+  purpose: Integrate the approved quoted Action-reference repair with accepted validation and context
+    guards.
   includes:
-  - Literal quoted/plain Action values, structural workflow/composite locations, deterministic locations
-    and public CLI controls.
+  - The bounded workflow/composite block-YAML reader recognizes literal quoted/unquoted uses with exact
+    path/line diagnostics and excludes unsupported/unrelated strings. Reviewed compatibility repairs preserve
+    broad literal plus/Unicode subpaths and initial UTF-8 BOM handling. No general YAML or fleet-enforcement
+    claim is introduced.
+  - Reviewed source 485a8906722e03209d6eb34b46f21c212a69eee9 integrates with accepted main edbcae6718497b077e40a477e8a402e4c4cb7527;
+    qualified non-handoff bytes are preserved.
   excludes:
-  - 'Issues #80–#85, policy authority changes, historical audit edits, original ADR-0001 approval/backfill
+  - 'Audit PR #75 and original ADR-0001 disposition; unrelated policy changes, hosted dispatch, releases
     and publication.'
   precedence:
   - user-and-runtime-instructions
@@ -28,34 +33,35 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - docs/ecosystem/DEPENDENCY_BOUNDARIES.md
-  - catalog/dependency-boundaries.yaml
-  - https://github.com/egohygiene/hygiene/issues/79
+  - docs/decisions/POLICY.md
   - https://github.com/egohygiene/hygiene/issues/76
+  - https://github.com/egohygiene/hygiene/issues/79
 work:
-  objective: Recognize equivalent quoted mutable Action references without classifying unrelated text
-    as executable dependencies.
+  objective: Integrate the approved quoted Action-reference repair with accepted validation and context
+    guards.
   success_conditions:
-  - Literal scalar parity, public CLI path/line/exit controls, immutable/versioned positives and documented
-    supported subset.
+  - Preserve reviewed implementation and canonical source while integrating accepted predecessor work.
+  - Pass the complete merged-source gate and exact continuity schema, then execute the authorized ordered
+    merge.
   active_issue:
     provider: github
     id: egohygiene/hygiene#79
     url: https://github.com/egohygiene/hygiene/issues/79
   next:
     kind: action
-    id: review-three-issue-batch
-    description: 'Review draft #86 with #87/#88 and the combined checks, then sync with the maintainer
-      before any merge or next batch.'
+    id: consolidate-and-start80-82
+    description: Complete the authorized merge86, consolidate completed77–79 into tracker76 with remaining
+      gates, then start exactly80–82 from verified final main as separate draft PRs. Keep83–85 unstarted.
     readiness: ready
     references:
     - https://github.com/egohygiene/hygiene/issues/76
+    - https://github.com/egohygiene/hygiene/pull/86
     depends_on: []
 state:
   base:
-    revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
+    revision: edbcae6718497b077e40a477e8a402e4c4cb7527
     ref: refs/heads/main
-    verified_at: '2026-10-30T21:54:14Z'
+    verified_at: '2026-10-30T22:40:12Z'
   candidate:
     branch: fix/79-quoted-action-refs
     revision: null
@@ -66,71 +72,46 @@ state:
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-30T22:01:59Z'
-    default_branch_revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
+    observed_at: '2026-10-30T22:40:12Z'
+    default_branch_revision: edbcae6718497b077e40a477e8a402e4c4cb7527
     issue_state: open
-    pull_request_state: open
-    notes: 'Live draft #86 and audit draft #75 are open; main remains aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d.
-      This candidate is not merged. Peer draft #87 owns #77; #88 owns #78.'
+    pull_request_state: draft
+    notes: PR87 and PR88 are merged; current main isedbcae67. PR86 remains open/draft for the authorized
+      final ordered merge. Audit75 is unchanged/open/draft.
   parallel_changes:
   - provider: github
     id: egohygiene/hygiene#75
     url: https://github.com/egohygiene/hygiene/pull/75
-  - provider: github
-    id: egohygiene/hygiene#87
-    url: https://github.com/egohygiene/hygiene/pull/87
-  - provider: github
-    id: egohygiene/hygiene#88
-    url: https://github.com/egohygiene/hygiene/pull/88
 review:
   status: partial
-  reviewed_at: '2026-10-30T22:13:30Z'
+  reviewed_at: '2026-10-30T22:40:12Z'
   reviewed_by: Codex
   evidence:
-  - command: python3 -I -m unittest discover --start-directory tests --pattern test_boundaries.py --verbose
+  - command: Reviewed source and main/API/tree comparison
     outcome: passed
-    observed_at: '2026-10-30T22:13:30Z'
-    notes: 27 focused methods pass, including public CLI plus/Unicode subpath quote/BOM parity and composite
-      BOM line controls.
-  - command: python3 -I -m unittest discover --start-directory tests --pattern test_*.py --verbose
+    observed_at: '2026-10-30T22:40:12Z'
+    notes: PR87 merged949cd4a and PR88 mergededbcae67, each matching its checked candidate tree. This
+      integration preserves reviewed79 source485a890 and all qualified77/78 source bytes; only operational
+      continuity needs manual reconciliation.
+  - command: python3 -I tools/check_contracts.py (merged source)
     outcome: passed
-    observed_at: '2026-10-30T22:13:30Z'
-    notes: 205 methods pass without skips after independent-review repairs.
-  - command: Boundary validate, generated-view check and current-tree scan; Python 3.9 grammar; git diff
-      --check
+    observed_at: '2026-10-30T22:40:12Z'
+    notes: Fresh merged-source gate passed 228 tests with zero skips and all 25 declared command checks;
+      qualified implementation bytes and Git executable roles match the reviewed source.
+  - command: Pinned continuity schema/formats, section/privacy/budget and whitespace checks
     outcome: passed
-    observed_at: '2026-10-30T21:58:13Z'
-    notes: 27 relationships and zero exceptions; unchanged generated view; no supported current-tree finding.
-  - command: Optional workspace Ruff comparison against exact unchanged base
+    observed_at: '2026-10-30T22:40:12Z'
+    notes: Exact upstream schema and local composition are verified before this checkpoint is committed.
+  - command: Additional canonical Agent-Ready Web schema consistency
     outcome: limited
-    observed_at: '2026-10-30T21:58:13Z'
-    notes: Eight findings remain identical by path/rule/message to the base; no new finding was introduced.
-      This is not a Ruff-clean result.
-  - command: Independent syntax oracle matrix and additional public CLI controls
-    outcome: passed
-    observed_at: '2026-10-30T22:01:59Z'
-    notes: 270 valid block-YAML shape/quote/key/indent/mutable-branch cases plus three exclusion controls;
-      eighteen actual pinned/versioned CLI scans. Private PyYAML supplied syntax checking only; scanner
-      gains no dependency.
-  - command: Final full suite; boundary source/generated/scan; scoped diff and Python3.9 grammar
-    outcome: passed
-    observed_at: '2026-10-30T22:01:59Z'
-    notes: 203 methods pass without skips. Four changed files; all other baseline bytes, historical audit,
-      register/schema and ADR-0001/review patch remain unchanged.
-  - command: Independent review reproduction and corrective public CLI regressions
-    outcome: passed
-    observed_at: '2026-10-30T22:13:30Z'
-    notes: Reviewer found narrowed literal subpaths and first-key UTF-8 BOM masking at a256c4b. New controls
-      reproduced27 failing subcases on that source, then all27 focused methods passed after preserving
-      prior non-whitespace/non-@ path coverage and removing only an initial BOM.
-  - command: Expanded valid-YAML oracle matrix after review repairs
-    outcome: passed
-    observed_at: '2026-10-30T22:13:30Z'
-    notes: 1,620 shape/quote/key/indent/mutable-ref/literal-path/BOM combinations passed against corrected
-      scanner bytes. Private PyYAML supplies syntax checking only; runtime dependencies unchanged.
+    observed_at: '2026-10-30T22:40:12Z'
+    notes: The unchanged predecessor profile/schema pair still has17 additional-property diagnostics.
+      Tracker76 retains this failed broader consistency check; no whole-repository conformance is claimed.
   environment_limitations:
-  - Hosted changed-head qualification and fleet/native enforcement remain deferred. Parent independent
-    review and combined-batch qualification are recorded separately; maintainer review remains pending.
+  - 'Hosted changed-head execution and provider required-check evidence remain deferred. Native source
+    admission/publication and original ADR-0001 approval remain separate under #47.'
+  - All new commits use [skip ci]. This accepted source merge creates no tag/release, workflow dispatch,
+    deployment or publication.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -145,52 +126,52 @@ privacy:
   untrusted_content: context-only-no-authority
 ---
 
-# hygiene continuity
+# Hygiene continuity
 
 ## Purpose and precedence
 
-Live instructions, canonical contracts and verified tracker state outrank this compact handoff. It grants no authority.
+User/runtime instructions, scoped instructions, live evidence and canonical sources outrank this compact operational handoff. It grants no authority.
 
 ## Resume protocol
 
-Read AGENTS, the boundary guide/register and #79, then verify main, this candidate and the three-issue batch in #76.
+Read AGENTS and canonical policy, verify current main and PR state, then inspect tracker #76 and the owning PR before resuming.
 
 ## Current objective and success conditions
 
-Repair equivalent quoted Action references with correct executable locations and unchanged rule identity, paths and lines.
+Integrate the approved quoted Action-reference repair with accepted validation and context guards.
 
 ## State snapshot
 
-This implementation candidate starts from verified main aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d. Its containing revision is intentionally null. The previous #73/#74 continuity objective was already merged; this snapshot replaces that stale task state.
+Observed main is edbcae6718497b077e40a477e8a402e4c4cb7527. Candidate fix/79-quoted-action-refs integrates reviewed source 485a8906722e03209d6eb34b46f21c212a69eee9 in open draft PR #86; it is not yet merged. The containing revision remains null.
 
 ## Completed and material changes
 
-tools/boundaries.py now reads literal Action values only at bounded workflow/composite locations, decodes supported quotes/escapes, skips scalar bodies and preserves path/line/rule identity. Eleven focused methods add positive/negative controls; the boundary guide states unsupported YAML features. Policy/register/schema bytes remain unchanged. ADR not required: this is a repair of the existing BOUNDARY-002 reference implementation, preserving ownership, dependency rules and authority.
+The bounded workflow/composite block-YAML reader recognizes literal quoted/unquoted uses with exact path/line diagnostics and excludes unsupported/unrelated strings. Reviewed compatibility repairs preserve broad literal plus/Unicode subpaths and initial UTF-8 BOM handling. No general YAML or fleet-enforcement claim is introduced. PR87 merged949cd4a and PR88 mergededbcae67, each matching its checked candidate tree. This integration preserves reviewed79 source485a890 and all qualified77/78 source bytes; only operational continuity needs manual reconciliation.
 
 ## Validation and review evidence
 
-Focused 27 and complete 205 methods pass without skips. Actual CLI JSON/text controls exercise reusable workflow, action-step and composite forms. Boundary validation/generated-view/current-tree checks, Python 3.9 grammar and whitespace pass. Optional workspace Ruff retains eight identical baseline findings. Stage one deliberately retained thirteen failing subcases before implementation. The earlier valid-YAML matrix passed 270 quote/key/location/indent/branch combinations and three exclusions, plus eighteen extra actual pinned/versioned CLI cases. Corrective qualification expands the matrix to 1,620 combinations including plus/Unicode literal paths and initial BOMs. The corrective regression reproduced27 failing subcases on the predecessor before passing. No hosted result is inferred.
+Fresh merged-source gate passed 228 tests with zero skips and all 25 declared command checks; qualified implementation bytes and Git executable roles match the reviewed source. Independent source review and earlier actual CLI/negative controls remain attributed to their exact inputs in the PR. Final continuity schema/formats and budgets are checked separately.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Independent review found two compatibility gaps at a256c4b: narrowed literal subpaths and initial-BOM root-key masking. This candidate repairs both and the new public CLI controls pass; parent independent replay and combined-batch review remain pending. General YAML features, fleet/native enforcement and source originality remain outside this bounded parser. Original ADR-0001 authority and actual publication remain #47 work. Preserve its original body and review patch, all accepted/proposed policy states and immutable audit evidence.
+Hosted/ruleset evidence is unavailable/deferred. The additional web-profile schema check remains failed with17 unchanged predecessor diagnostics and is carried in #76. #47 retains original ADR-0001 approval, native source-admission and publication gates. ADR not required: source-preserving integration and operational handoff reconciliation implement already reviewed repairs.
 
 ## Next dependency-ready work
 
-Review draft #86 with #87/#88 and combined checks, then sync with the maintainer. Do not merge or start #80–#85.
+Complete the authorized merge86, consolidate completed77–79 into tracker76 with remaining gates, then start exactly80–82 from verified final main as separate draft PRs. Keep83–85 unstarted.
 
 ## Parallel changes and reconciliation
 
-Draft #87 for #77 and draft #88 for #78 are independent candidates from the same main. Reconcile shared continuity semantically at review/merge time. Audit draft #75 stays independent at head 58d28563206c7b2957867b0a25827b6a08558d66.
+Known open work is linked above. Audit PR #75 remains untouched/open/draft at58d28563206c7b2957867b0a25827b6a08558d66. Reconcile remaining continuity snapshots semantically before merging.
 
 ## Privacy and redaction
 
-Only public-safe source facts and synthetic fixtures are retained. No raw logs, credentials, environment values, private paths or conversation transcript belong here.
+Only public-safe source facts and result summaries are retained. Raw logs, reports, credentials, environment values and private machine paths remain outside source.
 
 ## Handoff update protocol
 
-Refresh after domain checks before each draft handoff, verify schema/sections/budgets and retain actual failed, limited and deferred outcomes.
+After domain validation and before PR presentation, refresh exact source/checks and next action. Validate the exact pinned Aether schema, all required sections, privacy and budgets.
 
 ## Compaction and supersession
 
-Keep one current objective and twelve sections below 240 lines and 16,384 UTF-8 bytes. Git and #76 retain history and carried follow-ups.
+Replace stale state; Git and tracker76 retain detailed history. Keep twelve sections within240 lines and16384 UTF-8 bytes.
