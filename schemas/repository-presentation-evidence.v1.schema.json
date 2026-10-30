@@ -96,6 +96,22 @@
       "type": "object",
       "additionalProperties": false,
       "required": ["id", "requirement", "state", "evidence", "reason"],
+      "allOf": [
+        {
+          "if": {
+            "properties": { "state": { "const": "passing" } },
+            "required": ["state"]
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "contains": { "$ref": "#/$defs/currentPassingEvidence" },
+                "minContains": 1
+              }
+            }
+          }
+        }
+      ],
       "properties": {
         "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
         "requirement": {
@@ -125,10 +141,21 @@
             "workflow"
           ]
         },
-        "location": { "type": "string", "minLength": 1 },
+        "location": { "type": "string", "minLength": 1, "pattern": "\\S" },
         "assertion": { "enum": ["authoritative", "derived", "unknown"] },
         "freshness": { "enum": ["current", "stale", "unknown", "not_applicable"] }
       }
+    },
+    "currentPassingEvidence": {
+      "allOf": [
+        { "$ref": "#/$defs/evidenceRecord" },
+        {
+          "properties": {
+            "assertion": { "enum": ["authoritative", "derived"] },
+            "freshness": { "const": "current" }
+          }
+        }
+      ]
     }
   }
 }

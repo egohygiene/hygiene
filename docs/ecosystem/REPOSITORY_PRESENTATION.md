@@ -252,6 +252,40 @@ consumer cannot label the assessment `passing` while a required slot is
 unknown, stale, blocked, partial, or failing. Not-applicable slots require a
 profile-derived requirement and a reason. Exemptions require approval evidence.
 
+### Current support for a passing slot
+
+A claimed-passing slot, including an optional one, requires at least one
+qualifying record. It must have the complete closed evidence-record shape, a
+known kind, a non-blank location, `freshness: current`, and an `assertion` of
+`authoritative` **or** `derived`. A record labelled `unknown` cannot supply
+that support. The declaration is checked as supplied; this rule does not open
+the location, authenticate its facts or establish freshness independently.
+
+One qualifying current record is sufficient. Retain other well-formed stale,
+unknown or supporting records: they do not veto that witness and must not be
+silently removed. Malformed records still produce their own errors even when
+another record qualifies. The evidence schema encodes the same passing-record
+condition; repository applicability and aggregate derivation remain semantic
+reference checks.
+
+For state derivation, an unsupported `passing` label has effective state
+`stale` when its non-empty evidence consists entirely of well-formed records
+marked stale. It has effective state `unknown` otherwise, including empty,
+unknown-assertion/current, unknown-freshness, not-applicable-freshness and
+malformed-only records. Mixed stale and unknown records without a qualifying
+current witness therefore remain unknown. Explicit non-passing slot states
+are preserved, even if fresh records are present; fresh metadata never
+upgrades a failing, stale or blocked assessment automatically.
+
+Apply the existing aggregate precedence to these effective states: required
+failure, blockage, staleness and evaluation remain distinct; required unknown,
+partial, advisory or exemption derives `partial`. After required slots pass,
+an unsupported recommended slot derives `advisory`. Optional slots do not
+lower the aggregate, although any passing claim they make still needs support.
+The assessment, badge state and badge message must match the derived result.
+The checker reports unsupported slot relationships and aggregate mismatches
+without rewriting the input or fabricating a corrected record.
+
 Evidence artifacts are snapshots, not canonical README content. A repository
 regenerates them when its represented commit, profile version, relevant source,
 or evidence changes.
@@ -278,7 +312,8 @@ Two synthetic fixtures prove different valid shapes:
   and does not invent development or installation paths.
 - [`rich.valid.json`](../../fixtures/repository-presentation/rich.valid.json)
   is an active public tool with all recommended slots and generated-region
-  ownership evidence.
+  ownership evidence. Its badge slot keeps a current derived witness alongside
+  separate stale and unknown records; that mixed evidence remains valid.
 
 The names and commit IDs are intentionally synthetic. They are contract test
 inputs, not claims about live repositories.
@@ -325,6 +360,16 @@ custom layout and additional material so long as every applicable semantic
 slot remains discoverable and truthful.
 
 ## Compatibility and replacement
+
+The #81 repair enforces the already documented current-evidence invariant in
+the proposed `1.0.0-alpha.1` profile. The v1 envelope, fields, requirement
+precedence, state vocabulary and authority remain unchanged; no profile is
+activated. Validation is stricter: unsupported passing labels and blank record
+locations that an earlier reference helper/schema accepted now reject. Alpha
+consumers must review and pin the corrected immutable source, re-evaluate their
+records, and either supply real qualifying support or declare an honest
+non-passing state. Do not erase historical evidence, invent current facts or
+treat a successful document-validation process as a passing repository claim.
 
 Within v1, additive optional slots or evidence fields may be compatible when
 unknown fields remain rejectable until consumers upgrade deliberately. Changes

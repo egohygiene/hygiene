@@ -59,7 +59,11 @@
       "id": "evidence_badges",
       "requirement": "recommended",
       "state": "passing",
-      "evidence": [{ "kind": "workflow", "location": ".github/workflows/ci.yml", "assertion": "derived", "freshness": "current" }],
+      "evidence": [
+        { "kind": "workflow", "location": ".github/workflows/ci.yml", "assertion": "derived", "freshness": "current" },
+        { "kind": "workflow", "location": "evidence/archive/ci.previous.json", "assertion": "derived", "freshness": "stale" },
+        { "kind": "documentation", "location": "docs/review-pending.md", "assertion": "unknown", "freshness": "unknown" }
+      ],
       "reason": null
     },
     {
