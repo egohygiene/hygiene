@@ -7,24 +7,21 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T22:40:12Z'
+  updated_at: '2026-10-30T22:50:42Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Integrate the approved quoted Action-reference repair with accepted validation and context
-    guards.
+  purpose: Make continuity exception assessment dates reproducible, inspectable and safe through the existing
+    API and CLI.
   includes:
-  - The bounded workflow/composite block-YAML reader recognizes literal quoted/unquoted uses with exact
-    path/line diagnostics and excludes unsupported/unrelated strings. Reviewed compatibility repairs preserve
-    broad literal plus/Unicode subpaths and initial UTF-8 BOM handling. No general YAML or fleet-enforcement
-    claim is introduced.
-  - Reviewed source 485a8906722e03209d6eb34b46f21c212a69eee9 integrates with accepted main edbcae6718497b077e40a477e8a402e4c4cb7527;
-    qualified non-handoff bytes are preserved.
+  - Eight new assessment methods and a clearly synthetic fixed-expiry fixture expose the historical implicit
+    clock, absent CLI date path/reporting and invalid-context fallbacks. No production implementation
+    has changed yet.
   excludes:
-  - 'Audit PR #75 and original ADR-0001 disposition; unrelated policy changes, hosted dispatch, releases
-    and publication.'
+  - Policy/update/approval/expiry source-date rewriting, Aether protocol changes, policy promotion, unrelated81/82
+    implementation and83–85.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -33,85 +30,77 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - docs/decisions/POLICY.md
+  - docs/ecosystem/REPOSITORY_CONTINUITY.md
+  - catalog/repository-continuity-policy.json
+  - https://github.com/egohygiene/hygiene/issues/80
   - https://github.com/egohygiene/hygiene/issues/76
-  - https://github.com/egohygiene/hygiene/issues/79
 work:
-  objective: Integrate the approved quoted Action-reference repair with accepted validation and context
-    guards.
+  objective: Make continuity exception assessment dates reproducible, inspectable and safe through the
+    existing API and CLI.
   success_conditions:
-  - Preserve reviewed implementation and canonical source while integrating accepted predecessor work.
-  - Pass the complete merged-source gate and exact continuity schema, then execute the authorized ordered
-    merge.
+  - Fixed before/at/after expiry API and CLI assessments agree and disclose the represented date.
+  - Current UTC and explicit frozen date paths reject invalid/unavailable context without granting an
+    expired or unapproved exemption.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#79
-    url: https://github.com/egohygiene/hygiene/issues/79
+    id: egohygiene/hygiene#80
+    url: https://github.com/egohygiene/hygiene/issues/80
   next:
     kind: action
-    id: consolidate-and-start80-82
-    description: Complete the authorized merge86, consolidate completed77–79 into tracker76 with remaining
-      gates, then start exactly80–82 from verified final main as separate draft PRs. Keep83–85 unstarted.
+    id: implement-assessment-clock
+    description: Implement the current-UTC/default and explicit frozen-date path, strict date/context
+      diagnostics and visible result metadata, then qualify before review.
     readiness: ready
     references:
+    - https://github.com/egohygiene/hygiene/issues/80
     - https://github.com/egohygiene/hygiene/issues/76
-    - https://github.com/egohygiene/hygiene/pull/86
     depends_on: []
 state:
   base:
-    revision: edbcae6718497b077e40a477e8a402e4c4cb7527
+    revision: fa41ccc95d0cd0365b38008e02bdc67b928c5ed2
     ref: refs/heads/main
-    verified_at: '2026-10-30T22:40:12Z'
+    verified_at: '2026-10-30T22:50:42Z'
   candidate:
-    branch: fix/79-quoted-action-refs
+    branch: fix/80-continuity-assessment
     revision: null
-    pull_request:
-      provider: github
-      id: egohygiene/hygiene#86
-      url: https://github.com/egohygiene/hygiene/pull/86
-    handoff_state: ready-for-review
+    pull_request: null
+    handoff_state: in-progress
   live:
     status: verified
-    observed_at: '2026-10-30T22:40:12Z'
-    default_branch_revision: edbcae6718497b077e40a477e8a402e4c4cb7527
+    observed_at: '2026-10-30T22:50:42Z'
+    default_branch_revision: fa41ccc95d0cd0365b38008e02bdc67b928c5ed2
     issue_state: open
-    pull_request_state: draft
-    notes: PR87 and PR88 are merged; current main isedbcae67. PR86 remains open/draft for the authorized
-      final ordered merge. Audit75 is unchanged/open/draft.
+    pull_request_state: not-applicable
+    notes: Main is verified after the ordered87/88/86 merges. Original77–79 issues are consolidated into76.
+      This new80 candidate is not merged;81/82 are independent peers.
   parallel_changes:
   - provider: github
     id: egohygiene/hygiene#75
     url: https://github.com/egohygiene/hygiene/pull/75
+  - provider: github
+    id: egohygiene/hygiene#81
+    url: https://github.com/egohygiene/hygiene/issues/81
+  - provider: github
+    id: egohygiene/hygiene#82
+    url: https://github.com/egohygiene/hygiene/issues/82
 review:
   status: partial
-  reviewed_at: '2026-10-30T22:40:12Z'
+  reviewed_at: '2026-10-30T22:50:42Z'
   reviewed_by: Codex
   evidence:
-  - command: Reviewed source and main/API/tree comparison
+  - command: Merged predecessor full gate and exact main-tree preservation
     outcome: passed
-    observed_at: '2026-10-30T22:40:12Z'
-    notes: PR87 merged949cd4a and PR88 mergededbcae67, each matching its checked candidate tree. This
-      integration preserves reviewed79 source485a890 and all qualified77/78 source bytes; only operational
-      continuity needs manual reconciliation.
-  - command: python3 -I tools/check_contracts.py (merged source)
-    outcome: passed
-    observed_at: '2026-10-30T22:40:12Z'
-    notes: Fresh merged-source gate passed 228 tests with zero skips and all 25 declared command checks;
-      qualified implementation bytes and Git executable roles match the reviewed source.
-  - command: Pinned continuity schema/formats, section/privacy/budget and whitespace checks
-    outcome: passed
-    observed_at: '2026-10-30T22:40:12Z'
-    notes: Exact upstream schema and local composition are verified before this checkpoint is committed.
-  - command: Additional canonical Agent-Ready Web schema consistency
-    outcome: limited
-    observed_at: '2026-10-30T22:40:12Z'
-    notes: The unchanged predecessor profile/schema pair still has17 additional-property diagnostics.
-      Tracker76 retains this failed broader consistency check; no whole-repository conformance is claimed.
+    observed_at: '2026-10-30T22:50:42Z'
+    notes: Merged baseline source passed228 tests/all25 command checks with zero skips; source is verified
+      atfa41ccc95d0cd0365b38008e02bdc67b928c5ed2.
+  - command: python3 -I -m unittest discover --start-directory tests --pattern test_continuity.py --verbose
+    outcome: failed
+    observed_at: '2026-10-30T22:50:42Z'
+    notes: The focused suite ran22 methods. Seventeen failing subcases and six errors are expected on
+      the unfixed clock/reporting/CLI path; predecessor controls remain passing.
   environment_limitations:
-  - 'Hosted changed-head execution and provider required-check evidence remain deferred. Native source
-    admission/publication and original ADR-0001 approval remain separate under #47.'
-  - All new commits use [skip ci]. This accepted source merge creates no tag/release, workflow dispatch,
-    deployment or publication.
+  - 'Implementation and changed-source qualification are pending. Hosted/ruleset acceptance and the unchanged17-diagnostic
+    web-profile schema mismatch remain in76; #47 retains native/source-admission/publication.'
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -130,48 +119,48 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime instructions, scoped instructions, live evidence and canonical sources outrank this compact operational handoff. It grants no authority.
+User/runtime instructions, scoped instructions, live evidence and canonical sources outrank this checkpoint. It grants no authority.
 
 ## Resume protocol
 
-Read AGENTS and canonical policy, verify current main and PR state, then inspect tracker #76 and the owning PR before resuming.
+Read AGENTS and the continuity policy; verify current main, issue80, the PR and tracker76 before resuming. The prior87/88/86 implementation batch is merged.
 
 ## Current objective and success conditions
 
-Integrate the approved quoted Action-reference repair with accepted validation and context guards.
+Make continuity exception assessment dates reproducible, inspectable and safe through the existing API and CLI.
 
 ## State snapshot
 
-Observed main is edbcae6718497b077e40a477e8a402e4c4cb7527. Candidate fix/79-quoted-action-refs integrates reviewed source 485a8906722e03209d6eb34b46f21c212a69eee9 in open draft PR #86; it is not yet merged. The containing revision remains null.
+Independent base isfa41ccc95d0cd0365b38008e02bdc67b928c5ed2. Candidate fix/80-continuity-assessment is in progress before PR creation. The containing revision is intentionally null.
 
 ## Completed and material changes
 
-The bounded workflow/composite block-YAML reader recognizes literal quoted/unquoted uses with exact path/line diagnostics and excludes unsupported/unrelated strings. Reviewed compatibility repairs preserve broad literal plus/Unicode subpaths and initial UTF-8 BOM handling. No general YAML or fleet-enforcement claim is introduced. PR87 merged949cd4a and PR88 mergededbcae67, each matching its checked candidate tree. This integration preserves reviewed79 source485a890 and all qualified77/78 source bytes; only operational continuity needs manual reconciliation.
+Eight new assessment methods and a clearly synthetic fixed-expiry fixture expose the historical implicit clock, absent CLI date path/reporting and invalid-context fallbacks. No production implementation has changed yet.
 
 ## Validation and review evidence
 
-Fresh merged-source gate passed 228 tests with zero skips and all 25 declared command checks; qualified implementation bytes and Git executable roles match the reviewed source. Independent source review and earlier actual CLI/negative controls remain attributed to their exact inputs in the PR. Final continuity schema/formats and budgets are checked separately.
+Merged baseline source passed228 tests/all25 command checks with zero skips; source is verified atfa41ccc95d0cd0365b38008e02bdc67b928c5ed2. The focused suite ran22 methods. Seventeen failing subcases and six errors are expected on the unfixed clock/reporting/CLI path; predecessor controls remain passing.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Hosted/ruleset evidence is unavailable/deferred. The additional web-profile schema check remains failed with17 unchanged predecessor diagnostics and is carried in #76. #47 retains original ADR-0001 approval, native source-admission and publication gates. ADR not required: source-preserving integration and operational handoff reconciliation implement already reviewed repairs.
+Implementation and changed-source qualification are pending. Hosted/ruleset acceptance and the unchanged17-diagnostic web-profile schema mismatch remain in76; #47 retains native/source-admission/publication. ADR not required: this repairs the existing as_of resolver seam and clock reporting without changing policy authority or Aether continuity semantics. Canonical profile dates and the absence of real exceptions remain unchanged.
 
 ## Next dependency-ready work
 
-Complete the authorized merge86, consolidate completed77–79 into tracker76 with remaining gates, then start exactly80–82 from verified final main as separate draft PRs. Keep83–85 unstarted.
+Implement the current-UTC/default and explicit frozen-date path, strict date/context diagnostics and visible result metadata, then qualify before review.
 
 ## Parallel changes and reconciliation
 
-Known open work is linked above. Audit PR #75 remains untouched/open/draft at58d28563206c7b2957867b0a25827b6a08558d66. Reconcile remaining continuity snapshots semantically before merging.
+Issues81 and82 are independent from the same main; reconcile competing operational continuity snapshots before any later merge. Audit75 remains untouched/open/draft at58d28563206c7b2957867b0a25827b6a08558d66.
 
 ## Privacy and redaction
 
-Only public-safe source facts and result summaries are retained. Raw logs, reports, credentials, environment values and private machine paths remain outside source.
+Only public-safe source and check summaries are retained. Synthetic approved-exception fixture data supplies no actual approval. Raw logs, credentials, environment values and private paths remain outside source.
 
 ## Handoff update protocol
 
-After domain validation and before PR presentation, refresh exact source/checks and next action. Validate the exact pinned Aether schema, all required sections, privacy and budgets.
+After domain validation and before PR presentation, refresh actual results, source and next action. Validate exact pinned schema/formats, required sections, privacy and budgets.
 
 ## Compaction and supersession
 
-Replace stale state; Git and tracker76 retain detailed history. Keep twelve sections within240 lines and16384 UTF-8 bytes.
+Replace stale current-state prose; Git and tracker76 preserve detailed history. Keep twelve sections within240 lines and16384 UTF-8 bytes.

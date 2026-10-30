@@ -1,0 +1,19 @@
+{
+  "description": "Synthetic resolver inputs only; this is not a real repository exemption or approval.",
+  "profile_updated": "2026-09-08",
+  "exception": {
+    "repository": "egohygiene/hygiene",
+    "owner": "egohygiene/hygiene",
+    "reason": "Synthetic bounded migration case.",
+    "approval": "https://example.invalid/continuity/synthetic-approval",
+    "expires_on": "2026-10-01",
+    "review_trigger": "Reassess at the fixed expiry boundary.",
+    "validation_state": "approved",
+    "exit_criteria": "Synthetic fixture only; remove no real exception."
+  },
+  "cases": [
+    { "assessment_date": "2026-09-30", "requirement": "exempt", "reason": "approved-unexpired-exception" },
+    { "assessment_date": "2026-10-01", "requirement": "required", "reason": "repository-kind-and-lifecycle" },
+    { "assessment_date": "2026-10-02", "requirement": "required", "reason": "repository-kind-and-lifecycle" }
+  ]
+}
