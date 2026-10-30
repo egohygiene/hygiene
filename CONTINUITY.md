@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T22:49:21Z'
+  updated_at: '2026-10-30T22:55:56Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -46,9 +46,9 @@ work:
     url: https://github.com/egohygiene/hygiene/issues/82
   next:
     kind: action
-    id: implement-adr-reference-alignment
-    description: 'Repair #82 reference/schema semantics, verify compatibility controls and prepare the
-      bounded draft for review.'
+    id: review-adr-reference-alignment
+    description: 'Review current #82 source/schema/fixtures and compatibility proof, then refresh the
+      final draft for combined batch sync.'
     readiness: ready
     references:
     - https://github.com/egohygiene/hygiene/issues/82
@@ -61,16 +61,19 @@ state:
   candidate:
     branch: fix/82-adr-reference
     revision: null
-    pull_request: null
+    pull_request:
+      provider: github
+      id: egohygiene/hygiene#90
+      url: https://github.com/egohygiene/hygiene/pull/90
     handoff_state: in-progress
   live:
     status: verified
-    observed_at: '2026-10-30T22:49:21Z'
+    observed_at: '2026-10-30T22:55:56Z'
     default_branch_revision: fa41ccc95d0cd0365b38008e02bdc67b928c5ed2
     issue_state: open
-    pull_request_state: not-applicable
-    notes: 'Current main is verified; #82 is open without comments. The previous three implementation
-      candidates are merged. This is a new independent regression candidate.'
+    pull_request_state: draft
+    notes: 'Draft #90 is open for #82; main remains fa41ccc95d0cd0365b38008e02bdc67b928c5ed2. This implementation
+      remains independent and unmerged.'
   parallel_changes:
   - provider: github
     id: egohygiene/hygiene#75
@@ -83,7 +86,7 @@ state:
     url: https://github.com/egohygiene/hygiene/issues/81
 review:
   status: partial
-  reviewed_at: '2026-10-30T22:49:21Z'
+  reviewed_at: '2026-10-30T22:55:56Z'
   reviewed_by: Codex
   evidence:
   - command: python3 -I tools/check_contracts.py (unchanged base)
@@ -95,6 +98,27 @@ review:
     observed_at: '2026-10-30T22:49:21Z'
     notes: 'Regression checkpoint: 25 methods ran with twelve expected failing subcases on unchanged reference/schema
       source.'
+  - command: Focused ADR suite; complete python3 -I tools/check_contracts.py
+    outcome: passed
+    observed_at: '2026-10-30T22:55:56Z'
+    notes: 27 focused methods; full gate240 tests, zero skips/failures/errors and all25 command checks
+      passed.
+  - command: Draft202012 schema/meta/formats and targeted per-record parity
+    outcome: passed
+    observed_at: '2026-10-30T22:55:56Z'
+    notes: 25 targeted fixture/ID/evidence cases agree between current schema and reference. This is not
+      whole-schema equivalence or cross-record authentication.
+  - command: Exact older policy/helper versus current decoded CLI compatibility replay
+    outcome: passed
+    observed_at: '2026-10-30T22:55:56Z'
+    notes: Pinned a05b old helper rejects pending pair; candidate accepts. Pinned1.1 f598 helper accepts
+      exact historical3digit pair; current canonical mode rejects those record IDs. Explicit synthetic
+      mapped copies pass current mode.
+  - command: Optional workspace Ruff baseline comparison
+    outcome: limited
+    observed_at: '2026-10-30T22:55:56Z'
+    notes: Six findings remain identical by path/rule/message to unchanged source; no new finding and
+      no Ruff-clean claim.
   environment_limitations:
   - 'Exact selected native EgoLint d917ea524962639494e5bb4b3196192238ba57d9 replay is unavailable: no
     cached binary is proven bound to that source. The different cached f14 runtime is not substituted.'
@@ -134,19 +158,19 @@ This independent candidate starts from verified main fa41ccc95d0cd0365b38008e02b
 
 ## Completed and material changes
 
-Ten regression methods and synthetic decoded fixtures reproduce the four mismatches. Historical compatibility fixtures preserve three-digit identities; a synthetic explicit padding map preserves their decision substance. Reference/schema source is unchanged at this checkpoint. ADR-Ref: egohygiene/hygiene#ADR-0002; routine repair of the existing policy implementation requires no duplicate ADR or new disposition.
+tools/decisions.py now distinguishes declared proposal history from effective reciprocal supersession, requires named validation evidence, diagnoses both local reference widths and rejects canonical zero. The schema mirrors the per-record constraints; twelve focused methods and synthetic fixtures cover current and historical compatibility. Malformed lineage arrays remain controlled diagnostics. No authored ADR is changed. ADR-Ref: egohygiene/hygiene#ADR-0002; routine repair of the existing policy implementation requires no duplicate ADR or new disposition.
 
 ## Validation and review evidence
 
-The unchanged complete gate passed228 tests and25 checks. Focused25 methods retain twelve expected failing subcases before the repair. These failures are reproduction evidence, not acceptance. The exact Aether authoring guide and its older-helper warning were inspected at dc8a16851f452763ef4f7fbe4bf057d4500b1921.
+The baseline gate passed228 tests/25 checks. Implementation focused27 and complete240 tests/25 checks pass without skips. The earlier focused25/twelve expected failing subcases preserve the stage-one reproduction. Targeted schema parity25 and four exact older/current CLI compatibility checks pass; optional Ruff retains six unchanged findings. The exact Aether authoring guide and its older-helper warning were inspected at dc8a16851f452763ef4f7fbe4bf057d4500b1921.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Implementation is pending. Selected native d917 replay is unavailable; a different cached runtime cannot replace it. Source admission/publication and original ADR-0001 historical approval stay #47 work. The17 unchanged broader web-schema diagnostics remain in #76. No source helper/schema result authenticates human approval or actual execution.
+Independent source review is pending. Selected native d917 replay is unavailable; a different cached runtime cannot replace it. Source admission/publication and original ADR-0001 historical approval stay #47 work. The17 unchanged broader web-schema diagnostics remain in #76. No source helper/schema result authenticates human approval or actual execution.
 
 ## Next dependency-ready work
 
-Implement #82, run focused/public CLI/schema/compatibility and complete gate checks, then review this three-issue batch. Keep #83–#85 unstarted.
+Review the complete #82 diff and exact compatibility limits, then prepare the final draft for the three-issue batch sync. Keep #83–#85 unstarted.
 
 ## Parallel changes and reconciliation
 
