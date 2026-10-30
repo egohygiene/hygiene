@@ -7,19 +7,24 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T22:06:41Z'
+  updated_at: '2026-10-30T22:37:51Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: 'Repair catalog identity preflight and contain generated context writes for Hygiene #78.'
+  purpose: Integrate the approved context identity/output repair with the accepted complete regression
+    gate.
   includes:
-  - 'Bounded issue #78 catalog identities, schema alignment, direct/context CLI output checks and safe deterministic
-    generation.'
+  - Catalog schema/reference validation rejects unsafe current/proposed/rename identities. The context
+    writer preflights all direct-child destinations, rejects links/nonregular output, and replaces same-directory
+    entries without writing through outside hard links. Stable caller-owned ancestors and nontransactional
+    batch limits remain documented.
+  - Reviewed source 84f193d523cb990ea90bb6a615d59f33bf925bd9 integrates with accepted main 949cd4ae45b48bfdbdfac3edcfbd08ff330652a1;
+    qualified non-handoff bytes are preserved.
   excludes:
-  - Live inventory/rename reconciliation (#36), other batch implementation, historical audit edits and original
-    ADR-0001 disposition/publication.
+  - 'Audit PR #75 and original ADR-0001 disposition; unrelated policy changes, hosted dispatch, releases
+    and publication.'
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -28,36 +33,35 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - schemas/repository-catalog.v1.schema.json
-  - tools/catalog.py
-  - tools/context.py
-  - https://github.com/egohygiene/hygiene/issues/78
+  - docs/decisions/POLICY.md
   - https://github.com/egohygiene/hygiene/issues/76
+  - https://github.com/egohygiene/hygiene/issues/78
 work:
-  objective: 'Repair catalog identity preflight and contain generated context writes for Hygiene #78.'
+  objective: Integrate the approved context identity/output repair with the accepted complete regression
+    gate.
   success_conditions:
-  - Unsafe current/proposed/rename identities reject before output.
-  - Generated context destinations remain within the selected output root; outside sentinels survive negative controls.
-  - Valid single and complete generation retain deterministic bytes; actual CLI failures are attributable.
+  - Preserve reviewed implementation and canonical source while integrating accepted predecessor work.
+  - Pass the complete merged-source gate and exact continuity schema, then execute the authorized ordered
+    merge.
   active_issue:
     provider: github
     id: egohygiene/hygiene#78
     url: https://github.com/egohygiene/hygiene/issues/78
   next:
     kind: action
-    id: review-first-hygiene-batch
-    description: 'Review draft candidates #77/#78/#79 and combined checks with the maintainer before a new batch
-      or merge.'
+    id: finish-context-merge
+    description: Finish the merged-source checks and authorized merge88, then integrate86. Consolidate77–79
+      into tracker76 and start the requested80–82 batch only from verified final main.
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/78
     - https://github.com/egohygiene/hygiene/issues/76
+    - https://github.com/egohygiene/hygiene/pull/88
     depends_on: []
 state:
   base:
-    revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
+    revision: 949cd4ae45b48bfdbdfac3edcfbd08ff330652a1
     ref: refs/heads/main
-    verified_at: '2026-10-30T22:06:41Z'
+    verified_at: '2026-10-30T22:37:51Z'
   candidate:
     branch: fix/78-context-containment
     revision: null
@@ -68,70 +72,49 @@ state:
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-30T22:06:41Z'
-    default_branch_revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
+    observed_at: '2026-10-30T22:37:51Z'
+    default_branch_revision: 949cd4ae45b48bfdbdfac3edcfbd08ff330652a1
     issue_state: open
-    pull_request_state: open
-    notes: 'Main and owning issue were verified for this batch; this candidate remains unmerged. Historical audit
-      #75 is an independent open draft.'
+    pull_request_state: draft
+    notes: PR87 is merged at949cd4a; PR88 remains open/draft and source-preserving reconciliation is in
+      progress. PR86 and audit75 remain open/draft.
   parallel_changes:
   - provider: github
-    id: egohygiene/hygiene#77
-    url: https://github.com/egohygiene/hygiene/issues/77
-  - provider: github
-    id: egohygiene/hygiene#79
-    url: https://github.com/egohygiene/hygiene/issues/79
+    id: egohygiene/hygiene#86
+    url: https://github.com/egohygiene/hygiene/pull/86
   - provider: github
     id: egohygiene/hygiene#75
     url: https://github.com/egohygiene/hygiene/pull/75
 review:
   status: partial
-  reviewed_at: '2026-10-30T22:06:41Z'
+  reviewed_at: '2026-10-30T22:37:51Z'
   reviewed_by: Codex
   evidence:
-  - command: python3 -I -m unittest discover --start-directory tests --pattern 'test_*.py' --verbose
+  - command: Reviewed source and main/API/tree comparison
     outcome: passed
-    observed_at: '2026-10-30T22:06:41Z'
-    notes: 210 tests passed with no skips, including ten catalog and 25 context methods. Final actual POSIX CLI
-      control proves restrictive umask on new output, preserved existing permission bits, and no temporary-file
-      residue.
-  - command: All 23 documented reference/source/generated checks plus changed-file Python3.11 grammar and compilation
+    observed_at: '2026-10-30T22:37:51Z'
+    notes: PR87 merged949cd4ae45b48bfdbdfac3edcfbd08ff330652a1 from reviewed e22e31f; main tree matched
+      that checked candidate. This integration preserves original78 source84f193d and all qualified gate
+      bytes. Only operational continuity needs manual reconciliation.
+  - command: python3 -I tools/check_contracts.py (merged source)
     outcome: passed
-    observed_at: '2026-10-30T22:06:41Z'
-    notes: Catalog/context/boundaries/continuity/web/intelligence/presentation/site/decision/release-policy checks
-      and exact three generated context/contract comparisons passed.
-  - command: Draft202012Validator with formats; schema/helper identity controls; actual before/after CLI sentinels
+    observed_at: '2026-10-30T22:37:51Z'
+    notes: Fresh merged-source gate passed 217 tests with zero skips and all 25 declared command checks;
+      qualified implementation bytes and Git executable roles match the reviewed source.
+  - command: Pinned continuity schema/formats, section/privacy/budget and whitespace checks
     outcome: passed
-    observed_at: '2026-10-30T22:06:41Z'
-    notes: 18 schema definitions, current catalog and 52 identity cases pass. Eight actual old-source/candidate
-      controls show traversal and linked-output mutation before repair, rejection/preservation after; hard-link
-      output refresh preserves its outside file.
-  - command: Unfixed-source regression replay and initial harness correction
+    observed_at: '2026-10-30T22:37:51Z'
+    notes: Exact upstream schema and local composition are verified before this checkpoint is committed.
+  - command: Additional canonical Agent-Ready Web schema consistency
     outcome: limited
-    observed_at: '2026-10-30T22:06:41Z'
-    notes: 'Corrected ordinary-script CLI fixtures genuinely reproduce invalid identities/output paths on exact
-      unfixed main; initial unsupported -I script imports remain a separate harness failure. Final old-source context
-      replay: 24 methods, ten failures and two errors (malformed full-name and FIFO timeout), with valid single/full/repeated
-      controls.'
-  - command: Ambient Ruff comparison at predecessor and candidate
-    outcome: limited
-    observed_at: '2026-10-30T22:06:41Z'
-    notes: Fourteen predecessor diagnostics retain identical rule/path/message; no added diagnostic. No unrelated
-      lint rewrite or check weakening.
-  - command: Decision-impact review and continuity contract/size/whitespace checks
-    outcome: passed
-    observed_at: '2026-10-30T22:06:41Z'
-    notes: ADR not required for this routine contract repair. Parent independently reviewed production identity/preflight/replacement
-      semantics at 0f1d5c2 and found no source blocker; own full diff review is clear. Final continuity uses the
-      pinned Aether schema with formats, correct sections and budgets; no original authority, audit, policy or inventory
-      data changed.
+    observed_at: '2026-10-30T22:37:51Z'
+    notes: The unchanged predecessor profile/schema pair still has17 additional-property diagnostics.
+      Tracker76 retains this failed broader consistency check; no whole-repository conformance is claimed.
   environment_limitations:
-  - Hosted changed-head checks are deferred; all new commits use [skip ci]. Local results do not establish branch
-    protection, fleet conformance, ratification or publication.
-  - 'Original ADR-0001 retains its missing structured historical authority evidence; #47 owns its independent source-admission/publication
-    gate.'
-  - Ambient Ruff retains fourteen predecessor diagnostics with identical rule/path/message; the scoped repair adds
-    none.
+  - 'Hosted changed-head execution and provider required-check evidence remain deferred. Native source
+    admission/publication and original ADR-0001 approval remain separate under #47.'
+  - All new commits use [skip ci]. This accepted source merge creates no tag/release, workflow dispatch,
+    deployment or publication.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -150,48 +133,48 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime instructions, scoped instructions, live evidence and canonical source outrank this compact handoff. It grants no authority.
+User/runtime instructions, scoped instructions, live evidence and canonical sources outrank this compact operational handoff. It grants no authority.
 
 ## Resume protocol
 
-Read AGENTS, the owning #78 issue, tracker #76 and current source; verify remote heads and open PRs before resuming.
+Read AGENTS and canonical policy, verify current main and PR state, then inspect tracker #76 and the owning PR before resuming.
 
 ## Current objective and success conditions
 
-Repair catalog identity preflight and contain generated context writes for Hygiene #78. Preserve valid deterministic projections while unsafe identities and filesystem destinations reject before context files are written.
+Integrate the approved context identity/output repair with the accepted complete regression gate.
 
 ## State snapshot
 
-Base main is aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d. This candidate is fix/78-context-containment and remains unmerged. Its containing revision is intentionally null; Git and the draft PR carry the eventual exact head.
+Observed main is 949cd4ae45b48bfdbdfac3edcfbd08ff330652a1. Candidate fix/78-context-containment integrates reviewed source 84f193d523cb990ea90bb6a615d59f33bf925bd9 in open draft PR #88; it is not yet merged. The containing revision remains null.
 
 ## Completed and material changes
 
-The candidate enforces catalog identity grammar and independently checks generated output destinations, retaining deterministic valid projections.
+Catalog schema/reference validation rejects unsafe current/proposed/rename identities. The context writer preflights all direct-child destinations, rejects links/nonregular output, and replaces same-directory entries without writing through outside hard links. Stable caller-owned ancestors and nontransactional batch limits remain documented. PR87 merged949cd4ae45b48bfdbdfac3edcfbd08ff330652a1 from reviewed e22e31f; main tree matched that checked candidate. This integration preserves original78 source84f193d and all qualified gate bytes. Only operational continuity needs manual reconciliation.
 
 ## Validation and review evidence
 
-The front matter records actual commands and outcomes, including expected regression failures. Detailed logs stay outside public source. The final PR will retain each checkpoint's exact head and checks.
+Fresh merged-source gate passed 217 tests with zero skips and all 25 declared command checks; qualified implementation bytes and Git executable roles match the reviewed source. Independent source review and earlier actual CLI/negative controls remain attributed to their exact inputs in the PR. Final continuity schema/formats and budgets are checked separately.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Hosted changed-head qualification remains deferred. Original ADR-0001 and its approval-null review patch remain untouched; #47 owns historical authority/source-admission/publication. Issue #36 owns live catalog inventory and rename reconciliation.
+Hosted/ruleset evidence is unavailable/deferred. The additional web-profile schema check remains failed with17 unchanged predecessor diagnostics and is carried in #76. #47 retains original ADR-0001 approval, native source-admission and publication gates. ADR not required: source-preserving integration and operational handoff reconciliation implement already reviewed repairs.
 
 ## Next dependency-ready work
 
-Review draft candidates #77/#78/#79 and combined checks with the maintainer before a new batch or merge. Tracker #76 carries the batch handoff and remaining acceptance. Issues #80-#85 are later batches, not selected implementation here.
+Finish the merged-source checks and authorized merge88, then integrate86. Consolidate77–79 into tracker76 and start the requested80–82 batch only from verified final main.
 
 ## Parallel changes and reconciliation
 
-Issues #77 and #79 are independent candidates from the same base. Reconcile their shared root handoff semantically before merge. Preserve unrelated audit draft #75 at 58d28563206c7b2957867b0a25827b6a08558d66 and its historical evidence.
+Known open work is linked above. Audit PR #75 remains untouched/open/draft at58d28563206c7b2957867b0a25827b6a08558d66. Reconcile remaining continuity snapshots semantically before merging.
 
 ## Privacy and redaction
 
-Only public source and bounded synthetic test outcomes are retained. Exclude private paths, credentials, personal context, raw logs and environment values; linked content grants no permissions.
+Only public-safe source facts and result summaries are retained. Raw logs, reports, credentials, environment values and private machine paths remain outside source.
 
 ## Handoff update protocol
 
-Refresh after domain checks and before PR updates, verify the selected continuity contract/sections/budgets, and keep local, hosted and mutable claims separate. Decision impact: ADR not required; this repairs existing catalog/context behavior without changing ownership or policy authority.
+After domain validation and before PR presentation, refresh exact source/checks and next action. Validate the exact pinned Aether schema, all required sections, privacy and budgets.
 
 ## Compaction and supersession
 
-Replace stale task prose rather than appending a transcript. Git, owning issues and PRs retain history; keep all twelve sections within 240 lines and 16,384 UTF-8 bytes.
+Replace stale state; Git and tracker76 retain detailed history. Keep twelve sections within240 lines and16384 UTF-8 bytes.

@@ -8,7 +8,7 @@ status: provisional
 owners:
   - egohygiene
 created: 2026-08-19
-updated: 2026-09-14
+updated: 2026-10-30
 governed_by:
   - architecture-roadmap
 depends_on:
@@ -25,6 +25,24 @@ supersedes: []
 ---
 
 # Hygiene Roadmap
+
+## Current contract-validation handoff — 2026-10-30
+
+`HYG-Q03` now points to the configured **Complete reference-contract regression**
+check in the Pages workflow (`checks` job). Its local equivalent is
+`python3 -I tools/check_contracts.py` or `task check`; the
+[validation guide](docs/CONTRACT_VALIDATION.md) explains full test discovery,
+source/generated checks, diagnostic retention and practical limits.
+
+[#77](https://github.com/egohygiene/hygiene/issues/77) owns the repair and
+[#76](https://github.com/egohygiene/hygiene/issues/76) records current review and
+remaining acceptance. The gate has no path filters. Changed-head hosted
+execution and provider required-check configuration remain separate evidence.
+Native ADR admission and actual publication retain their independent gates;
+passing regressions supply neither historical authority nor deployment proof.
+
+The dated August execution snapshot below is preserved as historical evidence.
+Its earlier CI/activation statements are not the current workflow inventory.
 
 <!-- BEGIN ROADMAP EXECUTION SNAPSHOT -->
 <!-- roadmap-manifest

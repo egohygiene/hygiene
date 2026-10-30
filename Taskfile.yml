@@ -1,5 +1,11 @@
 version: "3"
 
+tasks:
+  check:
+    desc: Run all contract regressions and deterministic source checks
+    cmds:
+      - python3 -I tools/check_contracts.py
+
 # Task is a local orchestration layer only. Release publication remains a
 # reviewed, explicit repository-owned handoff.
 includes:
