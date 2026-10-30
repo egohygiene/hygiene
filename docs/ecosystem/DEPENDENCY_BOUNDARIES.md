@@ -105,6 +105,30 @@ The local scanner deterministically reports:
   workflows, manifests, lockfiles, container definitions, or machine
   configuration.
 
+GitHub Actions `uses` detection is a bounded block-YAML reader, not a general
+YAML parser. It recognizes literal single-line plain, single-quoted and
+double-quoted values, simple quoted or plain mapping keys, ordinary spacing
+and trailing comments. Single-quoted escaping and JSON-compatible
+double-quoted escapes are decoded. It reads reusable-workflow
+`jobs.<job>.uses` and `jobs.<job>.steps[].uses` from direct
+`.github/workflows/*.yml` or `*.yaml` files, and `runs.steps[].uses` from
+`action.yml` or `action.yaml`. Indentless step sequences are supported.
+Literal subpaths retain the earlier scanner's non-whitespace, non-`@` coverage,
+including `+` and Unicode filenames. An initial UTF-8 BOM is ignored as an
+encoding marker while source line numbers remain unchanged.
+Comments, scalar bodies/continuations, `run` strings, `env` values and
+unrelated `uses` mappings are not Action references.
+
+Flow-style collections, YAML tags/anchors/aliases/merge keys, YAML-only escape
+sequences, multiline `uses` values and dynamically computed references are
+outside this reader's coverage. It does not validate a complete workflow or
+Action schema, resolve expressions or load YAML dependencies. Existing URL
+and escaping-path detection on other dependency surfaces remains lexical.
+Unsupported syntax establishes no violation and supplies no proof that a
+dependency is immutable. Reports retain the actual `uses` key's path and
+one-based source line; literal mutable sibling refs use `BOUNDARY-002` just
+as their unquoted equivalents do. Ordinary Markdown navigation is excluded.
+
 The scanner intentionally does not attempt to prove source originality from
 content similarity. Fleet-wide hash/provenance comparison and enforcement in
 consumer CI belong to Relay after the contract is adopted. A clean local scan
