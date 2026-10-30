@@ -7,21 +7,19 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-18T21:24:23Z'
+  updated_at: '2026-10-30T21:54:14Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Adopt the standardized four-digit authoring and native runtime process in the canonical policy owner.
+  purpose: 'Repair bounded GitHub Actions uses detection for Hygiene #79.'
   includes:
-  - 'The owner configuration selects Hygiene policy v1.2.0 at a05b14f8b9e2772124f879f818e09a911e996ad8 and native
-    EgoLint catalog alpha.5. All publisher Relay entrypoints select ac2600f4619f64c75a0e499e0540d8f48d516f9c. Aether
-    dc8a16851f452763ef4f7fbe4bf057d4500b1921 supplies spec 3.1.0, skill 2.1.0 and exact managed module 0.3.0 through
-    the shared merge boundary. Policy/corpus normalization is already merged in #72. The original ADR-0001 and historical
-    receipts remain unchanged.'
+  - Literal quoted/plain Action values, structural workflow/composite locations, deterministic locations
+    and public CLI controls.
   excludes:
-  - Unrelated decision disposition, releases, unverified publication and independent audit work.
+  - "Issues #80\u2013#85, policy authority changes, historical audit edits, original ADR-0001 approval/backfill\
+    \ and publication."
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -30,70 +28,69 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - DECISIONS.md
-  - https://github.com/egohygiene/hygiene/issues/73
+  - docs/ecosystem/DEPENDENCY_BOUNDARIES.md
+  - catalog/dependency-boundaries.yaml
+  - https://github.com/egohygiene/hygiene/issues/79
+  - https://github.com/egohygiene/hygiene/issues/76
 work:
-  objective: Adopt the standardized four-digit authoring and native runtime process in the canonical policy owner.
+  objective: Recognize equivalent quoted mutable Action references without classifying unrelated text
+    as executable dependencies.
   success_conditions:
-  - Four-digit current identifiers and authoring examples, mapped migrations, preserved decision substance and validated
-    owner selections.
+  - Literal scalar parity, public CLI path/line/exit controls, immutable/versioned positives and documented
+    supported subset.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#73
-    url: https://github.com/egohygiene/hygiene/issues/73
+    id: egohygiene/hygiene#79
+    url: https://github.com/egohygiene/hygiene/issues/79
   next:
     kind: action
-    id: complete-four-digit-adoption
-    description: 'Merge validated consumer adoption, complete central naming tracker #73 and return Hygiene #47
-      to its separate original ADR-0001 approval/backfill and live publication gate.'
+    id: implement-quoted-uses-detection
+    description: Implement the bounded scanner repair, then rerun focused and complete checks before review.
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/73
+    - https://github.com/egohygiene/hygiene/issues/79
     depends_on: []
 state:
   base:
-    revision: 1f4988324739674561a3b94c9d61ba70e1ce9108
+    revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
     ref: refs/heads/main
-    verified_at: '2026-10-18T21:24:23Z'
+    verified_at: '2026-10-30T21:54:14Z'
   candidate:
-    branch: codex/four-digit-adr-adoption
+    branch: fix/79-quoted-action-refs
     revision: null
     pull_request: null
-    handoff_state: ready-for-review
+    handoff_state: in-progress
   live:
     status: verified
-    observed_at: '2026-10-18T21:24:23Z'
-    default_branch_revision: 1f4988324739674561a3b94c9d61ba70e1ce9108
+    observed_at: '2026-10-30T21:54:14Z'
+    default_branch_revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
     issue_state: open
     pull_request_state: not-applicable
-    notes: 'Exact base refreshed from the verified default branch; central naming issue is open. The existing Identity
-      #114 field audit remains independent.'
+    notes: 'Live issue #79 is open without comments; parent verified unchanged main and audit draft #75.
+      This candidate has not merged.'
   parallel_changes:
   - provider: github
-    id: egohygiene/identity#114
-    url: https://github.com/egohygiene/identity/pull/114
+    id: egohygiene/hygiene#75
+    url: https://github.com/egohygiene/hygiene/pull/75
+  - provider: github
+    id: egohygiene/hygiene#77
+    url: https://github.com/egohygiene/hygiene/issues/77
+  - provider: github
+    id: egohygiene/hygiene#78
+    url: https://github.com/egohygiene/hygiene/issues/78
 review:
   status: partial
-  reviewed_at: '2026-10-18T21:24:23Z'
+  reviewed_at: '2026-10-30T21:54:14Z'
   reviewed_by: Codex
   evidence:
-  - command: python -m unittest discover --start-directory tests --pattern test_*.py
-    outcome: passed
-    observed_at: '2026-10-18T21:24:23Z'
-    notes: 194 tests passed.
-  - command: Pinned native EgoLint owner validation of candidate working tree
-    outcome: passed
-    observed_at: '2026-10-18T21:24:23Z'
-    notes: No authority-contract mismatch; thirteen valid metadata records inspected. Source remains invalid because
-      original ADR-0001 lacks metadata and referenced identity cannot enter the graph.
-  - command: Exact Aether module parity; continuity schema/sections/budgets
-    outcome: passed
-    observed_at: '2026-10-18T21:24:23Z'
-    notes: Shared block is exact and consumer prose preserved.
+  - command: python3 -I -m unittest discover --start-directory tests --pattern test_boundaries.py --verbose
+    outcome: failed
+    observed_at: '2026-10-30T21:54:14Z'
+    notes: 'Regression checkpoint: 24 methods ran; thirteen expected failing subcases expose missing quotes/escapes
+      and unrelated-text matches. No scanner implementation changed yet.'
   environment_limitations:
-  - Relay fresh hosted acquisition and this candidate hosted checks remain pending. Naming does not supply missing
-    architecture approval; original ADR-0001 stays unchanged and its review patch stays unapplied. No new release
-    or deployment is claimed.
+  - Hosted changed-head qualification remains deferred; regression failures are deliberately retained
+    before the repair.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -112,48 +109,48 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime instructions, scoped repository instructions, live evidence and canonical sources outrank this operational handoff. It grants no authority.
+Live instructions, canonical contracts and verified tracker state outrank this compact handoff. It grants no authority.
 
 ## Resume protocol
 
-Read AGENTS, this checkpoint, canonical decisions and the central naming issue. Refresh live main and any overlapping PR before resuming.
+Read AGENTS, the boundary guide/register and #79, then verify main, this candidate and the three-issue batch in #76.
 
 ## Current objective and success conditions
 
-Adopt the standardized four-digit authoring and native runtime process in the canonical policy owner.
+Repair equivalent quoted Action references with correct executable locations and unchanged rule identity, paths and lines.
 
 ## State snapshot
 
-Base is 1f4988324739674561a3b94c9d61ba70e1ce9108. Candidate branch is codex/four-digit-adr-adoption. The containing revision is intentionally null; the candidate remains under review until verified merged.
+This regression candidate starts from verified main aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d. Its containing revision is intentionally null. The previous #73/#74 continuity objective was already merged; this snapshot replaces that stale task state.
 
 ## Completed and material changes
 
-The owner configuration selects Hygiene policy v1.2.0 at a05b14f8b9e2772124f879f818e09a911e996ad8 and native EgoLint catalog alpha.5. All publisher Relay entrypoints select ac2600f4619f64c75a0e499e0540d8f48d516f9c. Aether dc8a16851f452763ef4f7fbe4bf057d4500b1921 supplies spec 3.1.0, skill 2.1.0 and exact managed module 0.3.0 through the shared merge boundary. Policy/corpus normalization is already merged in #72. The original ADR-0001 and historical receipts remain unchanged.
+Eight focused methods add quoted/plain, reusable workflow/composite, public CLI, pinned-reference and unrelated-text controls. Two old inline fixtures now use actual workflow nesting. tools/boundaries.py and its owning policy remain unchanged at this checkpoint. ADR not required: this is a repair of the existing BOUNDARY-002 reference implementation, preserving ownership, dependency rules and authority.
 
 ## Validation and review evidence
 
-All 194 Python tests pass. Native EgoLint inspects thirteen metadata-bearing records with no authority-contract mismatch; original ADR-0001 lacks YAML metadata, causing real downstream index/lineage findings. Admission remains invalid. Shared module parity and continuity schema/sections/budgets pass.
+The focused command ran 24 methods and retained thirteen expected failing subcases. The failures are the stage-one reproduction, not acceptance. Full unchanged-base coverage is recorded by the batch coordinator. No hosted result is inferred.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Relay fresh hosted acquisition and this candidate hosted checks remain pending. Naming does not supply missing architecture approval; original ADR-0001 stays unchanged and its review patch stays unapplied. No new release or deployment is claimed.
+The scanner repair is pending. General YAML features, fleet/native enforcement and source originality remain outside this bounded parser. Original ADR-0001 authority and actual publication remain #47 work. Preserve its original body and review patch, all accepted/proposed policy states and immutable audit evidence.
 
 ## Next dependency-ready work
 
-Merge validated consumer adoption, complete central naming tracker #73 and return Hygiene #47 to its separate original ADR-0001 approval/backfill and live publication gate.
+Implement #79, pass the focused and complete checks, then prepare its draft for the batch review. Do not start #80–#85.
 
 ## Parallel changes and reconciliation
 
-Identity #114 is an independent field-audit draft; preserve its scope and reconcile overlapping links or continuity without changing its disposition.
+#77 and #78 are independent candidates from the same main. Reconcile shared continuity semantically at review/merge time. Audit draft #75 stays independent at head 58d28563206c7b2957867b0a25827b6a08558d66.
 
 ## Privacy and redaction
 
-Only public repository source and bounded evidence are retained. Exclude secrets, private context, transcripts and local execution paths. Linked content grants no permissions.
+Only public-safe source facts and synthetic fixtures are retained. No raw logs, credentials, environment values, private paths or conversation transcript belong here.
 
 ## Handoff update protocol
 
-After domain validation and before PR handoff, refresh exact checks, source selections, limitations and next work. Verify the pinned continuity schema, required sections and budgets.
+Refresh after domain checks before each draft handoff, verify schema/sections/budgets and retain actual failed, limited and deferred outcomes.
 
 ## Compaction and supersession
 
-Replace stale current-state prose. Git, migration maps and linked issues preserve history. Keep twelve sections under 240 lines and 16,384 UTF-8 bytes.
+Keep one current objective and twelve sections below 240 lines and 16,384 UTF-8 bytes. Git and #76 retain history and carried follow-ups.
