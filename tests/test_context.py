@@ -3,12 +3,14 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import os
 import subprocess
 import sys
 import tempfile
 import tomllib
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -185,7 +187,7 @@ class RepositoryContextContractTests(unittest.TestCase):
 
     def _run_context(self, *arguments: str) -> subprocess.CompletedProcess[str]:
         return subprocess.run(
-            [sys.executable, "-I", str(ROOT / "tools" / "context.py"), *arguments],
+            [sys.executable, "-E", str(ROOT / "tools" / "context.py"), *arguments],
             cwd=ROOT,
             capture_output=True,
             text=True,
@@ -283,6 +285,115 @@ class RepositoryContextContractTests(unittest.TestCase):
             repeated = self._run_context(*arguments)
             self.assertEqual(0, repeated.returncode, repeated.stderr)
             self.assertEqual(actual, {path.name: path.read_bytes() for path in output.iterdir()})
+
+    def test_render_all_rejects_symlinked_output_root_and_parent(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            outside = root / "outside"
+            outside.mkdir()
+            alias = root / "alias"
+            alias.symlink_to(outside, target_is_directory=True)
+            for output in (alias, alias / "new-directory"):
+                with self.subTest(output=output.name):
+                    result = self._run_context(
+                        "render-all", "--source-revision", SOURCE_REVISION,
+                        "--output-directory", str(output),
+                    )
+                    self.assertNotEqual(0, result.returncode, result.stdout + result.stderr)
+                    self.assertIn("symlink", result.stderr)
+                    self.assertNotIn("Traceback", result.stderr)
+                    self.assertEqual([], list(outside.iterdir()))
+
+    def test_render_all_rejects_dangling_symlink_and_directory_destinations(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            output = root / "output"
+            output.mkdir()
+            name = self.catalog["repositories"][-1]["name"]
+            target = output / f"{name}.md"
+            outside = root / "uncreated.md"
+            target.symlink_to(outside)
+            for condition in ("dangling-symlink", "directory"):
+                with self.subTest(condition=condition):
+                    result = self._run_context(
+                        "render-all", "--source-revision", SOURCE_REVISION,
+                        "--output-directory", str(output),
+                    )
+                    self.assertNotEqual(0, result.returncode, result.stdout + result.stderr)
+                    self.assertNotIn("Traceback", result.stderr)
+                    self.assertEqual([target], list(output.iterdir()))
+                    self.assertFalse(outside.exists())
+                if condition == "dangling-symlink":
+                    target.unlink()
+                    target.mkdir()
+
+    def test_render_all_replaces_hard_link_entry_without_overwriting_outside_file(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            output = root / "output"
+            output.mkdir()
+            outside = root / "outside.md"
+            outside.write_bytes(b"outside sentinel\n")
+            name = self.catalog["repositories"][-1]["name"]
+            target = output / f"{name}.md"
+            os.link(outside, target)
+            result = self._run_context(
+                "render-all", "--source-revision", SOURCE_REVISION,
+                "--output-directory", str(output),
+            )
+            self.assertEqual(0, result.returncode, result.stderr)
+            self.assertEqual(b"outside sentinel\n", outside.read_bytes())
+            self.assertTrue(target.read_text(encoding="utf-8").startswith(context.MARKER))
+            self.assertEqual(len(self.catalog["repositories"]), len(list(output.iterdir())))
+
+    def test_single_render_keeps_expected_bytes_and_creates_requested_parent(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "new" / "context.md"
+            result = self._run_context(
+                "render", "--repository", "hygiene", "--source-revision", SOURCE_REVISION,
+                "--output", str(target),
+            )
+            self.assertEqual(0, result.returncode, result.stderr)
+            expected = context.render_markdown(
+                context.build_context(self.catalog, self.policy, "hygiene", SOURCE_REVISION)
+            )
+            self.assertEqual(expected.encode("utf-8"), target.read_bytes())
+
+    def test_context_preflight_reports_invalid_full_name_without_type_error(self) -> None:
+        candidate = copy.deepcopy(self.catalog)
+        candidate["repositories"][0]["full_name"] = ["unexpected"]
+        with self.assertRaisesRegex(ValueError, r"repositories\[0\]\.full_name"):
+            context.build_context(candidate, self.policy, "hygiene", SOURCE_REVISION)
+
+    @unittest.skipUnless(hasattr(os, "mkfifo"), "requires a filesystem FIFO")
+    def test_render_all_rejects_special_output_without_blocking(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "output"
+            output.mkdir()
+            name = self.catalog["repositories"][-1]["name"]
+            target = output / f"{name}.md"
+            os.mkfifo(target)
+            result = self._run_context(
+                "render-all", "--source-revision", SOURCE_REVISION,
+                "--output-directory", str(output),
+            )
+            self.assertNotEqual(0, result.returncode, result.stdout + result.stderr)
+            self.assertIn("not a regular file", result.stderr)
+            self.assertNotIn("Traceback", result.stderr)
+            self.assertEqual([target], list(output.iterdir()))
+
+    def test_replacement_failure_preserves_old_output_and_cleans_owned_stage(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "context.md"
+            target.write_bytes(b"existing output\n")
+            with (
+                mock.patch.object(os, "replace", side_effect=OSError("synthetic replacement failure")),
+                self.assertRaisesRegex(OSError, "synthetic replacement failure"),
+            ):
+                context._write(target, "new output\n")
+            self.assertEqual(b"existing output\n", target.read_bytes())
+            self.assertEqual([target], list(root.iterdir()))
 
 
 if __name__ == "__main__":
