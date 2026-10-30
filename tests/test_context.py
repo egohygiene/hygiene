@@ -185,7 +185,7 @@ class RepositoryContextContractTests(unittest.TestCase):
             ),
         )
 
-    def _run_context(self, *arguments: str) -> subprocess.CompletedProcess[str]:
+    def _run_context(self, *arguments: str, umask: int = -1) -> subprocess.CompletedProcess[str]:
         return subprocess.run(
             [sys.executable, "-E", str(ROOT / "tools" / "context.py"), *arguments],
             cwd=ROOT,
@@ -193,6 +193,7 @@ class RepositoryContextContractTests(unittest.TestCase):
             text=True,
             timeout=10,
             check=False,
+            umask=umask,
         )
 
     def _escaped_catalog(self) -> dict:
@@ -394,6 +395,23 @@ class RepositoryContextContractTests(unittest.TestCase):
                 context._write(target, "new output\n")
             self.assertEqual(b"existing output\n", target.read_bytes())
             self.assertEqual([target], list(root.iterdir()))
+
+    @unittest.skipUnless(os.name == "posix", "requires POSIX permission and umask semantics")
+    def test_single_render_respects_umask_and_preserves_existing_permissions(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "context.md"
+            arguments = (
+                "render", "--repository", "hygiene", "--source-revision", SOURCE_REVISION,
+                "--output", str(target),
+            )
+            first = self._run_context(*arguments, umask=0o077)
+            self.assertEqual(0, first.returncode, first.stderr)
+            self.assertEqual(0o600, target.stat().st_mode & 0o777)
+            target.chmod(0o640)
+            repeated = self._run_context(*arguments, umask=0o077)
+            self.assertEqual(0, repeated.returncode, repeated.stderr)
+            self.assertEqual(0o640, target.stat().st_mode & 0o777)
+            self.assertEqual([target], list(target.parent.iterdir()))
 
 
 if __name__ == "__main__":

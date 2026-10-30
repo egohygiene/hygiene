@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T22:03:26Z'
+  updated_at: '2026-10-30T22:06:41Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -57,7 +57,7 @@ state:
   base:
     revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
     ref: refs/heads/main
-    verified_at: '2026-10-30T22:03:26Z'
+    verified_at: '2026-10-30T22:06:41Z'
   candidate:
     branch: fix/78-context-containment
     revision: null
@@ -65,10 +65,10 @@ state:
       provider: github
       id: egohygiene/hygiene#88
       url: https://github.com/egohygiene/hygiene/pull/88
-    handoff_state: in-progress
+    handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-30T22:03:26Z'
+    observed_at: '2026-10-30T22:06:41Z'
     default_branch_revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
     issue_state: open
     pull_request_state: open
@@ -86,40 +86,45 @@ state:
     url: https://github.com/egohygiene/hygiene/pull/75
 review:
   status: partial
-  reviewed_at: '2026-10-30T22:03:26Z'
+  reviewed_at: '2026-10-30T22:06:41Z'
   reviewed_by: Codex
   evidence:
   - command: python3 -I -m unittest discover --start-directory tests --pattern 'test_*.py' --verbose
     outcome: passed
-    observed_at: '2026-10-30T22:03:26Z'
-    notes: 209 tests passed, no skips, including ten catalog and 24 context methods; actual public CLI uses ordinary
-      script imports (-E), not unsupported -I script mode.
+    observed_at: '2026-10-30T22:06:41Z'
+    notes: 210 tests passed with no skips, including ten catalog and 25 context methods. Final actual POSIX CLI
+      control proves restrictive umask on new output, preserved existing permission bits, and no temporary-file
+      residue.
   - command: All 23 documented reference/source/generated checks plus changed-file Python3.11 grammar and compilation
     outcome: passed
-    observed_at: '2026-10-30T22:03:26Z'
+    observed_at: '2026-10-30T22:06:41Z'
     notes: Catalog/context/boundaries/continuity/web/intelligence/presentation/site/decision/release-policy checks
       and exact three generated context/contract comparisons passed.
   - command: Draft202012Validator with formats; schema/helper identity controls; actual before/after CLI sentinels
     outcome: passed
-    observed_at: '2026-10-30T22:03:26Z'
+    observed_at: '2026-10-30T22:06:41Z'
     notes: 18 schema definitions, current catalog and 52 identity cases pass. Eight actual old-source/candidate
       controls show traversal and linked-output mutation before repair, rejection/preservation after; hard-link
       output refresh preserves its outside file.
   - command: Unfixed-source regression replay and initial harness correction
     outcome: limited
-    observed_at: '2026-10-30T22:03:26Z'
-    notes: Corrected CLI fixtures genuinely reproduce invalid identities/output paths on exact unfixed main. Initial
-      -I CLI invocation produced sibling-import failures, retained separately and not counted as CLI escape proof.
+    observed_at: '2026-10-30T22:06:41Z'
+    notes: 'Corrected ordinary-script CLI fixtures genuinely reproduce invalid identities/output paths on exact
+      unfixed main; initial unsupported -I script imports remain a separate harness failure. Final old-source context
+      replay: 24 methods, ten failures and two errors (malformed full-name and FIFO timeout), with valid single/full/repeated
+      controls.'
   - command: Ambient Ruff comparison at predecessor and candidate
     outcome: limited
-    observed_at: '2026-10-30T22:03:26Z'
+    observed_at: '2026-10-30T22:06:41Z'
     notes: Fourteen predecessor diagnostics retain identical rule/path/message; no added diagnostic. No unrelated
       lint rewrite or check weakening.
   - command: Decision-impact review and continuity contract/size/whitespace checks
     outcome: passed
-    observed_at: '2026-10-30T22:03:26Z'
-    notes: 'ADR not required: routine repair under existing catalog/context design; no ownership, accepted authority,
-      approval or producer selection changed. Continuity is refreshed for the current unmerged candidate.'
+    observed_at: '2026-10-30T22:06:41Z'
+    notes: ADR not required for this routine contract repair. Parent independently reviewed production identity/preflight/replacement
+      semantics at 0f1d5c2 and found no source blocker; own full diff review is clear. Final continuity uses the
+      pinned Aether schema with formats, correct sections and budgets; no original authority, audit, policy or inventory
+      data changed.
   environment_limitations:
   - Hosted changed-head checks are deferred; all new commits use [skip ci]. Local results do not establish branch
     protection, fleet conformance, ratification or publication.
