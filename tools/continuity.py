@@ -10,14 +10,14 @@ projection generator.
 from __future__ import annotations
 
 import argparse
-from datetime import date
 import json
-from pathlib import Path
 import re
 import sys
-import tomllib
+from datetime import date, datetime, timezone
+from pathlib import Path
 from typing import Any
 
+import tomllib
 
 POLICY_SCHEMA = "egohygiene.repository-continuity-policy/v1"
 POLICY_VERSION = "1.0.0-alpha.1"
@@ -254,7 +254,10 @@ def _safe_path(value: Any) -> bool:
 
 
 def _parse_date(value: Any, path: str, errors: list[str]) -> date | None:
-    if not isinstance(value, str):
+    if (
+        not isinstance(value, str)
+        or re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}", value) is None
+    ):
         errors.append(f"{path} must be an ISO date")
         return None
     try:
@@ -664,9 +667,39 @@ def validate_profile(profile: dict[str, Any]) -> list[str]:
     return sorted(set(errors))
 
 
+def _assessment_date(as_of: date | None) -> tuple[date, str]:
+    """Select a supplied frozen date or current UTC, never a policy timestamp."""
+
+    if as_of is not None:
+        if type(as_of) is not date:
+            raise ValueError("assessment date must be a datetime.date calendar date")
+        return as_of, "explicit"
+    try:
+        observed_on = datetime.now(timezone.utc).date()
+    except (OSError, OverflowError, ValueError, AttributeError, TypeError) as error:
+        raise ValueError(
+            "current UTC assessment date is unavailable; supply an explicit assessment date"
+        ) from error
+    if type(observed_on) is not date:
+        raise ValueError("current UTC assessment date is unavailable")
+    return observed_on, "current-utc"
+
+
+def _cli_assessment_date(value: str) -> date:
+    errors: list[str] = []
+    parsed = _parse_date(value, "assessment date", errors)
+    if errors or parsed is None:
+        raise argparse.ArgumentTypeError(
+            "assessment date must be YYYY-MM-DD and a valid calendar date"
+        )
+    return parsed
+
+
 def _approved_exception(
     profile: dict[str, Any], repository: str, as_of: date
 ) -> dict[str, Any] | None:
+    if type(as_of) is not date:
+        raise ValueError("assessment date must be a datetime.date calendar date")
     for record in profile["exceptions"]["records"]:
         if (
             record["repository"] == repository
@@ -686,7 +719,11 @@ def resolve_applicability(
     *,
     as_of: date | None = None,
 ) -> dict[str, Any]:
-    """Resolve applicability with exceptions, kind, lifecycle, then visibility."""
+    """Resolve at an explicit frozen date or today's UTC date and disclose it.
+
+    Source validation retains profile.updated as an authored-source fact;
+    applicability never uses that timestamp as its default assessment clock.
+    """
 
     errors = validate_profile(profile)
     if errors:
@@ -699,7 +736,7 @@ def resolve_applicability(
         raise ValueError(f"unknown repository kind: {repository_kind}")
     if visibility not in VISIBILITIES:
         raise ValueError(f"unknown visibility: {visibility}")
-    observed_on = as_of or date.fromisoformat(profile["updated"])
+    observed_on, mode = _assessment_date(as_of)
     exception = _approved_exception(profile, repository, observed_on)
     if exception is not None:
         return {
@@ -708,6 +745,8 @@ def resolve_applicability(
             "reason": "approved-unexpired-exception",
             "exception": exception,
             "stage": profile["rollout"]["current_stage"],
+            "assessment_date": observed_on.isoformat(),
+            "assessment_mode": mode,
         }
     kind_requirement = profile["applicability"]["repository_kinds"][repository_kind]
     lifecycle_requirement = profile["applicability"]["lifecycles"][lifecycle]
@@ -719,6 +758,8 @@ def resolve_applicability(
         "reason": "repository-kind-and-lifecycle",
         "exception": None,
         "stage": profile["rollout"]["current_stage"],
+        "assessment_date": observed_on.isoformat(),
+        "assessment_mode": mode,
     }
 
 
@@ -828,6 +869,12 @@ def build_parser() -> argparse.ArgumentParser:
     resolve.add_argument("--lifecycle", required=True)
     resolve.add_argument("--repository-kind", required=True)
     resolve.add_argument("--visibility", required=True)
+    resolve.add_argument(
+        "--assessment-date",
+        type=_cli_assessment_date,
+        metavar="YYYY-MM-DD",
+        help="freeze the assessment date (default: current UTC date, disclosed in the result)",
+    )
     local = subparsers.add_parser("validate-repository")
     local.add_argument("--repository", type=Path, default=Path("."))
     return parser
@@ -848,6 +895,7 @@ def main(argv: list[str] | None = None) -> int:
                         arguments.lifecycle,
                         arguments.repository_kind,
                         arguments.visibility,
+                        as_of=arguments.assessment_date,
                     ),
                     indent=2,
                     sort_keys=True,

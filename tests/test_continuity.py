@@ -6,13 +6,13 @@ import json
 import subprocess
 import sys
 import tempfile
-import tomllib
 import unittest
 from contextlib import redirect_stderr
 from datetime import date, datetime, timezone
 from pathlib import Path
 from unittest import mock
 
+import tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
@@ -209,8 +209,12 @@ class RepositoryContinuityPolicyTests(unittest.TestCase):
 class ContinuityAssessmentTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.profile = continuity.load_json(ROOT / "catalog/repository-continuity-policy.json")
-        cls.fixture = continuity.load_json(ROOT / "fixtures/repository-continuity/expiry-assessments.json")
+        cls.profile = continuity.load_json(
+            ROOT / "catalog/repository-continuity-policy.json"
+        )
+        cls.fixture = continuity.load_json(
+            ROOT / "fixtures/repository-continuity/expiry-assessments.json"
+        )
 
     def sample(self) -> dict:
         value = copy.deepcopy(self.profile)
@@ -223,19 +227,39 @@ class ContinuityAssessmentTests(unittest.TestCase):
             profile, "egohygiene/hygiene", "active", "standard", "public", **options
         )
 
-    def cli(self, profile: dict, assessment_date: str | None = None) -> subprocess.CompletedProcess[str]:
+    def cli(
+        self, profile: dict, assessment_date: str | None = None
+    ) -> subprocess.CompletedProcess[str]:
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "profile.json"
             path.write_text(json.dumps(profile), encoding="utf-8")
             before = path.read_bytes()
             arguments = [
-                sys.executable, "-I", str(ROOT / "tools/continuity.py"),
-                "--profile", str(path), "resolve", "--repository", "egohygiene/hygiene",
-                "--lifecycle", "active", "--repository-kind", "standard", "--visibility", "public",
+                sys.executable,
+                "-I",
+                str(ROOT / "tools/continuity.py"),
+                "--profile",
+                str(path),
+                "resolve",
+                "--repository",
+                "egohygiene/hygiene",
+                "--lifecycle",
+                "active",
+                "--repository-kind",
+                "standard",
+                "--visibility",
+                "public",
             ]
             if assessment_date is not None:
                 arguments.extend(["--assessment-date", assessment_date])
-            result = subprocess.run(arguments, cwd=ROOT, capture_output=True, text=True, timeout=15, check=False)
+            result = subprocess.run(
+                arguments,
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                timeout=15,
+                check=False,
+            )
             self.assertEqual(before, path.read_bytes())
             return result
 
@@ -244,7 +268,9 @@ class ContinuityAssessmentTests(unittest.TestCase):
         before = copy.deepcopy(sample)
         for case in self.fixture["cases"]:
             with self.subTest(date=case["assessment_date"]):
-                actual = self.resolve(sample, as_of=date.fromisoformat(case["assessment_date"]))
+                actual = self.resolve(
+                    sample, as_of=date.fromisoformat(case["assessment_date"])
+                )
                 self.assertEqual(case["requirement"], actual["requirement"])
                 self.assertEqual(case["reason"], actual["reason"])
                 self.assertEqual(case["assessment_date"], actual["assessment_date"])
@@ -264,7 +290,9 @@ class ContinuityAssessmentTests(unittest.TestCase):
     def test_actual_cli_matches_frozen_api_and_repeats_exactly(self) -> None:
         for case in self.fixture["cases"]:
             with self.subTest(date=case["assessment_date"]):
-                expected = self.resolve(self.sample(), as_of=date.fromisoformat(case["assessment_date"]))
+                expected = self.resolve(
+                    self.sample(), as_of=date.fromisoformat(case["assessment_date"])
+                )
                 first = self.cli(self.sample(), case["assessment_date"])
                 second = self.cli(self.sample(), case["assessment_date"])
                 self.assertEqual(0, first.returncode, first.stderr)
@@ -278,19 +306,40 @@ class ContinuityAssessmentTests(unittest.TestCase):
         after = datetime.now(timezone.utc).date()
         self.assertEqual(0, result.returncode, result.stderr)
         actual = json.loads(result.stdout)
-        self.assertIn(actual["assessment_date"], {before.isoformat(), after.isoformat()})
+        self.assertIn(
+            actual["assessment_date"], {before.isoformat(), after.isoformat()}
+        )
         self.assertEqual("current-utc", actual["assessment_mode"])
         effective = date.fromisoformat(actual["assessment_date"])
-        expected = "exempt" if effective < date.fromisoformat(self.fixture["exception"]["expires_on"]) else "required"
+        expected = (
+            "exempt"
+            if effective < date.fromisoformat(self.fixture["exception"]["expires_on"])
+            else "required"
+        )
         self.assertEqual(expected, actual["requirement"])
 
     def test_invalid_api_dates_never_fall_back_to_a_historical_clock(self) -> None:
-        for invalid in (False, 0, "2026-09-30", datetime(2026, 9, 30), {}, []):
+        for invalid in (
+            False,
+            0,
+            "2026-09-30",
+            datetime(2026, 9, 30, tzinfo=timezone.utc),
+            {},
+            [],
+        ):
             with self.subTest(value=invalid), self.assertRaises(ValueError):
                 self.resolve(self.sample(), as_of=invalid)
 
     def test_invalid_cli_dates_have_controlled_attributable_errors(self) -> None:
-        for invalid in ("20261001", "2026-W40-4", "2026-1-01", "2026-02-30", "0000-01-01", "2026-10-01\n", ""):
+        for invalid in (
+            "20261001",
+            "2026-W40-4",
+            "2026-1-01",
+            "2026-02-30",
+            "0000-01-01",
+            "2026-10-01\n",
+            "",
+        ):
             with self.subTest(value=invalid):
                 result = self.cli(self.sample(), invalid)
                 self.assertEqual(2, result.returncode)
@@ -302,8 +351,15 @@ class ContinuityAssessmentTests(unittest.TestCase):
             with self.subTest(state=state):
                 sample = self.sample()
                 sample["exceptions"]["records"][0]["validation_state"] = state
-                self.assertEqual("required", self.resolve(sample, as_of=date(2026, 9, 30))["requirement"])
-        for field, value in (("validation_state", "unsupported"), ("approval", None), ("expires_on", "20261001")):
+                self.assertEqual(
+                    "required",
+                    self.resolve(sample, as_of=date(2026, 9, 30))["requirement"],
+                )
+        for field, value in (
+            ("validation_state", "unsupported"),
+            ("approval", None),
+            ("expires_on", "20261001"),
+        ):
             with self.subTest(field=field), self.assertRaises(ValueError):
                 sample = self.sample()
                 sample["exceptions"]["records"][0][field] = value
@@ -312,11 +368,40 @@ class ContinuityAssessmentTests(unittest.TestCase):
     def test_missing_clock_fails_and_explicit_date_still_works(self) -> None:
         with mock.patch.object(continuity, "datetime", create=True) as clock:
             clock.now.side_effect = OSError("synthetic unavailable clock")
-            with self.assertRaisesRegex(ValueError, "current UTC assessment date is unavailable"):
+            with self.assertRaisesRegex(
+                ValueError, "current UTC assessment date is unavailable"
+            ):
                 self.resolve(self.sample())
             actual = self.resolve(self.sample(), as_of=date(2026, 9, 30))
         self.assertEqual("exempt", actual["requirement"])
         self.assertEqual("2026-09-30", actual["assessment_date"])
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "profile.json"
+            path.write_text(json.dumps(self.sample()), encoding="utf-8")
+            errors = io.StringIO()
+            with mock.patch.object(continuity, "datetime", create=True) as clock:
+                clock.now.side_effect = OSError("synthetic unavailable clock")
+                with redirect_stderr(errors):
+                    status = continuity.main(
+                        [
+                            "--profile",
+                            str(path),
+                            "resolve",
+                            "--repository",
+                            "egohygiene/hygiene",
+                            "--lifecycle",
+                            "active",
+                            "--repository-kind",
+                            "standard",
+                            "--visibility",
+                            "public",
+                        ]
+                    )
+            self.assertEqual(2, status)
+            self.assertIn(
+                "current UTC assessment date is unavailable", errors.getvalue()
+            )
+            self.assertNotIn("Traceback", errors.getvalue())
 
 
 if __name__ == "__main__":
