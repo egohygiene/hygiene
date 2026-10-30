@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T22:01:59Z'
+  updated_at: '2026-10-30T22:13:30Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -84,18 +84,18 @@ state:
     url: https://github.com/egohygiene/hygiene/pull/88
 review:
   status: partial
-  reviewed_at: '2026-10-30T22:01:59Z'
+  reviewed_at: '2026-10-30T22:13:30Z'
   reviewed_by: Codex
   evidence:
   - command: python3 -I -m unittest discover --start-directory tests --pattern test_boundaries.py --verbose
     outcome: passed
-    observed_at: '2026-10-30T21:58:13Z'
-    notes: 25 focused methods pass, including nine actual public CLI positive-shaped mutable cases in
-      JSON and text modes.
+    observed_at: '2026-10-30T22:13:30Z'
+    notes: 27 focused methods pass, including public CLI plus/Unicode subpath quote/BOM parity and composite
+      BOM line controls.
   - command: python3 -I -m unittest discover --start-directory tests --pattern test_*.py --verbose
     outcome: passed
-    observed_at: '2026-10-30T21:58:13Z'
-    notes: 203 methods pass without skips.
+    observed_at: '2026-10-30T22:13:30Z'
+    notes: 205 methods pass without skips after independent-review repairs.
   - command: Boundary validate, generated-view check and current-tree scan; Python 3.9 grammar; git diff
       --check
     outcome: passed
@@ -117,6 +117,17 @@ review:
     observed_at: '2026-10-30T22:01:59Z'
     notes: 203 methods pass without skips. Four changed files; all other baseline bytes, historical audit,
       register/schema and ADR-0001/review patch remain unchanged.
+  - command: Independent review reproduction and corrective public CLI regressions
+    outcome: passed
+    observed_at: '2026-10-30T22:13:30Z'
+    notes: Reviewer found narrowed literal subpaths and first-key UTF-8 BOM masking at a256c4b. New controls
+      reproduced27 failing subcases on that source, then all27 focused methods passed after preserving
+      prior non-whitespace/non-@ path coverage and removing only an initial BOM.
+  - command: Expanded valid-YAML oracle matrix after review repairs
+    outcome: passed
+    observed_at: '2026-10-30T22:13:30Z'
+    notes: 1,620 shape/quote/key/indent/mutable-ref/literal-path/BOM combinations passed against corrected
+      scanner bytes. Private PyYAML supplies syntax checking only; runtime dependencies unchanged.
   environment_limitations:
   - Hosted changed-head qualification and fleet/native enforcement remain deferred. Parent independent
     review and combined-batch qualification are recorded separately; maintainer review remains pending.
@@ -154,15 +165,15 @@ This implementation candidate starts from verified main aa6a5e25ea3ef80e4dcc1557
 
 ## Completed and material changes
 
-tools/boundaries.py now reads literal Action values only at bounded workflow/composite locations, decodes supported quotes/escapes, skips scalar bodies and preserves path/line/rule identity. Nine focused methods add positive/negative controls; the boundary guide states unsupported YAML features. Policy/register/schema bytes remain unchanged. ADR not required: this is a repair of the existing BOUNDARY-002 reference implementation, preserving ownership, dependency rules and authority.
+tools/boundaries.py now reads literal Action values only at bounded workflow/composite locations, decodes supported quotes/escapes, skips scalar bodies and preserves path/line/rule identity. Eleven focused methods add positive/negative controls; the boundary guide states unsupported YAML features. Policy/register/schema bytes remain unchanged. ADR not required: this is a repair of the existing BOUNDARY-002 reference implementation, preserving ownership, dependency rules and authority.
 
 ## Validation and review evidence
 
-Focused 25 and complete 203 methods pass without skips. Actual CLI JSON/text controls exercise reusable workflow, action-step and composite forms. Boundary validation/generated-view/current-tree checks, Python 3.9 grammar and whitespace pass. Optional workspace Ruff retains eight identical baseline findings. Stage one deliberately retained thirteen failing subcases before implementation. A separate valid-YAML matrix passed 270 quote/key/location/indent/branch combinations and three exclusions; eighteen extra actual pinned/versioned CLI cases passed. No hosted result is inferred.
+Focused 27 and complete 205 methods pass without skips. Actual CLI JSON/text controls exercise reusable workflow, action-step and composite forms. Boundary validation/generated-view/current-tree checks, Python 3.9 grammar and whitespace pass. Optional workspace Ruff retains eight identical baseline findings. Stage one deliberately retained thirteen failing subcases before implementation. The earlier valid-YAML matrix passed 270 quote/key/location/indent/branch combinations and three exclusions, plus eighteen extra actual pinned/versioned CLI cases. Corrective qualification expands the matrix to 1,620 combinations including plus/Unicode literal paths and initial BOMs. The corrective regression reproduced27 failing subcases on the predecessor before passing. No hosted result is inferred.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Author source review has no remaining blocker; parent independent and combined-batch review remain pending. General YAML features, fleet/native enforcement and source originality remain outside this bounded parser. Original ADR-0001 authority and actual publication remain #47 work. Preserve its original body and review patch, all accepted/proposed policy states and immutable audit evidence.
+Independent review found two compatibility gaps at a256c4b: narrowed literal subpaths and initial-BOM root-key masking. This candidate repairs both and the new public CLI controls pass; parent independent replay and combined-batch review remain pending. General YAML features, fleet/native enforcement and source originality remain outside this bounded parser. Original ADR-0001 authority and actual publication remain #47 work. Preserve its original body and review patch, all accepted/proposed policy states and immutable audit evidence.
 
 ## Next dependency-ready work
 

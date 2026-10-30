@@ -303,6 +303,109 @@ class DependencyBoundaryScanTests(unittest.TestCase):
                     self.assertEqual(1, result.returncode)
                     self.assertIn(f"BOUNDARY-002 {filename}:{line}:", result.stderr)
 
+    def test_public_cli_literal_subpaths_preserve_quote_and_bom_parity(self) -> None:
+        for reference in (
+            "egohygiene/relay/actions/test+fixture@main",
+            "egohygiene/relay/.github/workflows/check+fixture.yml@main",
+            "egohygiene/relay/actions/検証@main",
+            "egohygiene/relay/.github/workflows/検証.yml@main",
+        ):
+            prefix = (
+                "jobs:\n  check:\n    uses: "
+                if "/.github/workflows/" in reference
+                else "jobs:\n  check:\n    steps:\n      - uses: "
+            )
+            for quote in ("", "'", '"'):
+                for bom in ("", "\ufeff"):
+                    with (
+                        self.subTest(reference=reference, quote=quote, bom=bool(bom)),
+                        tempfile.TemporaryDirectory() as directory,
+                    ):
+                        root = Path(directory)
+                        path = root / ".github/workflows/check.yml"
+                        path.parent.mkdir(parents=True)
+                        path.write_text(
+                            f"{bom}{prefix}{quote}{reference}{quote} # note\n",
+                            encoding="utf-8",
+                        )
+                        result = subprocess.run(
+                            [
+                                sys.executable,
+                                "-I",
+                                str(ROOT / "tools/boundaries.py"),
+                                "scan",
+                                "--repository-root",
+                                str(root),
+                                "--repository",
+                                "egohygiene/hygiene",
+                                "--format",
+                                "json",
+                            ],
+                            cwd=ROOT,
+                            capture_output=True,
+                            text=True,
+                            check=False,
+                            timeout=10,
+                        )
+                        self.assertEqual(1, result.returncode, result.stderr)
+                        self.assertEqual(
+                            [
+                                {
+                                    "rule": "BOUNDARY-002",
+                                    "path": ".github/workflows/check.yml",
+                                    "line": prefix.count("\n") + 1,
+                                    "message": "mutable default-branch dependency on egohygiene/relay",
+                                }
+                            ],
+                            json.loads(result.stdout),
+                        )
+
+    def test_initial_bom_keeps_composite_action_source_lines(self) -> None:
+        for initial in ("\ufeff", "\ufeff# header\n", "\ufeff\n# header\n"):
+            for quote in ("", "'", '"'):
+                with (
+                    self.subTest(initial=initial, quote=quote),
+                    tempfile.TemporaryDirectory() as directory,
+                ):
+                    root = Path(directory)
+                    prefix = (
+                        initial + "runs:\n  using: composite\n  steps:\n    - uses: "
+                    )
+                    (root / "action.yml").write_text(
+                        f"{prefix}{quote}egohygiene/relay/actions/test@main{quote}\n",
+                        encoding="utf-8",
+                    )
+                    result = subprocess.run(
+                        [
+                            sys.executable,
+                            "-I",
+                            str(ROOT / "tools/boundaries.py"),
+                            "scan",
+                            "--repository-root",
+                            str(root),
+                            "--repository",
+                            "egohygiene/hygiene",
+                            "--format",
+                            "json",
+                        ],
+                        cwd=ROOT,
+                        capture_output=True,
+                        text=True,
+                        check=False,
+                        timeout=10,
+                    )
+                    self.assertEqual(1, result.returncode, result.stderr)
+                    findings = json.loads(result.stdout)
+                    self.assertEqual(1, len(findings))
+                    self.assertEqual(
+                        ("BOUNDARY-002", "action.yml", prefix.count("\n") + 1),
+                        (
+                            findings[0]["rule"],
+                            findings[0]["path"],
+                            findings[0]["line"],
+                        ),
+                    )
+
     def test_comments_strings_and_non_action_surfaces_are_not_uses(self) -> None:
         reference = "egohygiene/relay/actions/test@main"
         self.assertEqual(

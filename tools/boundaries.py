@@ -546,7 +546,7 @@ YAML_MAPPING_LINE = re.compile(
 )
 MUTABLE_ACTION_REFERENCE = re.compile(
     rf"egohygiene/(?P<repository>[a-z0-9.-]+)"
-    rf"(?:/[a-z0-9_.-]+)*@(?:{DEFAULT_BRANCHES})",
+    rf"(?:/[^\s@]+)?@(?:{DEFAULT_BRANCHES})",
     re.IGNORECASE,
 )
 
@@ -605,6 +605,9 @@ def _action_references(text: str, relative_path: Path) -> Iterable[tuple[int, st
     if not workflow and not action:
         return
 
+    # An initial UTF-8 BOM is an encoding marker, not part of the root key.
+    # Removing only that marker leaves all one-based source lines unchanged.
+    text = text.removeprefix("\ufeff")
     stack: list[tuple[int, str]] = []
     scalar_indent: int | None = None
     continued_quote: str | None = None

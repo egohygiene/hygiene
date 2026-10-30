@@ -113,6 +113,9 @@ double-quoted escapes are decoded. It reads reusable-workflow
 `jobs.<job>.uses` and `jobs.<job>.steps[].uses` from direct
 `.github/workflows/*.yml` or `*.yaml` files, and `runs.steps[].uses` from
 `action.yml` or `action.yaml`. Indentless step sequences are supported.
+Literal subpaths retain the earlier scanner's non-whitespace, non-`@` coverage,
+including `+` and Unicode filenames. An initial UTF-8 BOM is ignored as an
+encoding marker while source line numbers remain unchanged.
 Comments, scalar bodies/continuations, `run` strings, `env` values and
 unrelated `uses` mappings are not Action references.
 
