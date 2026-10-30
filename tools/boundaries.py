@@ -559,7 +559,7 @@ def _quoted_scalar_end(value: str, quote: str, start: int = 1) -> int | None:
         if quote == '"' and value[index] == "\\":
             index += 2
         elif value[index] == quote:
-            if quote == "'" and value[index:index + 2] == "''":
+            if quote == "'" and value[index : index + 2] == "''":
                 index += 2
             else:
                 return index
@@ -577,13 +577,13 @@ def _action_scalar(value: str) -> str | None:
         end = _quoted_scalar_end(value, value[0])
         if end is None:
             return None
-        trailing = value[end + 1:].strip()
+        trailing = value[end + 1 :].strip()
         if trailing and not trailing.startswith("#"):
             return None
         if value[0] == "'":
             return value[1:end].replace("''", "'")
         try:
-            return json.loads(value[:end + 1])
+            return json.loads(value[: end + 1])
         except ValueError:
             return None
     return re.split(r"[ \t]+#", value, maxsplit=1)[0].rstrip()
@@ -639,8 +639,11 @@ def _action_references(text: str, relative_path: Path) -> Iterable[tuple[int, st
         keys = [entry[1] for entry in stack] + [key]
         workflow_uses = workflow and (
             (len(keys) == 3 and keys[0] == "jobs" and keys[-1] == "uses")
-            or (len(keys) == 5 and keys[0] == "jobs"
-                and keys[2:] == ["steps", "[]", "uses"])
+            or (
+                len(keys) == 5
+                and keys[0] == "jobs"
+                and keys[2:] == ["steps", "[]", "uses"]
+            )
         )
         action_uses = action and keys == ["runs", "steps", "[]", "uses"]
         if workflow_uses or action_uses:

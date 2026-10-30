@@ -178,16 +178,21 @@ class DependencyBoundaryScanTests(unittest.TestCase):
             for quote in ("", "'", '"'):
                 with self.subTest(reference=reference, quote=quote):
                     findings = self.scan(
-                        {".github/workflows/check.yml": (
-                            f"{prefix}uses :  {quote}{reference}{quote}  # pinned later\n"
-                        )}
+                        {
+                            ".github/workflows/check.yml": (
+                                f"{prefix}uses :  {quote}{reference}{quote}  # pinned later\n"
+                            )
+                        }
                     )
                     self.assertEqual(
-                        [boundaries.Finding(
-                            "BOUNDARY-002", ".github/workflows/check.yml",
-                            prefix.count("\n") + 1,
-                            "mutable default-branch dependency on egohygiene/relay",
-                        )],
+                        [
+                            boundaries.Finding(
+                                "BOUNDARY-002",
+                                ".github/workflows/check.yml",
+                                prefix.count("\n") + 1,
+                                "mutable default-branch dependency on egohygiene/relay",
+                            )
+                        ],
                         findings,
                     )
 
@@ -195,36 +200,60 @@ class DependencyBoundaryScanTests(unittest.TestCase):
         for ref in ("2d9e7c4ff5de4f832d28b3ce105b2a4da8382dd7", "v1.5.0"):
             for quote in ("", "'", '"'):
                 with self.subTest(ref=ref, quote=quote):
-                    self.assertEqual([], self.scan({".github/workflows/check.yaml": (
-                        "jobs:\n  check:\n    steps:\n"
-                        f"      - uses: {quote}egohygiene/relay/actions/test@{ref}{quote}\n"
-                    )}))
+                    self.assertEqual(
+                        [],
+                        self.scan(
+                            {
+                                ".github/workflows/check.yaml": (
+                                    "jobs:\n  check:\n    steps:\n"
+                                    f"      - uses: {quote}egohygiene/relay/actions/test@{ref}{quote}\n"
+                                )
+                            }
+                        ),
+                    )
 
     def test_composite_action_uses_values_are_scanned(self) -> None:
         for filename in ("action.yml", ".github/actions/check/action.yaml"):
             for quote in ("", "'", '"'):
                 with self.subTest(filename=filename, quote=quote):
-                    findings = self.scan({filename: (
-                        "runs:\n  using: composite\n  steps:\n"
-                        f"    - uses: {quote}egohygiene/relay/actions/test@trunk{quote}\n"
-                    )})
+                    findings = self.scan(
+                        {
+                            filename: (
+                                "runs:\n  using: composite\n  steps:\n"
+                                f"    - uses: {quote}egohygiene/relay/actions/test@trunk{quote}\n"
+                            )
+                        }
+                    )
                     self.assertEqual(1, len(findings))
-                    self.assertEqual(("BOUNDARY-002", filename, 4), (
-                        findings[0].rule, findings[0].path, findings[0].line
-                    ))
+                    self.assertEqual(
+                        ("BOUNDARY-002", filename, 4),
+                        (findings[0].rule, findings[0].path, findings[0].line),
+                    )
 
     def test_public_cli_preserves_quote_rule_path_line_and_exit(self) -> None:
         forms = (
-            (".github/workflows/check.yml", "jobs:\n  check:\n    ",
-             "egohygiene/relay/.github/workflows/check.yml@develop"),
-            (".github/workflows/check.yaml", "jobs:\n  check:\n    steps:\n      - ",
-             "egohygiene/relay/actions/test@main"),
-            (".github/actions/check/action.yml", "runs:\n  using: composite\n  steps:\n    - ",
-             "egohygiene/relay/actions/test@trunk"),
+            (
+                ".github/workflows/check.yml",
+                "jobs:\n  check:\n    ",
+                "egohygiene/relay/.github/workflows/check.yml@develop",
+            ),
+            (
+                ".github/workflows/check.yaml",
+                "jobs:\n  check:\n    steps:\n      - ",
+                "egohygiene/relay/actions/test@main",
+            ),
+            (
+                ".github/actions/check/action.yml",
+                "runs:\n  using: composite\n  steps:\n    - ",
+                "egohygiene/relay/actions/test@trunk",
+            ),
         )
         for filename, prefix, reference in forms:
             for quote in ("", "'", '"'):
-                with self.subTest(filename=filename, quote=quote), tempfile.TemporaryDirectory() as directory:
+                with (
+                    self.subTest(filename=filename, quote=quote),
+                    tempfile.TemporaryDirectory() as directory,
+                ):
                     root = Path(directory)
                     path = root / filename
                     path.parent.mkdir(parents=True)
@@ -233,95 +262,139 @@ class DependencyBoundaryScanTests(unittest.TestCase):
                         encoding="utf-8",
                     )
                     arguments = [
-                        sys.executable, "-I", str(ROOT / "tools/boundaries.py"),
-                        "scan", "--repository-root", str(root),
-                        "--repository", "egohygiene/hygiene",
+                        sys.executable,
+                        "-I",
+                        str(ROOT / "tools/boundaries.py"),
+                        "scan",
+                        "--repository-root",
+                        str(root),
+                        "--repository",
+                        "egohygiene/hygiene",
                     ]
                     result = subprocess.run(
-                        [*arguments, "--format", "json"], cwd=ROOT,
-                        capture_output=True, text=True, check=False, timeout=10,
+                        [*arguments, "--format", "json"],
+                        cwd=ROOT,
+                        capture_output=True,
+                        text=True,
+                        check=False,
+                        timeout=10,
                     )
                     self.assertEqual(1, result.returncode, result.stderr)
                     line = prefix.count("\n") + 1
-                    self.assertEqual([{
-                        "rule": "BOUNDARY-002", "path": filename, "line": line,
-                        "message": "mutable default-branch dependency on egohygiene/relay",
-                    }], json.loads(result.stdout))
+                    self.assertEqual(
+                        [
+                            {
+                                "rule": "BOUNDARY-002",
+                                "path": filename,
+                                "line": line,
+                                "message": "mutable default-branch dependency on egohygiene/relay",
+                            }
+                        ],
+                        json.loads(result.stdout),
+                    )
                     result = subprocess.run(
-                        arguments, cwd=ROOT, capture_output=True, text=True,
-                        check=False, timeout=10,
+                        arguments,
+                        cwd=ROOT,
+                        capture_output=True,
+                        text=True,
+                        check=False,
+                        timeout=10,
                     )
                     self.assertEqual(1, result.returncode)
                     self.assertIn(f"BOUNDARY-002 {filename}:{line}:", result.stderr)
 
     def test_comments_strings_and_non_action_surfaces_are_not_uses(self) -> None:
         reference = "egohygiene/relay/actions/test@main"
-        self.assertEqual([], self.scan({
-            "README.md": f"uses: '{reference}'\n[Source](https://github.com/egohygiene/relay/tree/main)\n",
-            "config/tool.yaml": f"uses: {reference}\n",
-            "config/data.json": json.dumps({"uses": reference}),
-            ".github/workflows/check.yml": (
-                f"# uses: {reference}\n"
-                "jobs:\n  check:\n    env:\n"
-                f"      uses: {reference}\n"
-                "    steps:\n"
-                f"      - run: echo 'uses: {reference}'\n"
-                "      - run: |\n"
-                f"          uses: {reference}\n"
-                "      - run: >-\n"
-                f"          uses: {reference}\n"
-                "      - run: '\n"
-                f"          uses: {reference}\n"
-                "        '\n"
-                '      - run: "\n'
-                f"          uses: {reference}\n"
-                '        "\n'
-                "      - env:\n"
-                f"          uses: {reference}\n"
-                "        run: true\n"
+        self.assertEqual(
+            [],
+            self.scan(
+                {
+                    "README.md": f"uses: '{reference}'\n[Source](https://github.com/egohygiene/relay/tree/main)\n",
+                    "config/tool.yaml": f"uses: {reference}\n",
+                    "config/data.json": json.dumps({"uses": reference}),
+                    ".github/workflows/check.yml": (
+                        f"# uses: {reference}\n"
+                        "jobs:\n  check:\n    env:\n"
+                        f"      uses: {reference}\n"
+                        "    steps:\n"
+                        f"      - run: echo 'uses: {reference}'\n"
+                        "      - run: |\n"
+                        f"          uses: {reference}\n"
+                        "      - run: >-\n"
+                        f"          uses: {reference}\n"
+                        "      - run: '\n"
+                        f"          uses: {reference}\n"
+                        "        '\n"
+                        '      - run: "\n'
+                        f"          uses: {reference}\n"
+                        '        "\n'
+                        "      - env:\n"
+                        f"          uses: {reference}\n"
+                        "        run: true\n"
+                    ),
+                }
             ),
-        }))
+        )
 
     def test_uses_after_run_scalar_and_separate_sequence_item_is_found(self) -> None:
-        findings = self.scan({".github/workflows/check.yml": (
-            "jobs:\n  check:\n    steps:\n      - run: |\n"
-            "          echo harmless\n      - name: Next\n"
-            "        uses: 'egohygiene/relay/actions/test@HEAD'\n"
-        )})
+        findings = self.scan(
+            {
+                ".github/workflows/check.yml": (
+                    "jobs:\n  check:\n    steps:\n      - run: |\n"
+                    "          echo harmless\n      - name: Next\n"
+                    "        uses: 'egohygiene/relay/actions/test@HEAD'\n"
+                )
+            }
+        )
         self.assertEqual(1, len(findings))
         self.assertEqual(7, findings[0].line)
 
     def test_quoted_keys_and_json_compatible_escapes_are_supported(self) -> None:
-        findings = self.scan({".github/workflows/check.yml": (
-            "jobs:\n  check:\n    steps:\n      -\n"
-            '        "uses": "egohygiene/relay/actions/test@\\u006dain" # note\n'
-        )})
+        findings = self.scan(
+            {
+                ".github/workflows/check.yml": (
+                    "jobs:\n  check:\n    steps:\n      -\n"
+                    '        "uses": "egohygiene/relay/actions/test@\\u006dain" # note\n'
+                )
+            }
+        )
         self.assertEqual(1, len(findings))
         self.assertEqual(5, findings[0].line)
 
     def test_unsupported_uses_shapes_do_not_fabricate_a_violation(self) -> None:
-        self.assertEqual([], self.scan({".github/workflows/check.yml": (
-            "jobs:\n  check:\n    steps:\n"
-            "      - uses: ${{ inputs.action }}\n"
-            "      - uses: &action egohygiene/relay/actions/test@main\n"
-            "      - uses: *action\n"
-            "      - uses: |\n"
-            "          egohygiene/relay/actions/test@main\n"
-            "      - uses:egohygiene/relay/actions/test@main\n"
-            "      - run: true\n"
-        )}))
+        self.assertEqual(
+            [],
+            self.scan(
+                {
+                    ".github/workflows/check.yml": (
+                        "jobs:\n  check:\n    steps:\n"
+                        "      - uses: ${{ inputs.action }}\n"
+                        "      - uses: &action egohygiene/relay/actions/test@main\n"
+                        "      - uses: *action\n"
+                        "      - uses: |\n"
+                        "          egohygiene/relay/actions/test@main\n"
+                        "      - uses:egohygiene/relay/actions/test@main\n"
+                        "      - run: true\n"
+                    )
+                }
+            ),
+        )
 
     def test_indentless_steps_and_sequence_separator_whitespace(self) -> None:
         for prefix in ("jobs:\n  check:\n    steps:\n", "runs:\n  steps:\n"):
             for separator in (" ", "   ", "\t"):
                 with self.subTest(prefix=prefix, separator=separator):
                     indent = "    " if prefix.startswith("jobs") else "  "
-                    findings = self.scan({
-                        "action.yml" if prefix.startswith("runs") else ".github/workflows/check.yml": (
-                            prefix
-                            + f"{indent}-{separator}uses: 'egohygiene/relay/actions/test@main'\n"
-                        )
-                    })
+                    findings = self.scan(
+                        {
+                            "action.yml"
+                            if prefix.startswith("runs")
+                            else ".github/workflows/check.yml": (
+                                prefix
+                                + f"{indent}-{separator}uses: 'egohygiene/relay/actions/test@main'\n"
+                            )
+                        }
+                    )
                     self.assertEqual(1, len(findings))
 
     def test_raw_default_branch_reference_is_rejected(self) -> None:
