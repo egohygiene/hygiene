@@ -59,6 +59,38 @@ class CatalogContractTests(unittest.TestCase):
             target.write_text("{\"schema_version\": \"1.0.0\"}\n", encoding="utf-8")
             self.assertEqual("1.0.0", catalog.load_catalog(target)["schema_version"])
 
+    def test_current_and_proposed_names_reject_path_and_noncanonical_identities(self) -> None:
+        for name in ("../escaped", "/absolute", "nested/repo", "..", "name\\child", "Upper", "name\n", "name_underscore"):
+            for collection in ("repositories", "proposed_repositories"):
+                with self.subTest(name=name, collection=collection):
+                    candidate = copy.deepcopy(self.source)
+                    repository = candidate[collection][0]
+                    repository["name"] = name
+                    if collection == "repositories":
+                        repository["full_name"] = f"egohygiene/{name}"
+                        repository["source_url"] = f"https://github.com/egohygiene/{name}"
+                    else:
+                        repository["target_full_name"] = f"egohygiene/{name}"
+                    self.assertTrue(
+                        any(f"{collection}[0].name" in error for error in catalog.validate_catalog(candidate))
+                    )
+
+    def test_rename_target_uses_the_same_identity_grammar(self) -> None:
+        for name in ("../escaped", "/absolute", "name\\child", "Upper", "name\n"):
+            with self.subTest(name=name):
+                candidate = copy.deepcopy(self.source)
+                candidate["repositories"][0]["target_name"] = name
+                self.assertTrue(
+                    any("repositories[0].target_name" in error for error in catalog.validate_catalog(candidate))
+                )
+
+    def test_schema_valid_name_forms_remain_valid(self) -> None:
+        for name in (".github", "repo-name", "egohygiene.io", "a", "1", "a..b"):
+            with self.subTest(name=name):
+                candidate = copy.deepcopy(self.source)
+                candidate["repositories"][0]["target_name"] = name
+                self.assertEqual([], catalog.validate_catalog(candidate))
+
 
 if __name__ == "__main__":
     unittest.main()

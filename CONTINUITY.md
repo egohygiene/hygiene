@@ -7,23 +7,24 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T22:17:11Z'
+  updated_at: '2026-10-30T22:37:51Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: 'Complete Hygiene issue #77 contract regression checks independently from native ADR admission
-    and publication.'
+  purpose: Integrate the approved context identity/output repair with the accepted complete regression
+    gate.
   includes:
-  - tools/check_contracts.py composes full unittest discovery and 24 deterministic reference/generated
-    checks, reports actual counts and failures, and retains bounded diagnostics.
-  - The Pages checks job runs that entrypoint at the exact PR head without path filters, with read-only
-    permissions and diagnostic upload. Native/admission/build/deployment definitions remain unchanged.
-  - 'README, Task check and the current HYG-Q03 note identify the same gate; the August roadmap snapshot
-    is byte-preserved. Tracker #76 owns carried follow-ups.'
+  - Catalog schema/reference validation rejects unsafe current/proposed/rename identities. The context
+    writer preflights all direct-child destinations, rejects links/nonregular output, and replaces same-directory
+    entries without writing through outside hard links. Stable caller-owned ancestors and nontransactional
+    batch limits remain documented.
+  - Reviewed source 84f193d523cb990ea90bb6a615d59f33bf925bd9 integrates with accepted main 949cd4ae45b48bfdbdfac3edcfbd08ff330652a1;
+    qualified non-handoff bytes are preserved.
   excludes:
-  - 'Issues #80–#85, historical audit PR #75, original ADR-0001 disposition, producer upgrades and publication.'
+  - 'Audit PR #75 and original ADR-0001 disposition; unrelated policy changes, hosted dispatch, releases
+    and publication.'
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -32,100 +33,88 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - README.md
   - docs/decisions/POLICY.md
-  - https://github.com/egohygiene/hygiene/issues/77
   - https://github.com/egohygiene/hygiene/issues/76
+  - https://github.com/egohygiene/hygiene/issues/78
 work:
-  objective: 'Complete Hygiene issue #77 contract regression checks independently from native ADR admission
-    and publication.'
+  objective: Integrate the approved context identity/output repair with the accepted complete regression
+    gate.
   success_conditions:
-  - All current test families and deterministic source/generated checks execute together with attributable
-    failures.
-  - Read-only PR coverage has no path filters and remains separate from native admission and publication.
+  - Preserve reviewed implementation and canonical source while integrating accepted predecessor work.
+  - Pass the complete merged-source gate and exact continuity schema, then execute the authorized ordered
+    merge.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#77
-    url: https://github.com/egohygiene/hygiene/issues/77
+    id: egohygiene/hygiene#78
+    url: https://github.com/egohygiene/hygiene/issues/78
   next:
     kind: action
-    id: maintainer-review-batch77-79
-    description: 'Review drafts #87, #88, then #86; reconcile operational continuity by live evidence
-      before merge and carry any unmet acceptance in #76. Select #80–#82 only after the sync.'
+    id: finish-context-merge
+    description: Finish the merged-source checks and authorized merge88, then integrate86. Consolidate77–79
+      into tracker76 and start the requested80–82 batch only from verified final main.
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/77
     - https://github.com/egohygiene/hygiene/issues/76
+    - https://github.com/egohygiene/hygiene/pull/88
     depends_on: []
 state:
   base:
-    revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
+    revision: 949cd4ae45b48bfdbdfac3edcfbd08ff330652a1
     ref: refs/heads/main
-    verified_at: '2026-10-30T22:17:11Z'
+    verified_at: '2026-10-30T22:37:51Z'
   candidate:
-    branch: fix/77-contract-regression
+    branch: fix/78-context-containment
     revision: null
     pull_request:
       provider: github
-      id: egohygiene/hygiene#87
-      url: https://github.com/egohygiene/hygiene/pull/87
+      id: egohygiene/hygiene#88
+      url: https://github.com/egohygiene/hygiene/pull/88
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-30T22:17:11Z'
-    default_branch_revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
+    observed_at: '2026-10-30T22:37:51Z'
+    default_branch_revision: 949cd4ae45b48bfdbdfac3edcfbd08ff330652a1
     issue_state: open
     pull_request_state: draft
-    notes: 'Observed main and active issues are unchanged; tracker #76 records the three-issue batch.
-      This candidate is not merged.'
+    notes: PR87 is merged at949cd4a; PR88 remains open/draft and source-preserving reconciliation is in
+      progress. PR86 and audit75 remain open/draft.
   parallel_changes:
+  - provider: github
+    id: egohygiene/hygiene#86
+    url: https://github.com/egohygiene/hygiene/pull/86
   - provider: github
     id: egohygiene/hygiene#75
     url: https://github.com/egohygiene/hygiene/pull/75
-  - provider: github
-    id: egohygiene/hygiene#78
-    url: https://github.com/egohygiene/hygiene/issues/78
-  - provider: github
-    id: egohygiene/hygiene#79
-    url: https://github.com/egohygiene/hygiene/issues/79
 review:
   status: partial
-  reviewed_at: '2026-10-30T22:17:11Z'
+  reviewed_at: '2026-10-30T22:37:51Z'
   reviewed_by: Codex
   evidence:
-  - command: Unchanged baseline and stage-one regression replay
+  - command: Reviewed source and main/API/tree comparison
     outcome: passed
-    observed_at: '2026-10-30T22:17:11Z'
-    notes: All 194 baseline tests passed; seven expected missing-entrypoint regression failures were reproduced
-      and repaired.
-  - command: python3 -I tools/check_contracts.py and independent helper/workflow review
+    observed_at: '2026-10-30T22:37:51Z'
+    notes: PR87 merged949cd4ae45b48bfdbdfac3edcfbd08ff330652a1 from reviewed e22e31f; main tree matched
+      that checked candidate. This integration preserves original78 source84f193d and all qualified gate
+      bytes. Only operational continuity needs manual reconciliation.
+  - command: python3 -I tools/check_contracts.py (merged source)
     outcome: passed
-    observed_at: '2026-10-30T22:17:11Z'
-    notes: The exact reviewed core passed201 tests/25 checks, zero skips. Independent review found no
-      blocker; missing executable, zero-exit/no-test and observed-descendant timeout controls passed.
-  - command: 'Combined exact-source gate over final #77/#78/#79 implementation files'
+    observed_at: '2026-10-30T22:37:51Z'
+    notes: Fresh merged-source gate passed 217 tests with zero skips and all 25 declared command checks;
+      qualified implementation bytes and Git executable roles match the reviewed source.
+  - command: Pinned continuity schema/formats, section/privacy/budget and whitespace checks
     outcome: passed
-    observed_at: '2026-10-30T22:17:11Z'
-    notes: 228 tests, zero skips/failures/errors, all25 command checks passed. All16 changed non-handoff
-      files match their qualified candidates;169 remaining base files are unchanged. Each real branch
-      handoff is independently validated.
-  - command: Draft202012 schema definitions and canonical instance comparison with formats
+    observed_at: '2026-10-30T22:37:51Z'
+    notes: Exact upstream schema and local composition are verified before this checkpoint is committed.
+  - command: Additional canonical Agent-Ready Web schema consistency
     outcome: limited
-    observed_at: '2026-10-30T22:17:11Z'
-    notes: All18 schema definitions and eight of nine selected canonical instances passed. Agent-Ready
-      Web profile has17 schema additional-property diagnostics, byte-identical to unchanged main; this
-      existing mismatch is carried in tracker76.
-  - command: Pinned continuity schema/formats/composition, workflow preservation and new-file Ruff/format
-      checks
-    outcome: passed
-    observed_at: '2026-10-30T22:17:11Z'
-    notes: Exact schema/sections/privacy/budgets, read-only exact-head unfiltered workflow, unchanged
-      other jobs and August snapshot, source lint/format and whitespace checks pass.
+    observed_at: '2026-10-30T22:37:51Z'
+    notes: The unchanged predecessor profile/schema pair still has17 additional-property diagnostics.
+      Tracker76 retains this failed broader consistency check; no whole-repository conformance is claimed.
   environment_limitations:
-  - 'Changed-head hosted execution and provider required-check configuration remain unverified. Current
-    reference tools do not establish complete schema conformance: the unchanged Agent-Ready Web profile/schema
-    mismatch remains in #76. Native ADR/source admission and publication retain independent #47 gates.
-    All three PRs remain drafts for review; #80–#85 remain unstarted.'
+  - 'Hosted changed-head execution and provider required-check evidence remain deferred. Native source
+    admission/publication and original ADR-0001 approval remain separate under #47.'
+  - All new commits use [skip ci]. This accepted source merge creates no tag/release, workflow dispatch,
+    deployment or publication.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -144,48 +133,48 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime instructions, scoped instructions, live evidence and canonical sources outrank this checkpoint. It grants no authority.
+User/runtime instructions, scoped instructions, live evidence and canonical sources outrank this compact operational handoff. It grants no authority.
 
 ## Resume protocol
 
-Read AGENTS and canonical policy, verify current main and PR state, then inspect #77 and tracker #76. The prior #73 adoption handoff is historical; #74 is already merged.
+Read AGENTS and canonical policy, verify current main and PR state, then inspect tracker #76 and the owning PR before resuming.
 
 ## Current objective and success conditions
 
-Complete Hygiene issue #77 contract regression checks independently from native ADR admission and publication.
+Integrate the approved context identity/output repair with the accepted complete regression gate.
 
 ## State snapshot
 
-Independent base is aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d. Candidate fix/77-contract-regression remains open/draft in PR #87. The containing revision is intentionally null.
+Observed main is 949cd4ae45b48bfdbdfac3edcfbd08ff330652a1. Candidate fix/78-context-containment integrates reviewed source 84f193d523cb990ea90bb6a615d59f33bf925bd9 in open draft PR #88; it is not yet merged. The containing revision remains null.
 
 ## Completed and material changes
 
-tools/check_contracts.py composes full unittest discovery and 24 deterministic reference/generated checks, reports actual counts and failures, and retains bounded diagnostics. The Pages checks job runs that entrypoint at the exact PR head without path filters, with read-only permissions and diagnostic upload. Native/admission/build/deployment definitions remain unchanged. README, Task check and the current HYG-Q03 note identify the same gate; the August roadmap snapshot is byte-preserved. Tracker #76 owns carried follow-ups.
+Catalog schema/reference validation rejects unsafe current/proposed/rename identities. The context writer preflights all direct-child destinations, rejects links/nonregular output, and replaces same-directory entries without writing through outside hard links. Stable caller-owned ancestors and nontransactional batch limits remain documented. PR87 merged949cd4ae45b48bfdbdfac3edcfbd08ff330652a1 from reviewed e22e31f; main tree matched that checked candidate. This integration preserves original78 source84f193d and all qualified gate bytes. Only operational continuity needs manual reconciliation.
 
 ## Validation and review evidence
 
-All 194 baseline tests passed; seven expected missing-entrypoint regression failures were reproduced and repaired. The exact reviewed core passed201 tests/25 checks, zero skips. Independent review found no blocker; missing executable, zero-exit/no-test and observed-descendant timeout controls passed. 228 tests, zero skips/failures/errors, all25 command checks passed. All16 changed non-handoff files match their qualified candidates;169 remaining base files are unchanged. Each real branch handoff is independently validated. All18 schema definitions and eight of nine selected canonical instances passed. Agent-Ready Web profile has17 schema additional-property diagnostics, byte-identical to unchanged main; this existing mismatch is carried in tracker76. Exact schema/sections/privacy/budgets, read-only exact-head unfiltered workflow, unchanged other jobs and August snapshot, source lint/format and whitespace checks pass.
+Fresh merged-source gate passed 217 tests with zero skips and all 25 declared command checks; qualified implementation bytes and Git executable roles match the reviewed source. Independent source review and earlier actual CLI/negative controls remain attributed to their exact inputs in the PR. Final continuity schema/formats and budgets are checked separately.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Changed-head hosted execution and provider required-check configuration remain unverified. Current reference tools do not establish complete schema conformance: the unchanged Agent-Ready Web profile/schema mismatch remains in #76. Native ADR/source admission and publication retain independent #47 gates. All three PRs remain drafts for review; #80–#85 remain unstarted. #47 retains original ADR-0001 human/source-admission/publication acceptance. ADR not required: existing contract/reference behavior and regression wiring are repaired without changing ownership or policy authority.
+Hosted/ruleset evidence is unavailable/deferred. The additional web-profile schema check remains failed with17 unchanged predecessor diagnostics and is carried in #76. #47 retains original ADR-0001 approval, native source-admission and publication gates. ADR not required: source-preserving integration and operational handoff reconciliation implement already reviewed repairs.
 
 ## Next dependency-ready work
 
-Review drafts #87, #88, then #86; reconcile operational continuity by live evidence before merge and carry any unmet acceptance in #76. Select #80–#82 only after the sync.
+Finish the merged-source checks and authorized merge88, then integrate86. Consolidate77–79 into tracker76 and start the requested80–82 batch only from verified final main.
 
 ## Parallel changes and reconciliation
 
-Issues #78 and #79 are independent candidates from the same main. Reconcile their CONTINUITY snapshots semantically before any future merge. Audit PR #75 remains a separate untouched draft.
+Known open work is linked above. Audit PR #75 remains untouched/open/draft at58d28563206c7b2957867b0a25827b6a08558d66. Reconcile remaining continuity snapshots semantically before merging.
 
 ## Privacy and redaction
 
-Only public-safe source facts and check summaries are retained. Raw logs, reports, private paths, environment values and credentials remain outside tracked source.
+Only public-safe source facts and result summaries are retained. Raw logs, reports, credentials, environment values and private machine paths remain outside source.
 
 ## Handoff update protocol
 
-After domain validation and immediately before PR handoff, refresh exact results, limitations, live source and next action. Check pinned Aether schema, twelve sections and budgets.
+After domain validation and before PR presentation, refresh exact source/checks and next action. Validate the exact pinned Aether schema, all required sections, privacy and budgets.
 
 ## Compaction and supersession
 
-Replace stale current-state prose; preserve detailed history in Git and tracker links. Keep this checkpoint within 240 lines and 16,384 UTF-8 bytes.
+Replace stale state; Git and tracker76 retain detailed history. Keep twelve sections within240 lines and16384 UTF-8 bytes.
