@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import copy
 import json
+import itertools
+import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -135,6 +138,150 @@ class RepositoryPresentationContractTests(unittest.TestCase):
         second = presentation.validate_evidence(copy.deepcopy(candidate), self.profile)
         self.assertEqual(first, second)
         self.assertIn("evidence.slots must use stable id order", first)
+
+    def _run_evidence_cli(self, evidence: dict) -> subprocess.CompletedProcess[str]:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "presentation.json"
+            path.write_text(json.dumps(evidence), encoding="utf-8")
+            return subprocess.run(
+                [sys.executable, "-I", str(ROOT / "tools" / "presentation.py"),
+                 "validate-evidence", "--evidence", str(path)],
+                cwd=ROOT, capture_output=True, text=True, check=False, timeout=10,
+            )
+
+    def _slot(self, evidence: dict, slot_id: str) -> dict:
+        return next(slot for slot in evidence["slots"] if slot["id"] == slot_id)
+
+    def _assessment(self, evidence: dict, state: str) -> None:
+        evidence["assessment"]["state"] = state
+        evidence["badge"]["state"] = state
+        evidence["badge"]["message"] = self.profile["claim_policy"]["state_messages"][state]
+
+    def test_passing_claim_rejects_all_stale_or_unknown_records_in_public_cli(self) -> None:
+        for mutation, expected in (
+            ({"freshness": "stale"}, "stale"),
+            ({"assertion": "unknown"}, "partial"),
+            ({"freshness": "stale", "assertion": "unknown"}, "stale"),
+            ({"freshness": "unknown"}, "partial"),
+            ({"freshness": "not_applicable"}, "partial"),
+        ):
+            with self.subTest(mutation=mutation):
+                candidate = copy.deepcopy(self.rich)
+                for slot in candidate["slots"]:
+                    for record in slot["evidence"]:
+                        record.update(mutation)
+                self.assertEqual(expected, presentation.derive_state(candidate["slots"]))
+                errors = presentation.validate_evidence(candidate, self.profile)
+                self.assertTrue(any("passing requires" in error for error in errors))
+                self.assertIn(f"evidence.assessment.state must equal derived state {expected}", errors)
+                self.assertIn(f"evidence.badge.state must equal derived state {expected}", errors)
+                cli = self._run_evidence_cli(candidate)
+                self.assertEqual(1, cli.returncode, cli.stdout + cli.stderr)
+                self.assertIn("passing requires", cli.stderr)
+                self.assertIn(f"derived state {expected}", cli.stderr)
+                self.assertNotIn("Traceback", cli.stderr)
+
+    def test_mixed_current_witness_and_supporting_records_preserve_passing(self) -> None:
+        for assertion in ("authoritative", "derived"):
+            candidate = copy.deepcopy(self.rich)
+            purpose = self._slot(candidate, "purpose")
+            current = dict(purpose["evidence"][0], assertion=assertion)
+            stale = dict(current, freshness="stale")
+            unknown = dict(current, assertion="unknown", freshness="unknown")
+            for records in itertools.permutations((current, stale, unknown)):
+                with self.subTest(assertion=assertion, order=records):
+                    purpose["evidence"] = list(copy.deepcopy(records))
+                    original = copy.deepcopy(candidate)
+                    self.assertEqual("passing", presentation.derive_state(candidate["slots"]))
+                    self.assertEqual([], presentation.validate_evidence(candidate, self.profile))
+                    self.assertEqual(original, candidate)
+
+    def test_mixed_records_without_current_known_assertion_cannot_support_passing(self) -> None:
+        candidate = copy.deepcopy(self.rich)
+        purpose = self._slot(candidate, "purpose")
+        template = purpose["evidence"][0]
+        records = (
+            dict(template, freshness="stale"),
+            dict(template, assertion="unknown"),
+            dict(template, assertion="derived", freshness="unknown"),
+        )
+        expected_errors = None
+        for values in itertools.permutations(records):
+            purpose["evidence"] = list(copy.deepcopy(values))
+            original = copy.deepcopy(candidate)
+            self.assertEqual("partial", presentation.derive_state(candidate["slots"]))
+            errors = presentation.validate_evidence(candidate, self.profile)
+            self.assertTrue(any("passing requires" in error for error in errors))
+            if expected_errors is None:
+                expected_errors = errors
+            self.assertEqual(expected_errors, errors)
+            self.assertEqual(original, candidate)
+
+    def test_recommended_unsupported_passing_slot_derives_advisory(self) -> None:
+        candidate = copy.deepcopy(self.rich)
+        architecture = self._slot(candidate, "architecture")
+        for record in architecture["evidence"]:
+            record["freshness"] = "stale"
+        self.assertEqual("advisory", presentation.derive_state(candidate["slots"]))
+        errors = presentation.validate_evidence(candidate, self.profile)
+        self.assertTrue(any("passing requires" in error for error in errors))
+        self.assertIn("evidence.assessment.state must equal derived state advisory", errors)
+        self.assertIn("evidence.badge.state must equal derived state advisory", errors)
+
+    def test_honest_negative_or_unknown_states_remain_valid_and_unmodified(self) -> None:
+        for slot_id, state, aggregate in (
+            ("purpose", "stale", "stale"),
+            ("purpose", "unknown", "partial"),
+            ("architecture", "stale", "advisory"),
+            ("architecture", "unknown", "advisory"),
+        ):
+            with self.subTest(slot=slot_id, state=state):
+                candidate = copy.deepcopy(self.rich)
+                slot = self._slot(candidate, slot_id)
+                slot["state"] = state
+                for record in slot["evidence"]:
+                    record["freshness"] = "stale" if state == "stale" else "unknown"
+                    record["assertion"] = "unknown"
+                self._assessment(candidate, aggregate)
+                original = copy.deepcopy(candidate)
+                self.assertEqual(aggregate, presentation.derive_state(candidate["slots"]))
+                self.assertEqual([], presentation.validate_evidence(candidate, self.profile))
+                self.assertEqual(0, self._run_evidence_cli(candidate).returncode)
+                self.assertEqual(original, candidate)
+
+    def test_current_evidence_never_upgrades_an_explicit_negative_slot(self) -> None:
+        for state, aggregate in (("failing", "failing"), ("blocked", "blocked"), ("partial", "partial"), ("stale", "stale")):
+            with self.subTest(state=state):
+                candidate = copy.deepcopy(self.rich)
+                self._slot(candidate, "purpose")["state"] = state
+                self._assessment(candidate, aggregate)
+                original = copy.deepcopy(candidate)
+                self.assertEqual(aggregate, presentation.derive_state(candidate["slots"]))
+                self.assertEqual([], presentation.validate_evidence(candidate, self.profile))
+                self.assertEqual(original, candidate)
+
+    def test_malformed_current_records_cannot_be_passing_witnesses(self) -> None:
+        for field, value in (("location", ""), ("location", " \t"), ("kind", "unsupported"), ("kind", []), ("assertion", {}), ("freshness", []), ("extra", "unexpected")):
+            with self.subTest(field=field, value=value):
+                candidate = copy.deepcopy(self.rich)
+                record = self._slot(candidate, "purpose")["evidence"][0]
+                record[field] = value
+                self.assertEqual("partial", presentation.derive_state(candidate["slots"]))
+                errors = presentation.validate_evidence(candidate, self.profile)
+                self.assertTrue(any("passing requires" in error for error in errors))
+                self.assertIn("evidence.assessment.state must equal derived state partial", errors)
+                cli = self._run_evidence_cli(candidate)
+                self.assertEqual(1, cli.returncode, cli.stdout + cli.stderr)
+                self.assertNotIn("Traceback", cli.stderr)
+
+    def test_qualifying_witness_does_not_hide_a_malformed_supporting_record(self) -> None:
+        candidate = copy.deepcopy(self.rich)
+        purpose = self._slot(candidate, "purpose")
+        purpose["evidence"].append({"assertion": "unknown", "freshness": "unknown"})
+        self.assertEqual("passing", presentation.derive_state(candidate["slots"]))
+        errors = presentation.validate_evidence(candidate, self.profile)
+        self.assertTrue(any("fields must exactly match" in error for error in errors))
+        self.assertFalse(any("passing requires" in error for error in errors))
 
 
 if __name__ == "__main__":
