@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T22:02:46Z'
+  updated_at: '2026-10-30T22:17:11Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -49,9 +49,9 @@ work:
     url: https://github.com/egohygiene/hygiene/issues/77
   next:
     kind: action
-    id: review-contract-gate
-    description: 'Complete independent source review and combined #77–#79 qualification, then keep the
-      three drafts open for maintainer sync; do not start #80–#85.'
+    id: maintainer-review-batch77-79
+    description: 'Review drafts #87, #88, then #86; reconcile operational continuity by live evidence
+      before merge and carry any unmet acceptance in #76. Select #80–#82 only after the sync.'
     readiness: ready
     references:
     - https://github.com/egohygiene/hygiene/issues/77
@@ -61,7 +61,7 @@ state:
   base:
     revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
     ref: refs/heads/main
-    verified_at: '2026-10-30T22:02:46Z'
+    verified_at: '2026-10-30T22:17:11Z'
   candidate:
     branch: fix/77-contract-regression
     revision: null
@@ -69,10 +69,10 @@ state:
       provider: github
       id: egohygiene/hygiene#87
       url: https://github.com/egohygiene/hygiene/pull/87
-    handoff_state: in-progress
+    handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-30T22:02:46Z'
+    observed_at: '2026-10-30T22:17:11Z'
     default_branch_revision: aa6a5e25ea3ef80e4dcc15570a1ea166b9f4af3d
     issue_state: open
     pull_request_state: draft
@@ -90,33 +90,42 @@ state:
     url: https://github.com/egohygiene/hygiene/issues/79
 review:
   status: partial
-  reviewed_at: '2026-10-30T22:02:46Z'
+  reviewed_at: '2026-10-30T22:17:11Z'
   reviewed_by: Codex
   evidence:
-  - command: Unchanged baseline full unittest discovery
+  - command: Unchanged baseline and stage-one regression replay
     outcome: passed
-    observed_at: '2026-10-30T22:02:46Z'
-    notes: 194 baseline tests passed with no skips.
-  - command: Stage-one actual-gate regression suite
-    outcome: failed
-    observed_at: '2026-10-30T22:02:46Z'
-    notes: Seven expected failures exposed the absent entrypoint; later implementation controls pass.
-  - command: python3 -I tools/check_contracts.py
+    observed_at: '2026-10-30T22:17:11Z'
+    notes: All 194 baseline tests passed; seven expected missing-entrypoint regression failures were reproduced
+      and repaired.
+  - command: python3 -I tools/check_contracts.py and independent helper/workflow review
     outcome: passed
-    observed_at: '2026-10-30T22:02:46Z'
-    notes: 201 tests across all thirteen current modules passed with zero skips; all 25 planned command
-      checks passed. Actual copied-source controls reject invalid catalog/profile, stale output, failed/empty
-      discovery and preserve explicit skip counts.
-  - command: Workflow structural comparison, new-file Ruff check/format, pinned continuity schema/composition
-      and git diff --check
+    observed_at: '2026-10-30T22:17:11Z'
+    notes: The exact reviewed core passed201 tests/25 checks, zero skips. Independent review found no
+      blocker; missing executable, zero-exit/no-test and observed-descendant timeout controls passed.
+  - command: 'Combined exact-source gate over final #77/#78/#79 implementation files'
     outcome: passed
-    observed_at: '2026-10-30T22:02:46Z'
-    notes: Exact-head/read-only/unfiltered wiring is checked; every other workflow job/event and the historical
-      roadmap block remain unchanged. New source lint/format and continuity constraints pass.
+    observed_at: '2026-10-30T22:17:11Z'
+    notes: 228 tests, zero skips/failures/errors, all25 command checks passed. All16 changed non-handoff
+      files match their qualified candidates;169 remaining base files are unchanged. Each real branch
+      handoff is independently validated.
+  - command: Draft202012 schema definitions and canonical instance comparison with formats
+    outcome: limited
+    observed_at: '2026-10-30T22:17:11Z'
+    notes: All18 schema definitions and eight of nine selected canonical instances passed. Agent-Ready
+      Web profile has17 schema additional-property diagnostics, byte-identical to unchanged main; this
+      existing mismatch is carried in tracker76.
+  - command: Pinned continuity schema/formats/composition, workflow preservation and new-file Ruff/format
+      checks
+    outcome: passed
+    observed_at: '2026-10-30T22:17:11Z'
+    notes: Exact schema/sections/privacy/budgets, read-only exact-head unfiltered workflow, unchanged
+      other jobs and August snapshot, source lint/format and whitespace checks pass.
   environment_limitations:
-  - Independent final review and combined batch qualification remain pending. Hosted changed-head execution
-    and provider required-check configuration are unverified; no dispatch was performed. Native source
-    authority and publication retain independent gates.
+  - 'Changed-head hosted execution and provider required-check configuration remain unverified. Current
+    reference tools do not establish complete schema conformance: the unchanged Agent-Ready Web profile/schema
+    mismatch remains in #76. Native ADR/source admission and publication retain independent #47 gates.
+    All three PRs remain drafts for review; #80–#85 remain unstarted.'
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -155,15 +164,15 @@ tools/check_contracts.py composes full unittest discovery and 24 deterministic r
 
 ## Validation and review evidence
 
-194 baseline tests passed with no skips. Seven expected failures exposed the absent entrypoint; later implementation controls pass. 201 tests across all thirteen current modules passed with zero skips; all 25 planned command checks passed. Actual copied-source controls reject invalid catalog/profile, stale output, failed/empty discovery and preserve explicit skip counts. Exact-head/read-only/unfiltered wiring is checked; every other workflow job/event and the historical roadmap block remain unchanged. New source lint/format and continuity constraints pass.
+All 194 baseline tests passed; seven expected missing-entrypoint regression failures were reproduced and repaired. The exact reviewed core passed201 tests/25 checks, zero skips. Independent review found no blocker; missing executable, zero-exit/no-test and observed-descendant timeout controls passed. 228 tests, zero skips/failures/errors, all25 command checks passed. All16 changed non-handoff files match their qualified candidates;169 remaining base files are unchanged. Each real branch handoff is independently validated. All18 schema definitions and eight of nine selected canonical instances passed. Agent-Ready Web profile has17 schema additional-property diagnostics, byte-identical to unchanged main; this existing mismatch is carried in tracker76. Exact schema/sections/privacy/budgets, read-only exact-head unfiltered workflow, unchanged other jobs and August snapshot, source lint/format and whitespace checks pass.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Independent final review and combined batch qualification remain pending. Hosted changed-head execution and provider required-check configuration are unverified; no dispatch was performed. Native source authority and publication retain independent gates. #47 retains original ADR-0001 human/source-admission/publication acceptance. ADR not required: existing contract/reference behavior and regression wiring are repaired without changing ownership or policy authority.
+Changed-head hosted execution and provider required-check configuration remain unverified. Current reference tools do not establish complete schema conformance: the unchanged Agent-Ready Web profile/schema mismatch remains in #76. Native ADR/source admission and publication retain independent #47 gates. All three PRs remain drafts for review; #80–#85 remain unstarted. #47 retains original ADR-0001 human/source-admission/publication acceptance. ADR not required: existing contract/reference behavior and regression wiring are repaired without changing ownership or policy authority.
 
 ## Next dependency-ready work
 
-Complete independent source review and combined #77–#79 qualification, then keep the three drafts open for maintainer sync; do not start #80–#85.
+Review drafts #87, #88, then #86; reconcile operational continuity by live evidence before merge and carry any unmet acceptance in #76. Select #80–#82 only after the sync.
 
 ## Parallel changes and reconciliation
 
