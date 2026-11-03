@@ -48,6 +48,13 @@ a publication claim.
 GitHub project Pages, product mounts, and versioned documentation. The final
 canonical URL is `origin + base_path + selected profile route`.
 
+Origin and external-evidence syntax share the reference checker's
+[HTTPS rules](AGENT_READY_WEB.md#evidence-envelope): optional decimal ports are
+1–65535, IPv6 literals are bracketed and unscoped, and userinfo, empty ports,
+raw whitespace/control characters and backslashes are rejected. Origins allow
+an optional root slash but no query or fragment delimiter. This is offline
+syntax validation; it does not fetch a URL or establish a live-site claim.
+
 For example, origin `https://docs.example.invalid`, base path
 `/synthetic-docs/`, and logical route `/docs/` resolve to
 `https://docs.example.invalid/synthetic-docs/docs/`. The subject repository is

@@ -19,7 +19,11 @@ from collections.abc import Mapping
 from datetime import date, datetime
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlsplit
+
+if __package__:
+    from .https_locations import is_https, is_origin
+else:
+    from https_locations import is_https, is_origin
 
 
 PROFILE_SCHEMA = "egohygiene.agent-ready-web-profile/v1"
@@ -569,22 +573,7 @@ def _iso_datetime(value: Any, path: str) -> list[str]:
 
 
 def _https_origin(value: Any, path: str) -> list[str]:
-    if not isinstance(value, str):
-        return [f"{path} must be an HTTPS origin"]
-    try:
-        parsed = urlsplit(value)
-        parsed.port
-    except ValueError:
-        return [f"{path} must be an HTTPS origin"]
-    if (
-        parsed.scheme != "https"
-        or parsed.hostname is None
-        or parsed.username is not None
-        or parsed.password is not None
-        or parsed.path not in {"", "/"}
-        or parsed.query
-        or parsed.fragment
-    ):
+    if not is_origin(value):
         return [f"{path} must be an HTTPS origin"]
     return []
 
@@ -597,7 +586,7 @@ def _location(value: Any, path: str) -> list[str]:
         SAFE_PATH_RE.fullmatch(value) is not None
         and all(part not in {".", ".."} for part in safe_parts)
     )
-    if value.startswith("https://") or safe_relative:
+    if is_https(value) or safe_relative:
         return []
     return [f"{path} must be an HTTPS URL or safe repository-relative path"]
 

@@ -7,24 +7,24 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T22:40:12Z'
+  updated_at: '2026-11-03T04:31:47Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Integrate the approved quoted Action-reference repair with accepted validation and context
-    guards.
-  includes:
-  - The bounded workflow/composite block-YAML reader recognizes literal quoted/unquoted uses with exact
-    path/line diagnostics and excludes unsupported/unrelated strings. Reviewed compatibility repairs preserve
-    broad literal plus/Unicode subpaths and initial UTF-8 BOM handling. No general YAML or fleet-enforcement
-    claim is introduced.
-  - Reviewed source 485a8906722e03209d6eb34b46f21c212a69eee9 integrates with accepted main edbcae6718497b077e40a477e8a402e4c4cb7527;
-    qualified non-handoff bytes are preserved.
+  purpose: Reject malformed or ambiguous Agent-Ready Web provenance URLs using shared HTTPS syntax with
+    public-site surfaces.
+  includes: &id001
+  - Parse complete HTTPS authorities and reject userinfo, raw whitespace/control/backslash ambiguity,
+    malformed hosts and invalid/empty ports.
+  - Preserve safe relative evidence, supported HTTPS/IPv6 and field-only diagnostics across profile, mechanism
+    and conformance locations.
+  - Document exact-origin syntax and leave proposed lifecycle, live conformance and authorization boundaries
+    unchanged.
   excludes:
-  - 'Audit PR #75 and original ADR-0001 disposition; unrelated policy changes, hosted dispatch, releases
-    and publication.'
+  - Network fetches, live-site certification, capability execution, publication and downstream rollout.
+  - Test suites, hosted CI, merging, issue closure and unrelated audit repairs.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -33,85 +33,96 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
+  - tools/https_locations.py
+  - tools/agent_ready_web.py
+  - tools/site_surfaces.py
+  - tests/test_agent_ready_web.py
+  - docs/ecosystem/AGENT_READY_WEB.md
+  - docs/ecosystem/PUBLIC_SITE_SURFACES.md
   - docs/decisions/POLICY.md
-  - https://github.com/egohygiene/hygiene/issues/76
-  - https://github.com/egohygiene/hygiene/issues/79
+  - https://github.com/egohygiene/hygiene/issues/83
 work:
-  objective: Integrate the approved quoted Action-reference repair with accepted validation and context
-    guards.
-  success_conditions:
-  - Preserve reviewed implementation and canonical source while integrating accepted predecessor work.
-  - Pass the complete merged-source gate and exact continuity schema, then execute the authorized ordered
-    merge.
+  objective: Reject malformed or ambiguous Agent-Ready Web provenance URLs using shared HTTPS syntax with
+    public-site surfaces.
+  success_conditions: *id001
   active_issue:
     provider: github
-    id: egohygiene/hygiene#79
-    url: https://github.com/egohygiene/hygiene/issues/79
+    id: egohygiene/hygiene#83
+    url: https://github.com/egohygiene/hygiene/issues/83
   next:
     kind: action
-    id: consolidate-and-start80-82
-    description: Complete the authorized merge86, consolidate completed77–79 into tracker76 with remaining
-      gates, then start exactly80–82 from verified final main as separate draft PRs. Keep83–85 unstarted.
+    id: review-draft-and-qualify
+    description: Review the shared syntax/compatibility diff and execute the issue83 helper/CLI and neighboring
+      surface regression checks in the deferred qualification pass before closure.
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/76
-    - https://github.com/egohygiene/hygiene/pull/86
+    - https://github.com/egohygiene/hygiene/issues/83
     depends_on: []
 state:
   base:
-    revision: edbcae6718497b077e40a477e8a402e4c4cb7527
+    revision: fa41ccc95d0cd0365b38008e02bdc67b928c5ed2
     ref: refs/heads/main
-    verified_at: '2026-10-30T22:40:12Z'
+    verified_at: '2026-11-03T04:31:47Z'
   candidate:
-    branch: fix/79-quoted-action-refs
+    branch: codex/83-safe-agent-web-urls
     revision: null
-    pull_request:
-      provider: github
-      id: egohygiene/hygiene#86
-      url: https://github.com/egohygiene/hygiene/pull/86
+    pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-30T22:40:12Z'
-    default_branch_revision: edbcae6718497b077e40a477e8a402e4c4cb7527
+    observed_at: '2026-11-03T04:31:47Z'
+    default_branch_revision: fa41ccc95d0cd0365b38008e02bdc67b928c5ed2
     issue_state: open
-    pull_request_state: draft
-    notes: PR87 and PR88 are merged; current main isedbcae67. PR86 remains open/draft for the authorized
-      final ordered merge. Audit75 is unchanged/open/draft.
+    pull_request_state: not-applicable
+    notes: Main fa41ccc is current and issue83 is open. PR86 is already merged; stale predecessor handoff
+      instructions are replaced by this bounded candidate. Existing drafts75/89/90/91 remain open and
+      untouched. This candidate is not merged, certified or published.
   parallel_changes:
   - provider: github
     id: egohygiene/hygiene#75
     url: https://github.com/egohygiene/hygiene/pull/75
+  - provider: github
+    id: egohygiene/hygiene#89
+    url: https://github.com/egohygiene/hygiene/pull/89
+  - provider: github
+    id: egohygiene/hygiene#90
+    url: https://github.com/egohygiene/hygiene/pull/90
+  - provider: github
+    id: egohygiene/hygiene#91
+    url: https://github.com/egohygiene/hygiene/pull/91
 review:
   status: partial
-  reviewed_at: '2026-10-30T22:40:12Z'
+  reviewed_at: '2026-11-03T04:31:47Z'
   reviewed_by: Codex
   evidence:
-  - command: Reviewed source and main/API/tree comparison
+  - command: Python ast.parse on tools/https_locations.py, tools/agent_ready_web.py, tools/site_surfaces.py
+      and tests/test_agent_ready_web.py
     outcome: passed
-    observed_at: '2026-10-30T22:40:12Z'
-    notes: PR87 merged949cd4a and PR88 mergededbcae67, each matching its checked candidate tree. This
-      integration preserves reviewed79 source485a890 and all qualified77/78 source bytes; only operational
-      continuity needs manual reconciliation.
-  - command: python3 -I tools/check_contracts.py (merged source)
+    observed_at: '2026-11-03T04:31:47Z'
+    notes: All four modified/new Python sources parse. Public script and package import branches retain
+      local module routing. This is syntax evidence only.
+  - command: Local documentation targets and git diff --check
     outcome: passed
-    observed_at: '2026-10-30T22:40:12Z'
-    notes: Fresh merged-source gate passed 228 tests with zero skips and all 25 declared command checks;
-      qualified implementation bytes and Git executable roles match the reviewed source.
-  - command: Pinned continuity schema/formats, section/privacy/budget and whitespace checks
+    observed_at: '2026-11-03T04:31:47Z'
+    notes: Relative targets resolve and whitespace check passes. Profile/schema/catalog/ADR/workflow bytes
+      remain unchanged.
+  - command: Pinned Aether continuity metadata/schema, twelve headings, privacy and size inspection
     outcome: passed
-    observed_at: '2026-10-30T22:40:12Z'
-    notes: Exact upstream schema and local composition are verified before this checkpoint is committed.
-  - command: Additional canonical Agent-Ready Web schema consistency
-    outcome: limited
-    observed_at: '2026-10-30T22:40:12Z'
-    notes: The unchanged predecessor profile/schema pair still has17 additional-property diagnostics.
-      Tracker76 retains this failed broader consistency check; no whole-repository conformance is claimed.
+    observed_at: '2026-11-03T04:31:47Z'
+    notes: Within 16384 bytes/240 lines; no private context or local paths.
+  - command: Issue83 helper/CLI regressions, public validators, neighboring site-surface suite and hosted
+      CI
+    outcome: not-run
+    observed_at: '2026-11-03T04:31:47Z'
+    notes: Four regression methods are authored but unexecuted. No behavior or conformance pass is claimed.
   environment_limitations:
-  - 'Hosted changed-head execution and provider required-check evidence remain deferred. Native source
-    admission/publication and original ADR-0001 approval remain separate under #47.'
-  - All new commits use [skip ci]. This accepted source merge creates no tag/release, workflow dispatch,
-    deployment or publication.
+  - Runtime/helper/public-CLI behavior is unqualified until the authored regressions and existing suites
+    execute.
+  - Official released EgoLint continuity conformance is unexecuted; metadata/schema checks are narrower.
+  - The shared module must accompany either checker from the same reviewed revision; no downstream rollout
+    is performed.
+  - Tracker76 retains independent schema consistency, audit and approval work; all proposed ADRs retain
+    their status.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -130,48 +141,48 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime instructions, scoped instructions, live evidence and canonical sources outrank this compact operational handoff. It grants no authority.
+This is a bounded issue83 operational handoff. User/runtime and scoped instructions, live evidence and canonical contracts outrank the checkpoint.
 
 ## Resume protocol
 
-Read AGENTS and canonical policy, verify current main and PR state, then inspect tracker #76 and the owning PR before resuming.
+Read AGENTS, the Agent-Ready Web evidence envelope, tools/https_locations.py and issue83. Verify main and peer PR state. PR86 is already merged, so do not repeat its old merge plan.
 
 ## Current objective and success conditions
 
-Integrate the approved quoted Action-reference repair with accepted validation and context guards.
+Use one complete HTTPS syntax parser for both reference checkers while preserving safe relative evidence and field-only diagnostics. No network access or policy activation is added.
 
 ## State snapshot
 
-Observed main is edbcae6718497b077e40a477e8a402e4c4cb7527. Candidate fix/79-quoted-action-refs integrates reviewed source 485a8906722e03209d6eb34b46f21c212a69eee9 in open draft PR #86; it is not yet merged. The containing revision remains null.
+Base main fa41ccc95d0cd0365b38008e02bdc67b928c5ed2 and open issue83 are freshly observed. Candidate branch codex/83-safe-agent-web-urls has null self-revision/PR before creation.
 
 ## Completed and material changes
 
-The bounded workflow/composite block-YAML reader recognizes literal quoted/unquoted uses with exact path/line diagnostics and excludes unsupported/unrelated strings. Reviewed compatibility repairs preserve broad literal plus/Unicode subpaths and initial UTF-8 BOM handling. No general YAML or fleet-enforcement claim is introduced. PR87 merged949cd4a and PR88 mergededbcae67, each matching its checked candidate tree. This integration preserves reviewed79 source485a890 and all qualified77/78 source bytes; only operational continuity needs manual reconciliation.
+tools/https_locations.py owns the shared local syntax implementation. Agent-Ready Web location/origin checks delegate to it; public-site private helper aliases preserve callers. Documentation defines ports, bracketed unscoped IPv6 and exact-origin delimiters. Four regression methods cover shared semantics and real CLI paths; they have not run.
 
 ## Validation and review evidence
 
-Fresh merged-source gate passed 228 tests with zero skips and all 25 declared command checks; qualified implementation bytes and Git executable roles match the reviewed source. Independent source review and earlier actual CLI/negative controls remain attributed to their exact inputs in the PR. Final continuity schema/formats and budgets are checked separately.
+All four Python sources pass AST parsing. Local documentation targets and git diff --check pass. Continuity metadata/schema, twelve-section and privacy/size checks pass. These results establish syntax/structure, not behavior.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Hosted/ruleset evidence is unavailable/deferred. The additional web-profile schema check remains failed with17 unchanged predecessor diagnostics and is carried in #76. #47 retains original ADR-0001 approval, native source-admission and publication gates. ADR not required: source-preserving integration and operational handoff reconciliation implement already reviewed repairs.
+No regression suite, public validator command or hosted CI was executed. The draft is unqualified for behavior until issue83 acceptance runs. Existing tracker76 schema consistency and approval gaps remain; the proposed Agent-Ready Web/site-surface ADR lifecycles are unchanged.
 
 ## Next dependency-ready work
 
-Complete the authorized merge86, consolidate completed77–79 into tracker76 with remaining gates, then start exactly80–82 from verified final main as separate draft PRs. Keep83–85 unstarted.
+Review the source/compatibility draft and run issue83 helper/CLI plus neighboring site-surface checks during qualification. Keep the issue open until actual acceptance evidence exists.
 
 ## Parallel changes and reconciliation
 
-Known open work is linked above. Audit PR #75 remains untouched/open/draft at58d28563206c7b2957867b0a25827b6a08558d66. Reconcile remaining continuity snapshots semantically before merging.
+Existing drafts75/89/90/91 are preserved. Only root CONTINUITY overlaps those working handoffs; reconcile the final current objective/check evidence semantically against main before merging any of them.
 
 ## Privacy and redaction
 
-Only public-safe source facts and result summaries are retained. Raw logs, reports, credentials, environment values and private machine paths remain outside source.
+Retain only scoped public repository facts and synthetic URL test inputs. No private sources, user data, credentials or machine-local paths are included.
 
 ## Handoff update protocol
 
-After domain validation and before PR presentation, refresh exact source/checks and next action. Validate the exact pinned Aether schema, all required sections, privacy and budgets.
+Refresh after actual checks/review. ADR not required: repair reference validation under existing contracts without changing ownership or authority. Applied pinned Aether create-decisions-document2.1.0 and maintain-repository-continuity1.1.0; no merge, closure or publication is authorized by this file.
 
 ## Compaction and supersession
 
-Replace stale state; Git and tracker76 retain detailed history. Keep twelve sections within240 lines and16384 UTF-8 bytes.
+Keep twelve required sections and byte/line budgets. Git, canonical policy and issue83/tracker76 retain the detailed acceptance/history.

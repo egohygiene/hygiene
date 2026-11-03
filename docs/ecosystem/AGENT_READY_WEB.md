@@ -140,6 +140,27 @@ an optional narrow exemption. Evidence IDs are unique and stable; observations
 record time, subject revision, type, location, description, and optional
 digest.
 
+Evidence locations and origins use the shared offline syntax rules in
+[`tools/https_locations.py`](../../tools/https_locations.py), also used by the
+public-site surface checker. Keep the checker and its adjacent shared module
+from the same reviewed revision when invoking it outside the checkout.
+An external location uses literal lowercase
+`https://`, a nonempty ASCII DNS/punycode host, IPv4 address or bracketed,
+unscoped IPv6 address, and an optional decimal port from 1 through 65535.
+Userinfo, empty ports, malformed authorities, raw whitespace/control characters
+and backslashes are rejected before parsing; no host lookup or URL fetch occurs.
+An evidence URL may have a path, query or fragment. Safe repository-relative
+evidence paths retain their existing grammar and cannot contain `.` or `..`
+segments. These rules cover profile/mechanism references and registration
+evidence as well as conformance evidence.
+
+An exact origin has no path beyond an optional root `/` and no query or fragment
+delimiter, including empty `?` or `#`. An explicit valid port is retained; omitted
+ports and explicit `:443` are both valid syntax. Validation does not normalize
+them or establish origin equivalence. Diagnostics identify the field and never
+include a rejected URL or embedded credential. Passing syntax validation supplies
+no live conformance, reachability or authorization evidence.
+
 The profile digest is SHA-256 over UTF-8 canonical JSON with object keys sorted,
 no insignificant whitespace, and non-ASCII characters retained. The reference
 validator derives that digest from the loaded profile and rejects a mismatch;
