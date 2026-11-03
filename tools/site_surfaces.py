@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import ipaddress
 import json
 import re
 import sys
@@ -20,6 +19,21 @@ from datetime import date, datetime
 from pathlib import Path, PureWindowsPath
 from typing import Any
 from urllib.parse import urlsplit
+
+if __package__:
+    from .https_locations import (
+        HOST_LABEL_RE,
+        is_hostname as _is_hostname,
+        is_https as _is_https,
+        is_origin as _is_origin,
+    )
+else:
+    from https_locations import (
+        HOST_LABEL_RE,
+        is_hostname as _is_hostname,
+        is_https as _is_https,
+        is_origin as _is_origin,
+    )
 
 
 REGISTRY_SCHEMA = "egohygiene.public-site-surface-registry/v1"
@@ -223,9 +237,6 @@ DATETIME_RE = re.compile(
     r"^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}"
     r"(?:\.[0-9]+)?(?:Z|[+-][0-9]{2}:[0-9]{2})$"
 )
-HOST_LABEL_RE = re.compile(
-    r"^[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$"
-)
 REPOSITORY_RE = re.compile(r"^egohygiene/(?:\.github|[a-z0-9][a-z0-9.-]*)$")
 SYNTHETIC_REPOSITORY_RE = re.compile(
     r"^egohygiene/synthetic-[a-z0-9][a-z0-9.-]*$"
@@ -325,53 +336,6 @@ def _is_datetime(value: Any) -> bool:
         return "T" in value and parsed.tzinfo is not None
     except ValueError:
         return False
-
-
-def _is_hostname(value: str) -> bool:
-    try:
-        ipaddress.ip_address(value)
-        return True
-    except ValueError:
-        labels = value.rstrip(".").split(".")
-        return (
-            len(value) <= 253
-            and bool(labels)
-            and all(HOST_LABEL_RE.fullmatch(label) is not None for label in labels)
-        )
-
-
-def _is_https(value: Any) -> bool:
-    if not isinstance(value, str) or not value.startswith("https://"):
-        return False
-    try:
-        parsed = urlsplit(value)
-        port = parsed.port
-    except ValueError:
-        return False
-    return (
-        parsed.scheme == "https"
-        and bool(parsed.hostname)
-        and _is_hostname(parsed.hostname)
-        and parsed.username is None
-        and parsed.password is None
-        and "\\" not in value
-        and not any(
-            character.isspace() or ord(character) < 32 or ord(character) == 127
-            for character in value
-        )
-        and (port is None or 1 <= port <= 65535)
-    )
-
-
-def _is_origin(value: Any) -> bool:
-    if not _is_https(value):
-        return False
-    parsed = urlsplit(value)
-    return (
-        parsed.path in {"", "/"}
-        and "?" not in value
-        and "#" not in value
-    )
 
 
 def _is_canonical_url(value: Any) -> bool:
