@@ -7,24 +7,25 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-03T04:31:47Z'
+  updated_at: '2026-11-03T06:00:58Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Reject malformed or ambiguous Agent-Ready Web provenance URLs using shared HTTPS syntax with
-    public-site surfaces.
+  purpose: Compose the exact selected Aether release validator with structural Hygiene handoff/trigger
+    checks and explicit native evidence.
   includes: &id001
-  - Parse complete HTTPS authorities and reject userinfo, raw whitespace/control/backslash ambiguity,
-    malformed hosts and invalid/empty ports.
-  - Preserve safe relative evidence, supported HTTPS/IPv6 and field-only diagnostics across profile, mechanism
-    and conformance locations.
-  - Document exact-origin syntax and leave proposed lifecycle, live conformance and authorization boundaries
-    unchanged.
+  - Verify selected owner validator/schema/runtime-lock bytes and execute full normative validation; unavailable/fallback
+    inputs cannot pass.
+  - Validate actual Task definitions and only workflow_dispatch events across supported YAML forms; reject
+    duplicate/unknown declaration data.
+  - Keep preparation read-only, emit deterministic source/runtime/declaration evidence and leave policy/ADR
+    approval and publication separate.
   excludes:
-  - Network fetches, live-site certification, capability execution, publication and downstream rollout.
-  - Test suites, hosted CI, merging, issue closure and unrelated audit repairs.
+  - Implicit downloads/installations inside the checker, tag/release/deployment/credential actions and
+    policy activation.
+  - Regression suites, actual Task/manual-workflow execution, hosted CI and issue closure.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -33,50 +34,52 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - tools/https_locations.py
-  - tools/agent_ready_web.py
-  - tools/site_surfaces.py
-  - tests/test_agent_ready_web.py
-  - docs/ecosystem/AGENT_READY_WEB.md
-  - docs/ecosystem/PUBLIC_SITE_SURFACES.md
-  - docs/decisions/POLICY.md
-  - https://github.com/egohygiene/hygiene/issues/83
+  - tools/releases.py
+  - tools/release-owner.lock.json
+  - .egohygiene/release.json
+  - .tasks/release.yml
+  - .github/workflows/release-policy.yml
+  - docs/ecosystem/REPOSITORY_RELEASE.md
+  - docs/decisions/ADR-0015-compose-pinned-release-validation.md
+  - tests/test_release_policy.py
+  - catalog/repository-release-policy.json
+  - https://github.com/egohygiene/hygiene/issues/84
 work:
-  objective: Reject malformed or ambiguous Agent-Ready Web provenance URLs using shared HTTPS syntax with
-    public-site surfaces.
+  objective: Compose the exact selected Aether release validator with structural Hygiene handoff/trigger
+    checks and explicit native evidence.
   success_conditions: *id001
   active_issue:
     provider: github
-    id: egohygiene/hygiene#83
-    url: https://github.com/egohygiene/hygiene/issues/83
+    id: egohygiene/hygiene#84
+    url: https://github.com/egohygiene/hygiene/issues/84
   next:
     kind: action
     id: review-draft-and-qualify
-    description: Review the shared syntax/compatibility diff and execute the issue83 helper/CLI and neighboring
-      surface regression checks in the deferred qualification pass before closure.
+    description: Review the composed validator and proposed ADR-0015; qualify negative/native/Task/workflow
+      cases during the deferred checks pass, preserving existing peer drafts and the selected immutable
+      owner pin.
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/83
+    - https://github.com/egohygiene/hygiene/issues/84
     depends_on: []
 state:
   base:
-    revision: fa41ccc95d0cd0365b38008e02bdc67b928c5ed2
+    revision: 09783cb411445248c9184c3a03a3a87f97d1d375
     ref: refs/heads/main
-    verified_at: '2026-11-03T04:31:47Z'
+    verified_at: '2026-11-03T06:00:58Z'
   candidate:
-    branch: codex/83-safe-agent-web-urls
+    branch: codex/84-release-contract-composition
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-03T04:31:47Z'
-    default_branch_revision: fa41ccc95d0cd0365b38008e02bdc67b928c5ed2
+    observed_at: '2026-11-03T06:00:58Z'
+    default_branch_revision: 09783cb411445248c9184c3a03a3a87f97d1d375
     issue_state: open
     pull_request_state: not-applicable
-    notes: Main fa41ccc is current and issue83 is open. PR86 is already merged; stale predecessor handoff
-      instructions are replaced by this bounded candidate. Existing drafts75/89/90/91 remain open and
-      untouched. This candidate is not merged, certified or published.
+    notes: Main09783cb contains merged URL/origin PR92. Issue84 and tracker76 are open; peer audit75/presentation89/decision90/continuity91
+      remain open and unchanged. This candidate performs no merge or publication and does not accept ADR-0015.
   parallel_changes:
   - provider: github
     id: egohygiene/hygiene#75
@@ -92,37 +95,53 @@ state:
     url: https://github.com/egohygiene/hygiene/pull/91
 review:
   status: partial
-  reviewed_at: '2026-11-03T04:31:47Z'
+  reviewed_at: '2026-11-03T06:00:58Z'
   reviewed_by: Codex
   evidence:
-  - command: Python ast.parse on tools/https_locations.py, tools/agent_ready_web.py, tools/site_surfaces.py
-      and tests/test_agent_ready_web.py
+  - command: python3 tools/releases.py validate-profile
     outcome: passed
-    observed_at: '2026-11-03T04:31:47Z'
-    notes: All four modified/new Python sources parse. Public script and package import branches retain
-      local module routing. This is syntax evidence only.
-  - command: Local documentation targets and git diff --check
+    observed_at: '2026-11-03T06:00:58Z'
+    notes: The existing proposed policy profile validates; its pin/version/status and catalog/schema bytes
+      are unchanged.
+  - command: python3 tools/releases.py verify-owner --aether-source .cache/release/aether
     outcome: passed
-    observed_at: '2026-11-03T04:31:47Z'
-    notes: Relative targets resolve and whitespace check passes. Profile/schema/catalog/ADR/workflow bytes
-      remain unchanged.
-  - command: Pinned Aether continuity metadata/schema, twelve headings, privacy and size inspection
+    observed_at: '2026-11-03T06:00:58Z'
+    notes: Selected Aether8a2a3d08f3aa9da3847bd5277843506ab855192e validator/schema/runtime-lock bytes
+      match their recorded SHA-256 values. Source verification alone is not declaration validation.
+  - command: python3 tools/releases.py validate-declaration --repository . --format json
     outcome: passed
-    observed_at: '2026-11-03T04:31:47Z'
-    notes: Within 16384 bytes/240 lines; no private context or local paths.
-  - command: Issue83 helper/CLI regressions, public validators, neighboring site-surface suite and hosted
-      CI
+    observed_at: '2026-11-03T06:00:58Z'
+    notes: The actual pinned native entrypoint and full Draft202012Validator execute, followed by structural
+      local checks. Receipt status passed; declaration digest5c0fcf3190cde8165585de9cdcbfde3367d44c8fd15975f0fb9a672578dceb32.
+      Observed jsonschema4.26.0/PyYAML6.0.3; policy remains proposed.
+  - command: Two Python AST parses; new ADR metadata/schema; local documentation targets and git diff
+      --check
+    outcome: passed
+    observed_at: '2026-11-03T06:00:58Z'
+    notes: Sources parse and seven new regression methods are authored but unexecuted. ADR-0015 is structurally
+      valid, proposed with null approval. The manual-only workflow and Task definitions were parsed but
+      not executed.
+  - command: Pinned continuity metadata/schema/formats, twelve headings, size and privacy inspection
+    outcome: passed
+    observed_at: '2026-11-03T06:00:58Z'
+    notes: One bounded source handoff meets structural/privacy/budget checks; official EgoLint conformance
+      is unexecuted.
+  - command: Regression suites, Task dispatch, manual workflow runtime, owner-lock dependency installation
+      and hosted CI
     outcome: not-run
-    observed_at: '2026-11-03T04:31:47Z'
-    notes: Four regression methods are authored but unexecuted. No behavior or conformance pass is claimed.
+    observed_at: '2026-11-03T06:00:58Z'
+    notes: No test or workflow executes and no dependency install occurs. Existing available runtime establishes
+      only the recorded positive declaration proof.
   environment_limitations:
-  - Runtime/helper/public-CLI behavior is unqualified until the authored regressions and existing suites
-    execute.
-  - Official released EgoLint continuity conformance is unexecuted; metadata/schema checks are narrower.
-  - The shared module must accompany either checker from the same reviewed revision; no downstream rollout
-    is performed.
-  - Tracker76 retains independent schema consistency, audit and approval work; all proposed ADRs retain
-    their status.
+  - Seven new regressions, actual Task dispatch and the changed manual workflow remain unexecuted; issue84
+    stays open.
+  - Current positive proof uses jsonschema4.26.0/PyYAML6.0.3. The future manual workflow selects the owner
+    lock with jsonschema4.10.3/PyYAML6.0.1; that runtime path was not executed.
+  - Prepared selected owner source and full dependencies are required for composed declaration checks;
+    unavailable or weaker fallback validation fails explicitly. Profile/resolve remain standard-library-only.
+  - ADR-0015 and the existing release policy remain proposed; no approval, adoption, tag, release or deployment
+    is inferred.
+  - Tracker76 retains independent audit/schema consistency and qualification work.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -141,48 +160,48 @@ privacy:
 
 ## Purpose and precedence
 
-This is a bounded issue83 operational handoff. User/runtime and scoped instructions, live evidence and canonical contracts outrank the checkpoint.
+Record the bounded issue84 composition repair below user/runtime, scoped instructions, live evidence and canonical sources. It grants no publication authority.
 
 ## Resume protocol
 
-Read AGENTS, the Agent-Ready Web evidence envelope, tools/https_locations.py and issue83. Verify main and peer PR state. PR86 is already merged, so do not repeat its old merge plan.
+Read AGENTS, release guidance, owner lock, native Aether pin, proposed ADR-0015 and issue84/tracker76. Main already contains merged92; preserve peer drafts75/89/90/91.
 
 ## Current objective and success conditions
 
-Use one complete HTTPS syntax parser for both reference checkers while preserving safe relative evidence and field-only diagnostics. No network access or policy activation is added.
+Execute exact selected native validation with full schema support, then prove actual Task identity and manual-only trigger structure without copying the producer protocol or publishing anything.
 
 ## State snapshot
 
-Base main fa41ccc95d0cd0365b38008e02bdc67b928c5ed2 and open issue83 are freshly observed. Candidate branch codex/83-safe-agent-web-urls has null self-revision/PR before creation.
+Base main09783cb411445248c9184c3a03a3a87f97d1d375 includes merged92. Issue84 and existing peers are open. Candidate codex/84-release-contract-composition has null self-revision/PR before creation.
 
 ## Completed and material changes
 
-tools/https_locations.py owns the shared local syntax implementation. Agent-Ready Web location/origin checks delegate to it; public-site private helper aliases preserve callers. Documentation defines ports, bracketed unscoped IPv6 and exact-origin delimiters. Four regression methods cover shared semantics and real CLI paths; they have not run.
+The checker locks selected owner bytes, runs the native full validator, rejects unavailable/fallback inputs and records declaration/source/runtime evidence. YAML checks cover actual task definitions and manual-only triggers, including quoted/flow/comment forms and duplicates. Task/manual-workflow wiring shares the same prepared source/checker. ADR-0015 proposes the bounded runtime choice without changing catalog formats or approval.
 
 ## Validation and review evidence
 
-All four Python sources pass AST parsing. Local documentation targets and git diff --check pass. Continuity metadata/schema, twelve-section and privacy/size checks pass. These results establish syntax/structure, not behavior.
+Profile/source verification and the actual composed declaration CLI exit0. Receipt identifies immutable owner8a2a3d0, full jsonschema4.26.0/PyYAML6.0.3 and the unchanged declaration digest. Python/ADR metadata/local links/whitespace and continuity checks pass. No regression case or Task/workflow executes.
 
 ## Blockers, risks, unknowns, and deferred work
 
-No regression suite, public validator command or hosted CI was executed. The draft is unqualified for behavior until issue83 acceptance runs. Existing tracker76 schema consistency and approval gaps remain; the proposed Agent-Ready Web/site-surface ADR lifecycles are unchanged.
+New and existing suites, real Task/manual workflow and official EgoLint/hosted CI remain unexecuted. The future owner-lock dependency versions differ from the observed current positive runtime and are unqualified here. ADR-0015/policy stay proposed; no publication or issue closure occurs.
 
 ## Next dependency-ready work
 
-Review the source/compatibility draft and run issue83 helper/CLI plus neighboring site-surface checks during qualification. Keep the issue open until actual acceptance evidence exists.
+Review the source/ADR proposal and qualify native negative cases plus real handoffs in the deferred pass. Preserve the current owner pin and explicit unavailable behavior; do not treat a plan as approval to publish.
 
 ## Parallel changes and reconciliation
 
-Existing drafts75/89/90/91 are preserved. Only root CONTINUITY overlaps those working handoffs; reconcile the final current objective/check evidence semantically against main before merging any of them.
+Existing audit75, presentation89, decision90 and continuity91 remain separate. Root checkpoint and decision-index changes may need semantic reconciliation during later integration; preserve proposed states, owner contracts and their source evidence.
 
 ## Privacy and redaction
 
-Retain only scoped public repository facts and synthetic URL test inputs. No private sources, user data, credentials or machine-local paths are included.
+Retain only public scoped source facts, immutable owner hashes and synthetic fixtures. No private workbook data, personal context, credentials or machine-local paths are committed.
 
 ## Handoff update protocol
 
-Refresh after actual checks/review. ADR not required: repair reference validation under existing contracts without changing ownership or authority. Applied pinned Aether create-decisions-document2.1.0 and maintain-repository-continuity1.1.0; no merge, closure or publication is authorized by this file.
+Refresh after actual checks/review. ADR-Ref: ADR-0015 proposes exact native composition and conditional full runtimes; it remains proposed with null approval. Existing accepted policy and proposed release/catalog records retain their statuses. No merge or lifecycle promotion is claimed.
 
 ## Compaction and supersession
 
-Keep twelve required sections and byte/line budgets. Git, canonical policy and issue83/tracker76 retain the detailed acceptance/history.
+Keep twelve required sections and existing size budgets. Canonical release guidance, lock, owner source, Git and issue84 retain detailed requirements/history.
