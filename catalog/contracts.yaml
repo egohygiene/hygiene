@@ -3,7 +3,7 @@
   "status": "proposed",
   "organization": "egohygiene",
   "canonical_repository": "egohygiene/hygiene",
-  "updated": "2026-09-21",
+  "updated": "2026-11-09",
   "contracts": [
     {
       "id": "egohygiene.architecture-decision/v1",
@@ -131,6 +131,38 @@
       "owner": "egohygiene/hygiene",
       "source": "schemas/dependency-boundary-register.v1.schema.json",
       "status": "active",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-public-catalog/v1",
+      "title": "Reviewed public repository catalog projection",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-public-catalog.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-public-discovery/v1",
+      "title": "Explicit public provider repository discovery",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-public-discovery.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-public-drift/v1",
+      "title": "Offline public inventory drift and freshness receipt",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-public-drift.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.organization-checkpoints/v1",
+      "title": "Organization checkpoint applicability and cadence profile",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/organization-checkpoints.v1.schema.json",
+      "status": "proposed",
       "visibility": "public"
     }
   ]

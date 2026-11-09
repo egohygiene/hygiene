@@ -78,6 +78,12 @@ This plane captures evidence, builds usable knowledge, preserves source material
 - **akashic** — curated public knowledge constellations and focused Awesome lists.
 - **athena** — preserved assets, raw references, external resources, and large archival collections.
 - **reflector** — research and tooling for reflective synchronization and governable recursive AI-assisted engineering.
+- **antidote** — the owner-declared personalized adaptive-audio research program,
+  manuscript/publication workspace and local research-instrument contracts;
+  experimental implementation is separate from formal study or efficacy claims.
+- **civics** — the owner-declared static civic knowledge graph, sourced public
+  evidence and ballot decision-support portal; private notes and voting choices
+  remain outside public evidence.
 
 Athena is the reservoir; Akashic is an opinionated public collection; Mindcap is acquisition; Mindgarden is the living knowledge system; Reflector is a research product. Raw archives must not become runtime dependencies.
 
@@ -310,8 +316,11 @@ artifacts without owning routes; and Identity retains the `/identity/` product
 experience and its versioned brand and asset inputs. Holon may scaffold new
 declarations, Observatory may aggregate privacy-safe declaration state, and
 Pace may propose reviewed adoption changes. The catalog identity
-`egohygiene/website` continues to represent the renamed `egohygiene.io` site
-until that separate repository-catalog reconciliation is reviewed.
+`egohygiene/egohygiene.io` is the canonical repository identity; `website` is a
+declared historical alias. The [public inventory contract](PUBLIC_REPOSITORY_INVENTORY.md)
+separates reviewed public identity admission from role declarations, provider
+observations, conformance and publication. Existing lifecycle declarations are
+not refreshed by inventory discovery; undeclared facts stay unknown.
 
 ## 7. Control loops
 
@@ -342,7 +351,8 @@ These are capability flows, not a requirement that every repository imports ever
 
 The architecture is operating—not merely documented—when:
 
-- all 27 repositories have one explicit owner boundary and generated local context;
+- every repository in the reviewed applicable catalog has one explicit owner
+  boundary and generated local context, with unknown declarations preserved;
 - no production component exists only under `empathy/.staging`;
 - Mantle is independently tested across its supported shells/platforms;
 - Realm publishes a tested base image, at least one profile, and `full` with SBOM/provenance;
