@@ -39,7 +39,7 @@ jobs:
 
   validation:
     name: Read-only native source evidence
-    uses: egohygiene/relay/.github/workflows/repository-architecture-validation.yml@ac2600f4619f64c75a0e499e0540d8f48d516f9c
+    uses: egohygiene/relay/.github/workflows/repository-architecture-validation.yml@49046d88ef6fe2e31e9a9f443a61157b598efb78
     with:
       check-id: hygiene-decisions
       mode: advisory
@@ -96,12 +96,12 @@ jobs:
       - name: Compose the repository-owned landing and aliases
         run: python3 -I tools/publication.py shell
       - name: Capture the consumer route baseline
-        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@ac2600f4619f64c75a0e499e0540d8f48d516f9c
+        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@49046d88ef6fe2e31e9a9f443a61157b598efb78
         with:
           operation: capture-baseline
           evidence-directory: .cache/publication/composition
       - name: Collect and build through the shared strict pipeline
-        uses: egohygiene/relay/actions/repository-intelligence@ac2600f4619f64c75a0e499e0540d8f48d516f9c
+        uses: egohygiene/relay/actions/repository-intelligence@49046d88ef6fe2e31e9a9f443a61157b598efb78
         with:
           collect-adrs: "true"
           adr-policy-owner: "true"
@@ -113,7 +113,7 @@ jobs:
       - name: Seal the transport handoff
         run: python3 -I tools/publication.py seal
       - name: Verify preserved routes, aliases, source and complete bundle
-        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@ac2600f4619f64c75a0e499e0540d8f48d516f9c
+        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@49046d88ef6fe2e31e9a9f443a61157b598efb78
         with:
           operation: verify-composition
           evidence-directory: .cache/publication/composition
@@ -163,7 +163,7 @@ jobs:
       - name: Recheck downloaded bytes
         run: python3 -I tools/publication.py check
       - name: Reverify the shared composition at the deployment boundary
-        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@ac2600f4619f64c75a0e499e0540d8f48d516f9c
+        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@49046d88ef6fe2e31e9a9f443a61157b598efb78
         with:
           operation: verify-composition
           evidence-directory: .cache/publication/composition

@@ -1,7 +1,7 @@
 {
   "repository": "egohygiene/hygiene",
   "origin": "https://hygiene.egohygiene.io",
-  "relay_revision": "6cddad3124bdda1b1e3d54a40931f23322b7be26",
+  "relay_revision": "49046d88ef6fe2e31e9a9f443a61157b598efb78",
   "required_routes": ["/", "/intelligence/", "/intelligence/decisions/", "/decisions/", "/adr/"],
   "aliases": [
     {"route": "/decisions/", "target": "/intelligence/decisions/"},
