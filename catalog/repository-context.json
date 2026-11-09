@@ -24,32 +24,81 @@
     "Treat this context as a generated projection; change ecosystem ownership in Hygiene instead."
   ],
   "dependency_sources": {
-    "aether continuity artifacts": ["egohygiene/aether"],
-    "aether projections": ["egohygiene/aether"],
-    "aniflow contract": ["egohygiene/aniflow"],
+    "aether continuity artifacts": [
+      "egohygiene/aether"
+    ],
+    "aether projections": [
+      "egohygiene/aether"
+    ],
+    "aniflow contract": [
+      "egohygiene/aniflow"
+    ],
     "commerce provider API": [],
-    "egolint CLI and profiles": ["egohygiene/egolint"],
-    "egolint profiles": ["egohygiene/egolint"],
-    "egolint reports": ["egohygiene/egolint"],
-    "hygiene architecture release": ["egohygiene/hygiene"],
-    "hygiene registry": ["egohygiene/hygiene"],
-    "holon blueprints": ["egohygiene/holon"],
-    "identity packages": ["egohygiene/identity"],
-    "mantle release": ["egohygiene/mantle"],
-    "mantle runtime": ["egohygiene/mantle"],
-    "mindcap capture manifest": ["egohygiene/mindcap"],
-    "optiflow contract": ["egohygiene/optiflow"],
-    "organization issue intake": ["egohygiene/.github"],
-    "realm environment": ["egohygiene/realm"],
-    "realm environments": ["egohygiene/realm"],
-    "relay evidence": ["egohygiene/relay"],
-    "relay workflows": ["egohygiene/relay"],
-    "renderflow contract": ["egohygiene/renderflow"],
+    "egolint CLI and profiles": [
+      "egohygiene/egolint"
+    ],
+    "egolint profiles": [
+      "egohygiene/egolint"
+    ],
+    "egolint reports": [
+      "egohygiene/egolint"
+    ],
+    "holon blueprints": [
+      "egohygiene/holon"
+    ],
+    "holon site suite": [
+      "egohygiene/holon"
+    ],
+    "hygiene architecture release": [
+      "egohygiene/hygiene"
+    ],
+    "hygiene registry": [
+      "egohygiene/hygiene"
+    ],
+    "identity packages": [
+      "egohygiene/identity"
+    ],
+    "mantle release": [
+      "egohygiene/mantle"
+    ],
+    "mantle runtime": [
+      "egohygiene/mantle"
+    ],
+    "mindcap capture manifest": [
+      "egohygiene/mindcap"
+    ],
+    "optiflow contract": [
+      "egohygiene/optiflow"
+    ],
+    "optional beacon publication adapter": [
+      "egohygiene/beacon"
+    ],
+    "organization issue intake": [
+      "egohygiene/.github"
+    ],
+    "permitted public civic APIs and reviewed sources": [],
+    "realm environment": [
+      "egohygiene/realm"
+    ],
+    "realm environments": [
+      "egohygiene/realm"
+    ],
+    "relay evidence": [
+      "egohygiene/relay"
+    ],
+    "relay workflows": [
+      "egohygiene/relay"
+    ],
+    "renderflow contract": [
+      "egohygiene/renderflow"
+    ],
     "renderflow or flow artifact manifests": [
       "egohygiene/flow",
       "egohygiene/renderflow"
     ],
-    "store route and deployment contract": ["egohygiene/store"]
+    "store route and deployment contract": [
+      "egohygiene/store"
+    ]
   },
   "canonical_links": {
     "architecture": "docs/ecosystem/ARCHITECTURE.md",

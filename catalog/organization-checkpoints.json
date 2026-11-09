@@ -1,0 +1,75 @@
+{
+  "schema": "egohygiene.organization-checkpoints/v1",
+  "version": "1.0.0-alpha.1",
+  "status": "proposed",
+  "owner": "egohygiene/hygiene",
+  "scope": "reviewed-public-repositories",
+  "catalog": "catalog/repositories.yaml",
+  "public_projection": "catalog/public-repositories.json",
+  "cadence": {
+    "interval_seconds": 604800,
+    "event_triggers": [
+      "repository-created-renamed-transferred-archived-or-visibility-changed",
+      "architecture-release",
+      "major-milestone",
+      "pre-release",
+      "on-demand"
+    ],
+    "execution": "explicit consumer-owned invocation; no scheduler installed"
+  },
+  "freshness": {
+    "maximum_inventory_age_seconds": 604800,
+    "as_of": "explicit UTC input",
+    "future_observations": "reject",
+    "incomplete_inventory": "cannot establish absence or passing freshness",
+    "unknown_roles": "retain unknown; public identity admission remains independent"
+  },
+  "retention": {
+    "minimum_days": 90,
+    "reports": "immutable dated artifacts",
+    "baseline": "explicit compatible public checkpoint artifact and digest",
+    "missing_expired_inaccessible_or_incompatible_baseline": "comparison unavailable",
+    "failed_collection": "cannot replace the last valid baseline"
+  },
+  "audit_contract": {
+    "owner": "egohygiene/aether",
+    "id": "auditor",
+    "version": "2.0.0",
+    "status": "approved",
+    "revision": "dc8a16851f452763ef4f7fbe4bf057d4500b1921",
+    "path": "library/organization/specs/quality/auditor.spec.md",
+    "sha256": "f9f4d56673cefac4233fad4d53c78d1ba0726201b7e097bb78f67a721b81e62f",
+    "composition": "Use the owner's read-only request, evidence, finding, report-status and immutable-output contract. This profile adds applicability and cadence; it does not copy or replace the audit protocol."
+  },
+  "checkpoint_sections": [
+    "public catalog drift and inventory freshness",
+    "backlog shape with source and observation boundary",
+    "conformance adoption with explicit unavailable domains",
+    "current exceptions with owner and expiry evidence",
+    "positive observations tied to exact source",
+    "comparison baseline identity or explicit unavailable",
+    "execution, artifact retention and publication as separate facts"
+  ],
+  "new_repository_rules": [
+    "Discover through an explicit public-only provider request; never publish protected names, counts or placeholders.",
+    "Bind canonical full identity to stable provider repository ID and record observation time, default branch and archive state.",
+    "Review owner README, architecture, roadmap and metadata before assigning role, plane, lifecycle or next gate; preserve undeclared values as unknown.",
+    "Record historical aliases explicitly; aliases cannot shadow a canonical repository or resolve ambiguously.",
+    "Update the canonical catalog, context dependency mapping and active boundary references together; preserve dated ADRs and receipts.",
+    "Regenerate the public projection from the reviewed catalog and pin its owner schema/helper revision before consumer admission.",
+    "Treat new, missing, renamed, transferred, archived or visibility-changed repositories as drift requiring a reviewable source change; discovery never edits the registry."
+  ],
+  "ownership": {
+    "hygiene": "canonical repository identity, role, applicability, public admission and checkpoint policy",
+    "aether": "portable read-only audit contract",
+    "pace": "reviewed discovery/adoption and catalog-reconciliation proposals",
+    "observatory": "privacy-safe observation, normalization and reporting",
+    "relay": "consumer-owned execution and bounded artifact transport",
+    "repository": "source facts, local gates, credentials and final publication"
+  },
+  "authority": {
+    "human_approval": "never inferred from activity, merge, provider metadata or an audit",
+    "publication": "not authorized by this profile",
+    "policy_activation": "not claimed"
+  }
+}
