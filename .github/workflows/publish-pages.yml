@@ -39,7 +39,7 @@ jobs:
 
   validation:
     name: Read-only native source evidence
-    uses: egohygiene/relay/.github/workflows/repository-architecture-validation.yml@49046d88ef6fe2e31e9a9f443a61157b598efb78
+    uses: egohygiene/relay/.github/workflows/repository-architecture-validation.yml@9358083e6dd8b15a0f2a3bb23c0b1e2b3ea3b2ff
     with:
       check-id: hygiene-decisions
       mode: advisory
@@ -96,14 +96,16 @@ jobs:
       - name: Compose the repository-owned landing and aliases
         run: python3 -I tools/publication.py shell
       - name: Capture the consumer route baseline
-        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@49046d88ef6fe2e31e9a9f443a61157b598efb78
+        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@9358083e6dd8b15a0f2a3bb23c0b1e2b3ea3b2ff
         with:
           operation: capture-baseline
           evidence-directory: .cache/publication/composition
       - name: Collect and build through the shared strict pipeline
-        uses: egohygiene/relay/actions/repository-intelligence@49046d88ef6fe2e31e9a9f443a61157b598efb78
+        uses: egohygiene/relay/actions/repository-intelligence@9358083e6dd8b15a0f2a3bb23c0b1e2b3ea3b2ff
         with:
           collect-adrs: "true"
+          collect-journey: "true"
+          search-attribution: "true"
           adr-policy-owner: "true"
           adr-known-external-decisions: '["egohygiene/identity#ADR-0017"]'
           output-directory: dist/intelligence
@@ -113,7 +115,7 @@ jobs:
       - name: Seal the transport handoff
         run: python3 -I tools/publication.py seal
       - name: Verify preserved routes, aliases, source and complete bundle
-        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@49046d88ef6fe2e31e9a9f443a61157b598efb78
+        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@9358083e6dd8b15a0f2a3bb23c0b1e2b3ea3b2ff
         with:
           operation: verify-composition
           evidence-directory: .cache/publication/composition
@@ -163,7 +165,7 @@ jobs:
       - name: Recheck downloaded bytes
         run: python3 -I tools/publication.py check
       - name: Reverify the shared composition at the deployment boundary
-        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@49046d88ef6fe2e31e9a9f443a61157b598efb78
+        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@9358083e6dd8b15a0f2a3bb23c0b1e2b3ea3b2ff
         with:
           operation: verify-composition
           evidence-directory: .cache/publication/composition

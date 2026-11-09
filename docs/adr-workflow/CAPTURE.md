@@ -106,13 +106,21 @@ recovery have actually been evidenced.
 
 The authoring selection is Aether `dc8a16851f452763ef4f7fbe4bf057d4500b1921` (skill 2.1.0, spec 3.1.0, module 0.3.0). The block was adopted through the shared projection merge boundary and matches the canonical source bytes. The four-digit publisher adoption selected Relay `ac2600f4619f64c75a0e499e0540d8f48d516f9c`. Policy v1.2.0 is pinned at `a05b14f8b9e2772124f879f818e09a911e996ad8`. Earlier dated replays retain their original source observations. The original ADR-0001 metadata/architecture approval remains unresolved; its review patch is unapplied and publication admission stays strict.
 
-## Portable publisher candidate (2026-11-09)
+## Portable publisher checkpoint (2026-11-09)
 
-The current workflow, local seal configuration and publisher runbook select
-Relay `49046d88ef6fe2e31e9a9f443a61157b598efb78` together. This immutable
-review candidate adds the shared portable route shell and graph presentation;
-the native EgoLint and policy-owner source selections remain unchanged. Only
-`collect-adrs` is enabled, with explicit canonical-owner mode and the existing
-`egohygiene/identity#ADR-0017` key. No additional source, human approval or
-source-admission result is inferred from the pin change. Native replay, tests,
+The portable adoption in Hygiene #96 selected the workflow, local seal and
+runbook at Relay `49046d88ef6fe2e31e9a9f443a61157b598efb78` together. It added
+the shared portable route shell and graph presentation while retaining the
+native EgoLint and policy-owner source selections. That historical selection
+and its review evidence are not proof for a later generated artifact.
+
+## Public Git Journey and attributed Search adoption
+
+The current publisher/runbook consistently selects Relay `9358083e6dd8b15a0f2a3bb23c0b1e2b3ea3b2ff`
+([shared source #171](https://github.com/egohygiene/relay/pull/171)). It retains `collect-adrs`, explicit canonical-owner mode
+and the existing `egohygiene/identity#ADR-0017` key, and enables public Git Journey
+collection plus owner-versioned Search attribution. Both options remain behind
+the unchanged ADR admission/build gates. No raw Git subjects, provider captures,
+Roadmap adoption, comparison baseline, human approval or source-admission result
+is inferred. Native replay, tests,
 builds, hosted execution, deployment and live verification remain deferred.

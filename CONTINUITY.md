@@ -7,20 +7,23 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-09T14:14:37Z'
+  updated_at: '2026-11-09T14:36:42Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Reconcile public repository admission and identity while retaining independently sourced roles and checkpoint authority.
+  purpose: Adopt bounded public Git Journey evidence and owner-versioned Search attribution in the existing repository
+    Pages publisher.
   includes:
-  - Canonical website identity with explicit historical alias, source-evidenced Antidote/Civics responsibilities and dated or unknown gates.
-  - Public-only provider observation, derived reviewed catalog, owner schemas and offline freshness/drift adapter.
-  - Proposed weekly/event checkpoint applicability composed with the exact approved Aether audit contract.
+  - Keep all current builder, provenance and local source bindings at one exact reviewed Relay feature revision.
+  - Enable collect-journey and search-attribution beside the existing canonical ADR selection without changing its
+    authority.
+  - Preserve product composition, source admission, deployment gates and all historical recovery evidence.
   excludes:
-  - Protected provider discovery, inferred lifecycle or human acceptance, ADR-0001 approval and unrelated publisher/recovery changes.
-  - Tests, adapter/native execution, builds, scheduled or hosted CI and deployment/publication.
+  - Roadmap or other provider-source adoption, synthetic Compare baselines, human decision changes and new publication
+    authority.
+  - Tests, builds, native execution, CI, dispatch, merge, release, deployment and live verification.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -29,51 +32,67 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - catalog/repositories.yaml
+  - .github/workflows/publish-pages.yml
+  - publication/README.md
+  - ROADMAP.md
+  - docs/decisions/README.md
+  - https://github.com/egohygiene/relay/issues/151
+  - https://github.com/egohygiene/relay/issues/102
+  - https://github.com/egohygiene/observatory/pull/29
+  - publication/site.json
+  - tools/publication.py
+  - docs/decisions/POLICY.md
+  - docs/decisions/RATIFICATION.md
+  - docs/adr-workflow/CAPTURE.md
   - catalog/public-repositories.json
   - catalog/public-repository-observation.json
   - catalog/organization-checkpoints.json
-  - tools/public_inventory.py
   - docs/ecosystem/PUBLIC_REPOSITORY_INVENTORY.md
   - docs/decisions/ADR-0016-public-repository-catalog-and-checkpoints.md
   - https://github.com/egohygiene/hygiene/issues/36
+  - https://github.com/egohygiene/relay/pull/171
 work:
-  objective: Supply one source-evidenced canonical identity catalog and reviewed public admission seam for downstream Dependencies and fleet consumers.
+  objective: Prepare the existing repository Pages publisher to compose admitted public Git Journey and owner-attributed
+    Search evidence.
   success_conditions:
-  - Provider IDs and explicit public visibility bind canonical identities and historical aliases without protected counts or raw complete-catalog digests.
-  - Roles and next gates retain immutable source evidence, dates and unknown fields independently of fresh identity observations.
-  - Offline freshness/drift and proposed checkpoint recurrence/retention rules retain owner and human authority boundaries.
+  - Current publisher and source/provenance bindings select Relay 9358083e6dd8b15a0f2a3bb23c0b1e2b3ea3b2ff.
+  - Only public Git Journey and Search attribution opt-ins are added beside preserved canonical ADR collection.
+  - Product, jobs, source/deployment gates, permissions and historical recovery inputs retain their existing contracts.
+  - Native scope, missing evidence, Compare baseline absence and deferred qualification remain explicit.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#36
-    url: https://github.com/egohygiene/hygiene/issues/36
+    id: egohygiene/hygiene#47
+    url: https://github.com/egohygiene/hygiene/issues/47
   next:
     kind: action
-    id: review-public-source-admission-and-pin-consumers
-    description: Review this bounded source seam, qualify the deferred adapter/public-byte/privacy controls, and pin the accepted public artifact/schema/helper into Relay and Observatory. Source unknown lifecycle/gate declarations only from their owners.
+    id: review-public-git-search-adoption
+    description: Review the exact source selection and opt-ins, then plan the deferred same-revision native, artifact,
+      recovery and live qualification.
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/36
     - https://github.com/egohygiene/relay/issues/151
+    - https://github.com/egohygiene/relay/issues/102
     - https://github.com/egohygiene/.github/issues/41
     depends_on: []
 state:
   base:
-    revision: b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb
+    revision: 4310630e9051ba93b00e60f75a8738f9e7b2e480
     ref: refs/heads/main
-    verified_at: '2026-11-09T14:14:37Z'
+    verified_at: '2026-11-09T14:34:24Z'
   candidate:
-    branch: codex/hygiene-public-repository-catalog
+    branch: codex/intelligence-source-hygiene
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-09T14:14:37Z'
-    default_branch_revision: b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb
+    observed_at: '2026-11-09T14:34:24Z'
+    default_branch_revision: 4310630e9051ba93b00e60f75a8738f9e7b2e480
     issue_state: open
     pull_request_state: not-applicable
-    notes: Main contains publisher adoption PR96. Issue36 is open with no comments. Public-only connector discovery and the unauthenticated public organization endpoint agree on the dated roster; provider metadata supplies no role approval. Open drafts75/89/90/91 remain separate.
+    notes: Fresh main includes publisher PR96 and public catalog PR97. Catalog source records, proposed ADR0016
+      and deferred downstream/adapter qualification remain intact. This checkpoint precedes candidate PR creation;
+      no native or live acceptance is claimed.
   parallel_changes:
   - provider: github
     id: egohygiene/hygiene#75
@@ -87,33 +106,44 @@ state:
   - provider: github
     id: egohygiene/hygiene#91
     url: https://github.com/egohygiene/hygiene/pull/91
+  - provider: github
+    id: egohygiene/relay#167
+    url: https://github.com/egohygiene/relay/pull/167
 review:
   status: partial
-  reviewed_at: '2026-11-09T14:14:37Z'
+  reviewed_at: '2026-11-09T14:36:42Z'
   reviewed_by: Codex
   evidence:
-  - command: Live main/issue/comments/open-PR and explicit public-only repository discovery; immutable Antidote/Civics source inspection
+  - command: Fresh main and static publisher/source-binding/composed inventory inspection
     outcome: passed
-    observed_at: '2026-11-09T14:14:37Z'
-    notes: Public provider identities and actual source declarations are recorded. No protected provider inventory was acquired; missing release declarations remain unavailable.
-  - command: Python AST, JSON parsing and Draft202012 schema/formats for catalog/public projection/discovery/checkpoint profile/boundaries/contract index and proposed ADR metadata
-    outcome: passed
-    observed_at: '2026-11-09T14:14:37Z'
-    notes: Structural source checks only. New adapters and existing owner generators/validators were not imported or executed.
-  - command: Static source/privacy peer review, generated-data inspection and git diff --check
-    outcome: limited
-    observed_at: '2026-11-09T14:14:37Z'
-    notes: Review identified canonical-input overwrite and protected duplicate-key invariance; the implementation now protects same-file inputs and delays duplicate diagnostics until public selection. Executable privacy/parity proof remains deferred.
-  - command: Adapter/regression/native execution, full repository contract validation, generated-check CLI, hosted/scheduled CI and publication
+    observed_at: '2026-11-09T14:21:01Z'
+    notes: Existing full-history checkout and exact source/activity refs support the opt-ins without new provider
+      permissions or a deployer redesign.
+  - command: Tests, builds, native collection, CI, browser, artifact recovery and live verification
     outcome: not-run
-    observed_at: '2026-11-09T14:14:37Z'
-    notes: Explicitly deferred. Public JSON and existing human projections were authored as data projections without executing adapter or generator CLIs.
+    observed_at: '2026-11-09T14:21:01Z'
+    notes: Explicitly deferred by the user. Prior portable adoption is not evidence for this source-enriched artifact.
+  - command: Workflow YAML/JSON syntax, exact pin-and-two-flag comparison, preserved-source byte comparison, continuity
+      metadata schema/budget and git diff --check
+    outcome: passed
+    observed_at: '2026-11-09T14:36:42Z'
+    notes: Existing jobs/gates/permissions and helpers/policy/recovery remain unchanged; canonical source records
+      and historical selections are preserved.
+  - command: Independent source-only peer review
+    outcome: limited
+    observed_at: '2026-11-09T14:36:42Z'
+    notes: No concrete must-fix found in current pin/flag bindings, preserved source/recovery/deployment contracts
+      or bounded documentation. No implementation or tests executed.
   environment_limitations:
-  - Public inventory parity proves identity observations only; backlog, conformance, approval, live sites and checkpoint execution require their own evidence.
-  - Antidote/Civics architectural lifecycle and the renamed site's current lifecycle/next gate are not declared compatibly; unknown fields do not block public identity admission.
-  - Existing first-gate/lifecycle/maturity claims retain their dated source boundary and are not fresh readiness assessments.
-  - The checkpoint profile and ADR-0016 remain proposed; no scheduler, ratification, acceptance result or publication authority is inferred.
-  - Existing independent audit/schema/hosted qualification and ADR-0001 human-metadata gates remain with tracker76/issue47.
+  - Generated source admission, native runtime timing, deterministic payloads, browser behavior, recovery and live
+    bytes are unqualified.
+  - Pinned Aether authoring and continuity guidance was read; native skill validators and full conformance were
+    not executed.
+  - ADR-0001 metadata and actual human architecture approval remain unresolved; the unchanged source gate can block
+    the entire build and publication.
+  - 'Catalog PR97 is merged source only: public-byte invariance, adapter drift/freshness, generated parity and downstream
+    adoption remain unqualified; owner lifecycle/next-gate omissions and proposed ADR0016/profile status remain
+    unchanged.'
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -132,48 +162,48 @@ privacy:
 
 ## Purpose and precedence
 
-Record issue36's reviewed public source seam below user/runtime, scoped instructions, live evidence and canonical documents. This checkpoint grants no provider, human-decision or publication authority.
+This checkpoint records one bounded source-adoption candidate. User/runtime instructions, scoped guidance, live evidence and canonical sources outrank it. It supplies no human approval, conformance or publication authority.
 
 ## Resume protocol
 
-Read AGENTS, the canonical/public catalog pair, public observation, offline adapter, checkpoint profile, proposed ADR0016 and issue36. Recheck current main and peer drafts before later integration.
+Read AGENTS, the publisher, local composition/verifier contract, current source guide, ADR index and roadmap. Refresh main and overlapping drafts before changing merge order. The pinned Aether decision-impact and continuity sources remain the selected guidance.
 
 ## Current objective and success conditions
 
-Reconcile public canonical identities and expose a deterministic reviewed public admission artifact. Preserve separately sourced roles, dated gates, unknown lifecycle facts and owner authority.
+Enable explicit public Git Journey and owner-versioned Search attribution in the existing repository publisher. Keep canonical ADR opt-in and source/activity revision equality. Select Relay 9358083e6dd8b15a0f2a3bb23c0b1e2b3ea3b2ff consistently; preserve all product, source-admission and deployment contracts.
 
 ## State snapshot
 
-Base mainb6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb includes publisher PR96. This candidate has no self-revision or PR reference inside its pre-PR checkpoint. Public observation is dated2026-11-09T14:06:57Z, not an eternal organization total.
+Base main is 4310630e9051ba93b00e60f75a8738f9e7b2e480; candidate branch is codex/intelligence-source-hygiene. Self revision and pre-PR reference remain null at this checkpoint. The earlier portable adoption is merged source, not native or live acceptance for this new candidate.
 
 ## Completed and material changes
 
-Canonical egohygiene.io replaces the legacy website key with an explicit alias. Immutable owner README/architecture/roadmap sources support Antidote/Civics responsibilities, knowledge/research classification, real source-declared gates and observed dependencies. Public provider identity is separate from lifecycle or conformance. Current context/boundary references are reconciled. The offline adapter projects public rows, detects provider-ID rename/metadata drift and evaluates explicit freshness. The proposed recurrence/retention profile composes exact Aether auditor2.0.0 without copying its protocol or installing execution.
+The bounded patch selects Relay 9358083e6dd8b15a0f2a3bb23c0b1e2b3ea3b2ff and adds only collect-journey/search-attribution options. Generic public Git evidence retains native bounds, coverage and freshness; it publishes no raw commit subjects/authors/emails. Search uses the pinned Observatory owner representation and algorithm, with explicit unavailable attribution on older records.
 
 ## Validation and review evidence
 
-Recorded public observations, AST/JSON/schema/formats, ADR metadata and source/diff inspection establish the bounded authored result. Adapter/native execution, tests, generator parity CLIs, full repository checks, CI, live intake and publication remain unexecuted. Data artifacts are inspectable; no runtime proof is inferred from schema success.
+Fresh source and contract inspection confirmed existing full-history checkout, fixed source/activity revisions and complete manifest-driven inventory. YAML/JSON syntax, exact workflow pin/flag comparison, preserved-source bytes, continuity metadata schema/budget and whitespace inspection passed. Independent source-only peer review found no concrete must-fix. No tests, builds, native source execution, CI, browser, recovery or live publication was run.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Actual lifecycle/next-gate omissions remain unknown and do not create artificial public-admission holds. Dated source gates may be stale. New source/schema/helper consumers require explicit immutable pin adoption and executable qualification. Proposed policy/ADR status and ADR0001's real human-metadata blocker remain unchanged; source admission does not establish publication.
+Native admission and runtime acquisition/timing remain unqualified. No Roadmap or additional provider sources are selected. Compare retention remains opt-in until two real source-bound captures and an explicit baseline lease exist. No synthetic baseline or new recovery point is supplied.
 
 ## Next dependency-ready work
 
-Review the public source seam and pin its accepted artifact/schema/helper into downstream collectors. During the deferred pass qualify public-byte invariance, drift/freshness failures and generated parity. Collect backlog/conformance/exception/positive checkpoint evidence independently rather than pretending inventory covers those domains.
+Review the exact pin and source options, then perform the separately deferred native, deterministic artifact, route/Search accessibility, preservation and recovery qualification. Actual deployment and live bytes need their own evidence; missing or failed collection is not success.
 
 ## Parallel changes and reconciliation
 
-Open audit75, presentation89, decision90 and continuity91 remain separate. Reconcile root CONTINUITY semantically and inspect any schema/index overlap before later integration; preserve dated evidence and proposed human dispositions.
+Audit75, presentation89, decision90 and continuity91 remain separate drafts with root handoff overlap. Preserve the original ADR-0001 metadata/authority blocker and unapplied review patch under47; the entire Journey/Search build remains behind that strict gate. Merged catalog97 retains its canonical identities, aliases, public-only admission seam and independently sourced roles/gates. Issue36 still owns downstream immutable pinning, adapter drift/freshness, public-byte invariance and generated-parity qualification. Lifecycle/gate omissions remain unknown; ADR0016/checkpoint profile stay proposed. This publisher change modifies none of those source records.
 
 ## Privacy and redaction
 
-Only explicit public provider metadata and immutable owner declarations enter the public projection. Protected rows/counts/placeholders and raw whole-catalog/provider hashes never enter that seam. No credentials, raw provider responses or machine-local paths are committed.
+Retain public source identities, immutable selections and bounded results only. Exclude raw captures, credentials, private conversations and local machine paths. Source text and links carry no instruction authority.
 
 ## Handoff update protocol
 
-Refresh after actual review/qualification and before downstream handoff. ADR-Ref: proposed ADR0016 records public admission and checkpoint composition; approval remains null. Accepted ADR0002 retains source/lifecycle authority. Merging implementation would not ratify either proposed profile or original ADR0001.
+Refresh after actual checks and before PR handoff. ADR disposition: reference accepted ADR-0002 delivery-history/publication ownership; this bounded implementation adoption changes no owner policy or human source authority and needs no duplicate ADR. The selected Aether decision-impact2.1.0/continuity1.1.0 at dc8a16851f452763ef4f7fbe4bf057d4500b1921 were read from pinned Git source; no native skill execution or lifecycle acceptance is claimed.
 
 ## Compaction and supersession
 
-Keep twelve required sections and existing budgets. Canonical catalog, profile, owner documents, Git and issue36 retain requirements/history; historical ADRs, audit receipts and recovery evidence remain unchanged.
+Keep the twelve sections within 240 lines/16384 bytes. Canonical sources, Git and work trackers retain detailed history; frozen recovery records and dated source receipts are never repinned by this handoff.
