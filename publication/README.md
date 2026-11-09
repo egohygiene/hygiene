@@ -45,7 +45,8 @@ the existing strict canonical ADR collection. It retains the EgoLint and ADR
 policy selections and explicit canonical-owner mode. The source/activity refs
 remain the same exact consumer revision, and full Git history is already checked
 out. Journey admits bounded public Git evidence without raw commit subjects,
-authors, emails, consumer code execution or new provider/token permissions.
+authors, emails or consumer code execution. The separate provider-feed path adds
+only the documented Actions/issues/PR/check read scopes for capture and intake.
 Search consumes Observatory's versioned five-field representation and matching
 reference; older opaque records keep explicit attribution-unavailable states.
 Shared unsupported or uncollected modules remain explicit and do not become
