@@ -55,9 +55,11 @@ canonical-owner support at `72267fd0a371da6d94922cbc6bd3dedddb68df30`.
 adoption at `f2e624cbbd1bb1150e29743061140f601b8486f6`.
 [Relay PR #155](https://github.com/egohygiene/relay/pull/155) then merged explicit
 external ADR selection at **`6cddad3124bdda1b1e3d54a40931f23322b7be26`**.
-Use that exact merged revision for both CLI and action/workflow adoption, with
-its [preparation instructions](https://github.com/egohygiene/relay/blob/6cddad3124bdda1b1e3d54a40931f23322b7be26/docs/repository-adr-collector.md#native-commands-and-reproducible-checks)
-and locked dependencies. Keep its runtime and output outside this repository.
+That historical selection has its own
+[preparation instructions](https://github.com/egohygiene/relay/blob/6cddad3124bdda1b1e3d54a40931f23322b7be26/docs/repository-adr-collector.md#native-commands-and-reproducible-checks)
+and locked dependencies. Current CLI/action preparation must use the exact
+reviewed selection in the [publisher runbook](../../publication/README.md),
+without relabeling earlier receipts. Keep its runtime and output outside this repository.
 For an immutable source replay, bind caller-selected absolute paths:
 
 ```bash
@@ -102,4 +104,15 @@ recovery have actually been evidenced.
 
 ## Four-digit runtime adoption (2026-10-18)
 
-The current authoring selection is Aether `dc8a16851f452763ef4f7fbe4bf057d4500b1921` (skill 2.1.0, spec 3.1.0, module 0.3.0). The block was adopted through the shared projection merge boundary and matches the canonical source bytes. Hygiene owner configuration and all publisher Relay references now select the reviewed four-digit runtime at `ac2600f4619f64c75a0e499e0540d8f48d516f9c`. Policy v1.2.0 is pinned at `a05b14f8b9e2772124f879f818e09a911e996ad8`. Earlier dated replays below retain their original source observations. The original ADR-0001 metadata/architecture approval remains unresolved; its review patch is unapplied and publication admission stays strict.
+The authoring selection is Aether `dc8a16851f452763ef4f7fbe4bf057d4500b1921` (skill 2.1.0, spec 3.1.0, module 0.3.0). The block was adopted through the shared projection merge boundary and matches the canonical source bytes. The four-digit publisher adoption selected Relay `ac2600f4619f64c75a0e499e0540d8f48d516f9c`. Policy v1.2.0 is pinned at `a05b14f8b9e2772124f879f818e09a911e996ad8`. Earlier dated replays retain their original source observations. The original ADR-0001 metadata/architecture approval remains unresolved; its review patch is unapplied and publication admission stays strict.
+
+## Portable publisher candidate (2026-11-09)
+
+The current workflow, local seal configuration and publisher runbook select
+Relay `49046d88ef6fe2e31e9a9f443a61157b598efb78` together. This immutable
+review candidate adds the shared portable route shell and graph presentation;
+the native EgoLint and policy-owner source selections remain unchanged. Only
+`collect-adrs` is enabled, with explicit canonical-owner mode and the existing
+`egohygiene/identity#ADR-0017` key. No additional source, human approval or
+source-admission result is inferred from the pin change. Native replay, tests,
+builds, hosted execution, deployment and live verification remain deferred.
