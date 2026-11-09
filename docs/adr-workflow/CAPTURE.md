@@ -116,11 +116,21 @@ and its review evidence are not proof for a later generated artifact.
 
 ## Public Git Journey and attributed Search adoption
 
-The current publisher/runbook consistently selects Relay `9358083e6dd8b15a0f2a3bb23c0b1e2b3ea3b2ff`
-([shared source #171](https://github.com/egohygiene/relay/pull/171)). It retains `collect-adrs`, explicit canonical-owner mode
+The Journey/Search adoption in Hygiene #98 selected Relay `9358083e6dd8b15a0f2a3bb23c0b1e2b3ea3b2ff`
+([shared source #171](https://github.com/egohygiene/relay/pull/171)). It retained `collect-adrs`, explicit canonical-owner mode
 and the existing `egohygiene/identity#ADR-0017` key, and enables public Git Journey
 collection plus owner-versioned Search attribution. Both options remain behind
 the unchanged ADR admission/build gates. No raw Git subjects, provider captures,
 Roadmap adoption, comparison baseline, human approval or source-admission result
 is inferred. Native replay, tests,
 builds, hosted execution, deployment and live verification remain deferred.
+
+## Same-run public provider feed handoff
+
+The [current source-feed packet](../../publication/SOURCE_FEEDS.md) describes
+the later bounded provider producer, ordinary capture artifact and exact native
+intake. All capture steps live inside the existing admitted build job and run
+only for a canonical-repository push/manual context. ADR-0001's actual metadata
+and human architecture approval remain unchanged and unresolved; a blocked
+source skips capture/build rather than being waived. No historical selection,
+ratification claim, source finding or recovery record is repinned here.
