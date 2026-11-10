@@ -164,6 +164,30 @@
       "source": "schemas/organization-checkpoints.v1.schema.json",
       "status": "proposed",
       "visibility": "public"
+    },
+    {
+      "id": "egohygiene.architecture-coherence-policy/v1",
+      "title": "Architecture-coherence applicability and human governance policy",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/architecture-coherence-policy.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.architecture-coherence-governance/v1",
+      "title": "Architecture-coherence governance source claims",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/architecture-coherence-governance.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.architecture-coherence-material-change/v1",
+      "title": "Scoped architecture-coherence material-change evidence",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/architecture-coherence-material-change.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
     }
   ]
 }

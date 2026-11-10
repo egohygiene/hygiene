@@ -7,24 +7,24 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-09T18:05:20Z'
+  updated_at: '2026-11-10T01:22:03Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Prepare admitted public source feeds in Hygiene's existing Pages build while preserving the canonical
-    ADR approval hold.
+  purpose: Propose explicit architecture-coherence governance without inferring human ratification or imposing
+    a new organization gate.
   includes:
-  - All current Relay workflow selectors and the site declaration use reviewed 981ddf4367c67fcd625e54321d95bab027f6c0f2.
-    Only the already admitted build job captures current public Work/Health/Releases, uploads the same-run
-    artifact and passes exact ID/digest and actual capture as-of to the existing native builder. Declared dependencies
-    require that actual capture artifact.
-  - New Actions/issues/PR/check permissions are read-only. Producer receipts remain ordinary evidence outside
-    the site. Existing events, job dependencies, admission/deployment guards, canonical ADR policy-owner/external
-    keys, full-history source input and frozen recovery retain their contracts.
-  - ADR-0001, its review patch, approval-null state, policy/catalog/helper bytes and the human source hold
-    remain unchanged. Prepared provider wiring does not make the repository eligible to publish.
+  - The proposed architecture-coherence policy, governance/material-change schemas and pure evaluator separate
+    applicability, review progress, claimed human disposition, separately verified evidence and effective freshness/state.
+    Explicit source revisions and assessment digests bind each review and human statement.
+  - Raw JSON, AI/provider output, merge activity and actor labels cannot create typed trusted-human context.
+    Missing or unverified evidence remains unknown; scoped material changes and explicit deadlines can stale
+    a prior decision, while routine commit differences do not establish materiality.
+  - Proposed ADR-0017 and the contract index record the bounded owner policy. Approval remains null and default
+    adoption observe. Existing canonical policy/catalog roles, ADR-0001 source hold, publication selectors
+    and recovery remain intact.
   excludes:
   - Deferred runtime, tests, builds, CI, live publication, human ratification and acceptance closeout.
   precedence:
@@ -35,77 +35,78 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - ROADMAP.md
   - docs/decisions/POLICY.md
   - docs/decisions/RATIFICATION.md
   - docs/decisions/README.md
-  - docs/adr-workflow/CAPTURE.md
-  - .github/workflows/publish-pages.yml
-  - publication/README.md
-  - publication/SOURCE_FEEDS.md
-  - publication/site.json
-  - https://github.com/egohygiene/hygiene/issues/47
+  - catalog/architecture-coherence-policy.json
+  - tools/architecture_coherence.py
+  - schemas/architecture-coherence-governance.v1.schema.json
+  - schemas/architecture-coherence-material-change.v1.schema.json
+  - https://github.com/egohygiene/hygiene/issues/59
 work:
-  objective: Prepare admitted public source feeds in Hygiene's existing Pages build while preserving the canonical
-    ADR approval hold.
+  objective: Propose explicit architecture-coherence governance without inferring human ratification or imposing
+    a new organization gate.
   success_conditions:
-  - Fresh captures can enter the existing admitted native path with exact artifact and source binding.
-  - Missing human ADR approval cannot be bypassed by collection, merge or a passing build.
-  - Canonical owner catalog/policy and historical recovery remain intact.
+  - Aether and Observatory can pin one explicit proposed policy and preserve human claims versus verified authority.
+  - Missing inventories cannot prove current freshness or architectural acceptance.
+  - No new review, human decision, enforcement gate or lifecycle promotion is created by this implementation.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#47
-    url: https://github.com/egohygiene/hygiene/issues/47
+    id: egohygiene/hygiene#59
+    url: https://github.com/egohygiene/hygiene/issues/59
   next:
     kind: action
-    id: resolve-authentic-hygiene-adr-source-hold
-    description: Resolve issue 47's authentic ADR-0001 source metadata and explicit human approval through
-      its existing review path before native publication; retain provider/native/privacy/publication qualification
-      for the deferred verification pass.
-    readiness: blocked
+    id: consume-proposed-coherence-governance
+    description: Integrate the separately prepared Aether 87 review contract and Observatory 21 query using
+      exact owner pins, then render the source-backed Sanity page. Actual human ratification and deferred runtime/fixture/canary
+      qualification remain separate.
+    readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/47
-    depends_on:
-    - egohygiene/hygiene#47
+    - https://github.com/egohygiene/hygiene/issues/59
+    depends_on: []
 state:
   base:
-    revision: 1bf05c0763b1ffe5434c30eb80f2a51a7b106cf5
+    revision: e764301251d962f2b886e7805891c9d8f2bfde4c
     ref: refs/heads/main
-    verified_at: '2026-11-09T18:05:20Z'
+    verified_at: '2026-11-10T01:22:03Z'
   candidate:
-    branch: codex/intelligence-hygiene-source-feeds
+    branch: codex/hygiene-coherence-policy-20261110
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-09T18:05:20Z'
-    default_branch_revision: 1bf05c0763b1ffe5434c30eb80f2a51a7b106cf5
+    observed_at: '2026-11-10T01:22:03Z'
+    default_branch_revision: e764301251d962f2b886e7805891c9d8f2bfde4c
     issue_state: open
     pull_request_state: not-applicable
-    notes: Hygiene main 1bf05c0 and open issue 47 were verified. Relay common integration is merged through
-      176. The existing source-admission hold still applies; no native/provider run or publication was performed.
+    notes: Hygiene main e764301251d962f2b886e7805891c9d8f2bfde4c and open issue 59 were verified. Functional
+      source d11580e9a9c5d78b9a5d21474deaa612712a0fb9 is prepared for reviewed immutable consumption; Aether
+      and Observatory source slices remain in progress.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-09T18:05:20Z'
+  reviewed_at: '2026-11-10T01:22:03Z'
   reviewed_by: Codex
   evidence:
-  - command: Independent static source/gate review, unique-key YAML/JSON, embedded Bash/Python syntax, exact
-      canonical source and recovery byte comparison, continuity schema/size/links and whitespace
+  - command: Independent source review of trust/visibility/time/material-change semantics, Python AST, closed
+      JSON schema definitions/local references, proposed policy/ADR/index metadata schema checks, exact untouched
+      source boundary inspection, continuity schema/size/links and whitespace
     outcome: limited
-    observed_at: '2026-11-09T18:05:20Z'
+    observed_at: '2026-11-10T01:22:03Z'
     notes: Static source and metadata inspection only; no application execution.
   - command: Native/runtime execution, tests, builds, CI investigation, browser/provider/consumer/publication
       qualification
     outcome: not-run
-    observed_at: '2026-11-09T18:05:20Z'
+    observed_at: '2026-11-10T01:22:03Z'
     notes: Deferred at maintainer request; source merges do not establish acceptance.
   environment_limitations:
-  - ADR-0001 approval and source metadata remain required human-owned inputs.
-  - Tests, builds, native/provider/artifact execution, CI, consumer canaries, publication and recovery qualification
-    remain deferred.
-  - No lifecycle promotion, catalog role change, Compare baseline or deployment success is inferred.
+  - Tests, helper/native/application execution, fixture scenarios, builds, CI, provider capture and publication
+    qualification were not run.
+  - This policy and ADR-0017 remain proposed with null approval and observe adoption. Typed context must be
+    supplied only after an independent trusted human-source verification; a digest alone cannot prove authorship.
+  - Hygiene 47's authentic ADR-0001 metadata/human approval hold and existing historical recovery remain unchanged.
+    No organization sanity sweep or ratification is claimed.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -132,35 +133,35 @@ Read scoped instructions, canonical sources above and this checkpoint. Verify mu
 
 ## Current objective and success conditions
 
-Prepare admitted public source feeds in Hygiene's existing Pages build while preserving the canonical ADR approval hold. Fresh captures can enter the existing admitted native path with exact artifact and source binding. Missing human ADR approval cannot be bypassed by collection, merge or a passing build. Canonical owner catalog/policy and historical recovery remain intact.
+Propose explicit architecture-coherence governance without inferring human ratification or imposing a new organization gate. Aether and Observatory can pin one explicit proposed policy and preserve human claims versus verified authority. Missing inventories cannot prove current freshness or architectural acceptance. No new review, human decision, enforcement gate or lifecycle promotion is created by this implementation.
 
 ## State snapshot
 
-Candidate `codex/intelligence-hygiene-source-feeds` is based on observed main `1bf05c0763b1ffe5434c30eb80f2a51a7b106cf5`. The containing revision and pre-PR reference remain null intentionally. Hygiene main 1bf05c0 and open issue 47 were verified. Relay common integration is merged through 176. The existing source-admission hold still applies; no native/provider run or publication was performed.
+Candidate `codex/hygiene-coherence-policy-20261110` is based on observed main `e764301251d962f2b886e7805891c9d8f2bfde4c`. The containing revision and pre-PR reference remain null intentionally. Hygiene main e764301251d962f2b886e7805891c9d8f2bfde4c and open issue 59 were verified. Functional source d11580e9a9c5d78b9a5d21474deaa612712a0fb9 is prepared for reviewed immutable consumption; Aether and Observatory source slices remain in progress.
 
 ## Completed and material changes
 
-All current Relay workflow selectors and the site declaration use reviewed 981ddf4367c67fcd625e54321d95bab027f6c0f2. Only the already admitted build job captures current public Work/Health/Releases, uploads the same-run artifact and passes exact ID/digest and actual capture as-of to the existing native builder. Declared dependencies require that actual capture artifact.
+The proposed architecture-coherence policy, governance/material-change schemas and pure evaluator separate applicability, review progress, claimed human disposition, separately verified evidence and effective freshness/state. Explicit source revisions and assessment digests bind each review and human statement.
 
-New Actions/issues/PR/check permissions are read-only. Producer receipts remain ordinary evidence outside the site. Existing events, job dependencies, admission/deployment guards, canonical ADR policy-owner/external keys, full-history source input and frozen recovery retain their contracts.
+Raw JSON, AI/provider output, merge activity and actor labels cannot create typed trusted-human context. Missing or unverified evidence remains unknown; scoped material changes and explicit deadlines can stale a prior decision, while routine commit differences do not establish materiality.
 
-ADR-0001, its review patch, approval-null state, policy/catalog/helper bytes and the human source hold remain unchanged. Prepared provider wiring does not make the repository eligible to publish.
+Proposed ADR-0017 and the contract index record the bounded owner policy. Approval remains null and default adoption observe. Existing canonical policy/catalog roles, ADR-0001 source hold, publication selectors and recovery remain intact.
 
 ## Validation and review evidence
 
-Independent static source/gate review, unique-key YAML/JSON, embedded Bash/Python syntax, exact canonical source and recovery byte comparison, continuity schema/size/links and whitespace. Static inspection only. Native/runtime execution, tests, builds, CI investigation, browsers, provider reads and publication qualification were not run.
+Independent source review of trust/visibility/time/material-change semantics, Python AST, closed JSON schema definitions/local references, proposed policy/ADR/index metadata schema checks, exact untouched source boundary inspection, continuity schema/size/links and whitespace. Static inspection only. Native/runtime execution, tests, builds, CI investigation, browsers, provider reads and publication qualification were not run.
 
 ## Blockers, risks, unknowns, and deferred work
 
-ADR-0001 approval and source metadata remain required human-owned inputs. Tests, builds, native/provider/artifact execution, CI, consumer canaries, publication and recovery qualification remain deferred. No lifecycle promotion, catalog role change, Compare baseline or deployment success is inferred.
+Tests, helper/native/application execution, fixture scenarios, builds, CI, provider capture and publication qualification were not run. This policy and ADR-0017 remain proposed with null approval and observe adoption. Typed context must be supplied only after an independent trusted human-source verification; a digest alone cannot prove authorship. Hygiene 47's authentic ADR-0001 metadata/human approval hold and existing historical recovery remain unchanged. No organization sanity sweep or ratification is claimed.
 
 ## Next dependency-ready work
 
-Resolve issue 47's authentic ADR-0001 source metadata and explicit human approval through its existing review path before native publication; retain provider/native/privacy/publication qualification for the deferred verification pass.
+Integrate the separately prepared Aether 87 review contract and Observatory 21 query using exact owner pins, then render the source-backed Sanity page. Actual human ratification and deferred runtime/fixture/canary qualification remain separate.
 
 ## Parallel changes and reconciliation
 
-Applied the pinned Aether dc8a16851f452763ef4f7fbe4bf057d4500b1921 decision-impact skill at handoff. ADR not required: this consumes the already merged source transport under existing owner/publisher decisions and preserves all human dispositions. The later Sanity/Audits organization sweep remains separate.
+Applied the repository-pinned Aether decision-impact/continuity guidance. This consequential policy is recorded as proposed ADR-0017; no accepted authority or source truth is rewritten. Aether owns the full review methodology, Observatory the read model, Relay presentation, and consumers their publication.
 
 ## Privacy and redaction
 
