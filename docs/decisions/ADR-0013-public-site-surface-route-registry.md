@@ -312,3 +312,29 @@ Holon can scaffold new declarations; and individual repositories can declare
 their surfaces. Hygiene #62 remains the authority for System Status semantics.
 Those changes are separate review surfaces and are not implemented or claimed
 here.
+
+## Proposed compatibility correction — 2026-11-10
+
+The original project-Pages design separates an origin, deployment base and
+logical route. Its directory-segment rule nevertheless rejected `/.github/`,
+the literal project-Pages mount for a repository already represented by the
+contract's `egohygiene/.github` identity. The proposed correction admits exactly
+that complete base path in the declaration schema and reference validator,
+alongside every previously valid ordinary mount.
+
+The allowance is not a general hidden-path rule: nested `.github` mounts,
+`.git`, `.`, `..`, encodings, backslashes and empty segments retain their
+existing denials. Logical route validation is unchanged. Contract v1 and
+proposed `1.0.0-alpha.1` remain selected because no required field, registered
+surface, route binding, authority or evidence meaning changes. Use of the new
+prefix requires an explicit immutable schema/helper upgrade and digest;
+older pinned consumers still reject it.
+
+Decision-impact disposition: reference this governing design and append this
+dated proposed correction, preserving its original date, rationale and null
+approval. No new ADR or supersession is needed. Static source, Python AST and
+schema metadata review are the available evidence; tests, helper/application
+execution, native tools, builds and CI qualification remain deferred. This
+does not establish a deployment or approve moving organization hosting from
+its current declared owner. Catalog/role reconciliation and publication stay
+separate review gates.
