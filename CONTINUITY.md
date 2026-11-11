@@ -7,24 +7,21 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-10T01:22:03Z'
+  updated_at: '2026-11-10T23:49:07Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Propose explicit architecture-coherence governance without inferring human ratification or imposing
-    a new organization gate.
+  purpose: Propose exact project-Pages base-prefix compatibility for the organization Intelligence home without
+    changing logical routes or authority.
   includes:
-  - The proposed architecture-coherence policy, governance/material-change schemas and pure evaluator separate
-    applicability, review progress, claimed human disposition, separately verified evidence and effective freshness/state.
-    Explicit source revisions and assessment digests bind each review and human statement.
-  - Raw JSON, AI/provider output, merge activity and actor labels cannot create typed trusted-human context.
-    Missing or unverified evidence remains unknown; scoped material changes and explicit deadlines can stale
-    a prior decision, while routine commit differences do not establish materiality.
-  - Proposed ADR-0017 and the contract index record the bounded owner policy. Approval remains null and default
-    adoption observe. Existing canonical policy/catalog roles, ADR-0001 source hold, publication selectors
-    and recovery remain intact.
+  - The site declaration schema accepts its original base-path pattern or the exact whole prefix /.github/.
+    The helper admits that same exception after the existing dangerous-token denials; all logical route rules
+    remain unchanged.
+  - ADR-0013 receives a dated proposed outcome note and the operator guide explains explicit immutable schema/helper
+    adoption. Contract v1/proposed alpha1, catalog roles, composition ownership, human dispositions and frozen
+    consumer pins remain unchanged.
   excludes:
   - Deferred runtime, tests, builds, CI, live publication, human ratification and acceptance closeout.
   precedence:
@@ -35,78 +32,71 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - docs/decisions/POLICY.md
-  - docs/decisions/RATIFICATION.md
-  - docs/decisions/README.md
-  - catalog/architecture-coherence-policy.json
-  - tools/architecture_coherence.py
-  - schemas/architecture-coherence-governance.v1.schema.json
-  - schemas/architecture-coherence-material-change.v1.schema.json
-  - https://github.com/egohygiene/hygiene/issues/59
+  - docs/decisions/ADR-0013-public-site-surface-route-registry.md
+  - docs/ecosystem/PUBLIC_SITE_SURFACES.md
+  - schemas/public-site-surface-declaration.v1.schema.json
+  - tools/site_surfaces.py
+  - https://github.com/egohygiene/.github/issues/27
 work:
-  objective: Propose explicit architecture-coherence governance without inferring human ratification or imposing
-    a new organization gate.
+  objective: Propose exact project-Pages base-prefix compatibility for the organization Intelligence home without
+    changing logical routes or authority.
   success_conditions:
-  - Aether and Observatory can pin one explicit proposed policy and preserve human claims versus verified authority.
-  - Missing inventories cannot prove current freshness or architectural acceptance.
-  - No new review, human decision, enforcement gate or lifecycle promotion is created by this implementation.
+  - Every previously valid base remains valid by source construction; the only new spelling is exact /.github/.
+  - Dot segments, encoded/ambiguous prefixes and other hidden segments gain no authority.
+  - Existing pins continue to reject the new prefix; no hosting/declaration/lifecycle acceptance is inferred.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#59
-    url: https://github.com/egohygiene/hygiene/issues/59
+    id: egohygiene/.github#27
+    url: https://github.com/egohygiene/.github/issues/27
   next:
     kind: action
-    id: consume-proposed-coherence-governance
-    description: Integrate the separately prepared Aether 87 review contract and Observatory 21 query using
-      exact owner pins, then render the source-backed Sanity page. Actual human ratification and deferred runtime/fixture/canary
-      qualification remain separate.
+    id: review-project-prefix-compatibility
+    description: Review the bounded compatibility proposal with the organization home/export/intake slices.
+      After explicit source adoption, reconcile canonical host declarations before any publisher activation.
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/59
+    - https://github.com/egohygiene/.github/issues/27
     depends_on: []
 state:
   base:
-    revision: e764301251d962f2b886e7805891c9d8f2bfde4c
+    revision: 95f6ddb948e6b874f02510d586b89e99cc20e38e
     ref: refs/heads/main
-    verified_at: '2026-11-10T01:22:03Z'
+    verified_at: '2026-11-10T23:49:07Z'
   candidate:
-    branch: codex/hygiene-coherence-policy-20261110
+    branch: codex/surface-github-base-prefix
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-10T01:22:03Z'
-    default_branch_revision: e764301251d962f2b886e7805891c9d8f2bfde4c
+    observed_at: '2026-11-10T23:49:07Z'
+    default_branch_revision: 95f6ddb948e6b874f02510d586b89e99cc20e38e
     issue_state: open
     pull_request_state: not-applicable
-    notes: Hygiene main e764301251d962f2b886e7805891c9d8f2bfde4c and open issue 59 were verified. Functional
-      source d11580e9a9c5d78b9a5d21474deaa612712a0fb9 is prepared for reviewed immutable consumption; Aether
-      and Observatory source slices remain in progress.
+    notes: Hygiene main95f6ddb948e6b874f02510d586b89e99cc20e38e was refreshed. Functional source96d3358c9b745af820702e0013af7380d151a6da
+      is an additive proposed compatibility correction under existing ADR0013; user direction selects a future
+      .github organization entry point, not human ratification or live publication.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-10T01:22:03Z'
+  reviewed_at: '2026-11-10T23:49:07Z'
   reviewed_by: Codex
   evidence:
-  - command: Independent source review of trust/visibility/time/material-change semantics, Python AST, closed
-      JSON schema definitions/local references, proposed policy/ADR/index metadata schema checks, exact untouched
-      source boundary inspection, continuity schema/size/links and whitespace
+  - command: Independent static source review, Python AST comparison proving all other helper functions unchanged,
+      schema definitions and original-pattern preservation, exact retained ADR body prefix, continuity schema/size/links
+      and whitespace
     outcome: limited
-    observed_at: '2026-11-10T01:22:03Z'
+    observed_at: '2026-11-10T23:49:07Z'
     notes: Static source and metadata inspection only; no application execution.
   - command: Native/runtime execution, tests, builds, CI investigation, browser/provider/consumer/publication
       qualification
     outcome: not-run
-    observed_at: '2026-11-10T01:22:03Z'
+    observed_at: '2026-11-10T23:49:07Z'
     notes: Deferred at maintainer request; source merges do not establish acceptance.
   environment_limitations:
-  - Tests, helper/native/application execution, fixture scenarios, builds, CI, provider capture and publication
-    qualification were not run.
-  - This policy and ADR-0017 remain proposed with null approval and observe adoption. Typed context must be
-    supplied only after an independent trusted human-source verification; a digest alone cannot prove authorship.
-  - Hygiene 47's authentic ADR-0001 metadata/human approval hold and existing historical recovery remain unchanged.
-    No organization sanity sweep or ratification is claimed.
+  - Tests, helper/native execution, builds, CI and publication qualification remain deferred at the user request.
+  - No canonical hosting role, registry lifecycle, accepted ADR status, source hold, DNS/CNAME or publication
+    authority changes.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -133,35 +123,33 @@ Read scoped instructions, canonical sources above and this checkpoint. Verify mu
 
 ## Current objective and success conditions
 
-Propose explicit architecture-coherence governance without inferring human ratification or imposing a new organization gate. Aether and Observatory can pin one explicit proposed policy and preserve human claims versus verified authority. Missing inventories cannot prove current freshness or architectural acceptance. No new review, human decision, enforcement gate or lifecycle promotion is created by this implementation.
+Propose exact project-Pages base-prefix compatibility for the organization Intelligence home without changing logical routes or authority. Every previously valid base remains valid by source construction; the only new spelling is exact /.github/. Dot segments, encoded/ambiguous prefixes and other hidden segments gain no authority. Existing pins continue to reject the new prefix; no hosting/declaration/lifecycle acceptance is inferred.
 
 ## State snapshot
 
-Candidate `codex/hygiene-coherence-policy-20261110` is based on observed main `e764301251d962f2b886e7805891c9d8f2bfde4c`. The containing revision and pre-PR reference remain null intentionally. Hygiene main e764301251d962f2b886e7805891c9d8f2bfde4c and open issue 59 were verified. Functional source d11580e9a9c5d78b9a5d21474deaa612712a0fb9 is prepared for reviewed immutable consumption; Aether and Observatory source slices remain in progress.
+Candidate `codex/surface-github-base-prefix` is based on observed main `95f6ddb948e6b874f02510d586b89e99cc20e38e`. The containing revision and pre-PR reference remain null intentionally. Hygiene main95f6ddb948e6b874f02510d586b89e99cc20e38e was refreshed. Functional source96d3358c9b745af820702e0013af7380d151a6da is an additive proposed compatibility correction under existing ADR0013; user direction selects a future .github organization entry point, not human ratification or live publication.
 
 ## Completed and material changes
 
-The proposed architecture-coherence policy, governance/material-change schemas and pure evaluator separate applicability, review progress, claimed human disposition, separately verified evidence and effective freshness/state. Explicit source revisions and assessment digests bind each review and human statement.
+The site declaration schema accepts its original base-path pattern or the exact whole prefix /.github/. The helper admits that same exception after the existing dangerous-token denials; all logical route rules remain unchanged.
 
-Raw JSON, AI/provider output, merge activity and actor labels cannot create typed trusted-human context. Missing or unverified evidence remains unknown; scoped material changes and explicit deadlines can stale a prior decision, while routine commit differences do not establish materiality.
-
-Proposed ADR-0017 and the contract index record the bounded owner policy. Approval remains null and default adoption observe. Existing canonical policy/catalog roles, ADR-0001 source hold, publication selectors and recovery remain intact.
+ADR-0013 receives a dated proposed outcome note and the operator guide explains explicit immutable schema/helper adoption. Contract v1/proposed alpha1, catalog roles, composition ownership, human dispositions and frozen consumer pins remain unchanged.
 
 ## Validation and review evidence
 
-Independent source review of trust/visibility/time/material-change semantics, Python AST, closed JSON schema definitions/local references, proposed policy/ADR/index metadata schema checks, exact untouched source boundary inspection, continuity schema/size/links and whitespace. Static inspection only. Native/runtime execution, tests, builds, CI investigation, browsers, provider reads and publication qualification were not run.
+Independent static source review, Python AST comparison proving all other helper functions unchanged, schema definitions and original-pattern preservation, exact retained ADR body prefix, continuity schema/size/links and whitespace. Static source inspection only. Native/application execution, tests, builds, CI investigation, browser/model/source-capture provider execution and publication qualification were not run. Read-only source and Git metadata observations are separate.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Tests, helper/native/application execution, fixture scenarios, builds, CI, provider capture and publication qualification were not run. This policy and ADR-0017 remain proposed with null approval and observe adoption. Typed context must be supplied only after an independent trusted human-source verification; a digest alone cannot prove authorship. Hygiene 47's authentic ADR-0001 metadata/human approval hold and existing historical recovery remain unchanged. No organization sanity sweep or ratification is claimed.
+Tests, helper/native execution, builds, CI and publication qualification remain deferred at the user request. No canonical hosting role, registry lifecycle, accepted ADR status, source hold, DNS/CNAME or publication authority changes.
 
 ## Next dependency-ready work
 
-Integrate the separately prepared Aether 87 review contract and Observatory 21 query using exact owner pins, then render the source-backed Sanity page. Actual human ratification and deferred runtime/fixture/canary qualification remain separate.
+Review the bounded compatibility proposal with the organization home/export/intake slices. After explicit source adoption, reconcile canonical host declarations before any publisher activation.
 
 ## Parallel changes and reconciliation
 
-Applied the repository-pinned Aether decision-impact/continuity guidance. This consequential policy is recorded as proposed ADR-0017; no accepted authority or source truth is rewritten. Aether owns the full review methodology, Observatory the read model, Relay presentation, and consumers their publication.
+Other Intelligence slices remain separately reviewed. Reconcile the current main and this handoff before integration; preserve all immutable historical recovery bytes and consumer-owned publication gates.
 
 ## Privacy and redaction
 

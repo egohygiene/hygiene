@@ -380,7 +380,9 @@ def _validate_base_path(value: Any, path: str) -> list[str]:
         return [f"{path} must be an absolute directory route"]
     if any(token in value for token in ("?", "#", "\\", "//", "%")):
         return [f"{path} must not contain query, fragment, encoding, or empty segments"]
-    if value == "/":
+    # The literal .github project-Pages mount is the only admitted hidden
+    # deployment prefix. It does not broaden surface routes or nested paths.
+    if value in {"/", "/.github/"}:
         return []
     if not value.endswith("/"):
         return [f"{path} must be a directory route"]
