@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/change-history-analysis.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contract_version",
+    "policy",
+    "publication",
+    "syntax",
+    "type",
+    "scope_state",
+    "breaking",
+    "release_hint",
+    "trailers",
+    "diagnostics",
+    "qualification"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egohygiene.change-history-analysis/v1"
+    },
+    "contract_version": {
+      "const": "1.0.0-alpha.1"
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "version",
+        "status",
+        "sha256"
+      ],
+      "properties": {
+        "schema": {
+          "const": "egohygiene.change-history-policy/v1"
+        },
+        "version": {
+          "const": "1.0.0-alpha.1"
+        },
+        "status": {
+          "const": "proposed"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "publication": {
+      "const": "local-review-only"
+    },
+    "syntax": {
+      "enum": [
+        "not_admitted",
+        "context_only",
+        "valid",
+        "invalid"
+      ]
+    },
+    "type": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "enum": [
+            "build",
+            "chore",
+            "ci",
+            "docs",
+            "feat",
+            "fix",
+            "perf",
+            "refactor",
+            "revert",
+            "security",
+            "style",
+            "test"
+          ]
+        }
+      ]
+    },
+    "scope_state": {
+      "enum": [
+        "not_inspected",
+        "invalid",
+        "present"
+      ]
+    },
+    "breaking": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "release_hint": {
+      "enum": [
+        "none",
+        "patch",
+        "minor",
+        "major",
+        "review_required"
+      ]
+    },
+    "trailers": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "ADR-Ref",
+          "BREAKING CHANGE",
+          "BREAKING-CHANGE",
+          "Closes",
+          "Co-authored-by",
+          "DCO-1.1",
+          "Fixes",
+          "Refs",
+          "Release-As",
+          "Reverts",
+          "Reviewed-by",
+          "Roadmap-Step",
+          "Signed-off-by"
+        ]
+      }
+    },
+    "diagnostics": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "SOURCE_NOT_ADMITTED",
+          "MERGE_CONTEXT_ONLY",
+          "MERGE_CONTEXT_REQUIRED",
+          "PR_TITLE_MULTILINE",
+          "BODY_SEPARATOR",
+          "SUBJECT_LENGTH",
+          "SUBJECT_UNICODE",
+          "SUBJECT_CONTROL",
+          "SUBJECT_SHAPE",
+          "SCOPE_SHAPE",
+          "TYPE_UNREGISTERED",
+          "EMOJI_MISMATCH",
+          "DESCRIPTION_INITIAL",
+          "DESCRIPTION_SHAPE",
+          "PLACEHOLDER",
+          "TRAILER_CONTINUATION",
+          "TRAILER_UNREGISTERED",
+          "BREAKING_MARKER_LOCATION",
+          "REVERT_TARGET_REQUIRED",
+          "RELEASE_CONTEXT"
+        ]
+      }
+    },
+    "qualification": {
+      "const": {
+        "enforcement": "not-activated",
+        "human_approval": "not-inferred",
+        "identity_signature_dco": "not-verified",
+        "release_version": "repository-aether-authority"
+      }
+    }
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "schema": "egohygiene.change-history-examples/v1",
+  "status": "synthetic-not-executed",
+  "cases": [
+    {
+      "id": "feature",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "public",
+        "context": "commit",
+        "message": "feat(api): ✨ add bounded selectors",
+        "parent_count": 1
+      },
+      "expected": {
+        "syntax": "valid",
+        "release_hint": "minor"
+      }
+    },
+    {
+      "id": "breaking-header",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "public",
+        "context": "pr_title",
+        "message": "feat(api)!: ✨ replace the selector format",
+        "parent_count": 1
+      },
+      "expected": {
+        "syntax": "valid",
+        "release_hint": "major"
+      }
+    },
+    {
+      "id": "breaking-footer",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "public",
+        "context": "commit",
+        "message": "refactor(api): ♻️ replace the selector format\n\nBREAKING CHANGE: callers must use the new format",
+        "parent_count": 1
+      },
+      "expected": {
+        "syntax": "valid",
+        "release_hint": "major"
+      }
+    },
+    {
+      "id": "revert",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "public",
+        "context": "commit",
+        "message": "revert(api): ⏪ restore the prior selector\n\nReverts: 0123456789abcdef0123456789abcdef01234567",
+        "parent_count": 1
+      },
+      "expected": {
+        "syntax": "valid",
+        "release_hint": "review_required"
+      }
+    },
+    {
+      "id": "release",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "public",
+        "context": "release",
+        "message": "chore(release): 🔧 prepare v1.2.3",
+        "parent_count": 1
+      },
+      "expected": {
+        "syntax": "valid",
+        "release_hint": "none"
+      }
+    },
+    {
+      "id": "bot-dependency",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "public",
+        "context": "dependency",
+        "message": "build(deps): 📦 update the pinned dependency",
+        "parent_count": 1
+      },
+      "expected": {
+        "syntax": "valid",
+        "release_hint": "none"
+      }
+    },
+    {
+      "id": "generated",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "public",
+        "context": "generated",
+        "message": "docs(reference): 📝 refresh generated reference",
+        "parent_count": 1
+      },
+      "expected": {
+        "syntax": "valid",
+        "release_hint": "none"
+      }
+    },
+    {
+      "id": "legacy-merge",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "public",
+        "context": "merge",
+        "message": "Merge pull request #7 from example/topic",
+        "parent_count": 2
+      },
+      "expected": {
+        "syntax": "context_only",
+        "release_hint": "review_required"
+      }
+    },
+    {
+      "id": "wrong-emoji",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "public",
+        "context": "commit",
+        "message": "fix(api): ✨ repair the selector",
+        "parent_count": 1
+      },
+      "expected": {
+        "syntax": "invalid",
+        "diagnostic": "EMOJI_MISMATCH"
+      }
+    },
+    {
+      "id": "missing-scope",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "public",
+        "context": "commit",
+        "message": "fix: 🐛 repair the selector",
+        "parent_count": 1
+      },
+      "expected": {
+        "syntax": "invalid",
+        "diagnostic": "SUBJECT_SHAPE"
+      }
+    },
+    {
+      "id": "placeholder",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "public",
+        "context": "commit",
+        "message": "chore(repo): 🔧 wip",
+        "parent_count": 1
+      },
+      "expected": {
+        "syntax": "invalid",
+        "diagnostic": "PLACEHOLDER"
+      }
+    },
+    {
+      "id": "private",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "private",
+        "context": "commit",
+        "message": "not inspected",
+        "parent_count": 1
+      },
+      "expected": {
+        "syntax": "not_admitted",
+        "release_hint": "none"
+      }
+    },
+    {
+      "id": "pr-trailing-newline",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "public",
+        "context": "pr_title",
+        "message": "fix(api): 🐛 preserve bounded values\n",
+        "parent_count": 1
+      },
+      "expected": {
+        "syntax": "invalid",
+        "diagnostic": "PR_TITLE_MULTILINE"
+      }
+    },
+    {
+      "id": "dco-assertion-only",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "public",
+        "context": "commit",
+        "message": "docs(policy): 📝 explain source assertions\n\nDCO-1.1: declared by the synthetic author",
+        "parent_count": 1
+      },
+      "expected": {
+        "syntax": "valid",
+        "release_hint": "none",
+        "trailers": ["DCO-1.1"],
+        "identity_signature_dco": "not-verified"
+      }
+    },
+    {
+      "id": "bot",
+      "input": {
+        "schema": "egohygiene.change-history-input/v1",
+        "visibility": "public",
+        "context": "bot",
+        "message": "fix(deps): 🐛 repair the supported dependency range",
+        "parent_count": 1
+      },
+      "expected": {
+        "syntax": "valid",
+        "release_hint": "patch"
+      }
+    }
+  ]
+}
