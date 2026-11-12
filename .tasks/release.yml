@@ -2,9 +2,9 @@ version: "3"
 
 tasks:
   release:plan:
-    desc: Validate Hygiene's release baseline and print a read-only plan
+    desc: Compose the prepared pinned Aether validator and print a read-only plan
     cmds:
-      - python3 "tools/releases.py" validate-declaration --repository "." --format "json"
+      - python3 "tools/releases.py" validate-declaration --repository "." --aether-source ".cache/release/aether" --format "json"
 
   release:prepare:
     desc: Preflight a reviewed Hygiene policy release candidate without mutation
@@ -12,7 +12,7 @@ tasks:
       vars:
         - RELEASE_VERSION
     cmds:
-      - python3 "tools/releases.py" validate-declaration --repository "."
+      - python3 "tools/releases.py" validate-declaration --repository "." --aether-source ".cache/release/aether"
       - echo "Prepare {{.RELEASE_VERSION}} in a reviewed release PR by promoting CHANGELOG.md Unreleased content and updating the declared catalog authority."
 
   release:verify:
@@ -21,7 +21,7 @@ tasks:
       vars:
         - RELEASE_VERSION
     cmds:
-      - python3 "tools/releases.py" validate-declaration --repository "." --format "json"
+      - python3 "tools/releases.py" validate-declaration --repository "." --aether-source ".cache/release/aether" --format "json"
       - echo "Verify that {{.RELEASE_VERSION}} matches catalog/repository-release-policy.json and the reviewed changelog entry."
 
   release:publish:

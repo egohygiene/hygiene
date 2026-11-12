@@ -9,7 +9,7 @@
     "synthetic": true,
     "profile": {
       "schema": "egohygiene.agent-ready-web-profile/v1",
-      "version": "1.0.0-alpha.4",
+      "version": "1.0.0-alpha.5",
       "status": "proposed",
       "repository": "egohygiene/hygiene",
       "path": "catalog/agent-ready-web-profile.json",
@@ -17,7 +17,7 @@
         "kind": "immutable-revision",
         "value": "1111111111111111111111111111111111111111",
         "resolved_revision": "1111111111111111111111111111111111111111",
-        "sha256": "sha256:723c96a287534b477e437a03507cc4af2a7091639e960812c7c06f87ad9d19b5"
+        "sha256": "sha256:1641b6e04aecce3be2e31fa01e9566d8ca830f1070d7c04cc841b8079371a803"
       }
     },
     "subject": {
@@ -79,6 +79,7 @@
       {"id":"robots-txt","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"required","requirement_condition":null,"resolved_strength":"required","presence":"present","validation":"passed","evidence_ids":["artifact-snapshot"],"exemption":null},
       {"id":"sitemap-xml","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"recommended","requirement_condition":null,"resolved_strength":"recommended","presence":"present","validation":"passed","evidence_ids":["artifact-snapshot"],"exemption":null},
       {"id":"structured-discovery-jsonld","applicability":"applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"recommended","requirement_condition":null,"resolved_strength":"recommended","presence":"present","validation":"passed","evidence_ids":["artifact-snapshot"],"exemption":null},
+      {"id":"trust-txt","applicability":"not-applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"optional","requirement_condition":null,"resolved_strength":"inapplicable","presence":"absent","validation":"not-run","evidence_ids":[],"exemption":null},
       {"id":"webmcp-tools","applicability":"not-applicable","applicability_evidence_ids":["applicability-review"],"declared_strength":"optional","requirement_condition":null,"resolved_strength":"inapplicable","presence":"absent","validation":"not-run","evidence_ids":[],"exemption":null}
     ],
     "summary": {
@@ -88,7 +89,7 @@
       "informationals": 1,
       "exemptions": 0,
       "applicable": 13,
-      "inapplicable": 4,
+      "inapplicable": 5,
       "experimental_present": 1,
       "claim": "assessment-only-no-certification-adoption-publication-or-authority"
     },

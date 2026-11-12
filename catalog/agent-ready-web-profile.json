@@ -1,9 +1,9 @@
 {
   "schema": "egohygiene.agent-ready-web-profile/v1",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "status": "proposed",
   "owner": "egohygiene/hygiene",
-  "updated": "2026-09-14",
+  "updated": "2026-11-11",
   "purpose": "Define a versioned, boundary-preserving discovery, representation, guarded browser-capability, descriptive commerce, deterministic conformance, compatibility, and ownership policy for human-first sites that expose explicit machine-readable web surfaces.",
   "concern_policy": {
     "primary_concern_cardinality": "exactly-one",
@@ -2601,6 +2601,157 @@
       "extensions": {}
     },
     {
+      "id": "trust-txt",
+      "title": "JournalList trust.txt",
+      "description": "A public discovery file for reviewed organization and publication relationships, domain relationships, controlled social accounts, disclosures, and public contacts.",
+      "concern": "readability",
+      "artifact": {
+        "kind": "well-known-file",
+        "locations": [
+          "/.well-known/trust.txt",
+          "/trust.txt"
+        ],
+        "media_types": [
+          "text/plain"
+        ]
+      },
+      "applicability": {
+        "condition": {
+          "id": "maintainable-public-trust-facts",
+          "description": "The site controls the origin-root paths and the owner can maintain one or more relevant, reviewed public facts under the JournalList specification. Site class alone does not establish applicability."
+        },
+        "evaluation": "before-requirement-strength",
+        "inapplicable_result": "valid-absent"
+      },
+      "requirements": {
+        "default": {
+          "strength": "optional",
+          "condition": null
+        },
+        "site_class_overrides": [
+          {
+            "site_class": "application",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "commerce",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "content",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "documentation",
+            "strength": "optional",
+            "condition": null
+          },
+          {
+            "site_class": "hybrid",
+            "strength": "optional",
+            "condition": null
+          }
+        ]
+      },
+      "content_rules": [
+        {
+          "id": "no-authority-inference",
+          "strength": "prohibited",
+          "description": "Do not infer affiliation, endorsement, ownership, access, capability, consent, transaction authority, certification, or compliance from a discovery file or its absence."
+        },
+        {
+          "id": "reciprocal-relationships",
+          "strength": "required",
+          "description": "For member/belongto, control/controlledby, and vendor/customer, require current reciprocal counterpart evidence naming this site and retain that evidence separately from the public file. Allow at most one controlledby entry."
+        },
+        {
+          "id": "reviewed-public-facts",
+          "strength": "required",
+          "description": "Project only current public facts explicitly reviewed by Identity for facts it owns or the site owner for site-specific facts. Omit unreviewed entries, private contacts, and placeholders. Include only social accounts whose control the fact owner verified."
+        },
+        {
+          "id": "training-policy",
+          "strength": "required",
+          "description": "Omit datatrainingallowed unless the site owner has explicitly approved the current yes or no policy value. Do not infer it from robots.txt, other site files, or absence."
+        }
+      ],
+      "validation_rules": [
+        {
+          "id": "plaintext-content",
+          "severity": "error",
+          "description": "Require a successful text/plain response with at least one valid JournalList key=value declaration. Reject HTML, an empty or comment-only placeholder, and invalid declarations."
+        },
+        {
+          "id": "root-compatibility-redirect",
+          "severity": "error",
+          "description": "Require HTTPS /.well-known/trust.txt on the exact declared origin and a direct same-origin 301, 302, or 307 from /trust.txt to that file. Reject reversed, cross-origin, nested-path, or looping redirects."
+        },
+        {
+          "id": "truth-and-provenance",
+          "severity": "error",
+          "description": "Match each emitted value to a current owner-reviewed source and each reciprocal relationship to counterpart evidence. Reject invented, stale, or private facts and any data-training directive without an explicit reviewed value."
+        }
+      ],
+      "maturity": {
+        "level": "published_specification",
+        "assessed_on": "2026-11-11",
+        "rationale": "JournalList released its own specification and IANA lists trust.txt as provisional. This does not establish a broadly adopted web standard.",
+        "reference_ids": [
+          "iana-well-known-uris",
+          "journallist-trust-txt-v1.5"
+        ]
+      },
+      "authoritative_references": [
+        {
+          "id": "iana-well-known-uris",
+          "title": "Well-Known URIs registry",
+          "publisher": "IANA",
+          "type": "registry",
+          "authority": "supporting",
+          "location": "https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml",
+          "retrieved_on": "2026-11-11"
+        },
+        {
+          "id": "journallist-technical-faq",
+          "title": "JournalList Technical FAQ",
+          "publisher": "JournalList",
+          "type": "official-documentation",
+          "authority": "supporting",
+          "location": "https://journallist.net/frequently-asked-questions",
+          "retrieved_on": "2026-11-11"
+        },
+        {
+          "id": "journallist-trust-txt-v1.5",
+          "title": "JournalList trust.txt specification v1.5",
+          "publisher": "JournalList",
+          "type": "industry-specification",
+          "authority": "primary",
+          "location": "https://journallist.net/wp-content/uploads/2024/08/trust.txt-specification-v1.5-.pdf",
+          "retrieved_on": "2026-11-11"
+        }
+      ],
+      "registration_evidence": [
+        {
+          "id": "journallist-v1.5-publication",
+          "kind": "specification-publication",
+          "location": "https://journallist.net/wp-content/uploads/2024/08/trust.txt-specification-v1.5-.pdf",
+          "description": "JournalList publishes the plaintext format and describes scope, relationship variables, and HTTP behavior.",
+          "observed_on": "2026-11-11"
+        },
+        {
+          "id": "root-redirect-placement-review",
+          "kind": "maintainer-assessment",
+          "location": "https://journallist.net/frequently-asked-questions",
+          "description": "The deployment FAQ directs the root URL to the well-known path. The v1.5 PDF gives the reverse redirect in its access section. This profile selects the FAQ deployment direction.",
+          "observed_on": "2026-11-11"
+        }
+      ],
+      "extensions": {}
+    },
+    {
       "id": "webmcp-tools",
       "title": "Guarded WebMCP tools",
       "description": "Origin-bound browser capabilities registered through the WebMCP draft API with versioned contracts, explicit authority, human control, and fail-closed execution evidence.",
@@ -2769,6 +2920,7 @@
       "robots-txt",
       "sitemap-xml",
       "structured-discovery-jsonld",
+      "trust-txt",
       "webmcp-tools"
     ],
     "checks": [

@@ -4,14 +4,17 @@
 from __future__ import annotations
 
 import argparse
+from datetime import datetime, timezone
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
 
 
 SCHEMA_VERSION = "1.0.0"
-LIFECYCLES = {"seed", "incubating", "active", "transition", "architecture-first"}
+REPOSITORY_NAME_PATTERN = re.compile(r"(?:\.github|[a-z0-9][a-z0-9.-]*)")
+LIFECYCLES = {"seed", "incubating", "active", "transition", "architecture-first", "unknown"}
 VISIBILITIES = {"public", "private"}
 REPOSITORY_FIELDS = {
     "name",
@@ -52,6 +55,29 @@ def _unique_strings(value: Any, path: str, *, allow_empty: bool) -> list[str]:
     return errors
 
 
+def _valid_repository_name(value: Any) -> bool:
+    return isinstance(value, str) and REPOSITORY_NAME_PATTERN.fullmatch(value) is not None
+
+
+def resolve_name(catalog: dict[str, Any], value: str) -> str | None:
+    """Resolve only a declared historical alias; never guess a rename."""
+    name = value.removeprefix("egohygiene/")
+    for repository in catalog.get("repositories", []):
+        if isinstance(repository, dict) and (repository.get("name") == name
+                or name in repository.get("aliases", [])):
+            return repository["full_name"]
+    return None
+
+
+def _instant(value: Any) -> bool:
+    if not isinstance(value, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", value):
+        return False
+    try:
+        return datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ") == value
+    except ValueError:
+        return False
+
+
 def validate_catalog(catalog: dict[str, Any]) -> list[str]:
     """Return deterministic semantic validation errors."""
 
@@ -60,6 +86,18 @@ def validate_catalog(catalog: dict[str, Any]) -> list[str]:
         errors.append(f"schema_version must be {SCHEMA_VERSION}")
     if catalog.get("organization") != "egohygiene":
         errors.append("organization must be egohygiene")
+    public_inventory = catalog.get("public_inventory")
+    if public_inventory is not None:
+        if (not isinstance(public_inventory, dict) or set(public_inventory) != {"observed_at", "source"}
+                or not _instant(public_inventory.get("observed_at"))):
+            errors.append("public_inventory observation boundary is incompatible")
+        else:
+            public_source = public_inventory.get("source")
+            if (not isinstance(public_source, dict) or set(public_source) != {"provider", "scope", "completeness", "url"}
+                    or public_source.get("provider") != "github" or public_source.get("scope") != "public"
+                    or public_source.get("completeness") not in {"complete", "partial"}
+                    or public_source.get("url") != "https://api.github.com/orgs/egohygiene/repos?type=public&per_page=100"):
+                errors.append("public_inventory source is incompatible")
 
     planes = catalog.get("planes")
     if not isinstance(planes, list) or not planes:
@@ -82,10 +120,12 @@ def validate_catalog(catalog: dict[str, Any]) -> list[str]:
             errors.append(f"{prefix} must be an object")
             continue
         name = repository.get("name")
-        if not isinstance(name, str) or not name:
-            errors.append(f"{prefix}.name must be a non-empty string")
+        if not _valid_repository_name(name):
+            errors.append(f"{prefix}.name must match the catalog repository-name grammar")
             continue
         names.append(name)
+        if "target_name" in repository and not _valid_repository_name(repository["target_name"]):
+            errors.append(f"{prefix}.target_name must match the catalog repository-name grammar")
         missing = REPOSITORY_FIELDS - repository.keys()
         if missing:
             errors.append(f"{prefix} is missing: {', '.join(sorted(missing))}")
@@ -93,19 +133,54 @@ def validate_catalog(catalog: dict[str, Any]) -> list[str]:
             errors.append(f"{prefix}.full_name must be egohygiene/{name}")
         if repository.get("source_url") != f"https://github.com/egohygiene/{name}":
             errors.append(f"{prefix}.source_url does not match the repository")
-        if repository.get("plane") not in plane_ids:
+        if repository.get("plane") not in plane_ids and repository.get("plane") != "unknown":
             errors.append(f"{prefix}.plane is not declared")
         if repository.get("visibility") not in VISIBILITIES:
             errors.append(f"{prefix}.visibility is invalid")
         if repository.get("lifecycle") not in LIFECYCLES:
             errors.append(f"{prefix}.lifecycle is invalid")
-        for field in ("owns", "excludes", "outputs"):
+        for field in ("owns", "outputs"):
             errors.extend(_unique_strings(repository.get(field), f"{prefix}.{field}", allow_empty=False))
+        errors.extend(_unique_strings(repository.get("excludes"), f"{prefix}.excludes",
+            allow_empty=repository.get("plane") == "unknown"))
         for field in ("consumes", "domains"):
             errors.extend(_unique_strings(repository.get(field), f"{prefix}.{field}", allow_empty=True))
+        aliases = repository.get("aliases", [])
+        errors.extend(_unique_strings(aliases, f"{prefix}.aliases", allow_empty=True))
+        if isinstance(aliases, list) and any(not _valid_repository_name(alias) or alias == name for alias in aliases):
+            errors.append(f"{prefix}.aliases must contain distinct historical repository names")
+        if "public_observation" in repository:
+            observed = repository["public_observation"]
+            if (not isinstance(observed, dict) or set(observed) != {"repository_id", "default_branch", "archived", "observed_at", "source_url"}
+                    or type(observed.get("repository_id")) is not int or not 1 <= observed["repository_id"] <= 9007199254740991
+                    or not isinstance(observed.get("default_branch"), str) or not observed["default_branch"]
+                    or type(observed.get("archived")) is not bool or not _instant(observed.get("observed_at"))
+                    or observed.get("source_url") != f"https://api.github.com/repos/egohygiene/{name}"
+                    or repository.get("visibility") != "public"):
+                errors.append(f"{prefix}.public_observation is incompatible")
+            elif isinstance(public_inventory, dict) and observed["observed_at"] != public_inventory.get("observed_at"):
+                errors.append(f"{prefix}.public_observation must match the public inventory boundary")
+        if "role_evidence" in repository:
+            errors.extend(_unique_strings(repository["role_evidence"], f"{prefix}.role_evidence", allow_empty=False))
+        if repository.get("plane") == "unknown" and not repository.get("role_evidence"):
+            errors.append(f"{prefix}.role_evidence must identify the unclassified owner's declaration")
+        if "next_gate" in repository:
+            gate = repository["next_gate"]
+            if not isinstance(gate, dict) or set(gate) != {"state", "description", "source_url", "source_observed_at"}:
+                errors.append(f"{prefix}.next_gate is incompatible")
+            elif gate.get("state") == "unknown":
+                if any(gate.get(key) is not None for key in ("description", "source_url", "source_observed_at")):
+                    errors.append(f"{prefix}.next_gate unknown must retain null evidence")
+            elif gate.get("state") != "source-declared" or not all(isinstance(gate.get(key), str) and gate[key] for key in ("description", "source_url", "source_observed_at")):
+                errors.append(f"{prefix}.next_gate must preserve declared evidence or unknown")
 
     if len(names) != len(set(names)):
         errors.append("repository names must be unique")
+    aliases = [alias for repository in repositories if isinstance(repository, dict)
+        and isinstance(repository.get("aliases", []), list)
+        for alias in repository.get("aliases", []) if isinstance(alias, str)]
+    if len(aliases) != len(set(aliases)) or set(aliases) & set(names):
+        errors.append("historical aliases must be unique and must not shadow canonical names")
     if catalog.get("repository_count") != len(repositories):
         errors.append("repository_count must equal the repositories array length")
     canonical = catalog.get("canonical_repository")
@@ -123,8 +198,8 @@ def validate_catalog(catalog: dict[str, Any]) -> list[str]:
             errors.append(f"{prefix} must be an object")
             continue
         name = repository.get("name")
-        if not isinstance(name, str) or not name:
-            errors.append(f"{prefix}.name must be a non-empty string")
+        if not _valid_repository_name(name):
+            errors.append(f"{prefix}.name must match the catalog repository-name grammar")
             continue
         proposed_names.append(name)
         if repository.get("status") != "deferred":
@@ -161,7 +236,10 @@ def render_markdown(catalog: dict[str, Any]) -> str:
         f"- Current repositories: `{len(repositories)}`",
         "",
     ]
-    for plane in catalog["planes"]:
+    planes = [*catalog["planes"]]
+    if any(repository["plane"] == "unknown" for repository in repositories):
+        planes.append({"id": "unknown", "title": "Unclassified owner declarations"})
+    for plane in planes:
         lines.extend([
             f"## {plane['title']}",
             "",

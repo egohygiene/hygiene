@@ -20,7 +20,7 @@ local ADRs.
 - [Compatibility fixtures](../../fixtures/architecture-decisions)
 - [Organization contract index](../../catalog/contracts.yaml)
 
-ADR-0002 and policy v1.1.0 are accepted through explicit maintainer approval.
+ADR-0002 and policy v1.2.0 are accepted through explicit maintainer approval.
 Hygiene provides the canonical contracts and reference checks; reusable agent
 promotion, fleet adoption, CI orchestration, generation, and publication remain
 owned downstream and are not implemented by this directory.
@@ -43,12 +43,17 @@ owned downstream and are not implemented by this directory.
 | [ADR-0012](ADR-0012-agent-ready-web-integration-conformance.md) | Integrate Agent-Ready Web conformance without collapsing authority | Proposed | 2026-09-14 |
 | [ADR-0013](ADR-0013-public-site-surface-route-registry.md) | Define the canonical public-site surface and route registry | Proposed | 2026-09-21 |
 | [ADR-0014](ADR-0014-json-compatible-catalogs-and-reference-tools.md) | Keep Hygiene catalogs JSON-compatible with dependency-free reference tools | Proposed | 2026-08-19 |
+| [ADR-0015](ADR-0015-compose-pinned-release-validation.md) | Compose pinned owner validation for local release declarations | Proposed | 2026-11-03 |
+| [ADR-0016](ADR-0016-public-repository-catalog-and-checkpoints.md) | Keep public repository admission separate from architecture and checkpoint execution | Proposed | 2026-11-09 |
+| [ADR-0017](ADR-0017-architecture-coherence-governance.md) | Separate architecture-coherence governance from assessment and conformance | Proposed | 2026-11-09 |
 
-ADR-0001 predates the accepted policy's three-digit filename convention. Its
-four-digit identity and original body remain unchanged for provenance. The
-Hygiene #47 migration checkpoint records its missing structured metadata and
-human-authority evidence review; any migration is a separate reviewed change.
-The historical Accepted label is not new ratification by this inventory.
+ADR-0001's historical Accepted label describes the five-plane decision. Its
+original body and four-digit identity preserve that record.
+[#47](https://github.com/egohygiene/hygiene/issues/47) tracks the missing
+structured metadata, durable approval evidence and source admission. The
+[architecture authority map](../ecosystem/ARCHITECTURE.md#authority-and-evidence)
+connects later topology changes to their proposed records and observed local
+implementations.
 
 Rejected, deprecated, accepted, and superseded decisions remain discoverable.
 A replacement links the record it supersedes, and the old record links back

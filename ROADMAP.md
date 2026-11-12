@@ -8,7 +8,7 @@ status: provisional
 owners:
   - egohygiene
 created: 2026-08-19
-updated: 2026-09-14
+updated: 2026-10-30
 governed_by:
   - architecture-roadmap
 depends_on:
@@ -25,6 +25,59 @@ supersedes: []
 ---
 
 # Hygiene Roadmap
+
+## Current work and publication handoff
+
+The next audit checkpoint is maintainer review of the existing continuity,
+presentation and ADR validation drafts in order:
+[#91](https://github.com/egohygiene/hygiene/pull/91),
+[#89](https://github.com/egohygiene/hygiene/pull/89), then
+[#90](https://github.com/egohygiene/hygiene/pull/90).
+[#76](https://github.com/egohygiene/hygiene/issues/76) tracks the full tactical
+backlog, carryovers and review order. Evidence URL/origin and release-declaration
+repairs landed in [#92](https://github.com/egohygiene/hygiene/pull/92) and
+[#93](https://github.com/egohygiene/hygiene/pull/93), respectively. Use the
+[continuity handoff](CONTINUITY.md) and live issue/PR state to resume.
+
+- **HYG-Q02:** [ADR-0002 and policy v1.2.0](docs/decisions/RATIFICATION.md)
+  have recorded maintainer approval. [#47](https://github.com/egohygiene/hygiene/issues/47)
+  owns ADR-0001's separate source and approval work.
+- **HYG-Q03:** The [Pages workflow](.github/workflows/publish-pages.yml)
+  configures the reference-contract regression gate. Hosted execution on a
+  changed head and provider ruleset evidence remain tracked under #76.
+- **HYG-Q04:** [#97](https://github.com/egohygiene/hygiene/pull/97) delivered
+  the reviewed public roster, website alias and bounded inventory/checkpoint
+  policy source. [#36](https://github.com/egohygiene/hygiene/issues/36) owns
+  recurring inventory acceptance.
+- **HYG-Q05:** [#95](https://github.com/egohygiene/hygiene/issues/95) owns
+  Agent-Ready Web lifecycle review after contract repairs and maintainer
+  disposition.
+
+Hygiene's [repository-owned Intelligence publisher](publication/README.md) is
+configured at `hygiene.egohygiene.io`. The workflow uses Relay
+`981ddf4367c67fcd625e54321d95bab027f6c0f2` and requires passing native ADR
+coverage for the exact revision before build and deployment. ADR-0001's
+metadata and approval evidence remain unresolved under #47. The August
+central roadmap route below records earlier organization aggregation intent.
+The current local publisher does not collect Roadmap.
+
+## Current contract-validation handoff — 2026-10-30
+
+`HYG-Q03` now points to the configured **Complete reference-contract regression**
+check in the Pages workflow (`checks` job). Its local equivalent is
+`python3 -I tools/check_contracts.py` or `task check`; the
+[validation guide](docs/CONTRACT_VALIDATION.md) explains full test discovery,
+source/generated checks, diagnostic retention and practical limits.
+
+[#77](https://github.com/egohygiene/hygiene/issues/77) owns the repair and
+[#76](https://github.com/egohygiene/hygiene/issues/76) records current review and
+remaining acceptance. The gate has no path filters. Changed-head hosted
+execution and provider required-check configuration remain separate evidence.
+Native ADR admission and actual publication retain their independent gates;
+passing regressions supply neither historical authority nor deployment proof.
+
+The dated August execution snapshot below is preserved as historical evidence.
+Use the current handoff above for CI configuration, activation and publication.
 
 <!-- BEGIN ROADMAP EXECUTION SNAPSHOT -->
 <!-- roadmap-manifest

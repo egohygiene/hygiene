@@ -1,8 +1,22 @@
 # Ego Hygiene Holistic Architecture
 
-Status: **accepted v0.1**  
-Canonical target: `egohygiene/hygiene`  
-Last reconciled: **2026-08-18**
+Status: **current topology view with historical and proposed decisions**
+
+Canonical target: `egohygiene/hygiene`
+
+## Authority and evidence
+
+| Boundary | Decision and disposition | Observed implementation or remaining evidence |
+| --- | --- | --- |
+| Five-plane model and Empathy's original incubation role | [ADR-0001](../decisions/ADR-0001-holistic-architecture-v0.1.md) records the historical 2026-08-18 Accepted baseline. | The original record and its [unapplied metadata patch](../adr-workflow/2026-10-18-adr-0001-v1.2-review.patch) retain the approval gap. [#47](https://github.com/egohygiene/hygiene/issues/47) owns reconciliation and source admission. |
+| Sixth plane and reusable infrastructure contracts | [ADR-0003](../decisions/ADR-0003-route-filament-infrastructure-contracts.md) proposes the Filament boundary. Approval is pending. | [Filament #1](https://github.com/egohygiene/filament/pull/1) records the merged local ownership definition. Firmament remains deferred. |
+| Sanctuary incubation and strict Empathy baseline | [ADR-0004](../decisions/ADR-0004-register-sanctuary-incubation-boundary.md) proposes the organization split. Approval is pending. | [Sanctuary #1](https://github.com/egohygiene/sanctuary/pull/1) records the local incubation bootstrap. [Empathy #66](https://github.com/egohygiene/empathy/pull/66) records the merged local strict-baseline decision. |
+| Organization ADR policy | [ADR-0002 and policy v1.2.0](../decisions/RATIFICATION.md) have recorded maintainer approval. | The [decision index](../decisions/README.md) records individual dispositions. The [publisher runbook](../../publication/README.md) defines separate native source admission and deployment evidence. |
+
+The six-plane view below and its [diagrams](diagrams/README.md) show the current
+target topology. Repository implementation and organization approval have
+separate evidence. The [historical release manifest](architecture-release.yaml)
+records v0.1.
 
 ## 1. Intent
 
@@ -78,6 +92,12 @@ This plane captures evidence, builds usable knowledge, preserves source material
 - **akashic** — curated public knowledge constellations and focused Awesome lists.
 - **athena** — preserved assets, raw references, external resources, and large archival collections.
 - **reflector** — research and tooling for reflective synchronization and governable recursive AI-assisted engineering.
+- **antidote** — the owner-declared personalized adaptive-audio research program,
+  manuscript/publication workspace and local research-instrument contracts;
+  experimental implementation is separate from formal study or efficacy claims.
+- **civics** — the owner-declared static civic knowledge graph, sourced public
+  evidence and ballot decision-support portal; private notes and voting choices
+  remain outside public evidence.
 
 Athena is the reservoir; Akashic is an opinionated public collection; Mindcap is acquisition; Mindgarden is the living knowledge system; Reflector is a research product. Raw archives must not become runtime dependencies.
 
@@ -310,8 +330,11 @@ artifacts without owning routes; and Identity retains the `/identity/` product
 experience and its versioned brand and asset inputs. Holon may scaffold new
 declarations, Observatory may aggregate privacy-safe declaration state, and
 Pace may propose reviewed adoption changes. The catalog identity
-`egohygiene/website` continues to represent the renamed `egohygiene.io` site
-until that separate repository-catalog reconciliation is reviewed.
+`egohygiene/egohygiene.io` is the canonical repository identity; `website` is a
+declared historical alias. The [public inventory contract](PUBLIC_REPOSITORY_INVENTORY.md)
+separates reviewed public identity admission from role declarations, provider
+observations, conformance and publication. Existing lifecycle declarations are
+not refreshed by inventory discovery; undeclared facts stay unknown.
 
 ## 7. Control loops
 
@@ -342,7 +365,8 @@ These are capability flows, not a requirement that every repository imports ever
 
 The architecture is operating—not merely documented—when:
 
-- all 27 repositories have one explicit owner boundary and generated local context;
+- every repository in the reviewed applicable catalog has one explicit owner
+  boundary and generated local context, with unknown declarations preserved;
 - no production component exists only under `empathy/.staging`;
 - Mantle is independently tested across its supported shells/platforms;
 - Realm publishes a tested base image, at least one profile, and `full` with SBOM/provenance;

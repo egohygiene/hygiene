@@ -98,7 +98,7 @@ const planes = [
       ["holon", "create repositories"],
       ["pace", "converge the fleet"],
       ["observatory", "maturity · evidence · telemetry"],
-      ["sanctuary", "bounded incubation · provenance"],
+      ["sanctuary", "bounded incubation\nADR-0004 proposed"],
     ],
   },
   {
@@ -113,7 +113,7 @@ const planes = [
       ["mantle", "portable shell runtime"],
       ["relay", "reusable CI · release workflows"],
       ["egolint", "quality policy · reports"],
-      ["empathy", "golden consumer · integration"],
+      ["empathy", "strict golden baseline\nADR-0004 proposed"],
     ],
   },
   {
@@ -163,7 +163,7 @@ const planes = [
   {
     id: "infrastructure",
     title: "INFRASTRUCTURE & DEPLOYMENT",
-    subtitle: "Reusable definitions · consumer-owned deployment",
+    subtitle: "ADR-0003 proposed\nConsumer-owned deployment",
     y: 1520,
     color: "#60a5fa",
     fill: "#172554",
@@ -176,8 +176,8 @@ const planes = [
 const elements = [];
 const centers = new Map();
 
-elements.push(textElement("title", "EGO HYGIENE ECOSYSTEM ARCHITECTURE", 80, 35, 2040, 55, "#f8fafc", 34));
-elements.push(textElement("subtitle", "27 independently useful repositories · one owner per capability · versioned artifacts and contracts", 80, 95, 2040, 34, "#cbd5e1", 18));
+elements.push(textElement("title", "CURRENT EGO HYGIENE TOPOLOGY", 80, 35, 2040, 55, "#f8fafc", 34));
+elements.push(textElement("subtitle", "ADR-0001 historical baseline · ADR-0003 and ADR-0004 proposed organization amendments", 80, 95, 2040, 34, "#cbd5e1", 18));
 
 for (const plane of planes) {
   elements.push(rectangle(`group-${plane.id}`, 55, plane.y, 2090, 230, plane.color, plane.fill, 42));

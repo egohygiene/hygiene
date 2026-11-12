@@ -13,9 +13,10 @@ See the [publisher and admission runbook](publication/README.md) for routes,
 source gates, deployment evidence and recovery. Configuration is separate from
 an observed successful deployment.
 
-Current work is handed off through the repository-owned
-[`CONTINUITY.md`](CONTINUITY.md). Reconcile it against live Git and GitHub
-evidence; it is not a substitute for the canonical sources below.
+Start with [repository instructions](AGENTS.md), then use the
+[current roadmap handoff](ROADMAP.md#current-work-and-publication-handoff) and
+[`CONTINUITY.md`](CONTINUITY.md) to find the review checkpoint. Verify mutable
+claims against live Git and GitHub evidence.
 
 ## Ecosystem architecture
 
@@ -24,7 +25,8 @@ evidence; it is not a substitute for the canonical sources below.
 - [Migration plan](docs/ecosystem/MIGRATION_PLAN.md)
 - [Agent context](docs/ecosystem/AGENT_CONTEXT.md)
 - [Diagram sources](docs/ecosystem/diagrams/README.md)
-- [Architecture acceptance decision](docs/decisions/ADR-0001-holistic-architecture-v0.1.md)
+- [Architecture authority map](docs/ecosystem/ARCHITECTURE.md#authority-and-evidence)
+- [Historical five-plane architecture decision](docs/decisions/ADR-0001-holistic-architecture-v0.1.md)
 - [Machine-readable repository catalog](catalog/repositories.yaml)
 - [Repository catalog schema](schemas/repository-catalog.v1.schema.json)
 - [Generated repository catalog](docs/generated/REPOSITORIES.md)
@@ -60,9 +62,10 @@ evidence; it is not a substitute for the canonical sources below.
 - [Public-site declaration schema](schemas/public-site-surface-declaration.v1.schema.json)
 - [Public-site surface compatibility fixtures](fixtures/public-site-surfaces)
 
-The accepted written architecture and versioned machine-readable catalog are
-authoritative. Rendered diagrams, local repository context, and future landscape
-sites are projections of those sources.
+The architecture and versioned catalog are the source documents for repository
+ownership. The [decision index](docs/decisions/README.md) records each decision's
+disposition. Rendered diagrams, repository context, and landscape sites project
+those sources.
 
 ## Accepted ADR and delivery-history foundation
 
@@ -83,10 +86,9 @@ sites are projections of those sources.
 - [ADR compatibility fixtures](fixtures/architecture-decisions)
 - [Organization contract index](catalog/contracts.yaml)
 
-ADR-0002 and policy v1.1.0 are accepted organization authority. This repository
-provides their canonical schemas, fixtures, and reference checks; it does not
-claim that downstream fleet validation, generated decision/activity data, or
-dashboard publication is complete.
+ADR-0002 and policy v1.2.0 are the accepted organization ADR authority. The
+[publisher runbook](publication/README.md) tracks source admission, deployment
+and live verification separately from repository-local reference checks.
 
 ## Control-plane boundary
 
@@ -99,7 +101,21 @@ See [issue #1](https://github.com/egohygiene/hygiene/issues/1) for the initial
 architecture import and [issue #2](https://github.com/egohygiene/hygiene/issues/2)
 for the validated repository catalog contract.
 
-Validate the existing repository catalog and its generated view with:
+Run the complete reference-contract regression gate with:
+
+```sh
+python3 -I tools/check_contracts.py
+```
+
+`task check` invokes the same command. The [validation guide](docs/CONTRACT_VALIDATION.md)
+describes coverage, bounded diagnostics, required Python/Git tools and the
+separate native source-admission/publication gates. The Pages workflow's
+read-only `checks` job runs it for every pull request without path filters.
+Local results do not establish hosted acceptance or required-check rulesets.
+Use [#76](https://github.com/egohygiene/hygiene/issues/76) for this batch's
+review state and remaining acceptance.
+
+The existing individual reference commands remain available:
 
 ```bash
 python3 tools/catalog.py --catalog catalog/repositories.yaml validate
