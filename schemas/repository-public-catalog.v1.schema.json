@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/repository-public-catalog.v1.schema.json",
+  "title": "Reviewed public repository catalog projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "organization",
+    "observed_at",
+    "source",
+    "repositories"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egohygiene.repository-public-catalog/v1"
+    },
+    "organization": {
+      "const": "egohygiene"
+    },
+    "observed_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "scope",
+        "completeness",
+        "url"
+      ],
+      "properties": {
+        "provider": {
+          "const": "github"
+        },
+        "scope": {
+          "const": "public"
+        },
+        "completeness": {
+          "enum": [
+            "complete",
+            "partial"
+          ]
+        },
+        "url": {
+          "const": "https://api.github.com/orgs/egohygiene/repos?type=public&per_page=100"
+        }
+      }
+    },
+    "repositories": {
+      "type": "array",
+      "maxItems": 1024,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "full_name",
+          "repository_id",
+          "visibility",
+          "source_url",
+          "default_branch",
+          "archived",
+          "aliases",
+          "role",
+          "next_gate"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^(\\.github|[a-z0-9][a-z0-9.-]*)(?![\\s\\S])"
+          },
+          "full_name": {
+            "type": "string",
+            "pattern": "^egohygiene/(\\.github|[a-z0-9][a-z0-9.-]*)(?![\\s\\S])"
+          },
+          "repository_id": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "visibility": {
+            "const": "public"
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://github\\.com/egohygiene/(\\.github|[a-z0-9][a-z0-9.-]*)(?![\\s\\S])"
+          },
+          "default_branch": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "archived": {
+            "type": "boolean"
+          },
+          "aliases": {
+            "type": "array",
+            "uniqueItems": true,
+            "maxItems": 32,
+            "items": {
+              "type": "string",
+              "pattern": "^(\\.github|[a-z0-9][a-z0-9.-]*)(?![\\s\\S])"
+            }
+          },
+          "role": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "plane",
+              "lifecycle",
+              "maturity",
+              "owns",
+              "excludes",
+              "outputs",
+              "evidence"
+            ],
+            "properties": {
+              "plane": {
+                "type": "string",
+                "minLength": 1
+              },
+              "lifecycle": {
+                "type": "string",
+                "minLength": 1
+              },
+              "maturity": {
+                "type": "string",
+                "minLength": 1
+              },
+              "owns": {
+                "$ref": "#/$defs/strings"
+              },
+              "excludes": {
+                "$ref": "#/$defs/strings"
+              },
+              "outputs": {
+                "$ref": "#/$defs/strings"
+              },
+              "evidence": {
+                "type": "array",
+                "maxItems": 32,
+                "uniqueItems": true,
+                "items": {
+                  "$ref": "#/$defs/immutableEvidenceUrl"
+                }
+              }
+            }
+          },
+          "next_gate": {
+            "$ref": "#/$defs/nextGate"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "immutableEvidenceUrl": {
+      "type": "string",
+      "pattern": "^https://github\\.com/egohygiene/(?:\\.github|[a-z0-9][a-z0-9.-]*)/blob/[a-f0-9]{40}/[A-Za-z0-9._/-]+$",
+      "format": "uri"
+    },
+    "nextGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "description",
+        "source_url",
+        "source_observed_at"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "unknown",
+            "source-declared"
+          ]
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "source_url": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/immutableEvidenceUrl"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_observed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "unknown"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "description": {
+                "type": "null"
+              },
+              "source_url": {
+                "type": "null"
+              },
+              "source_observed_at": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source_url": {
+                "$ref": "#/$defs/immutableEvidenceUrl"
+              },
+              "source_observed_at": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "strings": {
+      "type": "array",
+      "maxItems": 256,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2048
+      }
+    }
+  }
+}

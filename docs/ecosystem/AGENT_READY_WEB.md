@@ -1,6 +1,6 @@
 # Agent-Ready Web integrated profile and conformance contract
 
-Status: **proposed `1.0.0-alpha.4`**
+Status: **proposed `1.0.0-alpha.5`**
 
 Policy owner: `egohygiene/hygiene`
 
@@ -35,7 +35,7 @@ adopted, published, or actively enforced.
 | Field | Value |
 | --- | --- |
 | Contract | `egohygiene.agent-ready-web-profile/v1` |
-| Profile version | `1.0.0-alpha.4` |
+| Profile version | `1.0.0-alpha.5` |
 | Status | `proposed` |
 | Canonical owner | `egohygiene/hygiene` |
 | Consumer pin | Exact semantic version or immutable repository revision |
@@ -140,6 +140,27 @@ an optional narrow exemption. Evidence IDs are unique and stable; observations
 record time, subject revision, type, location, description, and optional
 digest.
 
+Evidence locations and origins use the shared offline syntax rules in
+[`tools/https_locations.py`](../../tools/https_locations.py), also used by the
+public-site surface checker. Keep the checker and its adjacent shared module
+from the same reviewed revision when invoking it outside the checkout.
+An external location uses literal lowercase
+`https://`, a nonempty ASCII DNS/punycode host, IPv4 address or bracketed,
+unscoped IPv6 address, and an optional decimal port from 1 through 65535.
+Userinfo, empty ports, malformed authorities, raw whitespace/control characters
+and backslashes are rejected before parsing; no host lookup or URL fetch occurs.
+An evidence URL may have a path, query or fragment. Safe repository-relative
+evidence paths retain their existing grammar and cannot contain `.` or `..`
+segments. These rules cover profile/mechanism references and registration
+evidence as well as conformance evidence.
+
+An exact origin has no path beyond an optional root `/` and no query or fragment
+delimiter, including empty `?` or `#`. An explicit valid port is retained; omitted
+ports and explicit `:443` are both valid syntax. Validation does not normalize
+them or establish origin equivalence. Diagnostics identify the field and never
+include a rejected URL or embedded credential. Passing syntax validation supplies
+no live conformance, reachability or authorization evidence.
+
 The profile digest is SHA-256 over UTF-8 canonical JSON with object keys sorted,
 no insignificant whitespace, and non-ASCII characters retained. The reference
 validator derives that digest from the loaded profile and rejects a mismatch;
@@ -176,6 +197,7 @@ true.
 | `robots-txt` | readability | established | A public HTTP origin exposes crawlable resources | R | R | R | R | R |
 | `sitemap-xml` | readability | established | A truthful public indexable URL set exists | A | R | R | R | R |
 | `structured-discovery-jsonld` | readability | established | Stable vocabulary describes visible public facts | A | A | A | A | A |
+| `trust-txt` | readability | published specification | The site controls the origin-root paths and can maintain reviewed public trust facts | O | O | O | O | O |
 | `webmcp-tools` | capability | experimental | The active document deliberately registers a guarded compatible WebMCP tool | O | O | O | O | O |
 
 The canonical records contain the complete paths, media types, content rules,
@@ -215,6 +237,50 @@ source-supported entities, evidence, verification state, and provenance. If it
 is published, the HTML companion is required, is generated from the same
 revision, and exposes equivalent attribution and source links. Failure to
 support EntityMap is a valid absence; a partial or invented map is not.
+
+`trust-txt` follows [JournalList's published v1.5 specification](https://journallist.net/wp-content/uploads/2024/08/trust.txt-specification-v1.5-.pdf),
+reviewed on 2026-11-11 alongside the [technical FAQ](https://journallist.net/frequently-asked-questions)
+and [IANA's provisional registry entry](https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml).
+The deployment FAQ directs `/trust.txt` to `/.well-known/trust.txt`. The
+v1.5 PDF's Access Method section gives the reverse direction. This profile
+selects the FAQ's deployment guidance. Serve a successful `text/plain`
+response at the HTTPS well-known path on the declared origin, and return a
+direct same-origin 301, 302, or 307 from the root compatibility path. These are
+origin-root endpoints. A site on a shared origin cannot substitute a
+project-prefix path.
+
+The mechanism is optional for every class. A confirmed lack of relevant facts
+or control of the required paths is `not-applicable`. A site that can support
+the file may report an optional absence. An unresolved applicability decision
+remains `unknown` and yields `ARW-APP-001`. An individual unreviewed fact is
+omitted, and its evidence gap belongs in the assessment. An empty or
+comment-only file cannot stand in for evidence.
+
+Only project current, reviewed public facts. Use current counterpart evidence
+for membership, domain control, and vendor/customer pairs. Record the owner
+review for social account control, disclosures, and public contacts. Include
+`datatrainingallowed=yes` or `datatrainingallowed=no` only when the site owner
+has expressly approved that value. Keep review evidence outside the public
+payload and exclude private contacts, inferred endorsements, and invented
+relationships. The file expresses descriptive relationships and site policy.
+Publication alone does not establish certification, consent, or access rights.
+
+For example, a synthetic site with only a reviewed public contact could serve
+the following payload. The reserved domain represents no actual publisher.
+
+```text
+contact=https://content.example.invalid/contact
+```
+
+Identity supplies reviewed identity facts it owns, and the site supplies
+origin-specific relationships, contacts, policy and publication approval.
+Holon can generate the artifact from those facts when an eligible immutable
+profile is selected. Relay can validate and serve the exact route and redirect
+through its reusable workflow. Pace can propose adoption, and Observatory can
+report the site's evidence and omissions. Selecting a first consumer or
+publishing publicly requires a separate review. The Hygiene reference checker
+validates catalog shape and evidence states offline. A consumer must collect
+the HTTP and source observations it claims.
 
 ### Emerging conventions
 
@@ -425,7 +491,12 @@ unversioned contract, or executable authority inferred from commerce metadata
 fails closed. Alpha.4 adds the integrated boundary policy, conformance evidence
 schema, deterministic resolver and diagnostics, reference review, and precise
 consumer-resolution rules. Canonical entries still supply explicit rules for
-every site class.
+every site class. Alpha.5 adds the optional `trust-txt` mechanism. Its individual
+maturity and reference dates record the new review separately from the dated
+full-profile review. Existing mechanism records keep their meaning. Consumers
+with an alpha.4 pin retain that exact profile and its paired checker. An
+explicit alpha.5 upgrade adds a `trust-txt` row to whole-profile evidence
+while preserving the v1 evidence shape.
 
 Consumers resolve policy directly from `egohygiene/hygiene` at
 `catalog/agent-ready-web-profile.json`; they do not copy or reinterpret Hygiene
@@ -483,7 +554,7 @@ safe implementation boundary is:
 
 1. Require a profile pin eligible under Hygiene lifecycle policy, resolve the
    canonical path at that full revision, verify its digest, and reject a
-   floating or unsupported pin. The current `proposed` alpha.4 profile is not
+   floating or unsupported pin. The current `proposed` alpha.5 profile is not
    production-eligible.
 2. Accept site-owned site class, public facts, local configuration, target
    revision, and explicit applicability decisions as inputs. Never invent

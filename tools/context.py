@@ -181,11 +181,7 @@ def build_context(
         raise ValueError("; ".join(errors))
     if not REVISION_PATTERN.fullmatch(source_revision):
         raise ValueError("source revision must be a 40-character lowercase Git commit")
-    full_name = (
-        repository_name
-        if "/" in repository_name
-        else f"{catalog['organization']}/{repository_name}"
-    )
+    full_name = repository_catalog.resolve_name(catalog, repository_name)
     repositories = _repository_index(catalog)
     if full_name not in repositories:
         raise ValueError(f"unknown repository: {repository_name}")

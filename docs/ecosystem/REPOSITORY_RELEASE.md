@@ -34,6 +34,54 @@ must never follow Aether's default branch.
 
 ## Baseline
 
+### Execute the selected declaration validation
+
+The declaration checker composes the native validator and normative schema from
+the immutable Aether selection above. It verifies the validator, schema and
+runtime-lock bytes against
+[`tools/release-owner.lock.json`](../../tools/release-owner.lock.json); it does
+not copy the protocol or fetch/install dependencies inside the checker. The
+source match proves selected file content, not the caller's checkout HEAD.
+The bounded dependency choice is recorded in proposed
+[ADR-0015](../decisions/ADR-0015-compose-pinned-release-validation.md).
+
+Prepare the exact source separately, or point to an existing matching checkout:
+
+```sh
+git clone https://github.com/egohygiene/aether.git .cache/release/aether
+git -C .cache/release/aether checkout --detach 8a2a3d08f3aa9da3847bd5277843506ab855192e
+python3 tools/releases.py verify-owner --aether-source .cache/release/aether
+python3 -m pip install --requirement .cache/release/aether/requirements-dev.lock
+task release:plan
+
+# An already prepared checkout can be selected explicitly by the standalone CLI:
+python3 tools/releases.py validate-declaration --repository . \
+  --aether-source path/to/selected-aether --format json
+```
+
+The three direct Task validation handoffs select `.cache/release/aether`;
+`release:publish` delegates to that same `release:verify`. The manual workflow
+acquires the exact pin, verifies its source lock, installs its existing pinned
+runtime and invokes the same composed helper. These instructions describe
+explicit preparation; no source checkout, install, Task or workflow is executed
+by the checker. Profile validation and applicability resolution remain
+standard-library-only.
+
+Full `jsonschema.Draft202012Validator` support is required for composition; the
+owner's weaker optional fallback cannot establish success. Workflow/Taskfile
+structure requires PyYAML. Missing source/runtime or a nonmatching selection
+returns explicit unavailable failure. The JSON plan records the actual engine
+version, selected source hashes and declaration digest. A plan constructed
+without a composed validation receipt says `unavailable` rather than implying
+that owner validation executed.
+
+Task identity is checked against actual YAML task definitions/includes. Trigger
+validation handles block, flow, quoted and comment forms structurally, rejects
+duplicate keys and permits only `workflow_dispatch` (including its shorthand
+forms). Automatic or ambiguous events fail regardless of inline spelling.
+Input changes during validation are rejected. The resulting deterministic plan
+remains read-only and supplies no publication authority or CI/provider success.
+
 Each applicable repository keeps its release facts in
 `.egohygiene/release.json`. There is no organization-wide external registry to
 keep in sync. The local declaration is the source of truth for its release

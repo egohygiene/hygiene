@@ -1,5 +1,12 @@
 # Repository Catalog
 
+> Historical role/first-gate snapshot below. Current identities and the reviewed
+> public roster live in [the canonical machine catalog](../../catalog/repositories.yaml)
+> and [public inventory projection](../../catalog/public-repositories.json).
+> The [reconciliation guide](PUBLIC_REPOSITORY_INVENTORY.md) records the website
+> alias, Antidote/Civics source evidence, dated gates and unknown lifecycle fields.
+> Do not treat this dated table as a current public inventory or readiness claim.
+
 Observed on GitHub: **2026-08-21**
 Inventory: **27 repositories**
 Status labels describe the observed implementation state, not product quality.

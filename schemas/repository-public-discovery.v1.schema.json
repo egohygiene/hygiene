@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/repository-public-discovery.v1.schema.json",
+  "title": "Explicit public-only provider repository discovery",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "organization",
+    "observed_at",
+    "source",
+    "repositories"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egohygiene.repository-public-discovery/v1"
+    },
+    "organization": {
+      "const": "egohygiene"
+    },
+    "observed_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "scope",
+        "completeness",
+        "url"
+      ],
+      "properties": {
+        "provider": {
+          "const": "github"
+        },
+        "scope": {
+          "const": "public"
+        },
+        "completeness": {
+          "enum": [
+            "complete",
+            "partial"
+          ]
+        },
+        "url": {
+          "const": "https://api.github.com/orgs/egohygiene/repos?type=public&per_page=100"
+        }
+      }
+    },
+    "repositories": {
+      "type": "array",
+      "maxItems": 1024,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "full_name",
+          "repository_id",
+          "visibility",
+          "default_branch",
+          "archived"
+        ],
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "pattern": "^egohygiene/(\\.github|[a-z0-9][a-z0-9.-]*)(?![\\s\\S])"
+          },
+          "repository_id": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "visibility": {
+            "const": "public"
+          },
+          "default_branch": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "archived": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

@@ -7,7 +7,7 @@ skinparam ArrowColor #CBD5E1
 skinparam defaultTextAlignment center
 top to bottom direction
 
-title Ego Hygiene Ecosystem Architecture — accepted v0.1
+title Current Ego Hygiene topology
 caption Arrows represent versioned artifacts, contracts, or control flow — not copied source.
 
 package "Architecture & Control Plane" #261447 {
@@ -17,7 +17,7 @@ package "Architecture & Control Plane" #261447 {
   component "holon\ncreate repositories" as HOL
   component "pace\nconverge repository fleet" as PAC
   component "observatory\nobserve maturity · evidence" as OBS
-  component "sanctuary\nbounded incubation · provenance" as SAN
+  component "sanctuary\nbounded incubation · provenance\nADR-0004 proposed" as SAN
 }
 
 package "Developer & Runtime Platform" #083344 {
@@ -25,7 +25,7 @@ package "Developer & Runtime Platform" #083344 {
   component "mantle\nportable shell runtime" as MAN
   component "relay\nreusable CI · release workflows" as REL
   component "egolint\nquality policy · reports" as EGL
-  component "empathy\ngolden consumer · integration" as EMP
+  component "empathy\nstrict golden baseline · integration\nADR-0004 proposed" as EMP
 }
 
 package "Content Transformation & Publishing" #3F1D0B {
@@ -51,7 +51,7 @@ package "Identity, Product & Experience" #3B1024 {
   component "store\nprovider-neutral commerce" as STO
 }
 
-package "Infrastructure & Deployment" #172554 {
+package "Infrastructure & Deployment (ADR-0003 proposed)" #172554 {
   component "filament\nreusable IaC contracts" as FIL
 }
 
