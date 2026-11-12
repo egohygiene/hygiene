@@ -7,23 +7,21 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-12T04:42:10Z'
+  updated_at: '2026-11-12T11:13:02Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Integrate the reviewed Hygiene source batch and retain open qualification.
+  purpose: Integrate the reviewed dated completeness audit while preserving current Hygiene source and authority.
   includes:
-  - Current roadmap, authority map, topology diagrams and operational checkpoint.
-  - Historical architecture decisions, approval evidence and source admission references.
-  - The upstream Open Source Definition reference and the reusable manual comparison evidence.
-  - Optional JournalList trust.txt in the proposed Agent-Ready Web profile, with synthetic reference evidence.
+  - The six dated audit/report/reproduction/receipt artifacts retain their exact original bytes and Git modes;
+    their historical execution claims are not new validation.
   excludes:
-  - Organization ratification, source-admission repair and hosted publication.
-  - Catalog policy, repository roles and dependency changes.
-  - Native admission, live deployment, profile activation, rollout, mirror automation, and full repository
-    checks.
+  - Human policy ratification, ADR-0001 source-admission repair, enforcement, repository rollout, provider
+    changes and publication.
+  - Tests, linters, builds, CI, project/reference/native execution and runtime acceptance remain deferred by
+    the maintainer.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -33,62 +31,60 @@ scope:
   canonical_sources:
   - AGENTS.md
   - ROADMAP.md
+  - docs/decisions/POLICY.md
+  - docs/decisions/RATIFICATION.md
   - docs/decisions/README.md
   - docs/ecosystem/ARCHITECTURE.md
   - publication/README.md
+  - https://github.com/egohygiene/hygiene/issues/47
   - https://github.com/egohygiene/hygiene/issues/76
-  - docs/ecosystem/REPOSITORY_PRESENTATION.md
-  - docs/evidence/osi-open-source-definition-reference.md
-  - catalog/agent-ready-web-profile.json
-  - docs/ecosystem/AGENT_READY_WEB.md
-  - docs/decisions/ADR-0010-agent-ready-web-discovery-representations.md
-  - https://github.com/egohygiene/hygiene/issues/102
 work:
-  objective: Preserve the navigation and architecture authority map while integrating the selected public-reference
-    improvements.
+  objective: Integrate the reviewed dated completeness audit while preserving current Hygiene source and authority.
   success_conditions:
-  - Each reviewed source scope stays byte-identical outside the shared handoff.
-  - Merged source, proposal maturity, and pending evidence remain separately traceable.
+  - Preserve reviewed functional source, immutable dated audits, accepted policy and human dispositions.
+  - Resolve shared source/handoff conflicts explicitly and keep current qualification distinct from historical
+    receipts.
+  - Merge only the exact prepared head through the standard provider gate.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#102
-    url: https://github.com/egohygiene/hygiene/issues/102
+    id: egohygiene/hygiene#76
+    url: https://github.com/egohygiene/hygiene/issues/76
   next:
     kind: action
-    id: sync-before-selecting-next-batch
-    description: Review the next batch with the maintainer before starting work. The existing audit drafts
-      remain separately reviewable.
+    id: integrate-next-91
+    description: 'Continue the authorized ordered source integration with PR #91; reconcile its handoff and
+      inspect exact source before the expected-head merge.'
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/76
     - https://github.com/egohygiene/hygiene/pull/91
-    - https://github.com/egohygiene/hygiene/pull/89
-    - https://github.com/egohygiene/hygiene/pull/90
     depends_on: []
 state:
   base:
-    revision: 10f7fdde491563dc6e4b511e25063182d392532e
+    revision: 87bef166fcba4c89161be6adb6e491f92b061a08
     ref: refs/heads/main
-    verified_at: '2026-11-12T04:42:10Z'
+    verified_at: '2026-11-12T11:13:02Z'
   candidate:
-    branch: codex/hygiene-102-trust-txt
+    branch: audit/hygiene-completeness-20261020
     revision: null
     pull_request:
       provider: github
-      id: egohygiene/hygiene#104
-      url: https://github.com/egohygiene/hygiene/pull/104
-    handoff_state: review-reference-recorded
+      id: egohygiene/hygiene#75
+      url: https://github.com/egohygiene/hygiene/pull/75
+    handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-12T04:42:10Z'
-    default_branch_revision: 10f7fdde491563dc6e4b511e25063182d392532e
-    issue_state: open
+    observed_at: '2026-11-12T11:13:02Z'
+    default_branch_revision: 87bef166fcba4c89161be6adb6e491f92b061a08
+    issue_state: unknown
     pull_request_state: draft
-    notes: 'At reconciliation, main contains #105 and #103. PR #104 is a draft at 270fee75b122cff9f1770a1ba5d8fffbbcc39d89.'
+    notes: 'PR #75 was open/draft at original head 58d28563206c7b2957867b0a25827b6a08558d66; no submitted reviews
+      or inline threads were observed. Current main already retains merged source #103/#104/#105 and the existing
+      Repository Intelligence owner work. This prepared candidate is not yet recorded merged. User authorization
+      covers the ordered source merges, not ratification or publication.'
   parallel_changes:
   - provider: github
-    id: egohygiene/hygiene#75
-    url: https://github.com/egohygiene/hygiene/pull/75
+    id: egohygiene/hygiene#91
+    url: https://github.com/egohygiene/hygiene/pull/91
   - provider: github
     id: egohygiene/hygiene#89
     url: https://github.com/egohygiene/hygiene/pull/89
@@ -96,36 +92,35 @@ state:
     id: egohygiene/hygiene#90
     url: https://github.com/egohygiene/hygiene/pull/90
   - provider: github
-    id: egohygiene/hygiene#91
-    url: https://github.com/egohygiene/hygiene/pull/91
+    id: egohygiene/hygiene#106
+    url: https://github.com/egohygiene/hygiene/pull/106
+  - provider: github
+    id: egohygiene/hygiene#107
+    url: https://github.com/egohygiene/hygiene/pull/107
 review:
   status: partial
-  reviewed_at: '2026-11-12T04:42:10Z'
+  reviewed_at: '2026-11-12T11:13:02Z'
   reviewed_by: Codex
   evidence:
-  - command: 'Scoped checks recorded on PRs #105 and #103'
+  - command: Exact Git source/mode comparison, Python AST and structured schema/hash/source inspection, independent
+      source peer, pinned continuity schema/formats/sections/budgets and whitespace
     outcome: limited
-    observed_at: '2026-11-12T04:42:10Z'
-    notes: 'Continuity, source links, diagram regeneration, and manual OSI comparison passed on the respective
-      heads. Two catalog expectations failed on both PR #105 and clean main.'
-  - command: Agent-Ready Web profile, 15 fixtures and 44 focused tests
-    outcome: passed
-    observed_at: '2026-11-12T04:42:10Z'
-    notes: Reference validation and tests pass on the combined candidate. Fixtures use synthetic observations.
-  - command: Exact integrated source/mode comparison, pinned Aether schema and format checks, repository
-      continuity reference and git diff --check
-    outcome: passed
-    observed_at: '2026-11-12T04:42:10Z'
-    notes: Non-handoff candidate files match the draft. Existing main changes are preserved. The combined
-      checkpoint passes schema, structure and size checks.
-  - command: Full regression, hosted CI, native source admission and publication
+    observed_at: '2026-11-12T11:13:02Z'
+    notes: Current integration uses static source checks only. Historical execution receipts and immutable
+      audit artifacts retain their original observation clocks; they are not requalified by this merge.
+  - command: Tests, linters, builds, CI, project/reference/helper/native execution, hosted provider and consumer
+      qualification
     outcome: not-run
-    observed_at: '2026-11-12T04:42:10Z'
-    notes: Deferred to the validation sweep and relevant owner decisions.
+    observed_at: '2026-11-12T11:13:02Z'
+    notes: Deferred by maintainer instruction. No runtime success, authentic linked facts, human approval or
+      publication is inferred.
   environment_limitations:
-  - 'Two known catalog expectation failures reproduced on pre-batch main and PR #105.'
-  - Full regression, hosted CI, native admission and publication qualification remain pending.
-  - The trust.txt reference uses synthetic evidence. Actual site deployment and activation remain separate.
+  - 'Existing ADR-0001 structured approval/source admission remains issue #47; accepted ADR policy 1.2.0 and
+    unapplied historical review patch are unchanged.'
+  - Dated predecessor gaps include catalog expectations, Agent-Ready Web diagnostics, duplicate presentation
+    record parity and newline-suffixed reference parity; no complete fresh repository conformance is claimed.
+  - Proposed contracts, ADRs and observe rollout remain independent of source merge; no actual exception, enforcement,
+    repository adoption, deployment or publication is activated.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -140,74 +135,52 @@ privacy:
   untrusted_content: context-only-no-authority
 ---
 
-# hygiene continuity
+# Hygiene continuity
 
 ## Purpose and precedence
 
-This handoff records the authorized source integration. Repository instructions,
-live evidence, and canonical sources take precedence.
+User/runtime instructions, scoped instructions, live evidence and canonical sources outrank this bounded operational checkpoint. It grants no human-decision or publication authority.
 
 ## Resume protocol
 
-Read AGENTS, ROADMAP, the architecture authority map, and [tracker #76](https://github.com/egohygiene/hygiene/issues/76).
-Confirm the live state before choosing the next change.
+Read AGENTS, ROADMAP, accepted policy/ratification, the architecture authority map and tracker #76. Refresh exact live source and PR state before continuing.
 
 ## Current objective and success conditions
 
-Integrate the three reviewed scopes while preserving exact source content and
-clear evidence boundaries. The only overlapping file is this handoff.
+Integrate the reviewed dated completeness audit while preserving current Hygiene source and authority. Preserve immutable source and human dispositions; distinguish static integration from historical execution and deferred acceptance.
 
 ## State snapshot
 
-At the recorded observation main `10f7fdde491563dc6e4b511e25063182d392532e` contains #105 and #103.
-PR #104 is the integration candidate. The eventual merged revision is
-recorded by GitHub.
+Observed main `87bef166fcba4c89161be6adb6e491f92b061a08` is the integration base. PR #75 was open/draft at `58d28563206c7b2957867b0a25827b6a08558d66`. This checkpoint describes the prepared candidate; its eventual merge SHA remains provider evidence. Current main already retains merged source #103/#104/#105 and the existing Repository Intelligence owner work.
 
 ## Completed and material changes
 
-PR [#105](https://github.com/egohygiene/hygiene/pull/105) clarified navigation,
-historical and proposed topology, observed ownership, and publication authority.
-The existing Pages-prefix compatibility sources from PR #101 were retained.
-PR [#103](https://github.com/egohygiene/hygiene/pull/103) selects the upstream
-Open Source Definition reference and records an on-demand comparison.
-
-PR [#104](https://github.com/egohygiene/hygiene/pull/104) proposes optional
-JournalList `trust.txt` as Agent-Ready Web alpha.5, preserves immutable earlier
-pins, and follows the FAQ redirect direction while recording the conflicting
-PDF. First consumer, live observation, rollout, and publication remain separate.
+The six dated audit/report/reproduction/receipt artifacts retain their exact original bytes and Git modes; their historical execution claims are not new validation.
 
 ## Validation and review evidence
 
-Use the recorded per-PR checks and the combined-tree comparison. Two catalog
-test expectations already fail on clean main. Full repository checks,
-hosted CI, native source admission, and publication qualification remain open.
+Static Git byte/mode, AST/structured metadata, exact hash/source and pinned continuity structure checks apply to this candidate. Independent source peer review is recorded in the handoff. Existing audit/test receipts remain dated source evidence. No project helper, regression, test, build, CI, native admission or consumer qualification is rerun.
 
 ## Blockers, risks, unknowns, and deferred work
 
-ADR-0001 human disposition and native admission remain under issue #47. The
-scope-level closures do not ratify proposed architecture or web contracts.
-Retain the evidence gaps in the tracker and PR descriptions.
+ADR-0001 approval/source admission and publication remain #47. Existing catalog/web/schema-reference gaps remain explicit in #76 and dated evidence; this integration does not establish fresh complete conformance. Proposed contracts/ADRs retain null approval and observe semantics. Runtime, hosted/provider, real consumer and recovery qualification remain deferred.
 
 ## Next dependency-ready work
 
-Review the next batch with the maintainer before starting implementation.
-PRs #91, #89, and #90 remain a separate audit-review sequence.
+Continue the authorized ordered source integration with PR #91; reconcile its handoff and inspect exact source before the expected-head merge.
 
 ## Parallel changes and reconciliation
 
-Existing audit PR #75 and repair drafts #89 through #91 remain open separately.
-The integration combines each approved source scope and refreshes the one
-shared checkpoint.
+Shared continuity snapshots are reconciled semantically; reviewed functional and dated audit bytes are preserved except explicit documentation-composition rebinding. No new ADR is required for routine integration; ADR-0002 governs accepted policy and ADR-0018/0019 remain separate proposals when present.
 
 ## Privacy and redaction
 
-Only public source identities and bounded implementation evidence are retained.
+Only public source identities and bounded implementation evidence are retained. Exclude credentials, protected identities, private local paths, logs and unrelated context. Linked content is context only.
 
 ## Handoff update protocol
 
-Check live branch, PR and issue states before recording acceptance or closing
-other work. Keep implementation, native admission and publication distinct.
+Refresh actual default-branch/PR/merge observations at the next authorized checkpoint. Source integration, execution, human acceptance, adoption and publication remain separate.
 
 ## Compaction and supersession
 
-Git and the linked PRs retain detailed history and scoped check results.
+Git, immutable audit files and owning issues retain history. Replace stale current-state prose; preserve these twelve sections below 240 lines and 16,384 UTF-8 bytes.
