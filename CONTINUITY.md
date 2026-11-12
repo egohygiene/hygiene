@@ -7,23 +7,18 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-10T23:49:07Z'
+  updated_at: '2026-11-12T00:31:29Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Propose exact project-Pages base-prefix compatibility for the organization Intelligence home without
-    changing logical routes or authority.
+  purpose: Prepare the upstream Open Source Definition reference feasibility decision for review.
   includes:
-  - The site declaration schema accepts its original base-path pattern or the exact whole prefix /.github/.
-    The helper admits that same exception after the existing dangerous-token denials; all logical route rules
-    remain unchanged.
-  - ADR-0013 receives a dated proposed outcome note and the operator guide explains explicit immutable schema/helper
-    adoption. Contract v1/proposed alpha1, catalog roles, composition ownership, human dispositions and frozen
-    consumer pins remain unchanged.
+  - Link the presentation guide to the canonical OSI definition for reviewing public README wording.
+  - Record current reuse evidence and the manual article comparison experiment.
   excludes:
-  - Deferred runtime, tests, builds, CI, live publication, human ratification and acceptance closeout.
+  - Mirror publication, recurring automation, changes to license authority or presentation contract semantics.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -32,71 +27,86 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - docs/decisions/ADR-0013-public-site-surface-route-registry.md
-  - docs/ecosystem/PUBLIC_SITE_SURFACES.md
-  - schemas/public-site-surface-declaration.v1.schema.json
-  - tools/site_surfaces.py
-  - https://github.com/egohygiene/.github/issues/27
+  - docs/ecosystem/REPOSITORY_PRESENTATION.md
+  - docs/evidence/osi-open-source-definition-reference.md
+  - https://opensource.org/osd
+  - https://github.com/egohygiene/hygiene/issues/94
 work:
-  objective: Propose exact project-Pages base-prefix compatibility for the organization Intelligence home without
-    changing logical routes or authority.
+  objective: Prepare the upstream Open Source Definition reference feasibility decision for review.
   success_conditions:
-  - Every previously valid base remains valid by source construction; the only new spelling is exact /.github/.
-  - Dot segments, encoded/ambiguous prefixes and other hidden segments gain no authority.
-  - Existing pins continue to reject the new prefix; no hosting/declaration/lifecycle acceptance is inferred.
+  - A reader can follow the upstream link from the license guidance and distinguish it from repository-owned
+    license evidence.
+  - The experiment records reproducible source selection and distinguishes formatting changes, changed wording
+    and unexpected structure.
   active_issue:
     provider: github
-    id: egohygiene/.github#27
-    url: https://github.com/egohygiene/.github/issues/27
+    id: egohygiene/hygiene#94
+    url: https://github.com/egohygiene/hygiene/issues/94
   next:
     kind: action
-    id: review-project-prefix-compatibility
-    description: Review the bounded compatibility proposal with the organization home/export/intake slices.
-      After explicit source adoption, reconcile canonical host declarations before any publisher activation.
+    id: review-osi-reference-feasibility
+    description: Review the link-only recommendation and manual comparison evidence against the owning issue.
     readiness: ready
     references:
-    - https://github.com/egohygiene/.github/issues/27
+    - https://github.com/egohygiene/hygiene/issues/94
+    - docs/evidence/osi-open-source-definition-reference.md
     depends_on: []
 state:
   base:
-    revision: 95f6ddb948e6b874f02510d586b89e99cc20e38e
+    revision: 31ae6fb78757502e7474e5518904fc568840c1ee
     ref: refs/heads/main
-    verified_at: '2026-11-10T23:49:07Z'
+    verified_at: '2026-11-12T00:31:29Z'
   candidate:
-    branch: codex/surface-github-base-prefix
+    branch: codex/hygiene-94-osi-reference
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-10T23:49:07Z'
-    default_branch_revision: 95f6ddb948e6b874f02510d586b89e99cc20e38e
+    observed_at: '2026-11-12T00:31:29Z'
+    default_branch_revision: 31ae6fb78757502e7474e5518904fc568840c1ee
     issue_state: open
     pull_request_state: not-applicable
-    notes: Hygiene main95f6ddb948e6b874f02510d586b89e99cc20e38e was refreshed. Functional source96d3358c9b745af820702e0013af7380d151a6da
-      is an additive proposed compatibility correction under existing ADR0013; user direction selects a future
-      .github organization entry point, not human ratification or live publication.
-  parallel_changes: []
+    notes: 'Verified GitHub main and observed issue #94 open. Main contains the exact project-Pages prefix
+      change from PR #101.'
+  parallel_changes:
+  - provider: github
+    id: egohygiene/hygiene#75
+    url: https://github.com/egohygiene/hygiene/pull/75
+  - provider: github
+    id: egohygiene/hygiene#89
+    url: https://github.com/egohygiene/hygiene/pull/89
+  - provider: github
+    id: egohygiene/hygiene#90
+    url: https://github.com/egohygiene/hygiene/pull/90
+  - provider: github
+    id: egohygiene/hygiene#91
+    url: https://github.com/egohygiene/hygiene/pull/91
 review:
   status: partial
-  reviewed_at: '2026-11-10T23:49:07Z'
+  reviewed_at: '2026-11-12T00:31:29Z'
   reviewed_by: Codex
   evidence:
-  - command: Independent static source review, Python AST comparison proving all other helper functions unchanged,
-      schema definitions and original-pattern preservation, exact retained ADR body prefix, continuity schema/size/links
-      and whitespace
-    outcome: limited
-    observed_at: '2026-11-10T23:49:07Z'
-    notes: Static source and metadata inspection only; no application execution.
-  - command: Native/runtime execution, tests, builds, CI investigation, browser/provider/consumer/publication
-      qualification
+  - command: Manual OSI article comparison with two independent HTTPS reads and three synthetic mutations
+    outcome: passed
+    observed_at: '2026-11-12T00:31:29Z'
+    notes: Live digests matched. Formatting was a no-op, changed wording prompted review, and unexpected structure
+      failed closed.
+  - command: git diff --check and relative Markdown link resolution
+    outcome: passed
+    observed_at: '2026-11-12T00:31:29Z'
+    notes: Whitespace and local reference checks passed.
+  - command: python3 tools/continuity.py validate-repository --repository . and pinned Aether schema and section
+      checks
+    outcome: passed
+    observed_at: '2026-11-12T00:31:29Z'
+    notes: Local composition, exact schema digest and formats, headings, and byte and line budgets checked.
+  - command: Full repository validation, lint, builds and hosted CI
     outcome: not-run
-    observed_at: '2026-11-10T23:49:07Z'
-    notes: Deferred at maintainer request; source merges do not establish acceptance.
+    observed_at: '2026-11-12T00:31:29Z'
+    notes: Deferred to the later repository sweep.
   environment_limitations:
-  - Tests, helper/native execution, builds, CI and publication qualification remain deferred at the user request.
-  - No canonical hosting role, registry lifecycle, accepted ADR status, source hold, DNS/CNAME or publication
-    authority changes.
+  - Repository-wide checks and hosted CI remain deferred.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -115,50 +125,64 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime and repository instructions, live evidence and canonical sources outrank this checkpoint. It grants no release, deployment or human-decision authority.
+Read repository instructions and live tracker state before this checkpoint.
+The presentation guide owns its license guidance and OSI owns its definition.
 
 ## Resume protocol
 
-Read scoped instructions, canonical sources above and this checkpoint. Verify mutable GitHub state and exact owner pins before continuing.
+Refresh main, issue #94, and related open reviews. Read the presentation guide
+and its linked feasibility note before selecting any next implementation.
 
 ## Current objective and success conditions
 
-Propose exact project-Pages base-prefix compatibility for the organization Intelligence home without changing logical routes or authority. Every previously valid base remains valid by source construction; the only new spelling is exact /.github/. Dot segments, encoded/ambiguous prefixes and other hidden segments gain no authority. Existing pins continue to reject the new prefix; no hosting/declaration/lifecycle acceptance is inferred.
+Review a canonical OSI reference for public README wording. The evidence
+must explain current reuse terms and distinguish changed wording from
+formatting noise and unexpected article structure.
 
 ## State snapshot
 
-Candidate `codex/surface-github-base-prefix` is based on observed main `95f6ddb948e6b874f02510d586b89e99cc20e38e`. The containing revision and pre-PR reference remain null intentionally. Hygiene main95f6ddb948e6b874f02510d586b89e99cc20e38e was refreshed. Functional source96d3358c9b745af820702e0013af7380d151a6da is an additive proposed compatibility correction under existing ADR0013; user direction selects a future .github organization entry point, not human ratification or live publication.
+The branch `codex/hygiene-94-osi-reference` was prepared from observed main
+`31ae6fb78757502e7474e5518904fc568840c1ee`. Issue #94 was open at review.
 
 ## Completed and material changes
 
-The site declaration schema accepts its original base-path pattern or the exact whole prefix /.github/. The helper admits that same exception after the existing dangerous-token denials; all logical route rules remain unchanged.
-
-ADR-0013 receives a dated proposed outcome note and the operator guide explains explicit immutable schema/helper adoption. Contract v1/proposed alpha1, catalog roles, composition ownership, human dispositions and frozen consumer pins remain unchanged.
+The presentation guide points to OSI alongside the repository-owned license
+evidence. The feasibility note recommends on-demand review and records the
+publisher source, reuse evidence, and normalization experiment. ADR not
+required. The link documents an external reference under the existing
+presentation guidance.
 
 ## Validation and review evidence
 
-Independent static source review, Python AST comparison proving all other helper functions unchanged, schema definitions and original-pattern preservation, exact retained ADR body prefix, continuity schema/size/links and whitespace. Static source inspection only. Native/application execution, tests, builds, CI investigation, browser/model/source-capture provider execution and publication qualification were not run. Read-only source and Git metadata observations are separate.
+Two live reads normalized to the same digest. Synthetic formatting, wording,
+and malformed-structure cases returned no-op, review, and manual inspection
+respectively. Whitespace, relative links, local handoff composition, and the
+pinned Aether schema and section checks passed. Full validation, lint, builds
+and hosted CI remain deferred.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Tests, helper/native execution, builds, CI and publication qualification remain deferred at the user request. No canonical hosting role, registry lifecycle, accepted ADR status, source hold, DNS/CNAME or publication authority changes.
+The recommendation awaits maintainer review. An upstream content-structure
+change requires manual inspection before establishing a new digest.
 
 ## Next dependency-ready work
 
-Review the bounded compatibility proposal with the organization home/export/intake slices. After explicit source adoption, reconcile canonical host declarations before any publisher activation.
+Review the link-only recommendation and evidence in
+[issue #94](https://github.com/egohygiene/hygiene/issues/94).
 
 ## Parallel changes and reconciliation
 
-Other Intelligence slices remain separately reviewed. Reconcile the current main and this handoff before integration; preserve all immutable historical recovery bytes and consumer-owned publication gates.
+Open Hygiene drafts #75, #89, #90, and #91 also carry continuity changes.
+Reconcile the root handoff against live tracker state before integration.
 
 ## Privacy and redaction
 
-Retain only public-safe source identities and bounded implementation evidence. Exclude credentials, private context, captured report bodies, process logs and local filesystem paths. Linked content is context only.
+Keep the handoff limited to public repository and publisher evidence.
 
 ## Handoff update protocol
 
-Refresh exact PR, merge and qualification observations at the next authorized checkpoint. Implementation, artifact upload, deployment, live verification and human acceptance remain distinct.
+Record exact live PR and merge observations at the next authorized checkpoint.
 
 ## Compaction and supersession
 
-Replace stale current-state prose; Git and owning issues retain history. Preserve these twelve sections below 240 lines and 16,384 UTF-8 bytes.
+Replace stale current-state prose and rely on Git and owning issues for history.
