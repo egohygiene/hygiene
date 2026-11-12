@@ -160,7 +160,9 @@ resolution, stable diagnostics and levels, narrow non-passing exemptions,
 version- and revision-bound site evidence, explicit upgrade behavior, and
 precise consumer handoffs. The separate
 `agent-ready-web-conformance.v1.schema.json` describes whole-profile evidence;
-five explicitly synthetic fixtures cover every site class. The profile remains
+five explicitly synthetic fixtures cover every site class. Proposed alpha.5 adds
+the optional JournalList `trust-txt` discovery mechanism without changing
+existing mechanism meanings or consumer pins. The profile remains
 proposed, so its pins support review and compatibility testing but do not claim
 release, production eligibility, adoption, publication, monitoring, or
 enforcement.

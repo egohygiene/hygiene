@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-12T04:41:14Z'
+  updated_at: '2026-11-12T04:42:10Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -18,6 +18,7 @@ scope:
   - Current roadmap, authority map, topology diagrams and operational checkpoint.
   - Historical architecture decisions, approval evidence and source admission references.
   - The upstream Open Source Definition reference and the reusable manual comparison evidence.
+  - Optional JournalList trust.txt in the proposed Agent-Ready Web profile, with synthetic reference evidence.
   excludes:
   - Organization ratification, source-admission repair and hosted publication.
   - Catalog policy, repository roles and dependency changes.
@@ -38,6 +39,10 @@ scope:
   - https://github.com/egohygiene/hygiene/issues/76
   - docs/ecosystem/REPOSITORY_PRESENTATION.md
   - docs/evidence/osi-open-source-definition-reference.md
+  - catalog/agent-ready-web-profile.json
+  - docs/ecosystem/AGENT_READY_WEB.md
+  - docs/decisions/ADR-0010-agent-ready-web-discovery-representations.md
+  - https://github.com/egohygiene/hygiene/issues/102
 work:
   objective: Preserve the navigation and architecture authority map while integrating the selected public-reference
     improvements.
@@ -46,8 +51,8 @@ work:
   - Merged source, proposal maturity, and pending evidence remain separately traceable.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#94
-    url: https://github.com/egohygiene/hygiene/issues/94
+    id: egohygiene/hygiene#102
+    url: https://github.com/egohygiene/hygiene/issues/102
   next:
     kind: action
     id: sync-before-selecting-next-batch
@@ -62,24 +67,24 @@ work:
     depends_on: []
 state:
   base:
-    revision: d599e0999e70acbb356a2293fbcdd8259d5c654c
+    revision: 10f7fdde491563dc6e4b511e25063182d392532e
     ref: refs/heads/main
-    verified_at: '2026-11-12T04:41:14Z'
+    verified_at: '2026-11-12T04:42:10Z'
   candidate:
-    branch: codex/hygiene-94-osi-reference
+    branch: codex/hygiene-102-trust-txt
     revision: null
     pull_request:
       provider: github
-      id: egohygiene/hygiene#103
-      url: https://github.com/egohygiene/hygiene/pull/103
+      id: egohygiene/hygiene#104
+      url: https://github.com/egohygiene/hygiene/pull/104
     handoff_state: review-reference-recorded
   live:
     status: verified
-    observed_at: '2026-11-12T04:41:14Z'
-    default_branch_revision: d599e0999e70acbb356a2293fbcdd8259d5c654c
+    observed_at: '2026-11-12T04:42:10Z'
+    default_branch_revision: 10f7fdde491563dc6e4b511e25063182d392532e
     issue_state: open
     pull_request_state: draft
-    notes: 'At reconciliation, main contains #105. PR #103 is a draft at fae31fbb803c3ad0d8c30500febbd53219739f49.'
+    notes: 'At reconciliation, main contains #105 and #103. PR #104 is a draft at 270fee75b122cff9f1770a1ba5d8fffbbcc39d89.'
   parallel_changes:
   - provider: github
     id: egohygiene/hygiene#75
@@ -93,32 +98,34 @@ state:
   - provider: github
     id: egohygiene/hygiene#91
     url: https://github.com/egohygiene/hygiene/pull/91
-  - provider: github
-    id: egohygiene/hygiene#104
-    url: https://github.com/egohygiene/hygiene/pull/104
 review:
   status: partial
-  reviewed_at: '2026-11-12T04:41:14Z'
+  reviewed_at: '2026-11-12T04:42:10Z'
   reviewed_by: Codex
   evidence:
   - command: 'Scoped checks recorded on PRs #105 and #103'
     outcome: limited
-    observed_at: '2026-11-12T04:41:14Z'
+    observed_at: '2026-11-12T04:42:10Z'
     notes: 'Continuity, source links, diagram regeneration, and manual OSI comparison passed on the respective
       heads. Two catalog expectations failed on both PR #105 and clean main.'
+  - command: Agent-Ready Web profile, 15 fixtures and 44 focused tests
+    outcome: passed
+    observed_at: '2026-11-12T04:42:10Z'
+    notes: Reference validation and tests pass on the combined candidate. Fixtures use synthetic observations.
   - command: Exact integrated source/mode comparison, pinned Aether schema and format checks, repository
       continuity reference and git diff --check
     outcome: passed
-    observed_at: '2026-11-12T04:41:14Z'
+    observed_at: '2026-11-12T04:42:10Z'
     notes: Non-handoff candidate files match the draft. Existing main changes are preserved. The combined
       checkpoint passes schema, structure and size checks.
   - command: Full regression, hosted CI, native source admission and publication
     outcome: not-run
-    observed_at: '2026-11-12T04:41:14Z'
+    observed_at: '2026-11-12T04:42:10Z'
     notes: Deferred to the validation sweep and relevant owner decisions.
   environment_limitations:
   - 'Two known catalog expectation failures reproduced on pre-batch main and PR #105.'
   - Full regression, hosted CI, native admission and publication qualification remain pending.
+  - The trust.txt reference uses synthetic evidence. Actual site deployment and activation remain separate.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -152,8 +159,8 @@ clear evidence boundaries. The only overlapping file is this handoff.
 
 ## State snapshot
 
-At the recorded observation main `d599e0999e70acbb356a2293fbcdd8259d5c654c` contains #105.
-PR #103 is the integration candidate. The eventual merged revision is
+At the recorded observation main `10f7fdde491563dc6e4b511e25063182d392532e` contains #105 and #103.
+PR #104 is the integration candidate. The eventual merged revision is
 recorded by GitHub.
 
 ## Completed and material changes
@@ -164,7 +171,10 @@ The existing Pages-prefix compatibility sources from PR #101 were retained.
 PR [#103](https://github.com/egohygiene/hygiene/pull/103) selects the upstream
 Open Source Definition reference and records an on-demand comparison.
 
-The JournalList proposal is a separate review in PR [#104](https://github.com/egohygiene/hygiene/pull/104).
+PR [#104](https://github.com/egohygiene/hygiene/pull/104) proposes optional
+JournalList `trust.txt` as Agent-Ready Web alpha.5, preserves immutable earlier
+pins, and follows the FAQ redirect direction while recording the conflicting
+PDF. First consumer, live observation, rollout, and publication remain separate.
 
 ## Validation and review evidence
 
