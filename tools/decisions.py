@@ -244,6 +244,8 @@ def validate_decision(document: dict[str, Any]) -> list[str]:
         errors.append(f"E_SCHEMA schema must be {DECISION_SCHEMA}")
     if not isinstance(document.get("id"), str) or not ADR_ID.fullmatch(document["id"]):
         errors.append("E_ID id must match four-digit ADR-NNNN")
+    elif document["id"] == "ADR-0000":
+        errors.append("E_ID id must be between ADR-0001 and ADR-9999")
     title = document.get("title")
     if not isinstance(title, str) or not 1 <= len(title) <= 160:
         errors.append("E_TITLE title must contain 1-160 characters")
@@ -319,10 +321,21 @@ def validate_decision(document: dict[str, Any]) -> list[str]:
     if isinstance(superseded_by, list):
         if status == "superseded" and not superseded_by:
             errors.append("E_SUPERSESSION superseded decisions require superseded_by")
-        if status in {"proposed", "rejected", "deprecated"} and superseded_by:
+        if status in {"proposed", "accepted", "rejected", "deprecated"} and superseded_by:
             errors.append(f"E_SUPERSESSION {status} decisions cannot set superseded_by")
-    if implementation_status == "verified" and isinstance(evidence, list) and not evidence:
-        errors.append("E_VERIFICATION verified decisions require evidence")
+    if implementation_status == "verified" and not (
+        isinstance(evidence, list)
+        and any(
+            isinstance(item, dict)
+            and item.get("type") == "validation"
+            and isinstance(item.get("description"), str)
+            and item["description"].strip()
+            for item in evidence
+        )
+    ):
+        errors.append(
+            "E_VERIFICATION verified decisions require named evidence of type validation"
+        )
 
     extensions = document.get("extensions", {})
     if not isinstance(extensions, dict):
@@ -364,7 +377,11 @@ def validate_decision_set(documents: list[dict[str, Any]]) -> list[str]:
             if not isinstance(references, list):
                 continue
             for reference in references:
-                if isinstance(reference, str) and ADR_ID.fullmatch(reference):
+                if (
+                    isinstance(reference, str)
+                    and "#" not in reference
+                    and DECISION_REFERENCE.fullmatch(reference)
+                ):
                     if reference == decision_id:
                         errors.append(
                             f"E_SELF_REFERENCE {decision_id}.{field} references itself"
@@ -375,8 +392,13 @@ def validate_decision_set(documents: list[dict[str, Any]]) -> list[str]:
                         )
 
         supersedes = document.get("supersedes")
-        if isinstance(supersedes, list):
+        if (
+            document.get("status") in {"accepted", "superseded"}
+            and isinstance(supersedes, list)
+        ):
             for predecessor_id in supersedes:
+                if not isinstance(predecessor_id, str):
+                    continue
                 predecessor = by_id.get(predecessor_id)
                 if predecessor is None:
                     continue
@@ -390,6 +412,8 @@ def validate_decision_set(documents: list[dict[str, Any]]) -> list[str]:
         superseded_by = document.get("superseded_by")
         if isinstance(superseded_by, list):
             for replacement_id in superseded_by:
+                if not isinstance(replacement_id, str):
+                    continue
                 replacement = by_id.get(replacement_id)
                 if replacement is None:
                     continue
@@ -405,14 +429,18 @@ def validate_decision_set(documents: list[dict[str, Any]]) -> list[str]:
                         "is not linked through supersedes"
                     )
 
-    graph: dict[str, list[str]] = {
-        decision_id: [
-            reference
-            for reference in document.get("supersedes", [])
-            if isinstance(reference, str) and reference in by_id
-        ]
-        for decision_id, document in by_id.items()
-    }
+    graph: dict[str, list[str]] = {}
+    for decision_id, document in by_id.items():
+        references = document.get("supersedes")
+        graph[decision_id] = (
+            [
+                reference
+                for reference in references
+                if isinstance(reference, str) and reference in by_id
+            ]
+            if isinstance(references, list)
+            else []
+        )
     visiting: set[str] = set()
     visited: set[str] = set()
 

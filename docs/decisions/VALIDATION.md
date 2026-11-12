@@ -17,11 +17,69 @@ python3 tools/decisions.py policy-reference \
   --input fixtures/architecture-decisions/policy-reference.valid.json
 ```
 
-Organization-wide Markdown validation, JSON generation, GitHub activity
-collection, routing, and dashboards remain unimplemented. Egolint owns the
-production semantic rules; Relay owns reusable CI and generation mechanics.
-Until those consumers ship against an approved pin, review is manual and
-repository-local CI remains unchanged.
+Egolint owns production semantic rules; Relay owns reusable CI and generation
+mechanics. A decoded-reference result establishes none of the separate Markdown,
+Git-source, collection, publication or deployment outcomes. The complete
+[local regression gate](../CONTRACT_VALIDATION.md) runs this helper's suite and
+selected fixtures; native source admission remains a distinct result.
+
+## Reference alignment and pinned compatibility — 2026-10-30
+
+[Issue #82](https://github.com/egohygiene/hygiene/issues/82) aligns the current
+reference/schema with already selected policy v1.2.0, sections 4, 9 and 10:
+
+- A proposed replacement may declare `supersedes` while the predecessor retains
+  its status/body and empty `superseded_by`. A rejected or deprecated proposal
+  may retain its declared intent without becoming effective. No old record is
+  edited to make a pending or declined proposal pass.
+- Effective accepted/superseded replacement declarations retain reciprocal
+  lineage and disposition checks. A predecessor with an effective replacement
+  must be `superseded`; a proposed, rejected or deprecated record cannot serve
+  as the effective replacement. Self-links and cycles among supplied local
+  supersession declarations remain invalid, including pending declarations.
+- `implementation_status: verified` requires a non-blank named evidence
+  descriptor of `type: validation`, with the ordinary URL/description shape.
+  Approval, implementation or workflow-run descriptors alone do not satisfy
+  this declaration. The helper does not visit the URL, execute its claimed
+  command, authenticate an approving person or establish that a result passed.
+- Canonical IDs range from `ADR-0001` through `ADR-9999`. `ADR-0000` is invalid.
+  Three-/four-digit reference strings keep the accepted historical grammar and
+  exact identity lookup. Both widths receive attributable dangling/self-link
+  diagnostics; `ADR-006` is never silently treated as `ADR-0006`.
+- Globally qualified references are syntax-checked only by this decoded helper;
+  it has no repository/index selection or external resolver. Explicit trusted
+  pinned indexes and native consumer validation remain separate prerequisites
+  for cross-repository resolution.
+
+Exercise the pending pair and structural validation descriptor directly:
+
+```sh
+python3 tools/decisions.py decision-set \
+  --input fixtures/architecture-decisions/decision.pending-predecessor.valid.json \
+  --input fixtures/architecture-decisions/decision.pending-replacement.valid.json
+python3 tools/decisions.py decision \
+  --input fixtures/architecture-decisions/decision.verified.valid.json
+```
+
+The immutable Aether authoring guide at
+[`dc8a16851f452763ef4f7fbe4bf057d4500b1921`](https://github.com/egohygiene/aether/blob/dc8a16851f452763ef4f7fbe4bf057d4500b1921/library/organization/skills/architecture/create-decisions-document/references/decision-record-guide.md)
+still correctly warns that the older Hygiene helper at its selected policy pin
+requires a premature backlink. That historical helper remains unchanged; this
+candidate removes the incompatibility in Hygiene's current reference. It does
+not edit the Aether warning, repin a consumer or claim native replay. Exact
+selected EgoLint `d917ea524962639494e5bb4b3196192238ba57d9` execution was
+unavailable because no cached binary was proven bound to that source; a different
+cached runtime was not substituted.
+
+The [synthetic historical fixtures](../../fixtures/architecture-decisions/README.md)
+retain exact three-digit IDs for the explicitly older policy/helper pin. The
+current canonical mode rejects those record IDs while still resolving exact
+locally supplied historical references. A separate, explicit synthetic padding
+map demonstrates the reviewed-migration shape without renaming actual records.
+Current helper/schema changes do not alter any immutable consumer pin or supply
+new policy ratification, ADR disposition, original ADR-0001 approval or source
+admission. Per-record schema validation cannot establish cross-record lineage;
+run `decision-set` as well.
 
 ## Phase 1 review gates
 
@@ -35,7 +93,7 @@ repository-local CI remains unchanged.
       and full source commit.
 - [x] Local extensions are namespaced and cannot override global semantics.
 - [x] Decision status remains independent from implementation status.
-- [x] Supersession is bidirectional and cycle-free by policy.
+- [x] Effective supersession is bidirectional; pending proposals preserve old authority. Local declared supersession remains cycle-free.
 - [x] Exceptions are explicit, scoped, owned, and approval-gated.
 - [x] Legacy IDs and rationale can be preserved without making them validate as
       new records.
@@ -71,7 +129,8 @@ Egolint rules, orchestrated by Relay in CI, execute these deterministic stages:
    canonical record, including rejected, deprecated, and superseded history.
 9. Resolve local and cross-repository decision references against pinned input
    indexes.
-10. Validate both directions of supersession and reject self-links and cycles.
+10. Preserve pending proposal intent without an effective backlink; validate both
+    directions of effective supersession and reject self-links and cycles.
 11. Require durable human disposition metadata for every non-proposed status
     without interpreting an automated merge as human authority.
 12. Reject prohibited overrides, unregistered extension keys, weakening local
@@ -140,10 +199,13 @@ The first static UI supports:
 ## Compatibility fixtures and downstream fixture requirements
 
 Hygiene's `fixtures/architecture-decisions/` covers every decision lifecycle,
-including a bidirectional accepted/superseded pair, a proposed ADR with a
-namespaced extension, durable human disposition evidence, false acceptance, a
-valid inherited policy pin, and an invalid moving/wrong-owner pin. These
-fixtures define minimum cross-consumer compatibility.
+including a bidirectional accepted/superseded pair, a pending accepted/proposed
+pair, named structural validation evidence, approval-only verified rejection,
+canonical zero-ID rejection, a proposed ADR with a namespaced extension,
+declared disposition evidence, false acceptance, a valid inherited policy pin
+and an invalid moving/wrong-owner pin. Separate historical fixtures preserve
+older identities. These synthetic records define minimum cross-consumer
+compatibility; their metadata is not live approval or execution evidence.
 
 Egolint and Relay must extend the corpus to cover:
 
