@@ -146,6 +146,13 @@ incubating to active or reopen an archived repository.
 A template may group slots into a clean visual hierarchy. It must not delete a
 required semantic slot because another badge or image appears to imply it.
 
+For public README wording about open source software, the
+[Open Source Initiative's definition](https://opensource.org/osd) is an
+external reference. The repository's own license and notices supply the
+evidence for its license claims. See the
+[reference feasibility review](../evidence/osi-open-source-definition-reference.md)
+for the source, reuse terms, and manual comparison experiment.
+
 ## README composition contract
 
 Holon may create a new README projection and Pace may propose bounded updates

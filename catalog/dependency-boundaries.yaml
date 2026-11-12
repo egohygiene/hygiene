@@ -299,7 +299,7 @@
         "egohygiene/beacon",
         "egohygiene/egohygiene",
         "egohygiene/store",
-        "egohygiene/website"
+        "egohygiene/egohygiene.io"
       ],
       "capability": "design tokens, brand assets, voice, and metadata packages",
       "interfaces": [
@@ -314,7 +314,7 @@
       "id": "RELATIONSHIP-017",
       "producer": "egohygiene/store",
       "consumers": [
-        "egohygiene/website"
+        "egohygiene/egohygiene.io"
       ],
       "capability": "route, deployment, analytics, and commerce integration",
       "interfaces": [
@@ -485,7 +485,7 @@
         "egohygiene/pace",
         "egohygiene/relay",
         "egohygiene/renderflow",
-        "egohygiene/website"
+        "egohygiene/egohygiene.io"
       ],
       "capability": "proposed public-site surface registry and declaration contracts, route profiles, base-path resolution, applicability and state semantics, ownership and privacy boundaries, immutable evidence, compatibility, and bounded consumer handoffs",
       "interfaces": [
@@ -495,6 +495,37 @@
       "contract": null,
       "contract_status": "required",
       "pinning": "immutable-or-versioned"
+    },
+    {
+      "id": "RELATIONSHIP-028",
+      "producer": "egohygiene/holon",
+      "consumers": [
+        "egohygiene/antidote"
+      ],
+      "capability": "immutable site-suite materialization and public provenance consumed by the repository-owned Antidote publication build; final routes and deployment remain Antidote-owned",
+      "interfaces": [
+        "package",
+        "schema",
+        "generated-projection"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "immutable"
+    },
+    {
+      "id": "RELATIONSHIP-029",
+      "producer": "egohygiene/beacon",
+      "consumers": [
+        "egohygiene/antidote"
+      ],
+      "capability": "optional producer-owned publication profile, inspection and packaging adapter; native Antidote builds remain standalone and no publication authority is transferred",
+      "interfaces": [
+        "package",
+        "schema"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "immutable"
     }
   ],
   "forbidden_dependencies": [

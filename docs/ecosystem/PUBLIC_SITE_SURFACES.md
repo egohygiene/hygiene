@@ -48,10 +48,37 @@ a publication claim.
 GitHub project Pages, product mounts, and versioned documentation. The final
 canonical URL is `origin + base_path + selected profile route`.
 
+Origin and external-evidence syntax share the reference checker's
+[HTTPS rules](AGENT_READY_WEB.md#evidence-envelope): optional decimal ports are
+1–65535, IPv6 literals are bracketed and unscoped, and userinfo, empty ports,
+raw whitespace/control characters and backslashes are rejected. Origins allow
+an optional root slash but no query or fragment delimiter. This is offline
+syntax validation; it does not fetch a URL or establish a live-site claim.
+
 For example, origin `https://docs.example.invalid`, base path
 `/synthetic-docs/`, and logical route `/docs/` resolve to
 `https://docs.example.invalid/synthetic-docs/docs/`. The subject repository is
 `site.id`; `site.publication_repository` may be different for central hosting.
+
+The exact base path `/.github/` is also admitted for the `.github` repository's
+literal project-Pages mount. This exception applies only to that complete
+deployment prefix: it does not admit arbitrary hidden segments, `/.git/`,
+`/.github/nested/`, `/nested/.github/`, `.` or `..` segments, encoded paths,
+backslashes or empty segments. Ordinary directory mounts retain their existing
+rules. Logical surface routes and aliases retain their separate validation;
+the exception cannot create a hidden surface route or select a route profile.
+
+This is an additive admission correction under the existing project-Pages
+design, retaining proposed contract `1.0.0-alpha.1` and its v1 shape. Consumers
+must select an immutable helper/schema revision containing the allowance and
+its exact digests before declaring this new prefix. Older immutable selections
+remain unchanged and reject it; their compatibility is not upgraded by this
+source change. Registry identities, versions, complete-coverage requirements,
+ownership, privacy and publication-evidence semantics are preserved.
+
+Admitting a mount does not enable Pages, choose an organization hosting owner,
+approve an architecture proposal or publish a site. In particular it does not
+reconcile the existing organization-hosting role or replace the public roster.
 
 Directory routes end in `/`; file endpoints do not. Routes are lowercase,
 absolute, unencoded paths without query strings, fragments, wildcards, empty

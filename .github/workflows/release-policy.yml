@@ -18,8 +18,19 @@ jobs:
     steps:
       - name: Check out reviewed default-branch revision
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Acquire the exact selected Aether source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: egohygiene/aether
+          ref: 8a2a3d08f3aa9da3847bd5277843506ab855192e
+          path: .cache/release/aether
+          persist-credentials: false
+      - name: Verify selected owner source before installing its runtime
+        run: python3 "tools/releases.py" verify-owner --aether-source ".cache/release/aether"
+      - name: Install the selected owner's pinned validation dependencies
+        run: python3 -m pip install --disable-pip-version-check --requirement ".cache/release/aether/requirements-dev.lock"
       - name: Validate the local baseline declaration
-        run: python3 "tools/releases.py" validate-declaration --repository "." --format "json"
+        run: python3 "tools/releases.py" validate-declaration --repository "." --aether-source ".cache/release/aether" --format "json"
       - name: Confirm manual handoff
         env:
           RELEASE_TAG: ${{ inputs.release_tag }}

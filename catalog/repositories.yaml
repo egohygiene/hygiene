@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "architecture_release": "architecture-v0.1.0",
-  "observed_at": "2026-08-21",
+  "observed_at": "2026-11-09",
   "organization": "egohygiene",
   "canonical_repository": "hygiene",
   "repositories": [
@@ -27,7 +27,20 @@
       "maturity": "light-foundation",
       "source_url": "https://github.com/egohygiene/.github",
       "consumes": [],
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1196401336,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/.github"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Reduce to org-facing defaults; delegate automation to Relay",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "aether",
@@ -55,7 +68,20 @@
       "maturity": "active",
       "source_url": "https://github.com/egohygiene/aether",
       "consumes": [],
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1315637692,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/aether"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Curate staged AI assets with provenance and lifecycle state",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "holon",
@@ -80,7 +106,20 @@
       "lifecycle": "seed",
       "maturity": "seed",
       "source_url": "https://github.com/egohygiene/holon",
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1315637967,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/holon"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Define one repository-class schema and generate a disposable fixture",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "hygiene",
@@ -114,7 +153,20 @@
       "consumes": [
         "aether continuity artifacts"
       ],
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1315637988,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/hygiene"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Import and approve this architecture package",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "observatory",
@@ -145,7 +197,20 @@
       "lifecycle": "seed",
       "maturity": "seed",
       "source_url": "https://github.com/egohygiene/observatory",
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1325309565,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/observatory"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Ingest the repository catalog and Relay/Egolint evidence",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "pace",
@@ -177,7 +242,20 @@
       "lifecycle": "seed",
       "maturity": "seed",
       "source_url": "https://github.com/egohygiene/pace",
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1315637735,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/pace"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Read Hygiene catalog and produce a dry-run projection diff",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "sanctuary",
@@ -208,7 +286,20 @@
       "lifecycle": "incubating",
       "maturity": "provisional-contract",
       "source_url": "https://github.com/egohygiene/sanctuary",
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1341342928,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/sanctuary"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Prove one real incubation without broadening the local lifecycle into organization policy",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "egolint",
@@ -236,7 +327,20 @@
       "maturity": "early-implementation",
       "source_url": "https://github.com/egohygiene/egolint",
       "consumes": [],
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1315144197,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/egolint"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Make the CLI standalone and invoke it from Relay",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "empathy",
@@ -267,7 +371,20 @@
       "lifecycle": "transition",
       "maturity": "transition",
       "source_url": "https://github.com/egohygiene/empathy",
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1315637648,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/empathy"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Add migration ledger; consume released Mantle and Realm artifacts",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "mantle",
@@ -295,7 +412,20 @@
       "maturity": "active",
       "source_url": "https://github.com/egohygiene/mantle",
       "consumes": [],
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1320127077,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/mantle"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Reconcile Empathy copy, prove standalone install matrix, tag release",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "realm",
@@ -328,7 +458,20 @@
       "lifecycle": "seed",
       "maturity": "seed-with-staged-source",
       "source_url": "https://github.com/egohygiene/realm",
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1315637781,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/realm"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Publish `base`, one profile, and `full`; install pinned Mantle",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "relay",
@@ -355,7 +498,20 @@
       "lifecycle": "seed",
       "maturity": "seed",
       "source_url": "https://github.com/egohygiene/relay",
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1321918958,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/relay"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Extract one reusable test workflow and one release primitive",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "filament",
@@ -391,7 +547,20 @@
       "lifecycle": "architecture-first",
       "maturity": "provisional-architecture",
       "source_url": "https://github.com/egohygiene/filament",
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1340174644,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/filament"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Select one bounded vertical slice and publish a stable contract with a disposable consumer fixture",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "aniflow",
@@ -419,7 +588,20 @@
       "maturity": "active",
       "source_url": "https://github.com/egohygiene/aniflow",
       "consumes": [],
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1315637894,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/aniflow"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Stabilize versioned CLI/library contract for Flow",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "beacon",
@@ -450,7 +632,20 @@
       "lifecycle": "seed",
       "maturity": "seed",
       "source_url": "https://github.com/egohygiene/beacon",
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1315637921,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/beacon"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Publish one artifact through a local/mock channel using Renderflow output",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "flow",
@@ -484,7 +679,20 @@
       "lifecycle": "architecture-first",
       "maturity": "architecture-first",
       "source_url": "https://github.com/egohygiene/flow",
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1333207724,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/flow"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Accept contracts and implement one vertical slice",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "optiflow",
@@ -513,7 +721,20 @@
       "consumes": [],
       "domains": [
         "optiflow.egohygiene.io"
-      ]
+      ],
+      "public_observation": {
+        "repository_id": 1324450169,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/optiflow"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Stabilize plan/schema contract before mutation features",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "renderflow",
@@ -540,7 +761,20 @@
       "maturity": "active",
       "source_url": "https://github.com/egohygiene/renderflow",
       "consumes": [],
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1187580231,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/renderflow"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Publish stable Flow-facing contract and retain standalone UX",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "akashic",
@@ -563,7 +797,20 @@
       "maturity": "active",
       "source_url": "https://github.com/egohygiene/akashic",
       "consumes": [],
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1320228396,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/akashic"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Define optional export/import relationship with Mindgarden",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "athena",
@@ -589,7 +836,20 @@
       "maturity": "active-collection",
       "source_url": "https://github.com/egohygiene/athena",
       "consumes": [],
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1315681605,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/athena"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Add inventory/licensing metadata and absorb raw visual archive",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "mindcap",
@@ -614,7 +874,20 @@
       "maturity": "active",
       "source_url": "https://github.com/egohygiene/mindcap",
       "consumes": [],
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1315637844,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/mindcap"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Define stable capture manifest consumed by Mindgarden",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "mindgarden",
@@ -642,7 +915,20 @@
       "lifecycle": "seed",
       "maturity": "seed",
       "source_url": "https://github.com/egohygiene/mindgarden",
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1315637864,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/mindgarden"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Define minimal local-first storage and import Mindcap manifest fixture",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "reflector",
@@ -667,7 +953,20 @@
       "maturity": "active",
       "source_url": "https://github.com/egohygiene/reflector",
       "consumes": [],
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1247115338,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/reflector"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Publish its research contracts and report evidence to Observatory",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "egohygiene",
@@ -694,7 +993,13 @@
       "lifecycle": "active",
       "maturity": "active-private",
       "source_url": "https://github.com/egohygiene/egohygiene",
-      "domains": []
+      "domains": [],
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Consume released Identity/Realm/Relay surfaces incrementally",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "identity",
@@ -721,7 +1026,20 @@
       "maturity": "seed",
       "source_url": "https://github.com/egohygiene/identity",
       "consumes": [],
-      "domains": []
+      "domains": [],
+      "public_observation": {
+        "repository_id": 1315637826,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/identity"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Publish versioned token and metadata packages",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
       "name": "store",
@@ -752,11 +1070,23 @@
       "source_url": "https://github.com/egohygiene/store",
       "domains": [
         "egohygiene.io/store"
-      ]
+      ],
+      "public_observation": {
+        "repository_id": 1318861461,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/store"
+      },
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Formalize integration contract and independent deployment with site",
+        "source_url": "https://github.com/egohygiene/hygiene/blob/b6e6bc1d88be787ee7a8a0ca1010b46b98ba55fb/docs/ecosystem/REPOSITORY_CATALOG.md",
+        "source_observed_at": "2026-08-21"
+      }
     },
     {
-      "name": "website",
-      "target_name": "egohygiene.io",
+      "name": "egohygiene.io",
       "plane": "identity-product-experience",
       "owns": [
         "public website",
@@ -777,14 +1107,114 @@
         "documentation site",
         "shared web packages"
       ],
-      "full_name": "egohygiene/website",
+      "full_name": "egohygiene/egohygiene.io",
       "visibility": "public",
-      "lifecycle": "transition",
-      "maturity": "active-rename-pending",
-      "source_url": "https://github.com/egohygiene/website",
+      "lifecycle": "unknown",
+      "maturity": "unassessed-after-rename",
+      "source_url": "https://github.com/egohygiene/egohygiene.io",
       "domains": [
         "egohygiene.io"
-      ]
+      ],
+      "aliases": [
+        "website"
+      ],
+      "public_observation": {
+        "repository_id": 1318535423,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/egohygiene.io"
+      },
+      "next_gate": {
+        "state": "unknown",
+        "description": null,
+        "source_url": null,
+        "source_observed_at": null
+      }
+    },
+    {
+      "name": "antidote",
+      "plane": "knowledge-research",
+      "owns": [
+        "provisional personalized adaptive generative-audio research",
+        "repository-owned manuscript and local research-instrument contracts"
+      ],
+      "excludes": [
+        "clinical efficacy claims without formal evidence",
+        "publication of private runtime state without explicit approval"
+      ],
+      "consumes": [
+        "holon site suite",
+        "optional beacon publication adapter"
+      ],
+      "outputs": [
+        "research manuscript and publication artifacts",
+        "local synthetic research-instrument contracts"
+      ],
+      "full_name": "egohygiene/antidote",
+      "visibility": "public",
+      "lifecycle": "unknown",
+      "maturity": "provisional-research-and-local-prototype",
+      "source_url": "https://github.com/egohygiene/antidote",
+      "domains": [],
+      "role_evidence": [
+        "https://github.com/egohygiene/antidote/blob/34f7653469002c8f19c9adc87d4bfdcecc0eda33/README.md",
+        "https://github.com/egohygiene/antidote/blob/34f7653469002c8f19c9adc87d4bfdcecc0eda33/ARCHITECTURE.md"
+      ],
+      "next_gate": {
+        "state": "source-declared",
+        "description": "The MVP implementation sequence is paused after issue #16. After the issue #48 merge is verified at the custom domain, #70 begins the magazine and launch sequence in issue #69.",
+        "source_url": "https://github.com/egohygiene/antidote/blob/34f7653469002c8f19c9adc87d4bfdcecc0eda33/ROADMAP.md",
+        "source_observed_at": "2026-09-07"
+      },
+      "public_observation": {
+        "repository_id": 1347532537,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/antidote"
+      }
+    },
+    {
+      "name": "civics",
+      "plane": "knowledge-research",
+      "owns": [
+        "experimental civic intelligence and ballot decision-support portal",
+        "versioned civic evidence and claim provenance"
+      ],
+      "excludes": [
+        "candidate endorsements or voting instructions"
+      ],
+      "consumes": [
+        "permitted public civic APIs and reviewed sources"
+      ],
+      "outputs": [
+        "static civic information portal",
+        "versioned civic knowledge-graph schemas"
+      ],
+      "full_name": "egohygiene/civics",
+      "visibility": "public",
+      "lifecycle": "unknown",
+      "maturity": "experimental-prototype",
+      "source_url": "https://github.com/egohygiene/civics",
+      "domains": [],
+      "role_evidence": [
+        "https://github.com/egohygiene/civics/blob/c95596afc206e38b3c5b1f80a3ccbae46326daa8/README.md",
+        "https://github.com/egohygiene/civics/blob/c95596afc206e38b3c5b1f80a3ccbae46326daa8/ARCHITECTURE.md"
+      ],
+      "next_gate": {
+        "state": "source-declared",
+        "description": "Create the missing roadmap and issue backlog, then certify the 2026-09-01 dataset and evidence rules.",
+        "source_url": "https://github.com/egohygiene/civics/blob/c95596afc206e38b3c5b1f80a3ccbae46326daa8/ROADMAP.md",
+        "source_observed_at": "2026-08-24"
+      },
+      "public_observation": {
+        "repository_id": 1344564036,
+        "default_branch": "main",
+        "archived": false,
+        "observed_at": "2026-11-09T14:06:57Z",
+        "source_url": "https://api.github.com/repos/egohygiene/civics"
+      }
     }
   ],
   "proposed_repositories": [
@@ -843,5 +1273,14 @@
       "title": "Identity, product, and experience"
     }
   ],
-  "repository_count": 27
+  "repository_count": 29,
+  "public_inventory": {
+    "observed_at": "2026-11-09T14:06:57Z",
+    "source": {
+      "provider": "github",
+      "scope": "public",
+      "completeness": "complete",
+      "url": "https://api.github.com/orgs/egohygiene/repos?type=public&per_page=100"
+    }
+  }
 }

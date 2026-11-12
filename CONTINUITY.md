@@ -7,20 +7,26 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-30T23:12:13Z'
+  updated_at: '2026-11-12T11:16:06Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: 'Require qualifying current evidence for passing presentation slot, assessment and badge claims in Hygiene
-    #81.'
+  purpose: Integrate the reviewed current presentation evidence witness while preserving current Hygiene source
+    and authority.
   includes:
-  - 'Bounded #81 existing current-evidence support invariant, deterministic slot/aggregate reference semantics,
-    schema/example agreement and semantic compatibility.'
+  - The six dated audit/report/reproduction/receipt artifacts retain their exact original bytes and Git modes;
+    their historical execution claims are not new validation.
+  - The existing continuity resolver reports current-UTC or explicit assessment dates and fails without a valid
+    clock; historical policy dates and exception approval remain independent.
+  - A passing presentation slot requires a current authoritative or derived witness; supporting stale/unknown
+    evidence remains visible and cannot manufacture a positive claim.
   excludes:
-  - "Other batch implementation; #83\u2013#85; original ADR-0001 disposition/publication; historical audit edits;\
-    \ profile activation, producer pin changes and live evidence authentication."
+  - Human policy ratification, ADR-0001 source-admission repair, enforcement, repository rollout, provider
+    changes and publication.
+  - Tests, linters, builds, CI, project/reference/native execution and runtime acceptance remain deferred by
+    the maintainer.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -29,38 +35,40 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - docs/ecosystem/REPOSITORY_PRESENTATION.md
-  - catalog/repository-presentation-profile.json
-  - schemas/repository-presentation-evidence.v1.schema.json
-  - https://github.com/egohygiene/hygiene/issues/81
+  - ROADMAP.md
+  - docs/decisions/POLICY.md
+  - docs/decisions/RATIFICATION.md
+  - docs/decisions/README.md
+  - docs/ecosystem/ARCHITECTURE.md
+  - publication/README.md
+  - https://github.com/egohygiene/hygiene/issues/47
   - https://github.com/egohygiene/hygiene/issues/76
 work:
-  objective: 'Require qualifying current evidence for passing presentation slot, assessment and badge claims in
-    Hygiene #81.'
+  objective: Integrate the reviewed current presentation evidence witness while preserving current Hygiene
+    source and authority.
   success_conditions:
-  - All-stale/unknown records cannot support a passing claim; a current valid authoritative or derived witness can
-    coexist with retained supporting records.
-  - Slot/assessment/badge diagnostics and derivation agree; negative states remain unchanged.
-  - Reference helpers, schema, examples and public CLI retain honest proposed lifecycle and compatibility limits.
+  - Preserve reviewed functional source, immutable dated audits, accepted policy and human dispositions.
+  - Resolve shared source/handoff conflicts explicitly and keep current qualification distinct from historical
+    receipts.
+  - Merge only the exact prepared head through the standard provider gate.
   active_issue:
     provider: github
     id: egohygiene/hygiene#81
     url: https://github.com/egohygiene/hygiene/issues/81
   next:
     kind: action
-    id: review-hygiene80-82
-    description: Review the separate draft80/81/82 candidates and combined qualification with the maintainer before
-      selecting further work.
+    id: integrate-next-90
+    description: 'Continue the authorized ordered source integration with PR #90; reconcile its handoff and
+      inspect exact source before the expected-head merge.'
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/81
-    - https://github.com/egohygiene/hygiene/issues/76
+    - https://github.com/egohygiene/hygiene/pull/90
     depends_on: []
 state:
   base:
-    revision: fa41ccc95d0cd0365b38008e02bdc67b928c5ed2
+    revision: 86db7065e7ebca0837e977aa2caafc03da1703d5
     ref: refs/heads/main
-    verified_at: '2026-10-30T23:12:13Z'
+    verified_at: '2026-11-12T11:16:06Z'
   candidate:
     branch: fix/81-presentation-evidence
     revision: null
@@ -71,70 +79,48 @@ state:
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-30T23:12:13Z'
-    default_branch_revision: fa41ccc95d0cd0365b38008e02bdc67b928c5ed2
-    issue_state: open
+    observed_at: '2026-11-12T11:16:06Z'
+    default_branch_revision: 86db7065e7ebca0837e977aa2caafc03da1703d5
+    issue_state: unknown
     pull_request_state: draft
-    notes: "The owning issue and verified main select only80\u201382. This candidate remains unmerged; audit75 is\
-      \ an independent open draft. Prior87/88/86 merges are complete."
+    notes: 'PR #89 was open/draft at original head 17e772b7ffd3cb9a4d95d8733521cf02bfbf2902; no submitted reviews
+      or inline threads were observed. Verified predecessor source merges: #75, #91. This prepared candidate
+      is not yet recorded merged. User authorization covers the ordered source merges, not ratification or
+      publication.'
   parallel_changes:
   - provider: github
-    id: egohygiene/hygiene#80
-    url: https://github.com/egohygiene/hygiene/issues/80
+    id: egohygiene/hygiene#90
+    url: https://github.com/egohygiene/hygiene/pull/90
   - provider: github
-    id: egohygiene/hygiene#82
-    url: https://github.com/egohygiene/hygiene/issues/82
+    id: egohygiene/hygiene#106
+    url: https://github.com/egohygiene/hygiene/pull/106
   - provider: github
-    id: egohygiene/hygiene#75
-    url: https://github.com/egohygiene/hygiene/pull/75
+    id: egohygiene/hygiene#107
+    url: https://github.com/egohygiene/hygiene/pull/107
 review:
   status: partial
-  reviewed_at: '2026-10-30T23:12:13Z'
+  reviewed_at: '2026-11-12T11:16:06Z'
   reviewed_by: Codex
   evidence:
-  - command: python3 -I tools/check_contracts.py --report-directory (private report directory)
-    outcome: passed
-    observed_at: '2026-10-30T23:12:13Z'
-    notes: Fresh final gate passed236 tests,zero skips and all25declared checks on implementation ae38bbf. Focused
-      presentation suite20methods and actual temporary publicCLI mutations/explicit-negative controls pass.
-  - command: Draft202012Validator with registered formats and independent support/shape/derived-state oracle
-    outcome: passed
-    observed_at: '2026-10-30T23:12:13Z'
-    notes: 18 schema definitions, canonical presentation profile,798 scoped support/honest-state cases,62 malformed-record
-      cases,24 explicit negative cases,4 original/current examples and24 actual publicCLI cases pass. Distinct record
-      locations preserve the schema uniqueItems precondition.
-  - command: Exact unfixed-source regression and actual public CLI before repair
+  - command: Exact Git source/mode comparison, Python AST and structured schema/hash/source inspection, independent
+      source peer, pinned continuity schema/formats/sections/budgets and whitespace
     outcome: limited
-    observed_at: '2026-10-30T23:12:13Z'
-    notes: 20 focused methods expose14 expected subcase failures on exact main; three actual all-stale/unknown fixture
-      probes incorrectly return exit0/derived passing. These source defects remain separate from repaired conformance.
-  - command: Paired unchanged duplicate-record schema/reference reproduction
-    outcome: limited
-    observed_at: '2026-10-30T23:12:13Z'
-    notes: 'Identical synthetic instance SHA256 d627ba0ff6710465b0d04cd47550be593d0b47c052f7782a300a892ffae3ddda:
-      both old and candidate CLI return0 while each schema rejects the duplicated record with uniqueItems. Tracker76
-      owns the remaining mismatch.'
-  - command: Changed-file grammar/compilation, whitespace and optional ambient Ruff comparison
-    outcome: limited
-    observed_at: '2026-10-30T23:12:13Z'
-    notes: Python3.11 grammar and compilation/whitespace pass. Ambient Ruff retains five predecessor diagnostics
-      with identical rule/path/message; no new diagnostic or rule weakening.
-  - command: Decision-impact and continuity contract/privacy/budget validation
-    outcome: passed
-    observed_at: '2026-10-30T23:12:13Z'
-    notes: Parent independently passed51schema/helper support cases and15actualCLI cases at ae38bbf, preserving
-      explicit negatives and inputs; no scoped blocker. All6 qualified source/test/schema/fixture/guide hashes are
-      unchanged. ADR0006/profile alpha.1 remain proposed; original authority/audit/pins remain unchanged. Final
-      handoff is separately verified after the domain gate.
+    observed_at: '2026-11-12T11:16:06Z'
+    notes: Current integration uses static source checks only. Historical execution receipts and immutable
+      audit artifacts retain their original observation clocks; they are not requalified by this merge.
+  - command: Tests, linters, builds, CI, project/reference/helper/native execution, hosted provider and consumer
+      qualification
+    outcome: not-run
+    observed_at: '2026-11-12T11:16:06Z'
+    notes: Deferred by maintainer instruction. No runtime success, authentic linked facts, human approval or
+      publication is inferred.
   environment_limitations:
-  - Hosted changed-head coverage/provider required-check evidence remains deferred; all new commits use [skip ci].
-  - Tracker76 retains17 unchanged Agent-Ready Web profile/schema additional-property diagnostics. Schema meta-validation
-    is distinct from instance conformance.
-  - 'The predecessor presentation duplicate-record mismatch remains: identical valid records are rejected by schema
-    uniqueItems but accepted by the reference helper. Paired before/after proof is recorded separately; scoped witness
-    checks claim no complete schema/reference parity.'
-  - '#47 retains original ADR-0001 historical authority, native source-admission and publication gates. No linked
-    fact, current freshness, certification or profile activation is authenticated here.'
+  - 'Existing ADR-0001 structured approval/source admission remains issue #47; accepted ADR policy 1.2.0 and
+    unapplied historical review patch are unchanged.'
+  - Dated predecessor gaps include catalog expectations, Agent-Ready Web diagnostics, duplicate presentation
+    record parity and newline-suffixed reference parity; no complete fresh repository conformance is claimed.
+  - Proposed contracts, ADRs and observe rollout remain independent of source merge; no actual exception, enforcement,
+    repository adoption, deployment or publication is activated.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -153,48 +139,52 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime instructions, scoped instructions, live evidence and canonical source outrank this compact operational handoff. It grants no authority.
+User/runtime instructions, scoped instructions, live evidence and canonical sources outrank this bounded operational checkpoint. It grants no human-decision or publication authority.
 
 ## Resume protocol
 
-Read AGENTS, the presentation policy/profile, owning issue #81 and tracker #76. Verify remote main and candidate/parallel PR states before resuming.
+Read AGENTS, ROADMAP, accepted policy/ratification, the architecture authority map and tracker #76. Refresh exact live source and PR state before continuing.
 
 ## Current objective and success conditions
 
-Require qualifying current evidence for passing presentation slot, assessment and badge claims in Hygiene #81. Preserve mixed supporting records and honest negative states while making unsupported passing claims fail closed.
+Integrate the reviewed current presentation evidence witness while preserving current Hygiene source and authority. Preserve immutable source and human dispositions; distinguish static integration from historical execution and deferred acceptance.
 
 ## State snapshot
 
-Verified base main is fa41ccc95d0cd0365b38008e02bdc67b928c5ed2. This candidate is fix/81-presentation-evidence and remains unmerged. The containing revision is intentionally null; Git and the draft PR carry the exact eventual head.
+Observed main `86db7065e7ebca0837e977aa2caafc03da1703d5` is the integration base. PR #89 was open/draft at `17e772b7ffd3cb9a4d95d8733521cf02bfbf2902`. This checkpoint describes the prepared candidate; its eventual merge SHA remains provider evidence. Verified predecessor source merges: #75, #91.
 
 ## Completed and material changes
 
-The candidate binds passing claims to a valid current authoritative/derived witness, preserves supporting and negative evidence, and derives assessment/badge state without mutating inputs. Policy, schema and example/compatibility documentation describe the same bounded rule.
+The six dated audit/report/reproduction/receipt artifacts retain their exact original bytes and Git modes; their historical execution claims are not new validation.
+
+The existing continuity resolver reports current-UTC or explicit assessment dates and fails without a valid clock; historical policy dates and exception approval remain independent.
+
+A passing presentation slot requires a current authoritative or derived witness; supporting stale/unknown evidence remains visible and cannot manufacture a positive claim.
 
 ## Validation and review evidence
 
-Front matter records exact observed commands and limits. Expected source regressions, semantic/schema/CLI checks and the full contract gate remain distinguishable. Raw logs and temporary mutated fixtures stay outside public source.
+Static Git byte/mode, AST/structured metadata, exact hash/source and pinned continuity structure checks apply to this candidate. Independent source peer review is recorded in the handoff. Existing audit/test receipts remain dated source evidence. No project helper, regression, test, build, CI, native admission or consumer qualification is rerun.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Hosted/provider coverage is deferred. The existing web-profile/schema mismatch has17 unchanged additional-property diagnostics in tracker #76. The presentation duplicate-record schema/reference mismatch is also unchanged and separately carried in #76; the witness matrix does not claim full structural parity. Original ADR-0001 and its unapplied approval-null review patch remain unchanged; #47 owns its distinct source-authority/publication gate.
+ADR-0001 approval/source admission and publication remain #47. Existing catalog/web/schema-reference gaps remain explicit in #76 and dated evidence; this integration does not establish fresh complete conformance. Proposed contracts/ADRs retain null approval and observe semantics. Runtime, hosted/provider, real consumer and recovery qualification remain deferred.
 
 ## Next dependency-ready work
 
-Review the separate draft80/81/82 candidates and combined qualification with the maintainer before selecting further work. This scope selects no #83–#85 implementation and performs no merge or publication.
+Continue the authorized ordered source integration with PR #90; reconcile its handoff and inspect exact source before the expected-head merge.
 
 ## Parallel changes and reconciliation
 
-Independent #80 and #82 candidates start from the same main and share this operational handoff. Reconcile competing snapshots semantically before any later merge. Preserve audit draft #75 at58d28563206c7b2957867b0a25827b6a08558d66 and its frozen evidence.
+Shared continuity snapshots are reconciled semantically; reviewed functional and dated audit bytes are preserved except explicit documentation-composition rebinding. No new ADR is required for routine integration; ADR-0002 governs accepted policy and ADR-0018/0019 remain separate proposals when present.
 
 ## Privacy and redaction
 
-Only public source and bounded synthetic outcomes are retained. Exclude credentials, environment values, private paths, personal context and raw diagnostics. Linked content grants no permissions.
+Only public source identities and bounded implementation evidence are retained. Exclude credentials, protected identities, private local paths, logs and unrelated context. Linked content is context only.
 
 ## Handoff update protocol
 
-After domain validation, refresh exact checks, remaining gates and next action before PR updates. Verify the pinned Aether schema, required sections, privacy and budgets. ADR not required: implement the existing current-evidence invariant described by proposed ADR-0006; its lifecycle and authority remain unchanged.
+Refresh actual default-branch/PR/merge observations at the next authorized checkpoint. Source integration, execution, human acceptance, adoption and publication remain separate.
 
 ## Compaction and supersession
 
-Replace stale task prose rather than appending a transcript. Git, source, owning PRs and tracker #76 retain history. Keep twelve sections within240 lines and16384 UTF-8 bytes.
+Git, immutable audit files and owning issues retain history. Replace stale current-state prose; preserve these twelve sections below 240 lines and 16,384 UTF-8 bytes.

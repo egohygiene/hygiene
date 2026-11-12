@@ -1,0 +1,10 @@
+{
+  "schema": "hygiene.aether-release-selection/v1",
+  "repository": "egohygiene/aether",
+  "revision": "8a2a3d08f3aa9da3847bd5277843506ab855192e",
+  "files": {
+    "library/organization/specs/release/validate.py": "055f6b4e808cb8dcc32cd45a855a3a338999daf69fd438a42b54abb281a0663d",
+    "catalog/schemas/aether.repository-release.v1.schema.json": "8431ea7651336aa7695aee5b9aedce536b1e7c76c3cb15927f64a6206f9cc1f5",
+    "requirements-dev.lock": "0043f32ac83e49e84f4b25d74f40b7db7db407903ca624f59cb599fae71b3a72"
+  }
+}

@@ -9,9 +9,12 @@ publish a tag, package, image, site, or archive.
 from __future__ import annotations
 
 import argparse
+import hashlib
+import importlib.metadata
 import json
 import re
 import sys
+import types
 from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
@@ -92,14 +95,180 @@ SLOT_RE = re.compile(r"^[a-z][a-z0-9_]*$")
 SAFE_RELATIVE_PATH_RE = re.compile(r"^[A-Za-z0-9.][A-Za-z0-9._/-]*$")
 
 
-def load_json(path: Path) -> dict[str, Any]:
-    """Load a UTF-8 JSON object."""
-
-    with path.open(encoding="utf-8") as handle:
-        value = json.load(handle)
+def _json_object(text: str, label: str) -> dict[str, Any]:
+    def unique_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+        result: dict[str, Any] = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError(f"{label} has duplicate JSON key {key!r}")
+            result[key] = value
+        return result
+    value = json.loads(text, object_pairs_hook=unique_keys)
     if not isinstance(value, dict):
-        raise ValueError(f"{path} must contain a JSON object")
+        raise ValueError(f"{label} must contain a JSON object")
     return value
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    return _json_object(path.read_text(encoding="utf-8"), str(path))
+
+
+class OwnerValidationUnavailable(ValueError):
+    """Full selected owner/structural validation could not execute."""
+
+
+def _runtime_version(name: str) -> str:
+    try:
+        return importlib.metadata.version(name)
+    except importlib.metadata.PackageNotFoundError as error:
+        raise OwnerValidationUnavailable(f"validation runtime version unavailable: {name}") from error
+
+
+OWNER_VALIDATOR = "library/organization/specs/release/validate.py"
+OWNER_SCHEMA = "catalog/schemas/aether.repository-release.v1.schema.json"
+OWNER_REQUIREMENTS = "requirements-dev.lock"
+
+
+def verify_owner_source(source: Path, profile: Mapping[str, Any]) -> tuple[dict[str, bytes], dict[str, Any]]:
+    lock = load_json(Path(__file__).with_name("release-owner.lock.json"))
+    if (
+        lock.get("schema") != "hygiene.aether-release-selection/v1"
+        or lock.get("repository") != "egohygiene/aether"
+        or lock.get("revision") != profile["aether_contract"]["revision"]
+        or set(lock.get("files", {})) != {OWNER_VALIDATOR, OWNER_SCHEMA, OWNER_REQUIREMENTS}
+    ):
+        raise ValueError("release owner lock does not match the selected contract")
+    payloads: dict[str, bytes] = {}
+    for relative, digest in lock["files"].items():
+        path = source / relative
+        try:
+            path.resolve(strict=True).relative_to(source.resolve(strict=True))
+            content = path.read_bytes()
+        except (OSError, ValueError, RuntimeError) as error:
+            raise OwnerValidationUnavailable(f"selected owner source unavailable: {relative}; prepare the exact Aether pin and pass --aether-source") from error
+        if hashlib.sha256(content).hexdigest() != digest:
+            raise OwnerValidationUnavailable(f"selected owner bytes do not match the immutable lock: {relative}")
+        payloads[relative] = content
+    return payloads, {
+        "repository": lock["repository"], "revision": lock["revision"],
+        "source_verification": "sha256-of-selected-files", "files": lock["files"],
+    }
+
+
+def _owner_validation(repository: Path, source: Path, profile: Mapping[str, Any], declaration: dict[str, Any]) -> dict[str, Any]:
+    payloads, evidence = verify_owner_source(source, profile)
+    module = types.ModuleType("hygiene_pinned_aether_release")
+    module.__file__ = str(source / OWNER_VALIDATOR)
+    try:
+        # Execute exactly the verified payload, without a second source read.
+        exec(compile(payloads[OWNER_VALIDATOR], module.__file__, "exec"), module.__dict__)
+        if module.Draft202012Validator is None:
+            raise OwnerValidationUnavailable("full jsonschema validation is unavailable; the owner's weaker fallback cannot qualify this declaration")
+        selected_schema = module._schema_path().resolve()
+        if selected_schema != (source / OWNER_SCHEMA).resolve():
+            raise OwnerValidationUnavailable("owner selected a schema outside the locked canonical path")
+        result = module.validate_release_declaration(repository)
+    except ImportError as error:
+        raise OwnerValidationUnavailable("selected owner runtime dependencies are unavailable") from error
+    except module.ReleaseContractError as error:
+        raise ValueError(f"pinned Aether declaration validation failed: {error}") from error
+    if result != declaration:
+        raise ValueError("declaration changed during owner validation")
+    verify_owner_source(source, profile)
+    engine_version = _runtime_version("jsonschema")
+    evidence.update({
+        "entrypoint": "validate_release_declaration", "validator_path": OWNER_VALIDATOR,
+        "engine": "jsonschema.Draft202012Validator",
+        "engine_version": engine_version,
+    })
+    return evidence
+
+
+def _yaml_mapping(text: str, label: str) -> dict[str, Any]:
+    try:
+        import yaml
+    except ImportError as error:
+        raise OwnerValidationUnavailable("PyYAML is unavailable for structural workflow/Taskfile validation") from error
+
+    class WorkflowLoader(yaml.SafeLoader):
+        # YAML 1.1 interprets the GitHub Actions key `on` as a boolean.
+        yaml_implicit_resolvers = {
+            key: [(tag, rule) for tag, rule in rules if tag != "tag:yaml.org,2002:bool"]
+            for key, rules in yaml.SafeLoader.yaml_implicit_resolvers.items()
+        }
+    WorkflowLoader.add_implicit_resolver("tag:yaml.org,2002:bool", re.compile(r"^(?:true|false)$", re.IGNORECASE), list("tTfF"))
+
+    def unique_mapping(loader, node, deep=False):
+        loader.flatten_mapping(node)
+        result = {}
+        for key_node, value_node in node.value:
+            key = loader.construct_object(key_node, deep=deep)
+            if not isinstance(key, str):
+                raise ValueError(f"{label} requires string mapping keys")
+            if key in result:
+                raise ValueError(f"{label} has duplicate YAML key {key!r}")
+            result[key] = loader.construct_object(value_node, deep=deep)
+        return result
+    WorkflowLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, unique_mapping)
+    try:
+        value = yaml.load(text, Loader=WorkflowLoader)
+    except yaml.YAMLError as error:
+        raise ValueError(f"{label} is not supported valid YAML") from error
+    if not isinstance(value, dict):
+        raise ValueError(f"{label} must be a mapping")
+    return value
+
+
+def _manual_workflow(text: str) -> None:
+    workflow = _yaml_mapping(text, "release workflow")
+    events = workflow.get("on")
+    if isinstance(events, str):
+        names = [events]
+    elif isinstance(events, list) and all(isinstance(item, str) for item in events):
+        names = events
+    elif isinstance(events, dict):
+        names = list(events)
+        config = events.get("workflow_dispatch")
+        if config is not None and not isinstance(config, dict):
+            raise ValueError("workflow_dispatch configuration must be null or a mapping")
+    else:
+        raise ValueError("release workflow requires an explicit workflow_dispatch trigger")
+    if names != ["workflow_dispatch"]:
+        raise ValueError("release workflow must expose only workflow_dispatch; automatic or ambiguous triggers are prohibited")
+
+
+def _task_handoff_names(repository: Path, taskfile: Path) -> set[str]:
+    visiting: set[Path] = set()
+
+    def visit(path: Path, namespace: str = "") -> set[str]:
+        if path in visiting:
+            raise ValueError("Taskfile include cycle is unsupported")
+        visiting.add(path)
+        document = _yaml_mapping(path.read_text(encoding="utf-8"), "release Taskfile")
+        tasks, includes = document.get("tasks", {}), document.get("includes", {})
+        if not isinstance(tasks, dict) or not isinstance(includes, dict):
+            raise ValueError("Taskfile tasks/includes must be mappings")
+        qualified = lambda name: f"{namespace}:{name}" if namespace else name
+        names = {qualified(name) for name in tasks}
+        for alias, include in includes.items():
+            if isinstance(include, str):
+                value, flatten = include, False
+            elif isinstance(include, dict):
+                value, flatten = include.get("taskfile"), include.get("flatten", False)
+                if not isinstance(flatten, bool):
+                    raise ValueError("Taskfile include flatten must be boolean")
+            else:
+                raise ValueError("unsupported Taskfile include declaration")
+            selected = _repository_path(repository, value.removeprefix("./") if isinstance(value, str) else value, "Taskfile include")
+            if not selected.is_file():
+                raise ValueError("declared Taskfile include is missing")
+            child = visit(selected, namespace if flatten else qualified(alias))
+            if names.intersection(child):
+                raise ValueError("Taskfile handoff names collide")
+            names.update(child)
+        visiting.remove(path)
+        return names
+    return visit(taskfile)
 
 
 def _non_empty_strings(value: Any, path: str) -> list[str]:
@@ -405,18 +574,7 @@ def _repository_path(repository: Path, value: Any, label: str) -> Path:
     return candidate
 
 
-def _read_taskfiles(repository: Path, taskfile_path: Path) -> str:
-    texts = [taskfile_path.read_text(encoding="utf-8")]
-    for included in re.findall(
-        r'^\s*taskfile:\s*["\']?([^"\'\s#]+)', texts[0], re.MULTILINE
-    ):
-        candidate = _repository_path(repository, included.removeprefix("./"), "Taskfile include")
-        if candidate.is_file():
-            texts.append(candidate.read_text(encoding="utf-8"))
-    return "\n".join(texts)
-
-
-def validate_declaration(repository: Path, profile: Mapping[str, Any]) -> dict[str, Any]:
+def validate_declaration_with_evidence(repository: Path, profile: Mapping[str, Any], *, aether_source: Path | None = None) -> tuple[dict[str, Any], dict[str, Any]]:
     """Validate one repository's baseline composition around its Aether declaration."""
 
     policy_errors = validate_profile(profile)
@@ -424,7 +582,10 @@ def validate_declaration(repository: Path, profile: Mapping[str, Any]) -> dict[s
         raise ValueError("invalid policy: " + "; ".join(policy_errors))
     repository = repository.resolve()
     declaration_path = repository / ".egohygiene" / "release.json"
-    declaration = load_json(declaration_path)
+    declaration_bytes = declaration_path.read_bytes()
+    declaration = _json_object(declaration_bytes.decode("utf-8"), "release declaration")
+    source = (aether_source or repository / ".cache/release/aether").resolve()
+    owner_evidence = _owner_validation(repository, source, profile, declaration)
     if declaration.get("$schema") != profile["aether_contract"]["schema_url"]:
         raise ValueError("release declaration must identify Aether's pinned v1 schema URL")
     if declaration.get("schema_version") != AETHER_SCHEMA:
@@ -462,12 +623,15 @@ def validate_declaration(repository: Path, profile: Mapping[str, Any]) -> dict[s
     taskfile = _repository_path(repository, automation.get("taskfile_path"), "Taskfile path")
     if not taskfile.is_file():
         raise ValueError("declared Taskfile is missing")
-    taskfile_text = _read_taskfiles(repository, taskfile)
+    handoff_names = _task_handoff_names(repository, taskfile)
     tasks = automation.get("tasks")
     if not isinstance(tasks, dict) or set(tasks) != {"plan", "prepare", "verify", "publish"}:
         raise ValueError("release declaration must name the four Aether Taskfile handoffs")
-    for task_name in ("release:plan", "release:prepare", "release:verify", "release:publish"):
-        if f"{task_name}:" not in taskfile_text:
+    expected_tasks = {slot: f"release:{slot}" for slot in ("plan", "prepare", "verify", "publish")}
+    if tasks != expected_tasks:
+        raise ValueError("declared task identity must match the four baseline handoffs")
+    for task_name in expected_tasks.values():
+        if task_name not in handoff_names:
             raise ValueError(f"declared Taskfile handoff is missing: {task_name}")
 
     github = automation.get("github")
@@ -477,10 +641,7 @@ def validate_declaration(repository: Path, profile: Mapping[str, Any]) -> dict[s
     if not workflow.is_file():
         raise ValueError("declared manual release workflow is missing")
     workflow_text = workflow.read_text(encoding="utf-8")
-    if "workflow_dispatch:" not in workflow_text:
-        raise ValueError("declared release workflow must expose workflow_dispatch")
-    if re.search(r"^\s*push:\s*$", workflow_text, re.MULTILINE):
-        raise ValueError("release workflow must not publish automatically on push")
+    _manual_workflow(workflow_text)
 
     release_doc = repository / "docs" / "ecosystem" / "REPOSITORY_RELEASE.md"
     if not release_doc.is_file():
@@ -491,10 +652,22 @@ def validate_declaration(repository: Path, profile: Mapping[str, Any]) -> dict[s
     agents = repository / "AGENTS.md"
     if not agents.is_file() or "REPOSITORY_RELEASE.md" not in agents.read_text(encoding="utf-8"):
         raise ValueError("AGENTS.md must point to repository release guidance")
-    return declaration
+    if declaration_path.read_bytes() != declaration_bytes:
+        raise ValueError("declaration bytes changed during composed validation")
+    evidence = {
+        "status": "passed", "scope": "owner-contract-and-local-handoffs",
+        "declaration_sha256": hashlib.sha256(declaration_bytes).hexdigest(),
+        "owner": owner_evidence,
+        "local": {"task_handoffs": "structural", "workflow_triggers": ["workflow_dispatch"], "yaml_engine": "PyYAML.SafeLoader-with-string-on-keys", "yaml_engine_version": _runtime_version("PyYAML"), "publication": "not-performed"},
+    }
+    return declaration, evidence
 
 
-def render_plan(declaration: Mapping[str, Any], profile: Mapping[str, Any]) -> str:
+def validate_declaration(repository: Path, profile: Mapping[str, Any], *, aether_source: Path | None = None) -> dict[str, Any]:
+    return validate_declaration_with_evidence(repository, profile, aether_source=aether_source)[0]
+
+
+def render_plan(declaration: Mapping[str, Any], profile: Mapping[str, Any], validation: Mapping[str, Any] | None = None) -> str:
     """Render deterministic, non-publishing baseline validation output."""
 
     subject = declaration["repository"]
@@ -504,11 +677,13 @@ def render_plan(declaration: Mapping[str, Any], profile: Mapping[str, Any]) -> s
             "policy": {
                 "id": profile["schema"],
                 "version": profile["version"],
+                "status": profile["status"],
                 "aether_revision": profile["aether_contract"]["revision"],
             },
             "repository": subject.get("id"),
             "release_profile": subject["release_profile"],
             "lifecycle": subject["lifecycle"],
+            "validation": validation or {"status": "unavailable", "reason": "No composed validation evidence supplied"},
             "next_step": "Create or review a release PR; this command does not tag, publish, deploy, or use credentials.",
         },
         indent=2,
@@ -533,6 +708,9 @@ def build_parser() -> argparse.ArgumentParser:
     declaration = subparsers.add_parser("validate-declaration")
     declaration.add_argument("--repository", type=Path, default=Path("."))
     declaration.add_argument("--format", choices=("text", "json"), default="text")
+    declaration.add_argument("--aether-source", type=Path, help="Prepared exact owner source; defaults to .cache/release/aether in the repository")
+    owner = subparsers.add_parser("verify-owner")
+    owner.add_argument("--aether-source", type=Path, required=True)
     return parser
 
 
@@ -540,6 +718,13 @@ def main(argv: list[str] | None = None) -> int:
     arguments = build_parser().parse_args(argv)
     try:
         profile = load_json(arguments.profile)
+        if arguments.command == "verify-owner":
+            errors = validate_profile(profile)
+            if errors:
+                raise ValueError("invalid selected policy")
+            _, evidence = verify_owner_source(arguments.aether_source.resolve(), profile)
+            print(json.dumps({"status": "source-verified", "owner": evidence}, indent=2, sort_keys=True))
+            return 0
         if arguments.command == "validate-profile":
             errors = validate_profile(profile)
         elif arguments.command == "resolve":
@@ -560,12 +745,15 @@ def main(argv: list[str] | None = None) -> int:
                 )
                 return 0
         else:
-            declaration = validate_declaration(arguments.repository, profile)
+            declaration, evidence = validate_declaration_with_evidence(arguments.repository, profile, aether_source=arguments.aether_source)
             if arguments.format == "json":
-                print(render_plan(declaration, profile), end="")
+                print(render_plan(declaration, profile, evidence), end="")
             else:
                 print("repository release baseline valid: reviewed release preparation remains required")
             return 0
+    except OwnerValidationUnavailable as error:
+        print(f"repository release validation unavailable: {error}", file=sys.stderr)
+        return 2
     except (OSError, ValueError, json.JSONDecodeError) as error:
         print(f"repository release policy invalid: {error}", file=sys.stderr)
         return 2

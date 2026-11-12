@@ -5,6 +5,20 @@ Hygiene organization. It uses JSON syntax that is valid YAML 1.2, allowing the
 validator to remain dependency-free while retaining the requested `.yaml`
 contract path.
 
+## Reviewed public inventory
+
+`repositories.yaml` remains the authored catalog. `public-repositories.json`
+is its derived public-only admission interface, with exact provider IDs,
+observation boundary and historical aliases. The public observation and offline
+adapter never include protected rows/counts or raw complete-catalog hashes.
+See [the inventory/checkpoint guide](../docs/ecosystem/PUBLIC_REPOSITORY_INVENTORY.md)
+for public schemas, freshness/drift commands, the proposed weekly/event policy,
+the pinned Aether audit composition and consumer ownership.
+
+Do not use the complete-catalog renderer or context tool as a public inventory
+adapter. Public consumers pin the explicit public projection, schema and helper
+together. Runtime/hosted acceptance remains separate from source authoring.
+
 The contract records current repositories separately from proposed boundaries.
 A proposed repository is not permission to create it. Its `create_after` gate
 must be satisfied through an accepted architecture decision.
@@ -146,7 +160,9 @@ resolution, stable diagnostics and levels, narrow non-passing exemptions,
 version- and revision-bound site evidence, explicit upgrade behavior, and
 precise consumer handoffs. The separate
 `agent-ready-web-conformance.v1.schema.json` describes whole-profile evidence;
-five explicitly synthetic fixtures cover every site class. The profile remains
+five explicitly synthetic fixtures cover every site class. Proposed alpha.5 adds
+the optional JournalList `trust-txt` discovery mechanism without changing
+existing mechanism meanings or consumer pins. The profile remains
 proposed, so its pins support review and compatibility testing but do not claim
 release, production eligibility, adoption, publication, monitoring, or
 enforcement.
