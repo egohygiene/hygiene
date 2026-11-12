@@ -1,6 +1,6 @@
 # Diagram Sources
 
-These three files express the same reviewed topology:
+These three files express the current topology view:
 
 - `ecosystem.mmd` — Mermaid source for Markdown and documentation sites.
 - `ecosystem.puml` — PlantUML source for deterministic CI rendering.
@@ -8,10 +8,13 @@ These three files express the same reviewed topology:
 
 The diagrams show capability ownership and artifact/contract direction. An arrow does **not** imply a source-code dependency. The prose architecture and machine-readable repository catalog remain authoritative if a visual becomes stale.
 
-The written boundaries are accepted by
-[`ADR-0001`](../../decisions/ADR-0001-holistic-architecture-v0.1.md). Future
-infographics must use these diagram sources, not old PNGs, as semantic input and
-must archive the approved render with its architecture release.
+The [authority map](../ARCHITECTURE.md#authority-and-evidence) distinguishes
+the historical five-plane ADR-0001 baseline from the current view. The Filament
+plane follows proposed ADR-0003. Sanctuary's incubation role and Empathy's
+strict baseline follow proposed ADR-0004 at organization scope and have
+separate local implementation evidence. Firmament remains deferred.
+Use these sources for future infographics and archive approved renders with
+their architecture release.
 
 ## Canonical path
 
