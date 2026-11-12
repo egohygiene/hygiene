@@ -27,7 +27,7 @@ else:
 
 
 PROFILE_SCHEMA = "egohygiene.agent-ready-web-profile/v1"
-PROFILE_VERSION = "1.0.0-alpha.4"
+PROFILE_VERSION = "1.0.0-alpha.5"
 PROFILE_OWNER = "egohygiene/hygiene"
 FIXTURE_SCHEMA = "egohygiene.agent-ready-web-mechanism-fixture/v1"
 CONFORMANCE_SCHEMA = "egohygiene.agent-ready-web-conformance/v1"
@@ -106,6 +106,7 @@ SCOPED_MECHANISM_IDS = [
     "robots-txt",
     "sitemap-xml",
     "structured-discovery-jsonld",
+    "trust-txt",
     "webmcp-tools",
 ]
 CAPABILITY_CLASSES = ["read-only", "state-changing"]
@@ -1037,6 +1038,26 @@ def validate_mechanism(value: Any, *, path: str = "mechanism") -> list[str]:
                 f"{path} emerging or experimental mechanisms must remain "
                 "non-blocking by default"
             )
+    if value.get("id") == "trust-txt":
+        if concern != "readability":
+            errors.append(f"{path}.concern must be readability for trust-txt")
+        if value.get("artifact") != {
+            "kind": "well-known-file",
+            "locations": ["/.well-known/trust.txt", "/trust.txt"],
+            "media_types": ["text/plain"],
+        }:
+            errors.append(f"{path}.artifact must declare the trust.txt paths and text/plain")
+        if not isinstance(maturity, dict) or maturity.get("level") != "published_specification":
+            errors.append(f"{path}.maturity.level must be published_specification for trust-txt")
+        if isinstance(requirements, dict):
+            optional = {"strength": "optional", "condition": None}
+            if requirements != {
+                "default": optional,
+                "site_class_overrides": [
+                    {"site_class": site_class, **optional} for site_class in SITE_CLASSES
+                ],
+            }:
+                errors.append(f"{path}.requirements must keep trust-txt optional for every site class")
     reference_errors, authorities = _validate_references(
         value.get("authoritative_references"),
         f"{path}.authoritative_references",

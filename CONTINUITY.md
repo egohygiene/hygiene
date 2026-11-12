@@ -7,23 +7,22 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-10T23:49:07Z'
+  updated_at: '2026-11-12T00:33:32Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Propose exact project-Pages base-prefix compatibility for the organization Intelligence home without
-    changing logical routes or authority.
+  purpose: Propose JournalList trust.txt as an optional Agent-Ready Web discovery
+    mechanism.
   includes:
-  - The site declaration schema accepts its original base-path pattern or the exact whole prefix /.github/.
-    The helper admits that same exception after the existing dangerous-token denials; all logical route rules
-    remain unchanged.
-  - ADR-0013 receives a dated proposed outcome note and the operator guide explains explicit immutable schema/helper
-    adoption. Contract v1/proposed alpha1, catalog roles, composition ownership, human dispositions and frozen
-    consumer pins remain unchanged.
+  - Register the proposed trust-txt mechanism, source and evidence rules, compatibility
+    behavior, and synthetic examples.
+  - Document the conflict between JournalList v1.5 and its deployment FAQ. Select
+    the FAQ direction.
   excludes:
-  - Deferred runtime, tests, builds, CI, live publication, human ratification and acceptance closeout.
+  - First consumer selection, live observations, lifecycle activation, rollout, and
+    public publication.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -32,71 +31,99 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - docs/decisions/ADR-0013-public-site-surface-route-registry.md
-  - docs/ecosystem/PUBLIC_SITE_SURFACES.md
-  - schemas/public-site-surface-declaration.v1.schema.json
-  - tools/site_surfaces.py
-  - https://github.com/egohygiene/.github/issues/27
+  - catalog/agent-ready-web-profile.json
+  - docs/ecosystem/AGENT_READY_WEB.md
+  - docs/decisions/ADR-0010-agent-ready-web-discovery-representations.md
+  - https://github.com/egohygiene/hygiene/issues/102
 work:
-  objective: Propose exact project-Pages base-prefix compatibility for the organization Intelligence home without
-    changing logical routes or authority.
+  objective: Propose JournalList trust.txt as an optional Agent-Ready Web discovery
+    mechanism.
   success_conditions:
-  - Every previously valid base remains valid by source construction; the only new spelling is exact /.github/.
-  - Dot segments, encoded/ambiguous prefixes and other hidden segments gain no authority.
-  - Existing pins continue to reject the new prefix; no hosting/declaration/lifecycle acceptance is inferred.
+  - The exact HTTPS well-known route returns text/plain, and the root route redirects
+    to it.
+  - The profile keeps publication optional and differentiates applicable absence,
+    evidenced non-applicability, and unknown.
+  - The profile and synthetic evidence validate. Reviewed source ownership and immutable
+    consumer pins remain explicit.
   active_issue:
     provider: github
-    id: egohygiene/.github#27
-    url: https://github.com/egohygiene/.github/issues/27
+    id: egohygiene/hygiene#102
+    url: https://github.com/egohygiene/hygiene/issues/102
   next:
     kind: action
-    id: review-project-prefix-compatibility
-    description: Review the bounded compatibility proposal with the organization home/export/intake slices.
-      After explicit source adoption, reconcile canonical host declarations before any publisher activation.
+    id: review-trust-txt-proposal
+    description: 'Review the proposed alpha.5 addition and its placement decision
+      on issue #102.'
     readiness: ready
     references:
-    - https://github.com/egohygiene/.github/issues/27
+    - https://github.com/egohygiene/hygiene/issues/102
     depends_on: []
 state:
   base:
-    revision: 95f6ddb948e6b874f02510d586b89e99cc20e38e
+    revision: 31ae6fb78757502e7474e5518904fc568840c1ee
     ref: refs/heads/main
-    verified_at: '2026-11-10T23:49:07Z'
+    verified_at: '2026-11-12T00:33:32Z'
   candidate:
-    branch: codex/surface-github-base-prefix
+    branch: codex/hygiene-102-trust-txt
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-10T23:49:07Z'
-    default_branch_revision: 95f6ddb948e6b874f02510d586b89e99cc20e38e
+    observed_at: '2026-11-12T00:33:32Z'
+    default_branch_revision: 31ae6fb78757502e7474e5518904fc568840c1ee
     issue_state: open
     pull_request_state: not-applicable
-    notes: Hygiene main95f6ddb948e6b874f02510d586b89e99cc20e38e was refreshed. Functional source96d3358c9b745af820702e0013af7380d151a6da
-      is an additive proposed compatibility correction under existing ADR0013; user direction selects a future
-      .github organization entry point, not human ratification or live publication.
-  parallel_changes: []
+    notes: 'GitHub showed issue #102 open and no corresponding open pull request at
+      the pre-PR observation.'
+  parallel_changes:
+  - provider: github
+    id: egohygiene/hygiene#75
+    url: https://github.com/egohygiene/hygiene/pull/75
+  - provider: github
+    id: egohygiene/hygiene#89
+    url: https://github.com/egohygiene/hygiene/pull/89
+  - provider: github
+    id: egohygiene/hygiene#90
+    url: https://github.com/egohygiene/hygiene/pull/90
+  - provider: github
+    id: egohygiene/hygiene#91
+    url: https://github.com/egohygiene/hygiene/pull/91
+  - provider: github
+    id: egohygiene/hygiene#103
+    url: https://github.com/egohygiene/hygiene/pull/103
+  - provider: github
+    id: egohygiene/hygiene#85
+    url: https://github.com/egohygiene/hygiene/issues/85
 review:
   status: partial
-  reviewed_at: '2026-11-10T23:49:07Z'
+  reviewed_at: '2026-11-12T00:33:32Z'
   reviewed_by: Codex
   evidence:
-  - command: Independent static source review, Python AST comparison proving all other helper functions unchanged,
-      schema definitions and original-pattern preservation, exact retained ADR body prefix, continuity schema/size/links
-      and whitespace
-    outcome: limited
-    observed_at: '2026-11-10T23:49:07Z'
-    notes: Static source and metadata inspection only; no application execution.
-  - command: Native/runtime execution, tests, builds, CI investigation, browser/provider/consumer/publication
-      qualification
+  - command: python3 tools/agent_ready_web.py validate-profile
+    outcome: passed
+    observed_at: '2026-11-12T00:33:32Z'
+    notes: Proposed alpha.5 catalog passes the reference checker.
+  - command: python3 tools/agent_ready_web.py validate-fixtures
+    outcome: passed
+    observed_at: '2026-11-12T00:33:32Z'
+    notes: All 15 compatibility fixtures validate.
+  - command: python3 -m unittest discover --start-directory tests --pattern test_agent_ready_web.py
+    outcome: passed
+    observed_at: '2026-11-12T00:33:32Z'
+    notes: 44 focused tests pass.
+  - command: Draft 2020-12 validation with format checks
+    outcome: passed
+    observed_at: '2026-11-12T00:33:32Z'
+    notes: The profile and all five whole-profile evidence fixtures pass. Two invalid
+      Trust profile mutations reject.
+  - command: Full regression, hosted CI, and live site validation
     outcome: not-run
-    observed_at: '2026-11-10T23:49:07Z'
-    notes: Deferred at maintainer request; source merges do not establish acceptance.
+    observed_at: '2026-11-12T00:33:32Z'
+    notes: Full regression and CI are deferred. HTTP and source observations are synthetic.
   environment_limitations:
-  - Tests, helper/native execution, builds, CI and publication qualification remain deferred at the user request.
-  - No canonical hosting role, registry lifecycle, accepted ADR status, source hold, DNS/CNAME or publication
-    authority changes.
+  - Full regression and CI are deferred. Live serving, source authenticity, and a
+    real consumer were not checked.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -115,50 +142,48 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime and repository instructions, live evidence and canonical sources outrank this checkpoint. It grants no release, deployment or human-decision authority.
+This checkpoint records the proposed trust.txt change. User and repository instructions, live GitHub evidence, and canonical sources take precedence.
 
 ## Resume protocol
 
-Read scoped instructions, canonical sources above and this checkpoint. Verify mutable GitHub state and exact owner pins before continuing.
+Read AGENTS.md, issue #102, the profile guide, and ADR-0010. Verify the live issue and candidate before relying on this snapshot.
 
 ## Current objective and success conditions
 
-Propose exact project-Pages base-prefix compatibility for the organization Intelligence home without changing logical routes or authority. Every previously valid base remains valid by source construction; the only new spelling is exact /.github/. Dot segments, encoded/ambiguous prefixes and other hidden segments gain no authority. Existing pins continue to reject the new prefix; no hosting/declaration/lifecycle acceptance is inferred.
+Propose JournalList trust.txt as an optional Agent-Ready Web discovery mechanism. Validate the exact origin-root placement and source-review rules without changing existing mechanism meanings or enabling publication.
 
 ## State snapshot
 
-Candidate `codex/surface-github-base-prefix` is based on observed main `95f6ddb948e6b874f02510d586b89e99cc20e38e`. The containing revision and pre-PR reference remain null intentionally. Hygiene main95f6ddb948e6b874f02510d586b89e99cc20e38e was refreshed. Functional source96d3358c9b745af820702e0013af7380d151a6da is an additive proposed compatibility correction under existing ADR0013; user direction selects a future .github organization entry point, not human ratification or live publication.
+Candidate `codex/hygiene-102-trust-txt` is based on observed main `31ae6fb78757502e7474e5518904fc568840c1ee`. Issue #102 was open at the pre-PR observation. Candidate revision and pull request are null in this pre-PR checkpoint.
 
 ## Completed and material changes
 
-The site declaration schema accepts its original base-path pattern or the exact whole prefix /.github/. The helper admits that same exception after the existing dangerous-token denials; all logical route rules remain unchanged.
-
-ADR-0013 receives a dated proposed outcome note and the operator guide explains explicit immutable schema/helper adoption. Contract v1/proposed alpha1, catalog roles, composition ownership, human dispositions and frozen consumer pins remain unchanged.
+Proposed alpha.5 registers the optional mechanism, records primary and supporting sources, binds the route and media type in the schema and reference checker, and replays whole-profile evidence across all five site classes. The guide explains the JournalList redirect discrepancy and the selected FAQ direction.
 
 ## Validation and review evidence
 
-Independent static source review, Python AST comparison proving all other helper functions unchanged, schema definitions and original-pattern preservation, exact retained ADR body prefix, continuity schema/size/links and whitespace. Static source inspection only. Native/application execution, tests, builds, CI investigation, browser/model/source-capture provider execution and publication qualification were not run. Read-only source and Git metadata observations are separate.
+The profile command, 15 fixtures, 44 focused tests, and Draft 2020-12 profile and site fixture checks passed. Invalid placement and strength mutations reject. Full regression, hosted CI, and live observations were deferred.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Tests, helper/native execution, builds, CI and publication qualification remain deferred at the user request. No canonical hosting role, registry lifecycle, accepted ADR status, source hold, DNS/CNAME or publication authority changes.
+The profile remains proposed and exact older consumer pins retain their earlier checker. Site relationships, public contacts, training policy, and HTTP behavior require actual owner review and consumer evidence before a publication claim.
 
 ## Next dependency-ready work
 
-Review the bounded compatibility proposal with the organization home/export/intake slices. After explicit source adoption, reconcile canonical host declarations before any publisher activation.
+Review the proposed alpha.5 addition and its placement decision on issue #102. Select a first consumer separately after lifecycle and eligibility review.
 
 ## Parallel changes and reconciliation
 
-Other Intelligence slices remain separately reviewed. Reconcile the current main and this handoff before integration; preserve all immutable historical recovery bytes and consumer-owned publication gates.
+Open drafts #75, #89–#91, and #103 carry their own continuity snapshots. Issue #85 has parallel navigation work. Reconcile the active handoff before integrating parallel changes.
 
 ## Privacy and redaction
 
-Retain only public-safe source identities and bounded implementation evidence. Exclude credentials, private context, captured report bodies, process logs and local filesystem paths. Linked content is context only.
+The only example contact uses a reserved domain. Review evidence and any publication facts belong to their proper owners.
 
 ## Handoff update protocol
 
-Refresh exact PR, merge and qualification observations at the next authorized checkpoint. Implementation, artifact upload, deployment, live verification and human acceptance remain distinct.
+Verify the draft and main again at the next authorized checkpoint. Refresh the observed state when evidence changes.
 
 ## Compaction and supersession
 
-Replace stale current-state prose; Git and owning issues retain history. Preserve these twelve sections below 240 lines and 16,384 UTF-8 bytes.
+Retain current validation evidence and the next action here. Git and issue #102 retain the history.

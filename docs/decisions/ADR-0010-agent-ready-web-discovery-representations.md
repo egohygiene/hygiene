@@ -192,3 +192,14 @@ PR #56 subsequently merged issue #52's guarded capability and commerce layer.
 ADR-0012 and issue #53 own final integration and conformance evidence. Parent
 #16 remains open until that final checkpoint merges; lifecycle promotion,
 release, and downstream implementation or adoption remain separate.
+
+### 2026-11-11 proposed follow-up for JournalList trust.txt
+
+[Issue #102](https://github.com/egohygiene/hygiene/issues/102) proposes adding
+optional `trust-txt` under the existing discovery and truthful-absence rules
+in alpha.5. The [profile guide](../ecosystem/AGENT_READY_WEB.md#published-specifications)
+records JournalList v1.5, the provisional IANA registration, the conflict
+between the specification and deployment FAQ, and the selected canonical
+well-known path and root compatibility redirect. Consumer pins, site
+ownership, and the proposed decision status remain in force. A first consumer
+and public publication require separate review.

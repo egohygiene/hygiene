@@ -108,7 +108,7 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
     def test_checked_in_catalog_is_valid_complete_and_proposed(self) -> None:
         self.assertEqual([], agent_ready_web.validate_profile(self.profile))
         self.assertEqual("proposed", self.profile["status"])
-        self.assertEqual("1.0.0-alpha.4", self.profile["version"])
+        self.assertEqual("1.0.0-alpha.5", self.profile["version"])
         self.assertEqual(
             agent_ready_web.SCOPED_MECHANISM_IDS,
             [item["id"] for item in self.profile["mechanisms"]],
@@ -289,6 +289,7 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
             "robots-txt": ("readability", "established"),
             "sitemap-xml": ("readability", "established"),
             "structured-discovery-jsonld": ("readability", "established"),
+            "trust-txt": ("readability", "published_specification"),
             "webmcp-tools": ("capability", "experimental"),
         }
         actual = {
@@ -693,6 +694,53 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
                 [item["id"] for item in fixture["conformance"]["mechanisms"]],
             )
 
+    def test_trust_txt_rejects_a_missing_well_known_path_and_required_strength(self) -> None:
+        mechanism = copy.deepcopy(next(
+            item for item in self.profile["mechanisms"] if item["id"] == "trust-txt"
+        ))
+        mechanism["artifact"]["locations"] = ["/trust.txt"]
+        mechanism["requirements"]["site_class_overrides"][2]["strength"] = "required"
+        self.assertEqual(
+            [
+                "mechanism.artifact must declare the trust.txt paths and text/plain",
+                "mechanism.requirements must keep trust-txt optional for every site class",
+            ],
+            agent_ready_web.validate_mechanism(mechanism),
+        )
+
+    def test_trust_txt_reports_unknown_applicability_and_failed_present_evidence(self) -> None:
+        for fixture, changes, expected in (
+            (
+                self.application_fixture,
+                {"applicability": "unknown", "resolved_strength": "unresolved"},
+                ["ARW-APP-001"],
+            ),
+            (
+                self.content_fixture,
+                {"validation": "failed", "evidence_ids": []},
+                ["ARW-EVD-001", "ARW-VAL-001"],
+            ),
+        ):
+            with self.subTest(expected=expected):
+                candidate = copy.deepcopy(fixture["conformance"])
+                assessment = next(
+                    item for item in candidate["mechanisms"] if item["id"] == "trust-txt"
+                )
+                assessment.update(changes)
+                self.refresh_conformance(candidate)
+                self.assertEqual("nonconformant", candidate["summary"]["level"])
+                self.assertEqual(
+                    expected,
+                    [
+                        item["code"] for item in candidate["diagnostics"]
+                        if item["mechanism_id"] == "trust-txt"
+                    ],
+                )
+                self.assertEqual(
+                    [],
+                    agent_ready_web.validate_conformance(candidate, self.profile),
+                )
+
     def test_conformance_schema_denies_cross_layer_authority(self) -> None:
         schema = agent_ready_web.load_json(
             ROOT / "schemas" / "agent-ready-web-conformance.v1.schema.json"
@@ -801,7 +849,10 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
         inapplicable_present = copy.deepcopy(
             self.application_fixture["conformance"]
         )
-        inapplicable_assessment = inapplicable_present["mechanisms"][16]
+        inapplicable_assessment = next(
+            item for item in inapplicable_present["mechanisms"]
+            if item["id"] == "webmcp-tools"
+        )
         inapplicable_assessment["presence"] = "present"
         inapplicable_assessment["validation"] = "passed"
         inapplicable_assessment["evidence_ids"] = ["artifact-snapshot"]
