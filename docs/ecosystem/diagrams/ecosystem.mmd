@@ -1,3 +1,6 @@
+---
+title: Current Ego Hygiene topology
+---
 flowchart TB
   classDef control fill:#261447,stroke:#c084fc,color:#ffffff,stroke-width:2px
   classDef platform fill:#083344,stroke:#22d3ee,color:#ffffff,stroke-width:2px
@@ -15,7 +18,7 @@ flowchart TB
     HOL["holon<br/>create repositories"]
     PAC["pace<br/>converge repository fleet"]
     OBS["observatory<br/>observe maturity · evidence"]
-    SAN["sanctuary<br/>bounded incubation · provenance"]
+    SAN["sanctuary<br/>bounded incubation · provenance<br/>ADR-0004 proposed"]
   end
 
   subgraph D["Developer & Runtime Platform"]
@@ -24,7 +27,7 @@ flowchart TB
     MAN["mantle<br/>portable shell runtime"]
     REL["relay<br/>reusable CI · release workflows"]
     EGL["egolint<br/>quality policy · reports"]
-    EMP["empathy<br/>golden consumer · integration"]
+    EMP["empathy<br/>strict golden baseline · integration<br/>ADR-0004 proposed"]
   end
 
   subgraph F["Content Transformation & Publishing"]
@@ -53,7 +56,7 @@ flowchart TB
     STO["store<br/>provider-neutral commerce"]
   end
 
-  subgraph I["Infrastructure & Deployment"]
+  subgraph I["Infrastructure & Deployment (ADR-0003 proposed)"]
     direction LR
     FIL["filament<br/>reusable IaC contracts"]
   end

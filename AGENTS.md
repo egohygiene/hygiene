@@ -1,10 +1,15 @@
 # Repository agent context
 
+For active work, start with the
+[current roadmap handoff](ROADMAP.md#current-work-and-publication-handoff) and
+reconcile [repository continuity](CONTINUITY.md) against live state.
+
 Before architecture-changing work in this repository:
 
 1. Read [`docs/ecosystem/ARCHITECTURE.md`](docs/ecosystem/ARCHITECTURE.md).
 2. Read [`docs/ecosystem/AGENT_CONTEXT.md`](docs/ecosystem/AGENT_CONTEXT.md).
-3. Read the relevant accepted record under [`docs/decisions/`](docs/decisions).
+3. Check the [architecture authority map](docs/ecosystem/ARCHITECTURE.md#authority-and-evidence)
+   and the relevant disposition in the [decision index](docs/decisions/README.md).
 4. For cross-repository integration, read
    [`docs/ecosystem/DEPENDENCY_BOUNDARIES.md`](docs/ecosystem/DEPENDENCY_BOUNDARIES.md)
    and validate `catalog/dependency-boundaries.yaml`.
