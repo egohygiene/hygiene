@@ -47,6 +47,7 @@ owned downstream and are not implemented by this directory.
 | [ADR-0016](ADR-0016-public-repository-catalog-and-checkpoints.md) | Keep public repository admission separate from architecture and checkpoint execution | Proposed | 2026-11-09 |
 | [ADR-0017](ADR-0017-architecture-coherence-governance.md) | Separate architecture-coherence governance from assessment and conformance | Proposed | 2026-11-09 |
 | [ADR-0018](ADR-0018-prospective-change-history-policy.md) | Define prospective change-history semantics separately from release authority and historical normalization | Proposed | 2026-11-12 |
+| [ADR-0019](ADR-0019-repository-documentation-locations.md) | Compose canonical documentation locations with existing presentation and continuity | Proposed | 2026-11-12 |
 
 ADR-0001's historical Accepted label describes the five-plane decision. Its
 original body and four-digit identity preserve that record.

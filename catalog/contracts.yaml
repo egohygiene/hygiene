@@ -212,6 +212,30 @@
       "source": "schemas/change-history-analysis.v1.schema.json",
       "status": "proposed",
       "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-documentation-profile/v1",
+      "title": "Proposed repository documentation location profile",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-documentation-profile.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-documentation-inventory/v1",
+      "title": "Explicit repository documentation observations",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-documentation-inventory.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-documentation-assessment/v1",
+      "title": "Local declared-inventory documentation assessment",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-documentation-assessment.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
     }
   ]
 }
