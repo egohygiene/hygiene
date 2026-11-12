@@ -31,8 +31,11 @@
     },
     "id": {
       "type": "string",
+      "minLength": 8,
+      "maxLength": 8,
       "pattern": "^ADR-[0-9]{4}$",
-      "description": "Canonical four-digit identifier under policy v1.2.0. Older pinned policy/schema revisions retain their historical validation behavior."
+      "not": { "const": "ADR-0000" },
+      "description": "Canonical four-digit identifier ADR-0001 through ADR-9999 under policy v1.2.0. Older pinned policy/schema revisions retain their historical validation behavior."
     },
     "title": {
       "type": "string",
@@ -213,6 +216,7 @@
         "properties": {
           "status": {
             "enum": [
+              "accepted",
               "rejected",
               "deprecated"
             ]
@@ -244,7 +248,15 @@
       "then": {
         "properties": {
           "evidence": {
-            "minItems": 1
+            "minItems": 1,
+            "contains": {
+              "type": "object",
+              "required": ["type", "url", "description"],
+              "properties": {
+                "type": { "const": "validation" },
+                "description": { "type": "string", "pattern": "\\S" }
+              }
+            }
           }
         }
       }

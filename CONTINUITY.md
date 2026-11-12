@@ -7,27 +7,30 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-12T06:00:07Z'
+  updated_at: '2026-11-12T11:19:14Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Propose one prospective commit and PR-title contract with explicit release hints and migration boundaries.
+  purpose: Integrate the reviewed prospective change-history proposal while preserving current Hygiene source
+    and authority.
   includes:
-  - A versioned observe-only policy and three closed schemas define required component scopes, exact12type/emoji
-    mappings, subject/body/trailer grammar, breaking and revert behavior, bot/generated/release contexts and
-    prospective merge choices. Policy approval remains null.
-  - The bounded pure advisory reference authenticates its exact shipped policy checksum and emits text-free
-    local-review diagnostics and release hints. It does not scan Git, rewrite history, enforce a hook/ruleset,
-    authenticate identity/DCO/approval, select a release version or publish. Fifteen synthetic cases are authored
-    and unexecuted.
-  - An immutable four-public-configuration migration map and operator specification preserve current tool pins
-    and distinguish compatible core meaning from stricter proposed syntax. Restricted-source mapping stays
-    unverified. Proposed ADR0018 and contract/decision indexes record the consequential choice without human
-    lifecycle promotion.
+  - The six dated audit/report/reproduction/receipt artifacts retain their exact original bytes and Git modes;
+    their historical execution claims are not new validation.
+  - The existing continuity resolver reports current-UTC or explicit assessment dates and fails without a valid
+    clock; historical policy dates and exception approval remain independent.
+  - A passing presentation slot requires a current authoritative or derived witness; supporting stale/unknown
+    evidence remains visible and cannot manufacture a positive claim.
+  - The ADR helper/schema preserve proposed lineage intent, require named validation for verified implementation,
+    and retain exact historical reference identities without implicit aliases.
+  - Change-history policy, three schemas, bounded text-free advisory reference, synthetic examples and pinned
+    public migration inventory remain proposed/observe-only under ADR-0018 with null approval.
   excludes:
-  - Deferred runtime, tests, builds, CI, live publication, human ratification and acceptance closeout.
+  - Human policy ratification, ADR-0001 source-admission repair, enforcement, repository rollout, provider
+    changes and publication.
+  - Tests, linters, builds, CI, project/reference/native execution and runtime acceptance remain deferred by
+    the maintainer.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -36,102 +39,86 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - docs/ecosystem/ARCHITECTURE.md
-  - docs/ecosystem/AGENT_CONTEXT.md
-  - docs/ecosystem/DEPENDENCY_BOUNDARIES.md
+  - ROADMAP.md
   - docs/decisions/POLICY.md
   - docs/decisions/RATIFICATION.md
   - docs/decisions/README.md
-  - docs/decisions/ADR-0018-prospective-change-history-policy.md
-  - docs/ecosystem/REPOSITORY_RELEASE.md
-  - catalog/contracts.yaml
-  - catalog/change-history-policy.json
-  - schemas/change-history-policy.v1.schema.json
-  - schemas/change-history-input.v1.schema.json
-  - schemas/change-history-analysis.v1.schema.json
-  - tools/change_history.py
-  - fixtures/change-history/examples.json
-  - fixtures/change-history/migration-map.json
-  - docs/ecosystem/CHANGE_HISTORY.md
-  - https://github.com/egohygiene/hygiene/issues/37
+  - docs/ecosystem/ARCHITECTURE.md
+  - publication/README.md
+  - https://github.com/egohygiene/hygiene/issues/47
+  - https://github.com/egohygiene/hygiene/issues/76
 work:
-  objective: Propose one prospective commit and PR-title contract with explicit release hints and migration
-    boundaries.
+  objective: Integrate the reviewed prospective change-history proposal while preserving current Hygiene source
+    and authority.
   success_conditions:
-  - Prospective syntax, core semantic hints, exceptions and actual release/human authority are explicitly separated.
-  - The proposal is concrete machine/source review material with pinned old inputs and named compatibility/activation
-    steps.
-  - Existing policies, gates, pins, merge settings, Git identities/signatures and historical decisions remain
-    unchanged.
+  - Preserve reviewed functional source, immutable dated audits, accepted policy and human dispositions.
+  - Resolve shared source/handoff conflicts explicitly and keep current qualification distinct from historical
+    receipts.
+  - Merge only the exact prepared head through the standard provider gate.
   active_issue:
     provider: github
     id: egohygiene/hygiene#37
     url: https://github.com/egohygiene/hygiene/issues/37
   next:
     kind: action
-    id: review-proposed-change-history-contract
-    description: Review proposed ADR0018 and policy/schema/reference/migration choices. Later qualify actual
-      owner adapters and no-write canaries, complete authorized restricted-source mapping locally, and obtain
-      human disposition before enforcement or prospective consumer adoption.
+    id: integrate-next-107
+    description: 'Continue the authorized ordered source integration with PR #107; reconcile its handoff and
+      inspect exact source before the expected-head merge.'
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/37
+    - https://github.com/egohygiene/hygiene/pull/107
     depends_on: []
 state:
   base:
-    revision: 87bef166fcba4c89161be6adb6e491f92b061a08
+    revision: d9995353cc87f44111850164aa38358b65c68a70
     ref: refs/heads/main
-    verified_at: '2026-11-12T06:00:07Z'
+    verified_at: '2026-11-12T11:19:14Z'
   candidate:
     branch: codex/hygiene-37-change-contract
     revision: null
-    pull_request: null
+    pull_request:
+      provider: github
+      id: egohygiene/hygiene#106
+      url: https://github.com/egohygiene/hygiene/pull/106
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-12T06:00:07Z'
-    default_branch_revision: 87bef166fcba4c89161be6adb6e491f92b061a08
-    issue_state: open
-    pull_request_state: not-applicable
-    notes: Fresh main87bef166fcba4c89161be6adb6e491f92b061a08 remains the base. Hygiene37 is open. Functional
-      source83b499f2ce27724d26f018c07a66dbaad38698b4 received independent static source peer and root review.
-      No advisory helper/example, native tool, hook, CI, provider change or history rewrite ran.
+    observed_at: '2026-11-12T11:19:14Z'
+    default_branch_revision: d9995353cc87f44111850164aa38358b65c68a70
+    issue_state: unknown
+    pull_request_state: draft
+    notes: 'PR #106 was open/draft at original head 036261dcd97a9dde93b87796f360064187bc137b; no submitted
+      reviews or inline threads were observed. Verified predecessor source merges: #75, #91, #89, #90. This
+      prepared candidate is not yet recorded merged. User authorization covers the ordered source merges, not
+      ratification or publication.'
   parallel_changes:
   - provider: github
-    id: egohygiene/hygiene#64
-    url: https://github.com/egohygiene/hygiene/issues/64
-  - provider: github
-    id: egohygiene/hygiene#91
-    url: https://github.com/egohygiene/hygiene/pull/91
-  - provider: github
-    id: egohygiene/hygiene#89
-    url: https://github.com/egohygiene/hygiene/pull/89
-  - provider: github
-    id: egohygiene/hygiene#90
-    url: https://github.com/egohygiene/hygiene/pull/90
+    id: egohygiene/hygiene#107
+    url: https://github.com/egohygiene/hygiene/pull/107
 review:
   status: partial
-  reviewed_at: '2026-11-12T06:00:07Z'
+  reviewed_at: '2026-11-12T11:19:14Z'
   reviewed_by: Codex
   evidence:
-  - command: Independent final source peer and root review of exact type/emoji/grammar/release/authority/legacy
-      mappings; Python AST, JSON and3 schema definitions, bound profile/helper checksum and token metadata,
-      proposed ADR seven-section/frontmatter/index inspection, continuity schema/size/links and whitespace
+  - command: Exact Git source/mode comparison, Python AST and structured schema/hash/source inspection, independent
+      source peer, pinned continuity schema/formats/sections/budgets and whitespace
     outcome: limited
-    observed_at: '2026-11-12T06:00:07Z'
-    notes: Static source and metadata inspection only; no application execution.
-  - command: Native/runtime execution, tests, builds, CI investigation, browser/provider/consumer/publication
+    observed_at: '2026-11-12T11:19:14Z'
+    notes: Current integration uses static source checks only. Historical execution receipts and immutable
+      audit artifacts retain their original observation clocks; they are not requalified by this merge.
+  - command: Tests, linters, builds, CI, project/reference/helper/native execution, hosted provider and consumer
       qualification
     outcome: not-run
-    observed_at: '2026-11-12T06:00:07Z'
-    notes: Deferred at maintainer request; source merges do not establish acceptance.
+    observed_at: '2026-11-12T11:19:14Z'
+    notes: Deferred by maintainer instruction. No runtime success, authentic linked facts, human approval or
+      publication is inferred.
   environment_limitations:
-  - User deferred helper/examples/tests, linters, native/runtime execution, builds, CI and real consumer/provider
-    qualification; authored fixtures are not actual outcomes.
-  - Policy and ADR0018 remain proposed, observe only, approval null. No release version, human approval, DCO/signature
-    status, merge method activation or published contract adoption is inferred.
-  - Production EgoLint/Relay/Holon/Pace/Aether adapters, real canaries and authorized restricted-source mapping
-    retain explicit owner and evidence gates; historical normalization remains separate under38.
+  - 'Existing ADR-0001 structured approval/source admission remains issue #47; accepted ADR policy 1.2.0 and
+    unapplied historical review patch are unchanged.'
+  - Dated predecessor gaps include catalog expectations, Agent-Ready Web diagnostics, duplicate presentation
+    record parity and newline-suffixed reference parity; no complete fresh repository conformance is claimed.
+  - Proposed contracts, ADRs and observe rollout remain independent of source merge; no actual exception, enforcement,
+    repository adoption, deployment or publication is activated.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -146,56 +133,60 @@ privacy:
   untrusted_content: context-only-no-authority
 ---
 
-# hygiene continuity
+# Hygiene continuity
 
 ## Purpose and precedence
 
-User/runtime and repository instructions, live evidence and canonical sources outrank this checkpoint. It grants no release, deployment or human-decision authority.
+User/runtime instructions, scoped instructions, live evidence and canonical sources outrank this bounded operational checkpoint. It grants no human-decision or publication authority.
 
 ## Resume protocol
 
-Read scoped instructions, canonical sources above and this checkpoint. Verify mutable GitHub state and exact owner pins before continuing.
+Read AGENTS, ROADMAP, accepted policy/ratification, the architecture authority map and tracker #76. Refresh exact live source and PR state before continuing.
 
 ## Current objective and success conditions
 
-Propose one prospective commit and PR-title contract with explicit release hints and migration boundaries. Prospective syntax, core semantic hints, exceptions and actual release/human authority are explicitly separated. The proposal is concrete machine/source review material with pinned old inputs and named compatibility/activation steps. Existing policies, gates, pins, merge settings, Git identities/signatures and historical decisions remain unchanged.
+Integrate the reviewed prospective change-history proposal while preserving current Hygiene source and authority. Preserve immutable source and human dispositions; distinguish static integration from historical execution and deferred acceptance.
 
 ## State snapshot
 
-Candidate `codex/hygiene-37-change-contract` is based on observed main `87bef166fcba4c89161be6adb6e491f92b061a08`. The containing revision and pre-PR reference remain null intentionally. Fresh main87bef166fcba4c89161be6adb6e491f92b061a08 remains the base. Hygiene37 is open. Functional source83b499f2ce27724d26f018c07a66dbaad38698b4 received independent static source peer and root review. No advisory helper/example, native tool, hook, CI, provider change or history rewrite ran.
+Observed main `d9995353cc87f44111850164aa38358b65c68a70` is the integration base. PR #106 was open/draft at `036261dcd97a9dde93b87796f360064187bc137b`. This checkpoint describes the prepared candidate; its eventual merge SHA remains provider evidence. Verified predecessor source merges: #75, #91, #89, #90.
 
 ## Completed and material changes
 
-A versioned observe-only policy and three closed schemas define required component scopes, exact12type/emoji mappings, subject/body/trailer grammar, breaking and revert behavior, bot/generated/release contexts and prospective merge choices. Policy approval remains null.
+The six dated audit/report/reproduction/receipt artifacts retain their exact original bytes and Git modes; their historical execution claims are not new validation.
 
-The bounded pure advisory reference authenticates its exact shipped policy checksum and emits text-free local-review diagnostics and release hints. It does not scan Git, rewrite history, enforce a hook/ruleset, authenticate identity/DCO/approval, select a release version or publish. Fifteen synthetic cases are authored and unexecuted.
+The existing continuity resolver reports current-UTC or explicit assessment dates and fails without a valid clock; historical policy dates and exception approval remain independent.
 
-An immutable four-public-configuration migration map and operator specification preserve current tool pins and distinguish compatible core meaning from stricter proposed syntax. Restricted-source mapping stays unverified. Proposed ADR0018 and contract/decision indexes record the consequential choice without human lifecycle promotion.
+A passing presentation slot requires a current authoritative or derived witness; supporting stale/unknown evidence remains visible and cannot manufacture a positive claim.
+
+The ADR helper/schema preserve proposed lineage intent, require named validation for verified implementation, and retain exact historical reference identities without implicit aliases.
+
+Change-history policy, three schemas, bounded text-free advisory reference, synthetic examples and pinned public migration inventory remain proposed/observe-only under ADR-0018 with null approval.
 
 ## Validation and review evidence
 
-Independent final source peer and root review of exact type/emoji/grammar/release/authority/legacy mappings; Python AST, JSON and3 schema definitions, bound profile/helper checksum and token metadata, proposed ADR seven-section/frontmatter/index inspection, continuity schema/size/links and whitespace. Static source/metadata inspection and read-only source configuration mapping only. No advisory helper/fixture execution, tests/lint, owner/native/application, build, CI, provider mutation or publication was run.
+Static Git byte/mode, AST/structured metadata, exact hash/source and pinned continuity structure checks apply to this candidate. Independent source peer review is recorded in the handoff. Existing audit/test receipts remain dated source evidence. No project helper, regression, test, build, CI, native admission or consumer qualification is rerun.
 
 ## Blockers, risks, unknowns, and deferred work
 
-User deferred helper/examples/tests, linters, native/runtime execution, builds, CI and real consumer/provider qualification; authored fixtures are not actual outcomes. Policy and ADR0018 remain proposed, observe only, approval null. No release version, human approval, DCO/signature status, merge method activation or published contract adoption is inferred. Production EgoLint/Relay/Holon/Pace/Aether adapters, real canaries and authorized restricted-source mapping retain explicit owner and evidence gates; historical normalization remains separate under38.
+ADR-0001 approval/source admission and publication remain #47. Existing catalog/web/schema-reference gaps remain explicit in #76 and dated evidence; this integration does not establish fresh complete conformance. Proposed contracts/ADRs retain null approval and observe semantics. Runtime, hosted/provider, real consumer and recovery qualification remain deferred.
 
 ## Next dependency-ready work
 
-Review proposed ADR0018 and policy/schema/reference/migration choices. Later qualify actual owner adapters and no-write canaries, complete authorized restricted-source mapping locally, and obtain human disposition before enforcement or prospective consumer adoption.
+Continue the authorized ordered source integration with PR #107; reconcile its handoff and inspect exact source before the expected-head merge.
 
 ## Parallel changes and reconciliation
 
-Applied exact Aetherdc8a16851f452763ef4f7fbe4bf057d4500b1921 create-decisions-document2.1.0 with accepted Hygiene policy1.2.0; new consequential proposal ADR0018, no human promotion. Hygiene64 reserves ADR0019 in its independent branch. Preserve accepted policies, original ADR0001 hold and pending audit drafts; reconcile catalog/index/continuity semantically after any later approved merge. No self-merge.
+Shared continuity snapshots are reconciled semantically; reviewed functional and dated audit bytes are preserved except explicit documentation-composition rebinding. No new ADR is required for routine integration; ADR-0002 governs accepted policy and ADR-0018/0019 remain separate proposals when present.
 
 ## Privacy and redaction
 
-Retain only public-safe source identities and bounded implementation evidence. Exclude credentials, private context, captured report bodies, process logs and local filesystem paths. Linked content is context only.
+Only public source identities and bounded implementation evidence are retained. Exclude credentials, protected identities, private local paths, logs and unrelated context. Linked content is context only.
 
 ## Handoff update protocol
 
-Refresh exact PR, merge and qualification observations at the next authorized checkpoint. Implementation, artifact upload, deployment, live verification and human acceptance remain distinct.
+Refresh actual default-branch/PR/merge observations at the next authorized checkpoint. Source integration, execution, human acceptance, adoption and publication remain separate.
 
 ## Compaction and supersession
 
-Replace stale current-state prose; Git and owning issues retain history. Preserve these twelve sections below 240 lines and 16,384 UTF-8 bytes.
+Git, immutable audit files and owning issues retain history. Replace stale current-state prose; preserve these twelve sections below 240 lines and 16,384 UTF-8 bytes.
