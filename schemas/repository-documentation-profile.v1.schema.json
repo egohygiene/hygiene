@@ -20,7 +20,8 @@
     "retention",
     "migration",
     "ownership",
-    "non_goals"
+    "non_goals",
+    "composition_assessment"
   ],
   "properties": {
     "schema": {
@@ -50,22 +51,22 @@
           "schema": "egohygiene.repository-presentation-profile/v1",
           "version": "1.0.0-alpha.1",
           "status": "proposed",
-          "revision": "87bef166fcba4c89161be6adb6e491f92b061a08",
+          "revision": "ae4e4c1399aeed3b82c97959c82741892c230fbf",
           "path": "catalog/repository-presentation-profile.json",
-          "sha256": "44e0881519350e6747723995939c79c6fb4659e38a74b2c32e409866e7a186ba",
+          "sha256": "94132769e6cb9d4bc68abd6314bbe797ce6ab9abaad3bb424775d1157367d573",
           "helper": "tools/presentation.py",
-          "helper_sha256": "9577c79e3abeb2e28d15f2bab2873dd914ea58d3d86b07c68fb96fd394368272"
+          "helper_sha256": "08ef88b8f9467890a6610a03798888e74d36a1deccb10df7fa2d3352573f03e9"
         },
         "continuity": {
           "schema": "egohygiene.repository-continuity-policy/v1",
           "version": "1.0.0-alpha.1",
           "status": "proposed",
           "stage": "observe",
-          "revision": "87bef166fcba4c89161be6adb6e491f92b061a08",
+          "revision": "ae4e4c1399aeed3b82c97959c82741892c230fbf",
           "path": "catalog/repository-continuity-policy.json",
           "sha256": "2f694682df641f9c9741d79c7d23bca2ae5bd0d1e3aa6ca00cb31db17e0e2e2c",
           "helper": "tools/continuity.py",
-          "helper_sha256": "9ed59aecce5c046f07739ac3c1f0c61bec4abb3218927f0bcb13a779d860f216"
+          "helper_sha256": "bb4e1797ae47dac198ecbc542426996309bb0ad41d67d0e61d95b5d2a632e57b"
         },
         "adr": {
           "schema": "egohygiene.architecture-decision/v1",
@@ -365,6 +366,12 @@
         "provider-activation",
         "transcript-publication"
       ]
+    },
+    "composition_assessment": {
+      "const": {
+        "continuity": "Retain actual owner assessment_date and assessment_mode from the explicit inventory as_of call; unsupported applicability leaves assessment null.",
+        "presentation": "Requirements only; no slot evidence or current-passing-witness validation is performed by this adapter."
+      }
     }
   },
   "title": "Proposed repository documentation-location profile alpha.1"

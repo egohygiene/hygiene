@@ -57,13 +57,22 @@ does not decode URLs, normalize filenames, or require renaming existing sources.
 ## Compose existing applicability and presentation
 
 This profile pins unchanged Hygiene presentation bytes SHA-256
-`44e0881519350e6747723995939c79c6fb4659e38a74b2c32e409866e7a186ba`
+`94132769e6cb9d4bc68abd6314bbe797ce6ab9abaad3bb424775d1157367d573`
 and continuity bytes
 `2f694682df641f9c9741d79c7d23bca2ae5bd0d1e3aa6ca00cb31db17e0e2e2c`
-at `87bef166fcba4c89161be6adb6e491f92b061a08`, with exact helper hashes in
+at `ae4e4c1399aeed3b82c97959c82741892c230fbf`, with exact helper hashes in
 `composes`. The reference calls their existing pure resolvers rather than
 reimplementing applicability. Their statuses remain proposed. The independent
 accepted ADR policy and draft Aether continuity contract keep their own states.
+
+This selection includes the merged continuity-clock repair (#91) and
+presentation-witness repair (#89). The adapter passes the inventory's explicit
+`as_of` date and retains the owner's actual `assessment_date` and
+`assessment_mode` in `continuity_assessment`; unavailable applicability leaves
+that field null. It does not substitute a historical policy date or claim that
+the caller's assessment date is a fresh filesystem observation. Presentation
+composition selects requirements only; it does not inspect slot evidence or
+claim that a current passing witness exists.
 
 Continuity resolves approved unexpired exceptions, kind, lifecycle, then
 visibility. Active standard/template repositories resolve required; dormant or

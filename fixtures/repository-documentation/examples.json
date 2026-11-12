@@ -127,7 +127,11 @@
         "layout_exception": null
       },
       "expected_codes": [],
-      "expected_state": "advisory"
+      "expected_state": "advisory",
+      "expected_continuity_assessment": {
+        "assessment_date": "2026-11-12",
+        "assessment_mode": "explicit"
+      }
     },
     {
       "id": "rich-readme",
@@ -254,7 +258,11 @@
         "layout_exception": null
       },
       "expected_codes": [],
-      "expected_state": "advisory"
+      "expected_state": "advisory",
+      "expected_continuity_assessment": {
+        "assessment_date": "2026-11-12",
+        "assessment_mode": "explicit"
+      }
     },
     {
       "id": "misplaced-durable-notes",
@@ -397,7 +405,11 @@
       "expected_codes": [
         "PROMOTE_DURABLE_CONTENT"
       ],
-      "expected_state": "review_required"
+      "expected_state": "review_required",
+      "expected_continuity_assessment": {
+        "assessment_date": "2026-11-12",
+        "assessment_mode": "explicit"
+      }
     },
     {
       "id": "eager-claude-import",
@@ -527,7 +539,11 @@
       "expected_codes": [
         "CLAUDE_IMPORTS"
       ],
-      "expected_state": "review_required"
+      "expected_state": "review_required",
+      "expected_continuity_assessment": {
+        "assessment_date": "2026-11-12",
+        "assessment_mode": "explicit"
+      }
     },
     {
       "id": "legacy-root",
@@ -639,7 +655,11 @@
         "layout_exception": null
       },
       "expected_codes": [],
-      "expected_state": "advisory"
+      "expected_state": "advisory",
+      "expected_continuity_assessment": {
+        "assessment_date": "2026-11-12",
+        "assessment_mode": "explicit"
+      }
     },
     {
       "id": "literal-established-paths",
@@ -792,7 +812,11 @@
         "layout_exception": null
       },
       "expected_codes": [],
-      "expected_state": "advisory"
+      "expected_state": "advisory",
+      "expected_continuity_assessment": {
+        "assessment_date": "2026-11-12",
+        "assessment_mode": "explicit"
+      }
     },
     {
       "id": "declared-exception",
@@ -932,7 +956,11 @@
       "expected_codes": [
         "EXCEPTION_REQUIRES_OWNER_REVIEW"
       ],
-      "expected_state": "review_required"
+      "expected_state": "review_required",
+      "expected_continuity_assessment": {
+        "assessment_date": "2026-11-12",
+        "assessment_mode": "explicit"
+      }
     },
     {
       "id": "unknown-applicability",
@@ -1062,7 +1090,8 @@
         "CONTINUITY_APPLICABILITY_UNKNOWN",
         "PRESENTATION_APPLICABILITY_UNKNOWN"
       ],
-      "expected_state": "review_required"
+      "expected_state": "review_required",
+      "expected_continuity_assessment": null
     },
     {
       "id": "archived-applicability",
@@ -1189,7 +1218,11 @@
         "layout_exception": null
       },
       "expected_codes": [],
-      "expected_state": "advisory"
+      "expected_state": "advisory",
+      "expected_continuity_assessment": {
+        "assessment_date": "2026-11-12",
+        "assessment_mode": "explicit"
+      }
     },
     {
       "id": "protected-envelope",
@@ -1200,7 +1233,8 @@
       "expected_codes": [
         "SOURCE_NOT_ADMITTED"
       ],
-      "expected_state": "unavailable"
+      "expected_state": "unavailable",
+      "expected_continuity_assessment": null
     },
     {
       "id": "established-documentation-index",
@@ -1327,7 +1361,11 @@
         "layout_exception": null
       },
       "expected_codes": [],
-      "expected_state": "advisory"
+      "expected_state": "advisory",
+      "expected_continuity_assessment": {
+        "assessment_date": "2026-11-12",
+        "assessment_mode": "explicit"
+      }
     }
   ]
 }

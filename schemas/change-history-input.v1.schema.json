@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/change-history-input.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "visibility",
+    "context",
+    "message",
+    "parent_count"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egohygiene.change-history-input/v1"
+    },
+    "visibility": {
+      "enum": [
+        "public",
+        "internal",
+        "private",
+        "unknown"
+      ]
+    },
+    "context": {
+      "enum": [
+        "commit",
+        "pr_title",
+        "bot",
+        "dependency",
+        "generated",
+        "release",
+        "merge"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 65536,
+      "description": "At most65536 Unicode code points structurally; the policy separately bounds the UTF-8 message to65536 bytes."
+    },
+    "parent_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 32
+    }
+  }
+}

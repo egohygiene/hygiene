@@ -12,6 +12,7 @@
     "state",
     "layout",
     "continuity_requirement",
+    "continuity_assessment",
     "presentation_requirements",
     "diagnostics",
     "qualification"
@@ -28,7 +29,7 @@
         "schema": "egohygiene.repository-documentation-profile/v1",
         "version": "1.0.0-alpha.1",
         "status": "proposed",
-        "sha256": "b7cbe6cf915ffa5dc0506e9f2f131651a2e0310f6f67d8e8af63c92695f90d89"
+        "sha256": "c5bf0246f039b1780ba03900f894dadf099fd190ea22131d7d1728230efab0d2"
       }
     },
     "publication": {
@@ -287,6 +288,33 @@
         "links": "declared-relative-targets-only",
         "provider_activation": "not-performed"
       }
+    },
+    "continuity_assessment": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assessment_date",
+            "assessment_mode"
+          ],
+          "properties": {
+            "assessment_date": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+              "minLength": 10,
+              "maxLength": 10
+            },
+            "assessment_mode": {
+              "const": "explicit"
+            }
+          }
+        }
+      ]
     }
   },
   "allOf": [
@@ -379,6 +407,29 @@
         "properties": {
           "diagnostics": {
             "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "continuity_requirement": {
+            "const": "unknown"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "continuity_assessment": {
+            "const": null
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "continuity_assessment": {
+            "type": "object"
           }
         }
       }

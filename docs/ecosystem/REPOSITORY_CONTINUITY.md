@@ -162,6 +162,61 @@ reviewed policy update removes them. An exception cannot authorize sensitive
 data, fabricated evidence, silent mutation, or a different capability owner.
 The initial profile contains no exceptions.
 
+### Assessment clock and reproducible expiry
+
+The reference resolver evaluates an exception at the represented assessment
+date. Its default is the **current UTC calendar date**, not the profile's
+historical `updated` date. Results disclose `assessment_date` as `YYYY-MM-DD`
+and `assessment_mode` as `current-utc` or `explicit`. An exception is unexpired
+only when `expires_on` is strictly later than that date; it is already expired
+on its expiry date.
+
+Freeze the date for a reproducible assessment:
+
+```sh
+python3 tools/continuity.py resolve \
+  --repository egohygiene/hygiene --lifecycle active \
+  --repository-kind standard --visibility public \
+  --assessment-date 2026-10-20
+```
+
+The API retains `resolve_applicability(..., as_of=date(2026, 10, 20))`.
+Omitting the date uses the current UTC clock. Supplying one never consults that
+clock and permits byte-deterministic CLI repetition for the same input snapshot.
+To replay a prior current-date result, supply its recorded `assessment_date`.
+Frozen evaluation interprets the supplied source snapshot; it does not prove
+that a policy or approval existed or was effective historically.
+
+The [synthetic expiry fixture](../../fixtures/repository-continuity/expiry-assessments.json)
+uses an approved record expiring `2026-10-01`. It has no real approval authority:
+
+| Explicit assessment | Result for the synthetic active standard repository |
+| --- | --- |
+| `2026-09-30` | `exempt`, approved and unexpired |
+| `2026-10-01` | `required`, expiry reached |
+| `2026-10-02` | `required`, expired |
+
+Proposed, expired and revoked records do not grant exemption; records rejected
+by the existing source checks stop resolution. Invalid supplied dates or unavailable current clock
+context fail with a controlled error, without falling back to historical dates.
+CLI dates and profile date fields use the schema's full calendar-date grammar;
+compact/week-date forms and impossible dates reject. The API accepts a calendar
+`datetime.date`, excluding `datetime.datetime` and other unsupported input types.
+
+Source validation remains distinct: `validate-profile` checks authored source
+consistency, including approval/expiry relative to its unchanged `updated` date.
+A valid profile does not grant a current exemption. Resolution then applies the
+selected assessment date. Policy, update, approval and expiry fields are never
+advanced or rewritten by an assessment. No real exception is added here.
+
+Compatibility: resolver output adds the two assessment metadata fields, and an
+omitted API/CLI date now evaluates current UTC instead of the historical profile
+timestamp. Callers requiring frozen results must pass the date; consumers with
+closed output parsers must account for the added fields. Noncanonical date
+strings that the older helper accepted are rejected consistently with the
+selected schema. The proposed policy, observe rollout, Aether pin and production
+enforcement/adoption state remain unchanged.
+
 ## Information safety
 
 Only the minimum durable repository state needed for resumption belongs in the

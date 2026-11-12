@@ -25,7 +25,7 @@ INPUT_SCHEMA = "egohygiene.repository-documentation-inventory/v1"
 OUTPUT_SCHEMA = "egohygiene.repository-documentation-assessment/v1"
 VERSION = "1.0.0-alpha.1"
 MAX_JSON_BYTES = 1024 * 1024
-PROFILE_SHA256 = "b7cbe6cf915ffa5dc0506e9f2f131651a2e0310f6f67d8e8af63c92695f90d89"
+PROFILE_SHA256 = "c5bf0246f039b1780ba03900f894dadf099fd190ea22131d7d1728230efab0d2"
 
 
 def require(value):
@@ -210,7 +210,8 @@ def assess(value):
     result = {"schema": OUTPUT_SCHEMA, "contract_version": VERSION,
         "policy": {"schema": PROFILE_SCHEMA, "version": VERSION, "status": "proposed", "sha256": PROFILE_SHA256},
         "publication": "local-review-only", "state": "unavailable", "layout": None,
-        "continuity_requirement": "unknown", "presentation_requirements": {}, "diagnostics": [],
+        "continuity_requirement": "unknown", "continuity_assessment": None,
+        "presentation_requirements": {}, "diagnostics": [],
         "qualification": {"input": "declared-inventory-not-filesystem-proof", "enforcement": "not-activated",
             "human_approval": "not-inferred", "aether_content_validation": "not-performed",
             "links": "declared-relative-targets-only", "provider_activation": "not-performed"}}
@@ -233,7 +234,8 @@ def assess(value):
         resolver, source = composed(selected, "continuity")
         resolved = resolver.resolve_applicability(source, repository["name"], repository["lifecycle"],
             repository["kind"], value["visibility"], as_of=observed_on)
-        result["continuity_requirement"] = resolved["requirement"]
+        assessment = {key: resolved[key] for key in ("assessment_date", "assessment_mode")}
+        result.update(continuity_requirement=resolved["requirement"], continuity_assessment=assessment)
     except (ValueError, KeyError, TypeError):
         note("CONTINUITY_APPLICABILITY_UNKNOWN")
     try:

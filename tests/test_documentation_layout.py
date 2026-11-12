@@ -36,6 +36,14 @@ class RepositoryDocumentationTests(unittest.TestCase):
                 self.assertEqual(sorted(example["expected_codes"]), sorted(row["code"] for row in result["diagnostics"]))
                 self.assertEqual("local-review-only", result["publication"])
                 self.assertEqual("not-performed", result["qualification"]["aether_content_validation"])
+                self.assertEqual(example["expected_continuity_assessment"], result["continuity_assessment"])
+
+    def test_composed_continuity_retains_explicit_owner_clock(self) -> None:
+        candidate = copy.deepcopy(self.baseline)
+        candidate["as_of"] = "2030-01-01"
+        result = documentation_layout.assess(candidate)
+        self.assertEqual({"assessment_date": "2030-01-01", "assessment_mode": "explicit"},
+                         result["continuity_assessment"])
 
     def test_profile_and_owner_inputs_remain_exact_byte_bound(self) -> None:
         profile = documentation_layout.profile()

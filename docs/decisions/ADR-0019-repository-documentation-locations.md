@@ -36,10 +36,10 @@ evidence:
     url: https://github.com/egohygiene/hygiene/issues/64
     description: Original documentation-location requirements and October 17 architecture/agent checkpoint; no policy activation.
   - type: documentation
-    url: https://github.com/egohygiene/hygiene/blob/87bef166fcba4c89161be6adb6e491f92b061a08/catalog/repository-presentation-profile.json
+    url: https://github.com/egohygiene/hygiene/blob/ae4e4c1399aeed3b82c97959c82741892c230fbf/catalog/repository-presentation-profile.json
     description: Unchanged proposed presentation slots, applicability, claims and ownership.
   - type: documentation
-    url: https://github.com/egohygiene/hygiene/blob/87bef166fcba4c89161be6adb6e491f92b061a08/catalog/repository-continuity-policy.json
+    url: https://github.com/egohygiene/hygiene/blob/ae4e4c1399aeed3b82c97959c82741892c230fbf/catalog/repository-continuity-policy.json
     description: Existing observe-only applicability and draft Aether continuity composition.
   - type: documentation
     url: https://github.com/egohygiene/empathy/blob/058d92a0f8c970f98a58d446408716936e593c99/foundation/catalog.json
@@ -114,6 +114,14 @@ current immutable inputs and downstream obligations. Aether authoring 2.1.0 at
 were read before drafting. Synthetic cases and regression scenarios are authored
 but unexecuted. Runtime, helper/test/build/CI, content/link and consumer-pilot
 qualification are deferred; no passing or historical count is invented.
+
+The merge integration selects exact corrected merged Hygiene owner source
+`ae4e4c1399aeed3b82c97959c82741892c230fbf`, including #91's explicit/current
+assessment clock and #89's current-evidence witness repair. The machine profile,
+reference and closed output schema bind those exact bytes and retain the
+owner-returned assessment date/mode. Presentation composition remains
+requirements-only; it does not validate a passing witness or promote any
+policy, ADR or consumer lifecycle.
 
 ## Replacement or exit strategy
 
