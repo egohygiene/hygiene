@@ -1,0 +1,243 @@
+{
+  "schema": "egohygiene.change-history-policy/v1",
+  "version": "1.0.0-alpha.1",
+  "status": "proposed",
+  "approval": null,
+  "owner": "egohygiene/hygiene",
+  "updated": "2026-11-12",
+  "enforcement": "observe",
+  "subject": {
+    "shape": "<type>(<scope>)[!]: <emoji> <description>",
+    "scope": "required",
+    "scope_pattern": "^[a-z0-9][a-z0-9._/-]{0,63}$",
+    "description_initial": "ascii-lowercase",
+    "description_terminal_period": false,
+    "maximum_code_points": 100,
+    "normalization": "NFC-required-no-rewrite",
+    "spacing": "one-ascii-space",
+    "placeholder_descriptions": [
+      "wip",
+      "tmp",
+      "temp",
+      "test",
+      "fix",
+      "update",
+      "...",
+      "todo"
+    ],
+    "scope_pattern_role": "lexical-ceiling-with-required-segment-and-suffix-constraints",
+    "scope_forbidden_segments": [
+      "",
+      ".",
+      ".."
+    ],
+    "scope_forbidden_suffixes": [
+      ".",
+      "/",
+      "-",
+      "_"
+    ]
+  },
+  "types": [
+    {
+      "type": "build",
+      "emoji": "📦",
+      "release_hint": "none"
+    },
+    {
+      "type": "chore",
+      "emoji": "🔧",
+      "release_hint": "none"
+    },
+    {
+      "type": "ci",
+      "emoji": "👷",
+      "release_hint": "none"
+    },
+    {
+      "type": "docs",
+      "emoji": "📝",
+      "release_hint": "none"
+    },
+    {
+      "type": "feat",
+      "emoji": "✨",
+      "release_hint": "minor"
+    },
+    {
+      "type": "fix",
+      "emoji": "🐛",
+      "release_hint": "patch"
+    },
+    {
+      "type": "perf",
+      "emoji": "⚡️",
+      "release_hint": "patch"
+    },
+    {
+      "type": "refactor",
+      "emoji": "♻️",
+      "release_hint": "none"
+    },
+    {
+      "type": "revert",
+      "emoji": "⏪",
+      "release_hint": "review_required"
+    },
+    {
+      "type": "security",
+      "emoji": "🔒",
+      "release_hint": "patch"
+    },
+    {
+      "type": "style",
+      "emoji": "🎨",
+      "release_hint": "none"
+    },
+    {
+      "type": "test",
+      "emoji": "✅",
+      "release_hint": "none"
+    }
+  ],
+  "breaking": {
+    "header_marker": "!",
+    "footer_tokens": [
+      "BREAKING CHANGE",
+      "BREAKING-CHANGE"
+    ],
+    "release_hint": "major",
+    "rationale": "recommended-in-footer; PR title marker alone is syntactically valid",
+    "pre_1_0": "Repository/Aether version authority decides the actual next version; a major hint does not select 1.0.0."
+  },
+  "trailers": {
+    "syntax": "Token: value",
+    "continuation": "space-or-tab-indented",
+    "separation": "blank-line-before-footer-block",
+    "allowed_tokens": [
+      "ADR-Ref",
+      "BREAKING CHANGE",
+      "BREAKING-CHANGE",
+      "Closes",
+      "Co-authored-by",
+      "DCO-1.1",
+      "Fixes",
+      "Refs",
+      "Release-As",
+      "Reverts",
+      "Reviewed-by",
+      "Roadmap-Step",
+      "Signed-off-by"
+    ],
+    "unknown_tokens": "reject-until-registered-extension",
+    "values": "source-data-not-authority",
+    "identities": "never-authenticated-by-message-text"
+  },
+  "contexts": {
+    "commit": "canonical-subject",
+    "pr_title": "canonical-subject; squash must preserve the reviewed title and required provenance trailers",
+    "bot": "same-subject-contract; identity does not grant exemption",
+    "dependency": "same-subject-contract; type and explicit breaking evidence determine hint",
+    "generated": "same-subject-contract; generated content does not grant exemption",
+    "release": "chore(release); no breaking marker; no release hint",
+    "merge": "existing provider merge messages are contextual evidence, not a canonical subject or release decision"
+  },
+  "merge": {
+    "preferred": "squash",
+    "activation": "proposed-only; no provider settings changed",
+    "rebase": "explicit repository selection; every retained commit must satisfy the selected profile and preserve authorship/trailers",
+    "merge_commits": "legacy/context-only; inspect constituent changes rather than infer net release semantics"
+  },
+  "revert": {
+    "target_footer": "Reverts",
+    "target_pattern": "^[a-f0-9]{40}$",
+    "effect": "review_required",
+    "cancellation": "never-infer-that-revert-cancels-a-release-or-removes-a-finding"
+  },
+  "extensions": {
+    "scopes": "repository-owned stable component names; must satisfy shared grammar",
+    "types": "registered namespaced versioned extension only; unsupported extensions fail explicitly in the reference core",
+    "forbidden": [
+      "override-core-emoji-or-release-hint",
+      "weaken-breaking-or-provenance-rules",
+      "grant-publication-or-human-approval",
+      "silently-map-unknown-legacy-types"
+    ]
+  },
+  "exceptions": {
+    "states": [
+      "proposed",
+      "approved",
+      "expired",
+      "revoked"
+    ],
+    "required_fields": [
+      "scope",
+      "reason",
+      "owner",
+      "approval_url",
+      "expires_at",
+      "exit_criteria"
+    ],
+    "raw_record_authority": "claim-only; cannot waive syntax or authenticate approval in the reference helper",
+    "emergency": "record the deviation and durable human disposition; retain evidence and follow-up; no history rewriting"
+  },
+  "release_authority": {
+    "policy": {
+      "repository": "egohygiene/hygiene",
+      "revision": "87bef166fcba4c89161be6adb6e491f92b061a08",
+      "path": "catalog/repository-release-policy.json",
+      "status": "proposed"
+    },
+    "contract": {
+      "id": "egohygiene.repository-release/v1",
+      "repository": "egohygiene/aether",
+      "revision": "8a2a3d08f3aa9da3847bd5277843506ab855192e",
+      "version": "1.0.0"
+    },
+    "hints_only": true,
+    "trailer_override": false,
+    "no_tag_release_or_deploy_authority": true
+  },
+  "migration": {
+    "prospective_only": true,
+    "rewrite_history": false,
+    "rewrite_tags": false,
+    "existing_pins": "preserve-until-reviewed-upgrade",
+    "stages": [
+      "inventory",
+      "preview",
+      "advisory-canary",
+      "reviewed-ratchet",
+      "explicit-enforcement"
+    ],
+    "next_required_gate": "specific human disposition and compatible downstream owner implementations; this proposal does not activate gates",
+    "rollback": "reselect prior immutable policy/tool inputs; preserve all authored commits, tags, signatures and approvals"
+  },
+  "ownership": {
+    "hygiene": "policy, applicability, compatibility and proposal authority",
+    "aether": "release declaration and reusable authoring guidance",
+    "egolint": "production lint semantics and normalized diagnostics",
+    "relay": "safe preview/apply/verification orchestration",
+    "holon": "new-repository materialization",
+    "pace": "reviewed adoption and drift",
+    "repository": "scope vocabulary, local facts, actual version decision, credentials, authorship and publication"
+  },
+  "non_goals": [
+    "historical-rewrite-hygiene-38",
+    "branch-protection-or-title-apply",
+    "automatic-version-bump",
+    "signature-or-DCO-verification",
+    "provider-workflow-renaming",
+    "fleet-adoption"
+  ],
+  "transport": {
+    "maximum_envelope_utf8_bytes": 262144,
+    "maximum_message_utf8_bytes": 65536,
+    "schema_maxLength_unit": "Unicode-code-points",
+    "byte_semantics": "JSON Schema maxLength is an independent structural ceiling; the reference additionally enforces the UTF-8 byte ceiling.",
+    "input_kind": "bounded-regular-local-json-file-no-links-or-pipes",
+    "output": "text-free-local-review-only",
+    "runtime": "POSIX-with-no-follow-and-nonblocking-file-flags; unsupported runtimes fail closed"
+  }
+}

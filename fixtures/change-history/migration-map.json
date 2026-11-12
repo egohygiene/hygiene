@@ -1,0 +1,823 @@
+{
+  "schema": "egohygiene.change-history-migration-map/v1",
+  "status": "proposed",
+  "observed_at": "2026-11-12T05:41:28Z",
+  "target": {
+    "schema": "egohygiene.change-history-policy/v1",
+    "version": "1.0.0-alpha.1",
+    "status": "proposed",
+    "approval": null
+  },
+  "sources": [
+    {
+      "repository": "egohygiene/egolint",
+      "revision": "f14f7fd3ab0ce9e87c367352fcb3af11a32eda59",
+      "path": ".config/lint/commits/commit-policy.cjs",
+      "url": "https://github.com/egohygiene/egolint/blob/f14f7fd3ab0ce9e87c367352fcb3af11a32eda59/.config/lint/commits/commit-policy.cjs",
+      "observation": "source-inspected-no-execution",
+      "finding": "Fixed scoped subject and 12 core types; currently accepts arbitrary pictographs/shortcodes, collapses whitespace/NFC and has no bang header branch.",
+      "selected_type_names": [
+        "build",
+        "chore",
+        "ci",
+        "docs",
+        "feat",
+        "fix",
+        "perf",
+        "refactor",
+        "revert",
+        "security",
+        "style",
+        "test"
+      ],
+      "type_disposition": [
+        {
+          "source_type": "build",
+          "target_core": "build",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "chore",
+          "target_core": "chore",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "ci",
+          "target_core": "ci",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "docs",
+          "target_core": "docs",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "feat",
+          "target_core": "feat",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "fix",
+          "target_core": "fix",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "perf",
+          "target_core": "perf",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "refactor",
+          "target_core": "refactor",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "revert",
+          "target_core": "revert",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "security",
+          "target_core": "security",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "style",
+          "target_core": "style",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "test",
+          "target_core": "test",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        }
+      ],
+      "mapping": {
+        "scope": "required",
+        "emoji": "any-supported-token",
+        "breaking_header": "not-in-current-header-regex",
+        "migration": "keep 12 core types; preview exact emoji mapping, strict spacing/NFC diagnostics and bang/footer support without rewriting old messages"
+      }
+    },
+    {
+      "repository": "egohygiene/empathy",
+      "revision": "058d92a0f8c970f98a58d446408716936e593c99",
+      "path": ".czrc",
+      "url": "https://github.com/egohygiene/empathy/blob/058d92a0f8c970f98a58d446408716936e593c99/.czrc",
+      "observation": "source-inspected-no-execution",
+      "finding": "Existing rich cz-emoji authoring UI has many purpose names and scoped conventional composition; authoring is not policy authority.",
+      "selected_type_names": [
+        "style",
+        "perf",
+        "prune",
+        "fix",
+        "quickfix",
+        "feature",
+        "docs",
+        "deploy",
+        "ui",
+        "init",
+        "test",
+        "security",
+        "osx",
+        "linux",
+        "windows",
+        "android",
+        "ios",
+        "release",
+        "lint",
+        "wip",
+        "fix-ci",
+        "downgrade",
+        "upgrade",
+        "pushpin",
+        "ci",
+        "analytics",
+        "refactoring",
+        "docker",
+        "dep-add",
+        "dep-rm",
+        "config",
+        "i18n",
+        "typo",
+        "poo",
+        "revert",
+        "merge",
+        "dep-up",
+        "compat",
+        "mv",
+        "license",
+        "breaking",
+        "assets",
+        "review",
+        "access",
+        "docs-code",
+        "beer",
+        "texts",
+        "db",
+        "log-add",
+        "log-rm",
+        "contrib-add",
+        "ux",
+        "arch",
+        "iphone",
+        "clown-face",
+        "egg",
+        "see-no-evil",
+        "camera-flash",
+        "experiment",
+        "seo",
+        "k8s",
+        "types",
+        "seed",
+        "flags",
+        "animation",
+        "wastebasket",
+        "passport-control",
+        "adhesive-bandage",
+        "monocle-face",
+        "coffin",
+        "test-tube",
+        "necktie",
+        "stethoscope",
+        "bricks",
+        "technologist",
+        "chore",
+        "feat",
+        "refactor",
+        "build",
+        "agents",
+        "skills",
+        "specs",
+        "design",
+        "transcend"
+      ],
+      "type_disposition": [
+        {
+          "source_type": "style",
+          "target_core": "style",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "perf",
+          "target_core": "perf",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "prune",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "fix",
+          "target_core": "fix",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "quickfix",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "feature",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "docs",
+          "target_core": "docs",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "deploy",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "ui",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "init",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "test",
+          "target_core": "test",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "security",
+          "target_core": "security",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "osx",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "linux",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "windows",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "android",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "ios",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "release",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "lint",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "wip",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "fix-ci",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "downgrade",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "upgrade",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "pushpin",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "ci",
+          "target_core": "ci",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "analytics",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "refactoring",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "docker",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "dep-add",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "dep-rm",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "config",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "i18n",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "typo",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "poo",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "revert",
+          "target_core": "revert",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "merge",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "dep-up",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "compat",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "mv",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "license",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "breaking",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "assets",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "review",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "access",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "docs-code",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "beer",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "texts",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "db",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "log-add",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "log-rm",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "contrib-add",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "ux",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "arch",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "iphone",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "clown-face",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "egg",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "see-no-evil",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "camera-flash",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "experiment",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "seo",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "k8s",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "types",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "seed",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "flags",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "animation",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "wastebasket",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "passport-control",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "adhesive-bandage",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "monocle-face",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "coffin",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "test-tube",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "necktie",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "stethoscope",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "bricks",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "technologist",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "chore",
+          "target_core": "chore",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "feat",
+          "target_core": "feat",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "refactor",
+          "target_core": "refactor",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "build",
+          "target_core": "build",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "agents",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "skills",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "specs",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "design",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "transcend",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        }
+      ],
+      "mapping": {
+        "scope": "selected-prompt-vocabulary",
+        "emoji": "large-cz-emoji-set",
+        "breaking_header": "breaking-question-skipped",
+        "migration": "retain useful prompts; select canonical core mappings prospectively; independently classify extra legacy purpose names and restore explicit breaking review"
+      }
+    },
+    {
+      "repository": "egohygiene/renderflow",
+      "revision": "be5a265083cdf59bea397c550ab12d4181533e0b",
+      "path": ".commitlintrc.yml",
+      "url": "https://github.com/egohygiene/renderflow/blob/be5a265083cdf59bea397c550ab12d4181533e0b/.commitlintrc.yml",
+      "observation": "source-inspected-no-execution",
+      "finding": "Conventional config: 8 types, optional warning-level scope vocabulary, max header 72, lowercase type/scope, no terminal period.",
+      "selected_type_names": [
+        "feat",
+        "fix",
+        "docs",
+        "refactor",
+        "test",
+        "chore",
+        "perf",
+        "ci"
+      ],
+      "type_disposition": [
+        {
+          "source_type": "feat",
+          "target_core": "feat",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "fix",
+          "target_core": "fix",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "docs",
+          "target_core": "docs",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "refactor",
+          "target_core": "refactor",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "test",
+          "target_core": "test",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "chore",
+          "target_core": "chore",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "perf",
+          "target_core": "perf",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "ci",
+          "target_core": "ci",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        }
+      ],
+      "mapping": {
+        "scope": "warning-enum",
+        "emoji": "not-required",
+        "breaking_header": "inherited-conventional-parser",
+        "migration": "preview scoped exact-emoji policy; retain compatible stricter length72 if selected locally; preserve current release adapter until separately qualified"
+      }
+    },
+    {
+      "repository": "egohygiene/reflector",
+      "revision": "dfca10718f4cca20cc126d689d1fd70d29c27a02",
+      "path": ".commitlintrc.json",
+      "url": "https://github.com/egohygiene/reflector/blob/dfca10718f4cca20cc126d689d1fd70d29c27a02/.commitlintrc.json",
+      "observation": "source-inspected-no-execution",
+      "finding": "Conventional config with extra research/spec/sync/audit types; metadata does not supply their net release effects.",
+      "selected_type_names": [
+        "build",
+        "chore",
+        "ci",
+        "docs",
+        "feat",
+        "fix",
+        "perf",
+        "refactor",
+        "revert",
+        "style",
+        "test",
+        "research",
+        "spec",
+        "sync",
+        "audit"
+      ],
+      "type_disposition": [
+        {
+          "source_type": "build",
+          "target_core": "build",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "chore",
+          "target_core": "chore",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "ci",
+          "target_core": "ci",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "docs",
+          "target_core": "docs",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "feat",
+          "target_core": "feat",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "fix",
+          "target_core": "fix",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "perf",
+          "target_core": "perf",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "refactor",
+          "target_core": "refactor",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "revert",
+          "target_core": "revert",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "style",
+          "target_core": "style",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "test",
+          "target_core": "test",
+          "state": "same-type-meaning-check-emoji-and-scope"
+        },
+        {
+          "source_type": "research",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "spec",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "sync",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        },
+        {
+          "source_type": "audit",
+          "target_core": null,
+          "state": "review-required-no-silent-map"
+        }
+      ],
+      "mapping": {
+        "scope": "inherited-conventional",
+        "emoji": "not-required",
+        "breaking_header": "inherited-conventional-parser",
+        "migration": "preserve core types; review non-core purpose types into core meaning or an explicitly registered versioned extension; never silently choose release effects"
+      }
+    }
+  ],
+  "restricted_input_boundary": "Restricted configuration is not part of this public source observation. Its mapping remains an independently authorized local review; no protected identities, values, counts or links are included.",
+  "implementation_gaps": [
+    "EgoLint production adapter and synthetic regressions not executed or upgraded",
+    "Relay preview/apply integration and required-check behavior not activated",
+    "Holon/Empathy/Pace adoption pins unchanged",
+    "Private/local mapping and actual release effects remain independently unverified"
+  ],
+  "preview_fields": [
+    "source-ref-and-digest",
+    "source-message-identity-retained-privately",
+    "proposed-prospective-title",
+    "syntax-diagnostics",
+    "suggested-release-hint",
+    "compatibility-owner",
+    "no-write"
+  ],
+  "safety": {
+    "rewrite_commits": false,
+    "rewrite_tags": false,
+    "resign_or_replace_authorship": false,
+    "change_merge_settings": false,
+    "publish": false
+  },
+  "rollback": "Reselect the old immutable tool/profile inputs and restore generated-owner state; preserve all authored history and later edits."
+}

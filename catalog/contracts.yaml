@@ -3,7 +3,7 @@
   "status": "proposed",
   "organization": "egohygiene",
   "canonical_repository": "egohygiene/hygiene",
-  "updated": "2026-11-09",
+  "updated": "2026-11-12",
   "contracts": [
     {
       "id": "egohygiene.architecture-decision/v1",
@@ -186,6 +186,30 @@
       "title": "Scoped architecture-coherence material-change evidence",
       "owner": "egohygiene/hygiene",
       "source": "schemas/architecture-coherence-material-change.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.change-history-policy/v1",
+      "title": "Prospective commit, PR-title and change-history policy",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/change-history-policy.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.change-history-input/v1",
+      "title": "Explicit local change-message input",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/change-history-input.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.change-history-analysis/v1",
+      "title": "Advisory text-free change-message analysis",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/change-history-analysis.v1.schema.json",
       "status": "proposed",
       "visibility": "public"
     }
