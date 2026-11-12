@@ -3,7 +3,7 @@
   "status": "proposed",
   "organization": "egohygiene",
   "canonical_repository": "egohygiene/hygiene",
-  "updated": "2026-11-09",
+  "updated": "2026-11-12",
   "contracts": [
     {
       "id": "egohygiene.architecture-decision/v1",
@@ -186,6 +186,30 @@
       "title": "Scoped architecture-coherence material-change evidence",
       "owner": "egohygiene/hygiene",
       "source": "schemas/architecture-coherence-material-change.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-documentation-profile/v1",
+      "title": "Proposed repository documentation location profile",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-documentation-profile.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-documentation-inventory/v1",
+      "title": "Explicit repository documentation observations",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-documentation-inventory.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-documentation-assessment/v1",
+      "title": "Local declared-inventory documentation assessment",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-documentation-assessment.v1.schema.json",
       "status": "proposed",
       "visibility": "public"
     }

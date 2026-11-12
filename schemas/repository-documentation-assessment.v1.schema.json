@@ -1,0 +1,387 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/repository-documentation-assessment.v1.schema.json",
+  "title": "Local declared-inventory documentation review; not conformance or publication proof",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contract_version",
+    "policy",
+    "publication",
+    "state",
+    "layout",
+    "continuity_requirement",
+    "presentation_requirements",
+    "diagnostics",
+    "qualification"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egohygiene.repository-documentation-assessment/v1"
+    },
+    "contract_version": {
+      "const": "1.0.0-alpha.1"
+    },
+    "policy": {
+      "const": {
+        "schema": "egohygiene.repository-documentation-profile/v1",
+        "version": "1.0.0-alpha.1",
+        "status": "proposed",
+        "sha256": "b7cbe6cf915ffa5dc0506e9f2f131651a2e0310f6f67d8e8af63c92695f90d89"
+      }
+    },
+    "publication": {
+      "const": "local-review-only"
+    },
+    "state": {
+      "enum": [
+        "unavailable",
+        "review_required",
+        "advisory"
+      ]
+    },
+    "layout": {
+      "enum": [
+        null,
+        "legacy-root",
+        "nested-architecture",
+        "repository-exception",
+        "unknown"
+      ]
+    },
+    "continuity_requirement": {
+      "enum": [
+        "unknown",
+        "required",
+        "advisory",
+        "not-applicable",
+        "exempt"
+      ]
+    },
+    "presentation_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "identity_banner": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        },
+        "purpose": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        },
+        "maturity_status": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        },
+        "support_boundary": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        },
+        "canonical_navigation": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        },
+        "evidence_badges": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        },
+        "installation": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        },
+        "development": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        },
+        "documentation": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        },
+        "validation": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        },
+        "architecture": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        },
+        "contributing": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        },
+        "license": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        },
+        "security": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        },
+        "generated_ownership": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_applicable"
+          ]
+        }
+      },
+      "anyOf": [
+        {
+          "maxProperties": 0
+        },
+        {
+          "required": [
+            "identity_banner",
+            "purpose",
+            "maturity_status",
+            "support_boundary",
+            "canonical_navigation",
+            "evidence_badges",
+            "installation",
+            "development",
+            "documentation",
+            "validation",
+            "architecture",
+            "contributing",
+            "license",
+            "security",
+            "generated_ownership"
+          ]
+        }
+      ]
+    },
+    "diagnostics": {
+      "type": "array",
+      "maxItems": 1024,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "category"
+        ],
+        "properties": {
+          "code": {
+            "enum": [
+              "ARCHITECTURE_SELECTION_UNKNOWN",
+              "CANONICAL_ARCHITECTURE_MISSING",
+              "CANONICAL_NAVIGATION_UNKNOWN",
+              "CANONICAL_SOURCE_UNVERIFIED",
+              "CLAUDE_IMPORTS",
+              "CLAUDE_PROVIDER_JUSTIFICATION_REQUIRED",
+              "CLAUDE_SELECTION_UNKNOWN",
+              "CONTINUITY_APPLICABILITY_UNKNOWN",
+              "DESTINATION_AUTHORITY_MISMATCH",
+              "DESTINATION_ROLE_MISMATCH",
+              "DESTINATION_UNVERIFIED",
+              "DOCUMENT_METADATA_UNKNOWN",
+              "DUPLICATE_CANONICAL_IDENTITY",
+              "EXCEPTION_PATH_MAP_MISMATCH",
+              "EXCEPTION_REQUIRES_OWNER_REVIEW",
+              "GENERATED_CANONICAL_REVIEW",
+              "GENERATED_SOURCE_UNKNOWN",
+              "LAYOUT_UNDECLARED",
+              "NAVIGATION_TARGET_UNVERIFIED",
+              "PRESENTATION_APPLICABILITY_UNKNOWN",
+              "PROMOTE_DURABLE_CONTENT",
+              "README_DISPOSITION_UNKNOWN",
+              "README_JUSTIFICATION_REQUIRED",
+              "RECOMMENDED_DESTINATION_MISSING",
+              "REGULAR_SOURCE_REQUIRED",
+              "REPOSITORY_OWNERSHIP_REQUIRED",
+              "REQUIRED_DESTINATION_MISSING",
+              "SOURCE_NOT_ADMITTED",
+              "TEMPORARY_TRACKED"
+            ]
+          },
+          "category": {
+            "enum": [
+              null,
+              "readme",
+              "agents",
+              "continuity",
+              "claude",
+              "architecture_navigation",
+              "documentation_index",
+              "architecture",
+              "purpose",
+              "decisions",
+              "guide",
+              "reference",
+              "design",
+              "evidence",
+              "work_report",
+              "archive",
+              "temporary"
+            ]
+          }
+        }
+      }
+    },
+    "qualification": {
+      "const": {
+        "input": "declared-inventory-not-filesystem-proof",
+        "enforcement": "not-activated",
+        "human_approval": "not-inferred",
+        "aether_content_validation": "not-performed",
+        "links": "declared-relative-targets-only",
+        "provider_activation": "not-performed"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "unavailable"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "layout": {
+            "const": null
+          },
+          "continuity_requirement": {
+            "const": "unknown"
+          },
+          "presentation_requirements": {
+            "const": {}
+          },
+          "diagnostics": {
+            "const": [
+              {
+                "code": "SOURCE_NOT_ADMITTED",
+                "category": null
+              }
+            ]
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "layout": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "advisory"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "diagnostics": {
+            "maxItems": 0
+          },
+          "continuity_requirement": {
+            "not": {
+              "const": "unknown"
+            }
+          },
+          "presentation_requirements": {
+            "required": [
+              "identity_banner",
+              "purpose",
+              "maturity_status",
+              "support_boundary",
+              "canonical_navigation",
+              "evidence_badges",
+              "installation",
+              "development",
+              "documentation",
+              "validation",
+              "architecture",
+              "contributing",
+              "license",
+              "security",
+              "generated_ownership"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "review_required"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "diagnostics": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}

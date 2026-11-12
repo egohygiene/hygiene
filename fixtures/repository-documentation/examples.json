@@ -1,0 +1,1333 @@
+{
+  "schema": "egohygiene.repository-documentation-examples/v1",
+  "status": "synthetic-not-executed",
+  "cases": [
+    {
+      "id": "concise-linked",
+      "purpose": "A concise README and index link selected canonical architecture without duplicating prose.",
+      "input": {
+        "schema": "egohygiene.repository-documentation-inventory/v1",
+        "visibility": "public",
+        "repository": {
+          "name": "egohygiene/example",
+          "kind": "standard",
+          "lifecycle": "active",
+          "repository_type": "library",
+          "presentation_lifecycle": "active"
+        },
+        "as_of": "2026-11-12",
+        "layout": "nested-architecture",
+        "readme_mode": "concise",
+        "readme_justification": null,
+        "claude_selected": true,
+        "documents": [
+          {
+            "id": "readme",
+            "category": "readme",
+            "path": "README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/README.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "agents",
+            "category": "agents",
+            "path": "AGENTS.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "CONTINUITY.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "handoff",
+            "category": "continuity",
+            "path": "CONTINUITY.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "shim",
+            "category": "claude",
+            "path": "CLAUDE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "imports": [
+              "AGENTS.md"
+            ],
+            "first_nonblank_line": "@AGENTS.md",
+            "provider_content": false
+          },
+          {
+            "id": "architecture-root",
+            "category": "architecture_navigation",
+            "path": "ARCHITECTURE.md",
+            "authority": "navigation",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "canonical_id": "architecture-detail"
+          },
+          {
+            "id": "architecture-detail",
+            "category": "architecture",
+            "path": "docs/architecture/ARCHITECTURE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "stable_id": "example-architecture"
+          },
+          {
+            "id": "index",
+            "category": "documentation_index",
+            "path": "docs/README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          }
+        ],
+        "architecture_selected": true,
+        "layout_exception": null
+      },
+      "expected_codes": [],
+      "expected_state": "advisory"
+    },
+    {
+      "id": "rich-readme",
+      "purpose": "Justified rich prose has no arbitrary universal word cap.",
+      "input": {
+        "schema": "egohygiene.repository-documentation-inventory/v1",
+        "visibility": "public",
+        "repository": {
+          "name": "egohygiene/example",
+          "kind": "standard",
+          "lifecycle": "active",
+          "repository_type": "library",
+          "presentation_lifecycle": "active"
+        },
+        "as_of": "2026-11-12",
+        "layout": "nested-architecture",
+        "readme_mode": "rich-justified",
+        "readme_justification": "Complete offline API examples justify the repository-owned prose.",
+        "claude_selected": true,
+        "documents": [
+          {
+            "id": "readme",
+            "category": "readme",
+            "path": "README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/README.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "agents",
+            "category": "agents",
+            "path": "AGENTS.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "CONTINUITY.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "handoff",
+            "category": "continuity",
+            "path": "CONTINUITY.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "shim",
+            "category": "claude",
+            "path": "CLAUDE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "imports": [
+              "AGENTS.md"
+            ],
+            "first_nonblank_line": "@AGENTS.md",
+            "provider_content": false
+          },
+          {
+            "id": "architecture-root",
+            "category": "architecture_navigation",
+            "path": "ARCHITECTURE.md",
+            "authority": "navigation",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "canonical_id": "architecture-detail"
+          },
+          {
+            "id": "architecture-detail",
+            "category": "architecture",
+            "path": "docs/architecture/ARCHITECTURE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "stable_id": "example-architecture"
+          },
+          {
+            "id": "index",
+            "category": "documentation_index",
+            "path": "docs/README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          }
+        ],
+        "architecture_selected": true,
+        "layout_exception": null
+      },
+      "expected_codes": [],
+      "expected_state": "advisory"
+    },
+    {
+      "id": "misplaced-durable-notes",
+      "purpose": "Promote durable decisions or requirements from disposable scratch through review.",
+      "input": {
+        "schema": "egohygiene.repository-documentation-inventory/v1",
+        "visibility": "public",
+        "repository": {
+          "name": "egohygiene/example",
+          "kind": "standard",
+          "lifecycle": "active",
+          "repository_type": "library",
+          "presentation_lifecycle": "active"
+        },
+        "as_of": "2026-11-12",
+        "layout": "nested-architecture",
+        "readme_mode": "concise",
+        "readme_justification": null,
+        "claude_selected": true,
+        "documents": [
+          {
+            "id": "readme",
+            "category": "readme",
+            "path": "README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/README.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "agents",
+            "category": "agents",
+            "path": "AGENTS.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "CONTINUITY.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "handoff",
+            "category": "continuity",
+            "path": "CONTINUITY.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "shim",
+            "category": "claude",
+            "path": "CLAUDE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "imports": [
+              "AGENTS.md"
+            ],
+            "first_nonblank_line": "@AGENTS.md",
+            "provider_content": false
+          },
+          {
+            "id": "architecture-root",
+            "category": "architecture_navigation",
+            "path": "ARCHITECTURE.md",
+            "authority": "navigation",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "canonical_id": "architecture-detail"
+          },
+          {
+            "id": "architecture-detail",
+            "category": "architecture",
+            "path": "docs/architecture/ARCHITECTURE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "stable_id": "example-architecture"
+          },
+          {
+            "id": "index",
+            "category": "documentation_index",
+            "path": "docs/README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "notes",
+            "category": "temporary",
+            "path": ".local/agent-work/notes.md",
+            "authority": "scratch",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "durable": true,
+            "tracked": false
+          }
+        ],
+        "architecture_selected": true,
+        "layout_exception": null
+      },
+      "expected_codes": [
+        "PROMOTE_DURABLE_CONTENT"
+      ],
+      "expected_state": "review_required"
+    },
+    {
+      "id": "eager-claude-import",
+      "purpose": "A compatibility shim must not eagerly import the architecture corpus.",
+      "input": {
+        "schema": "egohygiene.repository-documentation-inventory/v1",
+        "visibility": "public",
+        "repository": {
+          "name": "egohygiene/example",
+          "kind": "standard",
+          "lifecycle": "active",
+          "repository_type": "library",
+          "presentation_lifecycle": "active"
+        },
+        "as_of": "2026-11-12",
+        "layout": "nested-architecture",
+        "readme_mode": "concise",
+        "readme_justification": null,
+        "claude_selected": true,
+        "documents": [
+          {
+            "id": "readme",
+            "category": "readme",
+            "path": "README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/README.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "agents",
+            "category": "agents",
+            "path": "AGENTS.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "CONTINUITY.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "handoff",
+            "category": "continuity",
+            "path": "CONTINUITY.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "shim",
+            "category": "claude",
+            "path": "CLAUDE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "imports": [
+              "AGENTS.md",
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "first_nonblank_line": "@AGENTS.md",
+            "provider_content": false
+          },
+          {
+            "id": "architecture-root",
+            "category": "architecture_navigation",
+            "path": "ARCHITECTURE.md",
+            "authority": "navigation",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "canonical_id": "architecture-detail"
+          },
+          {
+            "id": "architecture-detail",
+            "category": "architecture",
+            "path": "docs/architecture/ARCHITECTURE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "stable_id": "example-architecture"
+          },
+          {
+            "id": "index",
+            "category": "documentation_index",
+            "path": "docs/README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          }
+        ],
+        "architecture_selected": true,
+        "layout_exception": null
+      },
+      "expected_codes": [
+        "CLAUDE_IMPORTS"
+      ],
+      "expected_state": "review_required"
+    },
+    {
+      "id": "legacy-root",
+      "purpose": "Existing root canonical architecture remains supported with stable identity.",
+      "input": {
+        "schema": "egohygiene.repository-documentation-inventory/v1",
+        "visibility": "public",
+        "repository": {
+          "name": "egohygiene/example",
+          "kind": "standard",
+          "lifecycle": "active",
+          "repository_type": "library",
+          "presentation_lifecycle": "active"
+        },
+        "as_of": "2026-11-12",
+        "layout": "legacy-root",
+        "readme_mode": "concise",
+        "readme_justification": null,
+        "claude_selected": true,
+        "documents": [
+          {
+            "id": "readme",
+            "category": "readme",
+            "path": "README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/README.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "agents",
+            "category": "agents",
+            "path": "AGENTS.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "CONTINUITY.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "handoff",
+            "category": "continuity",
+            "path": "CONTINUITY.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "shim",
+            "category": "claude",
+            "path": "CLAUDE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "imports": [
+              "AGENTS.md"
+            ],
+            "first_nonblank_line": "@AGENTS.md",
+            "provider_content": false
+          },
+          {
+            "id": "architecture-root",
+            "category": "architecture",
+            "path": "ARCHITECTURE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "stable_id": "example-architecture"
+          },
+          {
+            "id": "index",
+            "category": "documentation_index",
+            "path": "docs/README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          }
+        ],
+        "architecture_selected": true,
+        "layout_exception": null
+      },
+      "expected_codes": [],
+      "expected_state": "advisory"
+    },
+    {
+      "id": "literal-established-paths",
+      "purpose": "Spaces and Unicode in established literal paths do not require renaming.",
+      "input": {
+        "schema": "egohygiene.repository-documentation-inventory/v1",
+        "visibility": "public",
+        "repository": {
+          "name": "egohygiene/example",
+          "kind": "standard",
+          "lifecycle": "active",
+          "repository_type": "library",
+          "presentation_lifecycle": "active"
+        },
+        "as_of": "2026-11-12",
+        "layout": "nested-architecture",
+        "readme_mode": "concise",
+        "readme_justification": null,
+        "claude_selected": true,
+        "documents": [
+          {
+            "id": "readme",
+            "category": "readme",
+            "path": "README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/README.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "agents",
+            "category": "agents",
+            "path": "AGENTS.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "CONTINUITY.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "handoff",
+            "category": "continuity",
+            "path": "CONTINUITY.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "shim",
+            "category": "claude",
+            "path": "CLAUDE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "imports": [
+              "AGENTS.md"
+            ],
+            "first_nonblank_line": "@AGENTS.md",
+            "provider_content": false
+          },
+          {
+            "id": "architecture-root",
+            "category": "architecture_navigation",
+            "path": "ARCHITECTURE.md",
+            "authority": "navigation",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "canonical_id": "architecture-detail"
+          },
+          {
+            "id": "architecture-detail",
+            "category": "architecture",
+            "path": "docs/architecture/ARCHITECTURE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "stable_id": "example-architecture"
+          },
+          {
+            "id": "index",
+            "category": "documentation_index",
+            "path": "docs/README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md",
+              "docs/My Guide.md",
+              "docs/évidence.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "guide",
+            "category": "guide",
+            "path": "docs/My Guide.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "evidence",
+            "category": "evidence",
+            "path": "docs/évidence.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          }
+        ],
+        "architecture_selected": true,
+        "layout_exception": null
+      },
+      "expected_codes": [],
+      "expected_state": "advisory"
+    },
+    {
+      "id": "declared-exception",
+      "purpose": "A declared path map remains proposed and requires owner review; it grants no approval.",
+      "input": {
+        "schema": "egohygiene.repository-documentation-inventory/v1",
+        "visibility": "public",
+        "repository": {
+          "name": "egohygiene/example",
+          "kind": "standard",
+          "lifecycle": "active",
+          "repository_type": "library",
+          "presentation_lifecycle": "active"
+        },
+        "as_of": "2026-11-12",
+        "layout": "repository-exception",
+        "readme_mode": "concise",
+        "readme_justification": null,
+        "claude_selected": true,
+        "documents": [
+          {
+            "id": "readme",
+            "category": "readme",
+            "path": "README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/README.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "agents",
+            "category": "agents",
+            "path": "AGENTS.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "CONTINUITY.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "handoff",
+            "category": "continuity",
+            "path": "CONTINUITY.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "shim",
+            "category": "claude",
+            "path": "CLAUDE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "imports": [
+              "AGENTS.md"
+            ],
+            "first_nonblank_line": "@AGENTS.md",
+            "provider_content": false
+          },
+          {
+            "id": "architecture-root",
+            "category": "architecture_navigation",
+            "path": "ARCHITECTURE.md",
+            "authority": "navigation",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "canonical_id": "architecture-detail"
+          },
+          {
+            "id": "architecture-detail",
+            "category": "architecture",
+            "path": "docs/architecture/ARCHITECTURE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "stable_id": "example-architecture"
+          },
+          {
+            "id": "index",
+            "category": "documentation_index",
+            "path": "docs/README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          }
+        ],
+        "architecture_selected": true,
+        "layout_exception": {
+          "status": "proposed",
+          "owner": "egohygiene/example",
+          "reason": "Retain the existing repository-specific architecture location.",
+          "review_trigger": "Before the first consumer layout upgrade.",
+          "paths": [
+            {
+              "canonical_id": "architecture-detail",
+              "path": "docs/architecture/ARCHITECTURE.md"
+            }
+          ]
+        }
+      },
+      "expected_codes": [
+        "EXCEPTION_REQUIRES_OWNER_REVIEW"
+      ],
+      "expected_state": "review_required"
+    },
+    {
+      "id": "unknown-applicability",
+      "purpose": "Unknown dimensions stay separate from required/advisory/not-applicable.",
+      "input": {
+        "schema": "egohygiene.repository-documentation-inventory/v1",
+        "visibility": "public",
+        "repository": {
+          "name": "egohygiene/example",
+          "kind": "standard",
+          "lifecycle": "unknown",
+          "repository_type": "library",
+          "presentation_lifecycle": "unknown"
+        },
+        "as_of": "2026-11-12",
+        "layout": "nested-architecture",
+        "readme_mode": "concise",
+        "readme_justification": null,
+        "claude_selected": true,
+        "documents": [
+          {
+            "id": "readme",
+            "category": "readme",
+            "path": "README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/README.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "agents",
+            "category": "agents",
+            "path": "AGENTS.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "CONTINUITY.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "handoff",
+            "category": "continuity",
+            "path": "CONTINUITY.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "shim",
+            "category": "claude",
+            "path": "CLAUDE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "imports": [
+              "AGENTS.md"
+            ],
+            "first_nonblank_line": "@AGENTS.md",
+            "provider_content": false
+          },
+          {
+            "id": "architecture-root",
+            "category": "architecture_navigation",
+            "path": "ARCHITECTURE.md",
+            "authority": "navigation",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "canonical_id": "architecture-detail"
+          },
+          {
+            "id": "architecture-detail",
+            "category": "architecture",
+            "path": "docs/architecture/ARCHITECTURE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "stable_id": "example-architecture"
+          },
+          {
+            "id": "index",
+            "category": "documentation_index",
+            "path": "docs/README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          }
+        ],
+        "architecture_selected": true,
+        "layout_exception": null
+      },
+      "expected_codes": [
+        "CONTINUITY_APPLICABILITY_UNKNOWN",
+        "PRESENTATION_APPLICABILITY_UNKNOWN"
+      ],
+      "expected_state": "review_required"
+    },
+    {
+      "id": "archived-applicability",
+      "purpose": "The existing continuity resolver retains its archived not-applicable disposition.",
+      "input": {
+        "schema": "egohygiene.repository-documentation-inventory/v1",
+        "visibility": "public",
+        "repository": {
+          "name": "egohygiene/example",
+          "kind": "standard",
+          "lifecycle": "archived",
+          "repository_type": "library",
+          "presentation_lifecycle": "archived"
+        },
+        "as_of": "2026-11-12",
+        "layout": "nested-architecture",
+        "readme_mode": "concise",
+        "readme_justification": null,
+        "claude_selected": true,
+        "documents": [
+          {
+            "id": "readme",
+            "category": "readme",
+            "path": "README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/README.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "agents",
+            "category": "agents",
+            "path": "AGENTS.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "CONTINUITY.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "handoff",
+            "category": "continuity",
+            "path": "CONTINUITY.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "shim",
+            "category": "claude",
+            "path": "CLAUDE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "imports": [
+              "AGENTS.md"
+            ],
+            "first_nonblank_line": "@AGENTS.md",
+            "provider_content": false
+          },
+          {
+            "id": "architecture-root",
+            "category": "architecture_navigation",
+            "path": "ARCHITECTURE.md",
+            "authority": "navigation",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "canonical_id": "architecture-detail"
+          },
+          {
+            "id": "architecture-detail",
+            "category": "architecture",
+            "path": "docs/architecture/ARCHITECTURE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "stable_id": "example-architecture"
+          },
+          {
+            "id": "index",
+            "category": "documentation_index",
+            "path": "docs/README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          }
+        ],
+        "architecture_selected": true,
+        "layout_exception": null
+      },
+      "expected_codes": [],
+      "expected_state": "advisory"
+    },
+    {
+      "id": "protected-envelope",
+      "purpose": "Nonpublic input is declined before its payload fields are inspected or echoed.",
+      "input": {
+        "visibility": "private"
+      },
+      "expected_codes": [
+        "SOURCE_NOT_ADMITTED"
+      ],
+      "expected_state": "unavailable"
+    },
+    {
+      "id": "established-documentation-index",
+      "purpose": "A declared existing regular index satisfies navigation without requiring a parallel docs/README.md.",
+      "input": {
+        "schema": "egohygiene.repository-documentation-inventory/v1",
+        "visibility": "public",
+        "repository": {
+          "name": "egohygiene/example",
+          "kind": "standard",
+          "lifecycle": "active",
+          "repository_type": "library",
+          "presentation_lifecycle": "active"
+        },
+        "as_of": "2026-11-12",
+        "layout": "nested-architecture",
+        "readme_mode": "concise",
+        "readme_justification": null,
+        "claude_selected": true,
+        "documents": [
+          {
+            "id": "readme",
+            "category": "readme",
+            "path": "README.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/index.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "agents",
+            "category": "agents",
+            "path": "AGENTS.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "CONTINUITY.md",
+              "ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "handoff",
+            "category": "continuity",
+            "path": "CONTINUITY.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          },
+          {
+            "id": "shim",
+            "category": "claude",
+            "path": "CLAUDE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "imports": [
+              "AGENTS.md"
+            ],
+            "first_nonblank_line": "@AGENTS.md",
+            "provider_content": false
+          },
+          {
+            "id": "architecture-root",
+            "category": "architecture_navigation",
+            "path": "ARCHITECTURE.md",
+            "authority": "navigation",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "canonical_id": "architecture-detail"
+          },
+          {
+            "id": "architecture-detail",
+            "category": "architecture",
+            "path": "docs/architecture/ARCHITECTURE.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change",
+            "stable_id": "example-architecture"
+          },
+          {
+            "id": "index",
+            "category": "documentation_index",
+            "path": "docs/index.md",
+            "authority": "canonical",
+            "ownership": "repository",
+            "state": "present",
+            "file_kind": "regular",
+            "links": [
+              "docs/architecture/ARCHITECTURE.md"
+            ],
+            "question": "Which declared concern does this source answer?",
+            "update_path": "reviewed repository change"
+          }
+        ],
+        "architecture_selected": true,
+        "layout_exception": null
+      },
+      "expected_codes": [],
+      "expected_state": "advisory"
+    }
+  ]
+}

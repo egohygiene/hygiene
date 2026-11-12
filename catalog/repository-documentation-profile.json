@@ -1,0 +1,311 @@
+{
+  "schema": "egohygiene.repository-documentation-profile/v1",
+  "version": "1.0.0-alpha.1",
+  "status": "proposed",
+  "approval": null,
+  "owner": "egohygiene/hygiene",
+  "updated": "2026-11-12",
+  "enforcement": "observe",
+  "composes": {
+    "presentation": {
+      "schema": "egohygiene.repository-presentation-profile/v1",
+      "version": "1.0.0-alpha.1",
+      "status": "proposed",
+      "revision": "87bef166fcba4c89161be6adb6e491f92b061a08",
+      "path": "catalog/repository-presentation-profile.json",
+      "sha256": "44e0881519350e6747723995939c79c6fb4659e38a74b2c32e409866e7a186ba",
+      "helper": "tools/presentation.py",
+      "helper_sha256": "9577c79e3abeb2e28d15f2bab2873dd914ea58d3d86b07c68fb96fd394368272"
+    },
+    "continuity": {
+      "schema": "egohygiene.repository-continuity-policy/v1",
+      "version": "1.0.0-alpha.1",
+      "status": "proposed",
+      "stage": "observe",
+      "revision": "87bef166fcba4c89161be6adb6e491f92b061a08",
+      "path": "catalog/repository-continuity-policy.json",
+      "sha256": "2f694682df641f9c9741d79c7d23bca2ae5bd0d1e3aa6ca00cb31db17e0e2e2c",
+      "helper": "tools/continuity.py",
+      "helper_sha256": "9ed59aecce5c046f07739ac3c1f0c61bec4abb3218927f0bcb13a779d860f216"
+    },
+    "adr": {
+      "schema": "egohygiene.architecture-decision/v1",
+      "policy_version": "1.2.0",
+      "status": "accepted",
+      "revision": "a05b14f8b9e2772124f879f818e09a911e996ad8",
+      "path": "docs/decisions/POLICY.md"
+    },
+    "aether_continuity": {
+      "schema": "aether.repository-continuity/v1",
+      "version": "1.0.0",
+      "status": "draft",
+      "revision": "b7597301c4d22a9bcd580967b5753138bb368111"
+    }
+  },
+  "layout": {
+    "proposed_default": "nested-architecture",
+    "supported": [
+      "legacy-root",
+      "nested-architecture",
+      "repository-exception",
+      "unknown"
+    ],
+    "legacy": "Keep declared canonical root documents valid; no automatic relocation or duplicate authority.",
+    "exception": "Repository-authored path map with reason, owner and review trigger; unverified approval never changes policy lifecycle.",
+    "root_navigation": "README.md, AGENTS.md and ARCHITECTURE.md stay discoverable; navigation points to canonical sources rather than copying full prose.",
+    "selection": "Select architecture concerns explicitly; null means unknown, false does not require an architecture corpus. Existing canonical locations remain valid through declared legacy layout or a proposed repository exception.",
+    "literal_paths": "Inventory paths are literal repository-relative names, including spaces and Unicode; no URL decoding, filesystem discovery, normalization or relocation is performed."
+  },
+  "categories": [
+    {
+      "id": "readme",
+      "preferred_paths": [
+        "README.md"
+      ],
+      "authority": "repository",
+      "requirement": "compose-presentation-slots",
+      "purpose": "Human orientation, truthful starting path and applicable navigation; concise or justified rich prose."
+    },
+    {
+      "id": "agents",
+      "preferred_paths": [
+        "AGENTS.md"
+      ],
+      "authority": "repository",
+      "requirement": "compose-continuity-policy",
+      "purpose": "Shared repository-owned instructions; preserve local text and pinned managed blocks."
+    },
+    {
+      "id": "continuity",
+      "preferred_paths": [
+        "CONTINUITY.md"
+      ],
+      "authority": "repository",
+      "requirement": "compose-continuity-policy",
+      "purpose": "Compact current handoff, separate from durable architecture and transcripts."
+    },
+    {
+      "id": "claude",
+      "preferred_paths": [
+        "CLAUDE.md"
+      ],
+      "authority": "provider-adapter",
+      "requirement": "required-only-when-claude-selected",
+      "purpose": "Regular compatibility file whose first nonblank line is @AGENTS.md; no eager whole-corpus import."
+    },
+    {
+      "id": "architecture_navigation",
+      "preferred_paths": [
+        "ARCHITECTURE.md"
+      ],
+      "authority": "navigation",
+      "requirement": "nested-layout-with-architecture",
+      "purpose": "Root pointer to the selected canonical detailed architecture."
+    },
+    {
+      "id": "documentation_index",
+      "preferred_paths": [
+        "docs/README.md"
+      ],
+      "authority": "repository",
+      "requirement": "recommended",
+      "purpose": "Question-oriented index linking applicable canonical documents."
+    },
+    {
+      "id": "architecture",
+      "preferred_paths": [
+        "docs/architecture/**",
+        "ARCHITECTURE.md (declared legacy layout)"
+      ],
+      "authority": "repository",
+      "requirement": "selected-concerns-only",
+      "purpose": "Detailed structural architecture with stable identities, dependencies and source authority."
+    },
+    {
+      "id": "purpose",
+      "preferred_paths": [
+        "docs/architecture/PURPOSE.md",
+        "PURPOSE.md (declared legacy layout)"
+      ],
+      "authority": "repository",
+      "requirement": "selected-concern",
+      "purpose": "Mission/scope/change-admission concern; do not create competing PURPOSE and MISSION authorities."
+    },
+    {
+      "id": "decisions",
+      "preferred_paths": [
+        "docs/decisions/**"
+      ],
+      "authority": "repository",
+      "requirement": "existing-ADR-policy",
+      "purpose": "Numbered ADRs/index; retain metadata, dispositions, lineage, historical links and approval evidence."
+    },
+    {
+      "id": "guide",
+      "preferred_paths": [
+        "docs/guides/**",
+        "established-declared-location"
+      ],
+      "authority": "repository",
+      "requirement": "applicable",
+      "purpose": "Durable how-to and operational procedures."
+    },
+    {
+      "id": "reference",
+      "preferred_paths": [
+        "docs/reference/**",
+        "established-declared-location"
+      ],
+      "authority": "repository",
+      "requirement": "applicable",
+      "purpose": "Contracts, detailed specifications and reference material; canonical schema retains its owning source."
+    },
+    {
+      "id": "design",
+      "preferred_paths": [
+        "docs/design/**",
+        "docs/architecture/**",
+        "established-declared-location"
+      ],
+      "authority": "repository",
+      "requirement": "applicable",
+      "purpose": "Design explanations, justified PRDs/whitepapers and evaluations; never mandated by filename count."
+    },
+    {
+      "id": "evidence",
+      "preferred_paths": [
+        "audits/**",
+        "docs/evidence/**",
+        "established-declared-location"
+      ],
+      "authority": "source-evidence",
+      "requirement": "applicable",
+      "purpose": "Dated source-bound audit/validation reports with actual qualification limits and reopenable originals."
+    },
+    {
+      "id": "work_report",
+      "preferred_paths": [
+        "docs/evidence/**",
+        "docs/development/**",
+        "established-declared-location"
+      ],
+      "authority": "repository",
+      "requirement": "durable-when-needed",
+      "purpose": "Long implementation explanations or retained work reports; README links rather than absorbs a session transcript."
+    },
+    {
+      "id": "archive",
+      "preferred_paths": [
+        "docs/archive/**",
+        "established-declared-location"
+      ],
+      "authority": "historical",
+      "requirement": "applicable",
+      "purpose": "Dated historical records with current navigation and source preserved; no silent deletion."
+    },
+    {
+      "id": "temporary",
+      "preferred_paths": [
+        "outside-versioned-source"
+      ],
+      "authority": "scratch",
+      "requirement": "optional",
+      "purpose": "Disposable working notes; promote decisions, requirements and durable proof before handoff."
+    }
+  ],
+  "readme": {
+    "slots_owner": "egohygiene.repository-presentation-profile/v1",
+    "modes": [
+      "concise",
+      "rich-justified",
+      "unknown"
+    ],
+    "word_limit": null,
+    "local_extensions": "preserve-justified-repository-prose",
+    "identity": "Compose only pinned approved Identity presentation assets through existing Holon ownership; no new brand generation or mandatory social metadata."
+  },
+  "metadata": {
+    "canonical": [
+      "question",
+      "authority",
+      "update_path",
+      "stable_id-when-defined"
+    ],
+    "generated": [
+      "source.repository",
+      "source.revision",
+      "source.path",
+      "ownership"
+    ],
+    "navigation": [
+      "canonical_id",
+      "links"
+    ],
+    "absence": "Unknown metadata is an actionable review gap, never fabricated authority."
+  },
+  "compatibility": {
+    "agent_entry": "AGENTS.md",
+    "handoff": "CONTINUITY.md",
+    "claude": {
+      "kind": "regular-file",
+      "first_nonblank_line": "@AGENTS.md",
+      "imports": [
+        "AGENTS.md"
+      ],
+      "extra_provider_content": "explicit-justification-required",
+      "eager_architecture_import": false
+    },
+    "root_architecture": "canonical in declared legacy-root; navigation in declared nested-architecture",
+    "policy_upgrade": "Opt-in exact revision/digest; preserve old profile pins and generated ownership until reviewed migration."
+  },
+  "retention": {
+    "continuity": "current compact handoff governed by Aether, not a transcript",
+    "evidence": "repository-declared retention and access; preserve immutable citations and qualification",
+    "temporary": "not durable authority; never hide requirements or decisions in ignored scratch",
+    "archive": "preserve provenance and redirects; deletion requires separate authority"
+  },
+  "migration": {
+    "bulk_moves": false,
+    "delete_sources": false,
+    "rewrite_history": false,
+    "steps": [
+      "inventory-actual-consumers",
+      "select-canonical-identities-and-path-map",
+      "preview-links-and-generated-ownership",
+      "single-Empathy-pilot",
+      "update-affected-consumers-together",
+      "retain-legacy-aliases-and-rollback",
+      "reviewed-Pace-adoption"
+    ],
+    "inventory_consumers": [
+      "Aether-specifications-and-skills",
+      "Empathy-foundation-catalog",
+      "Holon-blueprints-and-state",
+      "EgoLint-discovery",
+      "Relay-Intelligence-collectors-and-renderers",
+      "site-config-and-links",
+      "managed-agent-projections"
+    ],
+    "rollback": "Restore prior selected paths/pins with source bytes and ownership state; retain redirects and later edits."
+  },
+  "ownership": {
+    "hygiene": "location/applicability/compatibility policy",
+    "aether": "architecture and continuity schemas, authoring and agent projections",
+    "empathy": "baseline composition and first reviewed pilot",
+    "holon": "non-destructive materialization and README region",
+    "identity": "approved visual assets",
+    "egolint": "production validation",
+    "relay": "orchestration and evidence/publication mechanics",
+    "pace": "reviewed adoption",
+    "repository": "facts, local prose, selected canonical identities, declared exceptions and publication"
+  },
+  "non_goals": [
+    "bulk-document-migration",
+    "all-eighteen-architecture-files-required",
+    "screenpipe-integration",
+    "new-documentation-host",
+    "profile-ratification",
+    "provider-activation",
+    "transcript-publication"
+  ]
+}
