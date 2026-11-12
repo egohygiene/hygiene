@@ -186,10 +186,7 @@
       "$ref": "#/$defs/referenceReview"
     },
     "mechanisms": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/mechanism"
-      }
+      "type": "array"
     },
     "compatibility": {
       "type": "object",
@@ -365,7 +362,10 @@
       "if": {
         "properties": {
           "version": {
-            "const": "1.0.0-alpha.4"
+            "enum": [
+              "1.0.0-alpha.4",
+              "1.0.0-alpha.5"
+            ]
           }
         },
         "required": [
@@ -408,6 +408,137 @@
             "required": [
               "sites"
             ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "const": "1.0.0-alpha.5"
+          }
+        },
+        "required": [
+          "version"
+        ]
+      },
+      "then": {
+        "properties": {
+          "mechanisms": {
+            "contains": {
+              "properties": {
+                "id": {
+                  "const": "trust-txt"
+                },
+                "concern": {
+                  "const": "readability"
+                },
+                "artifact": {
+                  "const": {
+                    "kind": "well-known-file",
+                    "locations": [
+                      "/.well-known/trust.txt",
+                      "/trust.txt"
+                    ],
+                    "media_types": [
+                      "text/plain"
+                    ]
+                  }
+                },
+                "requirements": {
+                  "properties": {
+                    "default": {
+                      "properties": {
+                        "strength": {
+                          "const": "optional"
+                        }
+                      }
+                    },
+                    "site_class_overrides": {
+                      "items": {
+                        "properties": {
+                          "strength": {
+                            "const": "optional"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "maturity": {
+                  "properties": {
+                    "level": {
+                      "const": "published_specification"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "maxContains": 1
+          },
+          "reference_review": {
+            "properties": {
+              "mechanism_ids": {
+                "const": [
+                  "ads-txt",
+                  "ai-crawler-guidance",
+                  "ai-oriented-hints",
+                  "app-ads-txt",
+                  "canonical-metadata",
+                  "cats-txt",
+                  "commerce-product-offer-jsonld",
+                  "entitymap-html",
+                  "entitymap-json",
+                  "llms-full-txt",
+                  "llms-txt",
+                  "markdown-alternate",
+                  "mcp-b-runtime",
+                  "robots-txt",
+                  "sitemap-xml",
+                  "structured-discovery-jsonld",
+                  "trust-txt",
+                  "webmcp-tools"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "mechanisms": {
+            "items": {
+              "$ref": "#/$defs/mechanism"
+            }
+          },
+          "reference_review": {
+            "properties": {
+              "mechanism_ids": {
+                "const": [
+                  "ads-txt",
+                  "ai-crawler-guidance",
+                  "ai-oriented-hints",
+                  "app-ads-txt",
+                  "canonical-metadata",
+                  "cats-txt",
+                  "commerce-product-offer-jsonld",
+                  "entitymap-html",
+                  "entitymap-json",
+                  "llms-full-txt",
+                  "llms-txt",
+                  "markdown-alternate",
+                  "mcp-b-runtime",
+                  "robots-txt",
+                  "sitemap-xml",
+                  "structured-discovery-jsonld",
+                  "webmcp-tools"
+                ]
+              }
+            }
           }
         }
       }
@@ -958,25 +1089,11 @@
           "const": "all-registered-mechanisms-and-cross-cutting-policies"
         },
         "mechanism_ids": {
-          "const": [
-            "ads-txt",
-            "ai-crawler-guidance",
-            "ai-oriented-hints",
-            "app-ads-txt",
-            "canonical-metadata",
-            "cats-txt",
-            "commerce-product-offer-jsonld",
-            "entitymap-html",
-            "entitymap-json",
-            "llms-full-txt",
-            "llms-txt",
-            "markdown-alternate",
-            "mcp-b-runtime",
-            "robots-txt",
-            "sitemap-xml",
-            "structured-discovery-jsonld",
-            "webmcp-tools"
-          ]
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
         },
         "checks": {
           "const": [

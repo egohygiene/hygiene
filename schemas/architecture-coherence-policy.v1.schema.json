@@ -1,0 +1,198 @@
+{
+  "$comment": "The initial profile is exact and proposed. This contract does not claim human policy activation or install enforcement. Changed semantics require a new reviewed profile version.",
+  "$id": "https://egohygiene.io/schemas/hygiene/architecture-coherence-policy.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "activation": {
+      "const": "explicit separate human ratification and reviewed consumer adoption; no enforcement installed"
+    },
+    "adoption": {
+      "const": [
+        "observe",
+        "advisory",
+        "review-due",
+        "ratchet/enforce only after explicit mature scoped adoption"
+      ]
+    },
+    "applicability": {
+      "const": [
+        "unknown",
+        "required",
+        "recommended",
+        "optional",
+        "not-applicable",
+        "deferred"
+      ]
+    },
+    "approval": {
+      "const": null
+    },
+    "contracts": {
+      "additionalProperties": false,
+      "properties": {
+        "governance": {
+          "const": "egohygiene.architecture-coherence-governance/v1"
+        },
+        "material_change": {
+          "const": "egohygiene.architecture-coherence-material-change/v1"
+        }
+      },
+      "required": [
+        "governance",
+        "material_change"
+      ],
+      "type": "object"
+    },
+    "default_adoption": {
+      "const": "observe"
+    },
+    "freshness": {
+      "additionalProperties": false,
+      "properties": {
+        "clock": {
+          "const": "explicit as_of UTC; reject future observations"
+        },
+        "incomplete_inventory": {
+          "const": "unknown freshness unless a witnessed material event or deadline proves stale"
+        },
+        "invalidation": {
+          "const": "preserve historical decision; expose stale effective posture without rewriting source"
+        },
+        "materiality": {
+          "const": "only explicit scoped sourced events following the represented assessment; routine revision differences are independent"
+        },
+        "valid_until": {
+          "const": "optional explicit source deadline; stale only after this deadline"
+        }
+      },
+      "required": [
+        "clock",
+        "incomplete_inventory",
+        "invalidation",
+        "materiality",
+        "valid_until"
+      ],
+      "type": "object"
+    },
+    "governed_by": {
+      "const": [
+        "ADR-0002",
+        "ADR-0017"
+      ]
+    },
+    "human_evidence": {
+      "const": "Raw record fields only declare claims. Separate trusted human-source context must bind exact canonical statement, scope, revisions and assessment digest. No context means unverified, never ratified."
+    },
+    "non_goals": {
+      "const": [
+        "numeric architecture score",
+        "automatic ratification or implementation",
+        "automatic staleness on every commit",
+        "replacing ADRs, audits, conformance, CI, health or release readiness",
+        "organization-wide blocking during introduction"
+      ]
+    },
+    "noninvalidating_kinds": {
+      "const": [
+        "routine-implementation"
+      ]
+    },
+    "owner": {
+      "const": "egohygiene/hygiene"
+    },
+    "ownership": {
+      "additionalProperties": false,
+      "properties": {
+        "aether": {
+          "const": "portable full review/assessment contract, prompts, templates and read-only authoring skill"
+        },
+        "hygiene": {
+          "const": "applicability, governance, freshness and human-authority semantics"
+        },
+        "observatory": {
+          "const": "privacy-safe read models and queries; preserves source claims versus verified authority"
+        },
+        "pace": {
+          "const": "reviewed adoption proposals; no automatic authority or enforcement"
+        },
+        "relay": {
+          "const": "bounded evidence capture, verification, artifacts and repository presentation"
+        },
+        "repository": {
+          "const": "canonical facts, public admission, human governance sources and final publication"
+        }
+      },
+      "required": [
+        "aether",
+        "hygiene",
+        "observatory",
+        "pace",
+        "relay",
+        "repository"
+      ],
+      "type": "object"
+    },
+    "recommended_trigger_candidates": {
+      "const": [
+        "repeated-ownership-confusion",
+        "maintainer-request"
+      ]
+    },
+    "required_trigger_candidates": {
+      "const": [
+        "architecture-milestone",
+        "ownership-change",
+        "accepted-adr-topology-change",
+        "cross-repository-dependency",
+        "persistence-boundary",
+        "trust-boundary",
+        "runtime-replacement",
+        "repository-split-merge-extraction",
+        "organization-architecture-change",
+        "audit-architecture-drift",
+        "material-architecture-document-change",
+        "explicit-human-invalidation"
+      ]
+    },
+    "schema": {
+      "const": "egohygiene.architecture-coherence-policy/v1"
+    },
+    "scope": {
+      "const": [
+        "repository",
+        "subsystem",
+        "organization"
+      ]
+    },
+    "status": {
+      "const": "proposed"
+    },
+    "version": {
+      "const": "1.0.0-alpha.1"
+    }
+  },
+  "required": [
+    "activation",
+    "adoption",
+    "applicability",
+    "approval",
+    "contracts",
+    "default_adoption",
+    "freshness",
+    "governed_by",
+    "human_evidence",
+    "non_goals",
+    "noninvalidating_kinds",
+    "owner",
+    "ownership",
+    "recommended_trigger_candidates",
+    "required_trigger_candidates",
+    "schema",
+    "scope",
+    "status",
+    "version"
+  ],
+  "title": "Proposed architecture-coherence policy alpha.1",
+  "type": "object"
+}

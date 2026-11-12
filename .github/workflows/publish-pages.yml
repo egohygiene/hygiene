@@ -39,7 +39,7 @@ jobs:
 
   validation:
     name: Read-only native source evidence
-    uses: egohygiene/relay/.github/workflows/repository-architecture-validation.yml@ac2600f4619f64c75a0e499e0540d8f48d516f9c
+    uses: egohygiene/relay/.github/workflows/repository-architecture-validation.yml@981ddf4367c67fcd625e54321d95bab027f6c0f2
     with:
       check-id: hygiene-decisions
       mode: advisory
@@ -82,6 +82,12 @@ jobs:
     if: ${{ needs.admission.outputs.ready == 'true' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 30
+    permissions:
+      contents: read
+      actions: read
+      issues: read
+      pull-requests: read
+      checks: read
     outputs:
       handoff: ${{ steps.handoff.outputs.artifact-id }}
     steps:
@@ -93,17 +99,48 @@ jobs:
           ref: ${{ github.sha }}
           fetch-depth: 0
           persist-credentials: false
+      - name: Capture public Work, Health and Releases sources
+        id: public_sources
+        if: github.repository == 'egohygiene/hygiene' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+        uses: egohygiene/relay/actions/repository-intelligence-github-sources@981ddf4367c67fcd625e54321d95bab027f6c0f2
+        with:
+          github-token: "${{ github.token }}"
+          include-titles: "true"
+      - name: Retain exact same-run source captures
+        id: source_capture_upload
+        if: github.repository == 'egohygiene/hygiene' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+        # Ordinary immutable capture artifact, separate from the Pages artifact.
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: "${{ steps.public_sources.outputs.artifact-name }}"
+          path: "${{ steps.public_sources.outputs.artifact-directory }}"
+          if-no-files-found: error
+          retention-days: 7
+      - name: Retain bounded public source producer receipt
+        if: ${{ !cancelled() && steps.public_sources.outputs.producer-receipt != '' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: "hygiene-intelligence-source-proof-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}"
+          path: "${{ steps.public_sources.outputs.producer-receipt }}"
+          if-no-files-found: error
+          retention-days: 7
       - name: Compose the repository-owned landing and aliases
         run: python3 -I tools/publication.py shell
       - name: Capture the consumer route baseline
-        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@ac2600f4619f64c75a0e499e0540d8f48d516f9c
+        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@981ddf4367c67fcd625e54321d95bab027f6c0f2
         with:
           operation: capture-baseline
           evidence-directory: .cache/publication/composition
       - name: Collect and build through the shared strict pipeline
-        uses: egohygiene/relay/actions/repository-intelligence@ac2600f4619f64c75a0e499e0540d8f48d516f9c
+        uses: egohygiene/relay/actions/repository-intelligence@981ddf4367c67fcd625e54321d95bab027f6c0f2
         with:
           collect-adrs: "true"
+          collect-journey: "true"
+          search-attribution: "true"
+          source-capture-artifact-id: "${{ steps.source_capture_upload.outputs.artifact-id }}"
+          source-capture-artifact-digest: "${{ steps.source_capture_upload.outputs.artifact-digest }}"
+          as-of: "${{ steps.public_sources.outputs.as-of }}"
+          collect-dependencies: "${{ steps.source_capture_upload.outputs.artifact-id != '' }}"
           adr-policy-owner: "true"
           adr-known-external-decisions: '["egohygiene/identity#ADR-0017"]'
           output-directory: dist/intelligence
@@ -113,7 +150,7 @@ jobs:
       - name: Seal the transport handoff
         run: python3 -I tools/publication.py seal
       - name: Verify preserved routes, aliases, source and complete bundle
-        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@ac2600f4619f64c75a0e499e0540d8f48d516f9c
+        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@981ddf4367c67fcd625e54321d95bab027f6c0f2
         with:
           operation: verify-composition
           evidence-directory: .cache/publication/composition
@@ -163,7 +200,7 @@ jobs:
       - name: Recheck downloaded bytes
         run: python3 -I tools/publication.py check
       - name: Reverify the shared composition at the deployment boundary
-        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@ac2600f4619f64c75a0e499e0540d8f48d516f9c
+        uses: egohygiene/relay/actions/repository-intelligence-deployment-provenance@981ddf4367c67fcd625e54321d95bab027f6c0f2
         with:
           operation: verify-composition
           evidence-directory: .cache/publication/composition

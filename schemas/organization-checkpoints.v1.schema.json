@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/organization-checkpoints.v1.schema.json",
+  "title": "Proposed organization checkpoint applicability and cadence profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "status",
+    "owner",
+    "scope",
+    "catalog",
+    "public_projection",
+    "cadence",
+    "freshness",
+    "retention",
+    "audit_contract",
+    "checkpoint_sections",
+    "new_repository_rules",
+    "ownership",
+    "authority"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egohygiene.organization-checkpoints/v1"
+    },
+    "version": {
+      "const": "1.0.0-alpha.1"
+    },
+    "status": {
+      "const": "proposed"
+    },
+    "owner": {
+      "const": "egohygiene/hygiene"
+    },
+    "scope": {
+      "const": "reviewed-public-repositories"
+    },
+    "catalog": {
+      "const": "catalog/repositories.yaml"
+    },
+    "public_projection": {
+      "const": "catalog/public-repositories.json"
+    },
+    "cadence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "interval_seconds",
+        "event_triggers",
+        "execution"
+      ],
+      "properties": {
+        "interval_seconds": {
+          "const": 604800
+        },
+        "event_triggers": {
+          "const": [
+            "repository-created-renamed-transferred-archived-or-visibility-changed",
+            "architecture-release",
+            "major-milestone",
+            "pre-release",
+            "on-demand"
+          ]
+        },
+        "execution": {
+          "const": "explicit consumer-owned invocation; no scheduler installed"
+        }
+      }
+    },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "maximum_inventory_age_seconds",
+        "as_of",
+        "future_observations",
+        "incomplete_inventory",
+        "unknown_roles"
+      ],
+      "properties": {
+        "maximum_inventory_age_seconds": {
+          "const": 604800
+        },
+        "as_of": {
+          "const": "explicit UTC input"
+        },
+        "future_observations": {
+          "const": "reject"
+        },
+        "incomplete_inventory": {
+          "const": "cannot establish absence or passing freshness"
+        },
+        "unknown_roles": {
+          "const": "retain unknown; public identity admission remains independent"
+        }
+      }
+    },
+    "retention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum_days",
+        "reports",
+        "baseline",
+        "missing_expired_inaccessible_or_incompatible_baseline",
+        "failed_collection"
+      ],
+      "properties": {
+        "minimum_days": {
+          "const": 90
+        },
+        "reports": {
+          "const": "immutable dated artifacts"
+        },
+        "baseline": {
+          "const": "explicit compatible public checkpoint artifact and digest"
+        },
+        "missing_expired_inaccessible_or_incompatible_baseline": {
+          "const": "comparison unavailable"
+        },
+        "failed_collection": {
+          "const": "cannot replace the last valid baseline"
+        }
+      }
+    },
+    "audit_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owner",
+        "id",
+        "version",
+        "status",
+        "revision",
+        "path",
+        "sha256",
+        "composition"
+      ],
+      "properties": {
+        "owner": {
+          "const": "egohygiene/aether"
+        },
+        "id": {
+          "const": "auditor"
+        },
+        "version": {
+          "const": "2.0.0"
+        },
+        "status": {
+          "const": "approved"
+        },
+        "revision": {
+          "const": "dc8a16851f452763ef4f7fbe4bf057d4500b1921"
+        },
+        "path": {
+          "const": "library/organization/specs/quality/auditor.spec.md"
+        },
+        "sha256": {
+          "const": "f9f4d56673cefac4233fad4d53c78d1ba0726201b7e097bb78f67a721b81e62f"
+        },
+        "composition": {
+          "const": "Use the owner's read-only request, evidence, finding, report-status and immutable-output contract. This profile adds applicability and cadence; it does not copy or replace the audit protocol."
+        }
+      }
+    },
+    "checkpoint_sections": {
+      "const": [
+        "public catalog drift and inventory freshness",
+        "backlog shape with source and observation boundary",
+        "conformance adoption with explicit unavailable domains",
+        "current exceptions with owner and expiry evidence",
+        "positive observations tied to exact source",
+        "comparison baseline identity or explicit unavailable",
+        "execution, artifact retention and publication as separate facts"
+      ]
+    },
+    "new_repository_rules": {
+      "const": [
+        "Discover through an explicit public-only provider request; never publish protected names, counts or placeholders.",
+        "Bind canonical full identity to stable provider repository ID and record observation time, default branch and archive state.",
+        "Review owner README, architecture, roadmap and metadata before assigning role, plane, lifecycle or next gate; preserve undeclared values as unknown.",
+        "Record historical aliases explicitly; aliases cannot shadow a canonical repository or resolve ambiguously.",
+        "Update the canonical catalog, context dependency mapping and active boundary references together; preserve dated ADRs and receipts.",
+        "Regenerate the public projection from the reviewed catalog and pin its owner schema/helper revision before consumer admission.",
+        "Treat new, missing, renamed, transferred, archived or visibility-changed repositories as drift requiring a reviewable source change; discovery never edits the registry."
+      ]
+    },
+    "ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hygiene",
+        "aether",
+        "pace",
+        "observatory",
+        "relay",
+        "repository"
+      ],
+      "properties": {
+        "hygiene": {
+          "const": "canonical repository identity, role, applicability, public admission and checkpoint policy"
+        },
+        "aether": {
+          "const": "portable read-only audit contract"
+        },
+        "pace": {
+          "const": "reviewed discovery/adoption and catalog-reconciliation proposals"
+        },
+        "observatory": {
+          "const": "privacy-safe observation, normalization and reporting"
+        },
+        "relay": {
+          "const": "consumer-owned execution and bounded artifact transport"
+        },
+        "repository": {
+          "const": "source facts, local gates, credentials and final publication"
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "human_approval",
+        "publication",
+        "policy_activation"
+      ],
+      "properties": {
+        "human_approval": {
+          "const": "never inferred from activity, merge, provider metadata or an audit"
+        },
+        "publication": {
+          "const": "not authorized by this profile"
+        },
+        "policy_activation": {
+          "const": "not claimed"
+        }
+      }
+    }
+  }
+}

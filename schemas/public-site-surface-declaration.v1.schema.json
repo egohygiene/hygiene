@@ -247,7 +247,15 @@
         },
         "base_path": {
           "type": "string",
-          "pattern": "^/(?:[a-z0-9][a-z0-9._-]*/)*$"
+          "description": "An ordinary absolute directory mount, or the exact .github project-Pages mount. Other hidden or nested hidden mounts remain unsupported.",
+          "anyOf": [
+            {
+              "pattern": "^/(?:[a-z0-9][a-z0-9._-]*/)*$"
+            },
+            {
+              "const": "/.github/"
+            }
+          ]
         },
         "route_profile": {
           "enum": [

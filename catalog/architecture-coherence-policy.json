@@ -1,0 +1,80 @@
+{
+  "activation": "explicit separate human ratification and reviewed consumer adoption; no enforcement installed",
+  "adoption": [
+    "observe",
+    "advisory",
+    "review-due",
+    "ratchet/enforce only after explicit mature scoped adoption"
+  ],
+  "applicability": [
+    "unknown",
+    "required",
+    "recommended",
+    "optional",
+    "not-applicable",
+    "deferred"
+  ],
+  "approval": null,
+  "contracts": {
+    "governance": "egohygiene.architecture-coherence-governance/v1",
+    "material_change": "egohygiene.architecture-coherence-material-change/v1"
+  },
+  "default_adoption": "observe",
+  "freshness": {
+    "clock": "explicit as_of UTC; reject future observations",
+    "incomplete_inventory": "unknown freshness unless a witnessed material event or deadline proves stale",
+    "invalidation": "preserve historical decision; expose stale effective posture without rewriting source",
+    "materiality": "only explicit scoped sourced events following the represented assessment; routine revision differences are independent",
+    "valid_until": "optional explicit source deadline; stale only after this deadline"
+  },
+  "governed_by": [
+    "ADR-0002",
+    "ADR-0017"
+  ],
+  "human_evidence": "Raw record fields only declare claims. Separate trusted human-source context must bind exact canonical statement, scope, revisions and assessment digest. No context means unverified, never ratified.",
+  "non_goals": [
+    "numeric architecture score",
+    "automatic ratification or implementation",
+    "automatic staleness on every commit",
+    "replacing ADRs, audits, conformance, CI, health or release readiness",
+    "organization-wide blocking during introduction"
+  ],
+  "noninvalidating_kinds": [
+    "routine-implementation"
+  ],
+  "owner": "egohygiene/hygiene",
+  "ownership": {
+    "aether": "portable full review/assessment contract, prompts, templates and read-only authoring skill",
+    "hygiene": "applicability, governance, freshness and human-authority semantics",
+    "observatory": "privacy-safe read models and queries; preserves source claims versus verified authority",
+    "pace": "reviewed adoption proposals; no automatic authority or enforcement",
+    "relay": "bounded evidence capture, verification, artifacts and repository presentation",
+    "repository": "canonical facts, public admission, human governance sources and final publication"
+  },
+  "recommended_trigger_candidates": [
+    "repeated-ownership-confusion",
+    "maintainer-request"
+  ],
+  "required_trigger_candidates": [
+    "architecture-milestone",
+    "ownership-change",
+    "accepted-adr-topology-change",
+    "cross-repository-dependency",
+    "persistence-boundary",
+    "trust-boundary",
+    "runtime-replacement",
+    "repository-split-merge-extraction",
+    "organization-architecture-change",
+    "audit-architecture-drift",
+    "material-architecture-document-change",
+    "explicit-human-invalidation"
+  ],
+  "schema": "egohygiene.architecture-coherence-policy/v1",
+  "scope": [
+    "repository",
+    "subsystem",
+    "organization"
+  ],
+  "status": "proposed",
+  "version": "1.0.0-alpha.1"
+}

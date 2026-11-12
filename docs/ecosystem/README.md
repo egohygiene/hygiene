@@ -1,18 +1,17 @@
 # Ego Hygiene Ecosystem Architecture
 
-Status: **accepted v0.1**  
-Architecture date: **2026-08-18**  
-Scope: the 27-entry architecture catalog observed on 2026-08-21, plus one
-explicitly deferred infrastructure boundary. The continuity policy separately
-pins the 29 active repositories observed by issue #45 on 2026-09-08 while the
-catalog-refresh quest remains open.
-
-This package defines the target repository architecture before any new infographic is produced. It reconciles the live repositories, the current Flow orchestration proposal, the contents staged in `empathy`, and the earlier ecosystem diagrams.
+This package describes the current repository architecture. The
+[authority map](ARCHITECTURE.md#authority-and-evidence) identifies the
+historical v0.1 baseline, proposed amendments and observed owner implementations.
+Use the [reviewed public inventory](PUBLIC_REPOSITORY_INVENTORY.md) for
+catalog scope and freshness.
 
 ## Start here
 
 1. Read [`ARCHITECTURE.md`](ARCHITECTURE.md) for the target system and ownership rules.
-2. Use [`REPOSITORY_CATALOG.md`](REPOSITORY_CATALOG.md) for the role and current state of every repository.
+2. Use the [machine-readable catalog](../../catalog/repositories.yaml) for
+   current identities and [`REPOSITORY_CATALOG.md`](REPOSITORY_CATALOG.md) for
+   the historical role and first-gate snapshot.
 3. Review [`SOURCE_REVIEW.md`](SOURCE_REVIEW.md) for what was inspected, retained, and superseded.
 4. Follow [`MIGRATION_PLAN.md`](MIGRATION_PLAN.md) to extract staged work without losing provenance.
 5. Give [`AGENT_CONTEXT.md`](AGENT_CONTEXT.md) to every repository agent.
@@ -46,7 +45,7 @@ This package defines the target repository architecture before any new infograph
 
 `hygiene` becomes the canonical ecosystem architecture and platform-control repository. Other repositories receive a small, generated local context document that states their own boundary and pins an architecture release. They do **not** receive independent copies of the entire ecosystem specification. `pace` will eventually reconcile those projections through pull requests.
 
-This prevents 27 copies of the architecture from drifting while still giving every human and agent enough local context to work safely.
+Generated context keeps repository-local guidance tied to its selected source.
 
 ## What this package does not do
 
@@ -62,6 +61,6 @@ machine-readable repository registry is promoted separately at the repository
 root by issue #2 so that its schema, validator, fixtures, and generated views
 can be reviewed as one contract.
 
-The acceptance record is
-[`ADR-0001`](../decisions/ADR-0001-holistic-architecture-v0.1.md). The intended
-first release tag is `architecture-v0.1.0`.
+[`ADR-0001`](../decisions/ADR-0001-holistic-architecture-v0.1.md) records the
+historical five-plane baseline. The current six-plane view includes the
+proposed amendments listed in the [authority map](ARCHITECTURE.md#authority-and-evidence).

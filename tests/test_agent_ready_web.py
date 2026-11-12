@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import copy
 import json
+import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -12,6 +14,7 @@ FIXTURES = ROOT / "fixtures" / "agent-ready-web"
 sys.path.insert(0, str(ROOT / "tools"))
 
 import agent_ready_web  # noqa: E402
+import site_surfaces  # noqa: E402
 
 
 class AgentReadyWebCatalogTests(unittest.TestCase):
@@ -105,7 +108,7 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
     def test_checked_in_catalog_is_valid_complete_and_proposed(self) -> None:
         self.assertEqual([], agent_ready_web.validate_profile(self.profile))
         self.assertEqual("proposed", self.profile["status"])
-        self.assertEqual("1.0.0-alpha.4", self.profile["version"])
+        self.assertEqual("1.0.0-alpha.5", self.profile["version"])
         self.assertEqual(
             agent_ready_web.SCOPED_MECHANISM_IDS,
             [item["id"] for item in self.profile["mechanisms"]],
@@ -286,6 +289,7 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
             "robots-txt": ("readability", "established"),
             "sitemap-xml": ("readability", "established"),
             "structured-discovery-jsonld": ("readability", "established"),
+            "trust-txt": ("readability", "published_specification"),
             "webmcp-tools": ("capability", "experimental"),
         }
         actual = {
@@ -541,6 +545,127 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
             errors,
         )
 
+    def test_https_locations_preserve_supported_forms_and_reject_ambiguity(self) -> None:
+        valid = [
+            "https://example.invalid/evidence?q=value#section",
+            "https://EXAMPLE.invalid:443/evidence",
+            "https://xn--bcher-kva.invalid/evidence",
+            "https://192.0.2.1:65535/evidence",
+            "https://[2001:db8::1]:8443/evidence",
+        ]
+        invalid = [
+            "https://", "https:///evidence", "https://bad..host/evidence",
+            "https://example.invalid../evidence", "https://-bad.invalid/",
+            "https://user:synthetic-secret@example.invalid/evidence",
+            "https://example.invalid:0/", "https://example.invalid:65536/",
+            "https://example.invalid:/", "https://example.invalid:words/",
+            "https://[2001:db8::1]junk/", "https://[v1.a]/",
+            "https://[fe80::1%25eth0]/", "https://bad host.invalid/",
+            "https://example.invalid/\tpath", "\nhttps://example.invalid/",
+            "https://example.invalid/\x00path", "https://example.invalid/\x7fpath",
+            "https://example.invalid/\u00a0path", "https://foo\\bar.invalid/",
+            "HTTPS://example.invalid/evidence",
+        ]
+        for value in valid:
+            with self.subTest(value=value):
+                self.assertEqual([], agent_ready_web._location(value, "field"))
+                self.assertTrue(site_surfaces._is_https(value))
+        for value in invalid:
+            with self.subTest(value=value):
+                self.assertEqual(
+                    ["field must be an HTTPS URL or safe repository-relative path"],
+                    agent_ready_web._location(value, "field"),
+                )
+                self.assertFalse(site_surfaces._is_https(value))
+        for value in ["docs/evidence.md", "evidence.json", "fixtures/v1/site.valid.json"]:
+            with self.subTest(relative=value):
+                self.assertEqual([], agent_ready_web._location(value, "field"))
+        for value in ["../evidence", "docs/../evidence", "/absolute", "docs\\evidence"]:
+            with self.subTest(relative=value):
+                self.assertTrue(agent_ready_web._location(value, "field"))
+
+    def test_exact_origins_use_the_same_port_and_delimiter_policy(self) -> None:
+        valid = [
+            "https://example.invalid", "https://example.invalid/",
+            "https://example.invalid:443", "https://example.invalid:1/",
+            "https://[2001:db8::1]", "https://[2001:db8::1]:65535/",
+        ]
+        invalid = [
+            "https://", "https://example.invalid/path", "https://example.invalid?",
+            "https://example.invalid/#", "https://example.invalid?q=1",
+            "https://user:synthetic-secret@example.invalid",
+            "https://example.invalid:", "https://example.invalid:0",
+            "https://example.invalid:65536", "https://bad host.invalid",
+            "https://example.invalid\n", "https://foo\\bar.invalid",
+        ]
+        for value in valid:
+            with self.subTest(value=value):
+                self.assertEqual([], agent_ready_web._https_origin(value, "field"))
+                self.assertTrue(site_surfaces._is_origin(value))
+        for value in invalid:
+            with self.subTest(value=value):
+                self.assertEqual(
+                    ["field must be an HTTPS origin"],
+                    agent_ready_web._https_origin(value, "field"),
+                )
+                self.assertFalse(site_surfaces._is_origin(value))
+
+    def test_profile_and_mechanism_registration_locations_share_protection(self) -> None:
+        for collection in ["authoritative_references", "registration_evidence"]:
+            mechanism = copy.deepcopy(self.valid_fixture["mechanism"])
+            mechanism[collection][0]["location"] = "https://"
+            self.assertIn(
+                f"mechanism.{collection}[0].location must be an HTTPS URL "
+                "or safe repository-relative path",
+                agent_ready_web.validate_mechanism(mechanism),
+            )
+            profile = copy.deepcopy(self.profile)
+            profile["mechanisms"][0][collection][0]["location"] = "https://"
+            errors = agent_ready_web.validate_profile(profile)
+            self.assertTrue(any(
+                f".{collection}[0].location must be an HTTPS URL "
+                "or safe repository-relative path" in error for error in errors
+            ))
+
+    def test_public_conformance_cli_rejects_bad_locations_without_echoing_values(self) -> None:
+        cases = [
+            ("location", "https://", "conformance.evidence[0].location"),
+            ("location", "https://user:synthetic-secret@example.invalid/", "conformance.evidence[0].location"),
+            ("location", "https://bad host.invalid/", "conformance.evidence[0].location"),
+            ("location", "https://example.invalid/\tpath", "conformance.evidence[0].location"),
+            ("location", "https://foo\\bar.invalid/", "conformance.evidence[0].location"),
+            ("origin", "https://bad host.invalid", "conformance.subject.origin"),
+            ("origin", "https://example.invalid\n", "conformance.subject.origin"),
+            ("origin", "https://foo\\bar.invalid", "conformance.subject.origin"),
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "conformance.json"
+            command = [
+                sys.executable, str(ROOT / "tools" / "agent_ready_web.py"),
+                "--profile", str(ROOT / "catalog" / "agent-ready-web-profile.json"),
+                "validate-conformance", "--input", str(path),
+            ]
+            for field, value, diagnostic in cases:
+                with self.subTest(field=field, value=value):
+                    candidate = copy.deepcopy(self.application_fixture["conformance"])
+                    if field == "location":
+                        candidate["evidence"][0]["location"] = value
+                    else:
+                        candidate["subject"]["origin"] = value
+                    path.write_text(json.dumps(candidate), encoding="utf-8")
+                    result = subprocess.run(command, capture_output=True, text=True, check=False)
+                    self.assertEqual(1, result.returncode)
+                    self.assertIn(diagnostic, result.stderr)
+                    self.assertNotIn(value, result.stdout + result.stderr)
+                    self.assertNotIn("synthetic-secret", result.stdout + result.stderr)
+            for location in ["docs/evidence.md", "https://example.invalid/evidence", "https://[2001:db8::1]:8443/evidence"]:
+                with self.subTest(valid_location=location):
+                    candidate = copy.deepcopy(self.application_fixture["conformance"])
+                    candidate["evidence"][0]["location"] = location
+                    path.write_text(json.dumps(candidate), encoding="utf-8")
+                    result = subprocess.run(command, capture_output=True, text=True, check=False)
+                    self.assertEqual(0, result.returncode, result.stderr)
+
     def test_compatibility_fixtures_cover_valid_and_invalid_records(self) -> None:
         self.assertEqual(
             [],
@@ -568,6 +693,53 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
                 agent_ready_web.SCOPED_MECHANISM_IDS,
                 [item["id"] for item in fixture["conformance"]["mechanisms"]],
             )
+
+    def test_trust_txt_rejects_a_missing_well_known_path_and_required_strength(self) -> None:
+        mechanism = copy.deepcopy(next(
+            item for item in self.profile["mechanisms"] if item["id"] == "trust-txt"
+        ))
+        mechanism["artifact"]["locations"] = ["/trust.txt"]
+        mechanism["requirements"]["site_class_overrides"][2]["strength"] = "required"
+        self.assertEqual(
+            [
+                "mechanism.artifact must declare the trust.txt paths and text/plain",
+                "mechanism.requirements must keep trust-txt optional for every site class",
+            ],
+            agent_ready_web.validate_mechanism(mechanism),
+        )
+
+    def test_trust_txt_reports_unknown_applicability_and_failed_present_evidence(self) -> None:
+        for fixture, changes, expected in (
+            (
+                self.application_fixture,
+                {"applicability": "unknown", "resolved_strength": "unresolved"},
+                ["ARW-APP-001"],
+            ),
+            (
+                self.content_fixture,
+                {"validation": "failed", "evidence_ids": []},
+                ["ARW-EVD-001", "ARW-VAL-001"],
+            ),
+        ):
+            with self.subTest(expected=expected):
+                candidate = copy.deepcopy(fixture["conformance"])
+                assessment = next(
+                    item for item in candidate["mechanisms"] if item["id"] == "trust-txt"
+                )
+                assessment.update(changes)
+                self.refresh_conformance(candidate)
+                self.assertEqual("nonconformant", candidate["summary"]["level"])
+                self.assertEqual(
+                    expected,
+                    [
+                        item["code"] for item in candidate["diagnostics"]
+                        if item["mechanism_id"] == "trust-txt"
+                    ],
+                )
+                self.assertEqual(
+                    [],
+                    agent_ready_web.validate_conformance(candidate, self.profile),
+                )
 
     def test_conformance_schema_denies_cross_layer_authority(self) -> None:
         schema = agent_ready_web.load_json(
@@ -677,7 +849,10 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
         inapplicable_present = copy.deepcopy(
             self.application_fixture["conformance"]
         )
-        inapplicable_assessment = inapplicable_present["mechanisms"][16]
+        inapplicable_assessment = next(
+            item for item in inapplicable_present["mechanisms"]
+            if item["id"] == "webmcp-tools"
+        )
         inapplicable_assessment["presence"] = "present"
         inapplicable_assessment["validation"] = "passed"
         inapplicable_assessment["evidence_ids"] = ["artifact-snapshot"]
