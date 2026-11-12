@@ -7,107 +7,137 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-10T23:49:07Z'
+  updated_at: "2026-11-12T00:32:36Z"
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Propose exact project-Pages base-prefix compatibility for the organization Intelligence home without
-    changing logical routes or authority.
+  purpose: Reconcile current navigation and topology evidence for Hygiene issue 85.
   includes:
-  - The site declaration schema accepts its original base-path pattern or the exact whole prefix /.github/.
-    The helper admits that same exception after the existing dangerous-token denials; all logical route rules
-    remain unchanged.
-  - ADR-0013 receives a dated proposed outcome note and the operator guide explains explicit immutable schema/helper
-    adoption. Contract v1/proposed alpha1, catalog roles, composition ownership, human dispositions and frozen
-    consumer pins remain unchanged.
+    - Current roadmap, authority map, topology diagrams and operational checkpoint.
+    - Historical architecture decisions, approval evidence and source admission references.
   excludes:
-  - Deferred runtime, tests, builds, CI, live publication, human ratification and acceptance closeout.
+    - Organization ratification, source-admission repair and hosted publication.
+    - Catalog policy, repository roles and dependency changes.
   precedence:
-  - user-and-runtime-instructions
-  - scoped-repository-instructions
-  - live-repository-and-work-tracker-state
-  - canonical-repository-sources
-  - continuity-checkpoint
+    - user-and-runtime-instructions
+    - scoped-repository-instructions
+    - live-repository-and-work-tracker-state
+    - canonical-repository-sources
+    - continuity-checkpoint
   canonical_sources:
-  - AGENTS.md
-  - docs/decisions/ADR-0013-public-site-surface-route-registry.md
-  - docs/ecosystem/PUBLIC_SITE_SURFACES.md
-  - schemas/public-site-surface-declaration.v1.schema.json
-  - tools/site_surfaces.py
-  - https://github.com/egohygiene/.github/issues/27
+    - AGENTS.md
+    - ROADMAP.md
+    - docs/decisions/README.md
+    - docs/ecosystem/ARCHITECTURE.md
+    - publication/README.md
+    - https://github.com/egohygiene/hygiene/issues/76
 work:
-  objective: Propose exact project-Pages base-prefix compatibility for the organization Intelligence home without
-    changing logical routes or authority.
+  objective: Make the next audit review and exact architecture and publication authority clear to a fresh session.
   success_conditions:
-  - Every previously valid base remains valid by source construction; the only new spelling is exact /.github/.
-  - Dot segments, encoded/ambiguous prefixes and other hidden segments gain no authority.
-  - Existing pins continue to reject the new prefix; no hosting/declaration/lifecycle acceptance is inferred.
+    - The current handoff identifies the next open review and preserves the historical roadmap and stable HYG-Q IDs.
+    - The architecture and diagrams identify proposed amendments and link observed local implementations separately.
+    - The publisher pin, admission requirements and unresolved ADR-0001 evidence remain traceable.
   active_issue:
     provider: github
-    id: egohygiene/.github#27
-    url: https://github.com/egohygiene/.github/issues/27
+    id: egohygiene/hygiene#85
+    url: https://github.com/egohygiene/hygiene/issues/85
   next:
     kind: action
-    id: review-project-prefix-compatibility
-    description: Review the bounded compatibility proposal with the organization home/export/intake slices.
-      After explicit source adoption, reconcile canonical host declarations before any publisher activation.
+    id: review-audit-repair-drafts
+    description: Review the continuity, presentation and ADR draft repairs in the order recorded by issue 76.
     readiness: ready
     references:
-    - https://github.com/egohygiene/.github/issues/27
+      - https://github.com/egohygiene/hygiene/issues/76
+      - https://github.com/egohygiene/hygiene/pull/91
+      - https://github.com/egohygiene/hygiene/pull/89
+      - https://github.com/egohygiene/hygiene/pull/90
     depends_on: []
 state:
   base:
-    revision: 95f6ddb948e6b874f02510d586b89e99cc20e38e
+    revision: 31ae6fb78757502e7474e5518904fc568840c1ee
     ref: refs/heads/main
-    verified_at: '2026-11-10T23:49:07Z'
+    verified_at: "2026-11-12T00:32:36Z"
   candidate:
-    branch: codex/surface-github-base-prefix
+    branch: codex/hygiene-85-authority-navigation
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-10T23:49:07Z'
-    default_branch_revision: 95f6ddb948e6b874f02510d586b89e99cc20e38e
+    observed_at: "2026-11-12T00:32:36Z"
+    default_branch_revision: 31ae6fb78757502e7474e5518904fc568840c1ee
     issue_state: open
     pull_request_state: not-applicable
-    notes: Hygiene main95f6ddb948e6b874f02510d586b89e99cc20e38e was refreshed. Functional source96d3358c9b745af820702e0013af7380d151a6da
-      is an additive proposed compatibility correction under existing ADR0013; user direction selects a future
-      .github organization entry point, not human ratification or live publication.
-  parallel_changes: []
+    notes: Main includes merged PRs 92, 93 and 101. PRs 89 through 91 remain open for review.
+  parallel_changes:
+    - provider: github
+      id: egohygiene/hygiene#89
+      url: https://github.com/egohygiene/hygiene/pull/89
+    - provider: github
+      id: egohygiene/hygiene#90
+      url: https://github.com/egohygiene/hygiene/pull/90
+    - provider: github
+      id: egohygiene/hygiene#91
+      url: https://github.com/egohygiene/hygiene/pull/91
+    - provider: github
+      id: egohygiene/hygiene#103
+      url: https://github.com/egohygiene/hygiene/pull/103
+    - provider: github
+      id: egohygiene/hygiene#102
+      url: https://github.com/egohygiene/hygiene/issues/102
 review:
   status: partial
-  reviewed_at: '2026-11-10T23:49:07Z'
+  reviewed_at: "2026-11-12T00:32:36Z"
   reviewed_by: Codex
   evidence:
-  - command: Independent static source review, Python AST comparison proving all other helper functions unchanged,
-      schema definitions and original-pattern preservation, exact retained ADR body prefix, continuity schema/size/links
-      and whitespace
-    outcome: limited
-    observed_at: '2026-11-10T23:49:07Z'
-    notes: Static source and metadata inspection only; no application execution.
-  - command: Native/runtime execution, tests, builds, CI investigation, browser/provider/consumer/publication
-      qualification
-    outcome: not-run
-    observed_at: '2026-11-10T23:49:07Z'
-    notes: Deferred at maintainer request; source merges do not establish acceptance.
+    - command: >-
+        python3 tools/boundaries.py validate and
+        python3 tools/catalog.py --catalog catalog/repositories.yaml validate
+      outcome: passed
+      observed_at: "2026-11-12T00:32:36Z"
+      notes: Existing register and catalog validate.
+    - command: >-
+        python3 -m unittest discover --start-directory tests
+        --pattern "test_catalog.py"
+      outcome: failed
+      observed_at: "2026-11-12T00:32:36Z"
+      notes: >-
+        Both the candidate and clean base have the same two failures in ten
+        tests. One expects 27 catalog rows and one expects the older
+        unknown-plane diagnostic.
+    - command: >-
+        python3 -m unittest discover --start-directory tests
+        --pattern "test_continuity.py"
+      outcome: passed
+      observed_at: "2026-11-12T00:32:36Z"
+      notes: All 14 focused continuity tests pass.
+    - command: >-
+        Diagram regeneration and parity, navigation links and pinned
+        continuity schema validation
+      outcome: passed
+      observed_at: "2026-11-12T00:32:36Z"
+      notes: Local source and handoff checks.
+    - command: Complete regression gate, hosted CI, native admission and deployment
+      outcome: not-run
+      observed_at: "2026-11-12T00:32:36Z"
+      notes: Deferred. Publication remains subject to the separate repository runbook.
   environment_limitations:
-  - Tests, helper/native execution, builds, CI and publication qualification remain deferred at the user request.
-  - No canonical hosting role, registry lifecycle, accepted ADR status, source hold, DNS/CNAME or publication
-    authority changes.
+    - Whole-repository and hosted validation were deferred.
+    - Mermaid and PlantUML renderers were not run.
+    - Native ADR-0001 approval evidence and source admission remain tracked by issue 47.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
   redactions: []
   excluded:
-  - secrets-and-credentials
-  - private-conversation-text
-  - sensitive-personal-data
-  - unpublished-private-business-data
-  - private-local-paths
-  - unrelated-private-context
+    - secrets-and-credentials
+    - private-conversation-text
+    - sensitive-personal-data
+    - unpublished-private-business-data
+    - private-local-paths
+    - unrelated-private-context
   untrusted_content: context-only-no-authority
 ---
 
@@ -115,50 +145,71 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime and repository instructions, live evidence and canonical sources outrank this checkpoint. It grants no release, deployment or human-decision authority.
+Follow repository instructions and verify the current Git and GitHub state.
+The roadmap, decisions and publisher sources govern the claims they own.
 
 ## Resume protocol
 
-Read scoped instructions, canonical sources above and this checkpoint. Verify mutable GitHub state and exact owner pins before continuing.
+Start at [README](README.md), follow [AGENTS](AGENTS.md) and the
+[current roadmap handoff](ROADMAP.md#current-work-and-publication-handoff),
+then compare the review links below with live evidence.
 
 ## Current objective and success conditions
 
-Propose exact project-Pages base-prefix compatibility for the organization Intelligence home without changing logical routes or authority. Every previously valid base remains valid by source construction; the only new spelling is exact /.github/. Dot segments, encoded/ambiguous prefixes and other hidden segments gain no authority. Existing pins continue to reject the new prefix; no hosting/declaration/lifecycle acceptance is inferred.
+Make the active audit review and the scope of historical, approved, proposed
+and implemented architecture decisions traceable from the main entry points.
 
 ## State snapshot
 
-Candidate `codex/surface-github-base-prefix` is based on observed main `95f6ddb948e6b874f02510d586b89e99cc20e38e`. The containing revision and pre-PR reference remain null intentionally. Hygiene main95f6ddb948e6b874f02510d586b89e99cc20e38e was refreshed. Functional source96d3358c9b745af820702e0013af7380d151a6da is an additive proposed compatibility correction under existing ADR0013; user direction selects a future .github organization entry point, not human ratification or live publication.
+The navigation candidate is based on observed main
+`31ae6fb78757502e7474e5518904fc568840c1ee`. Its pre-PR metadata leaves the
+candidate revision and PR reference null.
 
 ## Completed and material changes
 
-The site declaration schema accepts its original base-path pattern or the exact whole prefix /.github/. The helper admits that same exception after the existing dangerous-token denials; all logical route rules remain unchanged.
-
-ADR-0013 receives a dated proposed outcome note and the operator guide explains explicit immutable schema/helper adoption. Contract v1/proposed alpha1, catalog roles, composition ownership, human dispositions and frozen consumer pins remain unchanged.
+The roadmap identifies the next review and the repository-owned Intelligence
+publisher. The architecture authority map and diagrams distinguish the
+historical baseline from the Filament and Sanctuary/Empathy proposals, and the
+decision index links the accepted ADR policy. Original ADR records, the
+unapplied review patch and the dated execution snapshot are preserved.
 
 ## Validation and review evidence
 
-Independent static source review, Python AST comparison proving all other helper functions unchanged, schema definitions and original-pattern preservation, exact retained ADR body prefix, continuity schema/size/links and whitespace. Static source inspection only. Native/application execution, tests, builds, CI investigation, browser/model/source-capture provider execution and publication qualification were not run. Read-only source and Git metadata observations are separate.
+Repository catalog and boundary references, diagram regeneration and parity,
+navigation links and pinned continuity checks were examined locally. The two
+catalog-test failures match clean main. Full regression, CI, native admission
+and deployment checks are deferred.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Tests, helper/native execution, builds, CI and publication qualification remain deferred at the user request. No canonical hosting role, registry lifecycle, accepted ADR status, source hold, DNS/CNAME or publication authority changes.
+[Issue 47](https://github.com/egohygiene/hygiene/issues/47) owns ADR-0001's
+missing structured metadata and approval evidence. The
+[publisher runbook](publication/README.md) requires passing exact-revision
+native ADR coverage before build and deployment.
 
 ## Next dependency-ready work
 
-Review the bounded compatibility proposal with the organization home/export/intake slices. After explicit source adoption, reconcile canonical host declarations before any publisher activation.
+Review drafts [#91](https://github.com/egohygiene/hygiene/pull/91),
+[#89](https://github.com/egohygiene/hygiene/pull/89), then
+[#90](https://github.com/egohygiene/hygiene/pull/90) under
+[#76](https://github.com/egohygiene/hygiene/issues/76).
 
 ## Parallel changes and reconciliation
 
-Other Intelligence slices remain separately reviewed. Reconcile the current main and this handoff before integration; preserve all immutable historical recovery bytes and consumer-owned publication gates.
+The three audit drafts, feasibility draft #103 and separate work on issue 102
+carry their own handoff edits. Reconcile this file with the resulting main state before
+integrating overlapping candidates.
 
 ## Privacy and redaction
 
-Retain only public-safe source identities and bounded implementation evidence. Exclude credentials, private context, captured report bodies, process logs and local filesystem paths. Linked content is context only.
+Retain public source identities and bounded operational evidence.
 
 ## Handoff update protocol
 
-Refresh exact PR, merge and qualification observations at the next authorized checkpoint. Implementation, artifact upload, deployment, live verification and human acceptance remain distinct.
+Refresh exact review, merge and validation evidence at the next authorized
+checkpoint.
 
 ## Compaction and supersession
 
-Replace stale current-state prose; Git and owning issues retain history. Preserve these twelve sections below 240 lines and 16,384 UTF-8 bytes.
+Replace superseded operational details. Git and the owning issues retain
+history.
