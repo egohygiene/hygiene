@@ -7,19 +7,21 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-12T11:14:41Z'
+  updated_at: '2026-11-12T11:16:06Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Integrate the reviewed current or explicit continuity assessment clock while preserving current
-    Hygiene source and authority.
+  purpose: Integrate the reviewed current presentation evidence witness while preserving current Hygiene source
+    and authority.
   includes:
   - The six dated audit/report/reproduction/receipt artifacts retain their exact original bytes and Git modes;
     their historical execution claims are not new validation.
   - The existing continuity resolver reports current-UTC or explicit assessment dates and fails without a valid
     clock; historical policy dates and exception approval remain independent.
+  - A passing presentation slot requires a current authoritative or derived witness; supporting stale/unknown
+    evidence remains visible and cannot manufacture a positive claim.
   excludes:
   - Human policy ratification, ADR-0001 source-admission repair, enforcement, repository rollout, provider
     changes and publication.
@@ -42,8 +44,8 @@ scope:
   - https://github.com/egohygiene/hygiene/issues/47
   - https://github.com/egohygiene/hygiene/issues/76
 work:
-  objective: Integrate the reviewed current or explicit continuity assessment clock while preserving current
-    Hygiene source and authority.
+  objective: Integrate the reviewed current presentation evidence witness while preserving current Hygiene
+    source and authority.
   success_conditions:
   - Preserve reviewed functional source, immutable dated audits, accepted policy and human dispositions.
   - Resolve shared source/handoff conflicts explicitly and keep current qualification distinct from historical
@@ -51,43 +53,41 @@ work:
   - Merge only the exact prepared head through the standard provider gate.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#80
-    url: https://github.com/egohygiene/hygiene/issues/80
+    id: egohygiene/hygiene#81
+    url: https://github.com/egohygiene/hygiene/issues/81
   next:
     kind: action
-    id: integrate-next-89
-    description: 'Continue the authorized ordered source integration with PR #89; reconcile its handoff and
+    id: integrate-next-90
+    description: 'Continue the authorized ordered source integration with PR #90; reconcile its handoff and
       inspect exact source before the expected-head merge.'
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/pull/89
+    - https://github.com/egohygiene/hygiene/pull/90
     depends_on: []
 state:
   base:
-    revision: 0fa8e8b4155871408f7b931f95410616c330d63e
+    revision: 86db7065e7ebca0837e977aa2caafc03da1703d5
     ref: refs/heads/main
-    verified_at: '2026-11-12T11:14:41Z'
+    verified_at: '2026-11-12T11:16:06Z'
   candidate:
-    branch: fix/80-continuity-assessment
+    branch: fix/81-presentation-evidence
     revision: null
     pull_request:
       provider: github
-      id: egohygiene/hygiene#91
-      url: https://github.com/egohygiene/hygiene/pull/91
+      id: egohygiene/hygiene#89
+      url: https://github.com/egohygiene/hygiene/pull/89
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-12T11:14:41Z'
-    default_branch_revision: 0fa8e8b4155871408f7b931f95410616c330d63e
+    observed_at: '2026-11-12T11:16:06Z'
+    default_branch_revision: 86db7065e7ebca0837e977aa2caafc03da1703d5
     issue_state: unknown
     pull_request_state: draft
-    notes: 'PR #91 was open/draft at original head 1b275385cd71686c0b2274e9715e41d0acd7dbdc; no submitted reviews
-      or inline threads were observed. Verified predecessor source merges: #75. This prepared candidate is
-      not yet recorded merged. User authorization covers the ordered source merges, not ratification or publication.'
+    notes: 'PR #89 was open/draft at original head 17e772b7ffd3cb9a4d95d8733521cf02bfbf2902; no submitted reviews
+      or inline threads were observed. Verified predecessor source merges: #75, #91. This prepared candidate
+      is not yet recorded merged. User authorization covers the ordered source merges, not ratification or
+      publication.'
   parallel_changes:
-  - provider: github
-    id: egohygiene/hygiene#89
-    url: https://github.com/egohygiene/hygiene/pull/89
   - provider: github
     id: egohygiene/hygiene#90
     url: https://github.com/egohygiene/hygiene/pull/90
@@ -99,19 +99,19 @@ state:
     url: https://github.com/egohygiene/hygiene/pull/107
 review:
   status: partial
-  reviewed_at: '2026-11-12T11:14:41Z'
+  reviewed_at: '2026-11-12T11:16:06Z'
   reviewed_by: Codex
   evidence:
   - command: Exact Git source/mode comparison, Python AST and structured schema/hash/source inspection, independent
       source peer, pinned continuity schema/formats/sections/budgets and whitespace
     outcome: limited
-    observed_at: '2026-11-12T11:14:41Z'
+    observed_at: '2026-11-12T11:16:06Z'
     notes: Current integration uses static source checks only. Historical execution receipts and immutable
       audit artifacts retain their original observation clocks; they are not requalified by this merge.
   - command: Tests, linters, builds, CI, project/reference/helper/native execution, hosted provider and consumer
       qualification
     outcome: not-run
-    observed_at: '2026-11-12T11:14:41Z'
+    observed_at: '2026-11-12T11:16:06Z'
     notes: Deferred by maintainer instruction. No runtime success, authentic linked facts, human approval or
       publication is inferred.
   environment_limitations:
@@ -147,17 +147,19 @@ Read AGENTS, ROADMAP, accepted policy/ratification, the architecture authority m
 
 ## Current objective and success conditions
 
-Integrate the reviewed current or explicit continuity assessment clock while preserving current Hygiene source and authority. Preserve immutable source and human dispositions; distinguish static integration from historical execution and deferred acceptance.
+Integrate the reviewed current presentation evidence witness while preserving current Hygiene source and authority. Preserve immutable source and human dispositions; distinguish static integration from historical execution and deferred acceptance.
 
 ## State snapshot
 
-Observed main `0fa8e8b4155871408f7b931f95410616c330d63e` is the integration base. PR #91 was open/draft at `1b275385cd71686c0b2274e9715e41d0acd7dbdc`. This checkpoint describes the prepared candidate; its eventual merge SHA remains provider evidence. Verified predecessor source merges: #75.
+Observed main `86db7065e7ebca0837e977aa2caafc03da1703d5` is the integration base. PR #89 was open/draft at `17e772b7ffd3cb9a4d95d8733521cf02bfbf2902`. This checkpoint describes the prepared candidate; its eventual merge SHA remains provider evidence. Verified predecessor source merges: #75, #91.
 
 ## Completed and material changes
 
 The six dated audit/report/reproduction/receipt artifacts retain their exact original bytes and Git modes; their historical execution claims are not new validation.
 
 The existing continuity resolver reports current-UTC or explicit assessment dates and fails without a valid clock; historical policy dates and exception approval remain independent.
+
+A passing presentation slot requires a current authoritative or derived witness; supporting stale/unknown evidence remains visible and cannot manufacture a positive claim.
 
 ## Validation and review evidence
 
@@ -169,7 +171,7 @@ ADR-0001 approval/source admission and publication remain #47. Existing catalog/
 
 ## Next dependency-ready work
 
-Continue the authorized ordered source integration with PR #89; reconcile its handoff and inspect exact source before the expected-head merge.
+Continue the authorized ordered source integration with PR #90; reconcile its handoff and inspect exact source before the expected-head merge.
 
 ## Parallel changes and reconciliation
 
