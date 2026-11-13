@@ -637,6 +637,13 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
             ("origin", "https://bad host.invalid", "conformance.subject.origin"),
             ("origin", "https://example.invalid\n", "conformance.subject.origin"),
             ("origin", "https://foo\\bar.invalid", "conformance.subject.origin"),
+            ("origin", "https://example.invalid:0", "conformance.subject.origin"),
+            ("origin", "https://example.invalid:65536", "conformance.subject.origin"),
+            ("origin", "https://example.invalid:", "conformance.subject.origin"),
+            ("origin", "https://example.invalid/path", "conformance.subject.origin"),
+            ("origin", "https://example.invalid?", "conformance.subject.origin"),
+            ("origin", "https://[2001:db8::1]#fragment", "conformance.subject.origin"),
+            ("origin", "https://user:synthetic-secret@example.invalid", "conformance.subject.origin"),
         ]
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "conformance.json"
@@ -662,6 +669,15 @@ class AgentReadyWebCatalogTests(unittest.TestCase):
                 with self.subTest(valid_location=location):
                     candidate = copy.deepcopy(self.application_fixture["conformance"])
                     candidate["evidence"][0]["location"] = location
+                    path.write_text(json.dumps(candidate), encoding="utf-8")
+                    result = subprocess.run(command, capture_output=True, text=True, check=False)
+                    self.assertEqual(0, result.returncode, result.stderr)
+
+            for origin in ("https://example.invalid:1/", "https://example.invalid:65535",
+                           "https://[2001:db8::1]", "https://[2001:db8::1]:8443/"):
+                with self.subTest(valid_origin=origin):
+                    candidate = copy.deepcopy(self.application_fixture["conformance"])
+                    candidate["subject"]["origin"] = origin
                     path.write_text(json.dumps(candidate), encoding="utf-8")
                     result = subprocess.run(command, capture_output=True, text=True, check=False)
                     self.assertEqual(0, result.returncode, result.stderr)

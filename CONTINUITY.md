@@ -7,22 +7,22 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-13T03:23:01Z'
+  updated_at: '2026-11-13T03:24:57Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Complete whole-string ADR reference parity and qualify the merged lineage repair
+  purpose: Qualify the existing parsed HTTPS evidence and exact-origin repair
   includes:
-  - The shared reference schema now rejects every trailing character using an ECMA-262/Python-compatible negative
-    lookahead. A dollar anchor alone admitted a final LF; the helper already rejected it through fullmatch.
-  - The 36-case reference matrix covers three/four-digit local and qualified forms with LF, CR, CRLF, Unicode
-    separators, NUL, space and text suffixes. The actual decision and decision-set CLIs are checked separately
-    (72 calls), plus all three relation fields. Node checks the same 36 schema patterns under ECMA-262.
-  - 'The existing merged #90 cases preserve pending versus effective supersession, named verification descriptors,
-    exact historical identities, canonical bounds, reciprocal lineage/cycles and controlled malformed-list
-    errors. No record is padded, renamed, promoted or silently resolved through an external index.'
+  - 'The merged #92 implementation is retained unchanged. Agent-Ready Web and site surfaces continue using
+    the same HTTPS authority/origin parser.'
+  - Existing helper and actual conformance CLI controls reject bare authorities, synthetic credentials, whitespace/control/backslash
+    ambiguity and malformed authorities. Additional public CLI cases cover port 0/65536/empty, path/query/fragment/userinfo
+    origins, valid port endpoints 1/65535 and bracketed IPv6.
+  - Profile/mechanism registration locations use the same protected helper. Diagnostics identify fields and
+    do not echo synthetic secret values. Relative evidence, ordinary HTTPS and IPv6 remain valid; all URLs
+    are synthetic and no network check is performed.
   excludes:
   - Human policy/ADR disposition, exception approval, source-hold waiver, consumer rollout and publication
   - Hosted CI/ruleset proof and broad provider/production/native qualification
@@ -39,45 +39,45 @@ scope:
   - docs/decisions/RATIFICATION.md
   - docs/decisions/README.md
   - docs/ecosystem/ARCHITECTURE.md
-  - docs/evidence/2026-11-13-hygiene-82.md
-  - https://github.com/egohygiene/hygiene/issues/82
+  - docs/evidence/2026-11-13-hygiene-83.md
+  - https://github.com/egohygiene/hygiene/issues/83
   - https://github.com/egohygiene/hygiene/issues/76
   - https://github.com/egohygiene/hygiene/issues/47
 work:
-  objective: Complete whole-string ADR reference parity and qualify the merged lineage repair
+  objective: Qualify the existing parsed HTTPS evidence and exact-origin repair
   success_conditions:
   - Resolve the selected bounded current-source gap or qualify the already merged repair with actual checks
   - Preserve canonical ownership, historical audits, source clocks, accepted policy and human dispositions
   - Retain every external/hosted/native/human gate explicitly in its owning issue
   active_issue:
     provider: github
-    id: egohygiene/hygiene#82
-    url: https://github.com/egohygiene/hygiene/issues/82
+    id: egohygiene/hygiene#83
+    url: https://github.com/egohygiene/hygiene/issues/83
   next:
     kind: action
-    id: review-hygiene-82-checkpoint
+    id: review-hygiene-83-checkpoint
     description: Obtain exact-head peer review, then let the coordinating maintainer integrate this bounded
       slice and record actual merged/remaining issue acceptance. Continue the other selected Hygiene slices
       without treating source landing as hosted or human approval.
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/82
+    - https://github.com/egohygiene/hygiene/issues/83
     - https://github.com/egohygiene/hygiene/issues/76
     depends_on: []
 state:
   base:
-    revision: f4eb843acaa71734c779d017ebb2c53097715d0e
+    revision: d87f23d384f3fc9ab5914a4655ab3d02928c87d7
     ref: refs/heads/main
-    verified_at: '2026-11-13T03:23:01Z'
+    verified_at: '2026-11-13T03:24:57Z'
   candidate:
-    branch: codex/hygiene-82-reference-parity
+    branch: codex/hygiene-83-qualification
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-13T03:23:01Z'
-    default_branch_revision: f4eb843acaa71734c779d017ebb2c53097715d0e
+    observed_at: '2026-11-13T03:24:57Z'
+    default_branch_revision: d87f23d384f3fc9ab5914a4655ab3d02928c87d7
     issue_state: open
     pull_request_state: not-applicable
     notes: 'Remote main and issue state were freshly inspected for this batch. Hosting #108 and duplicate-record
@@ -87,24 +87,24 @@ state:
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-13T03:23:01Z'
+  reviewed_at: '2026-11-13T03:24:57Z'
   reviewed_by: Codex
   evidence:
-  - command: 4 issue-scoped suite/CLI/selected-runtime command invocations
+  - command: 6 issue-scoped suite/CLI/selected-runtime command invocations
     outcome: passed
-    observed_at: '2026-11-13T03:15:54.156914Z'
-    notes: 'Executed source 8c72d1035a86b92ffb7a7fbe55d5b94f97306480: 29 focused tests passed without skips;
-      actual command details and coverage are retained in docs/evidence/2026-11-13-hygiene-82.md. Other dated
+    observed_at: '2026-11-13T03:15:52.549090Z'
+    notes: 'Executed source 58fc1f6f70a26789cccb49c48a564da95eecd7c3: 87 focused tests passed without skips;
+      actual command details and coverage are retained in docs/evidence/2026-11-13-hygiene-83.md. Other dated
       receipts remain historical.'
   - command: Hosted CI/rulesets, exact EgoLint native source admission, real approval/consumer/publication
       qualification
     outcome: not-run
-    observed_at: '2026-11-13T03:23:01Z'
+    observed_at: '2026-11-13T03:24:57Z'
     notes: Not implied by local reference checks. No provider workflow, publication, policy ratification or
       human disposition is performed.
   environment_limitations:
-  - 'Decoded reference/schema/CLI acceptance is distinct from exact EgoLint native Markdown/source admission
-    and human approval. #47 remains separate.'
+  - The profile remains proposed. These are syntax/reference results, not site certification, browser capability
+    execution, live conformance or human lifecycle ratification (#95).
   - 'The broader gate at merged #109 source failed (295 tests, 14 failures/7 errors; four of 25 checks failed)
     because hosting inputs lack three context dependency mappings and one context test expects an old index.
     Health owns the bounded follow-up; no full-gate pass is claimed.'
@@ -138,27 +138,27 @@ Read AGENTS, ROADMAP, accepted policy/ratification, the architecture authority m
 
 ## Current objective and success conditions
 
-Complete whole-string ADR reference parity and qualify the merged lineage repair. Keep actual qualification and source changes distinguishable from human disposition and provider/publication proof.
+Qualify the existing parsed HTTPS evidence and exact-origin repair. Keep actual qualification and source changes distinguishable from human disposition and provider/publication proof.
 
 ## State snapshot
 
-Observed main `f4eb843acaa71734c779d017ebb2c53097715d0e` includes merged hosting #108 and duplicate-record checkpoint #109. This branch `codex/hygiene-82-reference-parity` is a prepared candidate; no new PR or merge identity is invented. The six earlier audit/continuity/presentation/ADR/change-history/documentation source merges remain intact.
+Observed main `d87f23d384f3fc9ab5914a4655ab3d02928c87d7` includes merged hosting #108 and duplicate-record checkpoint #109. This branch `codex/hygiene-83-qualification` is a prepared candidate; no new PR or merge identity is invented. The six earlier audit/continuity/presentation/ADR/change-history/documentation source merges remain intact.
 
 ## Completed and material changes
 
-The shared reference schema now rejects every trailing character using an ECMA-262/Python-compatible negative lookahead. A dollar anchor alone admitted a final LF; the helper already rejected it through fullmatch.
+The merged #92 implementation is retained unchanged. Agent-Ready Web and site surfaces continue using the same HTTPS authority/origin parser.
 
-The 36-case reference matrix covers three/four-digit local and qualified forms with LF, CR, CRLF, Unicode separators, NUL, space and text suffixes. The actual decision and decision-set CLIs are checked separately (72 calls), plus all three relation fields. Node checks the same 36 schema patterns under ECMA-262.
+Existing helper and actual conformance CLI controls reject bare authorities, synthetic credentials, whitespace/control/backslash ambiguity and malformed authorities. Additional public CLI cases cover port 0/65536/empty, path/query/fragment/userinfo origins, valid port endpoints 1/65535 and bracketed IPv6.
 
-The existing merged #90 cases preserve pending versus effective supersession, named verification descriptors, exact historical identities, canonical bounds, reciprocal lineage/cycles and controlled malformed-list errors. No record is padded, renamed, promoted or silently resolved through an external index.
+Profile/mechanism registration locations use the same protected helper. Diagnostics identify fields and do not echo synthetic secret values. Relative evidence, ordinary HTTPS and IPv6 remain valid; all URLs are synthetic and no network check is performed.
 
 ## Validation and review evidence
 
-All 4 recorded local command invocations passed with 29 focused tests and zero skips/failures/errors. See [docs/evidence/2026-11-13-hygiene-82.md](docs/evidence/2026-11-13-hygiene-82.md) for exact scope and selected runtimes. Independent exact-head review is requested separately; it is not self-certified here.
+All 6 recorded local command invocations passed with 87 focused tests and zero skips/failures/errors. See [docs/evidence/2026-11-13-hygiene-83.md](docs/evidence/2026-11-13-hygiene-83.md) for exact scope and selected runtimes. Independent exact-head review is requested separately; it is not self-certified here.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Decoded reference/schema/CLI acceptance is distinct from exact EgoLint native Markdown/source admission and human approval. #47 remains separate. The separate full gate on merged #109 failed on missing hosting/context mappings and a stale context test index; Health owns that repair. No full-gate pass is claimed.  ADR-0001 #47 and Web lifecycle #95 human gates remain unchanged. Hosted/native/consumer acceptance is not inferred from local reference checks.
+The profile remains proposed. These are syntax/reference results, not site certification, browser capability execution, live conformance or human lifecycle ratification (#95). The separate full gate on merged #109 failed on missing hosting/context mappings and a stale context test index; Health owns that repair. No full-gate pass is claimed.  ADR-0001 #47 and Web lifecycle #95 human gates remain unchanged. Hosted/native/consumer acceptance is not inferred from local reference checks.
 
 ## Next dependency-ready work
 
