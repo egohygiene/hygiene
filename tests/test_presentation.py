@@ -9,6 +9,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from jsonschema import Draft202012Validator, FormatChecker
+
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
@@ -282,6 +284,52 @@ class RepositoryPresentationContractTests(unittest.TestCase):
         errors = presentation.validate_evidence(candidate, self.profile)
         self.assertTrue(any("fields must exactly match" in error for error in errors))
         self.assertFalse(any("passing requires" in error for error in errors))
+
+    def test_duplicate_records_fail_without_rewriting_or_hiding_the_witness(self) -> None:
+        for freshness in ("current", "stale", "unknown"):
+            with self.subTest(freshness=freshness):
+                candidate = copy.deepcopy(self.rich)
+                purpose = self._slot(candidate, "purpose")
+                record = dict(purpose["evidence"][0], freshness=freshness)
+                # Object member order must not change JSON record identity.
+                purpose["evidence"] = [record, dict(reversed(list(record.items())))]
+                original = copy.deepcopy(candidate)
+                errors = presentation.validate_evidence(candidate, self.profile)
+                self.assertTrue(any("evidence must contain unique records" in error for error in errors))
+                self.assertEqual(original, candidate)
+                cli = self._run_evidence_cli(candidate)
+                self.assertEqual(1, cli.returncode, cli.stdout + cli.stderr)
+                self.assertIn("evidence must contain unique records", cli.stderr)
+                self.assertNotIn(record["location"], cli.stderr)
+                self.assertNotIn("Traceback", cli.stderr)
+
+    def test_distinct_records_remain_valid_in_both_orders(self) -> None:
+        for field, value in (("freshness", "stale"), ("assertion", "derived"),
+                             ("location", "docs/another-source.md"), ("kind", "manifest")):
+            for reverse in (False, True):
+                with self.subTest(field=field, reverse=reverse):
+                    candidate = copy.deepcopy(self.rich)
+                    purpose = self._slot(candidate, "purpose")
+                    records = [purpose["evidence"][0], dict(purpose["evidence"][0], **{field: value})]
+                    purpose["evidence"] = list(reversed(records)) if reverse else records
+                    self.assertEqual([], presentation.validate_evidence(candidate, self.profile))
+
+    def test_duplicate_and_distinct_record_schema_helper_agreement(self) -> None:
+        schema = json.loads((ROOT / "schemas/repository-presentation-evidence.v1.schema.json").read_text())
+        validator = Draft202012Validator(schema, format_checker=FormatChecker())
+        for duplicate in (False, True):
+            for reverse_members in (False, True):
+                candidate = copy.deepcopy(self.rich)
+                purpose = self._slot(candidate, "purpose")
+                extra = dict(purpose["evidence"][0])
+                if not duplicate:
+                    extra["freshness"] = "stale"
+                if reverse_members:
+                    extra = dict(reversed(list(extra.items())))
+                purpose["evidence"].append(extra)
+                with self.subTest(duplicate=duplicate, reverse_members=reverse_members):
+                    self.assertEqual(not duplicate, validator.is_valid(candidate))
+                    self.assertEqual(not duplicate, not presentation.validate_evidence(candidate, self.profile))
 
 
 if __name__ == "__main__":

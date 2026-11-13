@@ -60,8 +60,9 @@ This profile pins unchanged Hygiene presentation bytes SHA-256
 `94132769e6cb9d4bc68abd6314bbe797ce6ab9abaad3bb424775d1157367d573`
 and continuity bytes
 `2f694682df641f9c9741d79c7d23bca2ae5bd0d1e3aa6ca00cb31db17e0e2e2c`
-at `ae4e4c1399aeed3b82c97959c82741892c230fbf`, with exact helper hashes in
-`composes`. The reference calls their existing pure resolvers rather than
+with exact helper hashes in `composes`: presentation selects
+`eb38eb790bb0cad38c8d651d11d3dc4cc7ab7bb4` (duplicate-record parity repair),
+while continuity retains `ae4e4c1399aeed3b82c97959c82741892c230fbf`. The reference calls their existing pure resolvers rather than
 reimplementing applicability. Their statuses remain proposed. The independent
 accepted ADR policy and draft Aether continuity contract keep their own states.
 
