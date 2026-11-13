@@ -7,22 +7,26 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-13T03:24:57Z'
+  updated_at: '2026-11-13T03:27:31Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Qualify the existing parsed HTTPS evidence and exact-origin repair
+  purpose: Qualify exact release-owner composition and repair the real Task handoff parse
   includes:
-  - 'The merged #92 implementation is retained unchanged. Agent-Ready Web and site surfaces continue using
-    the same HTTPS authority/origin parser.'
-  - Existing helper and actual conformance CLI controls reject bare authorities, synthetic credentials, whitespace/control/backslash
-    ambiguity and malformed authorities. Additional public CLI cases cover port 0/65536/empty, path/query/fragment/userinfo
-    origins, valid port endpoints 1/65535 and bracketed IPv6.
-  - Profile/mechanism registration locations use the same protected helper. Diagnostics identify fields and
-    do not echo synthetic secret values. Relative evidence, ordinary HTTPS and IPv6 remain valid; all URLs
-    are synthetic and no network check is performed.
+  - The current implementation composes the immutable Aether 8a2a3d08f3aa9da3847bd5277843506ab855192e validator/schema/runtime
+    lock. The isolated selected dependencies are jsonschema 4.10.3, PyYAML 6.0.1, attrs 22.2.0 and pyrsistent
+    0.20.0; no weaker optional fallback supplies success.
+  - 'Actual Task 3.54.0 initially rejected .tasks/release.yml: the unquoted Handoff only: echo was parsed as
+    a YAML command mapping. A block scalar preserves the exact shell handoff text. A regression checks shipped
+    command shapes so colons cannot silently become mapping keys.'
+  - The actual release:plan, release:prepare and release:verify Task entries passed with the pinned source/runtime.
+    Plan/prepare/verify use version 1.0.0-alpha.1 solely as a read-only candidate argument. The fourth entry
+    delegates to release:verify and prints a manual handoff; it is inspected but deliberately not invoked.
+  - Positive declaration evidence names the exact executed owner and engines. Negative cases cover wrong tasks,
+    empty authority, unknown/duplicate JSON, altered/missing owner source and weaker fallback. Structural YAML
+    controls cover block/inline/quoted/comment/manual and forbidden automatic/duplicate triggers.
   excludes:
   - Human policy/ADR disposition, exception approval, source-hold waiver, consumer rollout and publication
   - Hosted CI/ruleset proof and broad provider/production/native qualification
@@ -39,45 +43,45 @@ scope:
   - docs/decisions/RATIFICATION.md
   - docs/decisions/README.md
   - docs/ecosystem/ARCHITECTURE.md
-  - docs/evidence/2026-11-13-hygiene-83.md
-  - https://github.com/egohygiene/hygiene/issues/83
+  - docs/evidence/2026-11-13-hygiene-84.md
+  - https://github.com/egohygiene/hygiene/issues/84
   - https://github.com/egohygiene/hygiene/issues/76
   - https://github.com/egohygiene/hygiene/issues/47
 work:
-  objective: Qualify the existing parsed HTTPS evidence and exact-origin repair
+  objective: Qualify exact release-owner composition and repair the real Task handoff parse
   success_conditions:
   - Resolve the selected bounded current-source gap or qualify the already merged repair with actual checks
   - Preserve canonical ownership, historical audits, source clocks, accepted policy and human dispositions
   - Retain every external/hosted/native/human gate explicitly in its owning issue
   active_issue:
     provider: github
-    id: egohygiene/hygiene#83
-    url: https://github.com/egohygiene/hygiene/issues/83
+    id: egohygiene/hygiene#84
+    url: https://github.com/egohygiene/hygiene/issues/84
   next:
     kind: action
-    id: review-hygiene-83-checkpoint
+    id: review-hygiene-84-checkpoint
     description: Obtain exact-head peer review, then let the coordinating maintainer integrate this bounded
       slice and record actual merged/remaining issue acceptance. Continue the other selected Hygiene slices
       without treating source landing as hosted or human approval.
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/83
+    - https://github.com/egohygiene/hygiene/issues/84
     - https://github.com/egohygiene/hygiene/issues/76
     depends_on: []
 state:
   base:
-    revision: d87f23d384f3fc9ab5914a4655ab3d02928c87d7
+    revision: 1490b6a42456716cce1b1f503a9797c36cb302d1
     ref: refs/heads/main
-    verified_at: '2026-11-13T03:24:57Z'
+    verified_at: '2026-11-13T03:27:31Z'
   candidate:
-    branch: codex/hygiene-83-qualification
+    branch: codex/hygiene-84-qualification
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-13T03:24:57Z'
-    default_branch_revision: d87f23d384f3fc9ab5914a4655ab3d02928c87d7
+    observed_at: '2026-11-13T03:27:31Z'
+    default_branch_revision: 1490b6a42456716cce1b1f503a9797c36cb302d1
     issue_state: open
     pull_request_state: not-applicable
     notes: 'Remote main and issue state were freshly inspected for this batch. Hosting #108 and duplicate-record
@@ -87,24 +91,25 @@ state:
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-13T03:24:57Z'
+  reviewed_at: '2026-11-13T03:27:31Z'
   reviewed_by: Codex
   evidence:
-  - command: 6 issue-scoped suite/CLI/selected-runtime command invocations
+  - command: 7 issue-scoped suite/CLI/selected-runtime command invocations
     outcome: passed
-    observed_at: '2026-11-13T03:15:52.549090Z'
-    notes: 'Executed source 58fc1f6f70a26789cccb49c48a564da95eecd7c3: 87 focused tests passed without skips;
-      actual command details and coverage are retained in docs/evidence/2026-11-13-hygiene-83.md. Other dated
+    observed_at: '2026-11-13T03:15:51.624694Z'
+    notes: 'Executed source 62d405f59cbb816ee86124312230c1fdfebe1330: 16 focused tests passed without skips;
+      actual command details and coverage are retained in docs/evidence/2026-11-13-hygiene-84.md. Other dated
       receipts remain historical.'
   - command: Hosted CI/rulesets, exact EgoLint native source admission, real approval/consumer/publication
       qualification
     outcome: not-run
-    observed_at: '2026-11-13T03:24:57Z'
+    observed_at: '2026-11-13T03:27:31Z'
     notes: Not implied by local reference checks. No provider workflow, publication, policy ratification or
       human disposition is performed.
   environment_limitations:
-  - The profile remains proposed. These are syntax/reference results, not site certification, browser capability
-    execution, live conformance or human lifecycle ratification (#95).
+  - 'No release:publish, tag, release, workflow dispatch, deployment, credential action or immutable artifact
+    overwrite was performed. Proposed policy and ADR-0015 retain their dispositions; later successor policy
+    #65 is separate.'
   - 'The broader gate at merged #109 source failed (295 tests, 14 failures/7 errors; four of 25 checks failed)
     because hosting inputs lack three context dependency mappings and one context test expects an old index.
     Health owns the bounded follow-up; no full-gate pass is claimed.'
@@ -138,27 +143,29 @@ Read AGENTS, ROADMAP, accepted policy/ratification, the architecture authority m
 
 ## Current objective and success conditions
 
-Qualify the existing parsed HTTPS evidence and exact-origin repair. Keep actual qualification and source changes distinguishable from human disposition and provider/publication proof.
+Qualify exact release-owner composition and repair the real Task handoff parse. Keep actual qualification and source changes distinguishable from human disposition and provider/publication proof.
 
 ## State snapshot
 
-Observed main `d87f23d384f3fc9ab5914a4655ab3d02928c87d7` includes merged hosting #108 and duplicate-record checkpoint #109. This branch `codex/hygiene-83-qualification` is a prepared candidate; no new PR or merge identity is invented. The six earlier audit/continuity/presentation/ADR/change-history/documentation source merges remain intact.
+Observed main `1490b6a42456716cce1b1f503a9797c36cb302d1` includes merged hosting #108 and duplicate-record checkpoint #109. This branch `codex/hygiene-84-qualification` is a prepared candidate; no new PR or merge identity is invented. The six earlier audit/continuity/presentation/ADR/change-history/documentation source merges remain intact.
 
 ## Completed and material changes
 
-The merged #92 implementation is retained unchanged. Agent-Ready Web and site surfaces continue using the same HTTPS authority/origin parser.
+The current implementation composes the immutable Aether 8a2a3d08f3aa9da3847bd5277843506ab855192e validator/schema/runtime lock. The isolated selected dependencies are jsonschema 4.10.3, PyYAML 6.0.1, attrs 22.2.0 and pyrsistent 0.20.0; no weaker optional fallback supplies success.
 
-Existing helper and actual conformance CLI controls reject bare authorities, synthetic credentials, whitespace/control/backslash ambiguity and malformed authorities. Additional public CLI cases cover port 0/65536/empty, path/query/fragment/userinfo origins, valid port endpoints 1/65535 and bracketed IPv6.
+Actual Task 3.54.0 initially rejected .tasks/release.yml: the unquoted Handoff only: echo was parsed as a YAML command mapping. A block scalar preserves the exact shell handoff text. A regression checks shipped command shapes so colons cannot silently become mapping keys.
 
-Profile/mechanism registration locations use the same protected helper. Diagnostics identify fields and do not echo synthetic secret values. Relative evidence, ordinary HTTPS and IPv6 remain valid; all URLs are synthetic and no network check is performed.
+The actual release:plan, release:prepare and release:verify Task entries passed with the pinned source/runtime. Plan/prepare/verify use version 1.0.0-alpha.1 solely as a read-only candidate argument. The fourth entry delegates to release:verify and prints a manual handoff; it is inspected but deliberately not invoked.
+
+Positive declaration evidence names the exact executed owner and engines. Negative cases cover wrong tasks, empty authority, unknown/duplicate JSON, altered/missing owner source and weaker fallback. Structural YAML controls cover block/inline/quoted/comment/manual and forbidden automatic/duplicate triggers.
 
 ## Validation and review evidence
 
-All 6 recorded local command invocations passed with 87 focused tests and zero skips/failures/errors. See [docs/evidence/2026-11-13-hygiene-83.md](docs/evidence/2026-11-13-hygiene-83.md) for exact scope and selected runtimes. Independent exact-head review is requested separately; it is not self-certified here.
+All 7 recorded local command invocations passed with 16 focused tests and zero skips/failures/errors. See [docs/evidence/2026-11-13-hygiene-84.md](docs/evidence/2026-11-13-hygiene-84.md) for exact scope and selected runtimes. Independent exact-head review is requested separately; it is not self-certified here.
 
 ## Blockers, risks, unknowns, and deferred work
 
-The profile remains proposed. These are syntax/reference results, not site certification, browser capability execution, live conformance or human lifecycle ratification (#95). The separate full gate on merged #109 failed on missing hosting/context mappings and a stale context test index; Health owns that repair. No full-gate pass is claimed.  ADR-0001 #47 and Web lifecycle #95 human gates remain unchanged. Hosted/native/consumer acceptance is not inferred from local reference checks.
+No release:publish, tag, release, workflow dispatch, deployment, credential action or immutable artifact overwrite was performed. Proposed policy and ADR-0015 retain their dispositions; later successor policy #65 is separate. The separate full gate on merged #109 failed on missing hosting/context mappings and a stale context test index; Health owns that repair. No full-gate pass is claimed.  ADR-0001 #47 and Web lifecycle #95 human gates remain unchanged. Hosted/native/consumer acceptance is not inferred from local reference checks.
 
 ## Next dependency-ready work
 
