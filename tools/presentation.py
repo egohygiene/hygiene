@@ -491,9 +491,18 @@ def validate_evidence(
         if not isinstance(records, list):
             errors.append(f"{path}.evidence must be an array")
             records = []
+        seen_records: set[tuple[str, ...]] = set()
         for record_index, record in enumerate(records):
             record_path = f"{path}.evidence[{record_index}]"
-            errors.extend(_record_errors(record, record_path))
+            record_errors = _record_errors(record, record_path)
+            errors.extend(record_errors)
+            if not record_errors:
+                # The closed record has only strings. Member order is not
+                # identity; freshness/assertion/location differences are.
+                identity = tuple(record[field] for field in sorted(EVIDENCE_RECORD_FIELDS))
+                if identity in seen_records:
+                    errors.append(f"{path}.evidence must contain unique records")
+                seen_records.add(identity)
         if isinstance(state, str) and state in EVIDENCE_REQUIRED_STATES and not records:
             errors.append(f"{path}.evidence is required for state {state}")
         effective = _effective_slot_state(slot)
