@@ -6,7 +6,7 @@ provisional = true
 
 [source]
 repository = "egohygiene/hygiene"
-revision = "1c720954283b91134c18a7cfa28e5c2dda505d46"
+revision = "dbaf7eeb408b2104daf8acb16c0d43adb55d7605"
 revision-kind = "git-commit"
 path = "catalog/repository-context.json"
 decision = "https://github.com/egohygiene/hygiene/issues/45"
