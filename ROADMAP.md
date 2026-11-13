@@ -48,17 +48,30 @@ repairs the hosting/context dependency mappings and source-bound projections.
 The current Web alpha.5 schema check passes; the historical 17 diagnostics
 remain evidence about the frozen older source.
 
-The [final local gate receipt](docs/evidence/2026-11-13-reference-gate.json)
+The current candidate repairs the nested gate-control execution under #76.
+At clean functional source `798227ff6b3f4d1334beb5412802bcf4529a57a2`, the
+[new bounded receipt](docs/evidence/2026-11-13-hygiene-76-unit-gate.json)
+records **all 25 checks passed, 302 tests, zero failures/errors/skips**. Unit
+execution completed in 22.741 seconds under the unchanged 60-second deadline.
+The [repair evidence](docs/evidence/2026-11-13-hygiene-76-unit-gate.md)
+separates local qualification from changed-head hosted, native and provider
+acceptance. No proposed profile, source finding or human gate is waived.
+
+The historical [earlier local gate receipt](docs/evidence/2026-11-13-reference-gate.json)
 at exact main `a28fb6207889d4368228d537b5fb2308cca49d2b` is **failed**:
 24 of 25 checks passed, but the isolated unit suite reached the unchanged
 60-second cap before a complete test summary. No full-suite test count or
 whole-gate pass is available. Prepared exact Aether release source and locked
 dependencies were present; all context, generated-output and release checks
 passed. This replaces the earlier missing-mapping/preparation failure as the
-current local blocker; dated reports remain unchanged.
+local blocker at that checkpoint; dated reports remain unchanged.
 
-Continue #76 with a bounded investigation of the nested regression execution
-and its budget; do not waive the timeout or relabel this result green.
+The candidate replaces repeated complete-domain suites inside the runner controls
+with deterministic minimal test families while retaining every real reference
+CLI. The production gate still discovers the complete actual suite once.
+Nested controls retain only the exact release-owner files they need; the
+read-only checks workflow explicitly prepares that already-selected source and
+locked runtime. The timeout and aggregate failure handling are unchanged.
 Changed-head hosted CI/ruleset evidence and exact EgoLint native admission
 remain separate. Original ADR-0001 human/source/publication work stays #47;
 Web lifecycle review stays #95. Use the [continuity handoff](CONTINUITY.md)
@@ -90,14 +103,16 @@ The current local publisher does not collect Roadmap.
 ## Configured contract-validation handoff — source established 2026-10-30
 
 `HYG-Q03` points to the configured **Complete reference-contract regression**
-check in the Pages workflow (`checks` job). Its local equivalent is
-`python3 -I tools/check_contracts.py` or `task check`; the
+check in the Pages workflow (`checks` job). Its local equivalent is the same
+`tools/check_contracts.py` with the existing exact release owner/runtime prepared,
+or `task check` with that runtime selected; the
 [validation guide](docs/CONTRACT_VALIDATION.md) explains full test discovery,
 source/generated checks, diagnostic retention and practical limits.
 
 [#77](https://github.com/egohygiene/hygiene/issues/77) records the original
 repair; [#76](https://github.com/egohygiene/hygiene/issues/76) owns remaining
-acceptance, including the current local timeout. The gate has no path filters. Changed-head hosted
+acceptance; the historical timeout and candidate repair remain source-bound.
+The gate has no path filters. Changed-head hosted
 execution and provider required-check configuration remain separate evidence.
 Native ADR admission and actual publication retain their independent gates;
 passing regressions supply neither historical authority nor deployment proof.
