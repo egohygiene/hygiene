@@ -25,8 +25,21 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
+      - name: Acquire the exact selected release-validation source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: egohygiene/aether
+          ref: 8a2a3d08f3aa9da3847bd5277843506ab855192e
+          path: .cache/release/aether
+          persist-credentials: false
+      - name: Verify the selected owner before installing its runtime
+        run: python3 tools/releases.py verify-owner --aether-source .cache/release/aether
+      - name: Prepare the selected owner's isolated validation runtime
+        run: |
+          python3 -m venv .cache/contract-runtime
+          .cache/contract-runtime/bin/python -m pip install --disable-pip-version-check --requirement .cache/release/aether/requirements-dev.lock
       - name: Run all reference tests and deterministic source checks
-        run: python3 -I tools/check_contracts.py
+        run: .cache/contract-runtime/bin/python -I tools/check_contracts.py
       - name: Retain bounded contract diagnostics
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a

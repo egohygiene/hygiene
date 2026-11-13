@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import importlib.util
 import json
 import shutil
 import subprocess
@@ -7,6 +8,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNNER = ROOT / "tools" / "check_contracts.py"
@@ -27,9 +29,27 @@ class ContractRegressionGateTests(unittest.TestCase):
                 "__pycache__",
                 "*.pyc",
                 "dist",
-                "test_contract_regression.py",
+                "tests",
             ),
         )
+        # These integration controls exercise the runner, not every domain test
+        # again. The outer gate still discovers and runs the complete real suite.
+        tests = self.repository / "tests"
+        tests.mkdir()
+        (tests / "test_baseline.py").write_text(
+            "import unittest\n"
+            "class Baseline(unittest.TestCase):\n"
+            "    def test_pass(self): self.assertEqual(1, 1)\n",
+            encoding="utf-8",
+        )
+        # The actual release CLI needs its exact prepared owner even though
+        # unrelated cache files must not enter these disposable repositories.
+        owner_lock = json.loads((ROOT / "tools/release-owner.lock.json").read_text())
+        for relative in owner_lock["files"]:
+            source = ROOT / ".cache/release/aether" / relative
+            target = self.repository / ".cache/release/aether" / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source, target)
 
     def run_gate(self) -> tuple[subprocess.CompletedProcess[str], dict]:
         result = subprocess.run(
@@ -62,7 +82,7 @@ class ContractRegressionGateTests(unittest.TestCase):
         self.assertEqual("passed", report["status"])
         self.assertTrue(report["complete"])
         suite = self.check_result(report, "unit-tests")
-        self.assertGreaterEqual(suite["tests"]["run"], 196)
+        self.assertEqual(3, suite["tests"]["run"])
         self.assertEqual(1, suite["tests"]["skipped"])
         self.assertIn("test_new_family.py", report["test_modules"])
         self.assertEqual(
@@ -139,6 +159,24 @@ class ContractRegressionGateTests(unittest.TestCase):
         self.assertTrue(check["log_truncated"])
         log = self.repository / ".cache" / "contract-regression" / check["log"]
         self.assertLessEqual(log.stat().st_size, 256 * 1024)
+
+    def test_timed_out_command_is_failed_and_retains_diagnostics(self) -> None:
+        spec = importlib.util.spec_from_file_location("contract_gate_timeout", RUNNER)
+        self.assertIsNotNone(spec)
+        self.assertIsNotNone(spec.loader)
+        gate = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(gate)
+        with mock.patch.object(gate, "COMMAND_TIMEOUT", 0.2):
+            result = gate.run_check(
+                "timeout-control",
+                [sys.executable, "-I", "-c", "import time; print('running', flush=True); time.sleep(30)"],
+                self.repository,
+            )
+        self.assertEqual("failed", result["status"])
+        self.assertTrue(result["timed_out"])
+        self.assertNotEqual(0, result["exit_code"])
+        self.assertIn("running", (self.repository / result["log"]).read_text())
+        self.assertEqual(60, gate.COMMAND_TIMEOUT)
 
 
 if __name__ == "__main__":

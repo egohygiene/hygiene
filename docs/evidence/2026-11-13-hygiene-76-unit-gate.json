@@ -1,0 +1,291 @@
+{
+  "observed_at": "2026-11-13T23:38:32Z",
+  "source": {
+    "repository": "egohygiene/hygiene",
+    "revision": "798227ff6b3f4d1334beb5412802bcf4529a57a2",
+    "dirty": false
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "jsonschema": "4.10.3",
+    "PyYAML": "6.0.1",
+    "attrs": "22.2.0",
+    "pyrsistent": "0.20.0"
+  },
+  "invocation": {
+    "entrypoint": "tools/check_contracts.py",
+    "configured_command_timeout_seconds": 60,
+    "cap_changed": false
+  },
+  "unit_suite": {
+    "status": "passed",
+    "exit_code": 0,
+    "timed_out": false,
+    "seconds": 22.741,
+    "log_truncated": false,
+    "tests": {
+      "run": 302,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0
+    }
+  },
+  "result": {
+    "status": "passed",
+    "complete": true,
+    "checks_passed": 25,
+    "checks_total": 25,
+    "test_modules": [
+      "test_agent_ready_web.py",
+      "test_boundaries.py",
+      "test_catalog.py",
+      "test_context.py",
+      "test_continuity.py",
+      "test_contract_regression.py",
+      "test_decisions.py",
+      "test_documentation_layout.py",
+      "test_intelligence.py",
+      "test_intelligence_coverage.py",
+      "test_organization_hosting.py",
+      "test_presentation.py",
+      "test_publication.py",
+      "test_release_policy.py",
+      "test_site_surfaces.py"
+    ]
+  },
+  "checks": [
+    {
+      "id": "unit-tests",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 22.741
+    },
+    {
+      "id": "catalog",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    },
+    {
+      "id": "catalog-generated",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.068
+    },
+    {
+      "id": "context-policy",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    },
+    {
+      "id": "continuity-profile",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    },
+    {
+      "id": "continuity-repository",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    },
+    {
+      "id": "web-profile",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    },
+    {
+      "id": "web-fixtures",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    },
+    {
+      "id": "boundary-register",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    },
+    {
+      "id": "boundary-generated",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    },
+    {
+      "id": "boundary-scan",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.365
+    },
+    {
+      "id": "intelligence-fixture",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    },
+    {
+      "id": "presentation-profile",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.032
+    },
+    {
+      "id": "presentation-minimal",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.032
+    },
+    {
+      "id": "presentation-rich",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.032
+    },
+    {
+      "id": "surface-registry",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    },
+    {
+      "id": "surface-fixtures",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.114
+    },
+    {
+      "id": "adr-fixture",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.032
+    },
+    {
+      "id": "adr-lineage-fixtures",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    },
+    {
+      "id": "adr-policy-reference",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    },
+    {
+      "id": "release-profile",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    },
+    {
+      "id": "release-declaration",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.114
+    },
+    {
+      "id": "adr-review-patch",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.004
+    },
+    {
+      "id": "context-generated-sanctuary",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    },
+    {
+      "id": "context-generated-contract",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064
+    }
+  ],
+  "scope": "Complete local reference/source regression gate, not hosted acceptance, native source admission, human ratification or publication.",
+  "native_replay": {
+    "relay_revision": "981ddf4367c67fcd625e54321d95bab027f6c0f2",
+    "sources": [
+      {
+        "profile_source_id": "hygiene-repository-architecture",
+        "repository": "egohygiene/hygiene",
+        "revision": "a05b14f8b9e2772124f879f818e09a911e996ad8"
+      },
+      {
+        "profile_source_id": "egolint-repository-validation",
+        "repository": "egohygiene/egolint",
+        "revision": "d917ea524962639494e5bb4b3196192238ba57d9"
+      },
+      {
+        "profile_source_id": "holon-architecture-decisions",
+        "repository": "egohygiene/holon",
+        "revision": "a7734dba83305276b12932fcd4ce348044d9a2e9"
+      }
+    ],
+    "runtime_preparation": "fresh offline selected-source build with checksum-locked Python dependencies and Rust1.85.1",
+    "runtime_receipt": {
+      "egolint_sha256": "9cefde0e2fed8498db9d262fa9405dd74dcaa73b389cc25a0628a0528ffb7a13",
+      "profile_sha256": "9a836e93d4b8ea684006aa82e0c2db18f276f92d53449f2fbaa156a34f3b6e9f"
+    },
+    "candidate_revision": "798227ff6b3f4d1334beb5412802bcf4529a57a2",
+    "baseline_revision": "6cc9c63d2804f518fb2e078b6cc55d9251e365cf",
+    "semantic_status": "nonconformant",
+    "outcome": "warning",
+    "coverage": {
+      "architecture-records": "failed",
+      "diagram-sources": "unavailable",
+      "repository-contracts": "unavailable"
+    },
+    "counts": {
+      "critical": 0,
+      "error": 0,
+      "info": 0,
+      "total": 20,
+      "warning": 20
+    },
+    "findings_by_rule": {
+      "EGO-INTEL-ADOPTION-001": 3,
+      "EGO-INTEL-ADR-METADATA-001": 1,
+      "EGO-INTEL-ADR-LINEAGE-001": 12,
+      "EGO-INTEL-ADR-INDEX-001": 1,
+      "EGO-INTEL-CONTRACT-001": 1,
+      "RELAY-ARCH-DIAGRAM-001": 1,
+      "RELAY-ARCH-UNKNOWN-001": 1
+    },
+    "candidate_baseline_findings_equal": true,
+    "candidate_report_sha256": "a9d6e1edc1fc0281cca6b1203d1044970acd5533c8b5822257713998182a9d7b",
+    "baseline_report_sha256": "be6a9abcdc6e91296fab6425fd7196e102ab5973e3c3f56c350fc76a51cf890d",
+    "admission": "failed ADR coverage; advisory process exit0 is not conformance",
+    "publication": "not-performed"
+  }
+}
