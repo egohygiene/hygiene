@@ -28,40 +28,49 @@ supersedes: []
 
 ## Current work and publication handoff
 
-The reviewed continuity, presentation and ADR source repairs are merged:
-[#91](https://github.com/egohygiene/hygiene/pull/91),
-[#89](https://github.com/egohygiene/hygiene/pull/89), then
-[#90](https://github.com/egohygiene/hygiene/pull/90). Source merge does not
-itself complete the original issues' runtime acceptance.
-[#76](https://github.com/egohygiene/hygiene/issues/76) remains the living
-tactical tracker. The current bounded checkpoint repairs duplicate
-presentation-record parity, rebinds the documentation adapter to the corrected
-helper, and replaces two outdated catalog test expectations. Its
-[local evidence](docs/evidence/2026-11-13-hygiene-76.md) records actual checks
-and remaining acceptance. The current Web alpha.5 profile satisfies its
-selected registered-format schema; the older 17 diagnostics describe the
-frozen audit source, rather than the current profile.
+The selected reference defects have merged source and focused local acceptance.
+Issues #80–#84 are closed as completed; this does not ratify their proposed
+profiles or establish fleet, hosted or publication acceptance.
 
-Issues [#80](https://github.com/egohygiene/hygiene/issues/80),
-[#81](https://github.com/egohygiene/hygiene/issues/81),
-[#82](https://github.com/egohygiene/hygiene/issues/82),
-[#83](https://github.com/egohygiene/hygiene/issues/83) and
-[#84](https://github.com/egohygiene/hygiene/issues/84) have separate focused
-qualification/remaining-parity slices. URL/origin and release-composition
-source already landed in [#92](https://github.com/egohygiene/hygiene/pull/92)
-and [#93](https://github.com/egohygiene/hygiene/pull/93); do not reimplement
-those repairs. Check the [continuity handoff](CONTINUITY.md), actual local
-receipts and live PR state before attributing qualification to a later tree.
-Changed-head hosted CI, provider rulesets and exact EgoLint native admission
-remain open acceptance under #76. Original ADR-0001 human/source/publication
-work remains #47; Web lifecycle review remains #95.
+| Closed issue | Merged qualification/remaining repair | Local evidence |
+| --- | --- | --- |
+| [#80](https://github.com/egohygiene/hygiene/issues/80) — UTC/explicit continuity clock | [#110](https://github.com/egohygiene/hygiene/pull/110), following #91 | [22 tests and actual CLI](docs/evidence/2026-11-13-hygiene-80.md) |
+| [#81](https://github.com/egohygiene/hygiene/issues/81) — current presentation witness | [#111](https://github.com/egohygiene/hygiene/pull/111), following #89 | [24 tests and schema/helper/CLI](docs/evidence/2026-11-13-hygiene-81.md) |
+| [#82](https://github.com/egohygiene/hygiene/issues/82) — ADR lineage/reference parity | [#112](https://github.com/egohygiene/hygiene/pull/112), following #90 | [29 tests, both CLIs and ECMA-262](docs/evidence/2026-11-13-hygiene-82.md) |
+| [#83](https://github.com/egohygiene/hygiene/issues/83) — HTTPS evidence/exact origins | [#113](https://github.com/egohygiene/hygiene/pull/113), following #92 | [44 Web and 43 surface tests](docs/evidence/2026-11-13-hygiene-83.md) |
+| [#84](https://github.com/egohygiene/hygiene/issues/84) — composed release/manual handoff | [#114](https://github.com/egohygiene/hygiene/pull/114), following #93 | [16 tests and actual Task preparation/verification](docs/evidence/2026-11-13-hygiene-84.md) |
+
+[#76](https://github.com/egohygiene/hygiene/issues/76) remains open. Merged
+[#109](https://github.com/egohygiene/hygiene/pull/109) fixes duplicate-record
+parity, preserves exact documentation composition and corrects stale catalog
+assertions. Merged [#115](https://github.com/egohygiene/hygiene/pull/115)
+repairs the hosting/context dependency mappings and source-bound projections.
+The current Web alpha.5 schema check passes; the historical 17 diagnostics
+remain evidence about the frozen older source.
+
+The [final local gate receipt](docs/evidence/2026-11-13-reference-gate.json)
+at exact main `a28fb6207889d4368228d537b5fb2308cca49d2b` is **failed**:
+24 of 25 checks passed, but the isolated unit suite reached the unchanged
+60-second cap before a complete test summary. No full-suite test count or
+whole-gate pass is available. Prepared exact Aether release source and locked
+dependencies were present; all context, generated-output and release checks
+passed. This replaces the earlier missing-mapping/preparation failure as the
+current local blocker; dated reports remain unchanged.
+
+Continue #76 with a bounded investigation of the nested regression execution
+and its budget; do not waive the timeout or relabel this result green.
+Changed-head hosted CI/ruleset evidence and exact EgoLint native admission
+remain separate. Original ADR-0001 human/source/publication work stays #47;
+Web lifecycle review stays #95. Use the [continuity handoff](CONTINUITY.md)
+and the original source/time attached to each check before resuming.
 
 - **HYG-Q02:** [ADR-0002 and policy v1.2.0](docs/decisions/RATIFICATION.md)
   have recorded maintainer approval. [#47](https://github.com/egohygiene/hygiene/issues/47)
   owns ADR-0001's separate source and approval work.
 - **HYG-Q03:** The [Pages workflow](.github/workflows/publish-pages.yml)
-  configures the reference-contract regression gate. Hosted execution on a
-  changed head and provider ruleset evidence remain tracked under #76.
+  configures the reference-contract regression gate. Its final local run has
+  a unit-suite timeout; changed-head hosted execution and provider ruleset
+  evidence remain tracked under #76.
 - **HYG-Q04:** [#97](https://github.com/egohygiene/hygiene/pull/97) delivered
   the reviewed public roster, website alias and bounded inventory/checkpoint
   policy source. [#36](https://github.com/egohygiene/hygiene/issues/36) owns
@@ -78,17 +87,17 @@ metadata and approval evidence remain unresolved under #47. The August
 central roadmap route below records earlier organization aggregation intent.
 The current local publisher does not collect Roadmap.
 
-## Current contract-validation handoff — 2026-10-30
+## Configured contract-validation handoff — source established 2026-10-30
 
-`HYG-Q03` now points to the configured **Complete reference-contract regression**
+`HYG-Q03` points to the configured **Complete reference-contract regression**
 check in the Pages workflow (`checks` job). Its local equivalent is
 `python3 -I tools/check_contracts.py` or `task check`; the
 [validation guide](docs/CONTRACT_VALIDATION.md) explains full test discovery,
 source/generated checks, diagnostic retention and practical limits.
 
-[#77](https://github.com/egohygiene/hygiene/issues/77) owns the repair and
-[#76](https://github.com/egohygiene/hygiene/issues/76) records current review and
-remaining acceptance. The gate has no path filters. Changed-head hosted
+[#77](https://github.com/egohygiene/hygiene/issues/77) records the original
+repair; [#76](https://github.com/egohygiene/hygiene/issues/76) owns remaining
+acceptance, including the current local timeout. The gate has no path filters. Changed-head hosted
 execution and provider required-check configuration remain separate evidence.
 Native ADR admission and actual publication retain their independent gates;
 passing regressions supply neither historical authority nor deployment proof.
