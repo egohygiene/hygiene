@@ -5,7 +5,7 @@ context-version: "2.0.0"
 architecture-release: "architecture-v0.1.0"
 repository: "egohygiene/hygiene"
 source-repository: "egohygiene/hygiene"
-source-revision: "1c720954283b91134c18a7cfa28e5c2dda505d46"
+source-revision: "dbaf7eeb408b2104daf8acb16c0d43adb55d7605"
 generated-by: "egohygiene/hygiene:repository-context@2.0.0"
 continuity-policy: "egohygiene.repository-continuity-policy/v1@1.0.0-alpha.1"
 ---
@@ -65,6 +65,7 @@ continuity-policy: "egohygiene.repository-continuity-policy/v1@1.0.0-alpha.1"
 
 ### Downstream
 
+- egohygiene/.github
 - egohygiene/filament
 - egohygiene/holon
 - egohygiene/observatory
@@ -94,11 +95,11 @@ continuity-policy: "egohygiene.repository-continuity-policy/v1@1.0.0-alpha.1"
 
 ## Canonical links
 
-- [Agent Context](https://github.com/egohygiene/hygiene/blob/1c720954283b91134c18a7cfa28e5c2dda505d46/docs/ecosystem/AGENT_CONTEXT.md)
-- [Architecture](https://github.com/egohygiene/hygiene/blob/1c720954283b91134c18a7cfa28e5c2dda505d46/docs/ecosystem/ARCHITECTURE.md)
-- [Catalog](https://github.com/egohygiene/hygiene/blob/1c720954283b91134c18a7cfa28e5c2dda505d46/catalog/repositories.yaml)
-- [Decisions](https://github.com/egohygiene/hygiene/blob/1c720954283b91134c18a7cfa28e5c2dda505d46/docs/decisions/README.md)
-- [Migration](https://github.com/egohygiene/hygiene/blob/1c720954283b91134c18a7cfa28e5c2dda505d46/docs/ecosystem/MIGRATION_PLAN.md)
+- [Agent Context](https://github.com/egohygiene/hygiene/blob/dbaf7eeb408b2104daf8acb16c0d43adb55d7605/docs/ecosystem/AGENT_CONTEXT.md)
+- [Architecture](https://github.com/egohygiene/hygiene/blob/dbaf7eeb408b2104daf8acb16c0d43adb55d7605/docs/ecosystem/ARCHITECTURE.md)
+- [Catalog](https://github.com/egohygiene/hygiene/blob/dbaf7eeb408b2104daf8acb16c0d43adb55d7605/catalog/repositories.yaml)
+- [Decisions](https://github.com/egohygiene/hygiene/blob/dbaf7eeb408b2104daf8acb16c0d43adb55d7605/docs/decisions/README.md)
+- [Migration](https://github.com/egohygiene/hygiene/blob/dbaf7eeb408b2104daf8acb16c0d43adb55d7605/docs/ecosystem/MIGRATION_PLAN.md)
 - [Repository](https://github.com/egohygiene/hygiene)
 
 ## Upgrade and stale-context behavior
