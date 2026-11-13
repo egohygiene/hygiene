@@ -143,6 +143,13 @@ Network reachability checks should be separate from structural validation so
 offline validation remains reproducible. A link checker may report unavailable
 resources but must not copy protected content into logs or artifacts.
 
+Reference strings match the entire local `ADR-NNN`/`ADR-NNNN` or qualified
+`owner/repository#ADR-NNN`/`ADR-NNNN` token. A trailing LF, CR, Unicode line
+separator or other suffix is invalid. The schema's final negative lookahead
+has the same whole-string boundary as the reference helper's `fullmatch` in
+both Python and ECMA-262. This does not pad historical identities, resolve an
+external index, or establish native Markdown/source admission.
+
 ## Generated `decisions.json`
 
 Relay should generate the repository decision index from validated front
