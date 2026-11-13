@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-13T03:16:32Z'
+  updated_at: '2026-11-13T03:23:01Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -66,9 +66,9 @@ work:
     depends_on: []
 state:
   base:
-    revision: 2eb965989603d4da922f34a27d66c113c1f5358f
+    revision: f4eb843acaa71734c779d017ebb2c53097715d0e
     ref: refs/heads/main
-    verified_at: '2026-11-13T03:16:32Z'
+    verified_at: '2026-11-13T03:23:01Z'
   candidate:
     branch: codex/hygiene-82-reference-parity
     revision: null
@@ -76,8 +76,8 @@ state:
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-13T03:16:32Z'
-    default_branch_revision: 2eb965989603d4da922f34a27d66c113c1f5358f
+    observed_at: '2026-11-13T03:23:01Z'
+    default_branch_revision: f4eb843acaa71734c779d017ebb2c53097715d0e
     issue_state: open
     pull_request_state: not-applicable
     notes: 'Remote main and issue state were freshly inspected for this batch. Hosting #108 and duplicate-record
@@ -87,18 +87,19 @@ state:
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-13T03:16:32Z'
+  reviewed_at: '2026-11-13T03:23:01Z'
   reviewed_by: Codex
   evidence:
   - command: 4 issue-scoped suite/CLI/selected-runtime command invocations
     outcome: passed
-    observed_at: '2026-11-13T03:16:32Z'
-    notes: 29 focused tests passed without skips; actual command details and coverage are retained in docs/evidence/2026-11-13-hygiene-82.md.
-      Other dated receipts remain historical.
+    observed_at: '2026-11-13T03:15:54.156914Z'
+    notes: 'Executed source 8c72d1035a86b92ffb7a7fbe55d5b94f97306480: 29 focused tests passed without skips;
+      actual command details and coverage are retained in docs/evidence/2026-11-13-hygiene-82.md. Other dated
+      receipts remain historical.'
   - command: Hosted CI/rulesets, exact EgoLint native source admission, real approval/consumer/publication
       qualification
     outcome: not-run
-    observed_at: '2026-11-13T03:16:32Z'
+    observed_at: '2026-11-13T03:23:01Z'
     notes: Not implied by local reference checks. No provider workflow, publication, policy ratification or
       human disposition is performed.
   environment_limitations:
@@ -141,7 +142,7 @@ Complete whole-string ADR reference parity and qualify the merged lineage repair
 
 ## State snapshot
 
-Observed main `2eb965989603d4da922f34a27d66c113c1f5358f` includes merged hosting #108 and duplicate-record checkpoint #109. This branch `codex/hygiene-82-reference-parity` is a prepared candidate; no new PR or merge identity is invented. The six earlier audit/continuity/presentation/ADR/change-history/documentation source merges remain intact.
+Observed main `f4eb843acaa71734c779d017ebb2c53097715d0e` includes merged hosting #108 and duplicate-record checkpoint #109. This branch `codex/hygiene-82-reference-parity` is a prepared candidate; no new PR or merge identity is invented. The six earlier audit/continuity/presentation/ADR/change-history/documentation source merges remain intact.
 
 ## Completed and material changes
 
