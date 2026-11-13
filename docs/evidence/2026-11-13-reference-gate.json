@@ -1,0 +1,198 @@
+{
+  "observed_at": "2026-11-13T03:37:14Z",
+  "source": {
+    "repository": "egohygiene/hygiene",
+    "revision": "a28fb6207889d4368228d537b5fb2308cca49d2b",
+    "dirty": false
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "jsonschema": "4.10.3",
+    "PyYAML": "6.0.1",
+    "attrs": "22.2.0",
+    "pyrsistent": "0.20.0"
+  },
+  "invocation": {
+    "entrypoint": "tools/check_contracts.py",
+    "profile": "existing configured complete reference-contract gate",
+    "configured_command_timeout_seconds": 60,
+    "attempts": 1,
+    "cap_changed": false
+  },
+  "release_owner": {
+    "repository": "egohygiene/aether",
+    "revision": "8a2a3d08f3aa9da3847bd5277843506ab855192e",
+    "prepared_source": "exact immutable Git checkout; normative validator/schema/runtime lock verified"
+  },
+  "result": {
+    "status": "failed",
+    "all_checks_attempted": true,
+    "checks_passed": 24,
+    "checks_total": 25,
+    "unit_suite_completed": false,
+    "unit_count": null
+  },
+  "checks": [
+    {
+      "id": "unit-tests",
+      "status": "failed",
+      "exit_code": -9,
+      "timed_out": true,
+      "seconds": 60.003,
+      "completed_test_count": null,
+      "reason": "configured 60-second timeout; no complete unittest summary"
+    },
+    {
+      "id": "catalog",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "catalog-generated",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "context-policy",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "continuity-profile",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "continuity-repository",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "web-profile",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "web-fixtures",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "boundary-register",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "boundary-generated",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "boundary-scan",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "intelligence-fixture",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "presentation-profile",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "presentation-minimal",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "presentation-rich",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "surface-registry",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "surface-fixtures",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "adr-fixture",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "adr-lineage-fixtures",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "adr-policy-reference",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "release-profile",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "release-declaration",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "adr-review-patch",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "context-generated-sanctuary",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    },
+    {
+      "id": "context-generated-contract",
+      "status": "passed",
+      "exit_code": 0,
+      "timed_out": false
+    }
+  ],
+  "qualification": {
+    "native_egolint_source_admission": "not-assessed",
+    "publication": "not-performed",
+    "hosted_ci": "not-established",
+    "provider_required_checks": "not-assessed",
+    "human_ratification": "not-established"
+  },
+  "interpretation": "The configured gate failed: the unit subprocess timed out before a complete unittest summary. No full-suite count, zero-failure total or whole-gate pass may be inferred. The other 24 reference/source checks passed."
+}
