@@ -33,7 +33,17 @@ class DependencyBoundaryContractTests(unittest.TestCase):
                 self.register, self.catalog, self.contract_index
             ),
         )
-        self.assertEqual(27, len(self.register["relationships"]))
+        self.assertEqual(30, len(self.register["relationships"]))
+
+    def test_organization_export_boundary_is_narrow_and_immutable(self) -> None:
+        relation = next(row for row in self.register["relationships"]
+                        if row["id"] == "RELATIONSHIP-030")
+        self.assertEqual("egohygiene/egohygiene.io", relation["producer"])
+        self.assertEqual(["egohygiene/.github"], relation["consumers"])
+        self.assertEqual(["schema", "generated-projection"], relation["interfaces"])
+        self.assertEqual("immutable", relation["pinning"])
+        self.assertEqual("required", relation["contract_status"])
+        self.assertIsNone(relation["contract"])
 
     def test_duplicate_rule_is_rejected(self) -> None:
         candidate = copy.deepcopy(self.register)

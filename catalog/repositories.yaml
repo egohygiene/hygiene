@@ -12,21 +12,27 @@
         "organization profile",
         "funding",
         "public defaults",
-        "default community health"
+        "default community health",
+        "organization Intelligence publication from the website-owned sealed export"
       ],
       "excludes": [
         "reusable CI workflows",
         "lint policy"
       ],
       "outputs": [
-        "organization-facing defaults"
+        "organization-facing defaults",
+        "organization Intelligence Pages publisher"
       ],
       "full_name": "egohygiene/.github",
       "visibility": "public",
       "lifecycle": "incubating",
       "maturity": "light-foundation",
       "source_url": "https://github.com/egohygiene/.github",
-      "consumes": [],
+      "consumes": [
+        "website-owned organization Intelligence static export",
+        "Hygiene organization surface declaration",
+        "Relay sealed-export intake"
+      ],
       "domains": [],
       "public_observation": {
         "repository_id": 1196401336,
@@ -1092,7 +1098,8 @@
         "public website",
         "documentation application",
         "playground",
-        "shared web packages"
+        "shared web packages",
+        "organization Intelligence UI and sealed static export"
       ],
       "excludes": [
         "store commerce logic",
@@ -1105,7 +1112,8 @@
       "outputs": [
         "public website",
         "documentation site",
-        "shared web packages"
+        "shared web packages",
+        "organization Intelligence-only sealed static export"
       ],
       "full_name": "egohygiene/egohygiene.io",
       "visibility": "public",

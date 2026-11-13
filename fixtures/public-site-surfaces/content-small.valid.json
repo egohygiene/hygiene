@@ -7,7 +7,7 @@
     "version": "1.0.0-alpha.1",
     "source_path": "catalog/public-site-surface-registry.json",
     "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "sha256": "82af08b921934709bb5ee8aa92e89acb16d8fabcd5f8f79d06b722ac6042107e"
+    "sha256": "ad4acd7ca35e5fc9352a718dd2e61c37a73d5b929dcbe47386e8ce16a7537a16"
   },
   "site": {
     "id": "egohygiene/synthetic-content-site",

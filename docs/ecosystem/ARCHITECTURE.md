@@ -41,7 +41,10 @@ This plane defines the ecosystem, creates and evolves repositories, distributes 
 - **hygiene** — canonical ecosystem architecture, repository registry, platform
   policies, cross-repository decisions, public-site surface and declaration
   contracts, adoption and continuity applicability models, and staging ledger.
-- **.github** — organization profile, public defaults, funding, and default community-health files.
+- **.github** — organization profile, public defaults, funding, default
+  community-health files, and the selected organization Intelligence Pages
+  publisher consuming the website-owned sealed export. This publication
+  boundary does not transfer model or policy ownership.
 - **aether** — canonical first-party AI specifications, skills, agents, catalogs, validators, release projections, and the portable repository-continuity protocol.
 - **holon** — architecture-driven bootstrapper that creates new organizations and repositories from versioned blueprints.
 - **pace** — fleet reconciler for adoption, migrations, and synchronization; it proposes bounded pull requests to existing repositories.
@@ -108,7 +111,11 @@ This plane exposes the ecosystem to people.
 - **identity** — the `/identity/` product experience, brand systems, design
   tokens, voice, public metadata, and generated creative-asset packages.
 - **egohygiene** — the private, local-first Flutter cognition and reflection product.
-- **egohygiene.io** — the renamed `website` repository and canonical public website, documentation, playground, and shared web packages.
+- **egohygiene.io** — the renamed `website` repository and canonical public
+  company website, documentation, playground, shared web packages, and the
+  organization Intelligence UI/sealed-export compositor. The selected `.github`
+  publisher owns final organization Intelligence hosting and recovery through
+  the [explicit hosting contract](ORGANIZATION_INTELLIGENCE_HOSTING.md).
 - **store** — provider-neutral storefront and commerce adapter deployed at `egohygiene.io/store`.
 
 Identity publishes versioned brand artifacts that products consume. The website and store retain separate release boundaries even when they share a domain. The Ego Hygiene app is a product, not the platform-control repository.

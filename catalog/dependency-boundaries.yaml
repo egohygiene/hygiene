@@ -485,7 +485,8 @@
         "egohygiene/pace",
         "egohygiene/relay",
         "egohygiene/renderflow",
-        "egohygiene/egohygiene.io"
+        "egohygiene/egohygiene.io",
+        "egohygiene/.github"
       ],
       "capability": "proposed public-site surface registry and declaration contracts, route profiles, base-path resolution, applicability and state semantics, ownership and privacy boundaries, immutable evidence, compatibility, and bounded consumer handoffs",
       "interfaces": [
@@ -522,6 +523,21 @@
       "interfaces": [
         "package",
         "schema"
+      ],
+      "contract": null,
+      "contract_status": "required",
+      "pinning": "immutable"
+    },
+    {
+      "id": "RELATIONSHIP-030",
+      "producer": "egohygiene/egohygiene.io",
+      "consumers": [
+        "egohygiene/.github"
+      ],
+      "capability": "organization Intelligence-only sealed static export consumed by the organization-owned publisher; website remains UI compositor, and model/policy facts, project hosting, deployment and recovery retain their distinct owners",
+      "interfaces": [
+        "schema",
+        "generated-projection"
       ],
       "contract": null,
       "contract_status": "required",
