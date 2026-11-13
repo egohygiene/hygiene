@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-13T03:10:21Z'
+  updated_at: '2026-11-13T03:16:33Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -70,9 +70,9 @@ work:
     depends_on: []
 state:
   base:
-    revision: 8068090a88546c5d4e5b16a9a664685c6c875aac
+    revision: 2eb965989603d4da922f34a27d66c113c1f5358f
     ref: refs/heads/main
-    verified_at: '2026-11-13T03:10:21Z'
+    verified_at: '2026-11-13T03:16:33Z'
   candidate:
     branch: codex/hygiene-84-qualification
     revision: null
@@ -80,35 +80,38 @@ state:
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-13T03:10:21Z'
-    default_branch_revision: 8068090a88546c5d4e5b16a9a664685c6c875aac
+    observed_at: '2026-11-13T03:16:33Z'
+    default_branch_revision: 2eb965989603d4da922f34a27d66c113c1f5358f
     issue_state: open
     pull_request_state: not-applicable
-    notes: 'Remote main and issue state were freshly inspected for this batch. Hosting #108 is merged at 8068090;
-      its owner source and proposed ADR0020 remain intact. This checkpoint describes a prepared candidate before
-      PR creation, not an already merged change. The user authorizes focused local checks; broader provider/native/publication
-      and human authority stay separate.'
+    notes: 'Remote main and issue state were freshly inspected for this batch. Hosting #108 and duplicate-record
+      checkpoint #109 are merged at the observed base; its owner source and proposed ADR0020 remain intact.
+      This checkpoint describes a prepared candidate before PR creation, not an already merged change. The
+      user authorizes focused local checks; broader provider/native/publication and human authority stay separate.'
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-13T03:10:21Z'
+  reviewed_at: '2026-11-13T03:16:33Z'
   reviewed_by: Codex
   evidence:
   - command: 7 issue-scoped suite/CLI/selected-runtime command invocations
     outcome: passed
-    observed_at: '2026-11-13T03:10:21Z'
+    observed_at: '2026-11-13T03:16:33Z'
     notes: 16 focused tests passed without skips; actual command details and coverage are retained in docs/evidence/2026-11-13-hygiene-84.md.
       Other dated receipts remain historical.
   - command: Hosted CI/rulesets, exact EgoLint native source admission, real approval/consumer/publication
       qualification
     outcome: not-run
-    observed_at: '2026-11-13T03:10:21Z'
+    observed_at: '2026-11-13T03:16:33Z'
     notes: Not implied by local reference checks. No provider workflow, publication, policy ratification or
       human disposition is performed.
   environment_limitations:
   - 'No release:publish, tag, release, workflow dispatch, deployment, credential action or immutable artifact
     overwrite was performed. Proposed policy and ADR-0015 retain their dispositions; later successor policy
     #65 is separate.'
+  - 'The broader gate at merged #109 source failed (295 tests, 14 failures/7 errors; four of 25 checks failed)
+    because hosting inputs lack three context dependency mappings and one context test expects an old index.
+    Health owns the bounded follow-up; no full-gate pass is claimed.'
   - 'ADR-0001 historical source and human approval/publication hold remains #47; Agent-Ready Web lifecycle
     review remains #95.'
   - 'The parent #76 retains hosted/ruleset and exact native replay carryovers; unrelated organization census/rollout
@@ -143,7 +146,7 @@ Qualify exact release-owner composition and repair the real Task handoff parse. 
 
 ## State snapshot
 
-Observed main `8068090a88546c5d4e5b16a9a664685c6c875aac` includes merged hosting #108. This branch `codex/hygiene-84-qualification` is a prepared candidate; no new PR or merge identity is invented. The six earlier audit/continuity/presentation/ADR/change-history/documentation source merges remain intact.
+Observed main `2eb965989603d4da922f34a27d66c113c1f5358f` includes merged hosting #108 and duplicate-record checkpoint #109. This branch `codex/hygiene-84-qualification` is a prepared candidate; no new PR or merge identity is invented. The six earlier audit/continuity/presentation/ADR/change-history/documentation source merges remain intact.
 
 ## Completed and material changes
 
@@ -161,7 +164,7 @@ All 7 recorded local command invocations passed with 16 focused tests and zero s
 
 ## Blockers, risks, unknowns, and deferred work
 
-No release:publish, tag, release, workflow dispatch, deployment, credential action or immutable artifact overwrite was performed. Proposed policy and ADR-0015 retain their dispositions; later successor policy #65 is separate. ADR-0001 #47 and Web lifecycle #95 human gates remain unchanged. Hosted/native/consumer acceptance is not inferred from local reference checks.
+No release:publish, tag, release, workflow dispatch, deployment, credential action or immutable artifact overwrite was performed. Proposed policy and ADR-0015 retain their dispositions; later successor policy #65 is separate. The separate full gate on merged #109 failed on missing hosting/context mappings and a stale context test index; Health owns that repair. No full-gate pass is claimed.  ADR-0001 #47 and Web lifecycle #95 human gates remain unchanged. Hosted/native/consumer acceptance is not inferred from local reference checks.
 
 ## Next dependency-ready work
 
