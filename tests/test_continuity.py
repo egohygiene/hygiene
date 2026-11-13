@@ -286,6 +286,7 @@ class ContinuityAssessmentTests(unittest.TestCase):
         self.assertEqual("required", actual["requirement"])
         self.assertEqual("2026-10-20", actual["assessment_date"])
         self.assertEqual("current-utc", actual["assessment_mode"])
+        clock.now.assert_called_once_with(timezone.utc)
 
     def test_actual_cli_matches_frozen_api_and_repeats_exactly(self) -> None:
         for case in self.fixture["cases"]:
