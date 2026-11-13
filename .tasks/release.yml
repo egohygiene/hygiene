@@ -33,4 +33,5 @@ tasks:
       - task: release:verify
         vars:
           RELEASE_VERSION: "{{.RELEASE_VERSION}}"
-      - echo "Handoff only: create immutable {{.RELEASE_VERSION}} from reviewed default-branch history, then manually dispatch .github/workflows/release-policy.yml."
+      - |
+        echo "Handoff only: create immutable {{.RELEASE_VERSION}} from reviewed default-branch history, then manually dispatch .github/workflows/release-policy.yml."

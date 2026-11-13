@@ -135,6 +135,18 @@ class RepositoryReleasePolicyTests(unittest.TestCase):
             taskfile.write_text('version: "3"\ntasks:\n  check: {cmds: [true]}\n# release:plan:\n# release:prepare:\n# release:verify:\n# release:publish:\n')
             self.assertEqual({"check"}, releases._task_handoff_names(root, taskfile))
 
+    def test_shipped_task_commands_keep_colons_inside_shell_text(self) -> None:
+        tasks = releases._yaml_mapping((ROOT / ".tasks/release.yml").read_text(), "release tasks")["tasks"]
+        for name, task in tasks.items():
+            for command in task["cmds"]:
+                with self.subTest(task=name, command=command):
+                    if isinstance(command, dict):
+                        self.assertEqual({"task", "vars"}, set(command))
+                        self.assertEqual("release:verify", command["task"])
+                    else:
+                        self.assertIsInstance(command, str)
+        self.assertIn("Handoff only:", tasks["release:publish"]["cmds"][-1])
+
     def test_schema_invalid_and_duplicate_required_data_fail_through_native_composition(self) -> None:
         source = self.owner_source()
         for mutation in ["wrong-task", "empty-authority", "unknown-field", "duplicate-json"]:
