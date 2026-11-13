@@ -274,8 +274,12 @@ They are referenced by composition and are not duplicated as route surfaces.
   existing repositories without direct default-branch mutation.
 - **Identity** and **Renderflow** publish versioned inputs and retain their own
   implementation boundaries.
-- **egohygiene.io** owns organization-site composition and hosting, not the
-  canonical facts displayed by its modules.
+- **egohygiene.io** owns organization Intelligence UI and sealed-export
+  composition, plus its independent company website. The selected publication
+  repository owns final Intelligence hosting and recovery. The narrow
+  [organization export declaration dialect](ORGANIZATION_INTELLIGENCE_HOSTING.md)
+  explicitly names the website renderer and `.github` publisher; it does not
+  change v1 renderer ownership or canonical facts displayed by modules.
 
 ## Normative validation and fixtures
 

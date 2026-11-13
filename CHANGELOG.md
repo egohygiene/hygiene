@@ -16,6 +16,10 @@ compatibility promise applies.
 
 ### Added
 
+- Proposed a narrow organization sealed-export declaration v2, truthful website
+  renderer binding and `.github` publication ownership, preserving v1 surface
+  semantics and existing pins. Added focused compatibility and rejection checks;
+  no policy lifecycle, human ratification or live publication is inferred.
 - Proposed the versioned public-site surface and route registry, site
   declaration schema, scope-specific route profiles, compatibility fixtures,
   and reference validator

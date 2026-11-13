@@ -4,7 +4,7 @@
 
 - Architecture release: `architecture-v0.1.0`
 - Governing decision: `ADR-0001`
-- Relationships: `29`
+- Relationships: `30`
 - Active exceptions: `0`
 
 ## Rules
@@ -50,9 +50,10 @@
 | `RELATIONSHIP-024` | `egohygiene/aether` | `egohygiene/hygiene` | portable repository continuity specification, schema, template, skill, and managed instruction projection | `schema`, `generated-projection` | _required_ | `immutable` |
 | `RELATIONSHIP-025` | `egohygiene/hygiene` | `egohygiene/egolint`, `egohygiene/holon`, `egohygiene/observatory`, `egohygiene/pace`, `egohygiene/relay` | repository continuity applicability, required-file composition, rollout, migration, and exception policy | `schema`, `generated-projection` | _required_ | `versioned` |
 | `RELATIONSHIP-026` | `egohygiene/hygiene` | `egohygiene/holon`, `egohygiene/relay`, `egohygiene/pace`, `egohygiene/store`, `egohygiene/observatory` | proposed Agent-Ready Web integrated profile and conformance schemas, independent concern resolution, cross-layer authority invariants, deterministic diagnostics and evidence, immutable consumer resolution, compatibility, reference review, and bounded consumer handoffs | `schema`, `generated-projection` | _required_ | `immutable-or-versioned` |
-| `RELATIONSHIP-027` | `egohygiene/hygiene` | `egohygiene/holon`, `egohygiene/identity`, `egohygiene/observatory`, `egohygiene/pace`, `egohygiene/relay`, `egohygiene/renderflow`, `egohygiene/egohygiene.io` | proposed public-site surface registry and declaration contracts, route profiles, base-path resolution, applicability and state semantics, ownership and privacy boundaries, immutable evidence, compatibility, and bounded consumer handoffs | `schema`, `generated-projection` | _required_ | `immutable-or-versioned` |
+| `RELATIONSHIP-027` | `egohygiene/hygiene` | `egohygiene/holon`, `egohygiene/identity`, `egohygiene/observatory`, `egohygiene/pace`, `egohygiene/relay`, `egohygiene/renderflow`, `egohygiene/egohygiene.io`, `egohygiene/.github` | proposed public-site surface registry and declaration contracts, route profiles, base-path resolution, applicability and state semantics, ownership and privacy boundaries, immutable evidence, compatibility, and bounded consumer handoffs | `schema`, `generated-projection` | _required_ | `immutable-or-versioned` |
 | `RELATIONSHIP-028` | `egohygiene/holon` | `egohygiene/antidote` | immutable site-suite materialization and public provenance consumed by the repository-owned Antidote publication build; final routes and deployment remain Antidote-owned | `package`, `schema`, `generated-projection` | _required_ | `immutable` |
 | `RELATIONSHIP-029` | `egohygiene/beacon` | `egohygiene/antidote` | optional producer-owned publication profile, inspection and packaging adapter; native Antidote builds remain standalone and no publication authority is transferred | `package`, `schema` | _required_ | `immutable` |
+| `RELATIONSHIP-030` | `egohygiene/egohygiene.io` | `egohygiene/.github` | organization Intelligence-only sealed static export consumed by the organization-owned publisher; website remains UI compositor, and model/policy facts, project hosting, deployment and recovery retain their distinct owners | `schema`, `generated-projection` | _required_ | `immutable` |
 
 ## Forbidden direct dependencies
 
