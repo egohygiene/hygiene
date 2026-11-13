@@ -8,6 +8,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from jsonschema import Draft202012Validator, FormatChecker
+
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
@@ -183,6 +185,33 @@ class FourDigitIdentifierTests(unittest.TestCase):
 
 class DecisionAlignmentTests(unittest.TestCase):
     load = DecisionContractTests.load
+
+    def test_reference_grammar_is_whole_string_in_schema_and_both_clis(self) -> None:
+        schema = json.loads((ROOT / "schemas/architecture-decision.v1.schema.json").read_text())
+        validator = Draft202012Validator(schema, format_checker=FormatChecker())
+        for reference in ("ADR-999", "ADR-9999", "other/repository#ADR-999", "egohygiene/hygiene#ADR-9999"):
+            for suffix in ("", "\n", "\r", "\r\n", "\u2028", "\u2029", "\x00", " ", "trailing"):
+                candidate = self.load("decision.proposed.valid.json")
+                candidate["related"] = [reference + suffix]
+                with self.subTest(reference=reference, suffix=repr(suffix)):
+                    self.assertEqual(not suffix, validator.is_valid(candidate))
+                    self.assertEqual(bool(suffix), any(error.startswith("E_FORMAT related") for error in decisions.validate_decision(candidate)))
+                    for command in ("decision", "decision-set"):
+                        result = self.cli([candidate], command=command)
+                        self.assertEqual(bool(suffix), "E_FORMAT related" in result.stderr)
+                        if suffix or command == "decision":
+                            self.assertEqual(1 if suffix else 0, result.returncode)
+                        self.assertNotIn("Traceback", result.stderr)
+
+    def test_reference_shared_definition_rejects_line_endings_in_all_relation_fields(self) -> None:
+        schema = json.loads((ROOT / "schemas/architecture-decision.v1.schema.json").read_text())
+        validator = Draft202012Validator(schema)
+        for field in ("related", "supersedes", "superseded_by"):
+            candidate = self.load("decision.proposed.valid.json")
+            candidate[field] = ["ADR-999\n"]
+            with self.subTest(field=field):
+                self.assertTrue(any(error.validator == "pattern" for error in validator.iter_errors(candidate)))
+                self.assertTrue(any(error.startswith(f"E_FORMAT {field}") for error in decisions.validate_decision(candidate)))
 
     def cli(
         self, documents: list[dict], *, command: str = "decision-set"

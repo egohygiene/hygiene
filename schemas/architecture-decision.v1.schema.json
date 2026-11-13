@@ -289,7 +289,8 @@
       "uniqueItems": true,
       "items": {
         "type": "string",
-        "pattern": "^(ADR-[0-9]{3,4}|[a-z0-9][a-z0-9.-]*/[a-z0-9][a-z0-9.-]*#ADR-[0-9]{3,4})$"
+        "pattern": "^(ADR-[0-9]{3,4}|[a-z0-9][a-z0-9.-]*/[a-z0-9][a-z0-9.-]*#ADR-[0-9]{3,4})(?![\\s\\S])",
+        "description": "Match the entire reference, including rejection of final line terminators. The final negative lookahead is portable to ECMA-262 and Python; a dollar anchor alone can match before a trailing newline."
       }
     },
     "evidence": {
