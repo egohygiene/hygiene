@@ -8,7 +8,7 @@ status: provisional
 owners:
   - egohygiene
 created: 2026-08-19
-updated: 2026-10-30
+updated: 2026-11-13
 governed_by:
   - architecture-roadmap
 depends_on:
@@ -28,16 +28,33 @@ supersedes: []
 
 ## Current work and publication handoff
 
-The next audit checkpoint is maintainer review of the existing continuity,
-presentation and ADR validation drafts in order:
+The reviewed continuity, presentation and ADR source repairs are merged:
 [#91](https://github.com/egohygiene/hygiene/pull/91),
 [#89](https://github.com/egohygiene/hygiene/pull/89), then
-[#90](https://github.com/egohygiene/hygiene/pull/90).
-[#76](https://github.com/egohygiene/hygiene/issues/76) tracks the full tactical
-backlog, carryovers and review order. Evidence URL/origin and release-declaration
-repairs landed in [#92](https://github.com/egohygiene/hygiene/pull/92) and
-[#93](https://github.com/egohygiene/hygiene/pull/93), respectively. Use the
-[continuity handoff](CONTINUITY.md) and live issue/PR state to resume.
+[#90](https://github.com/egohygiene/hygiene/pull/90). Source merge does not
+itself complete the original issues' runtime acceptance.
+[#76](https://github.com/egohygiene/hygiene/issues/76) remains the living
+tactical tracker. The current bounded checkpoint repairs duplicate
+presentation-record parity, rebinds the documentation adapter to the corrected
+helper, and replaces two outdated catalog test expectations. Its
+[local evidence](docs/evidence/2026-11-13-hygiene-76.md) records actual checks
+and remaining acceptance. The current Web alpha.5 profile satisfies its
+selected registered-format schema; the older 17 diagnostics describe the
+frozen audit source, rather than the current profile.
+
+Issues [#80](https://github.com/egohygiene/hygiene/issues/80),
+[#81](https://github.com/egohygiene/hygiene/issues/81),
+[#82](https://github.com/egohygiene/hygiene/issues/82),
+[#83](https://github.com/egohygiene/hygiene/issues/83) and
+[#84](https://github.com/egohygiene/hygiene/issues/84) have separate focused
+qualification/remaining-parity slices. URL/origin and release-composition
+source already landed in [#92](https://github.com/egohygiene/hygiene/pull/92)
+and [#93](https://github.com/egohygiene/hygiene/pull/93); do not reimplement
+those repairs. Check the [continuity handoff](CONTINUITY.md), actual local
+receipts and live PR state before attributing qualification to a later tree.
+Changed-head hosted CI, provider rulesets and exact EgoLint native admission
+remain open acceptance under #76. Original ADR-0001 human/source/publication
+work remains #47; Web lifecycle review remains #95.
 
 - **HYG-Q02:** [ADR-0002 and policy v1.2.0](docs/decisions/RATIFICATION.md)
   have recorded maintainer approval. [#47](https://github.com/egohygiene/hygiene/issues/47)

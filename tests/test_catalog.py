@@ -20,7 +20,8 @@ class CatalogContractTests(unittest.TestCase):
 
     def test_current_catalog_is_valid(self) -> None:
         self.assertEqual([], catalog.validate_catalog(self.source))
-        self.assertEqual(27, len(self.source["repositories"]))
+        self.assertEqual(29, len(self.source["repositories"]))
+        self.assertEqual(29, self.source["repository_count"])
 
     def test_duplicate_repository_is_rejected(self) -> None:
         candidate = copy.deepcopy(self.source)
@@ -34,11 +35,18 @@ class CatalogContractTests(unittest.TestCase):
         errors = catalog.validate_catalog(candidate)
         self.assertIn("repositories[0].owns must not be empty", errors)
 
-    def test_unknown_plane_is_rejected(self) -> None:
+    def test_unknown_plane_requires_the_owner_declaration(self) -> None:
         candidate = copy.deepcopy(self.source)
         candidate["repositories"][0]["plane"] = "unknown"
         errors = catalog.validate_catalog(candidate)
-        self.assertIn("repositories[0].plane is not declared", errors)
+        self.assertIn("repositories[0].role_evidence must identify the unclassified owner's declaration", errors)
+        candidate["repositories"][0]["role_evidence"] = ["README.md: owner declaration pending classification"]
+        self.assertEqual([], catalog.validate_catalog(candidate))
+
+    def test_undeclared_plane_remains_rejected(self) -> None:
+        candidate = copy.deepcopy(self.source)
+        candidate["repositories"][0]["plane"] = "invented-plane"
+        self.assertIn("repositories[0].plane is not declared", catalog.validate_catalog(candidate))
 
     def test_proposed_current_overlap_is_rejected(self) -> None:
         candidate = copy.deepcopy(self.source)

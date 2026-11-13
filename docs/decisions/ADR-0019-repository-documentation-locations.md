@@ -123,6 +123,12 @@ owner-returned assessment date/mode. Presentation composition remains
 requirements-only; it does not validate a passing witness or promote any
 policy, ADR or consumer lifecycle.
 
+A 2026-11-13 reference-only compatibility repair selects presentation helper
+`eb38eb790bb0cad38c8d651d11d3dc4cc7ab7bb4` to reject duplicate evidence
+records consistently with the existing schema. Continuity retains its exact
+merged source above. Profile/helper/output hashes are rebound together; this
+does not change the requirements-only composition or human disposition.
+
 ## Replacement or exit strategy
 
 Consumers remain on existing paths/pins until a reviewed compatible selection.
