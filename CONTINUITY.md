@@ -7,25 +7,21 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-13T03:10:20Z'
+  updated_at: '2026-11-13T03:16:32Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Close the duplicate presentation-record parity gap and refresh the finite audit checkpoint
+  purpose: Qualify the merged current-UTC and explicit-date continuity resolver
   includes:
-  - Valid presentation records are unique by their four string fields, independently of object member order.
-    Distinct freshness/assertion/location/kind records remain visible; malformed records still fail their own
-    shape rules.
-  - The documentation adapter selects corrected presentation helper eb38eb790bb0cad38c8d651d11d3dc4cc7ab7bb4
-    and its actual digest; the profile mirror, helper constant and closed output digest change together. Continuity
-    retains ae4e4c1399aeed3b82c97959c82741892c230fbf unchanged.
-  - The two known catalog test assertions now reflect the existing 29 canonical entries and source-backed unknown-plane
-    semantics. This is not a new inventory or a claim that all 29 are public; the public projection retains
-    28 rows.
-  - The current Web alpha.5 profile satisfies its selected registered-format schema. The historical 17 additional-property
-    diagnostics remain dated audit evidence and are not carried as a current defect.
+  - 'The merged #91 implementation returns assessment_date and assessment_mode, defaults to datetime.now(timezone.utc),
+    and never substitutes the profile''s historical updated date.'
+  - Frozen synthetic exception cases exercise before, exactly at and after exclusive expiry through API and
+    actual CLI; repeated explicit runs are byte-identical. Invalid dates/approval records fail, an unavailable
+    clock fails closed, and an explicit valid date still works.
+  - The additional regression asserts the UTC argument passed to the clock, preventing accidental substitution
+    of host-local time. No approved exception or profile lifecycle is changed.
   excludes:
   - Human policy/ADR disposition, exception approval, source-hold waiver, consumer rollout and publication
   - Hosted CI/ruleset proof and broad provider/production/native qualification
@@ -42,69 +38,74 @@ scope:
   - docs/decisions/RATIFICATION.md
   - docs/decisions/README.md
   - docs/ecosystem/ARCHITECTURE.md
-  - docs/evidence/2026-11-13-hygiene-76.md
+  - docs/evidence/2026-11-13-hygiene-80.md
+  - https://github.com/egohygiene/hygiene/issues/80
   - https://github.com/egohygiene/hygiene/issues/76
   - https://github.com/egohygiene/hygiene/issues/47
 work:
-  objective: Close the duplicate presentation-record parity gap and refresh the finite audit checkpoint
+  objective: Qualify the merged current-UTC and explicit-date continuity resolver
   success_conditions:
   - Resolve the selected bounded current-source gap or qualify the already merged repair with actual checks
   - Preserve canonical ownership, historical audits, source clocks, accepted policy and human dispositions
   - Retain every external/hosted/native/human gate explicitly in its owning issue
   active_issue:
     provider: github
-    id: egohygiene/hygiene#76
-    url: https://github.com/egohygiene/hygiene/issues/76
+    id: egohygiene/hygiene#80
+    url: https://github.com/egohygiene/hygiene/issues/80
   next:
     kind: action
-    id: review-hygiene-76-checkpoint
+    id: review-hygiene-80-checkpoint
     description: Obtain exact-head peer review, then let the coordinating maintainer integrate this bounded
       slice and record actual merged/remaining issue acceptance. Continue the other selected Hygiene slices
       without treating source landing as hosted or human approval.
     readiness: ready
     references:
+    - https://github.com/egohygiene/hygiene/issues/80
     - https://github.com/egohygiene/hygiene/issues/76
     depends_on: []
 state:
   base:
-    revision: 8068090a88546c5d4e5b16a9a664685c6c875aac
+    revision: 2eb965989603d4da922f34a27d66c113c1f5358f
     ref: refs/heads/main
-    verified_at: '2026-11-13T03:10:20Z'
+    verified_at: '2026-11-13T03:16:32Z'
   candidate:
-    branch: codex/hygiene-76-evidence-parity
+    branch: codex/hygiene-80-qualification
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-13T03:10:20Z'
-    default_branch_revision: 8068090a88546c5d4e5b16a9a664685c6c875aac
+    observed_at: '2026-11-13T03:16:32Z'
+    default_branch_revision: 2eb965989603d4da922f34a27d66c113c1f5358f
     issue_state: open
     pull_request_state: not-applicable
-    notes: 'Remote main and issue state were freshly inspected for this batch. Hosting #108 is merged at 8068090;
-      its owner source and proposed ADR0020 remain intact. This checkpoint describes a prepared candidate before
-      PR creation, not an already merged change. The user authorizes focused local checks; broader provider/native/publication
-      and human authority stay separate.'
+    notes: 'Remote main and issue state were freshly inspected for this batch. Hosting #108 and duplicate-record
+      checkpoint #109 are merged at the observed base; its owner source and proposed ADR0020 remain intact.
+      This checkpoint describes a prepared candidate before PR creation, not an already merged change. The
+      user authorizes focused local checks; broader provider/native/publication and human authority stay separate.'
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-13T03:10:20Z'
+  reviewed_at: '2026-11-13T03:16:32Z'
   reviewed_by: Codex
   evidence:
-  - command: 9 issue-scoped suite/CLI/selected-runtime command invocations
+  - command: 6 issue-scoped suite/CLI/selected-runtime command invocations
     outcome: passed
-    observed_at: '2026-11-13T03:10:20Z'
-    notes: 44 focused tests passed without skips; actual command details and coverage are retained in docs/evidence/2026-11-13-hygiene-76.md.
+    observed_at: '2026-11-13T03:16:32Z'
+    notes: 22 focused tests passed without skips; actual command details and coverage are retained in docs/evidence/2026-11-13-hygiene-80.md.
       Other dated receipts remain historical.
   - command: Hosted CI/rulesets, exact EgoLint native source admission, real approval/consumer/publication
       qualification
     outcome: not-run
-    observed_at: '2026-11-13T03:10:20Z'
+    observed_at: '2026-11-13T03:16:32Z'
     notes: Not implied by local reference checks. No provider workflow, publication, policy ratification or
       human disposition is performed.
   environment_limitations:
-  - 'Tracker #76 remains open: hosted changed-head CI/ruleset proof, exact EgoLint native Markdown admission
-    and the separate ADR-0001 human/source/publication work are not supplied here.'
+  - This qualifies the current reference resolver locally; it does not authenticate a real exception, ratify
+    policy, activate consumers or prove hosted CI.
+  - 'The broader gate at merged #109 source failed (295 tests, 14 failures/7 errors; four of 25 checks failed)
+    because hosting inputs lack three context dependency mappings and one context test expects an old index.
+    Health owns the bounded follow-up; no full-gate pass is claimed.'
   - 'ADR-0001 historical source and human approval/publication hold remains #47; Agent-Ready Web lifecycle
     review remains #95.'
   - 'The parent #76 retains hosted/ruleset and exact native replay carryovers; unrelated organization census/rollout
@@ -135,29 +136,27 @@ Read AGENTS, ROADMAP, accepted policy/ratification, the architecture authority m
 
 ## Current objective and success conditions
 
-Close the duplicate presentation-record parity gap and refresh the finite audit checkpoint. Keep actual qualification and source changes distinguishable from human disposition and provider/publication proof.
+Qualify the merged current-UTC and explicit-date continuity resolver. Keep actual qualification and source changes distinguishable from human disposition and provider/publication proof.
 
 ## State snapshot
 
-Observed main `8068090a88546c5d4e5b16a9a664685c6c875aac` includes merged hosting #108. This branch `codex/hygiene-76-evidence-parity` is a prepared candidate; no new PR or merge identity is invented. The six earlier audit/continuity/presentation/ADR/change-history/documentation source merges remain intact.
+Observed main `2eb965989603d4da922f34a27d66c113c1f5358f` includes merged hosting #108 and duplicate-record checkpoint #109. This branch `codex/hygiene-80-qualification` is a prepared candidate; no new PR or merge identity is invented. The six earlier audit/continuity/presentation/ADR/change-history/documentation source merges remain intact.
 
 ## Completed and material changes
 
-Valid presentation records are unique by their four string fields, independently of object member order. Distinct freshness/assertion/location/kind records remain visible; malformed records still fail their own shape rules.
+The merged #91 implementation returns assessment_date and assessment_mode, defaults to datetime.now(timezone.utc), and never substitutes the profile's historical updated date.
 
-The documentation adapter selects corrected presentation helper eb38eb790bb0cad38c8d651d11d3dc4cc7ab7bb4 and its actual digest; the profile mirror, helper constant and closed output digest change together. Continuity retains ae4e4c1399aeed3b82c97959c82741892c230fbf unchanged.
+Frozen synthetic exception cases exercise before, exactly at and after exclusive expiry through API and actual CLI; repeated explicit runs are byte-identical. Invalid dates/approval records fail, an unavailable clock fails closed, and an explicit valid date still works.
 
-The two known catalog test assertions now reflect the existing 29 canonical entries and source-backed unknown-plane semantics. This is not a new inventory or a claim that all 29 are public; the public projection retains 28 rows.
-
-The current Web alpha.5 profile satisfies its selected registered-format schema. The historical 17 additional-property diagnostics remain dated audit evidence and are not carried as a current defect.
+The additional regression asserts the UTC argument passed to the clock, preventing accidental substitution of host-local time. No approved exception or profile lifecycle is changed.
 
 ## Validation and review evidence
 
-All 9 recorded local command invocations passed with 44 focused tests and zero skips/failures/errors. See [docs/evidence/2026-11-13-hygiene-76.md](docs/evidence/2026-11-13-hygiene-76.md) for exact scope and selected runtimes. Independent exact-head review is requested separately; it is not self-certified here.
+All 6 recorded local command invocations passed with 22 focused tests and zero skips/failures/errors. See [docs/evidence/2026-11-13-hygiene-80.md](docs/evidence/2026-11-13-hygiene-80.md) for exact scope and selected runtimes. Independent exact-head review is requested separately; it is not self-certified here.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Tracker #76 remains open: hosted changed-head CI/ruleset proof, exact EgoLint native Markdown admission and the separate ADR-0001 human/source/publication work are not supplied here. ADR-0001 #47 and Web lifecycle #95 human gates remain unchanged. Hosted/native/consumer acceptance is not inferred from local reference checks.
+This qualifies the current reference resolver locally; it does not authenticate a real exception, ratify policy, activate consumers or prove hosted CI. The separate full gate on merged #109 failed on missing hosting/context mappings and a stale context test index; Health owns that repair. No full-gate pass is claimed.  ADR-0001 #47 and Web lifecycle #95 human gates remain unchanged. Hosted/native/consumer acceptance is not inferred from local reference checks.
 
 ## Next dependency-ready work
 
