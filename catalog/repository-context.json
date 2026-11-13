@@ -24,6 +24,12 @@
     "Treat this context as a generated projection; change ecosystem ownership in Hygiene instead."
   ],
   "dependency_sources": {
+    "Hygiene organization surface declaration": [
+      "egohygiene/hygiene"
+    ],
+    "Relay sealed-export intake": [
+      "egohygiene/relay"
+    ],
     "aether continuity artifacts": [
       "egohygiene/aether"
     ],
@@ -98,6 +104,9 @@
     ],
     "store route and deployment contract": [
       "egohygiene/store"
+    ],
+    "website-owned organization Intelligence static export": [
+      "egohygiene/egohygiene.io"
     ]
   },
   "canonical_links": {

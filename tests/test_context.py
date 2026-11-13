@@ -32,6 +32,30 @@ class RepositoryContextContractTests(unittest.TestCase):
     def test_policy_covers_every_catalog_input(self) -> None:
         self.assertEqual([], context.validate_policy(self.catalog, self.policy))
 
+    def test_organization_publisher_inputs_resolve_to_their_canonical_owners(self) -> None:
+        projection = context.build_context(self.catalog, self.policy, ".github", SOURCE_REVISION)
+        self.assertEqual(
+            ["egohygiene/egohygiene.io", "egohygiene/hygiene", "egohygiene/relay"],
+            projection["neighbors"]["upstream"],
+        )
+        self.assertEqual([], projection["dependencies"]["external_inputs"])
+        for name, owner in {
+            "Hygiene organization surface declaration": "egohygiene/hygiene",
+            "Relay sealed-export intake": "egohygiene/relay",
+            "website-owned organization Intelligence static export": "egohygiene/egohygiene.io",
+        }.items():
+            self.assertEqual([owner], self.policy["dependency_sources"][name])
+
+    def test_missing_organization_publisher_mapping_still_fails_closed(self) -> None:
+        candidate = copy.deepcopy(self.policy)
+        del candidate["dependency_sources"]["Relay sealed-export intake"]
+        self.assertIn(
+            "dependency_sources is missing: Relay sealed-export intake",
+            context.validate_policy(self.catalog, candidate),
+        )
+        with self.assertRaisesRegex(ValueError, "dependency_sources is missing"):
+            context.build_context(self.catalog, candidate, ".github", SOURCE_REVISION)
+
     def test_empathy_projection_has_owned_boundaries_and_neighbors(self) -> None:
         projection = context.build_context(
             self.catalog, self.policy, "empathy", SOURCE_REVISION
@@ -209,7 +233,8 @@ class RepositoryContextContractTests(unittest.TestCase):
         return candidate
 
     def test_direct_context_generation_rejects_unsafe_catalog_identity(self) -> None:
-        with self.assertRaisesRegex(ValueError, r"repositories\[27\]\.name"):
+        appended_index = len(self.catalog["repositories"])
+        with self.assertRaisesRegex(ValueError, rf"repositories\[{appended_index}\]\.name"):
             context.build_context(
                 self._escaped_catalog(), self.policy, "egohygiene/../escaped", SOURCE_REVISION
             )
