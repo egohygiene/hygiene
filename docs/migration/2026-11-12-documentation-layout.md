@@ -10,7 +10,7 @@ remain proposed/observe. Existing canonical paths and all current pins remain.
 
 | Source | Exact observation | Compatibility obligation |
 | --- | --- | --- |
-| Hygiene presentation | `ae4e4c1399aeed3b82c97959c82741892c230fbf`, profile alpha.1 SHA-256 `94132769e6cb9d4bc68abd6314bbe797ce6ab9abaad3bb424775d1157367d573` | Reuse slots, override order, evidence labels, Identity composition and local prose preservation. It remains proposed. |
+| Hygiene presentation | `eb38eb790bb0cad38c8d651d11d3dc4cc7ab7bb4`, profile alpha.1 SHA-256 `94132769e6cb9d4bc68abd6314bbe797ce6ab9abaad3bb424775d1157367d573` | Reuse slots, override order, evidence labels, Identity composition and local prose preservation. It remains proposed. |
 | Hygiene continuity | Same revision, policy alpha.1 SHA-256 `2f694682df641f9c9741d79c7d23bca2ae5bd0d1e3aa6ca00cb31db17e0e2e2c` | Reuse pure applicability resolver and draft Aether pin `b7597301c4d22a9bcd580967b5753138bb368111`; observe does not become enforce. |
 | Empathy foundation | `058d92a0f8c970f98a58d446408716936e593c99`, `foundation/catalog.json`, catalog `2.0.0` / schema `1.1.0` | Root `ARCHITECTURE.md` remains required/repository-owned; `AGENTS.md` is selected through `agent-context`; no CONTINUITY or CLAUDE artifact is currently in that catalog. The issue's historical `1.1.0` catalog observation is not current. |
 | Holon presentation blueprint | `c91565ce1d58b0882b77d3d01ab46f15b457e573`, blueprint `1.0.0` | Pins Hygiene `cb2ed63425d29abada2d2bbb43a3b3e59d11aeb8` with historical `44e088…` profile bytes; Identity `3c2fd3141371b355628e81f66f63159f19d63338`; EgoLint `4efe92a2609b3384fcf3b5cda343a4f64d108824`. No implicit repin or blueprint upgrade. |
