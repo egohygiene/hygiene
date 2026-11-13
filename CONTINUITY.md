@@ -7,21 +7,22 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-13T03:16:32Z'
+  updated_at: '2026-11-13T03:20:47Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Qualify the merged current-UTC and explicit-date continuity resolver
+  purpose: Qualify the merged current-witness presentation semantics
   includes:
-  - 'The merged #91 implementation returns assessment_date and assessment_mode, defaults to datetime.now(timezone.utc),
-    and never substitutes the profile''s historical updated date.'
-  - Frozen synthetic exception cases exercise before, exactly at and after exclusive expiry through API and
-    actual CLI; repeated explicit runs are byte-identical. Invalid dates/approval records fail, an unavailable
-    clock fails closed, and an explicit valid date still works.
-  - The additional regression asserts the UTC argument passed to the clock, preventing accidental substitution
-    of host-local time. No approved exception or profile lifecycle is changed.
+  - 'The merged #89 implementation requires at least one valid current authoritative/derived record for a passing
+    slot. Distinct stale/unknown support can coexist; malformed support remains an error, and current evidence
+    cannot upgrade an explicit negative outcome.'
+  - The new 8-case support matrix compares the actual schema, helper and subprocess CLI across current-witness
+    presence, malformed support and record order. Existing permutations cover independent authoritative and
+    derived witnesses and aggregate diagnostics.
+  - 'Duplicate-record schema/helper parity is repaired separately by #76 and is required before claiming the
+    combined presentation acceptance. This slice does not repeat or relax that repair.'
   excludes:
   - Human policy/ADR disposition, exception approval, source-hold waiver, consumer rollout and publication
   - Hosted CI/ruleset proof and broad provider/production/native qualification
@@ -38,45 +39,45 @@ scope:
   - docs/decisions/RATIFICATION.md
   - docs/decisions/README.md
   - docs/ecosystem/ARCHITECTURE.md
-  - docs/evidence/2026-11-13-hygiene-80.md
-  - https://github.com/egohygiene/hygiene/issues/80
+  - docs/evidence/2026-11-13-hygiene-81.md
+  - https://github.com/egohygiene/hygiene/issues/81
   - https://github.com/egohygiene/hygiene/issues/76
   - https://github.com/egohygiene/hygiene/issues/47
 work:
-  objective: Qualify the merged current-UTC and explicit-date continuity resolver
+  objective: Qualify the merged current-witness presentation semantics
   success_conditions:
   - Resolve the selected bounded current-source gap or qualify the already merged repair with actual checks
   - Preserve canonical ownership, historical audits, source clocks, accepted policy and human dispositions
   - Retain every external/hosted/native/human gate explicitly in its owning issue
   active_issue:
     provider: github
-    id: egohygiene/hygiene#80
-    url: https://github.com/egohygiene/hygiene/issues/80
+    id: egohygiene/hygiene#81
+    url: https://github.com/egohygiene/hygiene/issues/81
   next:
     kind: action
-    id: review-hygiene-80-checkpoint
+    id: review-hygiene-81-checkpoint
     description: Obtain exact-head peer review, then let the coordinating maintainer integrate this bounded
       slice and record actual merged/remaining issue acceptance. Continue the other selected Hygiene slices
       without treating source landing as hosted or human approval.
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/80
+    - https://github.com/egohygiene/hygiene/issues/81
     - https://github.com/egohygiene/hygiene/issues/76
     depends_on: []
 state:
   base:
-    revision: 2eb965989603d4da922f34a27d66c113c1f5358f
+    revision: 376177ce9142ac9559147dc72f38a98101162a2e
     ref: refs/heads/main
-    verified_at: '2026-11-13T03:16:32Z'
+    verified_at: '2026-11-13T03:20:47Z'
   candidate:
-    branch: codex/hygiene-80-qualification
+    branch: codex/hygiene-81-qualification
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-13T03:16:32Z'
-    default_branch_revision: 2eb965989603d4da922f34a27d66c113c1f5358f
+    observed_at: '2026-11-13T03:20:47Z'
+    default_branch_revision: 376177ce9142ac9559147dc72f38a98101162a2e
     issue_state: open
     pull_request_state: not-applicable
     notes: 'Remote main and issue state were freshly inspected for this batch. Hosting #108 and duplicate-record
@@ -86,23 +87,24 @@ state:
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-13T03:16:32Z'
+  reviewed_at: '2026-11-13T03:20:47Z'
   reviewed_by: Codex
   evidence:
-  - command: 6 issue-scoped suite/CLI/selected-runtime command invocations
+  - command: 4 issue-scoped suite/CLI/selected-runtime command invocations
     outcome: passed
-    observed_at: '2026-11-13T03:16:32Z'
-    notes: 22 focused tests passed without skips; actual command details and coverage are retained in docs/evidence/2026-11-13-hygiene-80.md.
-      Other dated receipts remain historical.
+    observed_at: '2026-11-13T03:15:52.003775Z'
+    notes: 'Executed source 6e2e19aa375fc8bdd954c474d9dde280b77627fc: 24 focused tests passed without skips;
+      actual command details and coverage are retained in docs/evidence/2026-11-13-hygiene-81.md. Other dated
+      receipts remain historical.'
   - command: Hosted CI/rulesets, exact EgoLint native source admission, real approval/consumer/publication
       qualification
     outcome: not-run
-    observed_at: '2026-11-13T03:16:32Z'
+    observed_at: '2026-11-13T03:20:47Z'
     notes: Not implied by local reference checks. No provider workflow, publication, policy ratification or
       human disposition is performed.
   environment_limitations:
-  - This qualifies the current reference resolver locally; it does not authenticate a real exception, ratify
-    policy, activate consumers or prove hosted CI.
+  - 'No live facts, URL reachability, production conformance or policy promotion are inferred. Coordinate final
+    combined acceptance with #76.'
   - 'The broader gate at merged #109 source failed (295 tests, 14 failures/7 errors; four of 25 checks failed)
     because hosting inputs lack three context dependency mappings and one context test expects an old index.
     Health owns the bounded follow-up; no full-gate pass is claimed.'
@@ -136,27 +138,27 @@ Read AGENTS, ROADMAP, accepted policy/ratification, the architecture authority m
 
 ## Current objective and success conditions
 
-Qualify the merged current-UTC and explicit-date continuity resolver. Keep actual qualification and source changes distinguishable from human disposition and provider/publication proof.
+Qualify the merged current-witness presentation semantics. Keep actual qualification and source changes distinguishable from human disposition and provider/publication proof.
 
 ## State snapshot
 
-Observed main `2eb965989603d4da922f34a27d66c113c1f5358f` includes merged hosting #108 and duplicate-record checkpoint #109. This branch `codex/hygiene-80-qualification` is a prepared candidate; no new PR or merge identity is invented. The six earlier audit/continuity/presentation/ADR/change-history/documentation source merges remain intact.
+Observed main `376177ce9142ac9559147dc72f38a98101162a2e` includes merged hosting #108 and duplicate-record checkpoint #109. This branch `codex/hygiene-81-qualification` is a prepared candidate; no new PR or merge identity is invented. The six earlier audit/continuity/presentation/ADR/change-history/documentation source merges remain intact.
 
 ## Completed and material changes
 
-The merged #91 implementation returns assessment_date and assessment_mode, defaults to datetime.now(timezone.utc), and never substitutes the profile's historical updated date.
+The merged #89 implementation requires at least one valid current authoritative/derived record for a passing slot. Distinct stale/unknown support can coexist; malformed support remains an error, and current evidence cannot upgrade an explicit negative outcome.
 
-Frozen synthetic exception cases exercise before, exactly at and after exclusive expiry through API and actual CLI; repeated explicit runs are byte-identical. Invalid dates/approval records fail, an unavailable clock fails closed, and an explicit valid date still works.
+The new 8-case support matrix compares the actual schema, helper and subprocess CLI across current-witness presence, malformed support and record order. Existing permutations cover independent authoritative and derived witnesses and aggregate diagnostics.
 
-The additional regression asserts the UTC argument passed to the clock, preventing accidental substitution of host-local time. No approved exception or profile lifecycle is changed.
+Duplicate-record schema/helper parity is repaired separately by #76 and is required before claiming the combined presentation acceptance. This slice does not repeat or relax that repair.
 
 ## Validation and review evidence
 
-All 6 recorded local command invocations passed with 22 focused tests and zero skips/failures/errors. See [docs/evidence/2026-11-13-hygiene-80.md](docs/evidence/2026-11-13-hygiene-80.md) for exact scope and selected runtimes. Independent exact-head review is requested separately; it is not self-certified here.
+All 4 recorded local command invocations passed with 24 focused tests and zero skips/failures/errors. See [docs/evidence/2026-11-13-hygiene-81.md](docs/evidence/2026-11-13-hygiene-81.md) for exact scope and selected runtimes. Independent exact-head review is requested separately; it is not self-certified here.
 
 ## Blockers, risks, unknowns, and deferred work
 
-This qualifies the current reference resolver locally; it does not authenticate a real exception, ratify policy, activate consumers or prove hosted CI. The separate full gate on merged #109 failed on missing hosting/context mappings and a stale context test index; Health owns that repair. No full-gate pass is claimed.  ADR-0001 #47 and Web lifecycle #95 human gates remain unchanged. Hosted/native/consumer acceptance is not inferred from local reference checks.
+No live facts, URL reachability, production conformance or policy promotion are inferred. Coordinate final combined acceptance with #76. The separate full gate on merged #109 failed on missing hosting/context mappings and a stale context test index; Health owns that repair. No full-gate pass is claimed.  ADR-0001 #47 and Web lifecycle #95 human gates remain unchanged. Hosted/native/consumer acceptance is not inferred from local reference checks.
 
 ## Next dependency-ready work
 
