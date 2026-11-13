@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-13T03:16:33Z'
+  updated_at: '2026-11-13T03:27:31Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -70,9 +70,9 @@ work:
     depends_on: []
 state:
   base:
-    revision: 2eb965989603d4da922f34a27d66c113c1f5358f
+    revision: 1490b6a42456716cce1b1f503a9797c36cb302d1
     ref: refs/heads/main
-    verified_at: '2026-11-13T03:16:33Z'
+    verified_at: '2026-11-13T03:27:31Z'
   candidate:
     branch: codex/hygiene-84-qualification
     revision: null
@@ -80,8 +80,8 @@ state:
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-13T03:16:33Z'
-    default_branch_revision: 2eb965989603d4da922f34a27d66c113c1f5358f
+    observed_at: '2026-11-13T03:27:31Z'
+    default_branch_revision: 1490b6a42456716cce1b1f503a9797c36cb302d1
     issue_state: open
     pull_request_state: not-applicable
     notes: 'Remote main and issue state were freshly inspected for this batch. Hosting #108 and duplicate-record
@@ -91,18 +91,19 @@ state:
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-13T03:16:33Z'
+  reviewed_at: '2026-11-13T03:27:31Z'
   reviewed_by: Codex
   evidence:
   - command: 7 issue-scoped suite/CLI/selected-runtime command invocations
     outcome: passed
-    observed_at: '2026-11-13T03:16:33Z'
-    notes: 16 focused tests passed without skips; actual command details and coverage are retained in docs/evidence/2026-11-13-hygiene-84.md.
-      Other dated receipts remain historical.
+    observed_at: '2026-11-13T03:15:51.624694Z'
+    notes: 'Executed source 62d405f59cbb816ee86124312230c1fdfebe1330: 16 focused tests passed without skips;
+      actual command details and coverage are retained in docs/evidence/2026-11-13-hygiene-84.md. Other dated
+      receipts remain historical.'
   - command: Hosted CI/rulesets, exact EgoLint native source admission, real approval/consumer/publication
       qualification
     outcome: not-run
-    observed_at: '2026-11-13T03:16:33Z'
+    observed_at: '2026-11-13T03:27:31Z'
     notes: Not implied by local reference checks. No provider workflow, publication, policy ratification or
       human disposition is performed.
   environment_limitations:
@@ -146,7 +147,7 @@ Qualify exact release-owner composition and repair the real Task handoff parse. 
 
 ## State snapshot
 
-Observed main `2eb965989603d4da922f34a27d66c113c1f5358f` includes merged hosting #108 and duplicate-record checkpoint #109. This branch `codex/hygiene-84-qualification` is a prepared candidate; no new PR or merge identity is invented. The six earlier audit/continuity/presentation/ADR/change-history/documentation source merges remain intact.
+Observed main `1490b6a42456716cce1b1f503a9797c36cb302d1` includes merged hosting #108 and duplicate-record checkpoint #109. This branch `codex/hygiene-84-qualification` is a prepared candidate; no new PR or merge identity is invented. The six earlier audit/continuity/presentation/ADR/change-history/documentation source merges remain intact.
 
 ## Completed and material changes
 
