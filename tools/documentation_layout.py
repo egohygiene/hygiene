@@ -25,7 +25,7 @@ INPUT_SCHEMA = "egohygiene.repository-documentation-inventory/v1"
 OUTPUT_SCHEMA = "egohygiene.repository-documentation-assessment/v1"
 VERSION = "1.0.0-alpha.1"
 MAX_JSON_BYTES = 1024 * 1024
-PROFILE_SHA256 = "c5bf0246f039b1780ba03900f894dadf099fd190ea22131d7d1728230efab0d2"
+PROFILE_SHA256 = "82411072f544abad566ec7b1c07be187db22237fedd43eb0d0dfc43e46155bfa"
 
 
 def require(value):

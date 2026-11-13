@@ -40,7 +40,7 @@
       "const": "egohygiene/hygiene"
     },
     "updated": {
-      "const": "2026-11-12"
+      "const": "2026-11-13"
     },
     "enforcement": {
       "const": "observe"
@@ -51,11 +51,11 @@
           "schema": "egohygiene.repository-presentation-profile/v1",
           "version": "1.0.0-alpha.1",
           "status": "proposed",
-          "revision": "ae4e4c1399aeed3b82c97959c82741892c230fbf",
+          "revision": "eb38eb790bb0cad38c8d651d11d3dc4cc7ab7bb4",
           "path": "catalog/repository-presentation-profile.json",
           "sha256": "94132769e6cb9d4bc68abd6314bbe797ce6ab9abaad3bb424775d1157367d573",
           "helper": "tools/presentation.py",
-          "helper_sha256": "08ef88b8f9467890a6610a03798888e74d36a1deccb10df7fa2d3352573f03e9"
+          "helper_sha256": "d80ecd89f0760165c86fa5079b0f17998ffe67ed0a2380161f07eaaf3816a395"
         },
         "continuity": {
           "schema": "egohygiene.repository-continuity-policy/v1",
