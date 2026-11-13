@@ -29,7 +29,10 @@ This document is designed to be referenced by every Ego Hygiene repository agent
    mechanics; Renderflow owns exact-pinned magazine and presentation artifacts;
    and Identity owns the `/identity/` product experience and versioned identity
    assets. Holon scaffolds, Observatory observes privacy-safe state, and Pace
-   proposes reviewed adoption without taking those authorities.
+   proposes reviewed adoption without taking those authorities. The website
+   owns organization Intelligence UI/export composition; the selected `.github`
+   publisher owns final hosting/recovery under the explicit organization export
+   declaration dialect, without taking ownership of reports or models.
 5. **Respect developer-platform boundaries.** Realm provisions environments; Mantle configures the shell; Relay runs automation; Egolint defines lint behavior; Empathy proves integration.
 6. **Respect infrastructure boundaries.** Filament publishes reusable IaC
    contracts; consuming repositories own deployment intent, credentials,

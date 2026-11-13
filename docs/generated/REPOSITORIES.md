@@ -10,7 +10,7 @@
 
 | Repository | Lifecycle | Maturity | Owns | Does not own | Outputs |
 | --- | --- | --- | --- | --- | --- |
-| [`.github`](https://github.com/egohygiene/.github) | incubating | light-foundation | organization profile, funding, public defaults, default community health | reusable CI workflows, lint policy | organization-facing defaults |
+| [`.github`](https://github.com/egohygiene/.github) | incubating | light-foundation | organization profile, funding, public defaults, default community health, organization Intelligence publication from the website-owned sealed export | reusable CI workflows, lint policy | organization-facing defaults, organization Intelligence Pages publisher |
 | [`aether`](https://github.com/egohygiene/aether) | active | active | first-party AI specifications, skills, agents, catalogs, validators, release projections | general repository policy, environment provisioning, CI orchestration | versioned AI artifact distributions, provenance catalogs |
 | [`holon`](https://github.com/egohygiene/holon) | seed | seed | repository and organization bootstrap, versioned blueprints | ongoing fleet reconciliation | generated repository trees, bootstrap provenance |
 | [`hygiene`](https://github.com/egohygiene/hygiene) | seed | seed | ecosystem architecture, repository registry, platform policy, cross-repository ADRs, maturity model, migration ledger, repository continuity applicability and migration | tool implementations, reusable workflows, product domain logic, portable repository continuity schema, template, and skill semantics | architecture releases, repository context projections, policy schemas, repository continuity policy profiles |
@@ -63,7 +63,7 @@
 | [`egohygiene`](https://github.com/egohygiene/egohygiene) | active | active-private | Flutter cognition and reflection product, product domain model | ecosystem control plane, generic repository foundation | application releases, product-domain contracts |
 | [`identity`](https://github.com/egohygiene/identity) | seed | seed | brand systems, design tokens, voice, public metadata, generated creative assets | product UI implementation, raw asset archives | token packages, brand assets, metadata and voice packages |
 | [`store`](https://github.com/egohygiene/store) | active | active | provider-neutral storefront, commerce ports and adapters, store deployment | main website content, fulfillment, manufacturing, hosted checkout | storefront application, route and deployment contract |
-| [`egohygiene.io`](https://github.com/egohygiene/egohygiene.io) | unknown | unassessed-after-rename | public website, documentation application, playground, shared web packages | store commerce logic, generic publishing engine | public website, documentation site, shared web packages |
+| [`egohygiene.io`](https://github.com/egohygiene/egohygiene.io) | unknown | unassessed-after-rename | public website, documentation application, playground, shared web packages, organization Intelligence UI and sealed static export | store commerce logic, generic publishing engine | public website, documentation site, shared web packages, organization Intelligence-only sealed static export |
 
 ## Deferred repository boundaries
 

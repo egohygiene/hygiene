@@ -236,6 +236,14 @@
       "source": "schemas/repository-documentation-assessment.v1.schema.json",
       "status": "proposed",
       "visibility": "public"
+    },
+    {
+      "id": "egohygiene.public-site-surface-declaration/v2",
+      "title": "Organization sealed-export public-site surface declaration",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/public-site-surface-declaration.v2.schema.json",
+      "status": "proposed",
+      "visibility": "public"
     }
   ]
 }

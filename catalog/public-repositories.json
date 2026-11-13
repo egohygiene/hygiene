@@ -24,13 +24,15 @@
         "lifecycle": "incubating",
         "maturity": "light-foundation",
         "outputs": [
-          "organization-facing defaults"
+          "organization-facing defaults",
+          "organization Intelligence Pages publisher"
         ],
         "owns": [
           "organization profile",
           "funding",
           "public defaults",
-          "default community health"
+          "default community health",
+          "organization Intelligence publication from the website-owned sealed export"
         ],
         "plane": "architecture-control"
       },
@@ -324,13 +326,15 @@
         "outputs": [
           "public website",
           "documentation site",
-          "shared web packages"
+          "shared web packages",
+          "organization Intelligence-only sealed static export"
         ],
         "owns": [
           "public website",
           "documentation application",
           "playground",
-          "shared web packages"
+          "shared web packages",
+          "organization Intelligence UI and sealed static export"
         ],
         "plane": "identity-product-experience"
       },
