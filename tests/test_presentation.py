@@ -9,6 +9,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from jsonschema import Draft202012Validator, FormatChecker
+
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
@@ -282,6 +284,28 @@ class RepositoryPresentationContractTests(unittest.TestCase):
         errors = presentation.validate_evidence(candidate, self.profile)
         self.assertTrue(any("fields must exactly match" in error for error in errors))
         self.assertFalse(any("passing requires" in error for error in errors))
+
+    def test_schema_helper_and_cli_agree_on_current_witness_support(self) -> None:
+        schema = json.loads((ROOT / "schemas/repository-presentation-evidence.v1.schema.json").read_text())
+        validator = Draft202012Validator(schema, format_checker=FormatChecker())
+        for current in (False, True):
+            for malformed in (False, True):
+                for reverse in (False, True):
+                    candidate = copy.deepcopy(self.rich)
+                    purpose = self._slot(candidate, "purpose")
+                    template = purpose["evidence"][0]
+                    records = [dict(template, freshness="stale"),
+                               dict(template, assertion="unknown", freshness="unknown")]
+                    if current:
+                        records.append(dict(template, assertion="derived"))
+                    if malformed:
+                        records.append(dict(template, location=""))
+                    purpose["evidence"] = list(reversed(records)) if reverse else records
+                    expected = current and not malformed
+                    with self.subTest(current=current, malformed=malformed, reverse=reverse):
+                        self.assertEqual(expected, validator.is_valid(candidate))
+                        self.assertEqual(expected, not presentation.validate_evidence(candidate, self.profile))
+                        self.assertEqual(0 if expected else 1, self._run_evidence_cli(candidate).returncode)
 
 
 if __name__ == "__main__":
