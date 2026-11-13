@@ -4,14 +4,22 @@ Run the same entry point locally and in the Pages workflow's read-only
 `checks` job:
 
 ```sh
-python3 -I tools/check_contracts.py
-# Or, with the existing Task runner:
-task check
+# Prepare the existing exact release owner and its pinned runtime first:
+git clone https://github.com/egohygiene/aether.git .cache/release/aether
+git -C .cache/release/aether checkout --detach 8a2a3d08f3aa9da3847bd5277843506ab855192e
+python3 tools/releases.py verify-owner --aether-source .cache/release/aether
+python3 -m venv .cache/contract-runtime
+.cache/contract-runtime/bin/python -m pip install --requirement .cache/release/aether/requirements-dev.lock
+.cache/contract-runtime/bin/python -I tools/check_contracts.py
+# Or, with the existing Task runner and that selected runtime:
+PATH=".cache/contract-runtime/bin:$PATH" task check
 ```
 
-Use Python 3.11 or newer and Git. The gate has no third-party Python dependency,
-performs no installation or network acquisition, and invokes the existing
-reference CLIs. Those scripts use `-E` rather than isolated-script mode because
+Use Python 3.11 or newer and Git. The gate itself performs no installation or
+network acquisition. Composed release-declaration validation requires the
+existing exact Aether source and its pinned jsonschema/PyYAML runtime; the
+workflow prepares both explicitly before invoking the unchanged reference
+CLIs. Those scripts use `-E` rather than isolated-script mode because
 some import neighboring tools. The gate itself and unittest discovery use `-I`.
 
 The job runs for every pull request and default-branch push, with no path or
@@ -55,8 +63,15 @@ runner may prevent that upload; an artifact's existence alone supplies no pass.
 The regression controls use disposable source copies and the actual gate to
 exercise new test discovery, explicit skips, failing/empty suites, invalid
 catalog/profile input, stale generated output and bounded retained diagnostics.
-They exclude their own test module from each nested copy to prevent recursion.
-No negative control changes tracked canonical input.
+Each disposable repository uses a minimal passing unittest family and its own
+injected passing/skipped/failing/empty cases. This exercises real discovery and
+all real reference commands without multiplying the complete domain suite inside
+every orchestration control. The outer gate still discovers every production
+test module exactly once. Nested copies retain only the selected release owner's
+locked source files, never arbitrary cache contents. A separate timeout control
+proves termination remains a failed check with retained diagnostics; the actual
+60-second command deadline is unchanged. No negative control changes tracked
+canonical input.
 
 ## Separate acceptance gates
 
