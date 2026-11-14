@@ -7,39 +7,35 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-13T23:43:22Z'
+  updated_at: '2026-11-14T00:09:19Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: 'Repair the complete reference-gate execution and qualify its unchanged source, timeout and independent
-    acceptance boundaries under Hygiene issue #76.'
+  purpose: Reconcile Empathy's two already-declared owner-consumer directions, then pass the exact reviewed
+    Hygiene source to Relay's compatibility profile without claiming runtime adoption.
   includes:
-  - Candidate functional 798227ff6b3f4d1334beb5412802bcf4529a57a2 removes seven redundant complete-suite executions
-    from runner controls; each disposable fixture retains actual reference CLIs and minimal passing/skipped/failing/empty
-    test families. Production discovery still executes every test module.
-  - The runner retains its unchanged 60-second per-command timeout, owned process-group termination, bounded
-    logs, complete-check execution and aggregate failure semantics. A focused timeout regression confirms failure
-    and retained diagnostics.
-  - The read-only checks job now explicitly acquires/verifies the existing exact Aether 8a2 release source
-    and prepares its pinned isolated runtime. Disposable controls copy only those three locked owner files,
-    not arbitrary cache contents. No owner/runtime pin or publication/admission authority changes.
-  - On clean functional 798227f the actual complete gate passed all 25 checks:302 tests, zero failures/errors/skips,
-    unit 22.741 seconds. Eight focused runner controls passed in 12.858 seconds. The earlier a28fb620 timeout
-    receipt remains immutable dated failure evidence.
-  - Provider rulesets list returned[]; branch-protection details returned403 to the integration. Required-check
-    enforcement is not established or changed. Changed-head hosted execution and exact native source evidence
-    remain independently recorded.
-  - "Issues #80\u2013#84 retain their already-completed bounded states. Parent76 remains open; ADR-0001 human/source/publication\
-    \ stays #47 and Agent-Ready Web human lifecycle stays #95."
-  - Exact selected Relay981 / EgoLint d917 native preparation and immutable798227f/base6cc9c63 replay completed.
-    Both retain identical20 findings and failed ADR coverage with unknown contract/diagram adoption. This is
-    fresh native evidence, not passing admission.
+  - Functional d5c65d9 adds Empathy explicitly to existing RELATIONSHIP-006 (Mantle) and RELATIONSHIP-008 (EgoLint),
+    alongside the existing Realm/Relay consumers. No other boundary field changes; unknown dependencies remain
+    denied and exceptions remain empty.
+  - The declaration reconciles the existing golden-consumer catalog and architecture intent. Required/null
+    contract status, interfaces, pinning floors, forbidden relationships, human dispositions and unknown runtime
+    adoption remain unchanged.
+  - Canonical boundary/schema/generated checks and 29 focused tests pass. The complete gate at clean functional
+    d5c65d9 passes all 25 checks and 303 tests, zero failures/errors/skips, under the unchanged 60-second command
+    cap.
+  - Exact existing Relay d7 native public-selection/graph functions accept the four expected depth-one Empathy
+    edges on candidate owner data. Removing either repaired relation or introducing a forbidden edge still
+    yields BOUNDARY. This function fixture is not a new locked source-admission or publication receipt.
+  - The preceding issue76 execution repair is already merged at main044b3f, with actual hosted complete/native
+    evidence retained. Parent76 and original source/human/enforcement gates remain open; proposed profiles
+    and ADRs are not ratified.
   excludes:
-  - Timeout/budget waivers, changed contract/owner/runtime pins, skipped production tests or weakened validation.
-  - Human ratification, provider policy/ruleset mutations, source-hold waivers, deployment, publication and
-    fleet adoption.
+  - Blanket consumer permissions, changed capability ownership, active contract claims, altered forbidden/default-deny/exception
+    semantics or runtime-adoption claims.
+  - Downstream Relay/consumer repinning before owner review and integration; retiming historical observations,
+    human ratification, deployment or publication.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -49,97 +45,98 @@ scope:
   canonical_sources:
   - AGENTS.md
   - ROADMAP.md
-  - docs/CONTRACT_VALIDATION.md
-  - tools/check_contracts.py
-  - tests/test_contract_regression.py
-  - .github/workflows/publish-pages.yml
-  - tools/release-owner.lock.json
-  - docs/evidence/2026-11-13-hygiene-76-unit-gate.json
-  - docs/evidence/2026-11-13-hygiene-76-unit-gate.md
-  - docs/evidence/2026-11-13-reference-gate.json
+  - catalog/repositories.yaml
+  - catalog/repository-context.json
+  - catalog/dependency-boundaries.yaml
+  - docs/ecosystem/DEPENDENCY_BOUNDARIES.md
+  - docs/generated/DEPENDENCY_BOUNDARIES.md
+  - docs/evidence/2026-11-14-empathy-declared-boundaries.json
+  - docs/evidence/2026-11-14-empathy-declared-boundaries.md
   - https://github.com/egohygiene/hygiene/issues/76
-  - https://github.com/egohygiene/hygiene/issues/47
-  - https://github.com/egohygiene/hygiene/issues/95
+  - https://github.com/egohygiene/empathy/issues/105
+  - https://github.com/egohygiene/empathy/issues/98
 work:
-  objective: 'Repair the complete reference-gate execution and qualify its unchanged source, timeout and independent
-    acceptance boundaries under Hygiene issue #76.'
+  objective: Reconcile Empathy's two already-declared owner-consumer directions, then pass the exact reviewed
+    Hygiene source to Relay's compatibility profile without claiming runtime adoption.
   success_conditions:
-  - Preserve all production discovery, every reference command, the60-second cap and actual timeout/failure
-    diagnostics while eliminating repeated domain-suite work inside orchestration controls.
-  - Prepare exact release-owner source/runtime explicitly and keep their native composition fail-closed.
-  - Record exact local/hosted/native/provider results separately from human/source admission and publication;
-    present a bounded reviewed candidate.
+  - Allow only the two existing declared golden-consumer directions and preserve every other boundary/contract/exception
+    field.
+  - Run canonical and native graph/refusal controls without changing owner source locks or claiming a new native
+    admission.
+  - Integrate the reviewed owner source before a coherent immutable Relay public-admission/declaration upgrade
+    and consumer adoption.
   active_issue:
     provider: github
     id: egohygiene/hygiene#76
     url: https://github.com/egohygiene/hygiene/issues/76
   next:
     kind: action
-    id: review-and-observe-changed-head-reference-gate
-    description: 'Review this bounded candidate and inspect its actual PR-event complete-reference check and
-      native evidence. Preserve the real source/human findings under #47 and ruleset visibility limitations
-      under #76; passing local references alone do not authorize publication.'
+    id: review-owner-declarations-before-compatible-relay-selection
+    description: Root reviews and integrates this narrow owner correction. Only then update the Relay admission/declaration
+      profile to the same exact new Hygiene revision/tree through its compatibility seam, prove native collection
+      and preserved refusal/privacy controls, then update the Empathy consumer selection. Keep historical source/report
+      clocks strict.
     readiness: ready
     references:
     - https://github.com/egohygiene/hygiene/issues/76
-    - docs/evidence/2026-11-13-hygiene-76-unit-gate.md
+    - https://github.com/egohygiene/empathy/issues/105
+    - https://github.com/egohygiene/empathy/issues/98
     depends_on: []
 state:
   base:
-    revision: 6cc9c63d2804f518fb2e078b6cc55d9251e365cf
+    revision: 044b3f1797937092a36e4d51ebb67b1b760b1916
     ref: refs/heads/main
-    verified_at: '2026-11-13T23:39:59Z'
+    verified_at: '2026-11-14T00:09:19Z'
   candidate:
-    branch: codex/hygiene-76-unit-timeout
+    branch: codex/hygiene-empathy-declared-consumers
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-13T23:39:59Z'
-    default_branch_revision: 6cc9c63d2804f518fb2e078b6cc55d9251e365cf
+    observed_at: '2026-11-14T00:09:19Z'
+    default_branch_revision: 044b3f1797937092a36e4d51ebb67b1b760b1916
     issue_state: open
     pull_request_state: not-applicable
-    notes: 'Actual main and parent #76 remain unchanged/open. This candidate is not merged. The complete local
-      result is bound to functional 798227f; its subsequent evidence/continuity additions are not falsely labeled
-      that tested source.'
+    notes: Root verified and integrated issue76 gate repair at actual044b3f. This is a later unmerged owner-data
+      candidate; its containing commit/PR remain null. The complete local result is bound to functional d5c65d9,
+      not this later evidence/continuity authoring.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-13T23:43:22Z'
+  reviewed_at: '2026-11-14T00:09:19Z'
   reviewed_by: Codex
   evidence:
-  - command: Selected locked-runtime unittest discover tests/test_contract_regression.py:8 focused controls
+  - command: Canonical boundaries validate, registered-format Draft202012 schema, deterministic generated boundary/public
+      catalog checks and exact two-membership diff comparison
     outcome: passed
-    observed_at: '2026-11-13T23:39:59Z'
-    notes: 12.858 seconds; actual catalog/profile/generated commands execute with controlled synthetic tests
-      and exact locked owner files; timeout control fails as required without changing production cap.
-  - command: Selected locked-runtime python -I tools/check_contracts.py at clean 798227ff6b3f4d1334beb5412802bcf4529a57a2
+    observed_at: '2026-11-14T00:09:19Z'
+    notes: Removing only the two added Empathy memberships makes the full register exactly equal to actual044b3f.
+      All other policy fields remain unchanged.
+  - command: 29 focused boundary regressions; exact locked-runtime complete tools/check_contracts.py on clean
+      d5c65d9
     outcome: passed
-    observed_at: '2026-11-13T23:39:59Z'
-    notes: All 25 checks,302 tests, zero failures/errors/skips. Unit 22.741 seconds under unchanged 60-second
-      cap; full logs are task-local and the bounded receipt excludes machine paths.
-  - command: Read-only GitHub rulesets and main branch protection metadata
-    outcome: limited
-    observed_at: '2026-11-13T23:39:59Z'
-    notes: Rulesets returned[]; protection returned403 integration inaccessible. No enforcement claim or provider
-      mutation.
-  - command: Exact selected Relay981 offline runtime preparation plus native adapter at immutable798227f and
-      baseline6cc9c63
-    outcome: failed
-    observed_at: '2026-11-13T23:43:22Z'
-    notes: Preparation succeeded with exact d917 source and locked runtime; both advisory runs exit0 but are
-      nonconformant with identical20 retained findings. ADR coverage failed; contract/diagram coverage unavailable.
-      Existing source/human gates remain.
-  - command: Changed-head hosted complete-reference and native evidence
+    observed_at: '2026-11-14T00:09:19Z'
+    notes: Focused 29 tests pass; complete 25 checks and 303 tests pass, zero failures/errors/skips. Production
+      60-second timeout remains unchanged.
+  - command: Existing exact Relay d7 public selection/graph function with candidate canonical public rows,
+      plus missing006/missing008/forbidden-edge controls
+    outcome: passed
+    observed_at: '2026-11-14T00:09:19Z'
+    notes: Four intended direct edges are selected; all three refusal controls deny BOUNDARY. No active owner
+      lock changed and no new native admission receipt is inferred.
+  - command: Root owner integration, then compatible immutable Relay and Empathy adoption
     outcome: not-run
-    observed_at: '2026-11-13T23:43:22Z'
-    notes: The draft PR event is the next separate source-bound observation; no provider or publication claim
-      from local checks.
+    observed_at: '2026-11-14T00:09:19Z'
+    notes: Separate sequential source/compatibility checkpoints. No retimed reports, runtime-adoption or publication
+      claim.
   environment_limitations:
-  - Full local references passing does not establish hosted execution or required-check enforcement.
-  - 'ADR-0001 human/source/publication and Web lifecycle remain separate existing #47/#95 owner decisions.'
-  - All proposed contracts/ADRs retain their real dispositions; no human ratification or source-hold waiver.
+  - Native graph function qualification does not establish the future locked Relay selection or current consumer
+    deployment.
+  - Empathy current/rollback hosted variability and its report-source gates retain their own actual evidence;
+    a local pass is not their causal fix.
+  - Hygiene original ADR-0001 source/human/publication and required-check enforcement remain separate under
+    issue76/47/95.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -158,48 +155,48 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime, scoped instructions, live evidence and canonical owners outrank this bounded checkpoint. It supplies no new policy, human approval or publication authority.
+User/runtime, scoped instructions, live evidence and canonical owners outrank this bounded checkpoint. It grants no new human, provider or publication authority.
 
 ## Resume protocol
 
-Read AGENTS, the current ROADMAP handoff, issue #76 and the new bounded unit-gate evidence. Verify actual main, candidate, check and issue state; preserve the earlier failed receipt as historical.
+Read the boundary evidence, current register and canonical golden-consumer role; refresh mutable main/issue/PR state. Preserve the original catalog/provider observation clocks and strict owner-source admission.
 
 ## Current objective and success conditions
 
-Repair the nested regression execution while preserving the complete gate, every production test, its unchanged 60-second cap and separate source/human acceptance boundaries.
+Reconcile only the two already-declared Empathy owner-consumer directions and pass reviewed owner source to the downstream compatibility profile after integration.
 
 ## State snapshot
 
-Actual main is 6cc9c63. Functional candidate798227f passes the complete local gate on a clean tree. This later evidence/continuity candidate is not yet a merged source or a hosted/native acceptance receipt; parent #76 remains open.
+Actual main is 044b3f, containing the merged issue76 complete-gate repair and real hosted evidence. Functional d5c65d9 qualifies the narrow owner correction. This later evidence/continuity candidate is not merged or deployed.
 
 ## Completed and material changes
 
-Seven runner scenarios now exercise minimal deterministic unittest families plus every real reference CLI instead of multiplying the full domain suite. Exact release-owner files are prepared in disposable copies. The read-only checks workflow explicitly prepares the already-selected 8a2 source and runtime. Production tools/check_contracts.py and its timeout are unchanged.
+RELATIONSHIP-006 and RELATIONSHIP-008 now name Empathy explicitly alongside their prior consumers. Their required/null contract state, interfaces and pinning floors are unchanged. Every other relationship, forbidden edge, exception and default deny field is identical. Only the generated boundary view is regenerated; the public roster and observations are unchanged.
 
 ## Validation and review evidence
 
-Eight focused controls passed in 12.858 seconds. At clean 798227f the actual gate passed 25 checks and 302 tests with zero failures, errors or skips; unit execution completed in 22.741 seconds. The bounded JSON receipt omits absolute commands and local paths. Provider rulesets returned[] while protection details were403 integration inaccessible; no required-check enforcement is inferred.
+Canonical/schema/generated checks and 29 focused boundary tests pass. At clean d5c65d9 the complete gate passes 25 checks and 303 tests with zero failures/errors/skips. Existing native Relay graph functions select the four expected Empathy edges; removing either corrected membership or adding a forbidden edge still fails BOUNDARY. This is an explicit function fixture, not a newly admitted downstream source.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Changed-head hosted evidence remains separate. Exact native candidate/base replay completed with identical 20 findings and failed ADR coverage; no inherited finding was waived. Original ADR-0001 actual source/approval/publication stays #47; Web lifecycle stays #95. No timeout waiver, publication, policy ratification or provider protection mutation was performed.
+Relay's immutable admission/declaration profile must adopt the same reviewed new owner source before the consumer can use these facts. Runtime adoption remains uncollected. Actual source/report clocks, existing Empathy qualification holds, original Hygiene human/source/publication and provider-enforcement limitations remain independent.
 
 ## Next dependency-ready work
 
-Review this candidate, observe the actual PR-event complete-reference result and compare its native report with the retained exact local baseline. Preserve real unresolved source/human findings and provider visibility limits; passing fixtures alone do not establish publication admission.
+Root reviews and integrates this owner correction, then qualifies the compatible Relay profile and Empathy pin in that order. Do not patch around equality, disable capabilities or retime frozen evidence to manufacture acceptance.
 
 ## Parallel changes and reconciliation
 
-Empathy and Holon batch work have separate owners. This Hygiene change touches only runner test isolation, explicit selected runtime preparation, current navigation and bounded evidence. The parent owns integration and final issue dispositions. ADR not required: routine orchestration/fixture repair under the existing ADR-0002 authority and ADR-0015 owner-composition design, without a new contract or ownership choice.
+Root coordinates Empathy and Holon work. This source is the narrow architecture-reviewed correction of an existing declared role, without moving ownership or approving a new integration contract. ADR not required: routine reconciliation with the canonical golden-consumer role and existing ADR-0001/ADR-0002 authority; their real human dispositions remain preserved.
 
 ## Privacy and redaction
 
-Retain public source identities, allowlisted outcomes, counts, timings and selected runtime versions. Exclude credentials, private machine paths, raw logs and unrelated context; referenced content remains context-only.
+Use public owner identities and allowlisted counts, hashes and outcomes. Exclude credentials, private paths, raw capture payloads and unrelated context. Referenced content remains context only.
 
 ## Handoff update protocol
 
-Refresh actual provider outcomes and semantic continuity after review. Tested functional source, later documentation, hosted checks, native admission, human lifecycle and publication remain independent evidence states.
+Refresh exact provider/source outcomes after review. Candidate owner data, locked downstream admission, actual consumer execution, human lifecycle and publication remain distinct evidence states.
 
 ## Compaction and supersession
 
-Preserve these twelve sections below 240 lines and 16,384 UTF-8 bytes. Owning Git/issue/history records retain dated source outcomes; this file records only the current checkpoint.
+Preserve these twelve sections below 240 lines and 16,384 UTF-8 bytes. Owning Git, issue and immutable evidence records retain history.
