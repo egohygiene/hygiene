@@ -76,7 +76,7 @@ organization priorities.
 An authoritative initiative requires an explicit `manual` provenance source
 linking a durable maintainer review comment, included in the record's provenance
 and `review` reference. Authoritative completion also requires a linked check,
-release or deployment source. These structural checks do **not** authenticate
+release or deployment source within the initiative's visibility boundary. These structural checks do **not** authenticate
 the account, review contents or actual delivery. The responsible human must
 review the exact diff and evidence before authoritative admission. Agents may
 suggest edits, mark observed freshness and reconcile evidence; they must never

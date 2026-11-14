@@ -150,7 +150,9 @@ def validate(data):
             require(link["type"] in {"tracks", "informs", "evidences", "releases"} and link["source"] in sources)
         if row["state"] == "completed" and row["assertion"] == "authoritative":
             require(any(link["type"] == "evidences" and sources[link["source"]]["kind"] in
-                        {"check_provider", "release", "deployment"} for link in row["links"]))
+                        {"check_provider", "release", "deployment"} and
+                        RANK[sources[link["source"]]["visibility"]] <= RANK[row["visibility"]]
+                        for link in row["links"]))
         for key in ("depends_on", "supersedes", "superseded_by"):
             require(type(row[key]) is list and len(set(row[key])) == len(row[key])
                     and all(target in initiatives and target != row["id"] for target in row[key]))

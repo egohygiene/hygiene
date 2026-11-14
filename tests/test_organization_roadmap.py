@@ -75,6 +75,9 @@ class OrganizationRoadmapTests(unittest.TestCase):
         self.source["sources"].append(evidence)
         row["links"].append(dict(type="evidences", source=evidence["id"]))
         roadmap.validate(self.source)
+        self.source["visibility"] = "private"
+        evidence["visibility"] = "private"
+        with self.assertRaises(ValueError): roadmap.validate(self.source)
 
     def test_supersession_keeps_ids_and_requires_reciprocal_lineage(self):
         old = copy.deepcopy(self.source)
