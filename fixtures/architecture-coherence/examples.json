@@ -1,0 +1,1197 @@
+{
+  "schema": "hygiene.synthetic-coherence-cases/v1",
+  "notice": "Synthetic tests only. No source URL, person, disposition or typed test context is live human approval.",
+  "cases": [
+    {
+      "id": "missing-review",
+      "synthetic": true,
+      "governance": null,
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "missing"
+      },
+      "synthetic_trust_kinds": [],
+      "expected": {
+        "state": "not-reviewed",
+        "human_disposition": null
+      }
+    },
+    {
+      "id": "unavailable-evidence",
+      "synthetic": true,
+      "governance": null,
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [],
+      "expected": {
+        "state": "unavailable",
+        "freshness": "unknown"
+      }
+    },
+    {
+      "id": "required-review-due",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "required",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": null,
+          "authority": null
+        },
+        "progress": "not-started",
+        "review_ref": null,
+        "human_decision": null,
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [],
+      "expected": {
+        "state": "review-due",
+        "freshness": "unknown"
+      }
+    },
+    {
+      "id": "review-in-progress",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "optional",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": null,
+          "authority": null
+        },
+        "progress": "in-progress",
+        "review_ref": null,
+        "human_decision": null,
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [],
+      "expected": {
+        "state": "review-in-progress",
+        "human_disposition": null
+      }
+    },
+    {
+      "id": "human-label-is-unverified",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "optional",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": null,
+          "authority": null
+        },
+        "progress": "complete",
+        "review_ref": {
+          "id": "SYNTHETIC-REVIEW-001",
+          "url": "https://github.com/egohygiene/hygiene/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/docs/synthetic-review.json",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "completed_at": "2026-11-01T12:00:00Z"
+        },
+        "human_decision": {
+          "disposition": "ratified",
+          "authority": {
+            "kind": "human",
+            "reference": "https://github.com/synthetic-architect",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "decided_at": "2026-11-01T12:00:00Z"
+          },
+          "review_id": "SYNTHETIC-REVIEW-001",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "scope_key": "egohygiene/hygiene",
+          "represented_revisions": [
+            {
+              "repository": "egohygiene/hygiene",
+              "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          ],
+          "notes": [],
+          "follow_up": []
+        },
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [],
+      "expected": {
+        "state": "review-in-progress",
+        "claimed_human_disposition": "ratified",
+        "human_disposition": null,
+        "human_evidence": "unverified"
+      }
+    },
+    {
+      "id": "current-synthetic-trusted-review",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "optional",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": null,
+          "authority": null
+        },
+        "progress": "complete",
+        "review_ref": {
+          "id": "SYNTHETIC-REVIEW-001",
+          "url": "https://github.com/egohygiene/hygiene/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/docs/synthetic-review.json",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "completed_at": "2026-11-01T12:00:00Z"
+        },
+        "human_decision": {
+          "disposition": "ratified",
+          "authority": {
+            "kind": "human",
+            "reference": "https://github.com/synthetic-architect",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "decided_at": "2026-11-01T12:00:00Z"
+          },
+          "review_id": "SYNTHETIC-REVIEW-001",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "scope_key": "egohygiene/hygiene",
+          "represented_revisions": [
+            {
+              "repository": "egohygiene/hygiene",
+              "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          ],
+          "notes": [],
+          "follow_up": []
+        },
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [
+        "decision"
+      ],
+      "expected": {
+        "state": "ratified",
+        "freshness": "current",
+        "human_disposition": "ratified",
+        "human_evidence": "verified"
+      }
+    },
+    {
+      "id": "expired-review",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "optional",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": null,
+          "authority": null
+        },
+        "progress": "complete",
+        "review_ref": {
+          "id": "SYNTHETIC-REVIEW-001",
+          "url": "https://github.com/egohygiene/hygiene/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/docs/synthetic-review.json",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "completed_at": "2026-11-01T12:00:00Z"
+        },
+        "human_decision": {
+          "disposition": "ratified",
+          "authority": {
+            "kind": "human",
+            "reference": "https://github.com/synthetic-architect",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "decided_at": "2026-11-01T12:00:00Z"
+          },
+          "review_id": "SYNTHETIC-REVIEW-001",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "scope_key": "egohygiene/hygiene",
+          "represented_revisions": [
+            {
+              "repository": "egohygiene/hygiene",
+              "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          ],
+          "notes": [],
+          "follow_up": []
+        },
+        "valid_until": "2026-11-10T12:00:00Z"
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [
+        "decision"
+      ],
+      "expected": {
+        "state": "stale",
+        "freshness": "stale",
+        "human_disposition": "ratified"
+      }
+    },
+    {
+      "id": "material-change-stales-review",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "optional",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": null,
+          "authority": null
+        },
+        "progress": "complete",
+        "review_ref": {
+          "id": "SYNTHETIC-REVIEW-001",
+          "url": "https://github.com/egohygiene/hygiene/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/docs/synthetic-review.json",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "completed_at": "2026-11-01T12:00:00Z"
+        },
+        "human_decision": {
+          "disposition": "ratified",
+          "authority": {
+            "kind": "human",
+            "reference": "https://github.com/synthetic-architect",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "decided_at": "2026-11-01T12:00:00Z"
+          },
+          "review_id": "SYNTHETIC-REVIEW-001",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "scope_key": "egohygiene/hygiene",
+          "represented_revisions": [
+            {
+              "repository": "egohygiene/hygiene",
+              "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          ],
+          "notes": [],
+          "follow_up": []
+        },
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present",
+        "material_changes": [
+          {
+            "schema": "egohygiene.architecture-coherence-material-change/v1",
+            "contract_version": "1.0.0-alpha.1",
+            "visibility": "public",
+            "scope": {
+              "kind": "repository",
+              "key": "egohygiene/hygiene",
+              "repositories": [
+                "egohygiene/hygiene"
+              ]
+            },
+            "review_id": "SYNTHETIC-REVIEW-001",
+            "id": "SYNTHETIC-CHANGE-001",
+            "kind": "ownership-change",
+            "observed_at": "2026-11-10T12:00:00Z",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "authority": null
+          }
+        ]
+      },
+      "synthetic_trust_kinds": [
+        "decision"
+      ],
+      "expected": {
+        "state": "stale",
+        "freshness": "stale",
+        "material_change_ids": [
+          "SYNTHETIC-CHANGE-001"
+        ]
+      }
+    },
+    {
+      "id": "routine-revision-difference",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "optional",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": null,
+          "authority": null
+        },
+        "progress": "complete",
+        "review_ref": {
+          "id": "SYNTHETIC-REVIEW-001",
+          "url": "https://github.com/egohygiene/hygiene/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/docs/synthetic-review.json",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "completed_at": "2026-11-01T12:00:00Z"
+        },
+        "human_decision": {
+          "disposition": "ratified",
+          "authority": {
+            "kind": "human",
+            "reference": "https://github.com/synthetic-architect",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "decided_at": "2026-11-01T12:00:00Z"
+          },
+          "review_id": "SYNTHETIC-REVIEW-001",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "scope_key": "egohygiene/hygiene",
+          "represented_revisions": [
+            {
+              "repository": "egohygiene/hygiene",
+              "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          ],
+          "notes": [],
+          "follow_up": []
+        },
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present",
+        "current_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "cccccccccccccccccccccccccccccccccccccccc"
+          }
+        ],
+        "material_changes": [
+          {
+            "schema": "egohygiene.architecture-coherence-material-change/v1",
+            "contract_version": "1.0.0-alpha.1",
+            "visibility": "public",
+            "scope": {
+              "kind": "repository",
+              "key": "egohygiene/hygiene",
+              "repositories": [
+                "egohygiene/hygiene"
+              ]
+            },
+            "review_id": "SYNTHETIC-REVIEW-001",
+            "id": "SYNTHETIC-CHANGE-001",
+            "kind": "routine-implementation",
+            "observed_at": "2026-11-10T12:00:00Z",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "authority": null
+          }
+        ]
+      },
+      "synthetic_trust_kinds": [
+        "decision"
+      ],
+      "expected": {
+        "state": "ratified",
+        "freshness": "current",
+        "revision_match": "different",
+        "material_change_ids": []
+      }
+    },
+    {
+      "id": "partial-inventory-is-unknown",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "optional",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": null,
+          "authority": null
+        },
+        "progress": "complete",
+        "review_ref": {
+          "id": "SYNTHETIC-REVIEW-001",
+          "url": "https://github.com/egohygiene/hygiene/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/docs/synthetic-review.json",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "completed_at": "2026-11-01T12:00:00Z"
+        },
+        "human_decision": {
+          "disposition": "ratified",
+          "authority": {
+            "kind": "human",
+            "reference": "https://github.com/synthetic-architect",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "decided_at": "2026-11-01T12:00:00Z"
+          },
+          "review_id": "SYNTHETIC-REVIEW-001",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "scope_key": "egohygiene/hygiene",
+          "represented_revisions": [
+            {
+              "repository": "egohygiene/hygiene",
+              "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          ],
+          "notes": [],
+          "follow_up": []
+        },
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "partial",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [
+        "decision"
+      ],
+      "expected": {
+        "state": "unavailable",
+        "freshness": "unknown",
+        "human_disposition": "ratified"
+      }
+    },
+    {
+      "id": "revision-required",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "optional",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": null,
+          "authority": null
+        },
+        "progress": "complete",
+        "review_ref": {
+          "id": "SYNTHETIC-REVIEW-001",
+          "url": "https://github.com/egohygiene/hygiene/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/docs/synthetic-review.json",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "completed_at": "2026-11-01T12:00:00Z"
+        },
+        "human_decision": {
+          "disposition": "revision-required",
+          "authority": {
+            "kind": "human",
+            "reference": "https://github.com/synthetic-architect",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "decided_at": "2026-11-01T12:00:00Z"
+          },
+          "review_id": "SYNTHETIC-REVIEW-001",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "scope_key": "egohygiene/hygiene",
+          "represented_revisions": [
+            {
+              "repository": "egohygiene/hygiene",
+              "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          ],
+          "notes": [],
+          "follow_up": []
+        },
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [
+        "decision"
+      ],
+      "expected": {
+        "state": "revision-required",
+        "freshness": "current",
+        "human_disposition": "revision-required"
+      }
+    },
+    {
+      "id": "deferred-unverified",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "deferred",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": "2026-12-01T00:00:00Z",
+          "authority": {
+            "kind": "human",
+            "reference": "https://github.com/synthetic-architect",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "decided_at": "2026-11-01T12:00:00Z"
+          }
+        },
+        "progress": "not-started",
+        "review_ref": null,
+        "human_decision": null,
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [],
+      "expected": {
+        "state": "unavailable",
+        "applicability": "unknown",
+        "claimed_applicability": "deferred",
+        "human_disposition": null
+      }
+    },
+    {
+      "id": "deferred-synthetic-trusted",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "deferred",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": "2026-12-01T00:00:00Z",
+          "authority": {
+            "kind": "human",
+            "reference": "https://github.com/synthetic-architect",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "decided_at": "2026-11-01T12:00:00Z"
+          }
+        },
+        "progress": "not-started",
+        "review_ref": null,
+        "human_decision": null,
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [
+        "applicability"
+      ],
+      "expected": {
+        "state": "deferred",
+        "applicability": "deferred",
+        "applicability_evidence": "verified"
+      }
+    },
+    {
+      "id": "not-applicable-unverified",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "not-applicable",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": null,
+          "authority": {
+            "kind": "human",
+            "reference": "https://github.com/synthetic-architect",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "decided_at": "2026-11-01T12:00:00Z"
+          }
+        },
+        "progress": "not-started",
+        "review_ref": null,
+        "human_decision": null,
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [],
+      "expected": {
+        "state": "unavailable",
+        "applicability": "unknown",
+        "claimed_applicability": "not-applicable",
+        "human_disposition": null
+      }
+    },
+    {
+      "id": "not-applicable-synthetic-trusted",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "not-applicable",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": null,
+          "authority": {
+            "kind": "human",
+            "reference": "https://github.com/synthetic-architect",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "decided_at": "2026-11-01T12:00:00Z"
+          }
+        },
+        "progress": "not-started",
+        "review_ref": null,
+        "human_decision": null,
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [
+        "applicability"
+      ],
+      "expected": {
+        "state": "not-applicable",
+        "applicability": "not-applicable",
+        "applicability_evidence": "verified"
+      }
+    },
+    {
+      "id": "organization-scope",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "organization",
+          "key": "egohygiene",
+          "repositories": [
+            "egohygiene/aether",
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/aether",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "optional",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": null,
+          "authority": null
+        },
+        "progress": "complete",
+        "review_ref": {
+          "id": "SYNTHETIC-REVIEW-001",
+          "url": "https://github.com/egohygiene/hygiene/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/docs/synthetic-review.json",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "completed_at": "2026-11-01T12:00:00Z"
+        },
+        "human_decision": {
+          "disposition": "ratified",
+          "authority": {
+            "kind": "human",
+            "reference": "https://github.com/synthetic-architect",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "decided_at": "2026-11-01T12:00:00Z"
+          },
+          "review_id": "SYNTHETIC-REVIEW-001",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "scope_key": "egohygiene",
+          "represented_revisions": [
+            {
+              "repository": "egohygiene/aether",
+              "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            {
+              "repository": "egohygiene/hygiene",
+              "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          ],
+          "notes": [],
+          "follow_up": []
+        },
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [
+        "decision"
+      ],
+      "expected": {
+        "state": "ratified",
+        "freshness": "current"
+      }
+    },
+    {
+      "id": "protected-source-excluded",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "private",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "optional",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": null,
+          "authority": null
+        },
+        "progress": "complete",
+        "review_ref": {
+          "id": "SYNTHETIC-REVIEW-001",
+          "url": "https://github.com/egohygiene/hygiene/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/docs/synthetic-review.json",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "completed_at": "2026-11-01T12:00:00Z"
+        },
+        "human_decision": {
+          "disposition": "ratified",
+          "authority": {
+            "kind": "human",
+            "reference": "https://github.com/synthetic-architect",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "decided_at": "2026-11-01T12:00:00Z"
+          },
+          "review_id": "SYNTHETIC-REVIEW-001",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "scope_key": "egohygiene/hygiene",
+          "represented_revisions": [
+            {
+              "repository": "egohygiene/hygiene",
+              "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          ],
+          "notes": [],
+          "follow_up": []
+        },
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [],
+      "expected": {
+        "state": "unavailable",
+        "human_disposition": null,
+        "claimed_human_disposition": null
+      }
+    },
+    {
+      "id": "protected-member-excludes-whole-scope",
+      "synthetic": true,
+      "governance": {
+        "schema": "egohygiene.architecture-coherence-governance/v1",
+        "contract_version": "1.0.0-alpha.1",
+        "visibility": "public",
+        "scope": {
+          "kind": "repository",
+          "key": "egohygiene/hygiene",
+          "repositories": [
+            "egohygiene/hygiene",
+            "egohygiene/synthetic-protected"
+          ]
+        },
+        "represented_revisions": [
+          {
+            "repository": "egohygiene/hygiene",
+            "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "applicability": {
+          "status": "optional",
+          "declared_at": "2026-11-01T12:00:00Z",
+          "evidence": [
+            "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1"
+          ],
+          "reason": "Synthetic optional review declaration",
+          "deferred_until": null,
+          "authority": null
+        },
+        "progress": "complete",
+        "review_ref": {
+          "id": "SYNTHETIC-REVIEW-001",
+          "url": "https://github.com/egohygiene/hygiene/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/docs/synthetic-review.json",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "completed_at": "2026-11-01T12:00:00Z"
+        },
+        "human_decision": {
+          "disposition": "ratified",
+          "authority": {
+            "kind": "human",
+            "reference": "https://github.com/synthetic-architect",
+            "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+            "decided_at": "2026-11-01T12:00:00Z"
+          },
+          "review_id": "SYNTHETIC-REVIEW-001",
+          "assessment_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "scope_key": "egohygiene/hygiene",
+          "represented_revisions": [
+            {
+              "repository": "egohygiene/hygiene",
+              "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          ],
+          "notes": [],
+          "follow_up": []
+        },
+        "valid_until": null
+      },
+      "context": {
+        "as_of": "2026-11-14T12:00:00Z",
+        "public_repositories": [
+          "egohygiene/hygiene",
+          "egohygiene/aether"
+        ],
+        "change_inventory": "complete",
+        "availability": "present"
+      },
+      "synthetic_trust_kinds": [],
+      "expected": {
+        "state": "unavailable",
+        "claimed_human_disposition": null
+      }
+    }
+  ]
+}

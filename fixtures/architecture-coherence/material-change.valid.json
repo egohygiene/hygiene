@@ -1,0 +1,18 @@
+{
+  "schema": "egohygiene.architecture-coherence-material-change/v1",
+  "contract_version": "1.0.0-alpha.1",
+  "visibility": "public",
+  "scope": {
+    "kind": "repository",
+    "key": "egohygiene/hygiene",
+    "repositories": [
+      "egohygiene/hygiene"
+    ]
+  },
+  "review_id": "SYNTHETIC-REVIEW-001",
+  "id": "SYNTHETIC-CHANGE-001",
+  "kind": "ownership-change",
+  "observed_at": "2026-11-10T12:00:00Z",
+  "evidence_url": "https://github.com/egohygiene/hygiene/issues/999999#issuecomment-1",
+  "authority": null
+}

@@ -7,34 +7,28 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T22:27:30Z'
+  updated_at: '2026-11-14T22:49:47Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Define proposed organization strategy and repository-roadmap composition separately from repository
-    strategy and tactical execution.
+  purpose: Qualify existing proposed architecture-coherence governance with executable synthetic fixtures
+    while preserving all owner policy/schema/evaluator bytes.
   includes:
-  - Canonical organization/roadmap.v1.json and its deterministic organization/ROADMAP.md define five stable
-    proposed initiatives, horizons and dependencies; all placement remains inferred with no human review
-    fabricated.
-  - A versioned proposed schema references the existing Intelligence source/event definitions. The pure
-    reference checker preserves repository IDs, provenance, freshness, supersession and review boundaries;
-    public filtering removes protected participation and dependency closure before rendering.
-  - Twelve then thirteen meaningful synthetic controls cover cross-repository/shared and independent work,
-    blocked/optional/stale state, inferred versus reviewed declarations, complete private filtering, cycles,
-    lineage, event clocks and actual CLI refusal. The complete gate now includes source and generated-view
-    checks.
+  - Eighteen independently expected synthetic cases and15 executable test methods cover current/stale/deferred/revision-required/not-applicable/missing/unavailable
+    state, scope and explicit public admission.
+  - Adversarial controls bind scope, assessment, revisions, expiry and caveats; distinguish JSON claims
+    from typed synthetic trusted context; preserve historical decisions under stale evidence; reject unsafe
+    dates/URLs/prose and duplicate selected events.
+  - Five canonical owner files remain byte-identical. The source-bound receipt and policy guide record
+    later reference qualification without retiming source clocks, ratifying architecture or activating
+    policy.
   excludes: &id001
-  - ADR-0023 and the organization roadmap contract remain proposed with null approval; this source does
-    not ratify strategy, authenticate review comments, reprioritize work or activate fleet enforcement.
-  - Initial node keys were inspected against exact public repository roadmap revisions. The helper does
-    not perform live owner discovery or establish exhaustive collection; production graph/UI integration
-    remains with existing Relay, Observatory and publisher owners.
-  - No package publication, external service configuration, deployment, restricted-product inventory or
-    live human-review operation occurred. The public synthetic protected example contains no real private
-    topology.
+  - The typed trusted contexts exist only in explicitly synthetic test code. No production provider adapter,
+    authentic human source, actual architecture ratification or policy activation was exercised.
+  - Policy and ADR-0017 remain proposed/null approval. Aether full assessments, Observatory queries, Relay
+    production integration and reviewed consumer adoption retain separate owners and acceptance.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -44,80 +38,77 @@ scope:
   canonical_sources:
   - AGENTS.md
   - ROADMAP.md
-  - organization/roadmap.v1.json
-  - organization/ROADMAP.md
-  - docs/ecosystem/ORGANIZATION_ROADMAP.md
-  - schemas/organization-roadmap.v1.schema.json
-  - tools/organization_roadmap.py
-  - tests/test_organization_roadmap.py
-  - docs/decisions/ADR-0023-organization-roadmap-composition.md
-  - https://github.com/egohygiene/hygiene/issues/60
+  - docs/ecosystem/ARCHITECTURE_COHERENCE.md
+  - catalog/architecture-coherence-policy.json
+  - tools/architecture_coherence.py
+  - tests/test_architecture_coherence.py
+  - fixtures/architecture-coherence
+  - docs/evidence/2026-11-14-coherence-reference-qualification.json
+  - docs/decisions/ADR-0017-architecture-coherence-governance.md
+  - https://github.com/egohygiene/hygiene/issues/59
 work:
-  objective: Define proposed organization strategy and repository-roadmap composition separately from
-    repository strategy and tactical execution.
+  objective: Qualify existing proposed architecture-coherence governance with executable synthetic fixtures
+    while preserving all owner policy/schema/evaluator bytes.
   success_conditions:
-  - Organization initiatives compose repository strategy by stable references and retain explicit dependency,
-    optionality, freshness and review semantics.
-  - Proposed placement never becomes authoritative through activity, CI success or source merge; existing
-    canonical owners remain separate.
-  - Public projection contains no protected identity, URL, node key, event, count or dependency topology
-    from the synthetic restricted source.
+  - The existing policy/reference implementation has meaningful executable repository/organization fixtures
+    and authority/freshness/privacy controls.
+  - Raw JSON, actor labels and matching claimed digests cannot manufacture trusted human evidence; all
+    owner source bytes and historical dispositions remain intact.
+  - Complete reference checks pass and downstream production/human gates remain explicit.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#60
-    url: https://github.com/egohygiene/hygiene/issues/60
+    id: egohygiene/hygiene#59
+    url: https://github.com/egohygiene/hygiene/issues/59
   next:
     kind: issue
-    id: egohygiene/aether#88
-    description: After reviewing this source checkpoint, compose roadmap-impact reconciliation through
-      the existing Aether agent/instruction system; local signals must preserve Hygiene strategy ownership
-      and human review.
+    id: egohygiene/aether#87
+    description: Consume this qualified proposed owner contract in the full Aether coherence assessment/authoring
+      skill while keeping actual human verification and production adoption separately owned.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/88
-    - https://github.com/egohygiene/hygiene/issues/60
+    - https://github.com/egohygiene/aether/issues/87
+    - https://github.com/egohygiene/hygiene/issues/59
     depends_on: []
 state:
   base:
-    revision: ea2768d49a5953d7f710374fbf13bff880f44f91
+    revision: d51043f1e4d2ddc22ef4534bd0d65c0053afcbda
     ref: refs/heads/main
-    verified_at: '2026-11-14T22:27:30Z'
+    verified_at: '2026-11-14T22:49:47Z'
   candidate:
-    branch: codex/organization-roadmap
+    branch: codex/coherence-reference-qualification
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-14T22:27:30Z'
-    default_branch_revision: ea2768d49a5953d7f710374fbf13bff880f44f91
+    observed_at: '2026-11-14T22:49:47Z'
+    default_branch_revision: d51043f1e4d2ddc22ef4534bd0d65c0053afcbda
     issue_state: open
     pull_request_state: not-applicable
-    notes: Observed main ea2768d retains prior source qualifications. Issue60 is open; this local candidate
-      has no PR yet. Separate five-repository intake snapshot has137 open issues and no open PRs after
-      Aether129 merged. Recheck mutable source and tracker state before integration.
+    notes: Observed main d51043f contains merged organization roadmap123;60 is closed for source definition.59
+      remains open while this local qualification is prepared; no PR yet exists for this candidate.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-14T22:27:30Z'
+  reviewed_at: '2026-11-14T22:49:47Z'
   reviewed_by: Codex
   evidence:
-  - command: python -I -m unittest discover -s tests -p test_organization_roadmap.py -v
+  - command: python -I -m unittest discover -s tests -p test_architecture_coherence.py -v
     outcome: passed
-    notes: 13 synthetic controls pass, including partial and completely restricted public projection and
-      idempotent repeat.
-    observed_at: '2026-11-14T22:27:30Z'
-  - command: Draft202012Validator with local schema registry and FormatChecker; Hygiene decision reference
-      check
+    notes: 15 methods and18 independently expected synthetic cases pass, including all declared dispositions
+      and material trigger kinds; no live human proof is inferred.
+    observed_at: '2026-11-14T22:49:47Z'
+  - command: Registered schema/FormatChecker checks and five-file SHA256 comparison against represented
+      owner source
     outcome: passed
-    notes: Canonical and mixed synthetic roadmap inputs and proposed ADR-0023 metadata pass schema/formats;
-      selected Intelligence source/event definitions are reused by reference.
-    observed_at: '2026-11-14T22:27:30Z'
+    notes: 14 admitted governance cases plus policy/material-change examples pass; the policy, three schemas
+      and evaluator remain byte-identical.
+    observed_at: '2026-11-14T22:49:47Z'
   - command: python -I tools/check_contracts.py
     outcome: passed
-    notes: All27 reference checks and372 tests pass with zero failures/errors/skips. Exact locked Aether
-      release-owner files were provided in the ignored local cache; no release was created.
-    observed_at: '2026-11-14T22:27:30Z'
+    notes: All27 checks and387 tests pass; zero failures/errors/skips. Exact locked release-owner validation
+      sources remain in the ignored cache; no release occurs.
+    observed_at: '2026-11-14T22:49:47Z'
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -145,49 +136,47 @@ Read AGENTS, the canonical sources below and verified live issue/PR state before
 
 ## Current objective and success conditions
 
-Define proposed organization strategy and repository-roadmap composition separately from repository strategy and tactical execution.
+Qualify existing proposed architecture-coherence governance with executable synthetic fixtures while preserving all owner policy/schema/evaluator bytes.
 
-- Organization initiatives compose repository strategy by stable references and retain explicit dependency, optionality, freshness and review semantics.
-- Proposed placement never becomes authoritative through activity, CI success or source merge; existing canonical owners remain separate.
-- Public projection contains no protected identity, URL, node key, event, count or dependency topology from the synthetic restricted source.
+- The existing policy/reference implementation has meaningful executable repository/organization fixtures and authority/freshness/privacy controls.
+- Raw JSON, actor labels and matching claimed digests cannot manufacture trusted human evidence; all owner source bytes and historical dispositions remain intact.
+- Complete reference checks pass and downstream production/human gates remain explicit.
 
 ## State snapshot
 
-Observed default source `ea2768d49a5953d7f710374fbf13bff880f44f91`. Candidate `codex/organization-roadmap` is a review checkpoint; its containing revision remains null intentionally.
+Observed default source `d51043f1e4d2ddc22ef4534bd0d65c0053afcbda`. Candidate `codex/coherence-reference-qualification` is a review checkpoint; its containing revision remains null intentionally.
 
 ## Completed and material changes
 
-Canonical organization/roadmap.v1.json and its deterministic organization/ROADMAP.md define five stable proposed initiatives, horizons and dependencies; all placement remains inferred with no human review fabricated.
+Eighteen independently expected synthetic cases and15 executable test methods cover current/stale/deferred/revision-required/not-applicable/missing/unavailable state, scope and explicit public admission.
 
-A versioned proposed schema references the existing Intelligence source/event definitions. The pure reference checker preserves repository IDs, provenance, freshness, supersession and review boundaries; public filtering removes protected participation and dependency closure before rendering.
+Adversarial controls bind scope, assessment, revisions, expiry and caveats; distinguish JSON claims from typed synthetic trusted context; preserve historical decisions under stale evidence; reject unsafe dates/URLs/prose and duplicate selected events.
 
-Twelve then thirteen meaningful synthetic controls cover cross-repository/shared and independent work, blocked/optional/stale state, inferred versus reviewed declarations, complete private filtering, cycles, lineage, event clocks and actual CLI refusal. The complete gate now includes source and generated-view checks.
+Five canonical owner files remain byte-identical. The source-bound receipt and policy guide record later reference qualification without retiming source clocks, ratifying architecture or activating policy.
 
 ## Validation and review evidence
 
-`python -I -m unittest discover -s tests -p test_organization_roadmap.py -v` — passed: 13 synthetic controls pass, including partial and completely restricted public projection and idempotent repeat.
+`python -I -m unittest discover -s tests -p test_architecture_coherence.py -v` — passed: 15 methods and18 independently expected synthetic cases pass, including all declared dispositions and material trigger kinds; no live human proof is inferred.
 
-`Draft202012Validator with local schema registry and FormatChecker; Hygiene decision reference check` — passed: Canonical and mixed synthetic roadmap inputs and proposed ADR-0023 metadata pass schema/formats; selected Intelligence source/event definitions are reused by reference.
+`Registered schema/FormatChecker checks and five-file SHA256 comparison against represented owner source` — passed: 14 admitted governance cases plus policy/material-change examples pass; the policy, three schemas and evaluator remain byte-identical.
 
-`python -I tools/check_contracts.py` — passed: All27 reference checks and372 tests pass with zero failures/errors/skips. Exact locked Aether release-owner files were provided in the ignored local cache; no release was created.
+`python -I tools/check_contracts.py` — passed: All27 checks and387 tests pass; zero failures/errors/skips. Exact locked release-owner validation sources remain in the ignored cache; no release occurs.
 
-ADR-Ref: ADR-0002 governs human disposition. ADR-0023 proposes the new organization source/composition format and retains null approval. Existing proposed architecture, Intelligence, coherence and release decisions keep their dispositions.
+ADR-Ref: existing proposed ADR-0017 and accepted ADR-0002 retain their authority. ADR not required: executable reference qualification adds evidence without changing policy, schema, implementation semantics or human lifecycle.
 
 ## Blockers, risks, unknowns, and deferred work
 
-ADR-0023 and the organization roadmap contract remain proposed with null approval; this source does not ratify strategy, authenticate review comments, reprioritize work or activate fleet enforcement.
+The typed trusted contexts exist only in explicitly synthetic test code. No production provider adapter, authentic human source, actual architecture ratification or policy activation was exercised.
 
-Initial node keys were inspected against exact public repository roadmap revisions. The helper does not perform live owner discovery or establish exhaustive collection; production graph/UI integration remains with existing Relay, Observatory and publisher owners.
-
-No package publication, external service configuration, deployment, restricted-product inventory or live human-review operation occurred. The public synthetic protected example contains no real private topology.
+Policy and ADR-0017 remain proposed/null approval. Aether full assessments, Observatory queries, Relay production integration and reviewed consumer adoption retain separate owners and acceptance.
 
 ## Next dependency-ready work
 
-After reviewing this source checkpoint, compose roadmap-impact reconciliation through the existing Aether agent/instruction system; local signals must preserve Hygiene strategy ownership and human review.
+Consume this qualified proposed owner contract in the full Aether coherence assessment/authoring skill while keeping actual human verification and production adoption separately owned.
 
 ## Parallel changes and reconciliation
 
-Preserve prior change-history, claim-provenance, diagnosis and website-owner evidence. Concurrent remote integrations in Aether, Empathy, Holon and .github were observed independently; selected roadmap references remain immutable facts, not exhaustive fleet adoption.
+Preserve merged123 organization strategy and earlier history/claim/diagnosis qualifications. Holon109 cache regression and Aether roadmap-impact work are independent bounded source checkpoints; none supplies policy ratification.
 
 ## Privacy and redaction
 
