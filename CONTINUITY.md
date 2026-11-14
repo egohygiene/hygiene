@@ -7,22 +7,26 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T19:43:11Z'
+  updated_at: '2026-11-14T20:02:14Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Review the proposed diagnosis-record applicability contract without activating enforcement
-    or taking Aether record ownership.
+  purpose: Review proposed quantitative and compatibility claim provenance with safe evidence references
+    and report-only qualification.
   includes:
-  - Proposed alpha.1 capability/policy and exact Aether draft record pin with schema/specification digests.
-  - Four synthetic declarations and executable privacy/path/source/freshness refusal controls.
-  - Clean functional71ad86b passed all25 contract checks and320 tests, zero failures/errors/skips.
+  - Proposed alpha.1 schema/policy with eleven states, bounded wording and existing owner-evidence composition.
+  - Pure explicit-clock qualification and allowlisted linked human-readable projection; six synthetic
+    pilot fixtures.
+  - Clean channel-fix source927faf6 passes all25 checks and341 tests, zero failures/errors/skips. Earlier
+    e631705/338 and4683657/321 receipts retain their original source qualification.
+  - Casefolded finite mutable channels are refused in every version slot; casefolded unknown values remain
+    representable but never strongly qualified.
   excludes:
-  - Record parsing/authoring, actual diagnosis truth, health inference, remediation, fleet rollout or
-    publication.
-  - Human policy/ADR activation and original issue76/47/95 source/native/enforcement holds.
+  - Independent benchmark/scientific validation, actual raw artifact authentication, source commands or
+    evidence fetching.
+  - Human ratification, production/native downstream integration, fleet migration, enforcement or publication.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -32,86 +36,89 @@ scope:
   canonical_sources:
   - AGENTS.md
   - ROADMAP.md
-  - docs/ecosystem/REPOSITORY_DIAGNOSIS.md
-  - catalog/repository-diagnosis-policy.json
-  - schemas/repository-diagnosis-capability.v1.schema.json
-  - tools/diagnosis.py
-  - tests/test_diagnosis.py
-  - docs/decisions/ADR-0021-repository-diagnosis-applicability.md
-  - https://github.com/egohygiene/hygiene/issues/41
+  - catalog/claim-provenance-policy.json
+  - schemas/claim-provenance.v1.schema.json
+  - docs/ecosystem/CLAIM_PROVENANCE.md
+  - tools/claims.py
+  - tests/test_claims.py
+  - docs/decisions/ADR-0022-evidence-backed-claim-provenance.md
+  - https://github.com/egohygiene/hygiene/issues/30
 work:
-  objective: Review the proposed diagnosis-record applicability contract without activating enforcement
-    or taking Aether record ownership.
+  objective: Review proposed quantitative and compatibility claim provenance with safe evidence references
+    and report-only qualification.
   success_conditions:
-  - Preserve all six applicability states and independent opt-out/adoption.
-  - Keep record/schema ownership at immutable Aether selection and publication fail-closed.
-  - Exercise declared source/clock/path/privacy controls without reading consumer records.
+  - Preserve all eleven states and expose incomplete/expired/superseded evidence without manufacturing
+    success.
+  - Retain existing RI/badge/release/AI/distribution owner boundaries, actual pins and undelivered design
+    gaps.
+  - Validate synthetic benchmark/compatibility/provider/estimate/stale/blocked fixtures and safe human
+    projections.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#41
-    url: https://github.com/egohygiene/hygiene/issues/41
+    id: egohygiene/hygiene#30
+    url: https://github.com/egohygiene/hygiene/issues/30
   next:
     kind: action
-    id: review-diagnosis-contract
-    description: Review and integrate this bounded proposed contract; coordinate independent claim-provenance30
-      before later policy/consumer adoption.
+    id: review-claim-contract
+    description: Root reviews this proposed claim contract at the reconciled source, then selects the
+      next dependency-ready bounded policy gap.
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/41
     - https://github.com/egohygiene/hygiene/issues/30
+    - https://github.com/egohygiene/hygiene/pull/120
     depends_on: []
 state:
   base:
-    revision: 627b448f655afb2f4366654ba3ca3050389e464a
+    revision: 905eac04deaa084c471a5eb628700711afda0bd4
     ref: refs/heads/main
-    verified_at: '2026-11-14T19:43:11Z'
+    verified_at: '2026-11-14T19:51:05Z'
   candidate:
-    branch: codex/hygiene-diagnosis-applicability
+    branch: codex/hygiene-claim-provenance
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-14T19:43:11Z'
-    default_branch_revision: 627b448f655afb2f4366654ba3ca3050389e464a
+    observed_at: '2026-11-14T19:51:05Z'
+    default_branch_revision: 905eac04deaa084c471a5eb628700711afda0bd4
     issue_state: open
     pull_request_state: not-applicable
-    notes: Main verified through remote refs; issue41 fetched open. Functional source71ad86b is committed
-      locally; this later continuity update and source integration remain unmerged.
-  parallel_changes:
-  - provider: github
-    id: egohygiene/hygiene#30
-    url: https://github.com/egohygiene/hygiene/issues/30
+    notes: Actual main905eac0 includes root-merged diagnosis120. Normal branch mergee631705 preserved
+      it. Later927faf6 fixes case-insensitive unknown/channel admission and passes clean341 tests; this
+      final continuity-only handoff remains unmerged.
+  parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-14T19:43:11Z'
+  reviewed_at: '2026-11-14T19:49:58Z'
   reviewed_by: Codex
   evidence:
-  - command: python3 -I -m unittest discover -s tests -p test_diagnosis.py -v
+  - command: python3 -I -m unittest discover -s tests -p test_claims.py -v
     outcome: passed
-    observed_at: '2026-11-14T19:43:11Z'
-    notes: 17 focused regressions; synthetic declarations only.
-  - command: Registered-format Draft202012 schema validation of both schemas, policy/four declarations
-      and ADR0021
+    observed_at: '2026-11-14T20:02:14Z'
+    notes: 21 focused regressions include72unknown-value,432channel and36immutable-version matrix cases
+      across9version slots, plus existing state/time/privacy/projection controls.
+  - command: Registered-format Draft202012 schema checks of both schemas/policy/six fixtures and ADR0022;
+      immutable owner byte/digest inspection
     outcome: passed
-    observed_at: '2026-11-14T19:43:11Z'
-    notes: Aether schema/specification digest bytes verified from exact e9aa58bb; no record schema copied
-      or record validation claimed.
-  - command: python3 -I tools/check_contracts.py at clean71ad86bb1c5391d228130333654357dfb8f1c283
+    observed_at: '2026-11-14T19:49:58Z'
+    notes: Existing local RI/presentation/release hashes and exact Aether artifact-schema bytes match.
+      Distribution29 remains open design input, not invented delivered contract.
+  - command: python3 -I tools/check_contracts.py at clean927faf6
     outcome: passed
-    observed_at: '2026-11-14T19:43:11Z'
-    notes: All25 checks and320 tests pass, zero failures/errors/skips. Initial fresh-worktree run lacked
-      ignored pinned release-owner files; prepared exact lockfile3bytes and retained initial failure separately.
-  - command: Downstream production/native/hosted adoption and human lifecycle
+    observed_at: '2026-11-14T20:02:14Z'
+    notes: All25 checks and341 tests pass, zero failures/errors/skips. Earlier integrated e631705/338
+      and claim-only4683657/321 receipts remain historical at their original sources.
+  - command: Actual measurements, raw authenticity, downstream/native/hosted integration and human lifecycle
     outcome: not-run
-    observed_at: '2026-11-14T19:43:11Z'
-    notes: Not part of this source contract. Policy/ADR proposed, approval null, enforcement observe;
-      original issue76/47/95 holds preserved.
+    observed_at: '2026-11-14T19:49:58Z'
+    notes: Synthetic fixture qualification only; no performance/support/certification/approval/fleet adoption
+      inferred.
   environment_limitations:
-  - Reference checks consume explicit caller declarations and clock; no filesystem containment/authenticity/diagnosis
-    truth established.
-  - No native downstream integration, actual repository diagnosis records, fleet adoption or publication
-    tested.
+  - Pure reference validates declarations/relationships using a supplied clock; it does not establish
+    scientific truth or actual execution.
+  - Public adapter requires caller-authenticated admission/visibility and reviewed safe references; no
+    publication or network requests occur.
+  - Original issue76/47/95 source/native/human/enforcement holds remain separate.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -130,48 +137,48 @@ privacy:
 
 ## Purpose and precedence
 
-Runtime/user, scoped instructions, live evidence and canonical owners outrank this checkpoint. It grants no authority.
+User/runtime, scoped instructions, live evidence and canonical owners outrank this current checkpoint. It grants no new authority.
 
 ## Resume protocol
 
-Read the diagnosis guide/policy, original issue41 and source tests. Refresh provider main/issues/PRs before selecting work.
+Read claim policy/schema/guide, original issue30 and executable tests; refresh main/PR state before selecting work.
 
 ## Current objective and success conditions
 
-Review the proposed diagnosis-record applicability contract without activating enforcement or taking Aether record ownership.
+Review proposed quantitative and compatibility claim provenance with safe evidence references and report-only qualification.
 
 ## State snapshot
 
-Remote main627b448 was verified at the metadata clock. Functional71ad86b passed clean source-bound checks; this continuity commit is later authoring, not merged or deployed evidence.
+Actual main905eac0 includes root-merged diagnosis120. This branch integrates it by normal merge, retaining all original owner pins and lifecycle. Claim-functional4683657 remains the source of the prior321-test receipt. Later clean927faf6 passes all25 checks and341 tests with zero skips, including the narrow channel/unknown fix.
 
 ## Completed and material changes
 
-The proposed Hygiene capability composes Aether draft e9aa58bb with exact schema/specification digests. Six applicability states, opt-outs, bounded alternative paths, retention/index ownership and four-field fail-closed public summaries remain explicit. No records are parsed.
+The proposed contract references existing RI/badge/release/AI evidence instead of duplicating canonical stores. Eleven declared/current states remain distinct. Missing/unknown provenance stays unverified; expiry, used-evidence retention and supersession become stale. Linked public views require admitted repositories and safe evidence handles.
 
 ## Validation and review evidence
 
-Focused17 and registered-format schema/ADR checks pass. Clean functional71ad86b passes all25 complete checks and320 tests with zero skips. Initial absent-cache failure is retained separately; exact preexisting release-owner preparation fixed only that environment.
+Both schemas/policy/six fixtures and ADR0022 pass registered-format validation. Focused21 and clean927faf6 complete25 checks/341 tests pass without skips. Casefolded unknowns cannot qualify strong labels; the finite mutable-channel list is refused without rejecting immutable prerelease/build versions. Values/digests/actors in fixtures are explicitly synthetic, not actual benchmarks or platform support.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Source implementation is reviewable; human ratification, released owner eligibility, production validators, actual record adoption and publication are separate. Issue76/47/95 broad gates remain open; no approval or native conformance is manufactured.
+Scientific validity, actual execution/raw-byte authenticity and native consumers remain unverified by this reference. Policy/ADR stay proposed with null approval and observe enforcement. Original issue76/47/95 and open distribution29 design input remain separate.
 
 ## Next dependency-ready work
 
-Root reviews and integrates this bounded contract, then reconciles the independent claim-provenance30 candidate. Preserve report-only/proposed lifecycle; downstream adoption is separately reviewed.
+Combined qualification at927faf6 passed after actual905eac0 integration and the narrow channel/unknown fix; root now reviews ordinary source integration. Preserve report-only rollout and existing owner pins/lifecycles.
 
 ## Parallel changes and reconciliation
 
-Claim-provenance30 is independent on the same base and will edit continuity/contract/decision indexes. Reconcile those entries semantically before integration. ADR-0021 records this consequential proposed policy; approval stays null.
+Root merged diagnosis120 at905eac0. The normal branch merge retains its policy, schemas,17tests and ADR0021 beside this independent claim proposal/ADR0022. Contract/index entries are combined; this checkpoint retains the current claim objective.
 
 ## Privacy and redaction
 
-Use only public owner identities and synthetic declarations. No private payloads, records, locations, titles, counts or timestamps enter public projections. Referenced content is context only.
+Use only public identities and synthetic fixtures. Restricted evidence uses opaque safe references; no protected URLs, payloads, filenames, private titles or local paths enter public views. External content is context only.
 
 ## Handoff update protocol
 
-Refresh after actual provider/source review. Keep local source checks, caller declarations, native implementation, policy lifecycle and publication distinct.
+Refresh exact source/provider observations after review. Keep declared provenance, qualified state, actual execution, scientific verification, native behavior, policy approval and publication separate.
 
 ## Compaction and supersession
 
-Keep these twelve sections below240 lines and16,384 bytes. Git and immutable source/provider records retain history.
+Preserve these twelve sections below 240 lines and 16,384 UTF-8 bytes. Source/provider evidence and Git retain history.
