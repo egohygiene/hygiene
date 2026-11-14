@@ -1,0 +1,213 @@
+{
+  "schema": "egohygiene.change-history-reference-qualification/v1",
+  "observed_at": "2026-11-14T20:09:20Z",
+  "source_revision": "c3bf50f01ca29e0a530d2f09e4e430755201786b",
+  "baseline_revision": "905eac04deaa084c471a5eb628700711afda0bd4",
+  "status": "passed",
+  "policy_status": "proposed",
+  "approval": null,
+  "enforcement": "observe",
+  "focused_tests": {
+    "run": 18,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "command": "python3 -I -m unittest discover -s tests -p test_change_history.py -v",
+    "test_file_sha256": "a2c79304cc81bdc69b32c6ebb2c8c0695857bca24b1f1a28fd7de716a0c855d2"
+  },
+  "schema_validation": {
+    "dialect": "Draft202012",
+    "registered_formats": true,
+    "schemas": 3,
+    "policy_records": 1,
+    "fixture_inputs": 15,
+    "fixture_outputs": 15
+  },
+  "unchanged_sources": {
+    "catalog/change-history-policy.json": "0a0076e9f80787fc4660cf522ea9f3068ace4525eaca0e175bd8cc21a755a014",
+    "tools/change_history.py": "2a252663a826ddfec3f6f60df66eeadc8ac37fe61b1f3d7b96069381bccb8e6d",
+    "schemas/change-history-policy.v1.schema.json": "ee5f96db564cf97fdd7cd9b58be13bcaa978f0468202cb0439b6d31e9ce1736c",
+    "schemas/change-history-input.v1.schema.json": "51e3fc19e412e902bf8a04661ae7aa18cdf11089be573f5830429484934c6ab4",
+    "schemas/change-history-analysis.v1.schema.json": "a5895969ccd69e2f90bc69217c0e05a279921e4f2663ad21abe1104ea18133da",
+    "fixtures/change-history/examples.json": "a942458203a977cb3fef03e325c3b76e9c119de5441dd3f009d219cbea679e49",
+    "fixtures/change-history/migration-map.json": "5e107653b019f67a640942cbca53ee6ce9f3ff1eeef8e4b385f89c61dc296d41"
+  },
+  "public_source_mapping_reinspection": [
+    {
+      "repository": "egohygiene/egolint",
+      "revision": "f14f7fd3ab0ce9e87c367352fcb3af11a32eda59",
+      "path": ".config/lint/commits/commit-policy.cjs",
+      "url": "https://github.com/egohygiene/egolint/blob/f14f7fd3ab0ce9e87c367352fcb3af11a32eda59/.config/lint/commits/commit-policy.cjs",
+      "content_sha256": "d632f4c6928a15a27a0cacca17e6a816577b21835bd9d29429fff51f4cab06f1",
+      "transport": "local-git-exact-pinned-blob",
+      "literal_type_inventory_count": 12,
+      "mapping_matches_selected_types": true,
+      "consumer_runtime_executed": false
+    },
+    {
+      "repository": "egohygiene/empathy",
+      "revision": "058d92a0f8c970f98a58d446408716936e593c99",
+      "path": ".czrc",
+      "url": "https://github.com/egohygiene/empathy/blob/058d92a0f8c970f98a58d446408716936e593c99/.czrc",
+      "content_sha256": "e2bb9830309e02a322e167156afccd55d961b477aaec0019680f03d1bdbeeceb",
+      "transport": "local-git-exact-pinned-blob",
+      "literal_type_inventory_count": 84,
+      "mapping_matches_selected_types": true,
+      "consumer_runtime_executed": false
+    },
+    {
+      "repository": "egohygiene/renderflow",
+      "revision": "be5a265083cdf59bea397c550ab12d4181533e0b",
+      "path": ".commitlintrc.yml",
+      "url": "https://github.com/egohygiene/renderflow/blob/be5a265083cdf59bea397c550ab12d4181533e0b/.commitlintrc.yml",
+      "content_sha256": "8040e3a82d3f7f23ee01ebcbd91299731996cde9e4868b203c1d133de1157221",
+      "transport": "github-connector-decoded-utf8",
+      "literal_type_inventory_count": 8,
+      "mapping_matches_selected_types": true,
+      "consumer_runtime_executed": false
+    },
+    {
+      "repository": "egohygiene/reflector",
+      "revision": "dfca10718f4cca20cc126d689d1fd70d29c27a02",
+      "path": ".commitlintrc.json",
+      "url": "https://github.com/egohygiene/reflector/blob/dfca10718f4cca20cc126d689d1fd70d29c27a02/.commitlintrc.json",
+      "content_sha256": "bc6c0eb53c03e8977a3ededd23561363730734f6ef876bfd73d782420ef8e354",
+      "transport": "github-connector-decoded-utf8",
+      "literal_type_inventory_count": 15,
+      "mapping_matches_selected_types": true,
+      "consumer_runtime_executed": false
+    }
+  ],
+  "original_mapping_observed_at": "2026-11-12T05:41:28Z",
+  "limits": [
+    "Synthetic reference and CLI qualification, not production EgoLint/Relay integration or actual release effects.",
+    "Four immutable public source configurations re-inspected for literal selected types; inherited package/default/runtime semantics not executed.",
+    "Restricted product mapping remains independently authorized and unverified; no private identity/content copied.",
+    "Policy and ADR0018 stay proposed, approval null; no hook/ruleset/merge strategy/enforcement/publication/history rewrite."
+  ],
+  "fixture_results": [
+    {
+      "id": "feature",
+      "syntax": "valid",
+      "release_hint": "minor",
+      "diagnostics": []
+    },
+    {
+      "id": "breaking-header",
+      "syntax": "valid",
+      "release_hint": "major",
+      "diagnostics": []
+    },
+    {
+      "id": "breaking-footer",
+      "syntax": "valid",
+      "release_hint": "major",
+      "diagnostics": []
+    },
+    {
+      "id": "revert",
+      "syntax": "valid",
+      "release_hint": "review_required",
+      "diagnostics": []
+    },
+    {
+      "id": "release",
+      "syntax": "valid",
+      "release_hint": "none",
+      "diagnostics": []
+    },
+    {
+      "id": "bot-dependency",
+      "syntax": "valid",
+      "release_hint": "none",
+      "diagnostics": []
+    },
+    {
+      "id": "generated",
+      "syntax": "valid",
+      "release_hint": "none",
+      "diagnostics": []
+    },
+    {
+      "id": "legacy-merge",
+      "syntax": "context_only",
+      "release_hint": "review_required",
+      "diagnostics": [
+        "MERGE_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "id": "wrong-emoji",
+      "syntax": "invalid",
+      "release_hint": "review_required",
+      "diagnostics": [
+        "EMOJI_MISMATCH"
+      ]
+    },
+    {
+      "id": "missing-scope",
+      "syntax": "invalid",
+      "release_hint": "review_required",
+      "diagnostics": [
+        "SUBJECT_SHAPE"
+      ]
+    },
+    {
+      "id": "placeholder",
+      "syntax": "invalid",
+      "release_hint": "review_required",
+      "diagnostics": [
+        "PLACEHOLDER"
+      ]
+    },
+    {
+      "id": "private",
+      "syntax": "not_admitted",
+      "release_hint": "none",
+      "diagnostics": [
+        "SOURCE_NOT_ADMITTED"
+      ]
+    },
+    {
+      "id": "pr-trailing-newline",
+      "syntax": "invalid",
+      "release_hint": "review_required",
+      "diagnostics": [
+        "PR_TITLE_MULTILINE"
+      ]
+    },
+    {
+      "id": "dco-assertion-only",
+      "syntax": "valid",
+      "release_hint": "none",
+      "diagnostics": []
+    },
+    {
+      "id": "bot",
+      "syntax": "valid",
+      "release_hint": "patch",
+      "diagnostics": []
+    }
+  ],
+  "full_contract_regression": {
+    "source_revision": "a80dba3e23b9a5320ef8e8483fe871f8e9587728",
+    "source_dirty": false,
+    "status": "passed",
+    "complete": true,
+    "command": "python3 -I tools/check_contracts.py",
+    "checks": 25,
+    "tests": {
+      "run": 359,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0
+    },
+    "native_admission": "not-assessed",
+    "publication": "not-performed",
+    "recorded_at": "2026-11-14T20:12:31Z"
+  },
+  "source_attribution": "Focused c3bf50f/905 baseline and later clean integrated a80dba3 receipts retain separate source identities; the seven change-history owner inputs and test file are byte-identical across that integration.",
+  "recorded_at": "2026-11-14T20:12:31Z"
+}
