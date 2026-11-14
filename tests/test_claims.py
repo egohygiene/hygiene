@@ -65,6 +65,17 @@ class ClaimTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             claims.assess(value, as_of=AS_OF)
 
+    def test_unknown_subject_method_material_version_and_empty_command_cannot_qualify(self):
+        for field in ("component", "method", "configuration", "dependency", "command"):
+            value = self.fixture()
+            if field == "component": value["subject"]["component"] = "unknown"
+            elif field == "method": value["procedure"]["id"] = "unknown"
+            elif field == "configuration": value["procedure"]["configuration"]["version"] = "unknown"
+            elif field == "dependency": value["environment"]["dependencies"][0]["version"] = "unknown"
+            else: value["procedure"]["command"] = []
+            with self.subTest(field=field):
+                self.assertEqual("unverified", claims.assess(value, as_of=AS_OF)["effective_state"])
+
     def test_wrong_verification_method_cannot_upgrade_provider_or_estimate(self):
         for name in ("provider-reported", "estimated"):
             value = self.fixture(name)

@@ -228,10 +228,19 @@ def assess(value, *, as_of):
         require(value["kind"] != "benchmark" or state != "verified")
         complete = (value["subject"]["revision"] is not None and verification["at"] is not None
                     and verification["responsible"] is not None and value["valid_until"] is not None
+                    and all(value["subject"][field] != "unknown" for field in ("id", "component"))
                     and all(value["environment"][field] != "unknown" for field in ("id", "platform", "architecture"))
                     and value["environment"]["runtime"]["id"] != "unknown"
                     and value["environment"]["runtime"]["version"] != "unknown"
-                    and value["procedure"]["version"] != "unknown" and bool(used)
+                    and value["procedure"]["version"] != "unknown" and value["procedure"]["id"] != "unknown"
+                    and (value["procedure"]["kind"] != "command" or bool(value["procedure"]["command"]))
+                    and all(item["id"] != "unknown" and item["version"] != "unknown"
+                            for item in value["environment"]["dependencies"])
+                    and all(value["procedure"][field] is None
+                            or (value["procedure"][field]["id"] != "unknown"
+                                and value["procedure"][field]["version"] != "unknown")
+                            for field in ("configuration", "dataset", "task", "fixture"))
+                    and bool(used)
                     and all(item["sha256"] and item["captured_at"] and item["retained_until"]
                             and item["reference"]["access"] != "unavailable" for item in used))
         if state == "measured":
