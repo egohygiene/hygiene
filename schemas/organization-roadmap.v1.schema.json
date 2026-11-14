@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/organization-roadmap.v1.schema.json",
+  "title": "Proposed Ego Hygiene organization roadmap v1 alpha.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contract_version",
+    "status",
+    "approval",
+    "organization",
+    "canonical_repository",
+    "visibility",
+    "updated_at",
+    "sources",
+    "initiatives",
+    "events"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egohygiene.organization-roadmap/v1"
+    },
+    "contract_version": {
+      "const": "1.0.0-alpha.1"
+    },
+    "status": {
+      "const": "proposed"
+    },
+    "approval": {
+      "type": "null"
+    },
+    "organization": {
+      "const": "egohygiene"
+    },
+    "canonical_repository": {
+      "const": "egohygiene/hygiene"
+    },
+    "visibility": {
+      "enum": [
+        "public",
+        "internal",
+        "private"
+      ]
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "repository-intelligence.alpha2.schema.json#/$defs/source"
+      }
+    },
+    "initiatives": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/initiative"
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "repository-intelligence.alpha2.schema.json#/$defs/event"
+      }
+    }
+  },
+  "$defs": {
+    "repositoryNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "key",
+        "visibility",
+        "applicability",
+        "provenance"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "pattern": "^egohygiene/(\\.github|[a-z0-9][a-z0-9.-]*)$"
+        },
+        "key": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9-]{1,79}$"
+        },
+        "visibility": {
+          "enum": [
+            "public",
+            "internal",
+            "private"
+          ]
+        },
+        "applicability": {
+          "enum": [
+            "active",
+            "archived",
+            "not_applicable"
+          ]
+        },
+        "provenance": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^source:[a-z0-9][a-z0-9._-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "initiative": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "outcome",
+        "owner",
+        "horizon",
+        "state",
+        "assertion",
+        "freshness",
+        "visibility",
+        "provenance",
+        "review",
+        "repository_nodes",
+        "links",
+        "depends_on",
+        "supersedes",
+        "superseded_by"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^ORG-I[0-9]{3,}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "outcome": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "owner": {
+          "type": "string",
+          "pattern": "^egohygiene/(\\.github|[a-z0-9][a-z0-9.-]*)$"
+        },
+        "horizon": {
+          "enum": [
+            "now",
+            "next",
+            "later",
+            "maybe"
+          ]
+        },
+        "state": {
+          "enum": [
+            "proposed",
+            "planned",
+            "ready",
+            "active",
+            "blocked",
+            "paused",
+            "completed",
+            "deferred",
+            "superseded",
+            "optional",
+            "unknown"
+          ]
+        },
+        "assertion": {
+          "enum": [
+            "authoritative",
+            "inferred",
+            "unknown"
+          ]
+        },
+        "freshness": {
+          "enum": [
+            "current",
+            "stale",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "visibility": {
+          "enum": [
+            "public",
+            "internal",
+            "private"
+          ]
+        },
+        "provenance": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^source:[a-z0-9][a-z0-9._-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "review": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^source:[a-z0-9][a-z0-9._-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "repository_nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/repositoryNode"
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "source"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "tracks",
+                  "informs",
+                  "evidences",
+                  "releases"
+                ]
+              },
+              "source": {
+                "type": "string",
+                "pattern": "^source:[a-z0-9][a-z0-9._-]*$"
+              }
+            }
+          }
+        },
+        "depends_on": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^ORG-I[0-9]{3,}$"
+          },
+          "uniqueItems": true
+        },
+        "supersedes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^ORG-I[0-9]{3,}$"
+          },
+          "uniqueItems": true
+        },
+        "superseded_by": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^ORG-I[0-9]{3,}$"
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

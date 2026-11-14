@@ -51,6 +51,7 @@ owned downstream and are not implemented by this directory.
 | [ADR-0020](ADR-0020-organization-intelligence-export-hosting.md) | Separate organization Intelligence export composition from its Pages publisher | Proposed | 2026-11-13 |
 | [ADR-0021](ADR-0021-repository-diagnosis-applicability.md) | Compose repository diagnosis applicability without taking record ownership | Proposed | 2026-11-14 |
 | [ADR-0022](ADR-0022-evidence-backed-claim-provenance.md) | Qualify quantitative and compatibility claims through referenced provenance | Proposed | 2026-11-14 |
+| [ADR-0023](ADR-0023-organization-roadmap-composition.md) | Compose organization strategy by stable repository roadmap references | Proposed | 2026-11-14 |
 
 ADR-0001's historical Accepted label describes the five-plane decision. Its
 original body and four-digit identity preserve that record.

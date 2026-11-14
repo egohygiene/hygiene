@@ -1,0 +1,484 @@
+{
+  "schema": "egohygiene.organization-roadmap/v1",
+  "contract_version": "1.0.0-alpha.1",
+  "status": "proposed",
+  "approval": null,
+  "organization": "egohygiene",
+  "canonical_repository": "egohygiene/hygiene",
+  "visibility": "private",
+  "updated_at": "2026-11-14T22:20:25Z",
+  "sources": [
+    {
+      "id": "source:adr-policy",
+      "kind": "architecture_decision",
+      "url": "https://github.com/egohygiene/hygiene/blob/a05b14f8b9e2772124f879f818e09a911e996ad8/docs/decisions/POLICY.md",
+      "repository": "egohygiene/hygiene",
+      "revision": "a05b14f8b9e2772124f879f818e09a911e996ad8",
+      "observed_at": "2026-11-14T22:20:25Z",
+      "visibility": "public",
+      "assertion": "authoritative",
+      "freshness": "current"
+    },
+    {
+      "id": "source:aether",
+      "kind": "roadmap",
+      "url": "https://github.com/egohygiene/aether/blob/28983e522dc358d82ba7ca0749c4a4c796aa142b/ROADMAP.md",
+      "repository": "egohygiene/aether",
+      "revision": "28983e522dc358d82ba7ca0749c4a4c796aa142b",
+      "observed_at": "2026-11-14T22:20:25Z",
+      "visibility": "public",
+      "assertion": "authoritative",
+      "freshness": "current"
+    },
+    {
+      "id": "source:empathy",
+      "kind": "roadmap",
+      "url": "https://github.com/egohygiene/empathy/blob/f19fe1b072d3690b30b4314a92b41f8b5803459a/ROADMAP.md",
+      "repository": "egohygiene/empathy",
+      "revision": "f19fe1b072d3690b30b4314a92b41f8b5803459a",
+      "observed_at": "2026-11-14T22:20:25Z",
+      "visibility": "public",
+      "assertion": "authoritative",
+      "freshness": "current"
+    },
+    {
+      "id": "source:holon",
+      "kind": "roadmap",
+      "url": "https://github.com/egohygiene/holon/blob/fc3c20ce7ec9dbdfae7828f82bc6102c639e43e0/ROADMAP.md",
+      "repository": "egohygiene/holon",
+      "revision": "fc3c20ce7ec9dbdfae7828f82bc6102c639e43e0",
+      "observed_at": "2026-11-14T22:20:25Z",
+      "visibility": "public",
+      "assertion": "authoritative",
+      "freshness": "current"
+    },
+    {
+      "id": "source:hygiene",
+      "kind": "roadmap",
+      "url": "https://github.com/egohygiene/hygiene/blob/ea2768d49a5953d7f710374fbf13bff880f44f91/ROADMAP.md",
+      "repository": "egohygiene/hygiene",
+      "revision": "ea2768d49a5953d7f710374fbf13bff880f44f91",
+      "observed_at": "2026-11-14T22:20:25Z",
+      "visibility": "public",
+      "assertion": "authoritative",
+      "freshness": "current"
+    },
+    {
+      "id": "source:org-defaults",
+      "kind": "roadmap",
+      "url": "https://github.com/egohygiene/.github/blob/5a3ffa4d16ce69d911b1df0eb4135779205fb8be/ROADMAP.md",
+      "repository": "egohygiene/.github",
+      "revision": "5a3ffa4d16ce69d911b1df0eb4135779205fb8be",
+      "observed_at": "2026-11-14T22:20:25Z",
+      "visibility": "public",
+      "assertion": "authoritative",
+      "freshness": "current"
+    },
+    {
+      "id": "source:roadmap-contract",
+      "kind": "github_issue",
+      "url": "https://github.com/egohygiene/hygiene/issues/60",
+      "repository": "egohygiene/hygiene",
+      "revision": null,
+      "observed_at": "2026-11-14T22:20:25Z",
+      "visibility": "public",
+      "assertion": "authoritative",
+      "freshness": "current"
+    },
+    {
+      "id": "source:synthetic-protected",
+      "kind": "roadmap",
+      "url": "https://github.com/egohygiene/synthetic-protected/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/ROADMAP.md",
+      "repository": "egohygiene/synthetic-protected",
+      "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "observed_at": "2026-11-14T22:20:25Z",
+      "visibility": "private",
+      "assertion": "authoritative",
+      "freshness": "current"
+    }
+  ],
+  "initiatives": [
+    {
+      "id": "ORG-I001",
+      "title": "Make foundations and evidence trustworthy",
+      "outcome": "Converge canonical ownership, authoring contracts and provenance so source, policy approval and operational acceptance remain distinguishable.",
+      "owner": "egohygiene/hygiene",
+      "horizon": "now",
+      "state": "active",
+      "assertion": "inferred",
+      "freshness": "current",
+      "visibility": "public",
+      "provenance": [
+        "source:roadmap-contract"
+      ],
+      "review": null,
+      "repository_nodes": [
+        {
+          "repository": "egohygiene/hygiene",
+          "key": "HYG-Q03",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:hygiene"
+          ]
+        },
+        {
+          "repository": "egohygiene/aether",
+          "key": "AET-Q07",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:aether"
+          ]
+        },
+        {
+          "repository": "egohygiene/empathy",
+          "key": "EMP-Q02",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:empathy"
+          ]
+        },
+        {
+          "repository": "egohygiene/empathy",
+          "key": "EMP-Q03",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:empathy"
+          ]
+        },
+        {
+          "repository": "egohygiene/.github",
+          "key": "ORG-Q02",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:org-defaults"
+          ]
+        },
+        {
+          "repository": "egohygiene/.github",
+          "key": "ORG-Q03",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:org-defaults"
+          ]
+        },
+        {
+          "repository": "egohygiene/synthetic-protected",
+          "key": "PRIVATE-Q01",
+          "visibility": "private",
+          "applicability": "active",
+          "provenance": [
+            "source:synthetic-protected"
+          ]
+        }
+      ],
+      "links": [
+        {
+          "type": "informs",
+          "source": "source:adr-policy"
+        },
+        {
+          "type": "evidences",
+          "source": "source:synthetic-protected"
+        }
+      ],
+      "depends_on": [],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ORG-I002",
+      "title": "Prove independently consumable delivery",
+      "outcome": "Qualify immutable artifacts and clean consumer installation before treating release configuration or source preparation as delivered platform capability.",
+      "owner": "egohygiene/aether",
+      "horizon": "next",
+      "state": "blocked",
+      "assertion": "inferred",
+      "freshness": "current",
+      "visibility": "public",
+      "provenance": [
+        "source:roadmap-contract"
+      ],
+      "review": null,
+      "repository_nodes": [
+        {
+          "repository": "egohygiene/aether",
+          "key": "AET-Q02",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:aether"
+          ]
+        },
+        {
+          "repository": "egohygiene/aether",
+          "key": "AET-Q04",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:aether"
+          ]
+        },
+        {
+          "repository": "egohygiene/aether",
+          "key": "AET-Q05",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:aether"
+          ]
+        },
+        {
+          "repository": "egohygiene/empathy",
+          "key": "EMP-Q05",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:empathy"
+          ]
+        },
+        {
+          "repository": "egohygiene/holon",
+          "key": "HOL-Q05",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:holon"
+          ]
+        }
+      ],
+      "links": [
+        {
+          "type": "informs",
+          "source": "source:adr-policy"
+        }
+      ],
+      "depends_on": [
+        "ORG-I001"
+      ],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ORG-I003",
+      "title": "Compose a source-backed organization control plane",
+      "outcome": "Connect repository-owned strategy and operational evidence to public Intelligence through owner contracts while preserving unknown, stale and restricted state.",
+      "owner": "egohygiene/.github",
+      "horizon": "next",
+      "state": "proposed",
+      "assertion": "inferred",
+      "freshness": "stale",
+      "visibility": "public",
+      "provenance": [
+        "source:roadmap-contract"
+      ],
+      "review": null,
+      "repository_nodes": [
+        {
+          "repository": "egohygiene/hygiene",
+          "key": "HYG-Q04",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:hygiene"
+          ]
+        },
+        {
+          "repository": "egohygiene/hygiene",
+          "key": "HYG-Q06",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:hygiene"
+          ]
+        },
+        {
+          "repository": "egohygiene/.github",
+          "key": "ORG-Q04",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:org-defaults"
+          ]
+        },
+        {
+          "repository": "egohygiene/holon",
+          "key": "HOL-Q06",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:holon"
+          ]
+        }
+      ],
+      "links": [
+        {
+          "type": "informs",
+          "source": "source:adr-policy"
+        }
+      ],
+      "depends_on": [
+        "ORG-I001"
+      ],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ORG-I004",
+      "title": "Make organization foundations reusable",
+      "outcome": "Create new repositories and evolve existing fleets from qualified versioned blueprints, then prove portability through a second organization consumer.",
+      "owner": "egohygiene/holon",
+      "horizon": "later",
+      "state": "proposed",
+      "assertion": "inferred",
+      "freshness": "current",
+      "visibility": "public",
+      "provenance": [
+        "source:roadmap-contract"
+      ],
+      "review": null,
+      "repository_nodes": [
+        {
+          "repository": "egohygiene/holon",
+          "key": "HOL-Q04",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:holon"
+          ]
+        },
+        {
+          "repository": "egohygiene/holon",
+          "key": "HOL-Q08",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:holon"
+          ]
+        },
+        {
+          "repository": "egohygiene/holon",
+          "key": "HOL-Q09",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:holon"
+          ]
+        },
+        {
+          "repository": "egohygiene/holon",
+          "key": "HOL-Q10",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:holon"
+          ]
+        },
+        {
+          "repository": "egohygiene/hygiene",
+          "key": "HYG-Q05",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:hygiene"
+          ]
+        },
+        {
+          "repository": "egohygiene/empathy",
+          "key": "EMP-Q04",
+          "visibility": "public",
+          "applicability": "active",
+          "provenance": [
+            "source:empathy"
+          ]
+        }
+      ],
+      "links": [
+        {
+          "type": "informs",
+          "source": "source:adr-policy"
+        }
+      ],
+      "depends_on": [
+        "ORG-I002",
+        "ORG-I003",
+        "ORG-I900"
+      ],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ORG-I005",
+      "title": "Keep research and optional capabilities bounded",
+      "outcome": "Evaluate alternative frameworks, local AI, confidentiality and agent-ready web capabilities only through explicit hypotheses, evidence and exit criteria.",
+      "owner": "egohygiene/hygiene",
+      "horizon": "maybe",
+      "state": "optional",
+      "assertion": "inferred",
+      "freshness": "current",
+      "visibility": "public",
+      "provenance": [
+        "source:roadmap-contract"
+      ],
+      "review": null,
+      "repository_nodes": [],
+      "links": [
+        {
+          "type": "informs",
+          "source": "source:adr-policy"
+        }
+      ],
+      "depends_on": [],
+      "supersedes": [],
+      "superseded_by": []
+    },
+    {
+      "id": "ORG-I900",
+      "title": "Synthetic protected initiative",
+      "outcome": "SYNTHETIC-PROTECTED-OUTCOME",
+      "owner": "egohygiene/hygiene",
+      "horizon": "later",
+      "state": "paused",
+      "assertion": "inferred",
+      "freshness": "current",
+      "visibility": "private",
+      "provenance": [
+        "source:synthetic-protected"
+      ],
+      "review": null,
+      "repository_nodes": [],
+      "links": [
+        {
+          "type": "informs",
+          "source": "source:adr-policy"
+        }
+      ],
+      "depends_on": [],
+      "supersedes": [],
+      "superseded_by": []
+    }
+  ],
+  "events": [
+    {
+      "id": "event:synthetic-created",
+      "type": "roadmap_step.created",
+      "subject": "ri:egohygiene/hygiene:roadmap-step:ORG-I900",
+      "occurred_at": "2026-11-14T22:20:25Z",
+      "recorded_at": "2026-11-14T22:20:25Z",
+      "actor": null,
+      "changes": [],
+      "visibility": "private",
+      "assertion": "inferred",
+      "freshness": "current",
+      "provenance": [
+        "source:synthetic-protected"
+      ],
+      "extensions": {}
+    }
+  ]
+}

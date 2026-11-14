@@ -26,6 +26,8 @@ supersedes: []
 
 # Hygiene Roadmap
 
+The [organization roadmap](organization/ROADMAP.md) composes fleet strategy by reference; this document retains Hygiene's repository-local capability sequence.
+
 ## Current work and publication handoff
 
 The selected reference defects have merged source and focused local acceptance.
