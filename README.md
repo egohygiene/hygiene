@@ -48,6 +48,7 @@ claims against live Git and GitHub evidence.
 - [Dependency-boundary guide](docs/ecosystem/DEPENDENCY_BOUNDARIES.md)
 - [Proposed Repository Intelligence contract](docs/ecosystem/REPOSITORY_INTELLIGENCE.md)
 - [Repository Intelligence collection coverage and alpha.2 migration](docs/ecosystem/REPOSITORY_INTELLIGENCE_COVERAGE.md)
+- [Organization roadmap](organization/ROADMAP.md) and [composition contract](docs/ecosystem/ORGANIZATION_ROADMAP.md)
 - [Repository Intelligence schema](schemas/repository-intelligence.v1.schema.json)
 - [Repository Intelligence vocabulary](catalog/repository-intelligence-vocabulary.json)
 - [Complete quest fixture](fixtures/repository-intelligence/complete-quest.json)

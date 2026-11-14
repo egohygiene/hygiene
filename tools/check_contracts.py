@@ -22,6 +22,8 @@ COMMAND_TIMEOUT = 60
 
 # These are the existing reference CLI entry points, not another policy engine.
 REFERENCE_CHECKS = (
+    ("organization-roadmap", "organization_roadmap.py", "validate"),
+    ("organization-roadmap-generated", "organization_roadmap.py", "check-generated"),
     ("catalog", "catalog.py", "validate"),
     (
         "catalog-generated",

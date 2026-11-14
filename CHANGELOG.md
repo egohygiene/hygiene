@@ -10,6 +10,9 @@ compatibility promise applies.
 
 ## [Unreleased]
 
+- Add a proposed organization roadmap, stable initiative composition, privacy-aware reference checks and a generated strategic view, separately from Hygiene's own roadmap.
+
+
 ### Changed
 
 - Standardize ADR policy v1.2.0 on four-digit identifiers and record each authorized ID/path normalization.

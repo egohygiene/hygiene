@@ -276,6 +276,14 @@
       "source": "schemas/claim-provenance.v1.schema.json",
       "status": "proposed",
       "visibility": "public"
+    },
+    {
+      "id": "egohygiene.organization-roadmap/v1",
+      "title": "Organization strategy and repository-roadmap composition",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/organization-roadmap.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
     }
   ]
 }
