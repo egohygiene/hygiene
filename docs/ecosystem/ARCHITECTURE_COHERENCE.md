@@ -181,8 +181,18 @@ freshness semantics require a successor contract and migration. This change
 does not modify existing graph/read models, catalog roles, policy activation,
 owner pins, historical source approvals or recovery evidence.
 
-Tests, fixtures, native evaluation, provider adapters, hosted execution, broader
-qualification and actual ratification remain deferred. Static schema/source
-inspection is not evidence of those outcomes. Aether, Observatory and Relay
+The original foundation checkpoint deferred tests, fixtures, native evaluation,
+provider adapters, hosted execution, broader qualification and actual
+ratification. Its static schema/source inspection did not demonstrate those
+outcomes. The dated reference qualification below records the later bounded
+change; actual human/provider/consumer gates remain separate. Aether, Observatory and Relay
 integration may be implemented against the proposed immutable contracts while
 policy adoption and human disposition remain separate.
+
+## Reference qualification — 2026-11-14
+
+[Issue59](https://github.com/egohygiene/hygiene/issues/59) now has [18 independently expected synthetic cases](../../fixtures/architecture-coherence/README.md),15 executable test methods and a [source-bound qualification receipt](../evidence/2026-11-14-coherence-reference-qualification.json). All27 reference checks and387 tests pass with zero failures/errors/skips.14 admitted governance cases and the policy/material-change examples pass registered schemas and format checks.
+
+The policy, three schemas and evaluator remain byte-identical to the represented owner source. Tests construct trusted context only inside explicitly synthetic test code; source JSON and fabricated actor/digest fields cannot supply it. Scope, assessment, revision, expiry and caveat changes invalidate the old statement context. Private/unadmitted records are excluded before inspecting their payload and never become public absence/count placeholders.
+
+This completes bounded policy/reference authoring and fixture coverage. Policy and ADR-0017 remain proposed/null approval. Actual provider authentication, human ratification, downstream adoption, production graph/UI and enforcement remain separately owned and unqualified.

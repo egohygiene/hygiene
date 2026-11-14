@@ -1,0 +1,44 @@
+{
+  "schema_version": "hygiene.coherence-reference-qualification/v1",
+  "qualified_at": "2026-11-14T22:48:30.737114+00:00",
+  "represented_owner_revision": "d51043f1e4d2ddc22ef4534bd0d65c0053afcbda",
+  "owner_files_sha256": {
+    "catalog/architecture-coherence-policy.json": "929f54655aa018a9f227ccd592d7ea74e2579b56d07bd1bd8e8ebe6a5a82f940",
+    "schemas/architecture-coherence-policy.v1.schema.json": "0bf3fc697f9e462fcde45a9ccd11ba34697a59dd89fec1dcab09f6407c483113",
+    "schemas/architecture-coherence-governance.v1.schema.json": "8666cc3502c04409c586b2a6afdc0a676e8473689096b9305a4cb9671e77ce7e",
+    "schemas/architecture-coherence-material-change.v1.schema.json": "42ede98ebef62e4f5d9dbbaa9e77582099619970245454ac44774b49be2680e1",
+    "tools/architecture_coherence.py": "cc0608819cf7755fdbcafd279c5b575916fe8d30547c8a17b58c35dcc520c6fe"
+  },
+  "canonical_owner_bytes_unchanged": true,
+  "policy_lifecycle": "proposed",
+  "approval": null,
+  "enforcement": "observe; no activation",
+  "tests": {
+    "focused_methods": 15,
+    "independently_expected_cases": 18,
+    "admitted_governance_schema_cases": 14,
+    "full_reference_checks": 27,
+    "full_suite": {
+      "run": 387,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0
+    }
+  },
+  "coverage": [
+    "repository/subsystem/organization scope and explicit public roster",
+    "claimed versus separately typed synthetic human evidence",
+    "binding of scope, revisions, assessment, expiry and notes",
+    "current/stale/unknown inventory and explicit materiality",
+    "deferred/not-applicable exceptions and invalidation",
+    "all declared dispositions, missing/unavailable source, privacy before validation",
+    "invalid source dates/URLs, sensitive prose, selected event duplication and stable repeat"
+  ],
+  "limits": [
+    "Synthetic trusted test code is not a production provider verifier; no actual human approval was read, created or claimed.",
+    "No repository architecture is ratified, no policy is activated, and no downstream consumer or UI is qualified.",
+    "Original source profiles, schema/helper bytes and their lifecycle/source clocks remain unchanged."
+  ]
+}
