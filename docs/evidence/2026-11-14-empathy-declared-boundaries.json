@@ -1,0 +1,79 @@
+{
+  "observed_at": "2026-11-14T00:08:09Z",
+  "candidate_source": "d5c65d935baf6885aaebc0fb70d43ce4f25ddb43",
+  "native_graph_owner": "egohygiene/relay",
+  "native_graph_revision": "d7c60473626f8dcc901210a208ad01a6474e8c1d",
+  "scope": "Native public-selection/graph functions exercised on candidate canonical owner declarations/public rows; no owner lock changed and no source-admission/publication receipt minted.",
+  "edges": [
+    {
+      "source": "egohygiene/empathy",
+      "target": "egohygiene/egolint"
+    },
+    {
+      "source": "egohygiene/empathy",
+      "target": "egohygiene/mantle"
+    },
+    {
+      "source": "egohygiene/empathy",
+      "target": "egohygiene/realm"
+    },
+    {
+      "source": "egohygiene/empathy",
+      "target": "egohygiene/relay"
+    }
+  ],
+  "boundary_policy_ids": {
+    "egohygiene/egolint": [
+      "RELATIONSHIP-008"
+    ],
+    "egohygiene/mantle": [
+      "RELATIONSHIP-006"
+    ],
+    "egohygiene/realm": [
+      "RELATIONSHIP-005"
+    ],
+    "egohygiene/relay": [
+      "RELATIONSHIP-007"
+    ]
+  },
+  "refusal_controls": [
+    {
+      "control": "missing-RELATIONSHIP-006",
+      "result": "denied",
+      "code": "BOUNDARY"
+    },
+    {
+      "control": "missing-RELATIONSHIP-008",
+      "result": "denied",
+      "code": "BOUNDARY"
+    },
+    {
+      "control": "forbidden-edge-still-overrides-allow",
+      "result": "denied",
+      "code": "BOUNDARY"
+    }
+  ],
+  "runtime_adoption": "uncollected",
+  "parent_issue": "egohygiene/hygiene#76",
+  "consumer_issues": [
+    "egohygiene/empathy#105",
+    "egohygiene/empathy#98"
+  ],
+  "complete_gate": {
+    "source_revision": "d5c65d935baf6885aaebc0fb70d43ce4f25ddb43",
+    "source_dirty": false,
+    "status": "passed",
+    "checks_passed": 25,
+    "checks_total": 25,
+    "unit_seconds": 22.554,
+    "tests": {
+      "run": 303,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0
+    },
+    "command_timeout_seconds": 60
+  }
+}

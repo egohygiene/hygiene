@@ -143,7 +143,8 @@
       "id": "RELATIONSHIP-006",
       "producer": "egohygiene/mantle",
       "consumers": [
-        "egohygiene/realm"
+        "egohygiene/realm",
+        "egohygiene/empathy"
       ],
       "capability": "portable shell installer and runtime bundle",
       "interfaces": [
@@ -172,7 +173,8 @@
       "id": "RELATIONSHIP-008",
       "producer": "egohygiene/egolint",
       "consumers": [
-        "egohygiene/relay"
+        "egohygiene/relay",
+        "egohygiene/empathy"
       ],
       "capability": "lint rules, profiles, CLI, and normalized reports",
       "interfaces": [

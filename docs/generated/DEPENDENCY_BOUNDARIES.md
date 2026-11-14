@@ -29,9 +29,9 @@
 | `RELATIONSHIP-003` | `egohygiene/holon` | `egohygiene/*` | generated repository trees and bootstrap provenance | `generated-projection`, `schema` | _required_ | `versioned` |
 | `RELATIONSHIP-004` | `egohygiene/pace` | `egohygiene/*` | reviewable migration plans, diffs, and pull-request projections | `generated-projection`, `schema` | _required_ | `versioned` |
 | `RELATIONSHIP-005` | `egohygiene/realm` | `egohygiene/*` | development environments and runtime profiles | `oci-image`, `package` | _required_ | `immutable-or-versioned` |
-| `RELATIONSHIP-006` | `egohygiene/mantle` | `egohygiene/realm` | portable shell installer and runtime bundle | `binary`, `package` | _required_ | `immutable-or-versioned` |
+| `RELATIONSHIP-006` | `egohygiene/mantle` | `egohygiene/realm`, `egohygiene/empathy` | portable shell installer and runtime bundle | `binary`, `package` | _required_ | `immutable-or-versioned` |
 | `RELATIONSHIP-007` | `egohygiene/relay` | `egohygiene/*` | reusable CI, release, and publication automation | `reusable-workflow` | _required_ | `immutable` |
-| `RELATIONSHIP-008` | `egohygiene/egolint` | `egohygiene/relay` | lint rules, profiles, CLI, and normalized reports | `binary`, `package`, `schema` | _required_ | `immutable-or-versioned` |
+| `RELATIONSHIP-008` | `egohygiene/egolint` | `egohygiene/relay`, `egohygiene/empathy` | lint rules, profiles, CLI, and normalized reports | `binary`, `package`, `schema` | _required_ | `immutable-or-versioned` |
 | `RELATIONSHIP-009` | `egohygiene/relay` | `egohygiene/observatory` | workflow and conformance evidence | `schema`, `generated-projection` | _required_ | `versioned` |
 | `RELATIONSHIP-010` | `egohygiene/egolint` | `egohygiene/observatory` | quality and SARIF evidence | `schema`, `generated-projection` | _required_ | `versioned` |
 | `RELATIONSHIP-011` | `egohygiene/aniflow` | `egohygiene/flow` | temporal video decomposition and reconstruction | `binary`, `package`, `schema` | _required_ | `immutable-or-versioned` |
