@@ -178,3 +178,11 @@ catalog matrix, applicability and absence behavior, representation-integrity
 rules, capability guards, non-executable commerce boundaries, compatibility
 model, conformance resolution and evidence, ownership split, Holon #7 handoff,
 and checkpoint exclusions.
+
+## Diagnosis capability
+
+`repository-diagnosis-policy.json` defines proposed observe-only applicability
+and composes the immutable Aether record contract without copying its schema.
+The [capability guide](../docs/ecosystem/REPOSITORY_DIAGNOSIS.md) links the
+declaration schema, bounded reference check and executable synthetic privacy/
+freshness examples. No policy activation or repository health is implied.
