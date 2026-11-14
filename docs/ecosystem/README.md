@@ -41,6 +41,12 @@ catalog scope and freshness.
     delivery states, ownership, composition, and downstream handoffs.
 14. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
 
+## Claim provenance
+
+[Quantitative and compatibility claims](CLAIM_PROVENANCE.md) defines a proposed
+compact provenance contract, eleven distinct evidence states, qualified wording,
+expiration/supersession and safe references to existing owner evidence.
+
 ## Architectural decision
 
 `hygiene` becomes the canonical ecosystem architecture and platform-control repository. Other repositories receive a small, generated local context document that states their own boundary and pins an architecture release. They do **not** receive independent copies of the entire ecosystem specification. `pace` will eventually reconcile those projections through pull requests.

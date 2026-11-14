@@ -3,7 +3,7 @@
   "status": "proposed",
   "organization": "egohygiene",
   "canonical_repository": "egohygiene/hygiene",
-  "updated": "2026-11-12",
+  "updated": "2026-11-14",
   "contracts": [
     {
       "id": "egohygiene.architecture-decision/v1",
@@ -242,6 +242,22 @@
       "title": "Organization sealed-export public-site surface declaration",
       "owner": "egohygiene/hygiene",
       "source": "schemas/public-site-surface-declaration.v2.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.claim-provenance-policy/v1",
+      "title": "Quantitative and compatibility claim presentation policy",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/claim-provenance-policy.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.claim-provenance/v1",
+      "title": "Quantitative and compatibility claim provenance",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/claim-provenance.v1.schema.json",
       "status": "proposed",
       "visibility": "public"
     }

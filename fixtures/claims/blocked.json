@@ -1,0 +1,79 @@
+{
+  "schema": "egohygiene.claim-provenance/v1",
+  "version": "1.0.0-alpha.1",
+  "id": "compatibility.fixture-blocked",
+  "kind": "compatibility",
+  "state": "blocked",
+  "visibility": "public",
+  "subject": {
+    "id": "fixture-engine",
+    "repository": "example/public-fixture",
+    "component": "engine",
+    "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "tag": null,
+    "released_version": null
+  },
+  "statement": "Synthetic probe unavailable; no passing or failing behavior inferred.",
+  "environment": {
+    "id": "synthetic-linux-canary",
+    "platform": "linux",
+    "architecture": "x86_64",
+    "runtime": {
+      "id": "python",
+      "version": "3.12.0"
+    },
+    "dependencies": [
+      {
+        "id": "fixture-config",
+        "version": "1.0.0",
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    ]
+  },
+  "procedure": {
+    "id": "synthetic-import-probe",
+    "version": "1.0.0",
+    "kind": "command",
+    "command": [
+      "python3",
+      "synthetic-benchmark.py"
+    ],
+    "configuration": {
+      "id": "fixture-config",
+      "version": "1.0.0",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "dataset": null,
+    "task": {
+      "id": "fixture-task",
+      "version": "1.0.0",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    },
+    "fixture": {
+      "id": "fixture-input",
+      "version": "1.0.0",
+      "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "seed": 42
+  },
+  "measurement": null,
+  "evidence": [],
+  "verification": {
+    "at": null,
+    "responsible": null,
+    "method": "none",
+    "evidence_ids": []
+  },
+  "valid_until": null,
+  "superseded_by": null,
+  "limitations": [
+    "Entirely synthetic provenance fixture; no benchmark execution or product performance is claimed.",
+    "No causal or population-wide claim; example interval is not empirical uncertainty."
+  ],
+  "exclusions": [
+    "Other platforms, revisions and runtimes."
+  ],
+  "confounders": [
+    "Synthetic values do not represent a measured product."
+  ]
+}

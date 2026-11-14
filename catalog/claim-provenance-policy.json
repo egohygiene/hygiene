@@ -1,0 +1,162 @@
+{
+  "schema": "egohygiene.claim-provenance-policy/v1",
+  "version": "1.0.0-alpha.1",
+  "status": "proposed",
+  "approval": null,
+  "enforcement": "observe",
+  "owner": "egohygiene/hygiene",
+  "updated": "2026-11-14",
+  "states": [
+    "measured",
+    "verified",
+    "provider-reported",
+    "reported",
+    "estimated",
+    "inferred",
+    "unverified",
+    "stale",
+    "blocked",
+    "unknown",
+    "not-applicable"
+  ],
+  "composes": [
+    {
+      "id": "intelligence",
+      "repository": "egohygiene/hygiene",
+      "revision": "627b448f655afb2f4366654ba3ca3050389e464a",
+      "path": "schemas/repository-intelligence.alpha2.schema.json",
+      "sha256": "7fd7b19c22b2df8c4c6b6f6e8b7c36ae9082a1c415786dc23e33090790c45cf1",
+      "contract": "egohygiene.repository-intelligence/v1",
+      "status": "proposed",
+      "integration": "reference-existing-owner-evidence; do-not-copy-records-or-infer-passing"
+    },
+    {
+      "id": "badges",
+      "repository": "egohygiene/hygiene",
+      "revision": "627b448f655afb2f4366654ba3ca3050389e464a",
+      "path": "catalog/repository-presentation-profile.json",
+      "sha256": "94132769e6cb9d4bc68abd6314bbe797ce6ab9abaad3bb424775d1157367d573",
+      "contract": "egohygiene.repository-presentation-profile/v1",
+      "status": "proposed",
+      "integration": "reference-existing-owner-evidence; do-not-copy-records-or-infer-passing"
+    },
+    {
+      "id": "release",
+      "repository": "egohygiene/hygiene",
+      "revision": "627b448f655afb2f4366654ba3ca3050389e464a",
+      "path": "catalog/repository-release-policy.json",
+      "sha256": "20030513c311416c5130a15af897590892025b55cfd79d210be362d47748063f",
+      "contract": "egohygiene.repository-release-policy/v1",
+      "status": "proposed",
+      "integration": "reference-existing-owner-evidence; do-not-copy-records-or-infer-passing"
+    },
+    {
+      "id": "ai-artifact",
+      "repository": "egohygiene/aether",
+      "revision": "c1a27ed29a21d70e7c09dd76d1999b2363aa4940",
+      "path": "catalog/schemas/aether.artifact-record.v1.schema.json",
+      "sha256": "f779a8296b87cb5e8facee145d684f039add3c30c8fb2acece5afbeb6005193d",
+      "contract": "aether.artifact-record/v1",
+      "status": "source-contract-not-release-or-consumer-acceptance",
+      "integration": "reference-owner-artifact-id/source_digest/compatibility/lifecycle/release-fields; no duplicate artifact catalog"
+    },
+    {
+      "id": "distribution",
+      "repository": "egohygiene/hygiene",
+      "issue": "https://github.com/egohygiene/hygiene/issues/29",
+      "status": "open-design-input-not-delivered-contract",
+      "integration": "defer-native-installability-claims-until-owner-evidence; schema-pass-is-not-distribution-proof"
+    }
+  ],
+  "presentation": [
+    {
+      "state": "measured",
+      "label": "measured",
+      "positive_evidence_label_eligible": true,
+      "rule": "Only exact metric/procedure/revision/environment with complete unexpired bound evidence; do not imply causality or scientific validity."
+    },
+    {
+      "state": "verified",
+      "label": "verified",
+      "positive_evidence_label_eligible": true,
+      "rule": "Only the named bounded probe and represented revision/environment; never every platform, full accessibility, security certification or human approval."
+    },
+    {
+      "state": "provider-reported",
+      "label": "provider-reported",
+      "positive_evidence_label_eligible": false,
+      "rule": "Attribute the provider and date; never relabel as independent measurement or verified compatibility."
+    },
+    {
+      "state": "reported",
+      "label": "reported",
+      "positive_evidence_label_eligible": false,
+      "rule": "Attribute the source; no independent verification or positive check mark."
+    },
+    {
+      "state": "estimated",
+      "label": "estimated",
+      "positive_evidence_label_eligible": false,
+      "rule": "Display estimate and method/assumptions; never exact measured fact."
+    },
+    {
+      "state": "inferred",
+      "label": "inferred",
+      "positive_evidence_label_eligible": false,
+      "rule": "Label inference and supporting evidence; no independent verification or positive check mark."
+    },
+    {
+      "state": "unverified",
+      "label": "unverified",
+      "positive_evidence_label_eligible": false,
+      "rule": "Evidence incomplete or claim not qualified; no success wording."
+    },
+    {
+      "state": "stale",
+      "label": "stale",
+      "positive_evidence_label_eligible": false,
+      "rule": "Historical or superseded/expired evidence; no current support claim."
+    },
+    {
+      "state": "blocked",
+      "label": "blocked",
+      "positive_evidence_label_eligible": false,
+      "rule": "Qualification could not complete; distinguish from failed behavior."
+    },
+    {
+      "state": "unknown",
+      "label": "unknown",
+      "positive_evidence_label_eligible": false,
+      "rule": "No qualifying knowledge; never zero, unsupported or passing by default."
+    },
+    {
+      "state": "not-applicable",
+      "label": "not-applicable",
+      "positive_evidence_label_eligible": false,
+      "rule": "Explicit scoped reason; not a passing test or earned completion."
+    }
+  ],
+  "freshness": "Explicit caller clock; expiration, used-evidence retention and supersession downgrade to stale; original declared state and source clocks remain retained.",
+  "missing_evidence": "Strong declared states with incomplete provenance become effectively unverified; do not fabricate raw artifacts, timestamps, dependency versions or verification.",
+  "safe_evidence": "Public URLs are caller-reviewed HTTPS references without credentials/query/fragment; restricted/unavailable evidence uses an opaque evidence:id handle, never raw protected locations.",
+  "scientific_limit": "Structural validation cannot establish actual execution, authenticity, benchmark quality, causality, representativeness or scientific truth. Independent verification requires separate actual proof.",
+  "migration": [
+    "inventory-claims-without-rewriting-history",
+    "link-existing-owner-evidence",
+    "author-versioned-provenance-and-explicit-unknowns",
+    "preview-report-only-qualifiers-and-suppressed-positive-labels",
+    "review-representative-pilots-and-privacy",
+    "opt-in-reviewed-production-enforcement-with-rollback"
+  ],
+  "ownership": {
+    "hygiene": "state/wording/provenance policy and lifecycle",
+    "aether": "AI artifact identity/provenance/authoring; reference exact owner contract",
+    "relay": "approved renderer/workflow integration and report transport; no measurement invention",
+    "egolint": "production structural/semantic claim diagnostics and normalized output",
+    "observatory": "privacy-safe observation/freshness projection; no canonical evidence duplication",
+    "identity": "evidence-linked visual assets/badges, never evidence authority",
+    "holon": "new-repository composition from reviewed compatible pins",
+    "repository": "facts, measurement methods, raw evidence/access/retention, revision scope and publication review"
+  },
+  "activation_gate": "Maintainer policy disposition and explicitly reviewed compatible consumers before enforcement; no active policy, fleet compliance or downstream support claimed."
+}

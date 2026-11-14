@@ -178,3 +178,11 @@ catalog matrix, applicability and absence behavior, representation-integrity
 rules, capability guards, non-executable commerce boundaries, compatibility
 model, conformance resolution and evidence, ownership split, Holon #7 handoff,
 and checkpoint exclusions.
+
+## Claim provenance
+
+`claim-provenance-policy.json` defines proposed observe-only evidence states and
+wording for quantitative, support and compatibility claims. The
+[claim guide](../docs/ecosystem/CLAIM_PROVENANCE.md) links the schema, pure
+qualification/projection reference, six synthetic pilots and report-only
+migration. Existing raw evidence remains with its canonical owner.
