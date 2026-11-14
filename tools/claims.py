@@ -25,6 +25,9 @@ IDENTIFIER = re.compile(r"[a-z0-9][a-z0-9._-]{0,127}")
 REPOSITORY = re.compile(r"[a-z0-9][a-z0-9-]*/(?:\.github|[a-z0-9][a-z0-9._-]*)")
 SHA = re.compile(r"[a-f0-9]{40}")
 HASH = re.compile(r"[a-f0-9]{64}")
+MUTABLE_CHANNELS = frozenset(("main", "master", "latest", "head", "trunk", "develop", "stable",
+                              "nightly", "canary", "next", "edge", "current", "rolling", "beta", "alpha", "dev"))
+UNKNOWN_VALUES = frozenset(("unknown", "unavailable", "unspecified", "not-recorded", "not-collected"))
 
 
 def require(condition):
@@ -79,8 +82,12 @@ def instant(value):
 
 def version(value):
     text(value, 128)
-    require(value not in ("main", "master", "latest", "HEAD", "trunk", "develop")
+    require(value.casefold() not in MUTABLE_CHANNELS
             and not any(char in value for char in "*^~><= "))
+
+
+def known(value):
+    return value.casefold() not in UNKNOWN_VALUES
 
 
 def number(value):
@@ -227,18 +234,21 @@ def assess(value, *, as_of):
     if state in ("measured", "verified"):
         require(value["kind"] != "benchmark" or state != "verified")
         complete = (value["subject"]["revision"] is not None and verification["at"] is not None
-                    and verification["responsible"] is not None and value["valid_until"] is not None
-                    and all(value["subject"][field] != "unknown" for field in ("id", "component"))
-                    and all(value["environment"][field] != "unknown" for field in ("id", "platform", "architecture"))
-                    and value["environment"]["runtime"]["id"] != "unknown"
-                    and value["environment"]["runtime"]["version"] != "unknown"
-                    and value["procedure"]["version"] != "unknown" and value["procedure"]["id"] != "unknown"
+                    and verification["responsible"] is not None and known(verification["responsible"])
+                    and value["valid_until"] is not None
+                    and all(known(value["subject"][field]) for field in ("id", "component"))
+                    and all(value["subject"][field] is None or known(value["subject"][field])
+                            for field in ("tag", "released_version"))
+                    and all(known(value["environment"][field]) for field in ("id", "platform", "architecture"))
+                    and known(value["environment"]["runtime"]["id"])
+                    and known(value["environment"]["runtime"]["version"])
+                    and known(value["procedure"]["version"]) and known(value["procedure"]["id"])
                     and (value["procedure"]["kind"] != "command" or bool(value["procedure"]["command"]))
-                    and all(item["id"] != "unknown" and item["version"] != "unknown"
+                    and all(known(item["id"]) and known(item["version"])
                             for item in value["environment"]["dependencies"])
                     and all(value["procedure"][field] is None
-                            or (value["procedure"][field]["id"] != "unknown"
-                                and value["procedure"][field]["version"] != "unknown")
+                            or (known(value["procedure"][field]["id"])
+                                and known(value["procedure"][field]["version"]))
                             for field in ("configuration", "dataset", "task", "fixture"))
                     and bool(used)
                     and all(item["sha256"] and item["captured_at"] and item["retained_until"]

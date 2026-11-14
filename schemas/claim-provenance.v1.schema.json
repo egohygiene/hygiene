@@ -106,14 +106,7 @@
               "maxLength": 128,
               "pattern": "^[^*^~><=\\s]+$",
               "not": {
-                "enum": [
-                  "main",
-                  "master",
-                  "latest",
-                  "HEAD",
-                  "trunk",
-                  "develop"
-                ]
+                "pattern": "^(?:[aA][lL][pP][hH][aA]|[bB][eE][tT][aA]|[cC][aA][nN][aA][rR][yY]|[cC][uU][rR][rR][eE][nN][tT]|[dD][eE][vV]|[dD][eE][vV][eE][lL][oO][pP]|[eE][dD][gG][eE]|[hH][eE][aA][dD]|[lL][aA][tT][eE][sS][tT]|[mM][aA][iI][nN]|[mM][aA][sS][tT][eE][rR]|[nN][eE][xX][tT]|[nN][iI][gG][hH][tT][lL][yY]|[rR][oO][lL][lL][iI][nN][gG]|[sS][tT][aA][bB][lL][eE]|[tT][rR][uU][nN][kK])$"
               }
             },
             {
@@ -129,14 +122,7 @@
               "maxLength": 128,
               "pattern": "^[^*^~><=\\s]+$",
               "not": {
-                "enum": [
-                  "main",
-                  "master",
-                  "latest",
-                  "HEAD",
-                  "trunk",
-                  "develop"
-                ]
+                "pattern": "^(?:[aA][lL][pP][hH][aA]|[bB][eE][tT][aA]|[cC][aA][nN][aA][rR][yY]|[cC][uU][rR][rR][eE][nN][tT]|[dD][eE][vV]|[dD][eE][vV][eE][lL][oO][pP]|[eE][dD][gG][eE]|[hH][eE][aA][dD]|[lL][aA][tT][eE][sS][tT]|[mM][aA][iI][nN]|[mM][aA][sS][tT][eE][rR]|[nN][eE][xX][tT]|[nN][iI][gG][hH][tT][lL][yY]|[rR][oO][lL][lL][iI][nN][gG]|[sS][tT][aA][bB][lL][eE]|[tT][rR][uU][nN][kK])$"
               }
             },
             {
@@ -193,14 +179,7 @@
               "maxLength": 128,
               "pattern": "^[^*^~><=\\s]+$",
               "not": {
-                "enum": [
-                  "main",
-                  "master",
-                  "latest",
-                  "HEAD",
-                  "trunk",
-                  "develop"
-                ]
+                "pattern": "^(?:[aA][lL][pP][hH][aA]|[bB][eE][tT][aA]|[cC][aA][nN][aA][rR][yY]|[cC][uU][rR][rR][eE][nN][tT]|[dD][eE][vV]|[dD][eE][vV][eE][lL][oO][pP]|[eE][dD][gG][eE]|[hH][eE][aA][dD]|[lL][aA][tT][eE][sS][tT]|[mM][aA][iI][nN]|[mM][aA][sS][tT][eE][rR]|[nN][eE][xX][tT]|[nN][iI][gG][hH][tT][lL][yY]|[rR][oO][lL][lL][iI][nN][gG]|[sS][tT][aA][bB][lL][eE]|[tT][rR][uU][nN][kK])$"
               }
             }
           }
@@ -227,14 +206,7 @@
                 "maxLength": 128,
                 "pattern": "^[^*^~><=\\s]+$",
                 "not": {
-                  "enum": [
-                    "main",
-                    "master",
-                    "latest",
-                    "HEAD",
-                    "trunk",
-                    "develop"
-                  ]
+                  "pattern": "^(?:[aA][lL][pP][hH][aA]|[bB][eE][tT][aA]|[cC][aA][nN][aA][rR][yY]|[cC][uU][rR][rR][eE][nN][tT]|[dD][eE][vV]|[dD][eE][vV][eE][lL][oO][pP]|[eE][dD][gG][eE]|[hH][eE][aA][dD]|[lL][aA][tT][eE][sS][tT]|[mM][aA][iI][nN]|[mM][aA][sS][tT][eE][rR]|[nN][eE][xX][tT]|[nN][iI][gG][hH][tT][lL][yY]|[rR][oO][lL][lL][iI][nN][gG]|[sS][tT][aA][bB][lL][eE]|[tT][rR][uU][nN][kK])$"
                 }
               },
               "sha256": {
@@ -271,14 +243,7 @@
           "maxLength": 128,
           "pattern": "^[^*^~><=\\s]+$",
           "not": {
-            "enum": [
-              "main",
-              "master",
-              "latest",
-              "HEAD",
-              "trunk",
-              "develop"
-            ]
+            "pattern": "^(?:[aA][lL][pP][hH][aA]|[bB][eE][tT][aA]|[cC][aA][nN][aA][rR][yY]|[cC][uU][rR][rR][eE][nN][tT]|[dD][eE][vV]|[dD][eE][vV][eE][lL][oO][pP]|[eE][dD][gG][eE]|[hH][eE][aA][dD]|[lL][aA][tT][eE][sS][tT]|[mM][aA][iI][nN]|[mM][aA][sS][tT][eE][rR]|[nN][eE][xX][tT]|[nN][iI][gG][hH][tT][lL][yY]|[rR][oO][lL][lL][iI][nN][gG]|[sS][tT][aA][bB][lL][eE]|[tT][rR][uU][nN][kK])$"
           }
         },
         "kind": {
@@ -320,14 +285,7 @@
                   "maxLength": 128,
                   "pattern": "^[^*^~><=\\s]+$",
                   "not": {
-                    "enum": [
-                      "main",
-                      "master",
-                      "latest",
-                      "HEAD",
-                      "trunk",
-                      "develop"
-                    ]
+                    "pattern": "^(?:[aA][lL][pP][hH][aA]|[bB][eE][tT][aA]|[cC][aA][nN][aA][rR][yY]|[cC][uU][rR][rR][eE][nN][tT]|[dD][eE][vV]|[dD][eE][vV][eE][lL][oO][pP]|[eE][dD][gG][eE]|[hH][eE][aA][dD]|[lL][aA][tT][eE][sS][tT]|[mM][aA][iI][nN]|[mM][aA][sS][tT][eE][rR]|[nN][eE][xX][tT]|[nN][iI][gG][hH][tT][lL][yY]|[rR][oO][lL][lL][iI][nN][gG]|[sS][tT][aA][bB][lL][eE]|[tT][rR][uU][nN][kK])$"
                   }
                 },
                 "sha256": {
@@ -362,14 +320,7 @@
                   "maxLength": 128,
                   "pattern": "^[^*^~><=\\s]+$",
                   "not": {
-                    "enum": [
-                      "main",
-                      "master",
-                      "latest",
-                      "HEAD",
-                      "trunk",
-                      "develop"
-                    ]
+                    "pattern": "^(?:[aA][lL][pP][hH][aA]|[bB][eE][tT][aA]|[cC][aA][nN][aA][rR][yY]|[cC][uU][rR][rR][eE][nN][tT]|[dD][eE][vV]|[dD][eE][vV][eE][lL][oO][pP]|[eE][dD][gG][eE]|[hH][eE][aA][dD]|[lL][aA][tT][eE][sS][tT]|[mM][aA][iI][nN]|[mM][aA][sS][tT][eE][rR]|[nN][eE][xX][tT]|[nN][iI][gG][hH][tT][lL][yY]|[rR][oO][lL][lL][iI][nN][gG]|[sS][tT][aA][bB][lL][eE]|[tT][rR][uU][nN][kK])$"
                   }
                 },
                 "sha256": {
@@ -404,14 +355,7 @@
                   "maxLength": 128,
                   "pattern": "^[^*^~><=\\s]+$",
                   "not": {
-                    "enum": [
-                      "main",
-                      "master",
-                      "latest",
-                      "HEAD",
-                      "trunk",
-                      "develop"
-                    ]
+                    "pattern": "^(?:[aA][lL][pP][hH][aA]|[bB][eE][tT][aA]|[cC][aA][nN][aA][rR][yY]|[cC][uU][rR][rR][eE][nN][tT]|[dD][eE][vV]|[dD][eE][vV][eE][lL][oO][pP]|[eE][dD][gG][eE]|[hH][eE][aA][dD]|[lL][aA][tT][eE][sS][tT]|[mM][aA][iI][nN]|[mM][aA][sS][tT][eE][rR]|[nN][eE][xX][tT]|[nN][iI][gG][hH][tT][lL][yY]|[rR][oO][lL][lL][iI][nN][gG]|[sS][tT][aA][bB][lL][eE]|[tT][rR][uU][nN][kK])$"
                   }
                 },
                 "sha256": {
@@ -446,14 +390,7 @@
                   "maxLength": 128,
                   "pattern": "^[^*^~><=\\s]+$",
                   "not": {
-                    "enum": [
-                      "main",
-                      "master",
-                      "latest",
-                      "HEAD",
-                      "trunk",
-                      "develop"
-                    ]
+                    "pattern": "^(?:[aA][lL][pP][hH][aA]|[bB][eE][tT][aA]|[cC][aA][nN][aA][rR][yY]|[cC][uU][rR][rR][eE][nN][tT]|[dD][eE][vV]|[dD][eE][vV][eE][lL][oO][pP]|[eE][dD][gG][eE]|[hH][eE][aA][dD]|[lL][aA][tT][eE][sS][tT]|[mM][aA][iI][nN]|[mM][aA][sS][tT][eE][rR]|[nN][eE][xX][tT]|[nN][iI][gG][hH][tT][lL][yY]|[rR][oO][lL][lL][iI][nN][gG]|[sS][tT][aA][bB][lL][eE]|[tT][rR][uU][nN][kK])$"
                   }
                 },
                 "sha256": {

@@ -18,7 +18,8 @@
     "scientific_limit",
     "migration",
     "ownership",
-    "activation_gate"
+    "activation_gate",
+    "version_admission"
   ],
   "properties": {
     "schema": {
@@ -214,6 +215,37 @@
     },
     "activation_gate": {
       "const": "Maintainer policy disposition and explicitly reviewed compatible consumers before enforcement; no active policy, fleet compliance or downstream support claimed."
+    },
+    "version_admission": {
+      "const": {
+        "comparison": "case-insensitive-exact-match",
+        "mutable_channels_refused": [
+          "alpha",
+          "beta",
+          "canary",
+          "current",
+          "dev",
+          "develop",
+          "edge",
+          "head",
+          "latest",
+          "main",
+          "master",
+          "next",
+          "nightly",
+          "rolling",
+          "stable",
+          "trunk"
+        ],
+        "unknown_values_never_strong": [
+          "not-collected",
+          "not-recorded",
+          "unavailable",
+          "unknown",
+          "unspecified"
+        ],
+        "limit": "Lexical acceptance is not owner-authenticated immutability or execution proof."
+      }
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",

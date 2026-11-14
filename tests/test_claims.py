@@ -82,6 +82,41 @@ class ClaimTests(unittest.TestCase):
             value["state"] = "measured"
             self.assertEqual("unverified", claims.assess(value, as_of=AS_OF)["effective_state"])
 
+    def version_field(self, value, field, version):
+        if field == "runtime": value["environment"]["runtime"]["version"] = version
+        elif field == "dependency": value["environment"]["dependencies"][0]["version"] = version
+        elif field == "procedure": value["procedure"]["version"] = version
+        elif field in ("tag", "released_version"): value["subject"][field] = version
+        else:
+            value["procedure"][field] = {"id": "fixture-" + field, "version": version, "sha256": "f" * 64}
+
+    def test_case_insensitive_unknown_material_versions_never_qualify(self):
+        for version in ("unknown", "UNKNOWN", "UnKnOwN", "unavailable", "UNAVAILABLE", "Unspecified", "NOT-RECORDED", "NOT-COLLECTED"):
+            for field in ("runtime", "dependency", "procedure", "configuration", "fixture", "task", "dataset", "tag", "released_version"):
+                value = self.fixture()
+                self.version_field(value, field, version)
+                result = claims.assess(value, as_of=AS_OF)
+                with self.subTest(version=version, field=field):
+                    self.assertEqual("unverified", result["effective_state"])
+                    self.assertFalse(result["positive_evidence_label_eligible"])
+
+    def test_mutable_channels_refused_case_insensitively_in_every_version_field(self):
+        for channel in sorted(claims.MUTABLE_CHANNELS):
+            for version in (channel, channel.upper(), channel.title()):
+                for field in ("runtime", "dependency", "procedure", "configuration", "fixture", "task", "dataset", "tag", "released_version"):
+                    value = self.fixture()
+                    self.version_field(value, field, version)
+                    with self.subTest(version=version, field=field), self.assertRaises(ValueError):
+                        claims.assess(value, as_of=AS_OF)
+
+    def test_immutable_release_prerelease_build_and_digest_versions_stay_supported(self):
+        for version in ("1.2.3", "v1.2.3", "1.2.3-alpha.1+build.7", "a" * 40):
+            for field in ("runtime", "dependency", "procedure", "configuration", "fixture", "task", "dataset", "tag", "released_version"):
+                value = self.fixture()
+                self.version_field(value, field, version)
+                with self.subTest(version=version, field=field):
+                    self.assertEqual("measured", claims.assess(value, as_of=AS_OF)["effective_state"])
+
     def test_freshness_boundary_and_original_state_preserved(self):
         value = self.fixture("compatibility")
         self.assertEqual("verified", claims.assess(value, as_of="2026-11-30T23:59:59Z")["effective_state"])
@@ -188,6 +223,8 @@ class ClaimTests(unittest.TestCase):
             if item["repository"] == "egohygiene/hygiene" and "path" in item:
                 self.assertEqual(item["sha256"], hashlib.sha256((ROOT / item["path"]).read_bytes()).hexdigest())
         self.assertEqual(set(claims.STATES), {row["state"] for row in policy["presentation"]})
+        self.assertEqual(sorted(claims.MUTABLE_CHANNELS), policy["version_admission"]["mutable_channels_refused"])
+        self.assertEqual(sorted(claims.UNKNOWN_VALUES), policy["version_admission"]["unknown_values_never_strong"])
 
 
 if __name__ == "__main__":

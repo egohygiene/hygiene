@@ -56,6 +56,15 @@ The reference assessment preserves `declared_state` and calculates an independen
 `effective_state`. A strong declaration with missing subject revision, runtime,
 verification, expiry or bound raw evidence becomes unverified. Measurements also
 need a metric and versioned configuration/fixture. Mutable versions are refused.
+Channel matching is case-insensitive against the finite policy list: main,
+master, latest, head, trunk, develop, stable, nightly, canary, next, edge,
+current, rolling, beta, alpha and dev. Thus `STABLE` is refused, while
+`1.2.3-alpha.1+build.7` is a distinct immutable version string. Unknown,
+unavailable, unspecified, not-recorded and not-collected are case-insensitive
+unknown values: they remain representable but never qualify a strong label in
+subject/method/runtime/material-reference inputs. Lexical acceptance alone does
+not prove a version exists or is immutable at its owner; actual source admission
+must establish that separately.
 This is deterministic provenance qualification, not authentication of supplied
 facts or independent execution of the command.
 

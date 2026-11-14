@@ -158,5 +158,34 @@
     "holon": "new-repository composition from reviewed compatible pins",
     "repository": "facts, measurement methods, raw evidence/access/retention, revision scope and publication review"
   },
-  "activation_gate": "Maintainer policy disposition and explicitly reviewed compatible consumers before enforcement; no active policy, fleet compliance or downstream support claimed."
+  "activation_gate": "Maintainer policy disposition and explicitly reviewed compatible consumers before enforcement; no active policy, fleet compliance or downstream support claimed.",
+  "version_admission": {
+    "comparison": "case-insensitive-exact-match",
+    "mutable_channels_refused": [
+      "alpha",
+      "beta",
+      "canary",
+      "current",
+      "dev",
+      "develop",
+      "edge",
+      "head",
+      "latest",
+      "main",
+      "master",
+      "next",
+      "nightly",
+      "rolling",
+      "stable",
+      "trunk"
+    ],
+    "unknown_values_never_strong": [
+      "not-collected",
+      "not-recorded",
+      "unavailable",
+      "unknown",
+      "unspecified"
+    ],
+    "limit": "Lexical acceptance is not owner-authenticated immutability or execution proof."
+  }
 }
