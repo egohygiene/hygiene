@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T19:52:53Z'
+  updated_at: '2026-11-14T20:02:14Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -19,8 +19,10 @@ scope:
   - Proposed alpha.1 schema/policy with eleven states, bounded wording and existing owner-evidence composition.
   - Pure explicit-clock qualification and allowlisted linked human-readable projection; six synthetic
     pilot fixtures.
-  - Clean integrated e631705 passes all25 existing contract checks and338 tests, zero failures/errors/skips;
-    prior4683657/321 qualification remains source-specific history.
+  - Clean channel-fix source927faf6 passes all25 checks and341 tests, zero failures/errors/skips. Earlier
+    e631705/338 and4683657/321 receipts retain their original source qualification.
+  - Casefolded finite mutable channels are refused in every version slot; casefolded unknown values remain
+    representable but never strongly qualified.
   excludes:
   - Independent benchmark/scientific validation, actual raw artifact authentication, source commands or
     evidence fetching.
@@ -81,9 +83,9 @@ state:
     default_branch_revision: 905eac04deaa084c471a5eb628700711afda0bd4
     issue_state: open
     pull_request_state: not-applicable
-    notes: Fetched actual main905eac0 after root ordinary merge120. Normal merge e631705 preserves diagnosis
-      policy/ADR0021 and reconciles indexes. Its clean combined-source338-test receipt passes; this later
-      continuity-only authoring remains unmerged.
+    notes: Actual main905eac0 includes root-merged diagnosis120. Normal branch mergee631705 preserved
+      it. Later927faf6 fixes case-insensitive unknown/channel admission and passes clean341 tests; this
+      final continuity-only handoff remains unmerged.
   parallel_changes: []
 review:
   status: partial
@@ -92,20 +94,20 @@ review:
   evidence:
   - command: python3 -I -m unittest discover -s tests -p test_claims.py -v
     outcome: passed
-    observed_at: '2026-11-14T19:49:58Z'
-    notes: 18 focused regressions cover all states, missing provenance, unknown methods/versions, temporal/source/privacy
-      safety and linked projections.
+    observed_at: '2026-11-14T20:02:14Z'
+    notes: 21 focused regressions include72unknown-value,432channel and36immutable-version matrix cases
+      across9version slots, plus existing state/time/privacy/projection controls.
   - command: Registered-format Draft202012 schema checks of both schemas/policy/six fixtures and ADR0022;
       immutable owner byte/digest inspection
     outcome: passed
     observed_at: '2026-11-14T19:49:58Z'
     notes: Existing local RI/presentation/release hashes and exact Aether artifact-schema bytes match.
       Distribution29 remains open design input, not invented delivered contract.
-  - command: python3 -I tools/check_contracts.py at clean integrated e631705
+  - command: python3 -I tools/check_contracts.py at clean927faf6
     outcome: passed
-    observed_at: '2026-11-14T19:52:53Z'
-    notes: All25 checks and338 tests pass, zero failures/errors/skips. Earlier claim-only4683657/321 and45899/320
-      receipts retain their original sources; diagnosis120 adds17 existing tests at integration.
+    observed_at: '2026-11-14T20:02:14Z'
+    notes: All25 checks and341 tests pass, zero failures/errors/skips. Earlier integrated e631705/338
+      and claim-only4683657/321 receipts remain historical at their original sources.
   - command: Actual measurements, raw authenticity, downstream/native/hosted integration and human lifecycle
     outcome: not-run
     observed_at: '2026-11-14T19:49:58Z'
@@ -147,7 +149,7 @@ Review proposed quantitative and compatibility claim provenance with safe eviden
 
 ## State snapshot
 
-Actual main905eac0 includes root-merged diagnosis120. This branch integrates it by normal merge, retaining all original owner pins and lifecycle. Claim-functional4683657 remains the source of the prior321-test receipt. Clean integrated e631705 passes all25 checks and338 tests with zero skips.
+Actual main905eac0 includes root-merged diagnosis120. This branch integrates it by normal merge, retaining all original owner pins and lifecycle. Claim-functional4683657 remains the source of the prior321-test receipt. Later clean927faf6 passes all25 checks and341 tests with zero skips, including the narrow channel/unknown fix.
 
 ## Completed and material changes
 
@@ -155,7 +157,7 @@ The proposed contract references existing RI/badge/release/AI evidence instead o
 
 ## Validation and review evidence
 
-Both schemas/policy/six fixtures and ADR0022 pass registered-format validation. Focused18 and the clean integrated e631705 complete25 checks/338 tests pass without skips. Values/digests/actors in fixtures are explicitly synthetic, not actual benchmarks or platform support.
+Both schemas/policy/six fixtures and ADR0022 pass registered-format validation. Focused21 and clean927faf6 complete25 checks/341 tests pass without skips. Casefolded unknowns cannot qualify strong labels; the finite mutable-channel list is refused without rejecting immutable prerelease/build versions. Values/digests/actors in fixtures are explicitly synthetic, not actual benchmarks or platform support.
 
 ## Blockers, risks, unknowns, and deferred work
 
@@ -163,7 +165,7 @@ Scientific validity, actual execution/raw-byte authenticity and native consumers
 
 ## Next dependency-ready work
 
-Combined candidate qualification at e631705 passed after actual905eac0 integration; root now reviews ordinary source integration. Preserve report-only rollout and existing owner pins/lifecycles.
+Combined qualification at927faf6 passed after actual905eac0 integration and the narrow channel/unknown fix; root now reviews ordinary source integration. Preserve report-only rollout and existing owner pins/lifecycles.
 
 ## Parallel changes and reconciliation
 
