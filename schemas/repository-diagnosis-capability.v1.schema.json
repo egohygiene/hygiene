@@ -1,0 +1,295 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "capability",
+    "repository",
+    "visibility",
+    "represented_revision",
+    "applicability",
+    "adoption",
+    "record_contract",
+    "records_path",
+    "alternative_path_reason",
+    "privacy",
+    "retention",
+    "index",
+    "observation"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egohygiene.repository-diagnosis-capability/v1"
+    },
+    "version": {
+      "const": "1.0.0-alpha.1"
+    },
+    "capability": {
+      "const": "repository.diagnosis-records"
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*/(?:\\.github|[a-z0-9][a-z0-9._-]*)$"
+    },
+    "visibility": {
+      "enum": [
+        "public",
+        "internal",
+        "private",
+        "unknown"
+      ]
+    },
+    "represented_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "applicability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "reason"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "optional",
+            "recommended",
+            "required",
+            "not-applicable",
+            "unknown",
+            "blocked"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+        }
+      }
+    },
+    "adoption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "reason"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "enabled",
+            "opted-out",
+            "undecided"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+        }
+      }
+    },
+    "record_contract": {
+      "const": {
+        "repository": "egohygiene/aether",
+        "contract": "aether.diagnosis-record/v1",
+        "version": "1.0.0",
+        "revision": "e9aa58bb70c8b29179329c1c989aed38c620f7fd",
+        "lifecycle": "draft",
+        "release_included": false,
+        "schema_path": "catalog/schemas/aether.diagnosis-record.v1.schema.json",
+        "schema_sha256": "e84bb047a51b398e94847b291a9dfefb1aaa38d0f8fefda5764a2f233080abf8",
+        "specification_path": "library/organization/specs/quality/diagnosis-record.spec.md",
+        "specification_sha256": "b695aac9e9fd72cbcf9ffd4b96f137e7a476da0d952fcc5b73b37b7d5ad43e86"
+      }
+    },
+    "records_path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^(?!/)(?!.*[\\\\:%*?\\[\\]#\\u0000-\\u001f\\u007f])(?!.*(?:^|/)(?:\\.{1,2}|[.][gG][iI][tT])(?:/|$))[^/]+(?:/[^/]+)*$"
+    },
+    "alternative_path_reason": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "default_sensitivity",
+        "publication",
+        "public_fields"
+      ],
+      "properties": {
+        "default_sensitivity": {
+          "enum": [
+            "internal",
+            "restricted"
+          ]
+        },
+        "publication": {
+          "enum": [
+            "none",
+            "allowlisted-metadata"
+          ]
+        },
+        "public_fields": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "capability",
+              "applicability",
+              "adoption",
+              "freshness"
+            ]
+          }
+        }
+      }
+    },
+    "retention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "days",
+        "disposition",
+        "reason"
+      ],
+      "properties": {
+        "days": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 36500
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "disposition": {
+          "const": "review-before-delete"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+$"
+        }
+      }
+    },
+    "index": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "owner",
+        "max_age_days"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "none",
+            "ephemeral",
+            "tracked"
+          ]
+        },
+        "owner": {
+          "type": "string"
+        },
+        "max_age_days": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 365
+        }
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "observed_at",
+        "source_revision",
+        "index_generated_at",
+        "source_digest"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "not-collected",
+            "no-records",
+            "no-recent-records",
+            "available",
+            "unavailable"
+          ]
+        },
+        "observed_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_revision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "index_generated_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_digest": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/repository-diagnosis-capability.v1.schema.json",
+  "title": "Proposed repository diagnosis capability declaration alpha.1",
+  "$comment": "Shape validation only. tools/diagnosis.py also enforces clock ordering, cross-field privacy, pin equality, and path semantics."
+}

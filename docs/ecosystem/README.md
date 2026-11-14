@@ -41,6 +41,13 @@ catalog scope and freshness.
     delivery states, ownership, composition, and downstream handoffs.
 14. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
 
+## Diagnosis applicability
+
+[Repository diagnosis](REPOSITORY_DIAGNOSIS.md) defines a proposed optional
+capability, six distinct applicability states, bounded paths, private-by-default
+publication, retention and source-bound index freshness. It references the
+immutable Aether record contract; it does not parse records or infer health.
+
 ## Architectural decision
 
 `hygiene` becomes the canonical ecosystem architecture and platform-control repository. Other repositories receive a small, generated local context document that states their own boundary and pins an architecture release. They do **not** receive independent copies of the entire ecosystem specification. `pace` will eventually reconcile those projections through pull requests.
