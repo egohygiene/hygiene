@@ -155,7 +155,10 @@ tool/parser coverage in reports.
 
 The [synthetic cases](../../fixtures/change-history/examples.json) cover normal,
 breaking, revert, bot/dependency, generated, release, merge, placeholder and
-invalid syntax. They were authored as review material and **not executed**.
+invalid syntax. At the original 2026-11-12 source checkpoint they were authored as review
+material and **not executed**. That historical checkpoint and the fixture source
+marker remain intact; the later qualification below records actual execution
+separately.
 The [source migration map](../../fixtures/change-history/migration-map.json)
 records exact public configurations and deferred restricted-source mapping.
 
@@ -176,8 +179,42 @@ compatibility before any ratchet/enforce stage or wider Pace adoption. Undo a
 prospective tool upgrade by reselecting its previous immutable inputs; never
 rewrite existing commits/tags/signatures or erase authored records.
 
-Static source/AST/schema-meta and independent peer review are the only authoring
-checks in this slice. No parser/helper, example, regression, native validation,
-tests, builds, CI, Git/provider mutation, publication or fleet adoption ran.
+At the original 2026-11-12 authoring checkpoint, static source/AST/schema-meta
+and independent peer review were the only checks. No parser/helper, example,
+regression, native validation, tests, builds, CI, Git/provider mutation,
+publication or fleet adoption ran in that historical slice.
 The accepted ADR policy1.2.0 remains unchanged. New ADR-0018 and this policy keep
 proposed lifecycle and null approval; merging source supplies no ratification.
+
+## Actual reference qualification — 2026-11-14
+
+The [source-bound qualification](../evidence/2026-11-14-change-history-reference-qualification.json)
+now records actual execution of all 15 original synthetic fixtures and 18 new
+regressions. It exercises the 12 exact type/emoji pairs, 132 cross-type emoji
+refusals, 36 breaking variants, revert/trailer/release/merge/bot/generated/PR
+semantics, Unicode/UTF-8 bounds, private-payload exclusion, text-free output and
+regular-file/symlink/FIFO/oversize refusal. Real local CLI canaries prove the
+0/1/2 exit distinctions and neutral malformed/private diagnostics. The checks
+found no production parser defect within those exercised scopes.
+
+Registered-format Draft202012 checks pass for the three existing schemas, the
+policy and all 15 input/output pairs. The four immutable public configurations
+were re-inspected for their literal declared type inventories: 12 EgoLint,
+84 Empathy, 8 Renderflow and 15 Reflector types match the existing map. Local
+Git blob bytes and connector-decoded UTF-8 text have explicit separate transport
+labels in the evidence. Their consumer runtimes and inherited package defaults
+were not executed. The original map clock remains 2026-11-12T05:41:28Z.
+
+Clean integrated `a80dba3e23b9a5320ef8e8483fe871f8e9587728` passes all 25 existing
+contract checks and 359 tests, zero failures/errors/skips. Focused execution is
+bound separately to `c3bf50f01ca29e0a530d2f09e4e430755201786b`; its seven canonical
+change-history inputs and new test file are unchanged across the later accepted
+main integration. The policy, all three schemas, helper, original fixtures and
+migration map retain their exact bytes. This adds regression coverage, not a
+new policy version or production adapter.
+
+Issue #37 remains open for the restricted-product mapping and separately owned
+production adoption/review. These local Linux reference checks do not establish
+other platforms, actual release effects, DCO/signatures, hooks/rulesets/merge
+settings, native EgoLint/Relay integration, human ratification, publication or
+historical normalization. ADR-0018 stays proposed with null approval.
