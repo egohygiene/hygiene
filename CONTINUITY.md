@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T19:49:58Z'
+  updated_at: '2026-11-14T19:51:05Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -57,8 +57,8 @@ work:
   next:
     kind: action
     id: review-claim-contract
-    description: Review and integrate this proposed source contract, reconciling shared contract/ADR indexes
-      and continuity with diagnosis PR120 before merge.
+    description: Qualify the combined source after normal main905eac0 integration; then root reviews this
+      proposed claim contract.
     readiness: ready
     references:
     - https://github.com/egohygiene/hygiene/issues/30
@@ -66,26 +66,24 @@ work:
     depends_on: []
 state:
   base:
-    revision: 627b448f655afb2f4366654ba3ca3050389e464a
+    revision: 905eac04deaa084c471a5eb628700711afda0bd4
     ref: refs/heads/main
-    verified_at: '2026-11-14T19:49:58Z'
+    verified_at: '2026-11-14T19:51:05Z'
   candidate:
     branch: codex/hygiene-claim-provenance
     revision: null
     pull_request: null
-    handoff_state: ready-for-review
+    handoff_state: in-progress
   live:
     status: verified
-    observed_at: '2026-11-14T19:49:58Z'
-    default_branch_revision: 627b448f655afb2f4366654ba3ca3050389e464a
+    observed_at: '2026-11-14T19:51:05Z'
+    default_branch_revision: 905eac04deaa084c471a5eb628700711afda0bd4
     issue_state: open
     pull_request_state: not-applicable
-    notes: Main verified through remote refs; issue30 fetched open. Functional4683657 is committed locally;
-      this continuity authoring and source integration remain unmerged.
-  parallel_changes:
-  - provider: github
-    id: egohygiene/hygiene#120
-    url: https://github.com/egohygiene/hygiene/pull/120
+    notes: Fetched actual main905eac0 after root ordinary merge120. This normal branch merge preserves
+      diagnosis policy/ADR0021 and reconciles both indexes. Existing321-test claim receipt remains bound
+      to4683657; combined-source full checks are pending.
+  parallel_changes: []
 review:
   status: partial
   reviewed_at: '2026-11-14T19:49:58Z'
@@ -148,7 +146,7 @@ Review proposed quantitative and compatibility claim provenance with safe eviden
 
 ## State snapshot
 
-Remote main627b448 was verified at the metadata clock. Clean functional4683657 passed source-bound checks; this later continuity update does not claim merge, deployment or accepted policy.
+Actual main905eac0 includes root-merged diagnosis120. This branch integrates it by normal merge, retaining all original owner pins and lifecycle. Claim-functional4683657 remains the source of the prior321-test receipt; combined source qualification is pending.
 
 ## Completed and material changes
 
@@ -164,11 +162,11 @@ Scientific validity, actual execution/raw-byte authenticity and native consumers
 
 ## Next dependency-ready work
 
-Root reviews the contract and reconciles shared indexes/continuity with diagnosis PR120 before ordinary integration. Preserve report-only rollout and existing owner pins/lifecycles.
+Qualify the combined candidate after actual905eac0 integration, then root reviews ordinary source integration. Preserve report-only rollout and existing owner pins/lifecycles.
 
 ## Parallel changes and reconciliation
 
-Diagnosis PR120 on the same base adds proposed ADR0021 and contract/index/continuity entries; this branch reserves ADR0022. Reconcile by meaning rather than choosing one snapshot. No other owner authority changes are proposed.
+Root merged diagnosis120 at905eac0. The normal branch merge retains its policy, schemas,17tests and ADR0021 beside this independent claim proposal/ADR0022. Contract/index entries are combined; this checkpoint retains the current claim objective.
 
 ## Privacy and redaction
 

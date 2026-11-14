@@ -41,6 +41,13 @@ catalog scope and freshness.
     delivery states, ownership, composition, and downstream handoffs.
 14. Review the equivalent Mermaid, PlantUML, and Excalidraw sources in [`diagrams/`](diagrams/README.md).
 
+## Diagnosis applicability
+
+[Repository diagnosis](REPOSITORY_DIAGNOSIS.md) defines a proposed optional
+capability, six distinct applicability states, bounded paths, private-by-default
+publication, retention and source-bound index freshness. It references the
+immutable Aether record contract; it does not parse records or infer health.
+
 ## Claim provenance
 
 [Quantitative and compatibility claims](CLAIM_PROVENANCE.md) defines a proposed

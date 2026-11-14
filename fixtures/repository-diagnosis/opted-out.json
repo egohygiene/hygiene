@@ -1,0 +1,52 @@
+{
+  "schema": "egohygiene.repository-diagnosis-capability/v1",
+  "version": "1.0.0-alpha.1",
+  "capability": "repository.diagnosis-records",
+  "repository": "example/public-fixture",
+  "visibility": "public",
+  "represented_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "applicability": {
+    "state": "optional",
+    "reason": "Synthetic ordinary active repository; no requirement to record every interaction."
+  },
+  "adoption": {
+    "state": "opted-out",
+    "reason": "Synthetic repository maintains another bounded investigation process."
+  },
+  "record_contract": {
+    "repository": "egohygiene/aether",
+    "contract": "aether.diagnosis-record/v1",
+    "version": "1.0.0",
+    "revision": "e9aa58bb70c8b29179329c1c989aed38c620f7fd",
+    "lifecycle": "draft",
+    "release_included": false,
+    "schema_path": "catalog/schemas/aether.diagnosis-record.v1.schema.json",
+    "schema_sha256": "e84bb047a51b398e94847b291a9dfefb1aaa38d0f8fefda5764a2f233080abf8",
+    "specification_path": "library/organization/specs/quality/diagnosis-record.spec.md",
+    "specification_sha256": "b695aac9e9fd72cbcf9ffd4b96f137e7a476da0d952fcc5b73b37b7d5ad43e86"
+  },
+  "records_path": ".github/diagnostics/records",
+  "alternative_path_reason": null,
+  "privacy": {
+    "default_sensitivity": "restricted",
+    "publication": "none",
+    "public_fields": []
+  },
+  "retention": {
+    "days": 90,
+    "disposition": "review-before-delete",
+    "reason": "Synthetic review window; security/legal holds and raw evidence have separate owners."
+  },
+  "index": {
+    "mode": "none",
+    "owner": "example/public-fixture",
+    "max_age_days": 7
+  },
+  "observation": {
+    "state": "not-collected",
+    "observed_at": null,
+    "source_revision": null,
+    "index_generated_at": null,
+    "source_digest": null
+  }
+}

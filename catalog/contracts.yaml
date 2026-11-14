@@ -246,6 +246,22 @@
       "visibility": "public"
     },
     {
+      "id": "egohygiene.repository-diagnosis-policy/v1",
+      "title": "Organization diagnosis-record applicability policy",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-diagnosis-policy.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.repository-diagnosis-capability/v1",
+      "title": "Repository diagnosis capability declaration",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/repository-diagnosis-capability.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
       "id": "egohygiene.claim-provenance-policy/v1",
       "title": "Quantitative and compatibility claim presentation policy",
       "owner": "egohygiene/hygiene",
