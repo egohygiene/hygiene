@@ -260,6 +260,22 @@
       "source": "schemas/repository-diagnosis-capability.v1.schema.json",
       "status": "proposed",
       "visibility": "public"
+    },
+    {
+      "id": "egohygiene.claim-provenance-policy/v1",
+      "title": "Quantitative and compatibility claim presentation policy",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/claim-provenance-policy.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.claim-provenance/v1",
+      "title": "Quantitative and compatibility claim provenance",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/claim-provenance.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
     }
   ]
 }

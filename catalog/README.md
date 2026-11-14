@@ -186,3 +186,11 @@ and composes the immutable Aether record contract without copying its schema.
 The [capability guide](../docs/ecosystem/REPOSITORY_DIAGNOSIS.md) links the
 declaration schema, bounded reference check and executable synthetic privacy/
 freshness examples. No policy activation or repository health is implied.
+
+## Claim provenance
+
+`claim-provenance-policy.json` defines proposed observe-only evidence states and
+wording for quantitative, support and compatibility claims. The
+[claim guide](../docs/ecosystem/CLAIM_PROVENANCE.md) links the schema, pure
+qualification/projection reference, six synthetic pilots and report-only
+migration. Existing raw evidence remains with its canonical owner.
