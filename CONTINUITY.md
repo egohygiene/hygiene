@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T19:51:05Z'
+  updated_at: '2026-11-14T19:52:53Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -19,7 +19,8 @@ scope:
   - Proposed alpha.1 schema/policy with eleven states, bounded wording and existing owner-evidence composition.
   - Pure explicit-clock qualification and allowlisted linked human-readable projection; six synthetic
     pilot fixtures.
-  - Clean functional4683657 passes all25 existing contract checks and321 tests, zero failures/errors/skips.
+  - Clean integrated e631705 passes all25 existing contract checks and338 tests, zero failures/errors/skips;
+    prior4683657/321 qualification remains source-specific history.
   excludes:
   - Independent benchmark/scientific validation, actual raw artifact authentication, source commands or
     evidence fetching.
@@ -57,8 +58,8 @@ work:
   next:
     kind: action
     id: review-claim-contract
-    description: Qualify the combined source after normal main905eac0 integration; then root reviews this
-      proposed claim contract.
+    description: Root reviews this proposed claim contract at the reconciled source, then selects the
+      next dependency-ready bounded policy gap.
     readiness: ready
     references:
     - https://github.com/egohygiene/hygiene/issues/30
@@ -73,16 +74,16 @@ state:
     branch: codex/hygiene-claim-provenance
     revision: null
     pull_request: null
-    handoff_state: in-progress
+    handoff_state: ready-for-review
   live:
     status: verified
     observed_at: '2026-11-14T19:51:05Z'
     default_branch_revision: 905eac04deaa084c471a5eb628700711afda0bd4
     issue_state: open
     pull_request_state: not-applicable
-    notes: Fetched actual main905eac0 after root ordinary merge120. This normal branch merge preserves
-      diagnosis policy/ADR0021 and reconciles both indexes. Existing321-test claim receipt remains bound
-      to4683657; combined-source full checks are pending.
+    notes: Fetched actual main905eac0 after root ordinary merge120. Normal merge e631705 preserves diagnosis
+      policy/ADR0021 and reconciles indexes. Its clean combined-source338-test receipt passes; this later
+      continuity-only authoring remains unmerged.
   parallel_changes: []
 review:
   status: partial
@@ -100,11 +101,11 @@ review:
     observed_at: '2026-11-14T19:49:58Z'
     notes: Existing local RI/presentation/release hashes and exact Aether artifact-schema bytes match.
       Distribution29 remains open design input, not invented delivered contract.
-  - command: python3 -I tools/check_contracts.py at clean4683657d5088398d20efc5426f4003e068a5b91d
+  - command: python3 -I tools/check_contracts.py at clean integrated e631705
     outcome: passed
-    observed_at: '2026-11-14T19:49:58Z'
-    notes: All25 checks and321 tests pass, zero failures/errors/skips, using existing exact locked release-owner
-      bytes. Earlier45899 checkpoint25/320 remains historical before extra unknown-provenance control.
+    observed_at: '2026-11-14T19:52:53Z'
+    notes: All25 checks and338 tests pass, zero failures/errors/skips. Earlier claim-only4683657/321 and45899/320
+      receipts retain their original sources; diagnosis120 adds17 existing tests at integration.
   - command: Actual measurements, raw authenticity, downstream/native/hosted integration and human lifecycle
     outcome: not-run
     observed_at: '2026-11-14T19:49:58Z'
@@ -146,7 +147,7 @@ Review proposed quantitative and compatibility claim provenance with safe eviden
 
 ## State snapshot
 
-Actual main905eac0 includes root-merged diagnosis120. This branch integrates it by normal merge, retaining all original owner pins and lifecycle. Claim-functional4683657 remains the source of the prior321-test receipt; combined source qualification is pending.
+Actual main905eac0 includes root-merged diagnosis120. This branch integrates it by normal merge, retaining all original owner pins and lifecycle. Claim-functional4683657 remains the source of the prior321-test receipt. Clean integrated e631705 passes all25 checks and338 tests with zero skips.
 
 ## Completed and material changes
 
@@ -154,7 +155,7 @@ The proposed contract references existing RI/badge/release/AI evidence instead o
 
 ## Validation and review evidence
 
-Both schemas/policy/six fixtures and ADR0022 pass registered-format validation. Focused18 and the clean functional4683657 complete25 checks/321 tests pass without skips. Values/digests/actors in fixtures are explicitly synthetic, not actual benchmarks or platform support.
+Both schemas/policy/six fixtures and ADR0022 pass registered-format validation. Focused18 and the clean integrated e631705 complete25 checks/338 tests pass without skips. Values/digests/actors in fixtures are explicitly synthetic, not actual benchmarks or platform support.
 
 ## Blockers, risks, unknowns, and deferred work
 
@@ -162,7 +163,7 @@ Scientific validity, actual execution/raw-byte authenticity and native consumers
 
 ## Next dependency-ready work
 
-Qualify the combined candidate after actual905eac0 integration, then root reviews ordinary source integration. Preserve report-only rollout and existing owner pins/lifecycles.
+Combined candidate qualification at e631705 passed after actual905eac0 integration; root now reviews ordinary source integration. Preserve report-only rollout and existing owner pins/lifecycles.
 
 ## Parallel changes and reconciliation
 
