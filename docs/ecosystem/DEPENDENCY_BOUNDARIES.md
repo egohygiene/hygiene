@@ -155,6 +155,15 @@ capability away from its canonical owner.
 
 ## Ownership and rollout
 
+Empathy's existing golden-consumer declaration includes Mantle runtime and
+EgoLint profiles. `RELATIONSHIP-006` and `RELATIONSHIP-008` name Empathy
+explicitly alongside their existing Realm and Relay consumers. This reconciles
+the allowed declared direction with the repository catalog and architecture;
+it does not claim an installed runtime, active contract, completed migration or
+fleet adoption. Both relationships remain `required`, with their existing
+interfaces, immutable/versioned pinning and null contract references. Other
+consumers, forbidden relationships and the default deny policy are unchanged.
+
 - Hygiene owns the register, schema, rule semantics, and exception records.
 - Aether may package pinned authoring guidance but must not redefine the rules.
 - Holon may scaffold the pinned contract into new repositories.

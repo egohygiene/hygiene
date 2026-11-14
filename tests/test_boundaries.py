@@ -45,6 +45,27 @@ class DependencyBoundaryContractTests(unittest.TestCase):
         self.assertEqual("required", relation["contract_status"])
         self.assertIsNone(relation["contract"])
 
+    def test_golden_consumer_declared_inputs_have_narrow_owner_relationships(self) -> None:
+        empathy = next(row for row in self.catalog["repositories"]
+                       if row["full_name"] == "egohygiene/empathy")
+        context = boundaries.load_object(ROOT / "catalog/repository-context.json")
+        for identifier, producer, term, existing in (
+            ("RELATIONSHIP-006", "egohygiene/mantle", "mantle runtime", "egohygiene/realm"),
+            ("RELATIONSHIP-008", "egohygiene/egolint", "egolint profiles", "egohygiene/relay"),
+        ):
+            with self.subTest(producer=producer):
+                self.assertIn(term, empathy["consumes"])
+                self.assertIn(producer, context["dependency_sources"][term])
+                relation = next(row for row in self.register["relationships"]
+                                if row["id"] == identifier)
+                self.assertEqual(producer, relation["producer"])
+                self.assertEqual([existing, "egohygiene/empathy"], relation["consumers"])
+                self.assertEqual("required", relation["contract_status"])
+                self.assertIsNone(relation["contract"])
+                self.assertEqual("immutable-or-versioned", relation["pinning"])
+        self.assertEqual("deny", self.register["default_policy"]["unknown_dependency"])
+        self.assertEqual([], self.register["exceptions"])
+
     def test_duplicate_rule_is_rejected(self) -> None:
         candidate = copy.deepcopy(self.register)
         candidate["rules"].append(copy.deepcopy(candidate["rules"][0]))
