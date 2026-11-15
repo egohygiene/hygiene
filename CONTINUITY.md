@@ -7,28 +7,40 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T22:49:47Z'
+  updated_at: '2026-11-15T01:01:04Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Qualify existing proposed architecture-coherence governance with executable synthetic fixtures
-    while preserving all owner policy/schema/evaluator bytes.
+  purpose: Complete the proposed people-first content and editorial quality policy definition with source
+    mappings and honest mechanical/human evidence boundaries.
   includes:
-  - Eighteen independently expected synthetic cases and15 executable test methods cover current/stale/deferred/revision-required/not-applicable/missing/unavailable
-    state, scope and explicit public admission.
-  - Adversarial controls bind scope, assessment, revisions, expiry and caveats; distinguish JSON claims
-    from typed synthetic trusted context; preserve historical decisions under stale evidence; reject unsafe
-    dates/URLs/prose and duplicate selected events.
-  - Five canonical owner files remain byte-identical. The source-bound receipt and policy guide record
-    later reference qualification without retiming source clocks, ratifying architecture or activating
-    policy.
+  - The proposed profile and two evidence/schema contracts define18 stable source-mapped rules with ordinary/high-stakes,
+    AI-assisted, localized, current and archival applicability. Source guidance was actually retrieved
+    and reviewed; local policy adaptations remain explicit.
+  - The pure read-only reference separates declared metadata from actual content quality. All applicable
+    qualitative rules remain independent-review-required; reviewer JSON, search performance and a metadata-ready
+    good fixture supply no authentic approval or publication decision.
+  - Seven independently expected synthetic fixtures and10 native methods qualify good/partial/stale/intentional-archive
+    states, risk/AI/unknown applicability, exact review binding, source freshness, corrections/supersession,
+    private admission and false-approval/score controls.
+  - The complete pinned contract gate includes profile/fixture checks:29 checks and397 tests pass with
+    zero skips. Proposed ADR0024 and both contract-index entries remain proposed; all prior policy/decision
+    disposition and ownership are preserved.
   excludes: &id001
-  - The typed trusted contexts exist only in explicitly synthetic test code. No production provider adapter,
-    authentic human source, actual architecture ratification or policy activation was exercised.
-  - Policy and ADR-0017 remain proposed/null approval. Aether full assessments, Observatory queries, Relay
-    production integration and reviewed consumer adoption retain separate owners and acceptance.
+  - Profile version1.0.0-alpha.1, both new contracts and ADR0024 remain proposed with null approval. Source
+    integration supplies no policy activation, authentic editorial review, domain expertise, legal compliance,
+    content publication or fleet rollout.
+  - The pure reference checks declared metadata/revision/time bindings only. Actual content bytes, source
+    truth, reader value, expert identity and human judgment need independent verification. Every applicable
+    qualitative rule remains independent-review-required, including the good fixture.
+  - External guidance pages were actually retrieved and reviewed on2026-11-15; hashes identify retrieved
+    page bytes and the issue-body source. URLs are mutable, and source hashes do not authenticate human
+    approval or provide an archival/publishing service.
+  - Hygiene17 retains broader editorial/corrections/legal/disclosure surface semantics and applicability.
+    Existing HYG-Q03 hosted enforcement, HYG-Q04 catalog freshness, HYG-Q05 integration and human/source
+    admission under47 remain separate. No source lifecycle or prior decision is changed.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -38,77 +50,84 @@ scope:
   canonical_sources:
   - AGENTS.md
   - ROADMAP.md
-  - docs/ecosystem/ARCHITECTURE_COHERENCE.md
-  - catalog/architecture-coherence-policy.json
-  - tools/architecture_coherence.py
-  - tests/test_architecture_coherence.py
-  - fixtures/architecture-coherence
-  - docs/evidence/2026-11-14-coherence-reference-qualification.json
-  - docs/decisions/ADR-0017-architecture-coherence-governance.md
-  - https://github.com/egohygiene/hygiene/issues/59
+  - catalog/helpful-content-profile.json
+  - schemas/helpful-content-profile.v1.schema.json
+  - schemas/content-quality-evidence.v1.schema.json
+  - docs/ecosystem/HELPFUL_CONTENT.md
+  - tools/helpful_content.py
+  - tests/test_helpful_content.py
+  - fixtures/helpful-content
+  - docs/decisions/ADR-0024-people-first-editorial-evidence.md
+  - docs/evidence/2026-11-15-helpful-content-qualification.json
+  - https://github.com/egohygiene/hygiene/issues/23
 work:
-  objective: Qualify existing proposed architecture-coherence governance with executable synthetic fixtures
-    while preserving all owner policy/schema/evaluator bytes.
+  objective: Complete the proposed people-first content and editorial quality policy definition with source
+    mappings and honest mechanical/human evidence boundaries.
   success_conditions:
-  - The existing policy/reference implementation has meaningful executable repository/organization fixtures
-    and authority/freshness/privacy controls.
-  - Raw JSON, actor labels and matching claimed digests cannot manufacture trusted human evidence; all
-    owner source bytes and historical dispositions remain intact.
-  - Complete reference checks pass and downstream production/human gates remain explicit.
+  - A versioned source-mapped policy defines reader value, provenance, accountable AI use, high-stakes
+    review, accessibility, freshness/corrections and intentional archival.
+  - Mechanical evidence, actual source truth and qualitative human judgment remain separate; unknown/missing/stale/blocked
+    inputs cannot be treated as a quality pass.
+  - Real reference qualification covers the requested contrasting fixtures and adversarial controls without
+    a universal helpfulness score, fabricated approval or publication.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#59
-    url: https://github.com/egohygiene/hygiene/issues/59
+    id: egohygiene/hygiene#23
+    url: https://github.com/egohygiene/hygiene/issues/23
   next:
     kind: issue
-    id: egohygiene/aether#87
-    description: Consume this qualified proposed owner contract in the full Aether coherence assessment/authoring
-      skill while keeping actual human verification and production adoption separately owned.
+    id: egohygiene/.github#24
+    description: Finish bounded community-default receiving canary proof using existing label/intake owners
+      and actual provider evidence; preserve repository overrides, candidate authority, historical migrations
+      and remaining UI/access gaps.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/87
-    - https://github.com/egohygiene/hygiene/issues/59
+    - https://github.com/egohygiene/.github/issues/24
     depends_on: []
 state:
   base:
-    revision: d51043f1e4d2ddc22ef4534bd0d65c0053afcbda
+    revision: 1c2bb79e6624a81f7187bd1ee99bee1ea3de1583
     ref: refs/heads/main
-    verified_at: '2026-11-14T22:49:47Z'
+    verified_at: '2026-11-15T01:01:04Z'
   candidate:
-    branch: codex/coherence-reference-qualification
+    branch: codex/helpful-content-profile
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-14T22:49:47Z'
-    default_branch_revision: d51043f1e4d2ddc22ef4534bd0d65c0053afcbda
+    observed_at: '2026-11-15T01:01:04Z'
+    default_branch_revision: 1c2bb79e6624a81f7187bd1ee99bee1ea3de1583
     issue_state: open
     pull_request_state: not-applicable
-    notes: Observed main d51043f contains merged organization roadmap123;60 is closed for source definition.59
-      remains open while this local qualification is prepared; no PR yet exists for this candidate.
+    notes: Observed main1c2bb79 includes merged124 coherence qualification;59 and60 are closed for source
+      definition.23 remains open and this implementation revisiona2b7b2c has no PR yet. Aether134 is merged
+      and103 is closed. Native reference gate passed; exact-head hosted proof remains pending.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-14T22:49:47Z'
+  reviewed_at: '2026-11-15T01:01:04Z'
   reviewed_by: Codex
   evidence:
-  - command: python -I -m unittest discover -s tests -p test_architecture_coherence.py -v
+  - command: Pinned Python-I tools/check_contracts.py
     outcome: passed
-    notes: 15 methods and18 independently expected synthetic cases pass, including all declared dispositions
-      and material trigger kinds; no live human proof is inferred.
-    observed_at: '2026-11-14T22:49:47Z'
-  - command: Registered schema/FormatChecker checks and five-file SHA256 comparison against represented
-      owner source
+    notes: Complete29-check gate passes with397 tests,0 failures/errors/skips; no required check suppressed.
+    observed_at: '2026-11-15T01:01:04Z'
+  - command: python -m unittest discover -s tests -p test_helpful_content.py -q
     outcome: passed
-    notes: 14 admitted governance cases plus policy/material-change examples pass; the policy, three schemas
-      and evaluator remain byte-identical.
-    observed_at: '2026-11-14T22:49:47Z'
-  - command: python -I tools/check_contracts.py
+    notes: 10 meaningful methods qualify semantic distinctions, binding/freshness/history/privacy and
+      false approval/score controls.
+    observed_at: '2026-11-15T01:01:04Z'
+  - command: tools/helpful_content.py validate-profile and validate-fixtures
     outcome: passed
-    notes: All27 checks and387 tests pass; zero failures/errors/skips. Exact locked release-owner validation
-      sources remain in the ignored cache; no release occurs.
-    observed_at: '2026-11-14T22:49:47Z'
+    notes: 18 source-mapped rules and7 independently expected synthetic fixtures qualify metadata states;
+      every applicable qualitative review remains unsupplied.
+    observed_at: '2026-11-15T01:01:04Z'
+  - command: ADR and organization-contract-index schema checks
+    outcome: passed
+    notes: New ADR0024 and contracts are proposed/null; source metadata/index changes pass targeted validation.
+      No active authority is fabricated.
+    observed_at: '2026-11-15T01:01:04Z'
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -136,47 +155,55 @@ Read AGENTS, the canonical sources below and verified live issue/PR state before
 
 ## Current objective and success conditions
 
-Qualify existing proposed architecture-coherence governance with executable synthetic fixtures while preserving all owner policy/schema/evaluator bytes.
+Complete the proposed people-first content and editorial quality policy definition with source mappings and honest mechanical/human evidence boundaries.
 
-- The existing policy/reference implementation has meaningful executable repository/organization fixtures and authority/freshness/privacy controls.
-- Raw JSON, actor labels and matching claimed digests cannot manufacture trusted human evidence; all owner source bytes and historical dispositions remain intact.
-- Complete reference checks pass and downstream production/human gates remain explicit.
+- A versioned source-mapped policy defines reader value, provenance, accountable AI use, high-stakes review, accessibility, freshness/corrections and intentional archival.
+- Mechanical evidence, actual source truth and qualitative human judgment remain separate; unknown/missing/stale/blocked inputs cannot be treated as a quality pass.
+- Real reference qualification covers the requested contrasting fixtures and adversarial controls without a universal helpfulness score, fabricated approval or publication.
 
 ## State snapshot
 
-Observed default source `d51043f1e4d2ddc22ef4534bd0d65c0053afcbda`. Candidate `codex/coherence-reference-qualification` is a review checkpoint; its containing revision remains null intentionally.
+Observed default source `1c2bb79e6624a81f7187bd1ee99bee1ea3de1583`. Candidate `codex/helpful-content-profile` is a review checkpoint; its containing revision remains null intentionally.
 
 ## Completed and material changes
 
-Eighteen independently expected synthetic cases and15 executable test methods cover current/stale/deferred/revision-required/not-applicable/missing/unavailable state, scope and explicit public admission.
+The proposed profile and two evidence/schema contracts define18 stable source-mapped rules with ordinary/high-stakes, AI-assisted, localized, current and archival applicability. Source guidance was actually retrieved and reviewed; local policy adaptations remain explicit.
 
-Adversarial controls bind scope, assessment, revisions, expiry and caveats; distinguish JSON claims from typed synthetic trusted context; preserve historical decisions under stale evidence; reject unsafe dates/URLs/prose and duplicate selected events.
+The pure read-only reference separates declared metadata from actual content quality. All applicable qualitative rules remain independent-review-required; reviewer JSON, search performance and a metadata-ready good fixture supply no authentic approval or publication decision.
 
-Five canonical owner files remain byte-identical. The source-bound receipt and policy guide record later reference qualification without retiming source clocks, ratifying architecture or activating policy.
+Seven independently expected synthetic fixtures and10 native methods qualify good/partial/stale/intentional-archive states, risk/AI/unknown applicability, exact review binding, source freshness, corrections/supersession, private admission and false-approval/score controls.
+
+The complete pinned contract gate includes profile/fixture checks:29 checks and397 tests pass with zero skips. Proposed ADR0024 and both contract-index entries remain proposed; all prior policy/decision disposition and ownership are preserved.
 
 ## Validation and review evidence
 
-`python -I -m unittest discover -s tests -p test_architecture_coherence.py -v` — passed: 15 methods and18 independently expected synthetic cases pass, including all declared dispositions and material trigger kinds; no live human proof is inferred.
+`Pinned Python-I tools/check_contracts.py` — passed: Complete29-check gate passes with397 tests,0 failures/errors/skips; no required check suppressed.
 
-`Registered schema/FormatChecker checks and five-file SHA256 comparison against represented owner source` — passed: 14 admitted governance cases plus policy/material-change examples pass; the policy, three schemas and evaluator remain byte-identical.
+`python -m unittest discover -s tests -p test_helpful_content.py -q` — passed: 10 meaningful methods qualify semantic distinctions, binding/freshness/history/privacy and false approval/score controls.
 
-`python -I tools/check_contracts.py` — passed: All27 checks and387 tests pass; zero failures/errors/skips. Exact locked release-owner validation sources remain in the ignored cache; no release occurs.
+`tools/helpful_content.py validate-profile and validate-fixtures` — passed: 18 source-mapped rules and7 independently expected synthetic fixtures qualify metadata states; every applicable qualitative review remains unsupplied.
 
-ADR-Ref: existing proposed ADR-0017 and accepted ADR-0002 retain their authority. ADR not required: executable reference qualification adds evidence without changing policy, schema, implementation semantics or human lifecycle.
+`ADR and organization-contract-index schema checks` — passed: New ADR0024 and contracts are proposed/null; source metadata/index changes pass targeted validation. No active authority is fabricated.
+
+Proposed ADR0024 records the metadata/editorial boundary and reuse of the existing pinned JSON Schema runtime, with a bounded documented exception to proposed ADR0014 preference. Approval stays null. Roadmap impact: not-affected within existing policy/schema authoring capability; no strategic identity, state, horizon or priority changes.
 
 ## Blockers, risks, unknowns, and deferred work
 
-The typed trusted contexts exist only in explicitly synthetic test code. No production provider adapter, authentic human source, actual architecture ratification or policy activation was exercised.
+Profile version1.0.0-alpha.1, both new contracts and ADR0024 remain proposed with null approval. Source integration supplies no policy activation, authentic editorial review, domain expertise, legal compliance, content publication or fleet rollout.
 
-Policy and ADR-0017 remain proposed/null approval. Aether full assessments, Observatory queries, Relay production integration and reviewed consumer adoption retain separate owners and acceptance.
+The pure reference checks declared metadata/revision/time bindings only. Actual content bytes, source truth, reader value, expert identity and human judgment need independent verification. Every applicable qualitative rule remains independent-review-required, including the good fixture.
+
+External guidance pages were actually retrieved and reviewed on2026-11-15; hashes identify retrieved page bytes and the issue-body source. URLs are mutable, and source hashes do not authenticate human approval or provide an archival/publishing service.
+
+Hygiene17 retains broader editorial/corrections/legal/disclosure surface semantics and applicability. Existing HYG-Q03 hosted enforcement, HYG-Q04 catalog freshness, HYG-Q05 integration and human/source admission under47 remain separate. No source lifecycle or prior decision is changed.
 
 ## Next dependency-ready work
 
-Consume this qualified proposed owner contract in the full Aether coherence assessment/authoring skill while keeping actual human verification and production adoption separately owned.
+Finish bounded community-default receiving canary proof using existing label/intake owners and actual provider evidence; preserve repository overrides, candidate authority, historical migrations and remaining UI/access gaps.
 
 ## Parallel changes and reconciliation
 
-Preserve merged123 organization strategy and earlier history/claim/diagnosis qualifications. Holon109 cache regression and Aether roadmap-impact work are independent bounded source checkpoints; none supplies policy ratification.
+Preserve organization strategy and its inferred/proposed ordering, qualified coherence owner bytes, existing context/release pins and historical47 source-admission gaps. The public-site registry continues to defer broader policy semantics to17.
 
 ## Privacy and redaction
 

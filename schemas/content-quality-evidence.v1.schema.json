@@ -1,0 +1,706 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/content-quality-evidence.v1.schema.json",
+  "title": "Proposed content evidence; claims do not authenticate review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contract_version",
+    "visibility",
+    "subject",
+    "evidence",
+    "reviewer_claims"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egohygiene.content-quality-evidence/v1"
+    },
+    "contract_version": {
+      "const": "1.0.0-alpha.1"
+    },
+    "visibility": {
+      "enum": [
+        "public",
+        "internal",
+        "private"
+      ]
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "content_revision",
+        "risk_profile",
+        "ai_assisted",
+        "localized",
+        "lifecycle"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^content:[a-z0-9][a-z0-9._-]{0,79}$"
+        },
+        "content_revision": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "risk_profile": {
+          "enum": [
+            "ordinary",
+            "high-stakes",
+            "unknown"
+          ]
+        },
+        "ai_assisted": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "localized": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "lifecycle": {
+          "enum": [
+            "draft",
+            "current",
+            "archived",
+            "superseded"
+          ]
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose",
+        "audience",
+        "user_need",
+        "author_role",
+        "accountable_editor",
+        "source_refs",
+        "limitations_reference",
+        "ai_provenance",
+        "content_review",
+        "corrections_policy",
+        "corrections",
+        "superseded_by",
+        "archive",
+        "accessibility",
+        "specialist_review",
+        "localization_reference"
+      ],
+      "properties": {
+        "purpose": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 600
+        },
+        "audience": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 600
+        },
+        "user_need": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 600
+        },
+        "author_role": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 600
+        },
+        "accountable_editor": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 600
+        },
+        "source_refs": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "reference",
+              "visibility",
+              "observed_at",
+              "sha256"
+            ],
+            "properties": {
+              "reference": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 600
+              },
+              "visibility": {
+                "enum": [
+                  "public",
+                  "internal",
+                  "private"
+                ]
+              },
+              "observed_at": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "Z$"
+                  }
+                ]
+              },
+              "sha256": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          }
+        },
+        "limitations_reference": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "reference",
+                "visibility"
+              ],
+              "properties": {
+                "reference": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 600
+                },
+                "visibility": {
+                  "enum": [
+                    "public",
+                    "internal",
+                    "private"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "ai_provenance": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "method",
+                "reference",
+                "accountable_reviewer"
+              ],
+              "properties": {
+                "method": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 600
+                },
+                "reference": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "reference",
+                    "visibility"
+                  ],
+                  "properties": {
+                    "reference": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 600
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "internal",
+                        "private"
+                      ]
+                    }
+                  }
+                },
+                "accountable_reviewer": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 600
+                }
+              }
+            }
+          ]
+        },
+        "content_review": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "reviewed_at",
+                "content_revision",
+                "interval_days",
+                "reference"
+              ],
+              "properties": {
+                "reviewed_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$"
+                },
+                "content_revision": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "interval_days": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 3650
+                },
+                "reference": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "reference",
+                    "visibility"
+                  ],
+                  "properties": {
+                    "reference": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 600
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "internal",
+                        "private"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "corrections_policy": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "reference",
+                "visibility"
+              ],
+              "properties": {
+                "reference": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 600
+                },
+                "visibility": {
+                  "enum": [
+                    "public",
+                    "internal",
+                    "private"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "corrections": {
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "recorded_at",
+              "reference",
+              "supersedes"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 600
+              },
+              "recorded_at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$"
+              },
+              "reference": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "reference",
+                  "visibility"
+                ],
+                "properties": {
+                  "reference": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 600
+                  },
+                  "visibility": {
+                    "enum": [
+                      "public",
+                      "internal",
+                      "private"
+                    ]
+                  }
+                }
+              },
+              "supersedes": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 600
+                }
+              }
+            }
+          }
+        },
+        "superseded_by": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "reference",
+                "visibility"
+              ],
+              "properties": {
+                "reference": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 600
+                },
+                "visibility": {
+                  "enum": [
+                    "public",
+                    "internal",
+                    "private"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "archive": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "archived_at",
+                "reason",
+                "banner_reference"
+              ],
+              "properties": {
+                "archived_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$"
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 600
+                },
+                "banner_reference": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "reference",
+                    "visibility"
+                  ],
+                  "properties": {
+                    "reference": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 600
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "internal",
+                        "private"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "accessibility": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "locale",
+                "reference",
+                "equivalent_information_reference"
+              ],
+              "properties": {
+                "locale": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 600
+                },
+                "reference": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "reference",
+                    "visibility"
+                  ],
+                  "properties": {
+                    "reference": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 600
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "internal",
+                        "private"
+                      ]
+                    }
+                  }
+                },
+                "equivalent_information_reference": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "reference",
+                    "visibility"
+                  ],
+                  "properties": {
+                    "reference": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 600
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "internal",
+                        "private"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "specialist_review": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "qualification",
+                "content_revision",
+                "reviewed_at",
+                "reference"
+              ],
+              "properties": {
+                "qualification": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 600
+                },
+                "content_revision": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "reviewed_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$"
+                },
+                "reference": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "reference",
+                    "visibility"
+                  ],
+                  "properties": {
+                    "reference": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 600
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "internal",
+                        "private"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "localization_reference": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "reference",
+                "visibility"
+              ],
+              "properties": {
+                "reference": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 600
+                },
+                "visibility": {
+                  "enum": [
+                    "public",
+                    "internal",
+                    "private"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "reviewer_claims": {
+      "type": "array",
+      "maxItems": 18,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rule_id",
+          "judgment",
+          "content_revision",
+          "reviewed_at",
+          "evidence_reference",
+          "reviewer_role"
+        ],
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "pattern": "^HC-[0-9]{3}$"
+          },
+          "judgment": {
+            "enum": [
+              "supported",
+              "partial",
+              "blocked",
+              "unknown"
+            ]
+          },
+          "content_revision": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "reviewed_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "evidence_reference": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "reference",
+              "visibility"
+            ],
+            "properties": {
+              "reference": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 600
+              },
+              "visibility": {
+                "enum": [
+                  "public",
+                  "internal",
+                  "private"
+                ]
+              }
+            }
+          },
+          "reviewer_role": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 600
+          }
+        }
+      }
+    }
+  }
+}

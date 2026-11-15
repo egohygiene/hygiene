@@ -1,0 +1,13 @@
+{
+  "as_of": "2026-11-15T00:00:00Z",
+  "cases": {
+    "good": "metadata-ready",
+    "partial": "partial",
+    "stale": "stale",
+    "archived": "intentionally-archived",
+    "high-stakes-missing-review": "partial",
+    "ai-missing-provenance": "partial",
+    "unknown-applicability": "unknown"
+  },
+  "human_review": "independent-review-required for all applicable qualitative rules; fixture claims never authenticate review"
+}

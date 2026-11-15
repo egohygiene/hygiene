@@ -3,7 +3,7 @@
   "status": "proposed",
   "organization": "egohygiene",
   "canonical_repository": "egohygiene/hygiene",
-  "updated": "2026-11-14",
+  "updated": "2026-11-15",
   "contracts": [
     {
       "id": "egohygiene.architecture-decision/v1",
@@ -282,6 +282,22 @@
       "title": "Organization strategy and repository-roadmap composition",
       "owner": "egohygiene/hygiene",
       "source": "schemas/organization-roadmap.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.helpful-content-profile/v1",
+      "title": "People-first content and accountable editorial policy",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/helpful-content-profile.v1.schema.json",
+      "status": "proposed",
+      "visibility": "public"
+    },
+    {
+      "id": "egohygiene.content-quality-evidence/v1",
+      "title": "Content metadata and attributed editorial evidence",
+      "owner": "egohygiene/hygiene",
+      "source": "schemas/content-quality-evidence.v1.schema.json",
       "status": "proposed",
       "visibility": "public"
     }

@@ -1,0 +1,294 @@
+{
+  "schema": "egohygiene.helpful-content-profile/v1",
+  "contract_version": "1.0.0-alpha.1",
+  "status": "proposed",
+  "approval": null,
+  "owner": "egohygiene/hygiene",
+  "updated": "2026-11-15",
+  "sources": [
+    {
+      "id": "google-helpful",
+      "title": "Google Search Central: creating helpful, reliable, people-first content",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "observed_at": "2026-11-15T00:31:13Z",
+      "sha256": "4965e4c6dc84c11e2cf03745215c759f239588dd5b1a2ae3b82f533dfc26543e",
+      "adoption": "adapt",
+      "scope": "Editorial self-assessment and who/how/why guidance; no endorsement, ranking promise or universal quality score."
+    },
+    {
+      "id": "wcag22",
+      "title": "W3C Web Content Accessibility Guidelines 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "observed_at": "2026-11-15T00:31:10Z",
+      "sha256": "6e3c5fe397257cae509a2fb4752b73062cf8cbeb92c2cec618989b17e4cf7057",
+      "adoption": "adapt",
+      "scope": "Technical accessibility and equivalent information; legal applicability and actual conformance need their own evidence."
+    },
+    {
+      "id": "hygiene23",
+      "title": "Hygiene people-first publication requirements",
+      "url": "https://github.com/egohygiene/hygiene/issues/23",
+      "observed_at": "2026-11-15T00:57:30Z",
+      "sha256": "8eced72ca15b02dcac71aa42b5a023493a244d6039cee84b0451ec51b6b66ba5",
+      "adoption": "proposed-local-policy",
+      "scope": "Local provenance/review/freshness/archive controls are explicit proposed organization policy, not universal Google mandates. SHA-256 identifies the issue body as UTF-8; external guidance hashes identify retrieved page bytes."
+    }
+  ],
+  "rules": [
+    {
+      "id": "HC-001",
+      "applicability": "all",
+      "verification": "mechanical",
+      "evidence_fields": [
+        "purpose",
+        "audience",
+        "user_need"
+      ],
+      "requirement": "Declare an audience, purpose and real user need.",
+      "severity": "required",
+      "sources": [
+        "google-helpful",
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-002",
+      "applicability": "all",
+      "verification": "human",
+      "evidence_fields": [],
+      "requirement": "Review original reader value beyond aggregation or paraphrase.",
+      "severity": "required",
+      "sources": [
+        "google-helpful",
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-003",
+      "applicability": "all",
+      "verification": "human",
+      "evidence_fields": [],
+      "requirement": "Substantiate first-hand experience, expertise and domain claims without invented authority.",
+      "severity": "required",
+      "sources": [
+        "google-helpful",
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-004",
+      "applicability": "all",
+      "verification": "mechanical",
+      "evidence_fields": [
+        "author_role",
+        "accountable_editor"
+      ],
+      "requirement": "Declare accountable authorship/editorial responsibility appropriate to the content.",
+      "severity": "required",
+      "sources": [
+        "google-helpful",
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-005",
+      "applicability": "all",
+      "verification": "human",
+      "evidence_fields": [],
+      "requirement": "Check that titles, summaries and promises accurately represent the content.",
+      "severity": "required",
+      "sources": [
+        "google-helpful",
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-006",
+      "applicability": "all",
+      "verification": "mechanical",
+      "evidence_fields": [
+        "source_refs"
+      ],
+      "requirement": "Retain classified source references, observed times and available exact source digests.",
+      "severity": "required",
+      "sources": [
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-007",
+      "applicability": "all",
+      "verification": "human",
+      "evidence_fields": [
+        "limitations_reference"
+      ],
+      "requirement": "Review limitations, uncertainty, risk and applicability, linked to actual content.",
+      "severity": "required",
+      "sources": [
+        "google-helpful",
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-008",
+      "applicability": "ai-assisted",
+      "verification": "mechanical",
+      "evidence_fields": [
+        "ai_provenance"
+      ],
+      "requirement": "Record how AI assisted, provenance and an accountable reviewer; disclose to readers where applicable.",
+      "severity": "required",
+      "sources": [
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-009",
+      "applicability": "ai-assisted",
+      "verification": "human",
+      "evidence_fields": [],
+      "requirement": "Review AI-assisted originality, accuracy and oversight; scale or automation alone supplies no value.",
+      "severity": "required",
+      "sources": [
+        "google-helpful",
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-010",
+      "applicability": "current",
+      "verification": "mechanical",
+      "evidence_fields": [
+        "content_review"
+      ],
+      "requirement": "Bind last substantive content review to the declared content revision and explicit review interval.",
+      "severity": "required",
+      "sources": [
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-011",
+      "applicability": "all",
+      "verification": "mechanical",
+      "evidence_fields": [
+        "corrections_policy",
+        "corrections"
+      ],
+      "requirement": "Link corrections policy, dated correction records and supersession without silently rewriting history.",
+      "severity": "required",
+      "sources": [
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-012",
+      "applicability": "archived",
+      "verification": "mechanical",
+      "evidence_fields": [
+        "archive"
+      ],
+      "requirement": "Declare intentional archival with reason, date and a visible historical-status reference; do not fake freshness.",
+      "severity": "required",
+      "sources": [
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-013",
+      "applicability": "all",
+      "verification": "mechanical",
+      "evidence_fields": [
+        "accessibility"
+      ],
+      "requirement": "Record language/locale and objective accessibility/equivalent-information evidence references.",
+      "severity": "required",
+      "sources": [
+        "wcag22",
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-014",
+      "applicability": "all",
+      "verification": "human",
+      "evidence_fields": [],
+      "requirement": "Review meaningful accessible equivalents and localization quality rather than infer them from markup.",
+      "severity": "required",
+      "sources": [
+        "wcag22",
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-015",
+      "applicability": "high-stakes",
+      "verification": "mechanical",
+      "evidence_fields": [
+        "specialist_review"
+      ],
+      "requirement": "Bind qualified domain-review evidence to the exact high-stakes content revision.",
+      "severity": "required",
+      "sources": [
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-016",
+      "applicability": "high-stakes",
+      "verification": "human",
+      "evidence_fields": [],
+      "requirement": "Require appropriate expert/editorial accuracy review for health, legal, financial, safety and research claims.",
+      "severity": "required",
+      "sources": [
+        "google-helpful",
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-017",
+      "applicability": "all",
+      "verification": "human",
+      "evidence_fields": [],
+      "requirement": "Reject fabricated expertise, fake freshness, unsupported claims and search-first mass low-value content; rankings are not quality proof.",
+      "severity": "required",
+      "sources": [
+        "google-helpful",
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    },
+    {
+      "id": "HC-018",
+      "applicability": "localized",
+      "verification": "mechanical",
+      "evidence_fields": [
+        "localization_reference"
+      ],
+      "requirement": "Link the reviewed equivalent localized content; unsupported language coverage remains unknown.",
+      "severity": "required",
+      "sources": [
+        "hygiene23"
+      ],
+      "remediation": "Provide source-bound metadata and accountable review for this requirement; retain missing, stale or unavailable evidence explicitly."
+    }
+  ],
+  "review_boundary": "Mechanical evidence admission is separate from actual source truth, usefulness and independently verified human/editorial review. No search metric or universal score can supply that review.",
+  "related_policy": "https://github.com/egohygiene/hygiene/issues/17"
+}

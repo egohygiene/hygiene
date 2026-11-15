@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/hygiene/helpful-content-profile.v1.schema.json",
+  "title": "Proposed people-first content profile alpha.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contract_version",
+    "status",
+    "approval",
+    "owner",
+    "updated",
+    "sources",
+    "rules",
+    "review_boundary",
+    "related_policy"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egohygiene.helpful-content-profile/v1"
+    },
+    "contract_version": {
+      "const": "1.0.0-alpha.1"
+    },
+    "status": {
+      "const": "proposed"
+    },
+    "approval": {
+      "type": "null"
+    },
+    "owner": {
+      "const": "egohygiene/hygiene"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "url",
+          "observed_at",
+          "sha256",
+          "adoption",
+          "scope"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 600
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 600
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 600,
+            "format": "uri"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "adoption": {
+            "enum": [
+              "adopt",
+              "adapt",
+              "defer",
+              "reject",
+              "proposed-local-policy"
+            ]
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 600
+          }
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 18,
+      "maxItems": 18,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "applicability",
+          "verification",
+          "evidence_fields",
+          "requirement",
+          "severity",
+          "sources",
+          "remediation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^HC-[0-9]{3}$"
+          },
+          "applicability": {
+            "enum": [
+              "all",
+              "current",
+              "archived",
+              "ai-assisted",
+              "high-stakes",
+              "localized"
+            ]
+          },
+          "verification": {
+            "enum": [
+              "mechanical",
+              "human"
+            ]
+          },
+          "evidence_fields": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 600
+            }
+          },
+          "requirement": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 600
+          },
+          "severity": {
+            "enum": [
+              "required",
+              "recommended"
+            ]
+          },
+          "sources": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 600
+            }
+          },
+          "remediation": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 600
+          }
+        }
+      }
+    },
+    "review_boundary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 600
+    },
+    "related_policy": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 600,
+      "format": "uri"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "record_type": "dated-reference-qualification",
+  "observed_at": "2026-11-15T01:01:04Z",
+  "issue": "https://github.com/egohygiene/hygiene/issues/23",
+  "status": "qualified-source-definition",
+  "implementation_revision": "a2b7b2cea3a1b1b309108e34908b382645b9ddc3",
+  "baseline_revision": "1c2bb79e6624a81f7187bd1ee99bee1ea3de1583",
+  "profile": "egohygiene.helpful-content-profile/v1@1.0.0-alpha.1",
+  "policy_status": "proposed",
+  "approval": null,
+  "validation": {
+    "complete_contract_gate": {
+      "status": "passed",
+      "complete": true,
+      "checks": 29,
+      "unit_tests": {
+        "run": 397,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0
+      },
+      "captured_base_revision": "a2b7b2cea3a1b1b309108e34908b382645b9ddc3",
+      "captured_dirty": true,
+      "scope": "Final actual 29-check gate includes refreshed continuity and current source/index metadata; exact-head hosted qualification pending."
+    },
+    "focused_methods": {
+      "status": "pass",
+      "total": 10
+    },
+    "reference_profile": {
+      "status": "pass",
+      "rules": 18
+    },
+    "reference_fixtures": {
+      "status": "pass",
+      "cases": 7,
+      "states": [
+        "metadata-ready",
+        "partial",
+        "stale",
+        "intentionally-archived",
+        "unknown"
+      ],
+      "human_review": "independent-review-required",
+      "publication_decision": "not-supplied"
+    },
+    "adr_and_contract_index_schemas": {
+      "status": "pass",
+      "human_approval": "not-supplied"
+    }
+  },
+  "source_review": [
+    {
+      "id": "google-helpful",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "resolved_url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "status": 200,
+      "bytes": 192041,
+      "sha256": "4965e4c6dc84c11e2cf03745215c759f239588dd5b1a2ae3b82f533dfc26543e",
+      "observed_at": "2026-11-15T00:31:13.552067+00:00"
+    },
+    {
+      "id": "wcag22",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "resolved_url": "https://www.w3.org/TR/WCAG22/",
+      "status": 200,
+      "bytes": 512457,
+      "sha256": "6e3c5fe397257cae509a2fb4752b73062cf8cbeb92c2cec618989b17e4cf7057",
+      "observed_at": "2026-11-15T00:31:10.255701+00:00"
+    }
+  ],
+  "negative_controls": [
+    "Claimed human approval, usefulness scores and search ranking cannot enter evidence as quality clearance",
+    "Exact revision binding and future/stale review/source observations",
+    "AI provenance and risk/localization applicability unknowns",
+    "Intentional archive requires reason/date/banner and is not current freshness",
+    "Corrections retain links; duplicate/missing/cyclic lineage rejected; superseded content needs successor",
+    "Private/internal source/public-output admission and unsafe references",
+    "Duplicate JSON, symlink input and source-withholding CLI diagnostics"
+  ],
+  "limitations": [
+    "Profile version1.0.0-alpha.1, both new contracts and ADR0024 remain proposed with null approval. Source integration supplies no policy activation, authentic editorial review, domain expertise, legal compliance, content publication or fleet rollout.",
+    "The pure reference checks declared metadata/revision/time bindings only. Actual content bytes, source truth, reader value, expert identity and human judgment need independent verification. Every applicable qualitative rule remains independent-review-required, including the good fixture.",
+    "External guidance pages were actually retrieved and reviewed on2026-11-15; hashes identify retrieved page bytes and the issue-body source. URLs are mutable, and source hashes do not authenticate human approval or provide an archival/publishing service.",
+    "Hygiene17 retains broader editorial/corrections/legal/disclosure surface semantics and applicability. Existing HYG-Q03 hosted enforcement, HYG-Q04 catalog freshness, HYG-Q05 integration and human/source admission under47 remain separate. No source lifecycle or prior decision is changed."
+  ]
+}
