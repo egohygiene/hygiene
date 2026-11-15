@@ -62,6 +62,8 @@ claims against live Git and GitHub evidence.
 - [Documentation inventory schema](schemas/repository-documentation-inventory.v1.schema.json)
 - [Local documentation assessment schema](schemas/repository-documentation-assessment.v1.schema.json)
 - [Documentation migration map and owner checkpoints](docs/migration/2026-11-12-documentation-layout.md)
+- [Proposed people-first content and editorial quality profile](docs/ecosystem/HELPFUL_CONTENT.md)
+- [Content policy source](catalog/helpful-content-profile.json) and [synthetic qualification fixtures](fixtures/helpful-content)
 - [Proposed public-site surface and route contract](docs/ecosystem/PUBLIC_SITE_SURFACES.md)
 - [Public-site surface registry](catalog/public-site-surface-registry.json)
 - [Public-site surface registry schema](schemas/public-site-surface-registry.v1.schema.json)

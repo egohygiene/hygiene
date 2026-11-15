@@ -1,0 +1,63 @@
+{
+  "schema": "egohygiene.content-quality-evidence/v1",
+  "contract_version": "1.0.0-alpha.1",
+  "visibility": "public",
+  "subject": {
+    "id": "content:synthetic-partial",
+    "content_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "risk_profile": "ordinary",
+    "ai_assisted": false,
+    "localized": false,
+    "lifecycle": "current"
+  },
+  "evidence": {
+    "purpose": null,
+    "audience": "Synthetic first-time reader.",
+    "user_need": "Complete one documented local task.",
+    "author_role": "Synthetic author role",
+    "accountable_editor": null,
+    "source_refs": [
+      {
+        "reference": "https://example.invalid/source",
+        "visibility": "public",
+        "observed_at": "2026-11-01T00:00:00Z",
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    ],
+    "limitations_reference": {
+      "reference": "https://example.invalid/content#limitations",
+      "visibility": "public"
+    },
+    "ai_provenance": null,
+    "content_review": {
+      "reviewed_at": "2026-11-01T00:00:00Z",
+      "content_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "interval_days": 90,
+      "reference": {
+        "reference": "https://example.invalid/review",
+        "visibility": "public"
+      }
+    },
+    "corrections_policy": {
+      "reference": "https://example.invalid/corrections",
+      "visibility": "public"
+    },
+    "corrections": [],
+    "superseded_by": null,
+    "archive": null,
+    "accessibility": {
+      "locale": "en",
+      "reference": {
+        "reference": "https://example.invalid/accessibility",
+        "visibility": "public"
+      },
+      "equivalent_information_reference": {
+        "reference": "https://example.invalid/equivalents",
+        "visibility": "public"
+      }
+    },
+    "specialist_review": null,
+    "localization_reference": null
+  },
+  "reviewer_claims": []
+}

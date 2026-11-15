@@ -77,3 +77,7 @@ can be reviewed as one contract.
 [`ADR-0001`](../decisions/ADR-0001-holistic-architecture-v0.1.md) records the
 historical five-plane baseline. The current six-plane view includes the
 proposed amendments listed in the [authority map](ARCHITECTURE.md#authority-and-evidence).
+
+## Proposed editorial content policy
+
+[People-first content](HELPFUL_CONTENT.md) separates source-bound metadata and freshness from independently verified human editorial judgment. No score, search ranking, template or passing CI supplies review, legal compliance or policy activation.

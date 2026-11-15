@@ -10,6 +10,11 @@ compatibility promise applies.
 
 ## [Unreleased]
 
+- Add a proposed source-mapped people-first content profile, evidence schemas and
+  reference fixtures that separate metadata readiness from human editorial judgment.
+  Freshness, corrections, AI provenance, high-stakes review and intentional archival
+  remain explicit; no quality score, certification, enforcement or publication occurs.
+
 - Add a proposed organization roadmap, stable initiative composition, privacy-aware reference checks and a generated strategic view, separately from Hygiene's own roadmap.
 
 
